@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useSiteContent } from "../../hooks/useSiteContent";
-import logoImg from "../../../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
+import logoImg from "../../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
