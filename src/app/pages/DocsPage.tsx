@@ -621,9 +621,9 @@ const guide: GuideSection[] = [
       },
       {
         field: "DYSIGNS logo",
-        current: "PNG imported via figma:asset",
+        current: "PNG imported via ../assets/logo.png",
         howToChange:
-          "The logo is imported in Header.tsx and Footer.tsx as:\nimport logoImg from \"figma:asset/10e8a99b...png\";\n\nTo change the logo, replace the PNG file in /src/imports/ with a new one, keeping the same filename.\n\nAlternatively, import a different file and update the import path in both Header.tsx and Footer.tsx.",
+          "The logo is imported in Header.tsx and Footer.tsx as:\nimport logoImg from \"../assets/logo.png/10e8a99b...png\";\n\nTo change the logo, replace the PNG file in /src/imports/ with a new one, keeping the same filename.\n\nAlternatively, import a different file and update the import path in both Header.tsx and Footer.tsx.",
         file: "/src/app/components/Header.tsx + Footer.tsx",
       },
       {

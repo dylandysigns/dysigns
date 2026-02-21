@@ -8,7 +8,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
 import { LanguageProvider } from "../hooks/useLanguage";
-import logoImg from "figma:asset/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
+import logoImg from "../assets/logo.png/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
