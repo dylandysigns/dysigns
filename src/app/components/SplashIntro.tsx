@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
-import logoImg from "../assets/logo.png/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
+import logoImg from "../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 const SESSION_KEY = "dysigns_splash_done";
 

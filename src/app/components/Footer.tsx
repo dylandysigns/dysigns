@@ -3,7 +3,7 @@ import { siteContent } from "../data/content";
 import { TransitionLink } from "./TransitionLink";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
-import logoImg from "../assets/logo.png/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
+import logoImg from "../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 /* WhatsApp inline SVG icon — same as Header */
 function WhatsAppIcon({ size = 14, className = "" }: { size?: number; className?: string }) {
