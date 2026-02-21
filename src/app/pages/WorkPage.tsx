@@ -1,14 +1,16 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects } from "../data/projects";
+import { projects as rawProjects } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
+/* Raw categories for filtering (language-agnostic keys) */
+const rawCategories = ["All", ...Array.from(new Set(rawProjects.map((p) => p.category)))];
 
 export default function WorkPage() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,10 +18,16 @@ export default function WorkPage() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
   const { t } = useLanguage();
+  const translatedProjects = useTranslatedProjects();
   const [filter, setFilter] = useState("All");
 
+  /* Filter uses raw category key; display uses translated project data */
   const filtered =
-    filter === "All" ? projects : projects.filter((p) => p.category === filter);
+    filter === "All"
+      ? translatedProjects
+      : translatedProjects.filter(
+          (_, i) => rawProjects[i].category === filter,
+        );
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -104,8 +112,8 @@ export default function WorkPage() {
         </div>
 
         <div className="flex flex-wrap gap-2 mb-12">
-          {categories.map((cat) => {
-            const label = cat === "All" ? t("work.filterAll") : cat;
+          {rawCategories.map((cat) => {
+            const label = cat === "All" ? t("work.filterAll") : t(`category.${cat}`);
             return (
               <button
                 key={cat}

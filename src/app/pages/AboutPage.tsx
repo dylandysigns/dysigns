@@ -18,9 +18,19 @@ export default function AboutPage() {
   const cursor = useCursor();
   const { t } = useLanguage();
 
+  /**
+   * Track whether entrance animations have fired.
+   * After first run, re-renders (e.g. language toggle) skip
+   * setting opacity: 0 so cards stay visible.
+   */
+  const animDone = useRef(false);
+
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (reduced) {
+      animDone.current = true;
+      return;
+    }
 
     const ctx = gsap.context(() => {
       if (imgRef.current) {
@@ -81,6 +91,7 @@ export default function AboutPage() {
             delay: i * 0.08,
             ease: "power3.out",
             scrollTrigger: { trigger: card, start: "top 90%", once: true },
+            onComplete: () => { animDone.current = true; },
           },
         );
       });
@@ -202,7 +213,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           {values.map((v, i) => (
             <div
-              key={v.title}
+              key={i}
               ref={(el) => {
                 valuesRef.current[i] = el;
               }}
@@ -211,7 +222,7 @@ export default function AboutPage() {
                 border: "1px solid rgba(255,255,255,.06)",
                 background: "rgba(255,255,255,.02)",
                 transition: "border-color .4s",
-                opacity: 0,
+                opacity: animDone.current ? 1 : 0,
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor =

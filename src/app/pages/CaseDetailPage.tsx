@@ -3,10 +3,10 @@ import { useParams } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { projects } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,8 +21,7 @@ export default function CaseDetailPage() {
   const cursor = useCursor();
   const { t } = useLanguage();
 
-  const project = projects.find((p) => p.slug === slug);
-  const currentIdx = projects.findIndex((p) => p.slug === slug);
+  const { project, projects, currentIdx } = useTranslatedProject(slug);
   const nextProject = projects[(currentIdx + 1) % projects.length];
   const prevProject = projects[(currentIdx - 1 + projects.length) % projects.length];
 

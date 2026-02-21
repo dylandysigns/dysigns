@@ -1,10 +1,10 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
 import { TransitionLink } from "../TransitionLink";
 import { useLanguage } from "../../hooks/useLanguage";
+import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,12 +18,22 @@ export function SelectedProjects() {
   const cursor = useCursor();
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
+  const projects = useTranslatedProjects();
+  /* Track whether the entrance animation has already played so a
+     language-switch re-render doesn't reset elements to opacity:0 */
+  const headAnimDone = useRef(false);
+  const cardsAnimDone = useRef(false);
+  const extraAnimDone = useRef(false);
 
   const visible = expanded ? projects : projects.slice(0, INITIAL_COUNT);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (reduced) {
+      headAnimDone.current = true;
+      cardsAnimDone.current = true;
+      return;
+    }
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headRef.current,
@@ -38,6 +48,7 @@ export function SelectedProjects() {
             start: "top 85%",
             once: true,
           },
+          onComplete: () => { headAnimDone.current = true; },
         },
       );
       cardsRef.current.forEach((card, i) => {
@@ -52,6 +63,7 @@ export function SelectedProjects() {
             delay: i * 0.08,
             ease: "power3.out",
             scrollTrigger: { trigger: card, start: "top 90%", once: true },
+            onComplete: () => { cardsAnimDone.current = true; },
           },
         );
       });
@@ -62,7 +74,10 @@ export function SelectedProjects() {
   useEffect(() => {
     if (!expanded) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (reduced) {
+      extraAnimDone.current = true;
+      return;
+    }
 
     requestAnimationFrame(() => {
       extraRef.current.forEach((card, i) => {
@@ -76,6 +91,7 @@ export function SelectedProjects() {
             duration: 0.6,
             delay: i * 0.06,
             ease: "power3.out",
+            onComplete: () => { extraAnimDone.current = true; },
           },
         );
       });
@@ -135,7 +151,7 @@ export function SelectedProjects() {
                 letterSpacing: "-.03em",
                 color: "#fff",
                 lineHeight: 1.1,
-                opacity: 0,
+                opacity: headAnimDone.current ? 1 : 0,
               }}
             >
               {t("projects.heading")}
@@ -182,7 +198,9 @@ export function SelectedProjects() {
                   className="group relative rounded-lg overflow-hidden"
                   style={{
                     perspective: "900px",
-                    opacity: isExtra ? 0 : 0,
+                    opacity: isExtra
+                      ? (extraAnimDone.current ? 1 : 0)
+                      : (cardsAnimDone.current ? 1 : 0),
                   }}
                   onMouseMove={(e) => {
                     const card = isExtra

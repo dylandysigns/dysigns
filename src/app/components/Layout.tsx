@@ -8,6 +8,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
 import { LanguageProvider } from "../hooks/useLanguage";
+import logoImg from "figma:asset/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
  *
  * Handles:
  *  - Session-once splash intro
- *  - Black overlay wipe page transition (no stutter)
+ *  - Crossfade page transition
  *  - SINGLE centralized ScrollTrigger.refresh on resize, font load, image load
  *    (individual components should NOT add their own — avoids thrash)
  *  - Low-power device guard
@@ -63,15 +64,12 @@ function debugNav(label: string) {
 export default function Layout() {
   const [splashDone, setSplashDone] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const edgeRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const resizeTimer = useRef<ReturnType<typeof setTimeout>>();
-  const isTransitioning = useRef(false);
+  const busy = useRef(false);
   const refreshQueued = useRef(false);
-  /* Safety: ref to the active transition timeline so we can exclude it from killAll */
   const activeTl = useRef<gsap.core.Timeline | null>(null);
-  /* Safety timeout to force-reset stuck transitions */
   const safetyTimer = useRef<ReturnType<typeof setTimeout>>();
 
   /**
@@ -115,6 +113,18 @@ export default function Layout() {
     }
   }, []);
 
+  /* ─── FAVICON — same logo as header ─── */
+  useEffect(() => {
+    let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.type = "image/png";
+    link.href = logoImg;
+  }, []);
+
   /* ─── IMAGE-LOAD REFRESH AFTER SPLASH ─── */
   useEffect(() => {
     if (!splashDone) return;
@@ -154,12 +164,13 @@ export default function Layout() {
 
   /**
    * Kill all page-level GSAP animations and ScrollTriggers.
-   * CRITICAL: excludes the active transition timeline so it can complete.
+   * Uses shallow getChildren (false) so tweens nested inside the
+   * protected transition timeline are NOT destroyed.
    */
   const killPageAnimations = useCallback(
     (protectedTl?: gsap.core.Timeline | null) => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.globalTimeline.getChildren(true, true, true).forEach((child) => {
+      gsap.globalTimeline.getChildren(false, true, true).forEach((child) => {
         if (
           child !== gsap.globalTimeline &&
           child !== protectedTl
@@ -174,45 +185,34 @@ export default function Layout() {
   /**
    * Force-reset transition state — safety valve for stuck transitions.
    */
-  const forceResetTransition = useCallback(() => {
+  const forceReset = useCallback(() => {
     const overlay = overlayRef.current;
     if (overlay) {
-      gsap.set(overlay, {
-        display: "none",
-        yPercent: 100,
-        pointerEvents: "none",
-      });
+      gsap.set(overlay, { opacity: 0, visibility: "hidden", pointerEvents: "none" });
     }
-    isTransitioning.current = false;
+    busy.current = false;
     activeTl.current = null;
     if (safetyTimer.current) clearTimeout(safetyTimer.current);
-    debugNav("force-reset");
   }, []);
 
   /* ─── ROUTE TRANSITION HANDLER ─── */
   const navigateTo = useCallback(
     (path: string) => {
-      debugNav(`navigateTo("${path}") called`);
-
       // If stuck from a prior transition, force-reset
-      if (isTransitioning.current) {
-        debugNav("stuck transition detected — force-resetting");
+      if (busy.current) {
         if (activeTl.current) {
           activeTl.current.kill();
           activeTl.current = null;
         }
-        forceResetTransition();
+        forceReset();
       }
 
       if (path === location.pathname) return;
-      isTransitioning.current = true;
+      busy.current = true;
 
-      // Safety timeout: if transition doesn't complete in 3s, force-reset
+      // Safety timeout
       if (safetyTimer.current) clearTimeout(safetyTimer.current);
-      safetyTimer.current = setTimeout(() => {
-        debugNav("safety timeout — force-resetting");
-        forceResetTransition();
-      }, 3000);
+      safetyTimer.current = setTimeout(forceReset, 3500);
 
       const reduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -222,80 +222,61 @@ export default function Layout() {
         killPageAnimations(null);
         navigate(path);
         window.scrollTo(0, 0);
-        isTransitioning.current = false;
+        busy.current = false;
         if (safetyTimer.current) clearTimeout(safetyTimer.current);
         return;
       }
 
       const overlay = overlayRef.current;
-      const edge = edgeRef.current;
       if (!overlay) {
         killPageAnimations(null);
         navigate(path);
         window.scrollTo(0, 0);
-        isTransitioning.current = false;
+        busy.current = false;
         if (safetyTimer.current) clearTimeout(safetyTimer.current);
         return;
       }
 
-      // Build the transition timeline
       const tl = gsap.timeline();
       activeTl.current = tl;
 
-      // Phase 1: wipe in from bottom
-      tl.set(overlay, {
-        yPercent: 100,
-        display: "block",
-        pointerEvents: "auto",
-      });
-      if (edge) tl.set(edge, { opacity: 1 });
+      // Phase 1: fade IN the black overlay (old page fades to black)
+      tl.set(overlay, { opacity: 0, visibility: "visible", pointerEvents: "auto" });
       tl.to(overlay, {
-        yPercent: 0,
-        duration: 0.45,
-        ease: "power3.inOut",
+        opacity: 1,
+        duration: 0.35,
+        ease: "power2.inOut",
       });
 
-      // Phase 2: kill PAGE animations (NOT tl!) and navigate
+      // Phase 2: swap route while fully covered
       tl.call(() => {
-        killPageAnimations(tl); // ← protect tl from being killed
+        killPageAnimations(tl);
         navigate(path);
         window.scrollTo(0, 0);
-        debugNav("mid-transition — navigated");
       });
 
-      // Small pause for new DOM to mount
-      tl.to({}, { duration: 0.12 });
+      // Brief hold for new DOM to mount
+      tl.to({}, { duration: 0.1 });
 
-      // Phase 3: wipe out to top
+      // Phase 3: fade OUT the overlay (new page fades in from black)
       tl.to(overlay, {
-        yPercent: -100,
-        duration: 0.45,
-        ease: "power3.inOut",
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
       });
-      if (edge) {
-        tl.to(edge, { opacity: 0, duration: 0.2 }, "-=.25");
-      }
 
-      // Phase 4: clean up — ALWAYS runs now that tl isn't killed
+      // Phase 4: cleanup
       tl.call(() => {
-        gsap.set(overlay, {
-          display: "none",
-          yPercent: 100,
-          pointerEvents: "none",
-        });
-        isTransitioning.current = false;
+        gsap.set(overlay, { visibility: "hidden", pointerEvents: "none" });
+        busy.current = false;
         activeTl.current = null;
         if (safetyTimer.current) clearTimeout(safetyTimer.current);
-        debugNav("transition complete");
-        // Let new page animations init
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-          });
-        });
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => ScrollTrigger.refresh()),
+        );
       });
     },
-    [navigate, location.pathname, killPageAnimations, forceResetTransition],
+    [navigate, location.pathname, killPageAnimations, forceReset],
   );
 
   const transitionApi = useMemo(() => ({ navigateTo }), [navigateTo]);
@@ -340,32 +321,19 @@ export default function Layout() {
           <Footer />
         </div>
 
-        {/* ─── ROUTE TRANSITION OVERLAY ─── */}
+        {/* ─── CROSSFADE TRANSITION OVERLAY ─── */}
         <div
           ref={overlayRef}
-          data-transition-overlay
           className="fixed inset-0"
           style={{
             zIndex: 10050,
             background: "#000",
-            display: "none",
-            transform: "translateY(100%)",
-            willChange: "transform",
+            opacity: 0,
+            visibility: "hidden",
             pointerEvents: "none",
+            willChange: "opacity",
           }}
-        >
-          {/* white edge cue line */}
-          <div
-            ref={edgeRef}
-            className="absolute top-0 left-0 right-0"
-            style={{
-              height: 1,
-              background:
-                "linear-gradient(90deg, transparent 10%, rgba(255,255,255,.3) 50%, transparent 90%)",
-              opacity: 0,
-            }}
-          />
-        </div>
+        />
       </TransitionContext.Provider>
     </PremiumCursorProvider>
     </LanguageProvider>

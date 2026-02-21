@@ -1,7 +1,7 @@
 
-  # Premium Portfolio Website
+  # DYSIGNS
 
-  This is a code bundle for Premium Portfolio Website. The original project is available at https://www.figma.com/design/0IGDEUSMUQDMDeyQRdD26H/Premium-Portfolio-Website.
+  This is a code bundle for DYSIGNS. The original project is available at https://www.figma.com/design/0IGDEUSMUQDMDeyQRdD26H/DYSIGNS.
 
   ## Running the code
 

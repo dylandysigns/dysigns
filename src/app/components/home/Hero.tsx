@@ -533,17 +533,17 @@ export function Hero() {
           className="absolute inset-0 pointer-events-none"
           style={{ zIndex: 8 }}
         >
+          {/* UX / UI — centered under Available badge */}
           <div
-            className="absolute"
+            className="absolute top-[14%] right-[5%] md:top-[18%] md:right-auto md:left-1/2 md:-translate-x-1/2"
             style={{
-              top: "22%",
-              right: "12%",
               background: "rgba(255,255,255,.08)",
               backdropFilter: "blur(12px)",
               border: "1px solid rgba(255,255,255,.12)",
               borderRadius: 8,
               padding: "10px 16px",
               opacity: 0,
+              animation: "uxPillPulse 3s ease-in-out infinite",
             }}
           >
             <span
@@ -553,17 +553,16 @@ export function Hero() {
                 fontWeight: 600,
                 letterSpacing: ".08em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.7)",
+                color: "rgba(255,255,255,.85)",
               }}
             >
               UX / UI
             </span>
           </div>
+          {/* Brand Identity */}
           <div
-            className="absolute"
+            className="absolute top-[24%] left-[5%] md:top-auto md:bottom-[28%] md:left-[8%]"
             style={{
-              bottom: "28%",
-              left: "8%",
               background: "rgba(255,255,255,.05)",
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: 20,
@@ -582,11 +581,10 @@ export function Hero() {
               Brand Identity
             </span>
           </div>
+          {/* Web Design */}
           <div
-            className="absolute"
+            className="absolute top-[8%] left-[22%] md:top-[65%] md:left-auto md:right-[15%]"
             style={{
-              top: "65%",
-              right: "15%",
               background: "rgba(255,255,255,.04)",
               border: "1px solid rgba(255,255,255,.06)",
               borderRadius: 20,
@@ -605,11 +603,10 @@ export function Hero() {
               Web Design
             </span>
           </div>
+          {/* Building Products */}
           <div
-            className="absolute hidden md:block"
+            className="absolute top-[32%] right-[8%] md:top-[35%] md:right-auto md:left-[6%]"
             style={{
-              top: "35%",
-              left: "6%",
               background: "rgba(255,255,255,.04)",
               border: "1px solid rgba(255,255,255,.06)",
               borderRadius: 20,
@@ -625,7 +622,29 @@ export function Hero() {
                 letterSpacing: ".06em",
               }}
             >
-              Product
+              Building Products
+            </span>
+          </div>
+          {/* Strategy — top right, where UX/UI used to be */}
+          <div
+            className="absolute top-[19%] left-[40%] md:top-[22%] md:left-auto md:right-[12%]"
+            style={{
+              background: "rgba(255,255,255,.04)",
+              border: "1px solid rgba(255,255,255,.06)",
+              borderRadius: 20,
+              padding: "6px 14px",
+              opacity: 0,
+            }}
+          >
+            <span
+              style={{
+                fontSize: ".7rem",
+                fontWeight: 500,
+                color: "rgba(255,255,255,.55)",
+                letterSpacing: ".06em",
+              }}
+            >
+              Strategy
             </span>
           </div>
         </div>
@@ -834,6 +853,16 @@ export function Hero() {
           33% { background-position: 100% 0%; }
           66% { background-position: 50% 100%; }
           100% { background-position: 0% 50%; }
+        }
+        @keyframes uxPillPulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(255,255,255,.15), 0 0 8px rgba(255,255,255,.08);
+            border-color: rgba(255,255,255,.15);
+          }
+          50% {
+            box-shadow: 0 0 12px 4px rgba(255,255,255,.12), 0 0 24px rgba(255,255,255,.06);
+            border-color: rgba(255,255,255,.25);
+          }
         }
       `}</style>
     </section>

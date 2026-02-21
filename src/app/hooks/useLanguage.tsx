@@ -248,6 +248,262 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Best collaboration experience. Clear communication, exceptional craft, and always delivered ahead of schedule.",
     nl: "Beste samenwerkingservaring. Heldere communicatie, uitzonderlijk vakmanschap en altijd voor deadline opgeleverd.",
   },
+
+  /* ── Category translations ── */
+  "category.Branding": { en: "Branding", nl: "Branding" },
+  "category.Product": { en: "Product", nl: "Product" },
+  "category.Web": { en: "Web", nl: "Web" },
+
+  /* ── Tag translations ── */
+  "tag.Brand Identity": { en: "Brand Identity", nl: "Merkidentiteit" },
+  "tag.Web Design": { en: "Web Design", nl: "Webdesign" },
+  "tag.Design System": { en: "Design System", nl: "Design System" },
+  "tag.Mobile App": { en: "Mobile App", nl: "Mobiele App" },
+  "tag.UX Design": { en: "UX Design", nl: "UX-ontwerp" },
+  "tag.E-Commerce": { en: "E-Commerce", nl: "E-commerce" },
+  "tag.Development": { en: "Development", nl: "Ontwikkeling" },
+  "tag.Dashboard": { en: "Dashboard", nl: "Dashboard" },
+  "tag.SaaS": { en: "SaaS", nl: "SaaS" },
+  "tag.Data Viz": { en: "Data Viz", nl: "Datavisualisatie" },
+  "tag.Print": { en: "Print", nl: "Print" },
+  "tag.Creative Direction": { en: "Creative Direction", nl: "Creatieve Regie" },
+  "tag.Photography": { en: "Photography", nl: "Fotografie" },
+  "tag.Product Design": { en: "Product Design", nl: "Productontwerp" },
+  "tag.Motion Design": { en: "Motion Design", nl: "Motion Design" },
+
+  /* ── Project: Nova Brand Platform ── */
+  "project.nova-brand-platform.title": {
+    en: "Nova Brand Platform",
+    nl: "Nova Brand Platform",
+  },
+  "project.nova-brand-platform.overview": {
+    en: "We partnered with Nova Finance to reimagine their entire brand ecosystem\u2014from visual identity through to a comprehensive design system spanning web, mobile, and print. The result is a cohesive platform that communicates trust, innovation, and accessibility across every touchpoint.",
+    nl: "We werkten samen met Nova Finance om hun complete merkecosysteem opnieuw vorm te geven\u2014van visuele identiteit tot een uitgebreid design system voor web, mobiel en print. Het resultaat is een samenhangend platform dat vertrouwen, innovatie en toegankelijkheid uitstraalt op elk contactpunt.",
+  },
+  "project.nova-brand-platform.outcome.0": {
+    en: "42% increase in brand recall within 6 months",
+    nl: "42% stijging in merkherkenning binnen 6 maanden",
+  },
+  "project.nova-brand-platform.outcome.1": {
+    en: "Design system adopted across 3 product teams",
+    nl: "Design system overgenomen door 3 productteams",
+  },
+  "project.nova-brand-platform.outcome.2": {
+    en: "Reduced design-to-dev handoff time by 60%",
+    nl: "Design-naar-dev overdrachtstijd met 60% verkort",
+  },
+  "project.nova-brand-platform.outcome.3": {
+    en: "Featured in Awwwards SOTD collection",
+    nl: "Opgenomen in de Awwwards SOTD-collectie",
+  },
+
+  /* ── Project: Meridian App Redesign ── */
+  "project.meridian-app-redesign.title": {
+    en: "Meridian App Redesign",
+    nl: "Meridian App Herontwerp",
+  },
+  "project.meridian-app-redesign.overview": {
+    en: "Meridian Health needed a mobile experience that made complex health data feel simple and empowering. We redesigned every screen with a focus on clarity, emotional reassurance, and accessibility\u2014resulting in an app people actually want to open every day.",
+    nl: "Meridian Health had een mobiele ervaring nodig die complexe gezondheidsdata eenvoudig en empowerend liet voelen. We herontwierpen elk scherm met focus op helderheid, emotionele geruststelling en toegankelijkheid\u2014met als resultaat een app die mensen echt dagelijks willen openen.",
+  },
+  "project.meridian-app-redesign.outcome.0": {
+    en: "4.8-star App Store rating post-launch",
+    nl: "4,8-sterren App Store-beoordeling na lancering",
+  },
+  "project.meridian-app-redesign.outcome.1": {
+    en: "Daily active users up 128%",
+    nl: "Dagelijks actieve gebruikers gestegen met 128%",
+  },
+  "project.meridian-app-redesign.outcome.2": {
+    en: "Onboarding completion rate improved by 45%",
+    nl: "Onboarding-voltooiingspercentage verbeterd met 45%",
+  },
+  "project.meridian-app-redesign.outcome.3": {
+    en: "Accessibility AA compliance achieved",
+    nl: "Toegankelijkheid AA-compliance behaald",
+  },
+
+  /* ── Project: Arco E-Commerce ── */
+  "project.arco-ecommerce.title": {
+    en: "Arco E-Commerce",
+    nl: "Arco E-Commerce",
+  },
+  "project.arco-ecommerce.overview": {
+    en: "Arco Living is a premium furniture brand that needed an online presence matching the quality of their craft. We designed and built a bespoke e-commerce experience emphasizing materiality, detail photography, and a frictionless purchase journey.",
+    nl: "Arco Living is een premium meubelmerk dat een online aanwezigheid nodig had die past bij de kwaliteit van hun vakmanschap. We ontwierpen en bouwden een op maat gemaakte e-commerce-ervaring met nadruk op materialiteit, detailfotografie en een soepele aankoopervaring.",
+  },
+  "project.arco-ecommerce.outcome.0": {
+    en: "Conversion rate up 38% vs. previous platform",
+    nl: "Conversieratio 38% hoger dan vorig platform",
+  },
+  "project.arco-ecommerce.outcome.1": {
+    en: "Average session duration increased by 2.4\u00d7",
+    nl: "Gemiddelde sessieduur gestegen met 2,4\u00d7",
+  },
+  "project.arco-ecommerce.outcome.2": {
+    en: "Bounce rate dropped 22%",
+    nl: "Bouncepercentage gedaald met 22%",
+  },
+  "project.arco-ecommerce.outcome.3": {
+    en: "Shortlisted for FWA of the Day",
+    nl: "Genomineerd voor FWA van de Dag",
+  },
+
+  /* ── Project: Pulse Analytics ── */
+  "project.pulse-analytics.title": {
+    en: "Pulse Analytics",
+    nl: "Pulse Analytics",
+  },
+  "project.pulse-analytics.overview": {
+    en: "Pulse needed to transform dense analytical data into actionable insights for non-technical stakeholders. We created a dashboard experience that balances power with simplicity\u2014making complex data accessible at a glance.",
+    nl: "Pulse moest dichte analytische data omzetten in bruikbare inzichten voor niet-technische stakeholders. We cre\u00eberden een dashboard-ervaring die kracht en eenvoud in balans brengt\u2014complexe data toegankelijk in \u00e9\u00e9n oogopslag.",
+  },
+  "project.pulse-analytics.outcome.0": {
+    en: "User task completion time reduced by 55%",
+    nl: "Taakvoltooiingstijd gebruikers verminderd met 55%",
+  },
+  "project.pulse-analytics.outcome.1": {
+    en: "NPS score jumped from 32 to 71",
+    nl: "NPS-score gestegen van 32 naar 71",
+  },
+  "project.pulse-analytics.outcome.2": {
+    en: "Enterprise plan adoption up 40%",
+    nl: "Enterprise-plan adoptie gestegen met 40%",
+  },
+  "project.pulse-analytics.outcome.3": {
+    en: "Zero-training onboarding achieved",
+    nl: "Onboarding zonder training gerealiseerd",
+  },
+
+  /* ── Project: Haven Real Estate ── */
+  "project.haven-real-estate.title": {
+    en: "Haven Real Estate",
+    nl: "Haven Vastgoed",
+  },
+  "project.haven-real-estate.overview": {
+    en: "Haven Properties asked us to create a digital experience that communicates the feeling of home before a single viewing. We designed an immersive property platform with cinematic imagery, intuitive search, and a seamless inquiry flow.",
+    nl: "Haven Properties vroeg ons om een digitale ervaring te cre\u00ebren die het gevoel van thuis overbrengt nog v\u00f3\u00f3r de eerste bezichtiging. We ontwierpen een meeslepend vastgoedplatform met cinematografische beelden, intu\u00eftief zoeken en een naadloze aanvraagflow.",
+  },
+  "project.haven-real-estate.outcome.0": {
+    en: "Lead generation up 65%",
+    nl: "Leadgeneratie gestegen met 65%",
+  },
+  "project.haven-real-estate.outcome.1": {
+    en: "Average time on site doubled",
+    nl: "Gemiddelde tijd op de site verdubbeld",
+  },
+  "project.haven-real-estate.outcome.2": {
+    en: "Mobile conversion rate improved 3\u00d7",
+    nl: "Mobiele conversieratio verbeterd met 3\u00d7",
+  },
+  "project.haven-real-estate.outcome.3": {
+    en: "Won CSS Design Awards site of the month",
+    nl: "CSS Design Awards site van de maand gewonnen",
+  },
+
+  /* ── Project: Verso Brand Identity ── */
+  "project.verso-brand-identity.title": {
+    en: "Verso Brand Identity",
+    nl: "Verso Merkidentiteit",
+  },
+  "project.verso-brand-identity.overview": {
+    en: "Verso is a boutique publishing house that needed an identity system as refined as the books they produce. We crafted a brand that feels both literary and contemporary\u2014from typography choices to print collateral and a bespoke website.",
+    nl: "Verso is een boutique-uitgeverij die een identiteitssysteem nodig had dat net zo verfijnd is als de boeken die ze produceren. We cre\u00eberden een merk dat zowel literair als eigentijds aanvoelt\u2014van typografiekeuzes tot drukwerk en een op maat gemaakte website.",
+  },
+  "project.verso-brand-identity.outcome.0": {
+    en: "Brand awareness up 80% in target demographic",
+    nl: "Merkbekendheid 80% gestegen in doelgroep",
+  },
+  "project.verso-brand-identity.outcome.1": {
+    en: "Press coverage in 12 design publications",
+    nl: "Persaandacht in 12 designpublicaties",
+  },
+  "project.verso-brand-identity.outcome.2": {
+    en: "Print collateral won 2 regional design awards",
+    nl: "Drukwerk won 2 regionale designprijzen",
+  },
+  "project.verso-brand-identity.outcome.3": {
+    en: "Social media following grew 3\u00d7 in 4 months",
+    nl: "Social media-volgers verdrievoudigd in 4 maanden",
+  },
+
+  /* ── Project: Echo Fashion ── */
+  "project.echo-fashion.title": {
+    en: "Echo Fashion",
+    nl: "Echo Fashion",
+  },
+  "project.echo-fashion.overview": {
+    en: "Echo is a conscious fashion label that wanted a visual identity and digital home to match their values\u2014clean, honest, and striking. We art-directed a campaign shoot, designed the brand system, and built a Shopify experience that converts while telling a story.",
+    nl: "Echo is een bewust modelabel dat een visuele identiteit en digitaal thuis wilde dat past bij hun waarden\u2014schoon, eerlijk en opvallend. We regisseerden een campagneshoot, ontwierpen het merksysteem en bouwden een Shopify-ervaring die converteert terwijl het een verhaal vertelt.",
+  },
+  "project.echo-fashion.outcome.0": {
+    en: "Campaign imagery featured in Vogue Italia online",
+    nl: "Campagnebeelden verschenen in Vogue Italia online",
+  },
+  "project.echo-fashion.outcome.1": {
+    en: "E-commerce revenue up 52% year-over-year",
+    nl: "E-commerce-omzet 52% gestegen jaar-op-jaar",
+  },
+  "project.echo-fashion.outcome.2": {
+    en: "Email sign-ups increased 200% through new landing pages",
+    nl: "E-mailaanmeldingen 200% gestegen via nieuwe landingspagina\u2019s",
+  },
+  "project.echo-fashion.outcome.3": {
+    en: "Brand consistency score improved across all channels",
+    nl: "Merkconsistentiescore verbeterd over alle kanalen",
+  },
+
+  /* ── Project: Orbit SaaS Platform ── */
+  "project.orbit-saas-platform.title": {
+    en: "Orbit SaaS Platform",
+    nl: "Orbit SaaS Platform",
+  },
+  "project.orbit-saas-platform.overview": {
+    en: "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire product experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
+    nl: "Orbit moest evolueren van een ontwikkelaarstool naar een platform dat teams echt graag gebruiken. We herontwierpen de complete productervaring\u2014dashboard, instellingen, workflows\u2014en bouwden een design system dat meeschaalt met hun engineering-snelheid.",
+  },
+  "project.orbit-saas-platform.outcome.0": {
+    en: "User activation rate improved 67%",
+    nl: "Gebruikersactivatiepercentage verbeterd met 67%",
+  },
+  "project.orbit-saas-platform.outcome.1": {
+    en: "Support tickets reduced by 40%",
+    nl: "Supporttickets verminderd met 40%",
+  },
+  "project.orbit-saas-platform.outcome.2": {
+    en: "Design system covers 95% of UI patterns",
+    nl: "Design system dekt 95% van alle UI-patronen",
+  },
+  "project.orbit-saas-platform.outcome.3": {
+    en: "Raised Series B shortly after redesign launch",
+    nl: "Series B-ronde opgehaald kort na lancering herontwerp",
+  },
+
+  /* ── Project: Flux Motion Identity ── */
+  "project.flux-motion-identity.title": {
+    en: "Flux Motion Identity",
+    nl: "Flux Motion Identiteit",
+  },
+  "project.flux-motion-identity.overview": {
+    en: "Flux is a motion design collective that needed an identity system as dynamic as their work. We created a living brand that shifts and evolves\u2014from generative logo animations to a custom type system and a portfolio site that feels like a reel in itself.",
+    nl: "Flux is een motion design-collectief dat een identiteitssysteem nodig had dat net zo dynamisch is als hun werk. We cre\u00eberden een levend merk dat verschuift en evolueert\u2014van generatieve logo-animaties tot een op maat gemaakt typesysteem en een portfoliosite die zelf als reel aanvoelt.",
+  },
+  "project.flux-motion-identity.outcome.0": {
+    en: "Brand launch generated 50K+ social impressions in 48 hours",
+    nl: "Merklancering genereerde 50K+ sociale impressies in 48 uur",
+  },
+  "project.flux-motion-identity.outcome.1": {
+    en: "Inbound project inquiries tripled within the first quarter",
+    nl: "Inkomende projectaanvragen verdrievoudigd in het eerste kwartaal",
+  },
+  "project.flux-motion-identity.outcome.2": {
+    en: "Identity system adaptable across 12 different media formats",
+    nl: "Identiteitssysteem aanpasbaar over 12 verschillende mediaformaten",
+  },
+  "project.flux-motion-identity.outcome.3": {
+    en: "Featured on It\u2019s Nice That and Brand New",
+    nl: "Verschenen op It\u2019s Nice That en Brand New",
+  },
 };
 
 /* ─── PROVIDER ─── */
