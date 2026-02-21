@@ -6,7 +6,7 @@ import { useCursor } from "../hooks/useCursor";
 import { usePageTransition } from "../hooks/useTransition";
 import { siteContent } from "../data/content";
 import { useLanguage } from "../hooks/useLanguage";
-import logoImg from "../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
+import logoImg from "../../../assets/10e8a99ba0b681f6e788604d78bfdd3b23a66ae0.png";
 
 /**
  * Header — Floating pill navigation + utility contact circles.
