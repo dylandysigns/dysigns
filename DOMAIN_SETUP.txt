@@ -1,0 +1,160 @@
+DYSIGNS — Setup & Custom Domain Guide
+======================================
+
+1. LOCAL DEVELOPMENT
+--------------------
+Prerequisites: Node.js v20+ (LTS), npm or pnpm
+
+  git clone <your-repo-url> dysigns
+  cd dysigns
+  npm install            # or: pnpm install
+  npm run dev            # starts dev server at http://localhost:5173
+
+Production build:
+  npm run build          # output: dist/
+
+Preview production build locally:
+  npx vite preview       # serves dist/ at http://localhost:4173
+
+
+2. DEPLOY OPTION A — VERCEL
+----------------------------
+Step 1: Push repo to GitHub, GitLab, or Bitbucket.
+
+Step 2: Go to https://vercel.com/new
+        Click "Import" and select your repository.
+
+Step 3: Verify build settings (Vercel auto-detects Vite):
+        - Build command:    npm run build
+        - Output directory: dist
+        - Install command:  npm install
+
+Step 4: Add SPA rewrite. Create vercel.json in the repo root:
+
+        {
+          "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+        }
+
+Step 5: Click "Deploy". Vercel assigns a URL like your-project.vercel.app.
+
+Step 6: Every push to the production branch auto-deploys.
+
+
+3. DEPLOY OPTION B — NETLIFY
+------------------------------
+Step 1: Push repo to GitHub, GitLab, or Bitbucket.
+
+Step 2: Go to https://app.netlify.com
+        Click "Add new site" > "Import an existing project".
+        Select your repository.
+
+Step 3: Set build settings:
+        - Build command:      npm run build
+        - Publish directory:  dist
+
+Step 4: Add SPA redirect. Create public/_redirects with this content:
+
+        /*    /index.html   200
+
+Step 5: Click "Deploy site". Netlify assigns a URL like your-site.netlify.app.
+
+Step 6: Every push auto-deploys.
+
+
+4. CONNECT A CUSTOM DOMAIN
+----------------------------
+
+--- Vercel ---
+
+Step 1: In the Vercel dashboard, go to your project > Settings > Domains.
+
+Step 2: Add your root domain:
+        example.com
+
+Step 3: Add www subdomain:
+        www.example.com
+
+Step 4: At your domain registrar (GoDaddy, Namecheap, Cloudflare, etc.),
+        create the following DNS records:
+
+        TYPE    HOST    VALUE                         TTL
+        ----    ----    -----                         ---
+        A       @       76.76.21.21                   3600
+        CNAME   www     cname.vercel-dns.com          3600
+
+        Note: If your registrar supports ALIAS or ANAME records for the
+        apex domain, use ALIAS pointing to cname.vercel-dns.com instead
+        of the A record.
+
+Step 5: In Vercel, set your preferred primary domain (root or www).
+        The other will redirect automatically.
+
+Step 6: SSL is provisioned automatically once DNS resolves. No action needed.
+        HTTPS is enforced by default.
+
+
+--- Netlify ---
+
+Step 1: In the Netlify dashboard, go to Domain management > Add custom domain.
+
+Step 2: Add your root domain:
+        example.com
+
+Step 3: Netlify prompts to also add www.example.com. Confirm.
+
+Step 4: At your domain registrar, create the following DNS records:
+
+        TYPE    HOST    VALUE                              TTL
+        ----    ----    -----                              ---
+        A       @       75.2.60.5                          3600
+        CNAME   www     your-site-name.netlify.app         3600
+
+        Note: If your registrar supports ALIAS, ANAME, or CNAME
+        flattening (Cloudflare, DNSimple), point the apex to
+        your-site-name.netlify.app instead of using the A record.
+
+Step 5: In Netlify, set your primary domain (root or www).
+        The other will redirect automatically.
+
+Step 6: Go to Domain management > HTTPS.
+        Click "Verify DNS configuration".
+        Click "Provision certificate" (uses Let's Encrypt).
+        Enable "Force HTTPS" in the same section.
+
+
+5. VERIFICATION CHECKLIST
+--------------------------
+
+DNS propagation (may take 5 minutes to 48 hours):
+
+  Check A record:
+    dig example.com +short
+    Expected: 76.76.21.21 (Vercel) or 75.2.60.5 (Netlify)
+
+  Check CNAME record:
+    dig www.example.com +short
+    Expected: cname.vercel-dns.com or your-site-name.netlify.app
+
+  Online checker:
+    https://dnschecker.org — enter your domain, verify global propagation.
+
+SSL verification:
+
+  1. Open https://example.com in a browser.
+  2. Check for the padlock icon in the address bar.
+  3. Click the padlock to verify the certificate issuer:
+     - Vercel: issued by "Vercel" or "Let's Encrypt"
+     - Netlify: issued by "Let's Encrypt"
+
+Both domains work:
+
+  1. Visit https://example.com — should load the site.
+  2. Visit https://www.example.com — should redirect to primary or load directly.
+
+SPA routing works:
+
+  1. Navigate directly to https://example.com/work
+  2. The page should render correctly, not show a 404.
+  3. Navigate directly to https://example.com/about — same result.
+
+All done. Your DYSIGNS site is live.
