@@ -123,8 +123,8 @@ function PureAndCureLogo() {
 }
 
 const LOGOS: { name: string; url: string; Component: React.FC }[] = [
-  { name: "STËLZ", url: "#", Component: StelzLogo },
-  { name: "BIYU", url: "#", Component: BiyuLogo },
+  { name: "STËLZ", url: "www.drinkstelz.com", Component: StelzLogo },
+  { name: "BIYU", url: "www.biyu.com", Component: BiyuLogo },
   { name: "KULT AND ACE", url: "#", Component: KultAndAceLogo },
   { name: "FIJNE GASTEN", url: "#", Component: FijneGastenLogo },
   { name: "JD", url: "#", Component: JdLogo },

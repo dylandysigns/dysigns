@@ -112,13 +112,13 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "stëlz-web-design",
-    title: "STËLZ web design",
+    slug: "stelz-web-design",
+    title: "STELZ web design",
     category: "Web",
     tags: ["Web Design", "UX Design"],
     year: "2026 January",
     url: "https://drinkstelz.com/",
-    thumbnail:"../public/images/mobilestelz.png",
+    thumbnail:"../images/mobilestelz.png",
     overview:
       "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster product discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
     outcomes: [
@@ -128,8 +128,8 @@ export const projects: Project[] = [
       "Won CSS Design Awards site of the month",
     ],
     gallery: [
-      "../public/images/old-new.png",
-      "../public/images/stelz-laptop.png"
+      "/images/old-new.png",
+      "/images/stelz-laptop.png"
 
     ],
   },

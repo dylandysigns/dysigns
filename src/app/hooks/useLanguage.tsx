@@ -68,7 +68,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
 
   /* ── Sentence Reveal ── */
-  "sentence": { en: "Create better with DYSIGNS", nl: "Creëer beter met DYSIGNS" },
+  "sentence": { en: "Create better DYSIGNS", nl: "Creëer betere DYSIGNS" },
 
   /* ── Services ── */
   "services.label": { en: "What we do", nl: "Wat wij doen" },
@@ -377,28 +377,28 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   },
 
   /* ── Project: STËLZ Web Design ── */
-  "project.stëlz-web-design.title": {
+  "project.stelz-web-design.title": {
     en: "STËLZ Web Design",
     nl: "STËLZ Web Design",
   },
-  "project.stëlz-web-design.overview": {
+  "project.stelz-web-design.overview": {
  en: "STËLZ asked us to redesign their website to improve conversion and simplify daily updates across teams. We created a modular Shopify setup that supports faster product discovery, a smoother add to cart flow and a clear content structure that allows quick edits without development dependency. Our collaboration evolved into a long term partnership where we continuously refine the experience through design iterations, UX optimisation and campaign driven updates. This ongoing workflow ensures the platform stays aligned with brand growth, supports new product launches and maintains strong performance across devices while enabling the STËLZ team to manage content efficiently.",
   nl: "STËLZ vroeg ons om hun website te herontwerpen voor meer conversie en eenvoudiger beheer. We bouwden een modulaire Shopify ervaring met snellere productkeuze, een soepelere add to cart flow en een heldere content structuur voor snelle aanpassingen.",
 },
 
-"project.stëlz-web-design.outcome.0": {
+"project.stelz-web-design.outcome.0": {
   en: "€200K+ revenue during the campaign launch weekend",
   nl: "€200K+ omzet tijdens het livegang weekend van de campagne",
 },
-"project.stëlz-web-design.outcome.1": {
+"project.stelz-web-design.outcome.1": {
   en: "4,000+ orders in three days",
   nl: "4.000+ bestellingen in drie dagen",
 },
-"project.stëlz-web-design.outcome.2": {
+"project.stelz-web-design.outcome.2": {
   en: "19,000+ visitors and 27,000+ sessions",
   nl: "19.000+ bezoekers en 27.000+ sessies",
 },
-"project.stëlz-web-design.outcome.3": {
+"project.stelz-web-design.outcome.3": {
   en: "4,200+ unique customers and 19%+ returning",
   nl: "4.200+ unieke klanten en 19%+ terugkerend",
 },

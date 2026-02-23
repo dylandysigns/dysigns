@@ -497,8 +497,7 @@ export function Header() {
           height: 40,
           zIndex: 160,
           border: "1px solid rgba(255,255,255,.1)",
-          background: "rgba(255,255,255,.03)",
-          backdropFilter: "blur(12px)",
+          background: "rgba(0,0,0,.85)",
         }}
         onClick={() => setMenuOpen(true)}
         aria-label="Open menu"

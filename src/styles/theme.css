@@ -94,7 +94,6 @@
 
   html {
     font-size: var(--font-size);
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
 

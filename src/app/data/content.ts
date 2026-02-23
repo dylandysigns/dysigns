@@ -69,7 +69,7 @@ export const siteContent = {
     },
     {
       id: "4",
-      title: "STELZ",
+      title: "Pulse Analytics",
       category: "Product",
       tags: ["Dashboard", "SaaS", "Data Viz"],
       year: "2024",
@@ -100,7 +100,7 @@ export const siteContent = {
   ],
 
   vision: {
-    title: "Create better with DYSIGNS",
+    title: "Create better DYSIGNS",
     text: "We believe great design sits at the intersection of strategy and craft. 8+ years of building brands and products that actually work \u2014 no fluff, no filler, just work that moves the needle.",
     image:
       "https://images.unsplash.com/photo-1485025798926-cde0f0d24cca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGRhcmslMjBtb29keSUyMG1pbmltYWx8ZW58MXx8fHwxNzcxNTAzMzc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -259,10 +259,10 @@ export const siteContent = {
   },
 
   socials: [
-    // { name: "Dribbble", url: "#" },
-    // { name: "Behance", url: "#" },
-    // { name: "LinkedIn", url: "#" },
-    // { name: "Twitter / X", url: "#" },
+    { name: "Dribbble", url: "#" },
+    { name: "Behance", url: "#" },
+    { name: "LinkedIn", url: "#" },
+    { name: "Twitter / X", url: "#" },
     { name: "Instagram", url: "#" },
   ],
 };
