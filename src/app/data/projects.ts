@@ -118,7 +118,7 @@ export const projects: Project[] = [
     tags: ["Web Design", "UX Design"],
     year: "2026 January",
     url: "https://drinkstelz.com/",
-    thumbnail:"../images/mobilestelz.png",
+    thumbnail:"/images/mobilestelz.png",
     overview:
       "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster product discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
     outcomes: [
