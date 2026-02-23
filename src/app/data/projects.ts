@@ -225,7 +225,7 @@ export const projects: Project[] = [
 
 /** Zoom-to-grid section images and headlines */
 export const zoomToGridData = {
-  heroImage:"../public/images/mobilestelz.png",
+  heroImage:"../images/mobilestelz.png",
   headlineStart: "Projects",
   headlineEnd: "we're proud of",
   gridImages: [
