@@ -172,83 +172,80 @@ export const siteContent = {
     {
       id: "t1",
       quote:
-        "Exceeded our expectations with innovative designs that brought our vision to life \u2014 a truly remarkable creative partner.",
-      name: "Sarah Chen",
-      role: "CEO",
-      company: "Nova Finance",
+        "Tevreden partners, strakke deadlines en hoge kwaliteit, samenwerken met DYSIGNS heeft ons merk versterkt en versneld laten groeien",
+      name: "Boy Schouten",
+      role: "Performance Manager",
+      company: "STËLZ",
       avatar:
-        "https://images.unsplash.com/photo-1758600587839-56ba05596c69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsJTIwaGVhZHNob3QlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzE0NjA2NTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
+"/images/boystelz.jpeg" },
     {
       id: "t2",
       quote:
-        "Their ability to capture our brand essence in every project is unparalleled \u2014 an invaluable creative collaborator.",
-      name: "Marcus Webb",
-      role: "Founder",
-      company: "Arco Living",
+        "In 20 years of running my business, I’ve never had a designer who could visualize my idea that well in just one go.",
+      name: "Marleen van Griensven",
+      role: "CEO",
+      company: "Pure and Cure PR",
       avatar:
-        "https://images.unsplash.com/photo-1769636929231-3cd7f853d038?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBtYW4lMjBoZWFkc2hvdCUyMHBvcnRyYWl0JTIwZGFyayUyMGJhY2tncm91bmR8ZW58MXx8fHwxNzcxNTEzMDA1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
+"/images/marleenvanpuurpng.png"},
     {
       id: "t3",
       quote:
-        "Creative geniuses who listen, understand, and craft captivating visuals \u2014 a team that truly understands our needs.",
-      name: "Jamie Patel",
-      role: "VP Product",
-      company: "Pulse Analytics",
+        "DYSIGNS en Studio75 werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
+      name: "Luuk Beudeker",
+      role: "Founder",
+      company: "Studio75",
       avatar:
-        "https://images.unsplash.com/photo-1742981365880-698cfb84492d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBtYW4lMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGNvcnBvcmF0ZXxlbnwxfHx8fDE3NzE1MTMwMDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      id: "t4",
-      quote:
-        "The website they designed didn\u2019t just look incredible \u2014 it transformed how our customers experience our brand.",
-      name: "Emma Liu",
-      role: "PM",
-      company: "Meridian Health",
-      avatar:
-        "https://images.unsplash.com/photo-1735565350771-75dbd952a166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHdvbWFuJTIwY3JlYXRpdmUlMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzE1MTMwMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      id: "t5",
-      quote:
-        "A refreshing and imaginative team that consistently delivers exceptional results \u2014 highly recommended for any project.",
-      name: "David Kim",
-      role: "Director",
-      company: "Haven Properties",
-      avatar:
-        "https://images.unsplash.com/photo-1619193597120-1d1edb42e34b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrb3JlYW4lMjBtYW4lMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGhlYWRzaG90fGVufDF8fHx8MTc3MTUxMzAwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      id: "t6",
-      quote:
-        "Their artistic flair and strategic approach resulted in remarkable outcomes \u2014 a reliable creative partner we trust completely.",
-      name: "Rachel Torres",
-      role: "CMO",
-      company: "Verso Brands",
-      avatar:
-        "https://images.unsplash.com/photo-1655249481446-25d575f1c054?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90JTIwcG9ydHJhaXQlMjBidXNpbmVzc3xlbnwxfHx8fDE3NzE1MTk1Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      id: "t7",
-      quote:
-        "From concept to execution, their creativity knows no bounds \u2014 a game-changer for our brand\u2019s digital presence.",
-      name: "Alex Rivera",
-      role: "Creative Lead",
-      company: "Outline Co",
-      avatar:
-        "https://images.unsplash.com/photo-1642741790806-370d685ffec5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW4lMjBjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3QlMjBwb3J0cmFpdCUyMGRhcmt8ZW58MXx8fHwxNzcxNTE5NTM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      id: "t8",
-      quote:
-        "Best collaboration experience. Clear communication, exceptional craft, and always delivered ahead of schedule.",
-      name: "Priya Sharma",
-      role: "Head of Design",
-      company: "Aura Digital",
-      avatar:
-        "https://images.unsplash.com/photo-1762522926984-e721bff0d6c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGhlYWRzaG90JTIwcG9ydHJhaXQlMjBzdHVkaW98ZW58MXx8fHwxNzcxNTE5NTQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
+"/images/luuk-studio.png"},
+    // {
+    //   id: "t4",
+    //   quote:
+    //     "The website they designed didn\u2019t just look incredible \u2014 it transformed how our customers experience our brand.",
+    //   name: "Emma Liu",
+    //   role: "PM",
+    //   company: "Meridian Health",
+    //   avatar:
+    //     "https://images.unsplash.com/photo-1735565350771-75dbd952a166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHdvbWFuJTIwY3JlYXRpdmUlMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzE1MTMwMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    // },
+    // {
+    //   id: "t5",
+    //   quote:
+    //     "A refreshing and imaginative team that consistently delivers exceptional results \u2014 highly recommended for any project.",
+    //   name: "David Kim",
+    //   role: "Director",
+    //   company: "Haven Properties",
+    //   avatar:
+    //     "https://images.unsplash.com/photo-1619193597120-1d1edb42e34b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrb3JlYW4lMjBtYW4lMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGhlYWRzaG90fGVufDF8fHx8MTc3MTUxMzAwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    // },
+    // {
+    //   id: "t6",
+    //   quote:
+    //     "Their artistic flair and strategic approach resulted in remarkable outcomes \u2014 a reliable creative partner we trust completely.",
+    //   name: "Rachel Torres",
+    //   role: "CMO",
+    //   company: "Verso Brands",
+    //   avatar:
+    //     "https://images.unsplash.com/photo-1655249481446-25d575f1c054?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90JTIwcG9ydHJhaXQlMjBidXNpbmVzc3xlbnwxfHx8fDE3NzE1MTk1Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    // },
+    // {
+    //   id: "t7",
+    //   quote:
+    //     "From concept to execution, their creativity knows no bounds \u2014 a game-changer for our brand\u2019s digital presence.",
+    //   name: "Alex Rivera",
+    //   role: "Creative Lead",
+    //   company: "Outline Co",
+    //   avatar:
+    //     "https://images.unsplash.com/photo-1642741790806-370d685ffec5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW4lMjBjcmVhdGl2ZSUyMGRpcmVjdG9yJTIwaGVhZHNob3QlMjBwb3J0cmFpdCUyMGRhcmt8ZW58MXx8fHwxNzcxNTE5NTM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    // },
+    // {
+    //   id: "t8",
+    //   quote:
+    //     "Best collaboration experience. Clear communication, exceptional craft, and always delivered ahead of schedule.",
+    //   name: "Priya Sharma",
+    //   role: "Head of Design",
+    //   company: "Aura Digital",
+    //   avatar:
+    //     "https://images.unsplash.com/photo-1762522926984-e721bff0d6c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGV4ZWN1dGl2ZSUyMGhlYWRzaG90JTIwcG9ydHJhaXQlMjBzdHVkaW98ZW58MXx8fHwxNzcxNTE5NTQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    // },
   ],
 
   contact: {
@@ -259,10 +256,10 @@ export const siteContent = {
   },
 
   socials: [
-    { name: "Dribbble", url: "#" },
-    { name: "Behance", url: "#" },
-    { name: "LinkedIn", url: "#" },
-    { name: "Twitter / X", url: "#" },
-    { name: "Instagram", url: "#" },
+    // { name: "Dribbble", url: "#" },
+    // { name: "Behance", url: "#" },
+    // { name: "LinkedIn", url: "#" },
+    // { name: "Twitter / X", url: "#" },
+    { name: "Instagram", url: "https://www.instagram.com/dylan.kho" },
   ],
 };

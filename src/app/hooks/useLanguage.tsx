@@ -68,7 +68,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
 
   /* ── Sentence Reveal ── */
-  "sentence": { en: "Create better DYSIGNS", nl: "Creëer betere DYSIGNS" },
+  "sentence": { en: "BETTER DYSIGNS", nl: "BETERE DYSIGNS" },
 
   /* ── Services ── */
   "services.label": { en: "What we do", nl: "Wat wij doen" },
@@ -96,10 +96,10 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Design Timeline ── */
   "timeline.label": { en: "DYSIGNS way", nl: "De DYSIGNS manier" },
-  "timeline.0.title": { en: "Explore", nl: "Ontdekken" },
+  "timeline.0.title": { en: "Discover", nl: "Ontdekken" },
   "timeline.0.desc": {
-    en: "We immerse ourselves in your world. Stakeholder interviews, competitive analysis, user insights.",
-    nl: "We verdiepen ons in jouw wereld. Stakeholder-interviews, concurrentieanalyse, gebruikersinzichten.",
+    en: "We explore your brand, goals and users to define the right direction.",
+    nl: "We verkennen je merk, doelen en gebruikers om de juiste richting te bepalen.",
   },
   "timeline.1.title": { en: "Define", nl: "Definiëren" },
   "timeline.1.desc": {
@@ -113,17 +113,17 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "timeline.3.title": { en: "Prototype", nl: "Prototype" },
   "timeline.3.desc": {
-    en: "Ideas become tangible. Interactive prototypes to test and refine.",
-    nl: "Ideeën worden tastbaar. Interactieve prototypes om te testen en te verfijnen.",
+    en: "Met prototypes brengen we ideeen tot leven en scherpen we keuzes aan",
+    nl: "With prototypes we bring ideas to life and refine decisions",
   },
   "timeline.4.title": { en: "Build", nl: "Bouwen" },
   "timeline.4.desc": {
-    en: "Pixel-perfect execution alongside engineering. Every detail ships.",
-    nl: "Pixel-perfecte uitvoering samen met engineering. Elk detail wordt opgeleverd.",
+    en: "We turn the concepts into working solutions",
+    nl: "We vertalen de concepten naar werkende oplossingen",
   },
   "timeline.5.title": { en: "Launch", nl: "Lanceren" },
   "timeline.5.desc": {
-    en: "The world meets your product. We monitor, optimize, and iterate.",
+    en: "The world meets your product. We monitor, optimize and iterate.",
     nl: "De wereld ontmoet je product. We monitoren, optimaliseren en itereren.",
   },
 
@@ -218,16 +218,16 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* ── Testimonial Quotes (i18n) ── */
   "testimonial.t1.quote": {
-    en: "Exceeded our expectations with innovative designs that brought our vision to life — a truly remarkable creative partner.",
-    nl: "Overtrof onze verwachtingen met innovatieve ontwerpen die onze visie tot leven brachten — een werkelijk opmerkelijke creatieve partner.",
+    en: "Happy partners, clear deadlines and high quality delivery, working with DYSIGNS strengthened our brand STËLZ and accelerated our growth",
+    nl: "Tevreden partners, strakke deadlines en hoge kwaliteit, samenwerken met DYSIGNS heeft ons merk STËLZ versterkt en versneld laten groeien",
   },
   "testimonial.t2.quote": {
-    en: "Their ability to capture our brand essence in every project is unparalleled — an invaluable creative collaborator.",
-    nl: "Hun vermogen om onze merkessence in elk project vast te leggen is ongeëvenaard — een onmisbare creatieve partner.",
+    en: "In 20 years of running my business, I’ve never had a designer who could visualize my idea that well in just one go.",
+    nl: "In 20 jaar ondernemen heb ik nog nooit een designer gehad die mijn idee in een keer zo goed wist te visualiseren.",
   },
   "testimonial.t3.quote": {
-    en: "Creative geniuses who listen, understand, and craft captivating visuals — a team that truly understands our needs.",
-    nl: "Creatieve genieën die luisteren, begrijpen en boeiende visuals creëren — een team dat onze behoeften echt begrijpt.",
+    en: "DYSIGNS and Studio75 have built a strong partnership with clear communication, fast delivery and consistent quality.",
+    nl: "DYSIGNS en Studio75 werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
   },
   "testimonial.t4.quote": {
     en: "The website they designed didn\u2019t just look incredible — it transformed how our customers experience our brand.",
