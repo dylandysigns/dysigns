@@ -178,7 +178,7 @@ export function ZoomToGrid() {
             className="absolute inset-0 flex items-end p-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400"
             style={{
               background:
-                "linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%)",
+                "linear-gradient(to top, rgba(var(--page-bg-rgb), .7) 0%, transparent 60%)",
               zIndex: 5,
             }}
           >
@@ -187,7 +187,7 @@ export function ZoomToGrid() {
                 fontFamily: "'Inter',sans-serif",
                 fontSize: ".65rem",
                 fontWeight: 600,
-                color: "rgba(255,255,255,.7)",
+                color: "rgba(var(--page-fg-rgb), .7)",
                 letterSpacing: "-.01em",
               }}
             >
@@ -202,7 +202,7 @@ export function ZoomToGrid() {
           >
             <path
               d="M0 7 L0 0 L7 0"
-              stroke="rgba(255,255,255,.25)"
+              stroke="rgba(var(--page-fg-rgb), .25)"
               strokeWidth="1"
               fill="none"
             />
@@ -214,7 +214,7 @@ export function ZoomToGrid() {
           >
             <path
               d="M16 9 L16 16 L9 16"
-              stroke="rgba(255,255,255,.25)"
+              stroke="rgba(var(--page-fg-rgb), .25)"
               strokeWidth="1"
               fill="none"
             />
@@ -233,10 +233,10 @@ export function ZoomToGrid() {
                     fontSize: "clamp(1rem,2.5vw,1.6rem)",
                     fontWeight: 700,
                     letterSpacing: "-.03em",
-                    color: "#fff",
+                    color: "var(--page-fg)",
                     lineHeight: 1.1,
                     textAlign: "center",
-                    textShadow: "0 2px 20px rgba(0,0,0,.6)",
+                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
                   }}
                 >
                   {tRef.current("zoom.start")}
@@ -247,10 +247,10 @@ export function ZoomToGrid() {
                     fontFamily: "'Instrument Serif',serif",
                     fontSize: "clamp(.8rem,1.5vw,1.1rem)",
                     fontStyle: "italic",
-                    color: "rgba(255,255,255,.5)",
+                    color: "rgba(var(--page-fg-rgb), .5)",
                     marginTop: 8,
                     opacity: 0,
-                    textShadow: "0 2px 20px rgba(0,0,0,.6)",
+                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
                   }}
                 >
                   {tRef.current("zoom.end")}
@@ -260,7 +260,7 @@ export function ZoomToGrid() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse at center, rgba(0,0,0,.4), rgba(0,0,0,.6))",
+                    "radial-gradient(ellipse at center, rgba(var(--page-bg-rgb), .4), rgba(var(--page-bg-rgb), .6))",
                   pointerEvents: "none",
                 }}
               />
@@ -277,7 +277,7 @@ export function ZoomToGrid() {
     return (
       <section
         className="relative py-20 px-6 md:px-12"
-        style={{ background: "#000" }}
+        style={{ background: "var(--page-bg)" }}
       >
         <div className="max-w-[900px] mx-auto mb-12">
           <TransitionLink
@@ -303,12 +303,12 @@ export function ZoomToGrid() {
               fontSize: "clamp(1.6rem,4vw,2.8rem)",
               fontWeight: 700,
               letterSpacing: "-.04em",
-              color: "#fff",
+              color: "var(--page-fg)",
               lineHeight: 1.1,
             }}
           >
             {t("zoom.start")}{" "}
-            <span style={{ color: "rgba(255,255,255,.4)" }}>
+            <span style={{ color: "rgba(var(--page-fg-rgb), .4)" }}>
               {t("zoom.end")}
             </span>
           </h2>
@@ -350,12 +350,12 @@ export function ZoomToGrid() {
     <div
       ref={wrapRef}
       className="relative"
-      style={{ background: "#000", height: "100vh", overflow: "hidden" }}
+      style={{ background: "var(--page-bg)", height: "100vh", overflow: "hidden" }}
     >
       <div className="h-screen flex items-center justify-center overflow-hidden relative">
         <div
           className="absolute inset-0"
-          style={{ background: "#000", zIndex: 0, pointerEvents: "none" }}
+          style={{ background: "var(--page-bg)", zIndex: 0, pointerEvents: "none" }}
         />
 
         {/* Grid container — pointer-events auto on tiles */}

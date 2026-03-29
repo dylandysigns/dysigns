@@ -108,7 +108,7 @@ function GlassCursor({
     clone.removeAttribute("data-dysigns-hero-text");
     clone.setAttribute("aria-hidden", "true");
     clone.style.pointerEvents = "none";
-    clone.style.color = "#fff";
+    clone.style.color = "var(--page-fg)";
 
     mirror.innerHTML = "";
     mirror.appendChild(clone);
@@ -391,10 +391,10 @@ function GlassCursor({
             width: isActive ? DOT_ACTIVE : DOT_SIZE,
             height: isActive ? DOT_ACTIVE : DOT_SIZE,
             background: isActive
-              ? "rgba(255,255,255,.08)"
-              : "rgba(255,255,255,.85)",
+              ? "rgba(var(--page-fg-rgb), .08)"
+              : "rgba(var(--page-fg-rgb), .85)",
             border: isActive
-              ? "1px solid rgba(255,255,255,.2)"
+              ? "1px solid rgba(var(--page-fg-rgb), .2)"
               : "1px solid transparent",
             backdropFilter: isActive ? "blur(12px) saturate(1.3)" : "none",
             WebkitBackdropFilter: isActive
@@ -404,8 +404,8 @@ function GlassCursor({
               "width .35s cubic-bezier(.22,1,.36,1), height .35s cubic-bezier(.22,1,.36,1), background .3s, border .3s, backdrop-filter .3s",
             transform: "translate(-50%,-50%)",
             boxShadow: isActive
-              ? "0 4px 20px rgba(0,0,0,.3), inset 0 0.5px 0 rgba(255,255,255,.08)"
-              : "0 0 6px rgba(255,255,255,.15)",
+              ? "0 4px 20px rgba(var(--page-shadow-rgb), .18), inset 0 0.5px 0 rgba(var(--page-fg-rgb), .08)"
+              : "0 0 6px rgba(var(--page-fg-rgb), .15)",
           }}
         >
           {isActive && displayLabel && (
@@ -416,7 +416,7 @@ function GlassCursor({
                 fontWeight: 600,
                 letterSpacing: ".12em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.85)",
+                color: "rgba(var(--page-fg-rgb), .85)",
                 whiteSpace: "nowrap",
                 opacity: 1,
                 transition: "opacity .2s",
@@ -448,7 +448,7 @@ function GlassCursor({
             className="absolute inset-0 rounded-full"
             style={{
               background:
-                "radial-gradient(circle at 40% 35%, rgba(255,255,255,.04) 0%, rgba(255,255,255,.01) 50%, transparent 100%)",
+                "radial-gradient(circle at 40% 35%, rgba(var(--page-fg-rgb), .04) 0%, rgba(var(--page-fg-rgb), .01) 50%, transparent 100%)",
               backdropFilter: "brightness(1.15) contrast(1.08) saturate(1.2)",
               WebkitBackdropFilter:
                 "brightness(1.15) contrast(1.08) saturate(1.2)",
@@ -460,7 +460,7 @@ function GlassCursor({
             className="absolute inset-0 rounded-full"
             style={{
               background:
-                "radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,0,0,.12) 75%, rgba(0,0,0,.25) 100%)",
+                "radial-gradient(circle at 50% 50%, transparent 55%, rgba(var(--page-bg-rgb), .12) 75%, rgba(var(--page-bg-rgb), .25) 100%)",
             }}
           />
 
@@ -484,7 +484,7 @@ function GlassCursor({
               width: "48%",
               height: "40%",
               background:
-                "radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.3) 0%, rgba(255,255,255,.08) 40%, transparent 70%)",
+                "radial-gradient(ellipse at 50% 40%, rgba(var(--page-fg-rgb), .3) 0%, rgba(var(--page-fg-rgb), .08) 40%, transparent 70%)",
               transform: "rotate(-20deg)",
             }}
           />
@@ -498,7 +498,7 @@ function GlassCursor({
               width: "22%",
               height: "15%",
               background:
-                "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.5) 0%, transparent 70%)",
+                "radial-gradient(ellipse at 50% 50%, rgba(var(--page-fg-rgb), .5) 0%, transparent 70%)",
               transform: "rotate(-15deg)",
               filter: "blur(1px)",
             }}
@@ -508,9 +508,9 @@ function GlassCursor({
           <div
             className="absolute inset-0 rounded-full"
             style={{
-              border: "1.5px solid rgba(255,255,255,.15)",
+              border: "1.5px solid rgba(var(--page-fg-rgb), .15)",
               boxShadow:
-                "0 0 30px rgba(255,255,255,.05), 0 0 15px rgba(120,100,255,.06), inset 0 0 20px rgba(255,255,255,.03)",
+                "0 0 30px rgba(var(--page-fg-rgb), .05), 0 0 15px rgba(120,100,255,.06), inset 0 0 20px rgba(var(--page-fg-rgb), .03)",
             }}
           />
 
@@ -523,7 +523,7 @@ function GlassCursor({
               width: "50%",
               height: "20%",
               background:
-                "radial-gradient(ellipse at 50% 80%, rgba(255,255,255,.1) 0%, transparent 70%)",
+                "radial-gradient(ellipse at 50% 80%, rgba(var(--page-fg-rgb), .1) 0%, transparent 70%)",
               filter: "blur(3px)",
             }}
           />

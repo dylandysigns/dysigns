@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
 import CaseDetailPage from "./pages/CaseDetailPage";
+import ServicesPage from "./pages/ServicesPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import DocsPage from "./pages/DocsPage";
@@ -16,6 +18,8 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: "work", Component: WorkPage },
       { path: "work/:slug", Component: CaseDetailPage },
+      { path: "services", Component: ServicesPage },
+      { path: "services/:slug", Component: ServiceDetailPage },
       { path: "about", Component: AboutPage },
       { path: "contact", Component: ContactPage },
       { path: "docs", Component: DocsPage },

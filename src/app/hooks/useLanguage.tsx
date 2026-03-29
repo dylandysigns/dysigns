@@ -49,7 +49,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
-  "hero.available": { en: "Available for projects", nl: "Beschikbaar voor projecten" },
+  "hero.available": { en: "Available for projects, Amsterdam", nl: "Beschikbaar voor projecten, Amsterdam" },
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
   "hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },
   "hero.chip.brand": { en: "Brand Identity", nl: "Brand identity" },
@@ -93,6 +93,21 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "We steer the creative vision across campaigns, product launches, and brand initiatives.",
     nl: "Wij sturen de creatieve visie aan bij campagnes, productlanceringen en merkinitiatieven.",
   },
+  "services.explore": { en: "Explore service", nl: "Bekijk dienst" },
+  "services.pageIntro": {
+    en: "A closer look at the brand, web, product, and creative systems we build.",
+    nl: "Een nadere blik op de merk-, web-, product- en creatieve systemen die we bouwen.",
+  },
+  "services.related": { en: "Related work", nl: "Relevant werk" },
+  "services.back": { en: "Back to services", nl: "Terug naar diensten" },
+  "services.viewRelatedWork": { en: "View related work", nl: "Bekijk relevant werk" },
+  "services.notFound": { en: "Service not found", nl: "Dienst niet gevonden" },
+  "services.emptyRelated": {
+    en: "Relevant case studies will appear here soon.",
+    nl: "Relevante cases verschijnen hier binnenkort.",
+  },
+  "services.allServices": { en: "All services", nl: "Alle diensten" },
+  "services.capabilities": { en: "Focus areas", nl: "Focusgebieden" },
 
   /* ── Design Timeline ── */
   "timeline.label": { en: "DYSIGNS way", nl: "De DYSIGNS manier" },
@@ -200,6 +215,18 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "work.label": { en: "Our work", nl: "Ons werk" },
   "work.title": { en: "Selected projects", nl: "Geselecteerde projecten" },
   "work.filterAll": { en: "All", nl: "Alle" },
+  "work.clearFilters": { en: "Reset filters", nl: "Filters resetten" },
+  "work.filteredBy": { en: "Filtered by", nl: "Gefilterd op" },
+  "work.serviceFilter": { en: "Service", nl: "Dienst" },
+  "work.tagFilter": { en: "Tag", nl: "Tag" },
+  "work.noResults": {
+    en: "No projects match these filters yet.",
+    nl: "Er passen nog geen projecten bij deze filters.",
+  },
+  "work.noResultsBody": {
+    en: "Try another tag or reset the view to see all work.",
+    nl: "Probeer een andere tag of reset het overzicht om al het werk te zien.",
+  },
 
 /* ── Case Detail ── */
   "case.back": { en: "Back to work", nl: "Terug naar werk" },
@@ -266,7 +293,10 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "tag.Dashboard": { en: "Dashboard", nl: "Dashboard" },
   "tag.SaaS": { en: "SaaS", nl: "SaaS" },
   "tag.Data Viz": { en: "Data Viz", nl: "Datavisualisatie" },
+  "tag.Branding": { en: "Branding", nl: "Branding" },
   "tag.Print": { en: "Print", nl: "Print" },
+  "tag.Web": { en: "Web", nl: "Web" },
+  "tag.Social Media": { en: "Social Media", nl: "Social media" },
   "tag.Creative Direction": { en: "Creative Direction", nl: "Creatieve Regie" },
   "tag.Photography": { en: "Photography", nl: "Fotografie" },
   "tag.Product Design": { en: "Product Design", nl: "Productontwerp" },
@@ -403,30 +433,30 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   nl: "4.200+ unieke klanten en 19%+ terugkerend",
 },
 
-  /* ── Project: Verso Brand Identity ── */
-  "project.verso-brand-identity.title": {
-    en: "Verso Brand Identity",
-    nl: "Verso Merkidentiteit",
+  /* ── Project: Verkeersschool Beckers Branding ── */
+  "project.verkeersschool-beckers-branding.title": {
+    en: "Verkeersschool Beckers Branding",
+    nl: "Verkeersschool Beckers Branding",
   },
-  "project.verso-brand-identity.overview": {
-    en: "Verso is a boutique publishing house that needed an identity system as refined as the books they produce. We crafted a brand that feels both literary and contemporary\u2014from typography choices to print collateral and a bespoke website.",
-    nl: "Verso is een boutique-uitgeverij die een identiteitssysteem nodig had dat net zo verfijnd is als de boeken die ze produceren. We cre\u00eberden een merk dat zowel literair als eigentijds aanvoelt\u2014van typografiekeuzes tot drukwerk en een op maat gemaakte website.",
+  "project.verkeersschool-beckers-branding.overview": {
+    en: "For Verkeersschool Beckers, we developed a complete new brand identity to modernize and professionalize their presence in the Dutch market. The project included a full logo redesign, visual identity system, and consistent brand application across all touchpoints.\n\nWe translated the new identity into social media assets, vehicle branding, and a fully redesigned website. The result is a cohesive and recognizable brand that builds trust and stands out both online and on the road.",
+    nl: "Voor Verkeersschool Beckers ontwikkelden we een compleet nieuwe merkidentiteit om hun uitstraling in de Nederlandse markt te moderniseren en te professionaliseren. Het project bestond uit een volledige logo redesign, een visueel identiteitssysteem en consistente merktoepassing over alle touchpoints.\n\nWe vertaalden de nieuwe identiteit door naar social media assets, voertuigbestickering en een volledig vernieuwde website. Het resultaat is een samenhangend en herkenbaar merk dat vertrouwen opbouwt en zowel online als op de weg opvalt.",
   },
-  "project.verso-brand-identity.outcome.0": {
-    en: "Brand awareness up 80% in target demographic",
-    nl: "Merkbekendheid 80% gestegen in doelgroep",
+  "project.verkeersschool-beckers-branding.outcome.0": {
+    en: "Complete logo redesign and new visual identity delivered",
+    nl: "Volledige logo redesign en nieuwe visuele identiteit opgeleverd",
   },
-  "project.verso-brand-identity.outcome.1": {
-    en: "Press coverage in 12 design publications",
-    nl: "Persaandacht in 12 designpublicaties",
+  "project.verkeersschool-beckers-branding.outcome.1": {
+    en: "Brand system translated across social media, web, and vehicle branding",
+    nl: "Het brandsysteem doorvertaald naar social media, web en voertuigbestickering",
   },
-  "project.verso-brand-identity.outcome.2": {
-    en: "Print collateral won 2 regional design awards",
-    nl: "Drukwerk won 2 regionale designprijzen",
+  "project.verkeersschool-beckers-branding.outcome.2": {
+    en: "More professional and recognizable market presence",
+    nl: "Een professionelere en beter herkenbare marktuitstraling",
   },
-  "project.verso-brand-identity.outcome.3": {
-    en: "Social media following grew 3\u00d7 in 4 months",
-    nl: "Social media-volgers verdrievoudigd in 4 maanden",
+  "project.verkeersschool-beckers-branding.outcome.3": {
+    en: "A consistent identity ready for long-term growth",
+    nl: "Een consistente identiteit klaar voor duurzame groei",
   },
 
   /* ── Project: Echo Fashion ── */

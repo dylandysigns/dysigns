@@ -107,14 +107,14 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
     <div
       ref={wrapRef}
       className="fixed inset-0 flex flex-col items-center justify-center"
-      style={{ zIndex: 20000, background: "#000" }}
+      style={{ zIndex: 20000, background: "var(--page-bg)" }}
       onClick={finish}
     >
       {/* noise */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          opacity: 0.04,
+          opacity: "var(--page-noise-opacity)",
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
         }}
       />
@@ -125,8 +125,8 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         className="absolute left-0 right-0 pointer-events-none"
         style={{
           height: 1,
-          background: "rgba(255,255,255,.4)",
-          boxShadow: "0 0 24px rgba(255,255,255,.15)",
+          background: "rgba(var(--page-fg-rgb), .4)",
+          boxShadow: "0 0 24px rgba(var(--page-fg-rgb), .15)",
           opacity: 0,
         }}
       />
@@ -138,7 +138,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         style={{
           width: 120,
           height: 120,
-          border: "1px solid rgba(255,255,255,.15)",
+          border: "1px solid rgba(var(--page-fg-rgb), .15)",
           opacity: 0,
         }}
       />
@@ -148,11 +148,11 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         <img
           src={logoImg}
           alt="DYSIGNS"
+          className="theme-logo"
           style={{
             height: "clamp(32px, 6vw, 56px)",
             width: "auto",
             objectFit: "contain",
-            filter: "brightness(1)",
           }}
           onError={(e) => {
             // fallback to text if image fails
@@ -162,7 +162,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
               const span = document.createElement("span");
               span.textContent = "DYSIGNS";
               span.style.cssText =
-                "font-family:'Inter',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.04em;color:#fff";
+                "font-family:'Inter',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.04em;color:var(--page-fg)";
               parent.appendChild(span);
             }
           }}
@@ -176,7 +176,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
             fontFamily: "'Instrument Serif',serif",
             fontSize: "clamp(.85rem,1.3vw,1.05rem)",
             fontStyle: "italic",
-            color: "rgba(255,255,255,.4)",
+            color: "rgba(var(--page-fg-rgb), .4)",
             letterSpacing: ".01em",
           }}
         >
@@ -195,7 +195,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           fontWeight: 500,
           letterSpacing: ".12em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,.25)",
+          color: "rgba(var(--page-fg-rgb), .25)",
         }}
         aria-label="Skip intro"
       >

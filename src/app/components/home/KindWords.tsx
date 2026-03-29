@@ -31,7 +31,7 @@ function QuoteIcon() {
     >
       <path
         d="M0 22V13.2C0 10.7333 0.4 8.5 1.2 6.5C2.04 4.46 3.18 2.76 4.62 1.4L8.4 3.8C7.24 5 6.36 6.34 5.76 7.82C5.2 9.26 4.92 10.76 4.92 12.32H8.4V22H0ZM15.6 22V13.2C15.6 10.7333 16 8.5 16.8 6.5C17.64 4.46 18.78 2.76 20.22 1.4L24 3.8C22.84 5 21.96 6.34 21.36 7.82C20.8 9.26 20.52 10.76 20.52 12.32H24V22H15.6Z"
-        fill="rgba(255,255,255,0.18)"
+        fill="rgba(var(--page-fg-rgb), 0.18)"
       />
     </svg>
   );
@@ -61,20 +61,20 @@ function ArrowBtn({
         width: 48,
         height: 48,
         borderRadius: "50%",
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.1)",
-        color: "#fff",
+        background: "rgba(var(--page-fg-rgb), 0.06)",
+        border: "1px solid rgba(var(--page-fg-rgb), 0.1)",
+        color: "var(--page-fg)",
         cursor: "pointer",
         transition:
           "background .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1)",
       }}
       onMouseOver={(e) => {
-        e.currentTarget.style.background = "rgba(255,255,255,0.12)";
-        e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+        e.currentTarget.style.background = "rgba(var(--page-fg-rgb), 0.12)";
+        e.currentTarget.style.borderColor = "rgba(var(--page-fg-rgb), 0.25)";
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-        e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+        e.currentTarget.style.background = "rgba(var(--page-fg-rgb), 0.06)";
+        e.currentTarget.style.borderColor = "rgba(var(--page-fg-rgb), 0.1)";
       }}
     >
       <svg
@@ -230,7 +230,7 @@ export function KindWords() {
     <section
       ref={sectionRef}
       className="relative py-24 md:py-36"
-      style={{ background: "#000", overflow: "hidden" }}
+      style={{ background: "var(--page-bg)", overflow: "hidden" }}
     >
       {/* Faint background watermark */}
       <div
@@ -245,7 +245,7 @@ export function KindWords() {
           letterSpacing: "-.05em",
           lineHeight: 1,
           color: "transparent",
-          WebkitTextStroke: "1px rgba(255,255,255,.025)",
+          WebkitTextStroke: "1px rgba(var(--page-fg-rgb), .025)",
           whiteSpace: "nowrap",
           zIndex: 0,
           textTransform: "lowercase",
@@ -270,7 +270,7 @@ export function KindWords() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.45)",
+                color: "rgba(var(--page-fg-rgb), .45)",
               }}
             >
               {t("testimonials.label")}
@@ -283,7 +283,7 @@ export function KindWords() {
                 fontSize: "clamp(1.5rem,3.5vw,2.8rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",
-                color: "#fff",
+                color: "var(--page-fg)",
                 lineHeight: 1.15,
               }}
             >
@@ -291,7 +291,7 @@ export function KindWords() {
               <span
                 style={{
                   color: "transparent",
-                  WebkitTextStroke: "1px rgba(255,255,255,.35)",
+                  WebkitTextStroke: "1px rgba(var(--page-fg-rgb), .35)",
                 }}
               >
                 {t("testimonials.heading2")}
@@ -304,7 +304,7 @@ export function KindWords() {
                 fontFamily: "'Instrument Serif',serif",
                 fontSize: "clamp(.9rem, 1.2vw, 1.05rem)",
                 fontStyle: "italic",
-                color: "rgba(255,255,255,.5)",
+                color: "rgba(var(--page-fg-rgb), .5)",
                 lineHeight: 1.6,
               }}
             >
@@ -332,7 +332,7 @@ export function KindWords() {
                   fontFamily: "'Inter',sans-serif",
                   fontSize: ".8rem",
                   fontVariantNumeric: "tabular-nums",
-                  color: "rgba(255,255,255,.4)",
+                  color: "rgba(var(--page-fg-rgb), .4)",
                   letterSpacing: ".04em",
                 }}
               >
@@ -406,17 +406,17 @@ export function KindWords() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 6,
-                      background: "rgba(0,0,0,0.55)",
+                      background: "rgba(var(--page-bg-rgb), 0.55)",
                       backdropFilter: "blur(12px)",
                       WebkitBackdropFilter: "blur(12px)",
-                      border: "1px solid rgba(255,255,255,0.12)",
+                      border: "1px solid rgba(var(--page-fg-rgb), 0.12)",
                       borderRadius: 24,
                       padding: "8px 18px",
                       fontSize: ".7rem",
                       fontWeight: 600,
                       letterSpacing: ".12em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,255,.85)",
+                      color: "rgba(var(--page-fg-rgb), .85)",
                       whiteSpace: "nowrap",
                     }}
                   >
@@ -454,7 +454,7 @@ export function KindWords() {
                 background: "rgba(12,12,12,0.72)",
                 backdropFilter: "blur(24px) saturate(1.3)",
                 WebkitBackdropFilter: "blur(24px) saturate(1.3)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                border: "1px solid rgba(var(--page-fg-rgb), 0.08)",
                 borderRadius: "1rem",
                 padding: "clamp(20px, 3vw, 32px)",
                 pointerEvents: "auto",
@@ -475,7 +475,7 @@ export function KindWords() {
                     fontSize: "clamp(.88rem, 1.1vw, 1.02rem)",
                     fontStyle: "italic",
                     lineHeight: 1.7,
-                    color: "rgba(255,255,255,0.82)",
+                    color: "rgba(var(--page-fg-rgb), 0.82)",
                   }}
                 >
                   {quote}
@@ -490,7 +490,7 @@ export function KindWords() {
                     style={{
                       width: 36,
                       height: 36,
-                      border: "1px solid rgba(255,255,255,0.12)",
+                      border: "1px solid rgba(var(--page-fg-rgb), 0.12)",
                     }}
                   >
                     <img
@@ -507,7 +507,7 @@ export function KindWords() {
                       style={{
                         fontSize: ".82rem",
                         fontWeight: 600,
-                        color: "#fff",
+                        color: "var(--page-fg)",
                         letterSpacing: "-.01em",
                       }}
                     >
@@ -516,7 +516,7 @@ export function KindWords() {
                     <span
                       style={{
                         fontSize: ".78rem",
-                        color: "rgba(255,255,255,.5)",
+                        color: "rgba(var(--page-fg-rgb), .5)",
                         marginLeft: 8,
                       }}
                     >
@@ -539,8 +539,8 @@ export function KindWords() {
                       borderRadius: 4,
                       background:
                         i === sourceIndex
-                          ? "#fff"
-                          : "rgba(255,255,255,0.2)",
+                          ? "var(--page-fg)"
+                          : "rgba(var(--page-fg-rgb), 0.2)",
                       border: "none",
                       padding: 0,
                       cursor: "pointer",
@@ -588,7 +588,7 @@ export function KindWords() {
               fontFamily: "'Inter',sans-serif",
               fontSize: ".8rem",
               fontVariantNumeric: "tabular-nums",
-              color: "rgba(255,255,255,.4)",
+              color: "rgba(var(--page-fg-rgb), .4)",
               letterSpacing: ".04em",
             }}
           >

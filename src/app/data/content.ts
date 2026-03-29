@@ -89,12 +89,11 @@ export const siteContent = {
     },
     {
       id: "6",
-      title: "Verso Brand Identity",
+      title: "Verkeersschool Beckers Branding",
       category: "Branding",
-      tags: ["Brand Identity", "Print"],
-      year: "2024",
-      thumbnail:
-        "https://images.unsplash.com/photo-1633533447057-56ccf997f4fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGlkZW50aXR5JTIwZGVzaWduJTIwcGFja2FnaW5nfGVufDF8fHx8MTc3MTM5MDcxOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      tags: ["Branding", "Print", "Web", "Social Media"],
+      year: "2026",
+      thumbnail: "/images/beckers-cover-laptop.png",
       variant: "F" as const,
     },
   ],

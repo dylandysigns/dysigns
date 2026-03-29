@@ -7,7 +7,7 @@ export default function NotFoundPage() {
             fontFamily: "'Inter',sans-serif",
             fontSize: "clamp(3rem,8vw,6rem)",
             fontWeight: 800,
-            color: "rgba(255,255,255,.06)",
+            color: "rgba(var(--page-fg-rgb), .06)",
             letterSpacing: "-.06em",
             lineHeight: 1,
           }}
@@ -18,20 +18,21 @@ export default function NotFoundPage() {
           className="mt-4"
           style={{
             fontSize: ".82rem",
-            color: "rgba(255,255,255,.3)",
+            color: "rgba(var(--page-fg-rgb), .3)",
           }}
         >
           Page not found
         </p>
         <a
           href="/"
-          className="inline-block mt-6 px-5 py-2 rounded-full border border-white/15"
+          className="inline-block mt-6 px-5 py-2 rounded-full"
           style={{
             fontSize: ".72rem",
             fontWeight: 500,
             letterSpacing: ".08em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.4)",
+            color: "rgba(var(--page-fg-rgb), .4)",
+            border: "1px solid rgba(var(--page-fg-rgb), .15)",
           }}
         >
           Go home

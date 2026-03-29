@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "../../hooks/useCursor";
@@ -10,6 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const INITIAL_COUNT = 4;
 const MOBILE_BP = 768; // md breakpoint
+
+function getProjectYear(value: string): number {
+  const match = value.match(/\b(20\d{2}|19\d{2})\b/);
+  return match ? Number(match[1]) : 0;
+}
 
 /** Responsive mobile check — works in preview + real devices */
 function useIsMobile() {
@@ -38,6 +43,13 @@ export function SelectedProjects() {
   const [expanded, setExpanded] = useState(false);
   const projects = useTranslatedProjects();
   const isMobile = useIsMobile();
+  const sortedProjects = useMemo(
+    () =>
+      [...projects].sort(
+        (a, b) => getProjectYear(b.year) - getProjectYear(a.year),
+      ),
+    [projects],
+  );
 
   /* Track whether the entrance animation has already played so a
      language-switch re-render doesn't reset elements to opacity:0 */
@@ -45,7 +57,9 @@ export function SelectedProjects() {
   const cardsAnimDone = useRef(false);
   const extraAnimDone = useRef(false);
 
-  const visible = expanded ? projects : projects.slice(0, INITIAL_COUNT);
+  const visible = expanded
+    ? sortedProjects
+    : sortedProjects.slice(0, INITIAL_COUNT);
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -206,7 +220,7 @@ export function SelectedProjects() {
           </TransitionLink>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {visible.map((p, i) => {
             const isExtra = i >= INITIAL_COUNT;
             return (

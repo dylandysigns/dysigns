@@ -95,13 +95,13 @@ export function DesignTimeline() {
               if (!d) return;
               const isActive = i === activeIdx;
               d.style.borderColor = isActive
-                ? "rgba(255,255,255,.55)"
-                : "rgba(255,255,255,.1)";
+                ? "rgba(var(--page-fg-rgb), .55)"
+                : "rgba(var(--page-fg-rgb), .1)";
               d.style.boxShadow = isActive
-                ? "0 0 18px rgba(255,255,255,.12)"
+                ? "0 0 18px rgba(var(--page-fg-rgb), .12)"
                 : "none";
               d.style.background = isActive
-                ? "rgba(255,255,255,.08)"
+                ? "rgba(var(--page-fg-rgb), .08)"
                 : "transparent";
             });
           },
@@ -128,8 +128,8 @@ export function DesignTimeline() {
         id="process"
         className="relative py-24"
         style={{
-          background: "#000",
-          borderTop: "1px solid rgba(255,255,255,.04)",
+          background: "var(--page-bg)",
+          borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
         }}
       >
         <div className="px-6 md:px-14 mb-8">
@@ -139,7 +139,7 @@ export function DesignTimeline() {
               fontWeight: 500,
               letterSpacing: ".16em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.45)",
+              color: "rgba(var(--page-fg-rgb), .45)",
             }}
           >
             {t("timeline.label")}
@@ -158,8 +158,8 @@ export function DesignTimeline() {
               className="flex-shrink-0 w-72 p-6 rounded-xl"
               style={{
                 scrollSnapAlign: "start",
-                border: "1px solid rgba(255,255,255,.06)",
-                background: "rgba(255,255,255,.02)",
+                border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                background: "rgba(var(--page-fg-rgb), .02)",
               }}
             >
               <span
@@ -169,7 +169,7 @@ export function DesignTimeline() {
                   fontWeight: 600,
                   letterSpacing: ".16em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,.18)",
+                  color: "rgba(var(--page-fg-rgb), .18)",
                 }}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -181,7 +181,7 @@ export function DesignTimeline() {
                   fontSize: "1.2rem",
                   fontWeight: 700,
                   letterSpacing: "-.03em",
-                  color: "#fff",
+                  color: "var(--page-fg)",
                   lineHeight: 1.1,
                 }}
               >
@@ -192,7 +192,7 @@ export function DesignTimeline() {
                 style={{
                   fontSize: ".82rem",
                   lineHeight: 1.7,
-                  color: "rgba(255,255,255,.38)",
+                  color: "rgba(var(--page-fg-rgb), .38)",
                 }}
               >
                 {step.description}
@@ -211,8 +211,8 @@ export function DesignTimeline() {
       id="process"
       className="relative"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,.04)",
+        background: "var(--page-bg)",
+        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
         /* height must be at least 100vh so pin start triggers correctly */
         height: "100vh",
         overflow: "hidden",
@@ -229,7 +229,7 @@ export function DesignTimeline() {
             fontWeight: 600,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.5)",
+            color: "rgba(var(--page-fg-rgb), .5)",
           }}
         >
           {t("timeline.label")}
@@ -244,7 +244,7 @@ export function DesignTimeline() {
         {/* bg line */}
         <div
           className="absolute inset-0"
-          style={{ background: "rgba(255,255,255,.06)" }}
+          style={{ background: "rgba(var(--page-fg-rgb), .06)" }}
         />
         {/* fill line */}
         <div
@@ -253,7 +253,7 @@ export function DesignTimeline() {
           style={{
             width: "100%",
             background:
-              "linear-gradient(90deg, rgba(255,255,255,.3), rgba(255,255,255,.5))",
+              "linear-gradient(90deg, rgba(var(--page-fg-rgb), .3), rgba(var(--page-fg-rgb), .5))",
             transformOrigin: "left center",
             transform: "scaleX(0)",
           }}
@@ -275,7 +275,7 @@ export function DesignTimeline() {
                 marginLeft: -5,
                 width: 10,
                 height: 10,
-                border: "1px solid rgba(255,255,255,.1)",
+                border: "1px solid rgba(var(--page-fg-rgb), .1)",
                 transition:
                   "border-color .3s, box-shadow .3s, background .3s",
               }}
@@ -294,8 +294,8 @@ export function DesignTimeline() {
             height: 44,
             borderRadius: "50%",
             background: "#0a0a0a",
-            border: "1px solid rgba(255,255,255,.18)",
-            boxShadow: "0 0 24px rgba(255,255,255,.06)",
+            border: "1px solid rgba(var(--page-fg-rgb), .18)",
+            boxShadow: "0 0 24px rgba(var(--page-fg-rgb), .06)",
             transform: "translateX(-50%)",
             transition: "box-shadow .3s",
           }}
@@ -316,7 +316,7 @@ export function DesignTimeline() {
                 const s = document.createElement("span");
                 s.textContent = "D";
                 s.style.cssText =
-                  "font-family:'Inter',sans-serif;font-size:.5rem;font-weight:800;color:rgba(255,255,255,.55)";
+                  "font-family:'Inter',sans-serif;font-size:.5rem;font-weight:800;color:rgba(var(--page-fg-rgb), .55)";
                 parent.appendChild(s);
               }
             }}
@@ -355,7 +355,7 @@ export function DesignTimeline() {
                   fontWeight: 600,
                   letterSpacing: ".16em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,.45)",
+                  color: "rgba(var(--page-fg-rgb), .45)",
                 }}
               >
                 {String(i + 1).padStart(2, "0")}
@@ -367,7 +367,7 @@ export function DesignTimeline() {
                   fontSize: "1.3rem",
                   fontWeight: 700,
                   letterSpacing: "-.03em",
-                  color: "#fff",
+                  color: "var(--page-fg)",
                   lineHeight: 1.1,
                 }}
               >
@@ -378,7 +378,7 @@ export function DesignTimeline() {
                 style={{
                   fontSize: ".88rem",
                   lineHeight: 1.7,
-                  color: "rgba(255,255,255,.55)",
+                  color: "rgba(var(--page-fg-rgb), .55)",
                 }}
               >
                 {step.description}

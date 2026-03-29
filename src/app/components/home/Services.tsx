@@ -1,20 +1,17 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Palette, Layout, Box, Compass } from "lucide-react";
-import { useCursor } from "../../hooks/useCursor";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useSiteContent } from "../../hooks/useSiteContent";
+import { serviceDefinitions } from "../../data/serviceTaxonomy";
+import { ServiceCard } from "../services/ServiceCard";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const icons = [Palette, Layout, Box, Compass];
 
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const cursor = useCursor();
   const { t } = useLanguage();
   const content = useSiteContent();
 
@@ -61,8 +58,8 @@ export function Services() {
       id="services"
       className="relative py-24 md:py-36 px-6 md:px-12 lg:px-16"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,.04)",
+        background: "var(--page-bg)",
+        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
       <div className="max-w-[1200px] mx-auto">
@@ -73,7 +70,7 @@ export function Services() {
               fontWeight: 500,
               letterSpacing: ".16em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.45)",
+              color: "rgba(var(--page-fg-rgb), .45)",
             }}
           >
             {t("services.label")}
@@ -86,7 +83,7 @@ export function Services() {
               fontSize: "clamp(1.5rem,3.5vw,2.6rem)",
               fontWeight: 700,
               letterSpacing: "-.03em",
-              color: "#fff",
+              color: "var(--page-fg)",
               lineHeight: 1.1,
               opacity: 0,
             }}
@@ -95,97 +92,26 @@ export function Services() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
           {content.services.map((s, i) => {
-            const Icon = icons[i] || Box;
+            const service = serviceDefinitions[i];
+
             return (
               <div
                 key={i}
+                className="h-full"
                 ref={(el) => {
                   cardsRef.current[i] = el;
                 }}
-                className="group relative p-7 md:p-9 rounded-xl overflow-hidden"
-                style={{
-                  border: "1px solid rgba(255,255,255,.06)",
-                  background: "rgba(255,255,255,.02)",
-                  transition: "border-color .4s, transform .4s",
-                  opacity: 0,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(255,255,255,.16)";
-                  (e.currentTarget as HTMLElement).style.transform =
-                    "translateY(-4px)";
-                  cursor.set("link");
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(255,255,255,.06)";
-                  (e.currentTarget as HTMLElement).style.transform =
-                    "translateY(0)";
-                  cursor.reset();
-                }}
+                style={{ opacity: 0 }}
               >
-                {/* corner frames */}
-                <svg
-                  className="absolute top-0 left-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    d="M0 14 L0 0 L14 0"
-                    stroke="rgba(255,255,255,.2)"
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                </svg>
-                <svg
-                  className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    d="M32 18 L32 32 L18 32"
-                    stroke="rgba(255,255,255,.2)"
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                </svg>
-
-                {/* sweep */}
-                <div
-                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(90deg,transparent,rgba(255,255,255,.05),transparent)",
-                    transition: "transform .7s ease-out",
-                  }}
+                <ServiceCard
+                  ctaLabel={t("services.explore")}
+                  description={s.description}
+                  href={`/services/${service.slug}`}
+                  slug={service.slug}
+                  title={s.title}
                 />
-
-                <Icon
-                  size={22}
-                  strokeWidth={1.5}
-                  className="mb-5 text-white/35 group-hover:text-white/65 transition-colors duration-300"
-                />
-                <h3
-                  style={{
-                    fontFamily: "'Inter',sans-serif",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    color: "#fff",
-                    letterSpacing: "-.02em",
-                  }}
-                >
-                  {s.title}
-                </h3>
-                <p
-                  className="mt-2"
-                  style={{
-                    fontSize: ".88rem",
-                    lineHeight: 1.65,
-                    color: "rgba(255,255,255,.6)",
-                  }}
-                >
-                  {s.description}
-                </p>
               </div>
             );
           })}

@@ -63,7 +63,7 @@ export default function ContactPage() {
     <section
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12"
-      style={{ background: "#000" }}
+      style={{ background: "var(--page-bg)" }}
     >
       <svg
         className="absolute top-6 left-6 w-10 h-10 pointer-events-none"
@@ -71,7 +71,7 @@ export default function ContactPage() {
       >
         <path
           d="M0 16 L0 0 L16 0"
-          stroke="rgba(255,255,255,.08)"
+          stroke="rgba(var(--page-fg-rgb), .08)"
           strokeWidth="1"
           fill="none"
         />
@@ -82,7 +82,7 @@ export default function ContactPage() {
       >
         <path
           d="M40 24 L40 40 L24 40"
-          stroke="rgba(255,255,255,.08)"
+          stroke="rgba(var(--page-fg-rgb), .08)"
           strokeWidth="1"
           fill="none"
         />
@@ -95,7 +95,7 @@ export default function ContactPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.45)",
+            color: "rgba(var(--page-fg-rgb), .45)",
           }}
         >
           {t("contact.label")}
@@ -108,7 +108,7 @@ export default function ContactPage() {
             fontSize: "clamp(2rem,5vw,3.5rem)",
             fontWeight: 700,
             letterSpacing: "-.04em",
-            color: "#fff",
+            color: "var(--page-fg)",
             lineHeight: 1.1,
             opacity: 0,
           }}
@@ -121,7 +121,7 @@ export default function ContactPage() {
             fontFamily: "'Instrument Serif',serif",
             fontSize: "clamp(.95rem,1.3vw,1.15rem)",
             fontStyle: "italic",
-            color: "rgba(255,255,255,.6)",
+            color: "rgba(var(--page-fg-rgb), .6)",
             lineHeight: 1.6,
           }}
         >
@@ -137,38 +137,37 @@ export default function ContactPage() {
             href={`mailto:${c.email}`}
             className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
             style={{
-              border: "1px solid rgba(255,255,255,.08)",
-              background: "rgba(255,255,255,.02)",
+              border: "1px solid rgba(var(--page-fg-rgb), .08)",
+              background: "rgba(var(--page-fg-rgb), .02)",
+              color: "rgba(var(--page-fg-rgb), .55)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(255,255,255,.18)";
+                "rgba(var(--page-fg-rgb), .18)";
+              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
               cursor.set("link");
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(255,255,255,.08)";
+                "rgba(var(--page-fg-rgb), .08)";
+              (e.currentTarget as HTMLElement).style.color =
+                "rgba(var(--page-fg-rgb), .55)";
               cursor.reset();
             }}
           >
-            <Mail
-              size={18}
-              strokeWidth={1.5}
-              className="text-white/35 group-hover:text-white/65 transition-colors duration-300"
-            />
+            <Mail size={18} strokeWidth={1.5} style={{ opacity: 0.72 }} />
             <span
               style={{
                 fontSize: "1rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.6)",
               }}
-              className="group-hover:text-white transition-colors duration-300"
             >
               {c.email}
             </span>
             <ArrowUpRight
               size={14}
-              className="text-white/20 group-hover:text-white/50 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              style={{ opacity: 0.55 }}
             />
           </a>
 
@@ -178,37 +177,37 @@ export default function ContactPage() {
             rel="noopener noreferrer"
             className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
             style={{
-              border: "1px solid rgba(255,255,255,.08)",
-              background: "rgba(255,255,255,.02)",
+              border: "1px solid rgba(var(--page-fg-rgb), .08)",
+              background: "rgba(var(--page-fg-rgb), .02)",
+              color: "rgba(var(--page-fg-rgb), .55)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(255,255,255,.18)";
+                "rgba(var(--page-fg-rgb), .18)";
+              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
               cursor.set("link");
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(255,255,255,.08)";
+                "rgba(var(--page-fg-rgb), .08)";
+              (e.currentTarget as HTMLElement).style.color =
+                "rgba(var(--page-fg-rgb), .55)";
               cursor.reset();
             }}
           >
-            <WhatsAppIcon
-              size={18}
-              className="text-white/35 group-hover:text-white/65 transition-colors duration-300"
-            />
+            <WhatsAppIcon size={18} />
             <span
               style={{
                 fontSize: "1rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.6)",
               }}
-              className="group-hover:text-white transition-colors duration-300"
             >
               WhatsApp
             </span>
             <ArrowUpRight
               size={14}
-              className="text-white/20 group-hover:text-white/50 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              style={{ opacity: 0.55 }}
             />
           </a>
 
@@ -219,7 +218,7 @@ export default function ContactPage() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.4)",
+                color: "rgba(var(--page-fg-rgb), .4)",
               }}
             >
               {t("contact.followUs")}
@@ -229,16 +228,23 @@ export default function ContactPage() {
                 <a
                   key={s.name}
                   href={s.url}
-                  className="transition-colors duration-300 hover:text-white"
+                  className="transition-colors duration-300"
                   style={{
                     fontSize: ".78rem",
                     fontWeight: 500,
                     letterSpacing: ".06em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,.45)",
+                    color: "rgba(var(--page-fg-rgb), .45)",
                   }}
-                  onMouseEnter={() => cursor.set("link")}
-                  onMouseLeave={() => cursor.reset()}
+                  onMouseEnter={(e) => {
+                    cursor.set("link");
+                    (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+                  }}
+                  onMouseLeave={(e) => {
+                    cursor.reset();
+                    (e.currentTarget as HTMLElement).style.color =
+                      "rgba(var(--page-fg-rgb), .45)";
+                  }}
                 >
                   {s.name}
                 </a>

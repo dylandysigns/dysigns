@@ -78,13 +78,13 @@ function HeaderContactPill({
         paddingLeft: 12,
         paddingRight: hovered ? 16 : 12,
         border: hovered
-          ? "1px solid rgba(255,255,255,.3)"
-          : "1px solid rgba(255,255,255,.1)",
-        background: "rgba(255,255,255,.03)",
+          ? "1px solid rgba(var(--page-fg-rgb), .3)"
+          : "1px solid rgba(var(--page-fg-rgb), .1)",
+        background: "rgba(var(--page-fg-rgb), .03)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         transition: "border-color .4s, box-shadow .4s, padding-right .35s ease-out",
-        boxShadow: hovered ? "0 0 20px rgba(255,255,255,.08)" : "none",
+        boxShadow: hovered ? "0 0 20px rgba(var(--page-fg-rgb), .08)" : "none",
       }}
       onMouseMove={(e) => {
         if (ref.current) mag(e, ref.current, 0.45);
@@ -102,7 +102,7 @@ function HeaderContactPill({
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)",
+            "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .12),transparent)",
           transform: hovered ? "translateX(100%)" : "translateX(-100%)",
           transition: "transform .7s ease-out",
         }}
@@ -111,7 +111,7 @@ function HeaderContactPill({
       <span
         className="relative z-10 flex-shrink-0"
         style={{
-          color: hovered ? "#fff" : "rgba(255,255,255,.5)",
+          color: hovered ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .5)",
           transition: "color .3s",
         }}
       >
@@ -132,7 +132,7 @@ function HeaderContactPill({
             fontWeight: 500,
             letterSpacing: ".08em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.7)",
+            color: "rgba(var(--page-fg-rgb), .7)",
             paddingLeft: 8,
           }}
         >
@@ -152,14 +152,15 @@ function LangToggle() {
   return (
     <button
       ref={btnRef}
+      type="button"
       onClick={toggleLang}
       aria-label={lang === "en" ? "Switch to Dutch" : "Schakel naar Engels"}
       className="relative grid place-items-center rounded-full overflow-hidden group"
       style={{
         width: 40,
         height: 40,
-        border: "1px solid rgba(255,255,255,.1)",
-        background: "rgba(255,255,255,.03)",
+        border: "1px solid rgba(var(--page-fg-rgb), .1)",
+        background: "rgba(var(--page-fg-rgb), .03)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         transition: "border-color .4s, box-shadow .4s",
@@ -176,15 +177,15 @@ function LangToggle() {
       onMouseLeave={() => {
         if (btnRef.current) {
           gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1,.4)" });
-          btnRef.current.style.borderColor = "rgba(255,255,255,.1)";
+          btnRef.current.style.borderColor = "rgba(var(--page-fg-rgb), .1)";
           btnRef.current.style.boxShadow = "none";
         }
         cursor.reset();
       }}
       onMouseEnter={() => {
         if (btnRef.current) {
-          btnRef.current.style.borderColor = "rgba(255,255,255,.3)";
-          btnRef.current.style.boxShadow = "0 0 20px rgba(255,255,255,.08)";
+          btnRef.current.style.borderColor = "rgba(var(--page-fg-rgb), .3)";
+          btnRef.current.style.boxShadow = "0 0 20px rgba(var(--page-fg-rgb), .08)";
         }
       }}
     >
@@ -193,7 +194,7 @@ function LangToggle() {
         className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
         style={{
           background:
-            "linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)",
+            "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .12),transparent)",
           transition: "transform .7s ease-out",
         }}
       />
@@ -219,7 +220,7 @@ function LangToggle() {
               fontSize: ".6rem",
               fontWeight: 700,
               letterSpacing: ".06em",
-              color: "rgba(255,255,255,.55)",
+              color: "rgba(var(--page-fg-rgb), .55)",
               lineHeight: "14px",
               height: 14,
               display: "flex",
@@ -227,7 +228,6 @@ function LangToggle() {
               justifyContent: "center",
               transition: "color .3s",
             }}
-            className="group-hover:text-white"
           >
             EN
           </span>
@@ -237,7 +237,7 @@ function LangToggle() {
               fontSize: ".6rem",
               fontWeight: 700,
               letterSpacing: ".06em",
-              color: "rgba(255,255,255,.55)",
+              color: "rgba(var(--page-fg-rgb), .55)",
               lineHeight: "14px",
               height: 14,
               display: "flex",
@@ -245,7 +245,6 @@ function LangToggle() {
               justifyContent: "center",
               transition: "color .3s",
             }}
-            className="group-hover:text-white"
           >
             NL
           </span>
@@ -261,9 +260,14 @@ function MobileLangToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggleLang}
-      className="grid place-items-center w-10 h-10 rounded-full border border-white/10 hover:border-white/25 transition-colors"
+      className="grid place-items-center w-10 h-10 rounded-full transition-colors"
       aria-label={lang === "en" ? "Switch to Dutch" : "Schakel naar Engels"}
+      style={{
+        border: "1px solid rgba(var(--page-fg-rgb), .1)",
+        background: "rgba(var(--page-fg-rgb), .03)",
+      }}
     >
       <span
         style={{
@@ -271,7 +275,7 @@ function MobileLangToggle() {
           fontSize: ".6rem",
           fontWeight: 700,
           letterSpacing: ".06em",
-          color: "rgba(255,255,255,.45)",
+          color: "rgba(var(--page-fg-rgb), .45)",
         }}
       >
         {lang === "en" ? "NL" : "EN"}
@@ -357,6 +361,7 @@ export function Header() {
         <img
           src={logoImg}
           alt="DYSIGNS"
+          className="theme-logo"
           style={{ height: 18, width: "auto" }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
@@ -369,7 +374,7 @@ export function Header() {
             fontSize: ".8rem",
             fontWeight: 800,
             letterSpacing: "-.02em",
-            color: "#fff",
+            color: "var(--page-fg)",
           }}
         >
           DYSIGNS
@@ -388,10 +393,10 @@ export function Header() {
             padding: "5px 6px",
             backdropFilter: "blur(20px) saturate(1.2)",
             WebkitBackdropFilter: "blur(20px) saturate(1.2)",
-            background: "rgba(255,255,255,.035)",
-            border: "1px solid rgba(255,255,255,.08)",
+            background: "rgba(var(--page-fg-rgb), .035)",
+            border: "1px solid rgba(var(--page-fg-rgb), .08)",
             boxShadow:
-              "0 4px 24px rgba(0,0,0,.4), inset 0 0.5px 0 rgba(255,255,255,.06)",
+              "0 4px 24px rgba(var(--page-shadow-rgb), .14), inset 0 0.5px 0 rgba(var(--page-fg-rgb), .06)",
           }}
           onMouseMove={(e) => {
             if (pillRef.current) mag(e, pillRef.current, 0.06);
@@ -413,26 +418,26 @@ export function Header() {
                 letterSpacing: ".1em",
                 textTransform: "uppercase",
                 color: isActive(l.path)
-                  ? "rgba(255,255,255,.9)"
-                  : "rgba(255,255,255,.55)",
+                  ? "rgba(var(--page-fg-rgb), .9)"
+                  : "rgba(var(--page-fg-rgb), .55)",
                 transition: "color .3s",
                 background: isActive(l.path)
-                  ? "rgba(255,255,255,.06)"
+                  ? "rgba(var(--page-fg-rgb), .06)"
                   : "transparent",
               }}
               onMouseEnter={(e) => {
                 if (!isActive(l.path)) {
                   (e.currentTarget as HTMLElement).style.color =
-                    "rgba(255,255,255,.85)";
+                    "rgba(var(--page-fg-rgb), .85)";
                   (e.currentTarget as HTMLElement).style.background =
-                    "rgba(255,255,255,.04)";
+                    "rgba(var(--page-fg-rgb), .04)";
                 }
                 cursor.set("link", t("cursor.open"));
               }}
               onMouseLeave={(e) => {
                 if (!isActive(l.path)) {
                   (e.currentTarget as HTMLElement).style.color =
-                    "rgba(255,255,255,.55)";
+                    "rgba(var(--page-fg-rgb), .55)";
                   (e.currentTarget as HTMLElement).style.background =
                     "transparent";
                 }
@@ -444,7 +449,7 @@ export function Header() {
               <span
                 className="absolute bottom-1 left-3 right-3 h-px origin-left transition-transform duration-500"
                 style={{
-                  background: "rgba(255,255,255,.25)",
+                  background: "rgba(var(--page-fg-rgb), .25)",
                   transform: isActive(l.path) ? "scaleX(1)" : "scaleX(0)",
                 }}
               />
@@ -496,26 +501,30 @@ export function Header() {
           width: 40,
           height: 40,
           zIndex: 160,
-          border: "1px solid rgba(255,255,255,.1)",
-          background: "rgba(0,0,0,.85)",
+          border: "1px solid rgba(var(--page-fg-rgb), .1)",
+          background: "rgba(var(--page-bg-rgb), .85)",
         }}
         onClick={() => setMenuOpen(true)}
         aria-label="Open menu"
       >
-        <Menu size={16} className="text-white/60" />
+        <Menu
+          size={16}
+          style={{ color: "rgba(var(--page-fg-rgb), .6)" }}
+        />
       </button>
 
       {/* ─── MOBILE FULLSCREEN MENU ─── */}
       {menuOpen && (
         <div
           className="fixed inset-0 flex flex-col"
-          style={{ zIndex: 200, background: "#000" }}
+          style={{ zIndex: 200, background: "var(--page-bg)" }}
         >
           <div className="px-6 py-5 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img
                 src={logoImg}
                 alt="DYSIGNS"
+                className="theme-logo"
                 style={{ height: 18, width: "auto" }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
@@ -526,18 +535,26 @@ export function Header() {
                   fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
                   fontWeight: 800,
-                  color: "#fff",
+                  color: "var(--page-fg)",
                 }}
               >
                 DYSIGNS
               </span>
             </div>
             <button
-              className="grid place-items-center w-10 h-10 rounded-full border border-white/10"
+              type="button"
+              className="grid place-items-center w-10 h-10 rounded-full"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
+              style={{
+                border: "1px solid rgba(var(--page-fg-rgb), .1)",
+                background: "rgba(var(--page-fg-rgb), .03)",
+              }}
             >
-              <X size={18} className="text-white/60" />
+              <X
+                size={18}
+                style={{ color: "rgba(var(--page-fg-rgb), .6)" }}
+              />
             </button>
           </div>
 
@@ -547,8 +564,8 @@ export function Header() {
               className="flex items-center gap-2 rounded-full"
               style={{
                 padding: "5px 12px 5px 9px",
-                background: "rgba(255,255,255,.04)",
-                border: "1px solid rgba(255,255,255,.07)",
+                background: "rgba(var(--page-fg-rgb), .04)",
+                border: "1px solid rgba(var(--page-fg-rgb), .07)",
               }}
             >
               <span
@@ -571,7 +588,7 @@ export function Header() {
                   fontWeight: 500,
                   letterSpacing: ".1em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,.55)",
+                  color: "rgba(var(--page-fg-rgb), .55)",
                   fontFamily: "'Inter',sans-serif",
                 }}
               >
@@ -589,7 +606,7 @@ export function Header() {
                 style={{
                   fontSize: "1.5rem",
                   fontWeight: 600,
-                  color: isActive(l.path) ? "#fff" : "rgba(255,255,255,.5)",
+                  color: isActive(l.path) ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .5)",
                   transition: "color .3s",
                 }}
               >
@@ -601,18 +618,28 @@ export function Header() {
             <a
               href={`mailto:${siteContent.contact.email}`}
               aria-label="Email"
-              className="grid place-items-center w-10 h-10 rounded-full border border-white/10 hover:border-white/25 transition-colors"
+              className="grid place-items-center w-10 h-10 rounded-full transition-colors"
+              style={{
+                border: "1px solid rgba(var(--page-fg-rgb), .1)",
+                background: "rgba(var(--page-fg-rgb), .03)",
+                color: "rgba(var(--page-fg-rgb), .45)",
+              }}
             >
-              <Mail size={15} strokeWidth={1.5} className="text-white/45" />
+              <Mail size={15} strokeWidth={1.5} />
             </a>
             <a
               href={waLink(siteContent.contact.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="grid place-items-center w-10 h-10 rounded-full border border-white/10 hover:border-white/25 transition-colors"
+              className="grid place-items-center w-10 h-10 rounded-full transition-colors"
+              style={{
+                border: "1px solid rgba(var(--page-fg-rgb), .1)",
+                background: "rgba(var(--page-fg-rgb), .03)",
+                color: "rgba(var(--page-fg-rgb), .45)",
+              }}
             >
-              <WhatsAppIcon size={15} className="text-white/45" />
+              <WhatsAppIcon size={15} />
             </a>
             <MobileLangToggle />
           </div>

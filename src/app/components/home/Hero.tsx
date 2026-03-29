@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { usePageTransition } from "../../hooks/useTransition";
 import { isLowPower } from "../Layout";
@@ -327,7 +328,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       className="relative"
-      style={{ background: "#000", minHeight: "140vh" }}
+      style={{ background: "var(--page-bg)", minHeight: "140vh" }}
     >
       {/* ═══════════════════════════════════════════════════════
           MASKED HEADER TEXT — "text as window" effect
@@ -356,7 +357,7 @@ export function Hero() {
           className="absolute inset-[-5%] pointer-events-none"
           style={{
             zIndex: 0,
-            background: "#000",
+            background: "var(--page-bg)",
           }}
         />
 
@@ -372,7 +373,7 @@ export function Hero() {
             left: "50%",
             transform: "translate(-50%,-50%)",
             background:
-              "linear-gradient(90deg,transparent 5%,rgba(255,255,255,.02) 35%,rgba(255,255,255,.04) 50%,rgba(255,255,255,.02) 65%,transparent 95%)",
+              "linear-gradient(90deg,transparent 5%,rgba(var(--page-fg-rgb), .02) 35%,rgba(var(--page-fg-rgb), .04) 50%,rgba(var(--page-fg-rgb), .02) 65%,transparent 95%)",
             filter: "blur(60px)",
             mixBlendMode: "screen",
             willChange: "transform",
@@ -399,8 +400,8 @@ export function Hero() {
             className="flex items-center gap-2 rounded-full"
             style={{
               padding: "6px 14px 6px 10px",
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.07)",
+              background: "rgba(var(--page-fg-rgb), .04)",
+              border: "1px solid rgba(var(--page-fg-rgb), .07)",
               backdropFilter: "blur(10px)",
               WebkitBackdropFilter: "blur(10px)",
             }}
@@ -427,7 +428,7 @@ export function Hero() {
                 fontWeight: 500,
                 letterSpacing: ".1em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.45)",
+                color: "rgba(var(--page-fg-rgb), .45)",
                 whiteSpace: "nowrap",
                 fontFamily: "'Inter',sans-serif",
               }}
@@ -459,8 +460,8 @@ export function Hero() {
               className="w-full h-full"
               style={{
                 background: reduced
-                  ? "#fff"
-                  : "linear-gradient(135deg, #fff 0%, #e8e0ff 20%, #fff 40%, #ffe0f0 60%, #fff 80%, #e0f0ff 100%)",
+                  ? "var(--page-fg)"
+                  : "var(--hero-headline-gradient)",
                 backgroundSize: "300% 300%",
                 animation: reduced ? "none" : "heroSubtleFlow 18s ease infinite",
               }}
@@ -481,7 +482,7 @@ export function Hero() {
           <div
             className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
             style={{
-              background: "#000",
+              background: "var(--page-bg)",
               mixBlendMode: "multiply",
             }}
           >
@@ -494,7 +495,7 @@ export function Hero() {
                 fontWeight: 900,
                 letterSpacing: "-.06em",
                 lineHeight: 1,
-                color: "#fff",
+                color: "var(--page-fg)",
                 userSelect: "none",
                 whiteSpace: "nowrap",
               }}
@@ -517,7 +518,7 @@ export function Hero() {
                 letterSpacing: "-.06em",
                 lineHeight: 1,
                 color: "transparent",
-                WebkitTextStroke: "1px rgba(255,255,255,.08)",
+                WebkitTextStroke: "1px rgba(var(--page-fg-rgb), .08)",
                 userSelect: "none",
                 whiteSpace: "nowrap",
               }}
@@ -534,16 +535,29 @@ export function Hero() {
           style={{ zIndex: 8 }}
         >
           {/* UX / UI — centered under Available badge */}
-          <div
+          <TransitionLink
+            to="/services/ux-ui-web-design"
             className="absolute top-[14%] right-[5%] md:top-[18%] md:right-auto md:left-1/2 md:-translate-x-1/2"
             style={{
-              background: "rgba(255,255,255,.08)",
+              background: "rgba(var(--page-fg-rgb), .08)",
               backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,.12)",
+              border: "1px solid rgba(var(--page-fg-rgb), .12)",
               borderRadius: 8,
               padding: "10px 16px",
               opacity: 0,
               animation: "uxPillPulse 3s ease-in-out infinite",
+              pointerEvents: "auto",
+              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .22)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .12)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .12)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
             }}
           >
             <span
@@ -553,100 +567,152 @@ export function Hero() {
                 fontWeight: 600,
                 letterSpacing: ".08em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.85)",
+                color: "rgba(var(--page-fg-rgb), .85)",
               }}
             >
               UX / UI
             </span>
-          </div>
+          </TransitionLink>
           {/* Brand Identity */}
-          <div
+          <TransitionLink
+            to="/services/brand-identity"
             className="absolute top-[24%] left-[5%] md:top-auto md:bottom-[28%] md:left-[8%]"
             style={{
-              background: "rgba(255,255,255,.05)",
-              border: "1px solid rgba(255,255,255,.08)",
+              background: "rgba(var(--page-fg-rgb), .05)",
+              border: "1px solid rgba(var(--page-fg-rgb), .08)",
               borderRadius: 20,
               padding: "6px 14px",
               opacity: 0,
+              pointerEvents: "auto",
+              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .18)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .08)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .05)";
             }}
           >
             <span
               style={{
                 fontSize: ".7rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.55)",
+                color: "rgba(var(--page-fg-rgb), .55)",
                 letterSpacing: ".06em",
               }}
             >
               Brand Identity
             </span>
-          </div>
+          </TransitionLink>
           {/* Web Design */}
-          <div
+          <TransitionLink
+            to="/services/ux-ui-web-design"
             className="absolute top-[8%] left-[22%] md:top-[65%] md:left-auto md:right-[15%]"
             style={{
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.06)",
+              background: "rgba(var(--page-fg-rgb), .04)",
+              border: "1px solid rgba(var(--page-fg-rgb), .06)",
               borderRadius: 20,
               padding: "6px 14px",
               opacity: 0,
+              pointerEvents: "auto",
+              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
             }}
           >
             <span
               style={{
                 fontSize: ".7rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.55)",
+                color: "rgba(var(--page-fg-rgb), .55)",
                 letterSpacing: ".06em",
               }}
             >
               Web Design
             </span>
-          </div>
+          </TransitionLink>
           {/* Building Products */}
-          <div
+          <TransitionLink
+            to="/services/product-design"
             className="absolute top-[32%] right-[8%] md:top-[35%] md:right-auto md:left-[6%]"
             style={{
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.06)",
+              background: "rgba(var(--page-fg-rgb), .04)",
+              border: "1px solid rgba(var(--page-fg-rgb), .06)",
               borderRadius: 20,
               padding: "6px 14px",
               opacity: 0,
+              pointerEvents: "auto",
+              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
             }}
           >
             <span
               style={{
                 fontSize: ".7rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.55)",
+                color: "rgba(var(--page-fg-rgb), .55)",
                 letterSpacing: ".06em",
               }}
             >
               Building Products
             </span>
-          </div>
+          </TransitionLink>
           {/* Strategy — top right, where UX/UI used to be */}
-          <div
+          <TransitionLink
+            to="/services/creative-thinking"
             className="absolute top-[19%] left-[40%] md:top-[22%] md:left-auto md:right-[12%]"
             style={{
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.06)",
+              background: "rgba(var(--page-fg-rgb), .04)",
+              border: "1px solid rgba(var(--page-fg-rgb), .06)",
               borderRadius: 20,
               padding: "6px 14px",
               opacity: 0,
+              pointerEvents: "auto",
+              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
             }}
           >
             <span
               style={{
                 fontSize: ".7rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,.55)",
+                color: "rgba(var(--page-fg-rgb), .55)",
                 letterSpacing: ".06em",
               }}
             >
               Strategy
             </span>
-          </div>
+          </TransitionLink>
         </div>
 
         {/* ─── HERO CONTENT (headline, sub, CTA) ─── */}
@@ -664,7 +730,7 @@ export function Hero() {
                 fontWeight: 700,
                 lineHeight: 1.08,
                 letterSpacing: "-.04em",
-                color: "#fff",
+                color: "var(--page-fg)",
                 opacity: 0,
               }}
             >
@@ -677,7 +743,7 @@ export function Hero() {
                 fontFamily: "'Instrument Serif',serif",
                 fontSize: "clamp(.95rem,1.3vw,1.15rem)",
                 fontStyle: "italic",
-                color: "rgba(255,255,255,.6)",
+                color: "rgba(var(--page-fg-rgb), .6)",
                 letterSpacing: ".01em",
                 lineHeight: 1.6,
                 opacity: 0,
@@ -696,13 +762,14 @@ export function Hero() {
                   e.preventDefault();
                   navigateTo("/work");
                 }}
-                className="relative overflow-hidden px-7 py-3 rounded-full border border-white/20 group"
+                className="relative overflow-hidden px-7 py-3 rounded-full group"
                 style={{
                   fontSize: ".75rem",
                   fontWeight: 600,
                   letterSpacing: ".06em",
                   textTransform: "uppercase",
-                  color: "#fff",
+                  color: "var(--page-fg)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .2)",
                 }}
                 onMouseEnter={() => cursor.set("link", t("cursor.viewWork"))}
                 onMouseLeave={() => cursor.reset()}
@@ -711,7 +778,7 @@ export function Hero() {
                   className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
                   style={{
                     background:
-                      "linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)",
+                      "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
                     transition: "transform .7s ease-out",
                   }}
                 />
@@ -729,16 +796,16 @@ export function Hero() {
                   fontWeight: 500,
                   letterSpacing: ".06em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,.6)",
+                  color: "rgba(var(--page-fg-rgb), .6)",
                   transition: "color .3s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
+                  (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
                   cursor.set("link", t("cursor.contact"));
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.color =
-                    "rgba(255,255,255,.6)";
+                    "rgba(var(--page-fg-rgb), .6)";
                   cursor.reset();
                 }}
               >
@@ -760,7 +827,7 @@ export function Hero() {
               fontWeight: 500,
               letterSpacing: ".2em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.6)",
+              color: "rgba(var(--page-fg-rgb), .6)",
             }}
           >
             {t("hero.scroll")}
@@ -778,7 +845,7 @@ export function Hero() {
             >
               <path
                 d="M1 1L7 6L13 1"
-                stroke="rgba(255,255,255,.6)"
+                stroke="rgba(var(--page-fg-rgb), .6)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -793,7 +860,7 @@ export function Hero() {
             >
               <path
                 d="M1 1L7 6L13 1"
-                stroke="rgba(255,255,255,.4)"
+                stroke="rgba(var(--page-fg-rgb), .4)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -805,7 +872,7 @@ export function Hero() {
             style={{
               height: 28,
               background:
-                "linear-gradient(to bottom, rgba(255,255,255,.35), transparent)",
+                "linear-gradient(to bottom, rgba(var(--page-fg-rgb), .35), transparent)",
               animation: "scrollLineGrow 2.4s ease-in-out infinite",
             }}
           />
@@ -820,12 +887,12 @@ export function Hero() {
           bottom: 0,
           height: "50vh",
           background:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.5) 8%, rgba(0,0,0,.85) 16%, #000 25%, #000 100%)",
+            "linear-gradient(to bottom, transparent 0%, rgba(var(--page-bg-rgb), .5) 8%, rgba(var(--page-bg-rgb), .85) 16%, var(--page-bg) 25%, var(--page-bg) 100%)",
         }}
       />
       <div
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ zIndex: 3, height: "25vh", background: "#000" }}
+        style={{ zIndex: 3, height: "25vh", background: "var(--page-bg)" }}
       />
 
       {/* Keyframes */}
@@ -856,12 +923,12 @@ export function Hero() {
         }
         @keyframes uxPillPulse {
           0%, 100% {
-            box-shadow: 0 0 0 0 rgba(255,255,255,.15), 0 0 8px rgba(255,255,255,.08);
-            border-color: rgba(255,255,255,.15);
+            box-shadow: 0 0 0 0 rgba(var(--page-fg-rgb), .15), 0 0 8px rgba(var(--page-fg-rgb), .08);
+            border-color: rgba(var(--page-fg-rgb), .15);
           }
           50% {
-            box-shadow: 0 0 12px 4px rgba(255,255,255,.12), 0 0 24px rgba(255,255,255,.06);
-            border-color: rgba(255,255,255,.25);
+            box-shadow: 0 0 12px 4px rgba(var(--page-fg-rgb), .12), 0 0 24px rgba(var(--page-fg-rgb), .06);
+            border-color: rgba(var(--page-fg-rgb), .25);
           }
         }
       `}</style>

@@ -73,8 +73,8 @@ export function ContactBand() {
       id="contact"
       className="relative py-32 md:py-44 px-6 md:px-12 text-center"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,.04)",
+        background: "var(--page-bg)",
+        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
       {/* corner accents */}
@@ -84,7 +84,7 @@ export function ContactBand() {
       >
         <path
           d="M0 16 L0 0 L16 0"
-          stroke="rgba(255,255,255,.08)"
+          stroke="rgba(var(--page-fg-rgb), .08)"
           strokeWidth="1"
           fill="none"
         />
@@ -95,7 +95,7 @@ export function ContactBand() {
       >
         <path
           d="M40 24 L40 40 L24 40"
-          stroke="rgba(255,255,255,.08)"
+          stroke="rgba(var(--page-fg-rgb), .08)"
           strokeWidth="1"
           fill="none"
         />
@@ -108,7 +108,7 @@ export function ContactBand() {
           fontSize: "clamp(1.8rem,5vw,3.5rem)",
           fontWeight: 700,
           letterSpacing: "-.04em",
-          color: "#fff",
+          color: "var(--page-fg)",
           lineHeight: 1.1,
           opacity: 0,
         }}
@@ -121,7 +121,7 @@ export function ContactBand() {
           fontFamily: "'Instrument Serif',serif",
           fontSize: "clamp(.95rem,1.3vw,1.15rem)",
           fontStyle: "italic",
-          color: "rgba(255,255,255,.6)",
+          color: "rgba(var(--page-fg-rgb), .6)",
           lineHeight: 1.6,
         }}
       >
@@ -135,13 +135,14 @@ export function ContactBand() {
       >
         <a
           href={`mailto:${c.email}`}
-          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full border border-white/20 group"
+          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full group"
           style={{
             fontSize: ".78rem",
             fontWeight: 600,
             letterSpacing: ".06em",
             textTransform: "uppercase",
-            color: "#fff",
+            color: "var(--page-fg)",
+            border: "1px solid rgba(var(--page-fg-rgb), .2)",
           }}
           onMouseEnter={() => cursor.set("link")}
           onMouseLeave={() => cursor.reset()}
@@ -150,7 +151,7 @@ export function ContactBand() {
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
             style={{
               background:
-                "linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)",
+                "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
               transition: "transform .7s ease-out",
             }}
           />
@@ -160,13 +161,14 @@ export function ContactBand() {
           href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full border border-white/10 group"
+          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full group"
           style={{
             fontSize: ".78rem",
             fontWeight: 500,
             letterSpacing: ".06em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.5)",
+            color: "rgba(var(--page-fg-rgb), .5)",
+            border: "1px solid rgba(var(--page-fg-rgb), .1)",
           }}
           onMouseEnter={() => cursor.set("link")}
           onMouseLeave={() => cursor.reset()}
@@ -175,7 +177,7 @@ export function ContactBand() {
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
             style={{
               background:
-                "linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)",
+                "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .06),transparent)",
               transition: "transform .7s ease-out",
             }}
           />

@@ -330,9 +330,9 @@ export function Partners() {
     <section
       className="relative py-16 md:py-20 overflow-hidden"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,.04)",
-        borderBottom: "1px solid rgba(255,255,255,.04)",
+        background: "var(--page-bg)",
+        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
+        borderBottom: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
       <div className="mb-10 text-center">
@@ -342,7 +342,7 @@ export function Partners() {
             fontWeight: 600,
             letterSpacing: ".18em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.45)",
+            color: "rgba(var(--page-fg-rgb), .45)",
           }}
         >
           {t("partners.label")}
@@ -353,14 +353,14 @@ export function Partners() {
           className="absolute left-0 top-0 bottom-0 w-32 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right,#000,transparent)",
+            background: "linear-gradient(to right,var(--page-bg),transparent)",
           }}
         />
         <div
           className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left,#000,transparent)",
+            background: "linear-gradient(to left,var(--page-bg),transparent)",
           }}
         />
         <div
@@ -382,19 +382,19 @@ export function Partners() {
               draggable={false}
               className="flex-shrink-0 transition-colors duration-350"
               style={{
-                color: "rgba(255,255,255,.35)",
+                color: "rgba(var(--page-fg-rgb), .35)",
                 height: LOGO_H,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,.75)";
+                  "rgba(var(--page-fg-rgb), .75)";
                 cursor.set("link", logo.name.toUpperCase());
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,.35)";
+                  "rgba(var(--page-fg-rgb), .35)";
                 cursor.reset();
               }}
             >

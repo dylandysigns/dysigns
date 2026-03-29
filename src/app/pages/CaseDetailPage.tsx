@@ -10,6 +10,14 @@ import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function getDisplayUrl(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+  }
+}
+
 export default function CaseDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const sectionRef = useRef<HTMLElement>(null);
@@ -121,20 +129,21 @@ export default function CaseDetailPage() {
               fontFamily: "'Inter',sans-serif",
               fontSize: "2rem",
               fontWeight: 700,
-              color: "#fff",
+              color: "var(--page-fg)",
             }}
           >
             {t("case.notFound")}
           </h1>
           <TransitionLink
             to="/work"
-            className="mt-6 inline-block px-6 py-2 rounded-full border border-white/20"
+            className="mt-6 inline-block px-6 py-2 rounded-full"
             style={{
               fontSize: ".78rem",
               fontWeight: 500,
               letterSpacing: ".06em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.5)",
+              color: "rgba(var(--page-fg-rgb), .5)",
+              border: "1px solid rgba(var(--page-fg-rgb), .2)",
             }}
           >
             {t("case.back")}
@@ -148,7 +157,7 @@ export default function CaseDetailPage() {
     <section
       ref={sectionRef}
       className="relative"
-      style={{ background: "#000", minHeight: "100vh" }}
+      style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <div
         className="relative w-full overflow-hidden"
@@ -169,7 +178,7 @@ export default function CaseDetailPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, #000 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.2) 100%)",
+              "linear-gradient(to top, var(--page-bg) 0%, rgba(var(--page-bg-rgb), .4) 40%, rgba(var(--page-bg-rgb), .2) 100%)",
           }}
         />
         <TransitionLink
@@ -180,7 +189,7 @@ export default function CaseDetailPage() {
             fontWeight: 500,
             letterSpacing: ".1em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.4)",
+            color: "rgba(var(--page-fg-rgb), .4)",
             transition: "color .3s",
           }}
           onMouseEnter={() => cursor.set("link", t("cursor.back"))}
@@ -192,7 +201,7 @@ export default function CaseDetailPage() {
 
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16 z-10">
           <div className="max-w-[1200px] mx-auto">
-            <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
@@ -202,9 +211,9 @@ export default function CaseDetailPage() {
                     fontWeight: 500,
                     letterSpacing: ".06em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,.5)",
-                    background: "rgba(255,255,255,.08)",
-                    border: "1px solid rgba(255,255,255,.08)",
+                    color: "rgba(var(--page-fg-rgb), .5)",
+                    background: "rgba(var(--page-fg-rgb), .08)",
+                    border: "1px solid rgba(var(--page-fg-rgb), .08)",
                   }}
                 >
                   {tag}
@@ -218,7 +227,7 @@ export default function CaseDetailPage() {
                 fontSize: "clamp(2rem,5vw,3.5rem)",
                 fontWeight: 700,
                 letterSpacing: "-.04em",
-                color: "#fff",
+                color: "var(--page-fg)",
                 lineHeight: 1.1,
               }}
             >
@@ -232,30 +241,34 @@ export default function CaseDetailPage() {
                 className="inline-flex items-center gap-2 mt-4 rounded-full transition-colors duration-300 group/visit"
                 style={{
                   padding: "10px 20px",
-                  background: "rgba(255,255,255,.08)",
-                  border: "2px solid rgba(255,255,255,.08)",
+                  background: "rgba(var(--page-fg-rgb), .08)",
+                  border: "2px solid rgba(var(--page-fg-rgb), .08)",
                   fontFamily: "'Inter',sans-serif",
                   fontSize: ".82rem",
                   fontWeight: 500,
                   letterSpacing: ".06em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,.5)",
+                  color: "rgba(var(--page-fg-rgb), .5)",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,.14)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,.16)";
-                  (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.8)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .14)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+                  (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .8)";
                   cursor.set("link", t("case.visit"));
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,.08)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,.08)";
-                  (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,.5)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .08)";
+                  (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .5)";
                   cursor.reset();
                 }}
               >
-                {t("case.visit")}
+                <span style={{ textTransform: "uppercase" }}>
+                  {t("case.visit")}
+                </span>
+                <span style={{ textTransform: "none" }}>
+                  {getDisplayUrl(project.url)}
+                </span>
                 <ExternalLink size={13} style={{ opacity: 0.6 }} />
               </a>
             )}
@@ -263,7 +276,7 @@ export default function CaseDetailPage() {
               className="mt-2"
               style={{
                 fontSize: ".72rem",
-                color: "rgba(255,255,255,.3)",
+                color: "rgba(var(--page-fg-rgb), .3)",
               }}
             >
               {project.category} &middot; {project.year}
@@ -279,7 +292,7 @@ export default function CaseDetailPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.45)",
+            color: "rgba(var(--page-fg-rgb), .45)",
           }}
         >
           {t("case.overview")}
@@ -292,14 +305,14 @@ export default function CaseDetailPage() {
             fontSize: "clamp(1rem,1.5vw,1.2rem)",
             fontStyle: "italic",
             lineHeight: 1.75,
-            color: "rgba(255,255,255,.6)",
+            color: "rgba(var(--page-fg-rgb), .6)",
           }}
         >
           {project.overview}
         </p>
         <div
           className="mt-8"
-          style={{ width: 40, height: 1, background: "rgba(255,255,255,.08)" }}
+          style={{ width: 40, height: 1, background: "rgba(var(--page-fg-rgb), .08)" }}
         />
       </div>
 
@@ -314,7 +327,7 @@ export default function CaseDetailPage() {
               className="relative overflow-hidden rounded-xl"
               style={{
                 opacity: 0,
-                border: "1px solid rgba(255,255,255,.06)",
+                border: "1px solid rgba(var(--page-fg-rgb), .06)",
               }}
             >
               <div className="aspect-[16/10] overflow-hidden">
@@ -334,7 +347,7 @@ export default function CaseDetailPage() {
               >
                 <path
                   d="M0 10 L0 0 L10 0"
-                  stroke="rgba(255,255,255,.12)"
+                  stroke="rgba(var(--page-fg-rgb), .12)"
                   strokeWidth="1"
                   fill="none"
                 />
@@ -345,7 +358,7 @@ export default function CaseDetailPage() {
               >
                 <path
                   d="M24 14 L24 24 L14 24"
-                  stroke="rgba(255,255,255,.12)"
+                  stroke="rgba(var(--page-fg-rgb), .12)"
                   strokeWidth="1"
                   fill="none"
                 />
@@ -360,8 +373,8 @@ export default function CaseDetailPage() {
           ref={outcomesRef}
           className="p-8 md:p-12 rounded-xl"
           style={{
-            background: "rgba(255,255,255,.02)",
-            border: "1px solid rgba(255,255,255,.06)",
+            background: "rgba(var(--page-fg-rgb), .02)",
+            border: "1px solid rgba(var(--page-fg-rgb), .06)",
             opacity: 0,
           }}
         >
@@ -371,7 +384,7 @@ export default function CaseDetailPage() {
               fontWeight: 500,
               letterSpacing: ".16em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.45)",
+              color: "rgba(var(--page-fg-rgb), .45)",
             }}
           >
             {t("case.outcomes")}
@@ -381,13 +394,13 @@ export default function CaseDetailPage() {
               <li key={i} className="flex items-start gap-3">
                 <span
                   className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                  style={{ background: "rgba(255,255,255,.25)" }}
+                  style={{ background: "rgba(var(--page-fg-rgb), .25)" }}
                 />
                 <span
                   style={{
                     fontSize: ".88rem",
                     lineHeight: 1.6,
-                    color: "rgba(255,255,255,.6)",
+                    color: "rgba(var(--page-fg-rgb), .6)",
                   }}
                 >
                   {outcome}
@@ -400,7 +413,7 @@ export default function CaseDetailPage() {
 
       <div
         className="border-t"
-        style={{ borderColor: "rgba(255,255,255,.04)" }}
+        style={{ borderColor: "rgba(var(--page-fg-rgb), .04)" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20 grid grid-cols-2 gap-4">
           <TransitionLink
@@ -416,19 +429,19 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".12em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.45)",
+                color: "rgba(var(--page-fg-rgb), .45)",
               }}
             >
               <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform duration-300" />
               {t("case.previous")}
             </span>
             <span
-              className="group-hover:text-white transition-colors duration-300"
+              className="transition-colors duration-300"
               style={{
                 fontFamily: "'Inter',sans-serif",
                 fontSize: "clamp(.9rem,1.5vw,1.1rem)",
                 fontWeight: 600,
-                color: "rgba(255,255,255,.5)",
+                color: "rgba(var(--page-fg-rgb), .5)",
                 letterSpacing: "-.02em",
               }}
             >
@@ -449,19 +462,19 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".12em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.45)",
+                color: "rgba(var(--page-fg-rgb), .45)",
               }}
             >
               {t("case.next")}
               <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
             </span>
             <span
-              className="group-hover:text-white transition-colors duration-300"
+              className="transition-colors duration-300"
               style={{
                 fontFamily: "'Inter',sans-serif",
                 fontSize: "clamp(.9rem,1.5vw,1.1rem)",
                 fontWeight: 600,
-                color: "rgba(255,255,255,.5)",
+                color: "rgba(var(--page-fg-rgb), .5)",
                 letterSpacing: "-.02em",
               }}
             >

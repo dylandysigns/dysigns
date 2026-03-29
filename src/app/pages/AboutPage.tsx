@@ -111,7 +111,7 @@ export default function AboutPage() {
     <section
       ref={sectionRef}
       className="relative"
-      style={{ background: "#000", minHeight: "100vh" }}
+      style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <div
         className="relative w-full overflow-hidden"
@@ -132,7 +132,7 @@ export default function AboutPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, #000 0%, rgba(0,0,0,.3) 50%, rgba(0,0,0,.15) 100%)",
+              "linear-gradient(to top, var(--page-bg) 0%, rgba(var(--page-bg-rgb), .3) 50%, rgba(var(--page-bg-rgb), .15) 100%)",
           }}
         />
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16 z-10">
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,.45)",
+                color: "rgba(var(--page-fg-rgb), .45)",
               }}
             >
               {t("about.label")}
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 fontSize: "clamp(2rem,5vw,3.5rem)",
                 fontWeight: 700,
                 letterSpacing: "-.04em",
-                color: "#fff",
+                color: "var(--page-fg)",
                 lineHeight: 1.1,
               }}
             >
@@ -173,7 +173,7 @@ export default function AboutPage() {
             fontSize: "clamp(1.3rem,2.5vw,1.8rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",
-            color: "#fff",
+            color: "var(--page-fg)",
             lineHeight: 1.2,
           }}
         >
@@ -187,14 +187,29 @@ export default function AboutPage() {
             fontSize: "clamp(.95rem,1.3vw,1.15rem)",
             fontStyle: "italic",
             lineHeight: 1.75,
-            color: "rgba(255,255,255,.6)",
+            color: "rgba(var(--page-fg-rgb), .6)",
           }}
         >
+          <span
+            style={{
+              display: "block",
+              marginBottom: "1rem",
+              fontFamily: "'Inter',sans-serif",
+              fontSize: ".68rem",
+              fontStyle: "normal",
+              fontWeight: 600,
+              letterSpacing: ".14em",
+              textTransform: "uppercase",
+              color: "rgba(var(--page-fg-rgb), .42)",
+            }}
+          >
+            Dylan Kho, Founder
+          </span>
           {t("vision.text")} {t("about.storyText")}
         </p>
         <div
           className="mt-8"
-          style={{ width: 40, height: 1, background: "rgba(255,255,255,.08)" }}
+          style={{ width: 40, height: 1, background: "rgba(var(--page-fg-rgb), .08)" }}
         />
       </div>
 
@@ -205,7 +220,7 @@ export default function AboutPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.45)",
+            color: "rgba(var(--page-fg-rgb), .45)",
           }}
         >
           {t("about.valuesLabel")}
@@ -219,19 +234,19 @@ export default function AboutPage() {
               }}
               className="group relative p-7 md:p-9 rounded-xl overflow-hidden"
               style={{
-                border: "1px solid rgba(255,255,255,.06)",
-                background: "rgba(255,255,255,.02)",
+                border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                background: "rgba(var(--page-fg-rgb), .02)",
                 transition: "border-color .4s",
                 opacity: animDone.current ? 1 : 0,
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(255,255,255,.14)";
+                  "rgba(var(--page-fg-rgb), .14)";
                 cursor.set("link");
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(255,255,255,.06)";
+                  "rgba(var(--page-fg-rgb), .06)";
                 cursor.reset();
               }}
             >
@@ -239,7 +254,7 @@ export default function AboutPage() {
                 className="absolute inset-0 -translate-x-full group-hover:translate-x-full pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(90deg,transparent,rgba(255,255,255,.05),transparent)",
+                    "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .05),transparent)",
                   transition: "transform .7s ease-out",
                 }}
               />
@@ -248,7 +263,7 @@ export default function AboutPage() {
                   fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
                   fontWeight: 700,
-                  color: "#fff",
+                  color: "var(--page-fg)",
                   letterSpacing: "-.02em",
                 }}
               >
@@ -259,7 +274,7 @@ export default function AboutPage() {
                 style={{
                   fontSize: ".88rem",
                   lineHeight: 1.65,
-                  color: "rgba(255,255,255,.6)",
+                  color: "rgba(var(--page-fg-rgb), .6)",
                 }}
               >
                 {v.text}
@@ -271,7 +286,7 @@ export default function AboutPage() {
 
       <div
         className="border-t py-20 text-center"
-        style={{ borderColor: "rgba(255,255,255,.04)" }}
+        style={{ borderColor: "rgba(var(--page-fg-rgb), .04)" }}
       >
         <h2
           style={{
@@ -279,20 +294,21 @@ export default function AboutPage() {
             fontSize: "clamp(1.5rem,3vw,2.2rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",
-            color: "#fff",
+            color: "var(--page-fg)",
           }}
         >
           {t("about.ctaTitle")}
         </h2>
         <TransitionLink
           to="/contact"
-          className="inline-block mt-8 px-7 py-3 rounded-full border border-white/20 group relative overflow-hidden"
+          className="inline-block mt-8 px-7 py-3 rounded-full group relative overflow-hidden"
           style={{
             fontSize: ".78rem",
             fontWeight: 600,
             letterSpacing: ".06em",
             textTransform: "uppercase",
-            color: "#fff",
+            color: "var(--page-fg)",
+            border: "1px solid rgba(var(--page-fg-rgb), .2)",
           }}
           onMouseEnter={() => cursor.set("link")}
           onMouseLeave={() => cursor.reset()}
@@ -301,7 +317,7 @@ export default function AboutPage() {
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
             style={{
               background:
-                "linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)",
+                "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
               transition: "transform .7s ease-out",
             }}
           />

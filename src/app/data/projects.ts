@@ -16,6 +16,7 @@ export interface Project {
   category: string;
   tags: string[];
   year: string;
+  url?: string;
   thumbnail: string;
   overview: string;
   outcomes: string[];
@@ -115,7 +116,7 @@ export const projects: Project[] = [
     slug: "stelz-web-design",
     title: "STELZ web design",
     category: "Web",
-    tags: ["Web Design", "UX Design"],
+    tags: ["Web Design", "UX Design", "Development"],
     year: "2026 January",
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.png",
@@ -134,25 +135,27 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "verso-brand-identity",
-    title: "Verso Brand Identity",
+    slug: "verkeersschool-beckers-branding",
+    title: "Verkeersschool Beckers Branding",
     category: "Branding",
-    tags: ["Brand Identity", "Print"],
-    year: "2024",
-    thumbnail:
-      "https://images.unsplash.com/photo-1633533447057-56ccf997f4fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGlkZW50aXR5JTIwZGVzaWduJTIwcGFja2FnaW5nfGVufDF8fHx8MTc3MTM5MDcxOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    tags: ["Branding", "Print", "Web", "Social Media"],
+    year: "2026",
+    url: "https://verkeersschoolbeckers.nl/",
+    thumbnail: "/images/beckers-cover-laptop.png",
     overview:
-      "Verso is a boutique publishing house that needed an identity system as refined as the books they produce. We crafted a brand that feels both literary and contemporary\u2014from typography choices to print collateral and a bespoke website.",
+      "For Verkeersschool Beckers, we developed a complete new brand identity to modernize and professionalize their presence in the Dutch market. The project included a full logo redesign, visual identity system, and consistent brand application across all touchpoints.\n\nWe translated the new identity into social media assets, vehicle branding, and a fully redesigned website. The result is a cohesive and recognizable brand that builds trust and stands out both online and on the road.",
     outcomes: [
-      "Brand awareness up 80% in target demographic",
-      "Press coverage in 12 design publications",
-      "Print collateral won 2 regional design awards",
-      "Social media following grew 3\u00d7 in 4 months",
+      "Complete logo redesign and new visual identity delivered",
+      "Brand system translated across social media, web, and vehicle branding",
+      "More professional and recognizable market presence",
+      "A consistent identity ready for long-term growth",
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGlkZW50aXR5JTIwZGVzaWduJTIwYm9vayUyMGVsZWdhbnR8ZW58MXx8fHwxNzcxNTA4NTIwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1558707538-c56435bdcdf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwcG9zdGVyJTIwZGVzaWduJTIwbW9ub2Nocm9tZXxlbnwxfHx8fDE3NzE1MDg1MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1658863025658-4a259cc68fc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMHN0YXRpb25lcnklMjBtb2NrdXAlMjBlbGVnYW50fGVufDF8fHx8MTc3MTUwODUxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "/images/beckers-cover-laptop.png",
+      "/images/beckers-car-branding.png",
+      "/images/beckers-phone-mockup.png",
+      "/images/beckers-brand-board.png",
+      "/images/beckers-logo-lockup.png",
     ],
   },
   {

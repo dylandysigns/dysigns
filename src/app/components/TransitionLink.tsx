@@ -17,11 +17,24 @@ export function TransitionLink({
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
       onClick?.(e);
+      if (e.defaultPrevented) return;
+
+      if (
+        e.button !== 0 ||
+        e.metaKey ||
+        e.altKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        rest.target === "_blank"
+      ) {
+        return;
+      }
+
+      e.preventDefault();
       navigateTo(to);
     },
-    [to, navigateTo, onClick],
+    [to, navigateTo, onClick, rest.target],
   );
 
   return (

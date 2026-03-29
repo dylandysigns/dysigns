@@ -56,7 +56,7 @@ function ContactPill({
       style={{
         paddingLeft: 11,
         paddingRight: hovered ? 14 : 11,
-        borderColor: hovered ? "rgba(255,255,255,.25)" : "rgba(255,255,255,.1)",
+        borderColor: hovered ? "rgba(var(--page-fg-rgb), .25)" : "rgba(var(--page-fg-rgb), .1)",
       }}
       onMouseEnter={() => {
         setHovered(true);
@@ -72,13 +72,13 @@ function ContactPill({
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)",
+            "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
           transform: hovered ? "translateX(100%)" : "translateX(-100%)",
           transition: "transform .7s ease-out",
         }}
       />
       {/* icon */}
-      <span className="relative z-10 flex-shrink-0" style={{ color: hovered ? "#fff" : "rgba(255,255,255,.45)", transition: "color .3s" }}>
+      <span className="relative z-10 flex-shrink-0" style={{ color: hovered ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .45)", transition: "color .3s" }}>
         {icon}
       </span>
       {/* expanding label */}
@@ -96,7 +96,7 @@ function ContactPill({
             fontWeight: 500,
             letterSpacing: ".08em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,.7)",
+            color: "rgba(var(--page-fg-rgb), .7)",
             paddingLeft: 8,
           }}
         >
@@ -120,8 +120,8 @@ export function Footer() {
     <footer
       className="relative py-14 px-6 md:px-12"
       style={{
-        background: "#000",
-        borderTop: "1px solid rgba(255,255,255,.04)",
+        background: "var(--page-bg)",
+        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
@@ -135,6 +135,7 @@ export function Footer() {
             <img
               src={logoImg}
               alt="DYSIGNS"
+              className="theme-logo"
               style={{ height: 18, width: "auto" }}
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = "none";
@@ -146,13 +147,13 @@ export function Footer() {
                 fontSize: "1rem",
                 fontWeight: 800,
                 letterSpacing: "-.02em",
-                color: "#fff",
+                color: "var(--page-fg)",
               }}
             >
               DYSIGNS
             </span>
           </TransitionLink>
-          <p style={{ fontSize: ".75rem", color: "rgba(255,255,255,.4)" }}>
+          <p style={{ fontSize: ".75rem", color: "rgba(var(--page-fg-rgb), .4)" }}>
             &copy; {new Date().getFullYear()} DYSIGNS. {t("footer.rights")}
           </p>
         </div>
@@ -162,16 +163,23 @@ export function Footer() {
             href={instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 transition-colors duration-300 hover:text-white"
+            className="flex items-center gap-2 transition-colors duration-300"
             style={{
               fontSize: ".68rem",
               fontWeight: 500,
               letterSpacing: ".06em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,.4)",
+              color: "rgba(var(--page-fg-rgb), .4)",
             }}
-            onMouseEnter={() => cursor.set("link")}
-            onMouseLeave={() => cursor.reset()}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.color =
+                "rgba(var(--page-fg-rgb), .4)";
+            }}
           >
             <Instagram size={14} strokeWidth={1.5} />
             <span>Instagram</span>

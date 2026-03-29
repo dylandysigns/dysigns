@@ -39,6 +39,24 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.06);
   --sidebar-ring: rgba(255, 255, 255, 0.2);
+  --page-bg: #000000;
+  --page-bg-rgb: 0, 0, 0;
+  --page-fg: #ffffff;
+  --page-fg-rgb: 255, 255, 255;
+  --page-shadow-rgb: 0, 0, 0;
+  --page-logo-filter: none;
+  --page-noise-opacity: 0.032;
+  --hero-headline-gradient:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #e8e0ff 20%,
+      #ffffff 40%,
+      #ffe0f0 60%,
+      #ffffff 80%,
+      #e0f0ff 100%
+    );
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -88,13 +106,14 @@
   }
 
   html, body, #root {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--page-bg);
+    color: var(--page-fg);
   }
 
   html {
     font-size: var(--font-size);
     -webkit-text-size-adjust: 100%;
+    background-color: var(--page-bg);
   }
 
   body {
@@ -106,6 +125,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: background-color 0.45s ease, color 0.45s ease;
   }
 
   a, button {
@@ -122,12 +142,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(var(--page-fg-rgb), 0.1);
     border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(var(--page-fg-rgb), 0.2);
   }
 
   h1 {
@@ -173,7 +193,7 @@
   }
 
   ::placeholder {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(var(--page-fg-rgb), 0.2);
   }
 }
 
@@ -196,6 +216,11 @@
 
 /* Selection color */
 ::selection {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background: rgba(var(--page-fg-rgb), 0.12);
+  color: var(--page-fg);
+}
+
+.theme-logo {
+  filter: var(--page-logo-filter);
+  transition: filter 0.45s ease;
 }
