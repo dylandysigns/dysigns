@@ -93,7 +93,7 @@ export const siteContent = {
       category: "Branding",
       tags: ["Branding", "Print", "Web", "Social Media"],
       year: "2026",
-      thumbnail: "/images/beckers-cover-laptop.png",
+      thumbnail: "/images/beckers-cover-laptop-v2.png",
       variant: "F" as const,
     },
   ],

@@ -156,6 +156,16 @@ export function Footer() {
           <p style={{ fontSize: ".75rem", color: "rgba(var(--page-fg-rgb), .4)" }}>
             &copy; {new Date().getFullYear()} DYSIGNS. {t("footer.rights")}
           </p>
+          <p
+            style={{
+              fontSize: ".62rem",
+              letterSpacing: ".04em",
+              color: "rgba(var(--page-fg-rgb), .28)",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            KVK: 83710418 · BTW: NL003861601B85
+          </p>
         </div>
 
         {instagram && (
