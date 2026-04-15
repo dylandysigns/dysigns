@@ -216,16 +216,18 @@ export function Hero() {
 
     const ctx = gsap.context(() => {
       const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-      const splitDistance = window.innerWidth * 1.15;
+      const splitDistance = isDesktop
+        ? window.innerWidth * 1.15
+        : window.innerWidth * 1.22;
       const splitStart = isDesktop ? 0.12 : 0.15;
-      const splitDuration = isDesktop ? 0.96 : 1.12;
-      const splitHold = isDesktop ? 1.24 : 1.34;
+      const splitDuration = isDesktop ? 0.96 : 1.34;
+      const splitHold = isDesktop ? 1.24 : 1.48;
       const headingLift = isDesktop ? 18 : 8;
       const headingScale = isDesktop ? 0.975 : 0.994;
       const headingBlur = isDesktop ? 8 : 4;
       const contentShift = isDesktop ? 28 : 10;
       const trustedShift = isDesktop ? 4 : 0;
-      const scrubAmount = isDesktop ? 0.82 : 0.96;
+      const scrubAmount = isDesktop ? 0.82 : 1.18;
       const splitEase = "power2.inOut";
       const headingEase = isDesktop ? "power2.out" : "sine.out";
       const fadeEase = isDesktop ? "power1.out" : "sine.out";
@@ -234,7 +236,7 @@ export function Hero() {
             splitHeadingRef.current.querySelectorAll<HTMLElement>("[data-split-char]"),
           )
         : [];
-      const hideWordmarkAt = splitStart + splitDuration + (isDesktop ? 0.04 : 0.06);
+      const hideWordmarkAt = splitStart + splitDuration + (isDesktop ? 0.04 : 0.1);
 
       if (wordmarkSvgRef.current) {
         gsap.set(wordmarkSvgRef.current, {

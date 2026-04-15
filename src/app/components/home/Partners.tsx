@@ -179,7 +179,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
       }
       gsap.set(track, { clearProps: "transform" });
     };
-  }, [reduced]);
+  }, [reduced, variant]);
 
   /* 3× copies for seamless infinite loop */
   const items = [...LOGOS, ...LOGOS, ...LOGOS];
@@ -219,7 +219,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
       </div>
       <div className="relative">
         <div
-          className={`absolute left-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-14 md:w-24" : "w-32"}`}
+          className={`absolute left-0 top-0 bottom-0 pointer-events-none ${isHero ? "hidden md:block md:w-24" : "w-32"}`}
           style={{
             zIndex: 2,
             background: isHero
@@ -228,7 +228,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
           }}
         />
         <div
-          className={`absolute right-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-14 md:w-24" : "w-32"}`}
+          className={`absolute right-0 top-0 bottom-0 pointer-events-none ${isHero ? "hidden md:block md:w-24" : "w-32"}`}
           style={{
             zIndex: 2,
             background: isHero
@@ -236,11 +236,12 @@ export function Partners({ variant = "section" }: PartnersProps) {
               : "linear-gradient(to left,var(--page-bg),transparent)",
           }}
         />
-        <div
-          ref={trackRef}
-          className={`flex items-center whitespace-nowrap select-none touch-pan-y ${isHero ? "py-1" : ""}`}
-          style={{ willChange: "transform" }}
-        >
+        <div>
+          <div
+            ref={trackRef}
+            className={`flex items-center whitespace-nowrap select-none touch-pan-y ${isHero ? "py-1" : ""}`}
+            style={{ willChange: "transform" }}
+          >
           {items.map((logo, i) => (
             <a
               key={`${logo.name}-${i}`}
@@ -286,6 +287,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
               <logo.Component />
             </a>
           ))}
+          </div>
         </div>
       </div>
     </section>
