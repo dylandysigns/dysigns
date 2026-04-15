@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "../../hooks/useCursor";
 import { TransitionLink } from "../TransitionLink";
+import { ProjectZoomLink } from "../ProjectZoomLink";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
@@ -224,9 +225,12 @@ export function SelectedProjects() {
           {visible.map((p, i) => {
             const isExtra = i >= INITIAL_COUNT;
             return (
-              <TransitionLink
+              <ProjectZoomLink
                 key={p.slug}
                 to={`/work/${p.slug}`}
+                projectSlug={p.slug}
+                imageSrc={p.thumbnail}
+                transitionId={`selected-project-${p.slug}`}
                 className="block"
                 onMouseEnter={() =>
                   cursor.set("view", t("cursor.viewProject"))
@@ -416,7 +420,7 @@ export function SelectedProjects() {
                     </div>
                   </div>
                 </div>
-              </TransitionLink>
+              </ProjectZoomLink>
             );
           })}
         </div>

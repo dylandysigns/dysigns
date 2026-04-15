@@ -1,21 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MapPin } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { usePageTransition } from "../../hooks/useTransition";
 import { isLowPower } from "../Layout";
 import { useLanguage } from "../../hooks/useLanguage";
+import { Partners } from "./Partners";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─── PARALLAX STRENGTH ─── */
 const LAYERS = {
   bg: 0.008,
-  media: 0.012,
   light: 0.025,
   chip: 0.018,
 };
+
+const WORDMARK_VIEWBOX = {
+  width: 2440,
+  height: 520,
+};
+
+const VIDEO_EASTER_EGG_THRESHOLD = 0.35;
+const VIDEO_EASTER_EGG_BUCKETS = 120;
+const INTERACTION_HINT_COPY_THRESHOLD = 0.01;
 
 /**
  * Split an element's text content into per-word spans for staggered animation.
@@ -43,34 +54,125 @@ function splitWords(el: HTMLElement): HTMLSpanElement[] {
 }
 
 export function Hero() {
+  const [isEasterEggOpen, setIsEasterEggOpen] = useState(false);
+  const [isHeroIntroReady, setIsHeroIntroReady] = useState(false);
+  const [showBrushHereHint, setShowBrushHereHint] = useState(true);
+  const [brushHintText, setBrushHintText] = useState("hero.brushHere");
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const lightRef = useRef<HTMLDivElement>(null);
   const chipsRef = useRef<HTMLDivElement>(null);
+  const mobileChipsRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
+  const trustedRef = useRef<HTMLDivElement>(null);
 
-  /* Masked text refs */
   const maskAreaRef = useRef<HTMLDivElement>(null);
-  const mediaRef = useRef<HTMLDivElement>(null);
   const maskTextRef = useRef<HTMLDivElement>(null);
-
-  /* Color bloom ref — radial gradient that follows cursor */
-  const bloomRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLDivElement>(null);
+  const wordmarkSvgRef = useRef<SVGSVGElement>(null);
+  const interactionHintDismissedRef = useRef(false);
+  const wordmarkInteractiveRef = useRef(false);
+  const paintPathRef = useRef<SVGPathElement>(null);
+  const wordmarkVideoLayerRef = useRef<SVGGElement>(null);
+  const wordmarkVideoRef = useRef<HTMLVideoElement>(null);
+  const fullscreenVideoRef = useRef<HTMLVideoElement>(null);
+  const easterEggOverlayRef = useRef<HTMLDivElement>(null);
+  const easterEggFrameRef = useRef<HTMLDivElement>(null);
+  const videoRevealTimeoutRef = useRef<number | null>(null);
+  const splitLeftRef = useRef<SVGGElement>(null);
+  const splitRightRef = useRef<SVGGElement>(null);
+  const splitHeadingRef = useRef<HTMLDivElement>(null);
+  const brushHintTextRef = useRef("hero.brushHere");
 
   const cursor = useCursor();
   const { navigateTo } = usePageTransition();
   const { t } = useLanguage();
+  const splitHeadingChars = Array.from(t("sentence"));
+  const chipLabels = {
+    strategy: t("hero.chip.strategy").toUpperCase(),
+    brand: t("hero.chip.brand").toUpperCase(),
+    ux: t("hero.chip.ux").toUpperCase(),
+    web: t("hero.chip.web").toUpperCase(),
+    product: t("hero.chip.product").toUpperCase(),
+  };
+  const mobileChips = [
+    {
+      to: "/services/ux-ui-web-design",
+      label: chipLabels.ux,
+      className: "left-1/2 top-[10%] -translate-x-1/2",
+      featured: true,
+    },
+    {
+      to: "/services/product-design",
+      label: chipLabels.product,
+      className: "left-4 top-[29%]",
+    },
+    {
+      to: "/services/ux-ui-web-design",
+      label: chipLabels.web,
+      className: "right-4 top-[29%]",
+    },
+    {
+      to: "/services/brand-identity",
+      label: chipLabels.brand,
+      className: "left-5 bottom-[24%]",
+    },
+    {
+      to: "/services/creative-thinking",
+      label: chipLabels.strategy,
+      className: "right-5 bottom-[24%]",
+    },
+  ];
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
+  const paintState = useRef({
+    d: "",
+    lastX: null as number | null,
+    lastY: null as number | null,
+    coverage: new Uint8Array(VIDEO_EASTER_EGG_BUCKETS),
+    filledBuckets: 0,
+    videoUnlocked: false,
+  });
 
   const reduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const closeEasterEgg = useCallback(() => {
+    setIsEasterEggOpen(false);
+  }, []);
+
+  const dismissInteractionHint = useCallback(() => {
+    if (interactionHintDismissedRef.current) return;
+    interactionHintDismissedRef.current = true;
+    setShowBrushHereHint(false);
+  }, []);
+
+  useEffect(() => {
+    if (reduced) {
+      setIsHeroIntroReady(true);
+      return;
+    }
+    setIsHeroIntroReady(false);
+  }, [reduced]);
+
+  useEffect(() => {
+    if (reduced || isHeroIntroReady || isEasterEggOpen) return;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [isEasterEggOpen, isHeroIntroReady, reduced]);
 
   /* ─── LIGHT BAND DRIFT ─── */
   useEffect(() => {
@@ -100,61 +202,432 @@ export function Hero() {
     return () => ctx.revert();
   }, [reduced]);
 
-  /* ─── CURSOR-INTERACTIVE COLOR BLOOM ─── */
+  /* ─── WORDMARK SPLIT ON SCROLL ─── */
   useEffect(() => {
     if (reduced || isLowPower) return;
-    const bloom = bloomRef.current;
-    const maskArea = maskAreaRef.current;
-    if (!bloom || !maskArea) return;
+    if (
+      !sectionRef.current ||
+      !splitLeftRef.current ||
+      !splitRightRef.current ||
+      !heroContentRef.current
+    ) {
+      return;
+    }
 
-    let raf = 0;
-    const tick = () => {
-      const m = (window as unknown as Record<string, { x: number; y: number }>)
-        .__dysignsMouse;
-      if (m) {
-        const rect = maskArea.getBoundingClientRect();
-        const relX = m.x - rect.left;
-        const relY = m.y - rect.top;
-        bloom.style.background = `
-          radial-gradient(
-            400px circle at ${relX}px ${relY}px,
-            rgba(160,100,255,.18) 0%,
-            rgba(255,100,200,.12) 20%,
-            rgba(100,180,255,.08) 40%,
-            transparent 70%
-          )
-        `;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [reduced]);
-
-  /* ─── MEDIA DRIFT INSIDE MASKED TEXT ─── */
-  useEffect(() => {
-    if (reduced || isLowPower) return;
-    const el = mediaRef.current;
-    if (!el) return;
     const ctx = gsap.context(() => {
-      gsap.to(el, {
-        scale: 1.08,
-        x: "3%",
-        yoyo: true,
-        repeat: -1,
-        duration: 14,
-        ease: "sine.inOut",
+      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+      const splitDistance = window.innerWidth * 1.15;
+      const splitStart = isDesktop ? 0.12 : 0.15;
+      const splitDuration = isDesktop ? 0.96 : 1.12;
+      const splitHold = isDesktop ? 1.24 : 1.34;
+      const headingLift = isDesktop ? 18 : 8;
+      const headingScale = isDesktop ? 0.975 : 0.994;
+      const headingBlur = isDesktop ? 8 : 4;
+      const contentShift = isDesktop ? 28 : 10;
+      const trustedShift = isDesktop ? 4 : 0;
+      const scrubAmount = isDesktop ? 0.82 : 0.96;
+      const splitEase = "power2.inOut";
+      const headingEase = isDesktop ? "power2.out" : "sine.out";
+      const fadeEase = isDesktop ? "power1.out" : "sine.out";
+      const splitChars = splitHeadingRef.current
+        ? Array.from(
+            splitHeadingRef.current.querySelectorAll<HTMLElement>("[data-split-char]"),
+          )
+        : [];
+      const hideWordmarkAt = splitStart + splitDuration + (isDesktop ? 0.04 : 0.06);
+
+      if (wordmarkSvgRef.current) {
+        gsap.set(wordmarkSvgRef.current, {
+          autoAlpha: 1,
+          visibility: "visible",
+        });
+      }
+      gsap.set([splitLeftRef.current, splitRightRef.current], {
+        autoAlpha: 1,
+        visibility: "visible",
       });
-      gsap.to(el, {
-        y: "2%",
-        yoyo: true,
-        repeat: -1,
-        duration: 10,
-        ease: "sine.inOut",
+
+      let tl: gsap.core.Timeline;
+
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: scrubAmount,
+          refreshPriority: 2,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (!wordmarkSvgRef.current) return;
+            const shouldHideWordmark = tl.time() >= hideWordmarkAt;
+            const nextVisibility = shouldHideWordmark ? "hidden" : "visible";
+            if (wordmarkSvgRef.current.style.visibility !== nextVisibility) {
+              wordmarkSvgRef.current.style.visibility = nextVisibility;
+            }
+          },
+        },
       });
-    });
-    return () => ctx.revert();
+
+      tl.to(
+        splitLeftRef.current,
+        {
+          x: -splitDistance,
+          duration: splitDuration,
+          ease: splitEase,
+        },
+        splitStart,
+      );
+
+      tl.to(
+        splitRightRef.current,
+        {
+          x: splitDistance,
+          duration: splitDuration,
+          ease: splitEase,
+        },
+        splitStart,
+      );
+
+      if (wordmarkVideoLayerRef.current) {
+        tl.to(
+          wordmarkVideoLayerRef.current,
+          {
+            opacity: 0,
+            duration: 0.22,
+            ease: "none",
+          },
+          splitStart,
+        );
+      }
+
+      if (splitHeadingRef.current) {
+        tl.fromTo(
+          splitHeadingRef.current,
+          {
+            yPercent: headingLift,
+            scale: headingScale,
+            opacity: 0,
+            filter: `blur(${headingBlur}px)`,
+          },
+          {
+            yPercent: 0,
+            scale: 1,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: splitDuration,
+            ease: headingEase,
+          },
+          splitStart,
+        );
+
+        if (splitChars.length) {
+          gsap.set(splitChars, {
+            color: "rgba(var(--page-fg-rgb), 1)",
+            textShadow: "0 0 10px rgba(255,255,255,.08)",
+          });
+        }
+
+        tl.to({}, { duration: splitHold }, splitStart + splitDuration + 0.14);
+      }
+
+      const pillLayers = [chipsRef.current, mobileChipsRef.current].filter(
+        Boolean,
+      ) as HTMLDivElement[];
+      if (pillLayers.length) {
+        tl.to(
+          pillLayers,
+          {
+            autoAlpha: 0,
+            duration: isDesktop ? 0.38 : 0.44,
+            ease: fadeEase,
+          },
+          splitStart + 0.04,
+        );
+      }
+
+      tl.to(
+        heroContentRef.current,
+        {
+          y: contentShift,
+          opacity: 0,
+          duration: isDesktop ? 0.42 : 0.48,
+          ease: fadeEase,
+        },
+        splitStart + 0.04,
+      );
+
+      if (trustedRef.current) {
+        tl.to(
+          trustedRef.current,
+          {
+            y: trustedShift,
+            opacity: 0,
+            duration: isDesktop ? 0.38 : 0.42,
+            ease: fadeEase,
+          },
+          splitStart + 0.08,
+        );
+      }
+
+      tl.to(
+        dotRef.current,
+        {
+          y: -16,
+          opacity: 0,
+          duration: isDesktop ? 0.34 : 0.38,
+          ease: fadeEase,
+        },
+        splitStart + 0.02,
+      );
+    }, sectionRef);
+
+    return () => {
+      if (wordmarkSvgRef.current) {
+        wordmarkSvgRef.current.style.visibility = "visible";
+      }
+      ctx.revert();
+    };
   }, [reduced]);
+
+  /* ─── FULLSCREEN EASTER EGG OVERLAY ─── */
+  useEffect(() => {
+    const overlay = easterEggOverlayRef.current;
+    const frame = easterEggFrameRef.current;
+    const video = fullscreenVideoRef.current;
+    if (!overlay || !frame || !video) return;
+
+    if (isEasterEggOpen) {
+      gsap.killTweensOf([overlay, frame, video]);
+      gsap.set(overlay, {
+        display: "flex",
+        pointerEvents: "auto",
+      });
+
+      const tl = gsap.timeline();
+      tl.fromTo(
+        overlay,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.42, ease: "power2.out" },
+      );
+      tl.fromTo(
+        frame,
+        { y: 32, scale: 0.985, autoAlpha: 0 },
+        { y: 0, scale: 1, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
+        0,
+      );
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      return;
+    }
+
+    gsap.killTweensOf([overlay, frame, video]);
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.set(overlay, {
+          display: "none",
+          pointerEvents: "none",
+        });
+        video.currentTime = 0;
+      },
+    });
+    tl.to(frame, {
+      y: 18,
+      scale: 0.992,
+      autoAlpha: 0,
+      duration: 0.26,
+      ease: "power2.inOut",
+    });
+    tl.to(
+      overlay,
+      {
+        autoAlpha: 0,
+        duration: 0.24,
+        ease: "power2.inOut",
+      },
+      0,
+    );
+    video.pause();
+  }, [isEasterEggOpen]);
+
+  useEffect(() => {
+    if (!isEasterEggOpen) return;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeEasterEgg();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [closeEasterEgg, isEasterEggOpen]);
+
+  /* ─── OUTLINED WORDMARK PERSISTENT PAINT REVEAL ─── */
+  useEffect(() => {
+    if (reduced || isLowPower) return;
+    if (!window.matchMedia("(min-width: 768px) and (pointer: fine)").matches)
+      return;
+    const wordmark = wordmarkRef.current;
+    const svg = wordmarkSvgRef.current;
+    const paintPath = paintPathRef.current;
+    if (!wordmark || !svg || !paintPath) return;
+
+    const state = paintState.current;
+    state.d = "";
+    state.lastX = null;
+    state.lastY = null;
+    state.coverage = new Uint8Array(VIDEO_EASTER_EGG_BUCKETS);
+    state.filledBuckets = 0;
+    state.videoUnlocked = false;
+    interactionHintDismissedRef.current = false;
+    brushHintTextRef.current = "hero.brushHere";
+    setShowBrushHereHint(true);
+    setBrushHintText("hero.brushHere");
+    wordmarkInteractiveRef.current = false;
+    paintPath.setAttribute("d", "");
+    if (wordmarkRef.current) {
+      wordmarkRef.current.style.pointerEvents = "none";
+    }
+    if (wordmarkVideoLayerRef.current) {
+      gsap.set(wordmarkVideoLayerRef.current, { opacity: 0 });
+    }
+    if (wordmarkVideoRef.current) {
+      wordmarkVideoRef.current.pause();
+      wordmarkVideoRef.current.currentTime = 0;
+    }
+
+    const unlockVideo = () => {
+      if (state.videoUnlocked) return;
+      state.videoUnlocked = true;
+      const wordmarkVideo = wordmarkVideoRef.current;
+      const fullscreenVideo = fullscreenVideoRef.current;
+      if (wordmarkVideoLayerRef.current) {
+        gsap
+          .timeline()
+          .to(wordmarkVideoLayerRef.current, {
+            opacity: 0.84,
+            duration: 0.32,
+            ease: "power2.out",
+            overwrite: true,
+          })
+          .to(wordmarkVideoLayerRef.current, {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.inOut",
+          });
+      }
+      if (wordmarkVideoRef.current) {
+        wordmarkVideo.currentTime = 0;
+        wordmarkVideo.play().catch(() => {});
+      }
+      if (fullscreenVideo) {
+        fullscreenVideo.currentTime = 0;
+      }
+      if (videoRevealTimeoutRef.current) {
+        window.clearTimeout(videoRevealTimeoutRef.current);
+      }
+      videoRevealTimeoutRef.current = window.setTimeout(() => {
+        setIsEasterEggOpen(true);
+      }, 220);
+    };
+
+    const toSvgPoint = (event: PointerEvent) => {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const matrix = svg.getScreenCTM();
+      if (!matrix) return null;
+      return point.matrixTransform(matrix.inverse());
+    };
+
+    const markCoverage = (x: number) => {
+      const normalized = gsap.utils.clamp(0, 0.9999, x / WORDMARK_VIEWBOX.width);
+      const bucketIndex = Math.floor(normalized * VIDEO_EASTER_EGG_BUCKETS);
+      if (state.coverage[bucketIndex]) return;
+      state.coverage[bucketIndex] = 1;
+      state.filledBuckets += 1;
+    };
+
+    const paintTo = (x: number, y: number, start = false) => {
+      if (!wordmarkInteractiveRef.current) return;
+      if (start || state.lastX === null || state.lastY === null) {
+        state.d += `${state.d ? " " : ""}M ${x.toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${y.toFixed(2)}`;
+        markCoverage(x);
+      } else {
+        const dx = x - state.lastX;
+        const dy = y - state.lastY;
+        const distance = Math.hypot(dx, dy);
+        const steps = Math.max(1, Math.ceil(distance / 12));
+        let nextPath = state.d;
+        for (let i = 1; i <= steps; i += 1) {
+          const px = state.lastX + (dx * i) / steps;
+          const py = state.lastY + (dy * i) / steps;
+          nextPath += ` L ${px.toFixed(2)} ${py.toFixed(2)}`;
+          markCoverage(px);
+        }
+        state.d = nextPath;
+      }
+
+      state.lastX = x;
+      state.lastY = y;
+      paintPath.setAttribute("d", state.d);
+
+      const coverageRatio = state.filledBuckets / VIDEO_EASTER_EGG_BUCKETS;
+      if (
+        brushHintTextRef.current !== "hero.keepBrushing" &&
+        coverageRatio >= INTERACTION_HINT_COPY_THRESHOLD
+      ) {
+        brushHintTextRef.current = "hero.keepBrushing";
+        setBrushHintText("hero.keepBrushing");
+      }
+      if (!interactionHintDismissedRef.current && coverageRatio >= VIDEO_EASTER_EGG_THRESHOLD) {
+        dismissInteractionHint();
+      }
+      if (!state.videoUnlocked && coverageRatio >= VIDEO_EASTER_EGG_THRESHOLD) {
+        unlockVideo();
+      }
+    };
+
+    const onPointerEnter = (event: PointerEvent) => {
+      const point = toSvgPoint(event);
+      if (!point) return;
+      paintTo(point.x, point.y, true);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      const point = toSvgPoint(event);
+      if (!point) return;
+      paintTo(point.x, point.y);
+    };
+
+    const onPointerLeave = () => {
+      state.lastX = null;
+      state.lastY = null;
+    };
+
+    wordmark.addEventListener("pointerenter", onPointerEnter);
+    wordmark.addEventListener("pointermove", onPointerMove);
+    wordmark.addEventListener("pointerleave", onPointerLeave);
+
+    return () => {
+      if (videoRevealTimeoutRef.current) {
+        window.clearTimeout(videoRevealTimeoutRef.current);
+        videoRevealTimeoutRef.current = null;
+      }
+      wordmark.removeEventListener("pointerenter", onPointerEnter);
+      wordmark.removeEventListener("pointermove", onPointerMove);
+      wordmark.removeEventListener("pointerleave", onPointerLeave);
+    };
+  }, [dismissInteractionHint, reduced]);
 
   /* ─── CURSOR PARALLAX ─── */
   useEffect(() => {
@@ -177,17 +650,13 @@ export function Hero() {
       if (bgRef.current) {
         bgRef.current.style.transform = `translate3d(${tx * LAYERS.bg * w}px,${ty * LAYERS.bg * h}px,0)`;
       }
-      /* Media inside masked text — gentle cursor drift */
-      if (mediaRef.current) {
-        mediaRef.current.style.transform = `translate3d(${tx * LAYERS.media * w}px,${ty * LAYERS.media * h}px,0) scale(1.04)`;
-      }
       if (lightRef.current) {
         lightRef.current.style.transform = `translate(-50%,-50%) translate3d(${tx * LAYERS.light * w}px,${ty * LAYERS.light * h}px,0)`;
       }
       if (chipsRef.current) {
-        const children = chipsRef.current.children;
+        const children = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", chipsRef.current);
         for (let i = 0; i < children.length; i++) {
-          const el = children[i] as HTMLElement;
+          const el = children[i];
           const lag = 1 + i * 0.3;
           el.style.transform = `translate3d(${tx * LAYERS.chip * w * lag}px,${ty * LAYERS.chip * h * lag}px,0)`;
         }
@@ -205,54 +674,33 @@ export function Hero() {
     };
   }, [reduced]);
 
-  /* ─── SCROLL: gentle scale on scroll ─── */
-  useEffect(() => {
-    if (reduced || isLowPower) return;
-    if (!sectionRef.current || !maskAreaRef.current || !maskTextRef.current)
-      return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(maskTextRef.current, {
-        scale: 1.06,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.6,
-          refreshPriority: 2,
-          onEnter: () => {
-            if (maskTextRef.current) {
-              maskTextRef.current.style.visibility = "visible";
-            }
-          },
-          onEnterBack: () => {
-            if (maskTextRef.current) {
-              maskTextRef.current.style.visibility = "visible";
-            }
-          },
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [reduced]);
-
   /* ─── ENTRY ANIMATIONS ─── */
   useEffect(() => {
     if (reduced) {
+      setIsHeroIntroReady(true);
       gsap.set(
-        [headRef.current, subRef.current, ctaRef.current, scrollRef.current],
+        [headRef.current, subRef.current, ctaRef.current, trustedRef.current],
         { opacity: 1 },
       );
       if (dotRef.current) gsap.set(dotRef.current, { opacity: 1 });
       if (maskTextRef.current) gsap.set(maskTextRef.current, { opacity: 1 });
+      wordmarkInteractiveRef.current = true;
+      if (wordmarkRef.current) {
+        wordmarkRef.current.style.pointerEvents = "auto";
+      }
       if (heroContentRef.current)
         gsap.set(heroContentRef.current, { opacity: 1 });
       return;
     }
 
-    const tl = gsap.timeline({ delay: 2 });
+    setIsHeroIntroReady(false);
+
+    const tl = gsap.timeline({
+      delay: 0.12,
+      onComplete: () => {
+        setIsHeroIntroReady(true);
+      },
+    });
 
     /* Masked text reveal — scale from 1.2 down + fade in */
     if (maskTextRef.current) {
@@ -260,7 +708,17 @@ export function Hero() {
         maskTextRef.current,
         { scale: 1.2, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.6, ease: "power2.out" },
-        0,
+        0.1,
+      );
+      tl.call(
+        () => {
+          wordmarkInteractiveRef.current = true;
+          if (wordmarkRef.current) {
+            wordmarkRef.current.style.pointerEvents = "auto";
+          }
+        },
+        undefined,
+        1.98,
       );
     }
 
@@ -302,22 +760,22 @@ export function Hero() {
       { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
       "-=.2",
     );
+    tl.fromTo(
+      trustedRef.current,
+      { y: 18, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+      "-=.15",
+    );
 
     if (chipsRef.current) {
+      const chipEls = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", chipsRef.current);
       tl.fromTo(
-        chipsRef.current.children,
+        chipEls,
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
         "-=.4",
       );
     }
-
-    tl.fromTo(
-      scrollRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4 },
-      "-=.1",
-    );
 
     return () => {
       tl.kill();
@@ -327,17 +785,12 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative"
-      style={{ background: "var(--page-bg)", minHeight: "140vh" }}
+      className="relative min-h-[158vh] sm:min-h-[166vh] md:min-h-[184vh]"
+      style={{ background: "var(--page-bg)" }}
     >
-      {/* ═══════════════════════════════════════════════════════
-          MASKED HEADER TEXT — "text as window" effect
-          The text is mostly white. A cursor-following radial
-          color bloom adds subtle chromatic accents near the mouse.
-         ═══════════════════════════════════════════════════════ */}
       <div
         ref={maskAreaRef}
-        className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+        className="sticky top-0 h-[100svh] overflow-hidden"
         style={{ zIndex: 1 }}
         data-hero-zone
       >
@@ -357,7 +810,8 @@ export function Hero() {
           className="absolute inset-[-5%] pointer-events-none"
           style={{
             zIndex: 0,
-            background: "var(--page-bg)",
+            background:
+              "radial-gradient(circle at 50% 48%, rgba(var(--page-fg-rgb), .035) 0%, rgba(var(--page-fg-rgb), .012) 24%, transparent 62%)",
           }}
         />
 
@@ -380,531 +834,776 @@ export function Hero() {
           }}
         />
 
-        {/* ─── AVAILABLE BADGE — centered top ─── */}
-        <div
-          ref={dotRef}
-          className="absolute"
-          style={{
-            top: "clamp(76px, 11vh, 112px)",
-            left: 0,
-            right: 0,
-            width: "fit-content",
-            margin: "0 auto",
-            zIndex: 30,
-            opacity: 0,
-          }}
-          role="status"
-          aria-label="Available for projects"
-        >
+        <div className="relative z-20 flex h-full flex-col px-5 pb-5 pt-[86px] sm:px-6 sm:pt-[92px] md:pb-6 md:pt-[98px]">
           <div
-            className="flex items-center gap-2 rounded-full"
-            style={{
-              padding: "6px 14px 6px 10px",
-              background: "rgba(var(--page-fg-rgb), .04)",
-              border: "1px solid rgba(var(--page-fg-rgb), .07)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
-            }}
+            ref={dotRef}
+            className="absolute left-1/2 top-[74px] flex -translate-x-1/2 justify-center md:top-[86px]"
+            style={{ opacity: 0 }}
+            role="status"
+            aria-label="Available for projects"
           >
-            {/* Green glowing dot */}
-            <span
-              className="relative flex-shrink-0"
-              style={{ width: 8, height: 8 }}
+            <div
+              className="flex items-center gap-2 rounded-full"
+              style={{
+                padding: "6px 12px",
+                background: "rgba(var(--page-fg-rgb), .04)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              }}
             >
+              <MapPin size={11} color="rgba(255,255,255,.35)" strokeWidth={1.9} />
               <span
-                className="absolute inset-0 rounded-full"
                 style={{
-                  background: "#4ade80",
-                  boxShadow:
-                    "0 0 6px rgba(74,222,128,.6), 0 0 14px rgba(74,222,128,.3), 0 0 28px rgba(74,222,128,.12)",
-                  animation: "availDotPulse 3.2s ease-in-out infinite",
-                }}
-              />
-            </span>
-            {/* Label */}
-            <span
-              style={{
-                fontSize: ".58rem",
-                fontWeight: 500,
-                letterSpacing: ".1em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
-                whiteSpace: "nowrap",
-                fontFamily: "'Inter',sans-serif",
-              }}
-            >
-              {t("hero.available")}
-            </span>
-          </div>
-        </div>
-
-        {/* ─── TEXT-AS-WINDOW COMPOSITE ─── */}
-        <div
-          ref={maskTextRef}
-          className="relative w-full h-full flex items-center justify-center"
-          style={{
-            zIndex: 4,
-            isolation: "isolate",
-            opacity: 0,
-          }}
-        >
-          {/* Layer 1: Subtle base gradient behind text — mostly dark with faint color */}
-          <div
-            ref={mediaRef}
-            className="absolute inset-[-15%] pointer-events-none"
-            style={{
-              willChange: "transform",
-            }}
-          >
-            <div
-              className="w-full h-full"
-              style={{
-                background: reduced
-                  ? "var(--page-fg)"
-                  : "var(--hero-headline-gradient)",
-                backgroundSize: "300% 300%",
-                animation: reduced ? "none" : "heroSubtleFlow 18s ease infinite",
-              }}
-            />
-          </div>
-
-          {/* Layer 1b: Cursor-following color bloom — adds localized color near mouse */}
-          <div
-            ref={bloomRef}
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              zIndex: 1,
-              mixBlendMode: "normal",
-            }}
-          />
-
-          {/* Layer 2: Black mask with white text — multiply blend reveals gradient through text */}
-          <div
-            className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-            style={{
-              background: "var(--page-bg)",
-              mixBlendMode: "multiply",
-            }}
-          >
-            <span
-              data-dysigns-hero-text
-              aria-hidden="true"
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: "clamp(5rem, 20vw, 18rem)",
-                fontWeight: 900,
-                letterSpacing: "-.06em",
-                lineHeight: 1,
-                color: "var(--page-fg)",
-                userSelect: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
-              DYSIGNS
-            </span>
-          </div>
-
-          {/* Layer 3: Subtle edge glow on the text */}
-          <div
-            className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-            style={{ zIndex: 2 }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: "clamp(5rem, 20vw, 18rem)",
-                fontWeight: 900,
-                letterSpacing: "-.06em",
-                lineHeight: 1,
-                color: "transparent",
-                WebkitTextStroke: "1px rgba(var(--page-fg-rgb), .08)",
-                userSelect: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
-              DYSIGNS
-            </span>
-          </div>
-        </div>
-
-        {/* floating UI chips */}
-        <div
-          ref={chipsRef}
-          className="absolute inset-0 pointer-events-none"
-          style={{ zIndex: 8 }}
-        >
-          {/* UX / UI — centered under Available badge */}
-          <TransitionLink
-            to="/services/ux-ui-web-design"
-            className="absolute top-[14%] right-[5%] md:top-[18%] md:right-auto md:left-1/2 md:-translate-x-1/2"
-            style={{
-              background: "rgba(var(--page-fg-rgb), .08)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(var(--page-fg-rgb), .12)",
-              borderRadius: 8,
-              padding: "10px 16px",
-              opacity: 0,
-              animation: "uxPillPulse 3s ease-in-out infinite",
-              pointerEvents: "auto",
-              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .22)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .12)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .12)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: ".65rem",
-                fontWeight: 600,
-                letterSpacing: ".08em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .85)",
-              }}
-            >
-              UX / UI
-            </span>
-          </TransitionLink>
-          {/* Brand Identity */}
-          <TransitionLink
-            to="/services/brand-identity"
-            className="absolute top-[24%] left-[5%] md:top-auto md:bottom-[28%] md:left-[8%]"
-            style={{
-              background: "rgba(var(--page-fg-rgb), .05)",
-              border: "1px solid rgba(var(--page-fg-rgb), .08)",
-              borderRadius: 20,
-              padding: "6px 14px",
-              opacity: 0,
-              pointerEvents: "auto",
-              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .18)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .08)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .05)";
-            }}
-          >
-            <span
-              style={{
-                fontSize: ".7rem",
-                fontWeight: 500,
-                color: "rgba(var(--page-fg-rgb), .55)",
-                letterSpacing: ".06em",
-              }}
-            >
-              Brand Identity
-            </span>
-          </TransitionLink>
-          {/* Web Design */}
-          <TransitionLink
-            to="/services/ux-ui-web-design"
-            className="absolute top-[8%] left-[22%] md:top-[65%] md:left-auto md:right-[15%]"
-            style={{
-              background: "rgba(var(--page-fg-rgb), .04)",
-              border: "1px solid rgba(var(--page-fg-rgb), .06)",
-              borderRadius: 20,
-              padding: "6px 14px",
-              opacity: 0,
-              pointerEvents: "auto",
-              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
-            }}
-          >
-            <span
-              style={{
-                fontSize: ".7rem",
-                fontWeight: 500,
-                color: "rgba(var(--page-fg-rgb), .55)",
-                letterSpacing: ".06em",
-              }}
-            >
-              Web Design
-            </span>
-          </TransitionLink>
-          {/* Building Products */}
-          <TransitionLink
-            to="/services/product-design"
-            className="absolute top-[32%] right-[8%] md:top-[35%] md:right-auto md:left-[6%]"
-            style={{
-              background: "rgba(var(--page-fg-rgb), .04)",
-              border: "1px solid rgba(var(--page-fg-rgb), .06)",
-              borderRadius: 20,
-              padding: "6px 14px",
-              opacity: 0,
-              pointerEvents: "auto",
-              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
-            }}
-          >
-            <span
-              style={{
-                fontSize: ".7rem",
-                fontWeight: 500,
-                color: "rgba(var(--page-fg-rgb), .55)",
-                letterSpacing: ".06em",
-              }}
-            >
-              Building Products
-            </span>
-          </TransitionLink>
-          {/* Strategy — top right, where UX/UI used to be */}
-          <TransitionLink
-            to="/services/creative-thinking"
-            className="absolute top-[19%] left-[40%] md:top-[22%] md:left-auto md:right-[12%]"
-            style={{
-              background: "rgba(var(--page-fg-rgb), .04)",
-              border: "1px solid rgba(var(--page-fg-rgb), .06)",
-              borderRadius: 20,
-              padding: "6px 14px",
-              opacity: 0,
-              pointerEvents: "auto",
-              transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
-            }}
-          >
-            <span
-              style={{
-                fontSize: ".7rem",
-                fontWeight: 500,
-                color: "rgba(var(--page-fg-rgb), .55)",
-                letterSpacing: ".06em",
-              }}
-            >
-              Strategy
-            </span>
-          </TransitionLink>
-        </div>
-
-        {/* ─── HERO CONTENT (headline, sub, CTA) ─── */}
-        <div
-          ref={heroContentRef}
-          className="absolute inset-0 flex items-end justify-center pb-[18vh]"
-          style={{ zIndex: 10 }}
-        >
-          <div className="text-center px-6 max-w-4xl mx-auto">
-            <h1
-              ref={headRef}
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: "clamp(1.6rem,4.5vw,3.5rem)",
-                fontWeight: 700,
-                lineHeight: 1.08,
-                letterSpacing: "-.04em",
-                color: "var(--page-fg)",
-                opacity: 0,
-              }}
-            >
-              {t("hero.headline.A")}
-            </h1>
-            <p
-              ref={subRef}
-              className="mt-5 mx-auto max-w-lg"
-              style={{
-                fontFamily: "'Instrument Serif',serif",
-                fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-                fontStyle: "italic",
-                color: "rgba(var(--page-fg-rgb), .6)",
-                letterSpacing: ".01em",
-                lineHeight: 1.6,
-                opacity: 0,
-              }}
-            >
-              {t("hero.sub")}
-            </p>
-            <div
-              ref={ctaRef}
-              className="mt-8 flex flex-wrap items-center justify-center gap-4"
-              style={{ opacity: 0 }}
-            >
-              <a
-                href="/work"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateTo("/work");
-                }}
-                className="relative overflow-hidden px-7 py-3 rounded-full group"
-                style={{
-                  fontSize: ".75rem",
-                  fontWeight: 600,
-                  letterSpacing: ".06em",
-                  textTransform: "uppercase",
-                  color: "var(--page-fg)",
-                  border: "1px solid rgba(var(--page-fg-rgb), .2)",
-                }}
-                onMouseEnter={() => cursor.set("link", t("cursor.viewWork"))}
-                onMouseLeave={() => cursor.reset()}
-              >
-                <span
-                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
-                  style={{
-                    background:
-                      "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
-                    transition: "transform .7s ease-out",
-                  }}
-                />
-                {t("hero.cta1")}
-              </a>
-              <a
-                href="/contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateTo("/contact");
-                }}
-                className="px-7 py-3 rounded-full"
-                style={{
-                  fontSize: ".75rem",
+                  fontSize: "11px",
                   fontWeight: 500,
-                  letterSpacing: ".06em",
-                  textTransform: "uppercase",
-                  color: "rgba(var(--page-fg-rgb), .6)",
-                  transition: "color .3s",
+                  letterSpacing: ".08em",
+                  color: "rgba(255,255,255,.55)",
+                  whiteSpace: "nowrap",
+                  fontFamily: "'Inter',sans-serif",
+                }}
+              >
+                <span style={{ color: "rgba(255,255,255,.8)", fontWeight: 600 }}>
+                  Amsterdam
+                </span>
+                <span style={{ color: "rgba(255,255,255,.55)" }}>
+                  {" "}
+                  · the Netherlands
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div className="relative flex min-h-[360px] flex-1 items-center justify-center py-[6vh] sm:min-h-[400px] md:min-h-[470px] md:py-0">
+            <div
+              ref={maskTextRef}
+              className="relative flex h-full w-full items-center justify-center overflow-visible pointer-events-none"
+              style={{
+                zIndex: 24,
+                opacity: 0,
+              }}
+            >
+              <div className="relative h-full w-full">
+                <div
+                  className="pointer-events-none absolute left-1/2 top-[50.5%] flex -translate-x-1/2 -translate-y-1/2 justify-center sm:top-[51%] md:top-[54%]"
+                  style={{
+                    zIndex: 19,
+                    width: "min(92vw, 980px)",
+                    maxWidth: "calc(100vw - .75rem)",
+                    paddingInline: "clamp(.5rem, 3vw, 2.5rem)",
+                  }}
+                >
+                  <div
+                    ref={splitHeadingRef}
+                    className="w-full text-center"
+                    style={{
+                      opacity: 0,
+                      fontFamily: "'Inter',sans-serif",
+                      fontSize: "clamp(2.1rem, 9.4vw, 5.5rem)",
+                      fontWeight: 800,
+                      letterSpacing: "-.04em",
+                      lineHeight: 1.01,
+                      color: "rgba(var(--page-fg-rgb), .96)",
+                      marginInline: "auto",
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    {splitHeadingChars.map((char, index) => (
+                      <span
+                        key={`${char}-${index}`}
+                        data-split-char
+                        style={{
+                          display: "inline-block",
+                          color: "rgba(var(--page-fg-rgb), .56)",
+                          textShadow: "0 0 0 rgba(255,255,255,0)",
+                        }}
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  ref={wordmarkRef}
+                  className="pointer-events-auto absolute left-1/2 top-[50.5%] flex w-[min(118vw,720px)] max-w-none -translate-x-1/2 -translate-y-1/2 items-center justify-center select-none sm:top-[51%] sm:w-[min(124vw,980px)] md:top-[54%] md:w-[min(132vw,1820px)] xl:w-[min(124vw,1880px)]"
+                  style={{ zIndex: 20 }}
+                >
+                  <svg
+                    ref={wordmarkSvgRef}
+                    viewBox={`0 0 ${WORDMARK_VIEWBOX.width} ${WORDMARK_VIEWBOX.height}`}
+                    className="block h-auto w-full overflow-visible"
+                    aria-hidden="true"
+                  >
+                    <defs>
+                      <mask id="hero-wordmark-paint-mask">
+                        <rect
+                          x="0"
+                          y="0"
+                          width={WORDMARK_VIEWBOX.width}
+                          height={WORDMARK_VIEWBOX.height}
+                          fill="black"
+                        />
+                        <path
+                          ref={paintPathRef}
+                          d=""
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="136"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </mask>
+                      <clipPath id="hero-wordmark-text-clip">
+                        <text
+                          x="50%"
+                          y="57%"
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                          fontFamily="Inter, sans-serif"
+                          fontSize="402"
+                          fontWeight="900"
+                          letterSpacing="-34"
+                        >
+                          DYSIGNS
+                        </text>
+                      </clipPath>
+                      <clipPath id="hero-wordmark-left-clip">
+                        <rect
+                          x="0"
+                          y="0"
+                          width={WORDMARK_VIEWBOX.width / 2}
+                          height={WORDMARK_VIEWBOX.height}
+                        />
+                      </clipPath>
+                      <clipPath id="hero-wordmark-right-clip">
+                        <rect
+                          x={WORDMARK_VIEWBOX.width / 2}
+                          y="0"
+                          width={WORDMARK_VIEWBOX.width / 2}
+                          height={WORDMARK_VIEWBOX.height}
+                        />
+                      </clipPath>
+                    </defs>
+
+                    <g
+                      ref={wordmarkVideoLayerRef}
+                      style={{ opacity: 0, pointerEvents: "none" }}
+                    >
+                      <foreignObject
+                        x="0"
+                        y="0"
+                        width={WORDMARK_VIEWBOX.width}
+                        height={WORDMARK_VIEWBOX.height}
+                        clipPath="url(#hero-wordmark-text-clip)"
+                        mask="url(#hero-wordmark-paint-mask)"
+                      >
+                        <div
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <video
+                            ref={wordmarkVideoRef}
+                            src="/images/dysigns_reveal.mp4"
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              filter:
+                                "saturate(1.05) contrast(1.08) brightness(.78)",
+                            }}
+                          />
+                        </div>
+                      </foreignObject>
+                    </g>
+
+                    <g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)">
+                      <text
+                        data-dysigns-hero-text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="transparent"
+                        stroke="rgba(var(--page-fg-rgb), .38)"
+                        strokeWidth="1.45"
+                      >
+                        DYSIGNS
+                      </text>
+
+                      <text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="var(--page-fg)"
+                        mask="url(#hero-wordmark-paint-mask)"
+                        className="hidden md:block"
+                      >
+                        DYSIGNS
+                      </text>
+
+                      <text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="var(--page-fg)"
+                        className="md:hidden"
+                      >
+                        DYSIGNS
+                      </text>
+                    </g>
+
+                    <g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)">
+                      <text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="transparent"
+                        stroke="rgba(var(--page-fg-rgb), .38)"
+                        strokeWidth="1.45"
+                      >
+                        DYSIGNS
+                      </text>
+
+                      <text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="var(--page-fg)"
+                        mask="url(#hero-wordmark-paint-mask)"
+                        className="hidden md:block"
+                      >
+                        DYSIGNS
+                      </text>
+
+                      <text
+                        x="50%"
+                        y="57%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontFamily="Inter, sans-serif"
+                        fontSize="402"
+                        fontWeight="900"
+                        letterSpacing="-34"
+                        fill="var(--page-fg)"
+                        className="md:hidden"
+                      >
+                        DYSIGNS
+                      </text>
+                    </g>
+                  </svg>
+                </div>
+
+                <AnimatePresence>
+                  {showBrushHereHint ? (
+                    <motion.div
+                      key="brush-here-hint"
+                      className="pointer-events-none fixed left-1/2 top-[76px] z-[28] hidden -translate-x-1/2 md:block"
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      aria-hidden="true"
+                    >
+                      <div className="flex flex-col items-center gap-1">
+                        <div
+                          style={{
+                            padding: "6px 14px",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "'Inter',sans-serif",
+                              fontSize: "11px",
+                              fontWeight: 600,
+                              letterSpacing: ".18em",
+                              textTransform: "uppercase",
+                              color: "rgba(255,255,255,.5)",
+                              whiteSpace: "nowrap",
+                              textShadow:
+                                "0 0 10px rgba(255,255,255,.16), 0 0 18px rgba(255,255,255,.08)",
+                            }}
+                          >
+                            {t(brushHintText)}
+                          </span>
+                        </div>
+
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            lineHeight: 1,
+                            color: "rgba(255,255,255,.42)",
+                            animation: "heroBrushHintChevron 1.2s ease-in-out infinite",
+                          }}
+                        >
+                          ↓
+                        </span>
+                      </div>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div
+              ref={chipsRef}
+              className="pointer-events-none absolute inset-0 hidden md:block"
+              style={{ zIndex: 38 }}
+            >
+              <TransitionLink
+                to="/services/ux-ui-web-design"
+                className="absolute left-1/2 top-[8%] -translate-x-1/2"
+                data-hero-pill
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .08)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
+                  borderRadius: 8,
+                  padding: "10px 16px",
+                  opacity: 0,
+                  animation: "uxPillPulse 3s ease-in-out infinite",
+                  pointerEvents: "auto",
+                  transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
-                  cursor.set("link", t("cursor.contact"));
+                  cursor.set("link");
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .22)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .12)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color =
-                    "rgba(var(--page-fg-rgb), .6)";
                   cursor.reset();
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .12)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
                 }}
               >
-                {t("hero.cta2")}
-              </a>
+                <span
+                  style={{
+                    fontFamily: "'Inter',sans-serif",
+                    fontSize: ".65rem",
+                    fontWeight: 600,
+                    letterSpacing: ".08em",
+                    textTransform: "uppercase",
+                    color: "rgba(var(--page-fg-rgb), .85)",
+                  }}
+                >
+                  {chipLabels.ux}
+                </span>
+              </TransitionLink>
+
+              <TransitionLink
+                to="/services/brand-identity"
+                className="absolute bottom-[22%] left-[6%]"
+                data-hero-pill
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .05)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .08)",
+                  borderRadius: 20,
+                  padding: "6px 14px",
+                  opacity: 0,
+                  pointerEvents: "auto",
+                  transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  cursor.set("link");
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .18)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+                }}
+                onMouseLeave={(e) => {
+                  cursor.reset();
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .08)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .05)";
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: ".7rem",
+                    fontWeight: 500,
+                    color: "rgba(var(--page-fg-rgb), .55)",
+                    letterSpacing: ".06em",
+                  }}
+                >
+                  {chipLabels.brand}
+                </span>
+              </TransitionLink>
+
+              <TransitionLink
+                to="/services/ux-ui-web-design"
+                className="absolute right-[8%] top-[18%]"
+                data-hero-pill
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .04)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                  borderRadius: 20,
+                  padding: "6px 14px",
+                  opacity: 0,
+                  pointerEvents: "auto",
+                  transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  cursor.set("link");
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+                }}
+                onMouseLeave={(e) => {
+                  cursor.reset();
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: ".7rem",
+                    fontWeight: 500,
+                    color: "rgba(var(--page-fg-rgb), .55)",
+                    letterSpacing: ".06em",
+                  }}
+                >
+                  {chipLabels.web}
+                </span>
+              </TransitionLink>
+
+              <TransitionLink
+                to="/services/product-design"
+                className="absolute left-[7%] top-[22%] hidden lg:block"
+                data-hero-pill
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .04)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                  borderRadius: 20,
+                  padding: "6px 14px",
+                  opacity: 0,
+                  pointerEvents: "auto",
+                  transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  cursor.set("link");
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+                }}
+                onMouseLeave={(e) => {
+                  cursor.reset();
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: ".7rem",
+                    fontWeight: 500,
+                    color: "rgba(var(--page-fg-rgb), .55)",
+                    letterSpacing: ".06em",
+                  }}
+                >
+                  {chipLabels.product}
+                </span>
+              </TransitionLink>
+
+              <TransitionLink
+                to="/services/creative-thinking"
+                className="absolute bottom-[26%] right-[7%] hidden lg:block"
+                data-hero-pill
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .04)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                  borderRadius: 20,
+                  padding: "6px 14px",
+                  opacity: 0,
+                  pointerEvents: "auto",
+                  transition: "transform .3s ease, border-color .3s ease, background-color .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  cursor.set("link");
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .16)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+                }}
+                onMouseLeave={(e) => {
+                  cursor.reset();
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .04)";
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: ".7rem",
+                    fontWeight: 500,
+                    color: "rgba(var(--page-fg-rgb), .55)",
+                    letterSpacing: ".06em",
+                  }}
+                >
+                  {chipLabels.strategy}
+                </span>
+              </TransitionLink>
+            </div>
+
+            <div
+              ref={mobileChipsRef}
+              className="pointer-events-none absolute inset-0 md:hidden"
+              style={{ zIndex: 34 }}
+            >
+              {mobileChips.map((chip) => (
+                <TransitionLink
+                  key={chip.label}
+                  to={chip.to}
+                  className={`absolute pointer-events-auto ${chip.className}`}
+                  data-hero-pill
+                  style={{
+                    maxWidth: "calc(100vw - 2.75rem)",
+                    background: chip.featured
+                      ? "rgba(var(--page-fg-rgb), .08)"
+                      : "rgba(var(--page-fg-rgb), .05)",
+                    border: chip.featured
+                      ? "1px solid rgba(var(--page-fg-rgb), .14)"
+                      : "1px solid rgba(var(--page-fg-rgb), .08)",
+                    borderRadius: chip.featured ? 12 : 999,
+                    padding: chip.featured ? "10px 16px" : "8px 13px",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                    boxShadow: chip.featured
+                      ? "0 0 18px rgba(var(--page-fg-rgb), .08)"
+                      : "none",
+                  }}
+                  onMouseEnter={() => cursor.set("link")}
+                  onMouseLeave={() => cursor.reset()}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Inter',sans-serif",
+                      fontSize: chip.featured ? ".66rem" : ".64rem",
+                      fontWeight: chip.featured ? 600 : 500,
+                      letterSpacing: ".08em",
+                      textTransform: "uppercase",
+                      color: chip.featured
+                        ? "rgba(var(--page-fg-rgb), .88)"
+                        : "rgba(var(--page-fg-rgb), .7)",
+                    }}
+                  >
+                    {chip.label}
+                  </span>
+                </TransitionLink>
+              ))}
+            </div>
+          </div>
+
+          <div ref={heroContentRef} className="relative z-30 -mt-10 pb-0 md:-mt-24">
+            <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-5 md:gap-6">
+              <div className="mx-auto max-w-4xl text-center">
+                <h1
+                  ref={headRef}
+                  style={{
+                    fontFamily: "'Inter',sans-serif",
+                    fontSize: "clamp(1.55rem,4vw,3.3rem)",
+                    fontWeight: 700,
+                    lineHeight: 1.08,
+                    letterSpacing: "-.04em",
+                    color: "var(--page-fg)",
+                    opacity: 0,
+                  }}
+                >
+                  {t("hero.headline.A")}
+                </h1>
+                <p
+                  ref={subRef}
+                  className="mx-auto mt-3 max-w-xl"
+                  style={{
+                    fontFamily: "'Instrument Serif',serif",
+                    fontSize: "clamp(.95rem,1.25vw,1.15rem)",
+                    fontStyle: "italic",
+                    color: "rgba(var(--page-fg-rgb), .6)",
+                    letterSpacing: ".01em",
+                    lineHeight: 1.6,
+                    opacity: 0,
+                  }}
+                >
+                  {t("hero.sub")}
+                </p>
+                <div
+                  ref={ctaRef}
+                  className="mt-6 flex flex-wrap items-center justify-center gap-4"
+                  style={{ opacity: 0 }}
+                >
+                  <a
+                    href="/work"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo("/work");
+                    }}
+                    className="group relative overflow-hidden rounded-full px-7 py-3"
+                    style={{
+                      fontSize: ".75rem",
+                      fontWeight: 600,
+                      letterSpacing: ".06em",
+                      textTransform: "uppercase",
+                      color: "var(--page-fg)",
+                      border: "1px solid rgba(var(--page-fg-rgb), .2)",
+                    }}
+                    onMouseEnter={() => cursor.set("link", t("cursor.viewWork"))}
+                    onMouseLeave={() => cursor.reset()}
+                  >
+                    <span
+                      className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
+                        transition: "transform .7s ease-out",
+                      }}
+                    />
+                    {t("hero.cta1")}
+                  </a>
+                  <a
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo("/contact");
+                    }}
+                    className="rounded-full px-7 py-3"
+                    style={{
+                      fontSize: ".75rem",
+                      fontWeight: 500,
+                      letterSpacing: ".06em",
+                      textTransform: "uppercase",
+                      color: "rgba(var(--page-fg-rgb), .6)",
+                      transition: "color .3s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+                      cursor.set("link", t("cursor.contact"));
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color =
+                        "rgba(var(--page-fg-rgb), .6)";
+                      cursor.reset();
+                    }}
+                  >
+                    {t("hero.cta2")}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            ref={trustedRef}
+            className="relative z-30 mt-3 md:mt-4"
+            style={{ opacity: 0 }}
+          >
+            <div className="mx-auto w-full max-w-[88rem]">
+              <Partners variant="hero" />
             </div>
           </div>
         </div>
+      </div>
 
-        {/* scroll hint */}
-        <div
-          ref={scrollRef}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-          style={{ zIndex: 15, opacity: 0 }}
+      {/* ─── SHORT BRIDGE ─── into next section */}
+      <div
+        className="absolute left-0 right-0 pointer-events-none h-[18vh] md:h-[28vh]"
+        style={{
+          zIndex: 2,
+          bottom: 0,
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(var(--page-bg-rgb), .18) 16%, rgba(var(--page-bg-rgb), .5) 42%, rgba(var(--page-bg-rgb), .84) 72%, var(--page-bg) 100%)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none h-[2vh] md:h-[3vh]"
+        style={{ zIndex: 3, background: "var(--page-bg)" }}
+      />
+
+      <div
+        ref={easterEggOverlayRef}
+        className="fixed inset-0 hidden items-center justify-center"
+        style={{
+          zIndex: 120,
+          opacity: 0,
+          pointerEvents: "none",
+          background: "rgba(0, 0, 0, .92)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+        }}
+        onClick={closeEasterEgg}
+        aria-hidden={!isEasterEggOpen}
+      >
+        <button
+          type="button"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full px-5 py-3 text-[.68rem] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:text-white md:bottom-8"
+          style={{
+            zIndex: 6,
+            minWidth: 144,
+            textAlign: "center",
+            background: "rgba(0,0,0,.56)",
+            border: "1px solid rgba(255,255,255,.22)",
+            boxShadow: "0 16px 36px rgba(0,0,0,.26)",
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+          }}
+          onClick={(event) => {
+            event.stopPropagation();
+            closeEasterEgg();
+          }}
         >
-          <span
-            style={{
-              fontSize: ".6rem",
-              fontWeight: 500,
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .6)",
-            }}
-          >
-            {t("hero.scroll")}
-          </span>
+          Close
+        </button>
+        <div
+          ref={easterEggFrameRef}
+          className="relative h-full w-full overflow-hidden"
+          style={{
+            opacity: 0,
+            background: "rgba(255,255,255,.03)",
+          }}
+          onClick={(event) => event.stopPropagation()}
+        >
           <div
-            className="flex flex-col items-center gap-1"
-            style={{ animation: "scrollPulse 2.4s ease-in-out infinite" }}
-          >
-            <svg
-              width="14"
-              height="8"
-              viewBox="0 0 14 8"
-              fill="none"
-              style={{ opacity: 0.5 }}
-            >
-              <path
-                d="M1 1L7 6L13 1"
-                stroke="rgba(var(--page-fg-rgb), .6)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <svg
-              width="14"
-              height="8"
-              viewBox="0 0 14 8"
-              fill="none"
-              style={{ opacity: 0.25 }}
-            >
-              <path
-                d="M1 1L7 6L13 1"
-                stroke="rgba(var(--page-fg-rgb), .4)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-          <div
-            className="w-px"
+            className="pointer-events-none absolute inset-0"
             style={{
-              height: 28,
+              zIndex: 1,
               background:
-                "linear-gradient(to bottom, rgba(var(--page-fg-rgb), .35), transparent)",
-              animation: "scrollLineGrow 2.4s ease-in-out infinite",
+                "linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.08) 26%, rgba(0,0,0,.18) 100%)",
             }}
+          />
+          <video
+            ref={fullscreenVideoRef}
+            src="/images/dysigns_reveal.mp4"
+            muted
+            playsInline
+            preload="metadata"
+            className="block h-full w-full object-cover"
+            onEnded={closeEasterEgg}
           />
         </div>
       </div>
 
-      {/* ─── GRADIENT FADE BRIDGE ─── into next section */}
-      <div
-        className="absolute left-0 right-0 pointer-events-none"
-        style={{
-          zIndex: 2,
-          bottom: 0,
-          height: "50vh",
-          background:
-            "linear-gradient(to bottom, transparent 0%, rgba(var(--page-bg-rgb), .5) 8%, rgba(var(--page-bg-rgb), .85) 16%, var(--page-bg) 25%, var(--page-bg) 100%)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        style={{ zIndex: 3, height: "25vh", background: "var(--page-bg)" }}
-      />
-
       {/* Keyframes */}
       <style>{`
-        @keyframes scrollPulse {
-          0%, 100% { transform: translateY(0); opacity: 1; }
-          50% { transform: translateY(4px); opacity: 0.6; }
-        }
-        @keyframes scrollLineGrow {
-          0%, 100% { opacity: 0.6; transform: scaleY(1); }
-          50% { opacity: 0.3; transform: scaleY(0.6); }
-        }
         @keyframes availDotPulse {
           0%, 100% {
             box-shadow: 0 0 6px rgba(74,222,128,.6), 0 0 14px rgba(74,222,128,.3), 0 0 28px rgba(74,222,128,.12);
@@ -914,12 +1613,6 @@ export function Hero() {
             box-shadow: 0 0 10px rgba(74,222,128,.8), 0 0 22px rgba(74,222,128,.4), 0 0 40px rgba(74,222,128,.18);
             transform: scale(1.15);
           }
-        }
-        @keyframes heroSubtleFlow {
-          0% { background-position: 0% 50%; }
-          33% { background-position: 100% 0%; }
-          66% { background-position: 50% 100%; }
-          100% { background-position: 0% 50%; }
         }
         @keyframes uxPillPulse {
           0%, 100% {

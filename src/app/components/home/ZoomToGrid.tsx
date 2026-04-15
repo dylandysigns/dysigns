@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { zoomToGridData, projects as rawProjects } from "../../data/projects";
+import { zoomToGridData } from "../../data/projects";
 import type { Project } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
-import { TransitionLink } from "../TransitionLink";
+import { ProjectZoomLink } from "../ProjectZoomLink";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
@@ -145,8 +145,11 @@ export function ZoomToGrid() {
       style?: React.CSSProperties;
       isHero?: boolean;
     }) => (
-      <TransitionLink
+      <ProjectZoomLink
         to={`/work/${project.slug}`}
+        projectSlug={project.slug}
+        imageSrc={project.thumbnail}
+        transitionId={`${isHero ? "zoom-hero" : "zoom-grid"}-${project.slug}`}
         className="block"
         onMouseEnter={() => cursor.set("view", tRef.current("cursor.viewProject"))}
         onMouseLeave={() => cursor.reset()}
@@ -267,7 +270,7 @@ export function ZoomToGrid() {
             </>
           )}
         </div>
-      </TransitionLink>
+      </ProjectZoomLink>
     ),
     [cursor],
   );
@@ -280,8 +283,11 @@ export function ZoomToGrid() {
         style={{ background: "var(--page-bg)" }}
       >
         <div className="max-w-[900px] mx-auto mb-12">
-          <TransitionLink
+          <ProjectZoomLink
             to={`/work/${tileProjects[4]?.slug}`}
+            projectSlug={tileProjects[4]?.slug ?? ""}
+            imageSrc={tileProjects[4]?.thumbnail ?? zoomToGridData.heroImage}
+            transitionId={`zoom-hero-${tileProjects[4]?.slug ?? "hero"}`}
             className="block"
           >
             <div className="relative overflow-hidden rounded-xl">
@@ -295,7 +301,7 @@ export function ZoomToGrid() {
                 }}
               />
             </div>
-          </TransitionLink>
+          </ProjectZoomLink>
           <h2
             className="mt-8 text-center"
             style={{
@@ -318,9 +324,12 @@ export function ZoomToGrid() {
             /* gridImages has 8 entries; map each to the correct non-hero project */
             const proj = tileProjects[i < 4 ? i : i + 1]; // skip hero at index 4
             return (
-              <TransitionLink
+              <ProjectZoomLink
                 key={i}
                 to={`/work/${proj?.slug}`}
+                projectSlug={proj?.slug ?? ""}
+                imageSrc={proj?.thumbnail ?? src}
+                transitionId={`zoom-grid-${proj?.slug ?? i}`}
                 className="block"
                 onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
                 onMouseLeave={() => cursor.reset()}
@@ -337,7 +346,7 @@ export function ZoomToGrid() {
                     loading="lazy"
                   />
                 </div>
-              </TransitionLink>
+              </ProjectZoomLink>
             );
           })}
         </div>

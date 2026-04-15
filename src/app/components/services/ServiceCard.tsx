@@ -1,4 +1,6 @@
+import { useRef, useCallback } from "react";
 import { ArrowRight, Box, Compass, Layout, LucideIcon, Palette } from "lucide-react";
+import gsap from "gsap";
 import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { type ServiceSlug } from "../../data/serviceTaxonomy";
@@ -27,28 +29,46 @@ export function ServiceCard({
 }: ServiceCardProps) {
   const cursor = useCursor();
   const Icon = serviceIcons[slug];
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const handleTilt = useCallback((e: React.MouseEvent) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 5;
+    const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -5;
+    gsap.to(el, { rotateY, rotateX, y: -4, duration: 0.4, ease: "power2.out" });
+  }, []);
+
+  const resetTilt = useCallback(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    gsap.to(el, { rotateY: 0, rotateX: 0, y: 0, duration: 0.6, ease: "elastic.out(1,.5)" });
+  }, []);
 
   return (
     <TransitionLink
+      ref={cardRef}
       to={href}
       className="group relative block h-full rounded-xl overflow-hidden focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
       style={{
         border: "1px solid rgba(var(--page-fg-rgb), .06)",
         background: "rgba(var(--page-fg-rgb), .02)",
-        transition: "border-color .4s, transform .4s, background-color .4s",
+        transition: "border-color .4s, background-color .4s",
+        perspective: "900px",
       }}
+      onMouseMove={handleTilt}
       onMouseEnter={(e) => {
         cursor.set("link");
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .16)";
-        el.style.transform = "translateY(-4px)";
         el.style.background = "rgba(var(--page-fg-rgb), .03)";
       }}
       onMouseLeave={(e) => {
         cursor.reset();
+        resetTilt();
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .06)";
-        el.style.transform = "translateY(0)";
         el.style.background = "rgba(var(--page-fg-rgb), .02)";
       }}
       onFocus={(e) => {

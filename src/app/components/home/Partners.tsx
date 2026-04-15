@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useCursor } from "../../hooks/useCursor";
@@ -10,10 +10,6 @@ import { useCursor } from "../../hooks/useCursor";
  * GSAP tweens raw pixel `x` from 0 → -oneSetWidth, repeat: -1.
  * Because logos are tripled, the snap from -oneSetWidth back to 0
  * is visually identical — seamless.
- *
- * DRAG: pointer-based drag with momentum. On release the current
- * pixel position is wrapped into the valid range and the auto-scroll
- * tween resumes from that exact spot.
  *
  * No xPercent is used anywhere — everything is in raw pixels to
  * avoid the offsetWidth vs scrollWidth mismatch that caused jumps.
@@ -123,50 +119,30 @@ function PureAndCureLogo() {
 }
 
 const LOGOS: { name: string; url: string; Component: React.FC }[] = [
-  { name: "STËLZ", url: "www.drinkstelz.com", Component: StelzLogo },
-  { name: "BIYU", url: "www.biyu.com", Component: BiyuLogo },
-  { name: "KULT AND ACE", url: "#", Component: KultAndAceLogo },
-  { name: "FIJNE GASTEN", url: "#", Component: FijneGastenLogo },
-  { name: "JD", url: "#", Component: JdLogo },
-  { name: "PACT", url: "#", Component: PactLogo },
-  { name: "A/CAFE", url: "#", Component: ACafeLogo },
-  { name: "XPRNZ", url: "#", Component: XprnzLogo },
-  { name: "PUREANDCURE", url: "#", Component: PureAndCureLogo },
+  { name: "STËLZ", url: "https://drinkstelz.com/", Component: StelzLogo },
+  { name: "BIYU", url: "https://bi-yu.nl/", Component: BiyuLogo },
+  { name: "KULT AND ACE", url: "http://kultandace.com/", Component: KultAndAceLogo },
+  { name: "FIJNE GASTEN", url: "http://www.fijnegasten.nl/", Component: FijneGastenLogo },
+  { name: "JD", url: "https://www.jdsports.nl/", Component: JdLogo },
+  { name: "PACT", url: "https://www.pactamsterdam.nl/", Component: PactLogo },
+  { name: "A/CAFE", url: "https://acafe.amsterdam/", Component: ACafeLogo },
+  { name: "XPRNZ", url: "https://xprnz.nl/", Component: XprnzLogo },
+  { name: "PUREANDCURE", url: "https://pureandcure.com/", Component: PureAndCureLogo },
 ];
 
-export function Partners() {
+interface PartnersProps {
+  variant?: "section" | "hero";
+}
+
+export function Partners({ variant = "section" }: PartnersProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   const cursor = useCursor();
   const tweenRef = useRef<gsap.core.Tween | null>(null);
-  const oneSetWidthRef = useRef(0);
-
-  /* ── Drag state ── */
-  const isDragging = useRef(false);
-  const dragStartPointerX = useRef(0);
-  const dragStartTrackX = useRef(0);
-  const lastPointerX = useRef(0);
-  const lastPointerTime = useRef(0);
-  const velocityX = useRef(0);
-  const didDrag = useRef(false);
-  const momentumTween = useRef<gsap.core.Tween | null>(null);
 
   const reduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /**
-   * Wrap a pixel x value into the seamless loop range [-oneSet, 0).
-   * Because the track is 3× duplicated, any value in this range
-   * produces a valid visual.
-   */
-  const wrapX = useCallback((val: number): number => {
-    const oneSet = oneSetWidthRef.current;
-    if (oneSet <= 0) return val;
-    let w = val % oneSet;
-    if (w > 0) w -= oneSet;  // always negative or zero
-    return w;
-  }, []);
 
   /* ── Auto-scroll — pure pixel x, no xPercent ── */
   useEffect(() => {
@@ -182,7 +158,6 @@ export function Partners() {
 
       const oneSet = track.scrollWidth / 3;
       if (oneSet <= 0) return;
-      oneSetWidthRef.current = oneSet;
 
       // Ensure clean starting position
       gsap.set(track, { x: 0 });
@@ -206,143 +181,37 @@ export function Partners() {
     };
   }, [reduced]);
 
-  /**
-   * Resume auto-scroll from the track's current pixel position.
-   * Wraps x into range, syncs tween progress, resumes.
-   */
-  const resumeAutoScroll = useCallback(() => {
-    if (reduced) return;
-    const track = trackRef.current;
-    const tween = tweenRef.current;
-    if (!track || !tween) return;
-
-    const oneSet = oneSetWidthRef.current;
-    if (oneSet <= 0) return;
-
-    // Read current position and wrap into loop range
-    const rawX = gsap.getProperty(track, "x") as number;
-    const wrapped = wrapX(rawX);
-
-    // Snap to wrapped position
-    gsap.set(track, { x: wrapped });
-
-    // Progress = how far through the 0 → -oneSet journey
-    // wrapped is in [-oneSet, 0], so progress = abs(wrapped) / oneSet
-    const progress = Math.min(Math.abs(wrapped) / oneSet, 0.9999);
-
-    tween.progress(progress);
-    tween.resume();
-  }, [reduced, wrapX]);
-
-  /* ── Drag handlers ── */
-  const handlePointerDown = useCallback(
-    (e: React.PointerEvent) => {
-      const track = trackRef.current;
-      if (!track) return;
-
-      isDragging.current = true;
-      didDrag.current = false;
-
-      // Kill momentum tween if still gliding
-      if (momentumTween.current) {
-        momentumTween.current.kill();
-        momentumTween.current = null;
-      }
-
-      // Pause auto-scroll
-      if (tweenRef.current) tweenRef.current.pause();
-
-      // Snapshot current position
-      const currentX = gsap.getProperty(track, "x") as number;
-      dragStartTrackX.current = currentX;
-      dragStartPointerX.current = e.clientX;
-      lastPointerX.current = e.clientX;
-      lastPointerTime.current = Date.now();
-      velocityX.current = 0;
-
-      track.setPointerCapture(e.pointerId);
-      track.style.cursor = "grabbing";
-    },
-    [],
-  );
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-    const track = trackRef.current;
-    if (!track) return;
-
-    const dx = e.clientX - dragStartPointerX.current;
-    if (Math.abs(dx) > 3) didDrag.current = true;
-
-    // Velocity tracking
-    const now = Date.now();
-    const dt = now - lastPointerTime.current;
-    if (dt > 0) {
-      velocityX.current = (e.clientX - lastPointerX.current) / dt;
-    }
-    lastPointerX.current = e.clientX;
-    lastPointerTime.current = now;
-
-    // Move track — raw pixel offset from drag start
-    gsap.set(track, { x: dragStartTrackX.current + dx });
-  }, []);
-
-  const handlePointerUp = useCallback(
-    (e: React.PointerEvent) => {
-      if (!isDragging.current) return;
-      isDragging.current = false;
-      const track = trackRef.current;
-      if (!track) return;
-
-      track.releasePointerCapture(e.pointerId);
-      track.style.cursor = "grab";
-
-      const currentX = gsap.getProperty(track, "x") as number;
-      const momentum = velocityX.current * 180;
-
-      if (Math.abs(momentum) > 10) {
-        momentumTween.current = gsap.to(track, {
-          x: currentX + momentum,
-          duration: 0.7,
-          ease: "power3.out",
-          onComplete: resumeAutoScroll,
-        });
-      } else {
-        resumeAutoScroll();
-      }
-    },
-    [resumeAutoScroll],
-  );
-
-  /* Prevent click navigation when user was dragging */
-  const handleClickCapture = useCallback((e: React.MouseEvent) => {
-    if (didDrag.current) {
-      e.preventDefault();
-      e.stopPropagation();
-      didDrag.current = false;
-    }
-  }, []);
-
   /* 3× copies for seamless infinite loop */
   const items = [...LOGOS, ...LOGOS, ...LOGOS];
+  const isHero = variant === "hero";
 
   return (
     <section
-      className="relative py-16 md:py-20 overflow-hidden"
-      style={{
-        background: "var(--page-bg)",
-        borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
-        borderBottom: "1px solid rgba(var(--page-fg-rgb), .04)",
-      }}
+      className={
+        isHero
+          ? "relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-3 md:py-4"
+          : "relative overflow-hidden py-16 md:py-20"
+      }
+      style={
+        isHero
+          ? { background: "transparent" }
+          : {
+              background: "var(--page-bg)",
+              borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
+              borderBottom: "1px solid rgba(var(--page-fg-rgb), .04)",
+            }
+      }
     >
-      <div className="mb-10 text-center">
+      <div className={isHero ? "mb-4 px-6 text-center md:mb-5" : "mb-10 text-center"}>
         <span
           style={{
-            fontSize: ".8rem",
+            fontSize: isHero ? ".66rem" : ".8rem",
             fontWeight: 600,
-            letterSpacing: ".18em",
+            letterSpacing: isHero ? ".24em" : ".18em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .45)",
+            color: isHero
+              ? "rgba(var(--page-fg-rgb), 1)"
+              : "rgba(var(--page-fg-rgb), .45)",
           }}
         >
           {t("partners.label")}
@@ -350,28 +219,27 @@ export function Partners() {
       </div>
       <div className="relative">
         <div
-          className="absolute left-0 top-0 bottom-0 w-32 pointer-events-none"
+          className={`absolute left-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-14 md:w-24" : "w-32"}`}
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right,var(--page-bg),transparent)",
+            background: isHero
+              ? "linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,0))"
+              : "linear-gradient(to right,var(--page-bg),transparent)",
           }}
         />
         <div
-          className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none"
+          className={`absolute right-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-14 md:w-24" : "w-32"}`}
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left,var(--page-bg),transparent)",
+            background: isHero
+              ? "linear-gradient(to left, rgba(0,0,0,.55), rgba(0,0,0,0))"
+              : "linear-gradient(to left,var(--page-bg),transparent)",
           }}
         />
         <div
           ref={trackRef}
-          className="flex items-center whitespace-nowrap select-none touch-pan-y"
-          style={{ willChange: "transform", cursor: "grab" }}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerUp}
-          onClickCapture={handleClickCapture}
+          className={`flex items-center whitespace-nowrap select-none touch-pan-y ${isHero ? "py-1" : ""}`}
+          style={{ willChange: "transform" }}
         >
           {items.map((logo, i) => (
             <a
@@ -382,19 +250,36 @@ export function Partners() {
               draggable={false}
               className="flex-shrink-0 transition-colors duration-350"
               style={{
-                color: "rgba(var(--page-fg-rgb), .35)",
-                height: LOGO_H,
-                paddingLeft: 0,
-                paddingRight: 0,
+                color: isHero
+                  ? "rgba(var(--page-fg-rgb), .94)"
+                  : "rgba(var(--page-fg-rgb), .35)",
+                height: isHero ? 76 : LOGO_H,
+                paddingLeft: isHero ? 30 : 0,
+                paddingRight: isHero ? 30 : 0,
+                opacity: 1,
+                filter: "none",
+                transition: isHero
+                  ? "opacity .32s ease, transform .32s ease"
+                  : "color .32s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.color =
-                  "rgba(var(--page-fg-rgb), .75)";
+                  isHero
+                    ? "rgba(var(--page-fg-rgb), 1)"
+                    : "rgba(var(--page-fg-rgb), .75)";
+                (e.currentTarget as HTMLElement).style.opacity = "1";
+                (e.currentTarget as HTMLElement).style.transform = isHero
+                  ? "translateY(-1px)"
+                  : "none";
                 cursor.set("link", logo.name.toUpperCase());
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.color =
-                  "rgba(var(--page-fg-rgb), .35)";
+                  isHero
+                    ? "rgba(var(--page-fg-rgb), .94)"
+                    : "rgba(var(--page-fg-rgb), .35)";
+                (e.currentTarget as HTMLElement).style.opacity = "1";
+                (e.currentTarget as HTMLElement).style.transform = "none";
                 cursor.reset();
               }}
             >

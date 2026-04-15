@@ -114,6 +114,7 @@
     font-size: var(--font-size);
     -webkit-text-size-adjust: 100%;
     background-color: var(--page-bg);
+    scroll-behavior: smooth;
   }
 
   body {
@@ -223,4 +224,15 @@
 .theme-logo {
   filter: var(--page-logo-filter);
   transition: filter 0.45s ease;
+}
+
+@keyframes heroBrushHintChevron {
+  0%, 100% {
+    transform: translateY(-1px);
+    opacity: 0.34;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 0.5;
+  }
 }

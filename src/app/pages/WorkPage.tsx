@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TransitionLink } from "../components/TransitionLink";
+import { ProjectZoomLink } from "../components/ProjectZoomLink";
 import { projects as rawProjects } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
@@ -208,13 +208,16 @@ export default function WorkPage() {
                         }}
                         onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
                       >
-                        <TransitionLink
+                        <ProjectZoomLink
                           to={`/work/${project.slug}`}
+                          projectSlug={project.slug}
+                          imageSrc={project.thumbnail}
+                          transitionId={`work-grid-${project.slug}`}
                           aria-label={`${t("cursor.viewProject")} ${project.title}`}
                           className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
                         >
                           <span className="sr-only">{project.title}</span>
-                        </TransitionLink>
+                        </ProjectZoomLink>
 
                         <div
                           className="relative overflow-hidden rounded-lg"

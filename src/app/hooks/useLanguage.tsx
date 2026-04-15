@@ -50,7 +50,10 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
   "hero.available": { en: "Available for projects, Amsterdam", nl: "Beschikbaar voor projecten, Amsterdam" },
+  "hero.brushHere": { en: "BRUSH HERE", nl: "BRUSH HIER" },
+  "hero.keepBrushing": { en: "KEEP BRUSHING", nl: "BLIJF BRUSHEN" },
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
+  "hero.chip.strategy": { en: "Strategy", nl: "Strategie" },
   "hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },
   "hero.chip.brand": { en: "Brand Identity", nl: "Brand identity" },
   "hero.chip.web": { en: "Web Design", nl: "Web Design" },
@@ -106,8 +109,57 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Relevant case studies will appear here soon.",
     nl: "Relevante cases verschijnen hier binnenkort.",
   },
+  "services.carouselTouchHint": {
+    en: "Swipe through the work.",
+    nl: "Swipe door het werk.",
+  },
+  "services.carouselDesktopHint": {
+    en: "Explore the projects through the center stage.",
+    nl: "Verken de projecten via de center stage.",
+  },
   "services.allServices": { en: "All services", nl: "Alle diensten" },
   "services.capabilities": { en: "Focus areas", nl: "Focusgebieden" },
+  "services.closeDetail": { en: "Close", nl: "Sluiten" },
+  "serviceShowcase.echo-fashion.label": {
+    en: "Creative Direction",
+    nl: "Creatieve Regie",
+  },
+  "serviceShowcase.echo-fashion.subtitle": {
+    en: "Campaign-led branding and web design for a modern fashion label.",
+    nl: "Campagnegedreven branding en webdesign voor een modern modelabel.",
+  },
+  "serviceShowcase.stelz-web-design.label": {
+    en: "Web Design",
+    nl: "Webdesign",
+  },
+  "serviceShowcase.stelz-web-design.subtitle": {
+    en: "A conversion-focused Shopify redesign with sharper product discovery.",
+    nl: "Een conversiegerichte Shopify redesign met scherpere product discovery.",
+  },
+  "serviceShowcase.verkeersschool-beckers-branding.label": {
+    en: "Brand Identity",
+    nl: "Merkidentiteit",
+  },
+  "serviceShowcase.verkeersschool-beckers-branding.subtitle": {
+    en: "A full identity system translated across web, print, and the road.",
+    nl: "Een complete identiteit doorvertaald naar web, print en de weg.",
+  },
+  "serviceShowcase.nova-brand-platform.label": {
+    en: "Brand Platform",
+    nl: "Brand Platform",
+  },
+  "serviceShowcase.nova-brand-platform.subtitle": {
+    en: "A cohesive brand ecosystem built to scale across every touchpoint.",
+    nl: "Een samenhangend merkecosysteem gebouwd om op elk touchpoint te schalen.",
+  },
+  "serviceShowcase.flux-motion-identity.label": {
+    en: "Motion Identity",
+    nl: "Motion Identity",
+  },
+  "serviceShowcase.flux-motion-identity.subtitle": {
+    en: "A cinematic visual identity system shaped for motion-led storytelling.",
+    nl: "Een filmisch identity-systeem gevormd voor motion-led storytelling.",
+  },
 
   /* ── Design Timeline ── */
   "timeline.label": { en: "DYSIGNS way", nl: "De DYSIGNS manier" },
@@ -236,6 +288,9 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "case.next": { en: "Next", nl: "Volgende" },
   "case.notFound": { en: "Project not found", nl: "Project niet gevonden" },
   "case.visit": { en: "VISIT", nl: "BEZOEK" },
+  "case.client": { en: "Client", nl: "Klant" },
+  "case.services": { en: "Services", nl: "Diensten" },
+  "case.year": { en: "Year", nl: "Jaar" },
 
   /* ── Footer ── */
   "footer.rights": { en: "All rights reserved.", nl: "Alle rechten voorbehouden." },

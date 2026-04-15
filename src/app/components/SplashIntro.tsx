@@ -22,7 +22,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
   }, [onDone]);
 
   useEffect(() => {
-    // skip if already shown this session
     try {
       if (sessionStorage.getItem(SESSION_KEY)) {
         finish();
@@ -42,7 +41,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
 
     const tl = gsap.timeline({ onComplete: finish });
 
-    // Phase 1: Logo blur-in with scale zoom (0 → 0.8s)
     tl.fromTo(
       logoRef.current,
       { scale: 0.6, opacity: 0, filter: "blur(30px)" },
@@ -50,7 +48,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       0,
     );
 
-    // Expanding ring burst behind logo
     tl.fromTo(
       ringRef.current,
       { scale: 0, opacity: 0.6 },
@@ -58,7 +55,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       0.2,
     );
 
-    // Scan line sweep
     tl.fromTo(
       scanRef.current,
       { y: "-100%", opacity: 0 },
@@ -66,7 +62,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       0.4,
     );
 
-    // Tagline wipe-reveal
     tl.fromTo(
       lineRef.current,
       { clipPath: "inset(0 100% 0 0)", opacity: 0 },
@@ -79,23 +74,29 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       0.7,
     );
 
-    // Hold — branded moment (brings total to ~3s)
     tl.to({}, { duration: 1 });
 
-    // Phase 2: Zoom-in dissolve — content scales up as it fades
-    tl.to(logoRef.current, {
-      scale: 1.3,
-      opacity: 0,
-      filter: "blur(8px)",
-      duration: 0.55,
-      ease: "power2.in",
-    }, "-=0.1");
-    tl.to(lineRef.current, {
-      opacity: 0,
-      y: -10,
-      duration: 0.35,
-      ease: "power2.in",
-    }, "<");
+    tl.to(
+      logoRef.current,
+      {
+        scale: 1.3,
+        opacity: 0,
+        filter: "blur(8px)",
+        duration: 0.55,
+        ease: "power2.in",
+      },
+      "-=0.1",
+    );
+    tl.to(
+      lineRef.current,
+      {
+        opacity: 0,
+        y: -10,
+        duration: 0.35,
+        ease: "power2.in",
+      },
+      "<",
+    );
     tl.to(el, { opacity: 0, duration: 0.4, ease: "power2.inOut" });
 
     return () => {
@@ -110,7 +111,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       style={{ zIndex: 20000, background: "var(--page-bg)" }}
       onClick={finish}
     >
-      {/* noise */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -119,7 +119,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      {/* scan line */}
       <div
         ref={scanRef}
         className="absolute left-0 right-0 pointer-events-none"
@@ -131,7 +130,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      {/* expanding ring */}
       <div
         ref={ringRef}
         className="absolute pointer-events-none rounded-full"
@@ -143,7 +141,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      {/* logo */}
       <div ref={logoRef} className="relative mb-5" style={{ opacity: 0 }}>
         <img
           src={logoImg}
@@ -155,7 +152,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
             objectFit: "contain",
           }}
           onError={(e) => {
-            // fallback to text if image fails
             (e.target as HTMLImageElement).style.display = "none";
             const parent = (e.target as HTMLImageElement).parentElement;
             if (parent) {
@@ -169,7 +165,6 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         />
       </div>
 
-      {/* tagline */}
       <div ref={lineRef} style={{ opacity: 0 }}>
         <span
           style={{

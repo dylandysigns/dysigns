@@ -55,6 +55,16 @@ export function PremiumCursorProvider({
     [],
   );
 
+  useEffect(() => {
+    const onReset = () => {
+      setVariant("default");
+      setLabel("");
+    };
+
+    window.addEventListener("dysigns:cursor-reset", onReset);
+    return () => window.removeEventListener("dysigns:cursor-reset", onReset);
+  }, []);
+
   return (
     <CursorContext.Provider value={api}>
       {children}

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mail, Instagram } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { TransitionLink } from "./TransitionLink";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const logoImg = "/dysigns_white.png";
 
@@ -111,20 +115,51 @@ export function Footer() {
   const c = siteContent.contact;
   const cursor = useCursor();
   const { t } = useLanguage();
+  const footerRef = useRef<HTMLElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   const instagram = siteContent.socials.find(
     (s) => s.name.toLowerCase() === "instagram",
   );
 
+  /* ─── SCROLL-REVEAL ENTRANCE ─── */
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !footerRef.current || !innerRef.current) return;
+
+    const children = innerRef.current.children;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        children,
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 92%",
+            once: true,
+          },
+        },
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <footer
+      ref={footerRef}
       className="relative py-14 px-6 md:px-12"
       style={{
         background: "var(--page-bg)",
         borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
-      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <div ref={innerRef} className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex flex-col items-center md:items-start gap-2">
           <TransitionLink
             to="/"

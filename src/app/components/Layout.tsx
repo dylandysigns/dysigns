@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronUp } from "lucide-react";
 import { PremiumCursorProvider } from "./PremiumCursor";
 import { SplashIntro } from "./SplashIntro";
 import { Header } from "./Header";
@@ -9,6 +10,67 @@ import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
 import { LanguageProvider } from "../hooks/useLanguage";
 import logoImg from "../../assets/dysigns_white.png";
+
+/* ─── BACK TO TOP BUTTON ─── */
+function BackToTop() {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShow(window.scrollY > window.innerHeight);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!btnRef.current) return;
+    gsap.to(btnRef.current, {
+      scale: show ? 1 : 0,
+      opacity: show ? 1 : 0,
+      duration: 0.3,
+      ease: show ? "back.out(1.7)" : "power2.in",
+      overwrite: true,
+    });
+  }, [show]);
+
+  return (
+    <button
+      ref={btnRef}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      className="fixed z-[9999] grid place-items-center rounded-full group"
+      style={{
+        bottom: 28,
+        right: 28,
+        width: 44,
+        height: 44,
+        background: "rgba(var(--page-fg-rgb), .06)",
+        border: "1px solid rgba(var(--page-fg-rgb), .1)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        color: "rgba(var(--page-fg-rgb), .5)",
+        cursor: "pointer",
+        transform: "scale(0)",
+        opacity: 0,
+        transition: "background .3s, border-color .3s, color .3s",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .12)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .25)";
+        (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .06)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .1)";
+        (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .5)";
+      }}
+    >
+      <ChevronUp size={18} strokeWidth={2} />
+    </button>
+  );
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,6 +312,7 @@ export default function Layout() {
 
       // Phase 2: swap route while fully covered
       tl.call(() => {
+        window.dispatchEvent(new Event("dysigns:cursor-reset"));
         killPageAnimations(tl);
         navigate(path);
         window.scrollTo(0, 0);
@@ -322,6 +385,9 @@ export default function Layout() {
           </main>
           <Footer />
         </div>
+
+        {/* ─── BACK TO TOP ─── */}
+        {splashDone && <BackToTop />}
 
         {/* ─── CROSSFADE TRANSITION OVERLAY ─── */}
         <div

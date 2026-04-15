@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Hero } from "../components/home/Hero";
-import { SentenceReveal } from "../components/home/SentenceReveal";
 import { ZoomToGrid } from "../components/home/ZoomToGrid";
-import { Partners } from "../components/home/Partners";
-import { DesignTimeline } from "../components/home/DesignTimeline";
 import { Services } from "../components/home/Services";
 import { KindWords } from "../components/home/KindWords";
 import { ContactBand } from "../components/home/ContactBand";
@@ -27,10 +24,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SentenceReveal />
       <ZoomToGrid />
-      <Partners />
-      <DesignTimeline />
       <Services />
       <KindWords />
       <ContactBand />
