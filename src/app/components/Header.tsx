@@ -417,8 +417,13 @@ function MobileMenu({
   return (
     <div
       ref={menuRef}
-      className="fixed inset-0 flex flex-col"
-      style={{ zIndex: 200, background: "var(--page-bg)", clipPath: "inset(0 0 0 100%)" }}
+      className="fixed inset-0 flex h-[100dvh] flex-col overflow-y-auto"
+      style={{
+        zIndex: 200,
+        background: "var(--page-bg)",
+        clipPath: "inset(0 0 0 100%)",
+        paddingBottom: "env(safe-area-inset-bottom)",
+      }}
     >
       <div ref={headerRowRef} className="px-6 py-5 flex items-center justify-between" style={{ opacity: 0 }}>
         <div className="flex items-center gap-2">
@@ -460,7 +465,7 @@ function MobileMenu({
       </div>
 
       {/* Available badge in mobile menu */}
-      <div ref={badgeRef} className="flex justify-center mt-2 mb-4" style={{ opacity: 0 }}>
+      <div ref={badgeRef} className="mt-2 mb-4 flex justify-center px-6" style={{ opacity: 0 }}>
         <div
           className="flex items-center gap-2 rounded-full"
           style={{
@@ -498,7 +503,10 @@ function MobileMenu({
         </div>
       </div>
 
-      <nav ref={navLinksRef} className="flex-1 flex flex-col items-center justify-center gap-8">
+      <nav
+        ref={navLinksRef}
+        className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pb-6 pt-2"
+      >
         {links.map((l) => (
           <a
             key={l.key}
@@ -515,7 +523,10 @@ function MobileMenu({
           </a>
         ))}
       </nav>
-      <div ref={footerRef} className="flex justify-center gap-4 pb-10">
+      <div
+        ref={footerRef}
+        className="mt-auto flex justify-center gap-4 px-6 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-2"
+      >
         <a
           href={`mailto:${siteContent.contact.email}`}
           aria-label="Email"
