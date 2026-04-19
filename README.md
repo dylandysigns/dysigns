@@ -1,7 +1,7 @@
 
   # DYSIGNS
 
-  This is a code bundle for DYSIGNS. The original project is available at https://www.figma.com/design/0IGDEUSMUQDMDeyQRdD26H/DYSIGNS.
+  This is a code bundle for DYSIGNS.
 
   ## Running the code
 
