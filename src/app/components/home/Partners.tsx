@@ -189,7 +189,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
     <section
       className={
         isHero
-          ? "relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-3 md:py-4"
+          ? "relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-1 md:py-4"
           : "relative overflow-hidden py-16 md:py-20"
       }
       style={
@@ -202,7 +202,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
             }
       }
     >
-      <div className={isHero ? "mb-4 px-6 text-center md:mb-5" : "mb-10 text-center"}>
+      <div className={isHero ? "mb-2 px-6 text-center md:mb-5" : "mb-10 text-center"}>
         <span
           style={{
             fontSize: isHero ? ".66rem" : ".8rem",
@@ -219,7 +219,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
       </div>
       <div className="relative">
         <div
-          className={`absolute left-0 top-0 bottom-0 pointer-events-none ${isHero ? "hidden md:block md:w-24" : "w-32"}`}
+          className={`absolute left-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-24" : "w-32"}`}
           style={{
             zIndex: 2,
             background: isHero
@@ -228,7 +228,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
           }}
         />
         <div
-          className={`absolute right-0 top-0 bottom-0 pointer-events-none ${isHero ? "hidden md:block md:w-24" : "w-32"}`}
+          className={`absolute right-0 top-0 bottom-0 pointer-events-none ${isHero ? "w-24" : "w-32"}`}
           style={{
             zIndex: 2,
             background: isHero

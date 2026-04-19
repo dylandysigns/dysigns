@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { usePageTransition } from "../../hooks/useTransition";
@@ -142,6 +142,19 @@ export function Hero() {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ─── SCROLL SPLIT (Framer Motion) ─── */
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  // Mobile needs ±250vw so the SVG halves (which animate in SVG-coordinate space)
+  // fully clear the screen. Desktop ±120vw is sufficient at larger sizes.
+  const isMobile =
+    typeof window !== "undefined" &&
+    !window.matchMedia("(min-width: 768px)").matches;
+  const leftX  = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ? "-250vw" : "-120vw"]);
+  const rightX = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ?  "250vw" :  "120vw"]);
+
   const closeEasterEgg = useCallback(() => {
     setIsEasterEggOpen(false);
   }, []);
@@ -174,9 +187,20 @@ export function Hero() {
     };
   }, [isEasterEggOpen, isHeroIntroReady, reduced]);
 
+  /* ─── WORDMARK SVG VISIBILITY ─── */
+  // Hide the SVG once the halves are fully offscreen so it doesn't interfere
+  // with whatever is revealed behind the split.
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      if (!wordmarkSvgRef.current) return;
+      wordmarkSvgRef.current.style.visibility = v >= 0.84 ? "hidden" : "visible";
+    });
+  }, [scrollYProgress]);
+
   /* ─── LIGHT BAND DRIFT ─── */
   useEffect(() => {
     if (reduced || isLowPower) return;
+    if (!lightRef.current) return;
     const ctx = gsap.context(() => {
       gsap.to(lightRef.current, {
         rotation: 360,
@@ -215,28 +239,25 @@ export function Hero() {
     }
 
     const ctx = gsap.context(() => {
-      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-      const splitDistance = isDesktop
-        ? window.innerWidth * 1.15
-        : window.innerWidth * 1.22;
-      const splitStart = isDesktop ? 0.12 : 0.15;
-      const splitDuration = isDesktop ? 0.96 : 1.34;
-      const splitHold = isDesktop ? 1.24 : 1.48;
-      const headingLift = isDesktop ? 18 : 8;
-      const headingScale = isDesktop ? 0.975 : 0.994;
-      const headingBlur = isDesktop ? 8 : 4;
-      const contentShift = isDesktop ? 28 : 10;
-      const trustedShift = isDesktop ? 4 : 0;
-      const scrubAmount = isDesktop ? 0.82 : 1.18;
-      const splitEase = "power2.inOut";
-      const headingEase = isDesktop ? "power2.out" : "sine.out";
-      const fadeEase = isDesktop ? "power1.out" : "sine.out";
+      const onMobile = !window.matchMedia("(min-width: 768px)").matches;
+      // Mobile: split starts immediately (splitStart=0) with lighter scrub.
+      // Desktop: 12% hold before split, tighter scrub.
+      const splitStart    = onMobile ? 0    : 0.12;
+      const splitDuration = onMobile ? 0.96 : 0.96;
+      const splitHold     = onMobile ? 1.24 : 1.24;
+      const headingLift   = onMobile ? 8    : 18;
+      const headingScale  = onMobile ? 0.994 : 0.975;
+      const headingBlur   = onMobile ? 4    : 8;
+      const contentShift  = onMobile ? 10   : 28;
+      const trustedShift  = onMobile ? 0    : 4;
+      const scrubAmount   = onMobile ? 1.18 : 0.82;
+      const headingEase   = onMobile ? "sine.out"  : "power2.out";
+      const fadeEase      = onMobile ? "sine.out"  : "power1.out";
       const splitChars = splitHeadingRef.current
         ? Array.from(
             splitHeadingRef.current.querySelectorAll<HTMLElement>("[data-split-char]"),
           )
         : [];
-      const hideWordmarkAt = splitStart + splitDuration + (isDesktop ? 0.04 : 0.1);
 
       if (wordmarkSvgRef.current) {
         gsap.set(wordmarkSvgRef.current, {
@@ -255,40 +276,18 @@ export function Hero() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "bottom top",
+          // "bottom bottom" = section-bottom aligns with viewport-bottom at
+          // scroll=150dvh — exactly when the sticky releases.  This keeps
+          // the GSAP timeline in sync with the Framer Motion split range.
+          end: "bottom bottom",
           scrub: scrubAmount,
           refreshPriority: 2,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (!wordmarkSvgRef.current) return;
-            const shouldHideWordmark = tl.time() >= hideWordmarkAt;
-            const nextVisibility = shouldHideWordmark ? "hidden" : "visible";
-            if (wordmarkSvgRef.current.style.visibility !== nextVisibility) {
-              wordmarkSvgRef.current.style.visibility = nextVisibility;
-            }
-          },
         },
       });
 
-      tl.to(
-        splitLeftRef.current,
-        {
-          x: -splitDistance,
-          duration: splitDuration,
-          ease: splitEase,
-        },
-        splitStart,
-      );
-
-      tl.to(
-        splitRightRef.current,
-        {
-          x: splitDistance,
-          duration: splitDuration,
-          ease: splitEase,
-        },
-        splitStart,
-      );
+      // Split-left and split-right x-motion is driven by Framer Motion
+      // (leftX / rightX MotionValues on motion.g) — no GSAP tween needed here.
 
       if (wordmarkVideoLayerRef.current) {
         tl.to(
@@ -340,7 +339,7 @@ export function Hero() {
           pillLayers,
           {
             autoAlpha: 0,
-            duration: isDesktop ? 0.38 : 0.44,
+            duration: onMobile ? 0.44 : 0.38,
             ease: fadeEase,
           },
           splitStart + 0.04,
@@ -352,7 +351,7 @@ export function Hero() {
         {
           y: contentShift,
           opacity: 0,
-          duration: isDesktop ? 0.42 : 0.48,
+          duration: onMobile ? 0.48 : 0.42,
           ease: fadeEase,
         },
         splitStart + 0.04,
@@ -364,7 +363,7 @@ export function Hero() {
           {
             y: trustedShift,
             opacity: 0,
-            duration: isDesktop ? 0.38 : 0.42,
+            duration: onMobile ? 0.42 : 0.38,
             ease: fadeEase,
           },
           splitStart + 0.08,
@@ -376,7 +375,7 @@ export function Hero() {
         {
           y: -16,
           opacity: 0,
-          duration: isDesktop ? 0.34 : 0.38,
+          duration: onMobile ? 0.38 : 0.34,
           ease: fadeEase,
         },
         splitStart + 0.02,
@@ -634,6 +633,7 @@ export function Hero() {
   /* ─── CURSOR PARALLAX ─── */
   useEffect(() => {
     if (reduced || isLowPower) return;
+    if (!bgRef.current) return;
     let raf = 0;
 
     const onMove = (e: MouseEvent) => {
@@ -694,6 +694,8 @@ export function Hero() {
         gsap.set(heroContentRef.current, { opacity: 1 });
       return;
     }
+
+    if (!maskTextRef.current) return;
 
     setIsHeroIntroReady(false);
 
@@ -787,12 +789,13 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[158vh] sm:min-h-[166vh] md:min-h-[184vh]"
+      className="relative h-[250dvh]"
       style={{ background: "var(--page-bg)" }}
+      data-hero-section
     >
       <div
         ref={maskAreaRef}
-        className="sticky top-0 h-[100svh] overflow-hidden"
+        className="sticky top-0 h-[100dvh] overflow-hidden"
         style={{ zIndex: 1 }}
         data-hero-zone
       >
@@ -821,6 +824,7 @@ export function Hero() {
         <div
           ref={lightRef}
           className="absolute pointer-events-none"
+          data-hero-light
           style={{
             zIndex: 1,
             width: "130vmax",
@@ -836,7 +840,7 @@ export function Hero() {
           }}
         />
 
-        <div className="relative z-20 flex h-full flex-col px-5 pb-5 pt-[86px] sm:px-6 sm:pt-[92px] md:pb-6 md:pt-[98px]">
+        <div className="relative z-20 flex h-full flex-col px-5 pb-5 pt-[86px] sm:px-6 sm:pt-[92px] md:pb-6 md:pt-[98px]" data-hero-inner>
           <div
             ref={dotRef}
             className="absolute left-1/2 top-[74px] flex -translate-x-1/2 justify-center md:top-[86px]"
@@ -853,7 +857,10 @@ export function Hero() {
                 WebkitBackdropFilter: "blur(10px)",
               }}
             >
-              <MapPin size={11} color="rgba(255,255,255,.35)" strokeWidth={1.9} />
+              {/* color="currentColor" lets CSS override the stroke via the parent's color property */}
+              <span style={{ color: "rgba(var(--page-fg-rgb), .35)", display: "contents" }}>
+                <MapPin size={11} color="currentColor" strokeWidth={1.9} />
+              </span>
               <span
                 style={{
                   fontSize: "11px",
@@ -864,10 +871,10 @@ export function Hero() {
                   fontFamily: "'Inter',sans-serif",
                 }}
               >
-                <span style={{ color: "rgba(255,255,255,.8)", fontWeight: 600 }}>
+                <span style={{ color: "rgba(var(--page-fg-rgb), .8)", fontWeight: 600 }}>
                   Amsterdam
                 </span>
-                <span style={{ color: "rgba(255,255,255,.55)" }}>
+                <span style={{ color: "rgba(var(--page-fg-rgb), .55)" }}>
                   {" "}
                   · the Netherlands
                 </span>
@@ -875,7 +882,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[360px] flex-1 items-center justify-center py-[6vh] sm:min-h-[400px] md:min-h-[470px] md:py-0">
+          <div className="relative flex min-h-[300px] flex-1 items-center justify-center py-[2vh] sm:min-h-[380px] sm:py-[3vh] md:min-h-[470px] md:py-0" data-hero-wordmark-area>
             <div
               ref={maskTextRef}
               className="relative flex h-full w-full items-center justify-center overflow-visible pointer-events-none"
@@ -927,7 +934,7 @@ export function Hero() {
 
                 <div
                   ref={wordmarkRef}
-                  className="pointer-events-auto absolute left-1/2 top-[50.5%] flex w-[min(118vw,720px)] max-w-none -translate-x-1/2 -translate-y-1/2 items-center justify-center select-none sm:top-[51%] sm:w-[min(124vw,980px)] md:top-[54%] md:w-[min(132vw,1820px)] xl:w-[min(124vw,1880px)]"
+                  className="pointer-events-auto absolute left-1/2 top-[50.5%] flex w-[min(134vw,874px)] max-w-none -translate-x-1/2 -translate-y-1/2 items-center justify-center select-none sm:top-[51%] sm:w-[min(134vw,980px)] md:top-[54%] md:w-[min(132vw,1820px)] xl:w-[min(124vw,1880px)]"
                   style={{ zIndex: 20 }}
                 >
                   <svg
@@ -1026,7 +1033,7 @@ export function Hero() {
                       </foreignObject>
                     </g>
 
-                    <g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)">
+                    <motion.g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ x: leftX }}>
                       <text
                         data-dysigns-hero-text
                         x="50%"
@@ -1055,28 +1062,12 @@ export function Hero() {
                         letterSpacing="-34"
                         fill="var(--page-fg)"
                         mask="url(#hero-wordmark-paint-mask)"
-                        className="hidden md:block"
                       >
                         DYSIGNS
                       </text>
+                    </motion.g>
 
-                      <text
-                        x="50%"
-                        y="57%"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
-                        fontWeight="900"
-                        letterSpacing="-34"
-                        fill="var(--page-fg)"
-                        className="md:hidden"
-                      >
-                        DYSIGNS
-                      </text>
-                    </g>
-
-                    <g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)">
+                    <motion.g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ x: rightX }}>
                       <text
                         x="50%"
                         y="57%"
@@ -1104,26 +1095,10 @@ export function Hero() {
                         letterSpacing="-34"
                         fill="var(--page-fg)"
                         mask="url(#hero-wordmark-paint-mask)"
-                        className="hidden md:block"
                       >
                         DYSIGNS
                       </text>
-
-                      <text
-                        x="50%"
-                        y="57%"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
-                        fontWeight="900"
-                        letterSpacing="-34"
-                        fill="var(--page-fg)"
-                        className="md:hidden"
-                      >
-                        DYSIGNS
-                      </text>
-                    </g>
+                    </motion.g>
                   </svg>
                 </div>
 
@@ -1180,7 +1155,7 @@ export function Hero() {
 
             <div
               ref={chipsRef}
-              className="pointer-events-none absolute inset-0 hidden md:block"
+              className="pointer-events-none absolute inset-0"
               style={{ zIndex: 38 }}
             >
               <TransitionLink
@@ -1370,7 +1345,7 @@ export function Hero() {
 
             <div
               ref={mobileChipsRef}
-              className="pointer-events-none absolute inset-0 md:hidden"
+              className="pointer-events-none absolute inset-0 hidden"
               style={{ zIndex: 34 }}
             >
               {mobileChips.map((chip) => (
@@ -1417,8 +1392,8 @@ export function Hero() {
             </div>
           </div>
 
-          <div ref={heroContentRef} className="relative z-30 -mt-10 pb-0 md:-mt-24">
-            <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-5 md:gap-6">
+          <div ref={heroContentRef} className="relative z-30 -mt-14 pb-0 md:-mt-24" data-hero-content>
+            <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 md:gap-6">
               <div className="mx-auto max-w-4xl text-center">
                 <h1
                   ref={headRef}
@@ -1436,7 +1411,7 @@ export function Hero() {
                 </h1>
                 <p
                   ref={subRef}
-                  className="mx-auto mt-3 max-w-xl"
+                  className="mx-auto mt-1 max-w-xl md:mt-3"
                   style={{
                     fontFamily: "'Instrument Serif',serif",
                     fontSize: "clamp(.95rem,1.25vw,1.15rem)",
@@ -1451,7 +1426,7 @@ export function Hero() {
                 </p>
                 <div
                   ref={ctaRef}
-                  className="mt-6 flex flex-wrap items-center justify-center gap-4"
+                  className="mt-3 flex flex-wrap items-center justify-center gap-3 md:mt-6 md:gap-4"
                   style={{ opacity: 0 }}
                 >
                   <a
@@ -1516,7 +1491,7 @@ export function Hero() {
 
           <div
             ref={trustedRef}
-            className="relative z-30 mt-3 md:mt-4"
+            className="relative z-30 mt-auto md:mt-4"
             style={{ opacity: 0 }}
           >
             <div className="mx-auto w-full max-w-[88rem]">
@@ -1604,7 +1579,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Keyframes */}
+      {/* Keyframes + mobile overrides */}
       <style>{`
         @keyframes availDotPulse {
           0%, 100% {
@@ -1624,6 +1599,20 @@ export function Hero() {
           50% {
             box-shadow: 0 0 12px 4px rgba(var(--page-fg-rgb), .12), 0 0 24px rgba(var(--page-fg-rgb), .06);
             border-color: rgba(var(--page-fg-rgb), .25);
+          }
+        }
+
+        /* ─── MOBILE HERO (below md = 768px) ─── */
+        @media (max-width: 767px) {
+          /* DYSIGNS: solid-filled white (removes paint-reveal mask which starts fully black) */
+          [data-hero-zone] text[mask] {
+            mask: none !important;
+          }
+          /* Ensure "Trusted by" clears the iOS home indicator on all iPhone heights.
+             mt-auto on the trusted row handles vertical docking; this just adds
+             safe-area clearance with a 1.5rem fallback. */
+          [data-hero-inner] {
+            padding-bottom: max(1.5rem, env(safe-area-inset-bottom)) !important;
           }
         }
       `}</style>
