@@ -120,8 +120,11 @@
   body {
     @apply bg-background text-foreground;
     cursor: none;
-    /* Prevent white flash on initial load */
-    overflow-x: hidden;
+    /* overflow-x: clip — NOT hidden. On iOS Safari, overflow-x: hidden on <body>
+       creates a new scroll container and makes window.scrollY always return 0,
+       breaking every ScrollTrigger and Framer Motion useScroll on every page.
+       clip provides the same visual clipping without creating a scroll context. */
+    overflow-x: clip;
     -webkit-overflow-scrolling: touch;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
