@@ -147,13 +147,16 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-  // Mobile needs ±250vw so the SVG halves (which animate in SVG-coordinate space)
-  // fully clear the screen. Desktop ±120vw is sufficient at larger sizes.
+  // Mobile needs ±300vw so SVG halves clear every iPhone screen size before the
+  // animation ends. Desktop ±120vw is sufficient at larger sizes.
   const isMobile =
     typeof window !== "undefined" &&
     !window.matchMedia("(min-width: 768px)").matches;
-  const leftX  = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ? "-250vw" : "-120vw"]);
-  const rightX = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ?  "250vw" :  "120vw"]);
+  const leftX  = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ? "-300vw" : "-120vw"]);
+  const rightX = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ?  "300vw" :  "120vw"]);
+  // Mobile only: fade the halves out starting at 60% scroll so they dissolve
+  // gracefully rather than clipping abruptly. On desktop keep opacity constant.
+  const splitOpacity = useTransform(scrollYProgress, [0.6, 1.0], isMobile ? [1, 0] : [1, 1]);
 
   const closeEasterEgg = useCallback(() => {
     setIsEasterEggOpen(false);
@@ -193,7 +196,9 @@ export function Hero() {
   useEffect(() => {
     return scrollYProgress.on("change", (v) => {
       if (!wordmarkSvgRef.current) return;
-      wordmarkSvgRef.current.style.visibility = v >= 0.84 ? "hidden" : "visible";
+      // On mobile the opacity MotionValue handles the fade — push visibility:hidden
+      // to 0.99 so it never fires abruptly before the text has finished fading.
+      wordmarkSvgRef.current.style.visibility = v >= (isMobile ? 0.99 : 0.84) ? "hidden" : "visible";
     });
   }, [scrollYProgress]);
 
@@ -843,7 +848,7 @@ export function Hero() {
         <div className="relative z-20 flex h-full flex-col px-5 pb-5 pt-[86px] sm:px-6 sm:pt-[92px] md:pb-6 md:pt-[98px]" data-hero-inner>
           <div
             ref={dotRef}
-            className="absolute left-1/2 top-[74px] flex -translate-x-1/2 justify-center md:top-[86px]"
+            className="absolute left-0 right-0 top-[74px] flex justify-center md:top-[86px]"
             style={{ opacity: 0 }}
             role="status"
             aria-label="Available for projects"
@@ -1033,7 +1038,7 @@ export function Hero() {
                       </foreignObject>
                     </g>
 
-                    <motion.g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ x: leftX }}>
+                    <motion.g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ x: leftX, opacity: splitOpacity }}>
                       <text
                         data-dysigns-hero-text
                         x="50%"
@@ -1067,7 +1072,7 @@ export function Hero() {
                       </text>
                     </motion.g>
 
-                    <motion.g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ x: rightX }}>
+                    <motion.g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ x: rightX, opacity: splitOpacity }}>
                       <text
                         x="50%"
                         y="57%"
@@ -1155,7 +1160,7 @@ export function Hero() {
 
             <div
               ref={chipsRef}
-              className="pointer-events-none absolute inset-0"
+              className="pointer-events-none absolute inset-0 hidden md:block"
               style={{ zIndex: 38 }}
             >
               <TransitionLink
@@ -1604,6 +1609,14 @@ export function Hero() {
 
         /* ─── MOBILE HERO (below md = 768px) ─── */
         @media (max-width: 767px) {
+          /* Allow DYSIGNS halves to travel past the sticky-zone boundary.
+             overflow:clip does NOT create a scroll container (safe for iOS).
+             overflow-clip-margin:400vw extends the paint region far enough
+             that ±300vw translateX fully clears every iPhone screen size. */
+          [data-hero-zone] {
+            overflow: clip !important;
+            overflow-clip-margin: 400vw !important;
+          }
           /* DYSIGNS: solid-filled white (removes paint-reveal mask which starts fully black) */
           [data-hero-zone] text[mask] {
             mask: none !important;
