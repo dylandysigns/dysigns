@@ -87,6 +87,8 @@ export function Hero() {
   const splitRightRef = useRef<SVGGElement>(null);
   const splitHeadingRef = useRef<HTMLDivElement>(null);
   const brushHintTextRef = useRef("hero.brushHere");
+  // Desktop: animated fill-reveal rect inside the paint mask (left→right after brush video)
+  const fillRevealRectRef = useRef<SVGRectElement>(null);
 
   const cursor = useCursor();
   const { navigateTo } = usePageTransition();
@@ -162,6 +164,43 @@ export function Hero() {
     setIsEasterEggOpen(false);
   }, []);
 
+  /* ─── DESKTOP: FILL DYSIGNS AFTER BRUSH VIDEO ─── */
+  // Called when the fullscreen easter-egg video ends. Animates the paint mask's
+  // fill-reveal rect from 0 → full width (left-to-right brush-fill effect) and
+  // fades out the outlined stroke text simultaneously.
+  const triggerFillAnimation = useCallback(() => {
+    // Desktop only — mobile never reaches this (brush requires pointer:fine)
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) return;
+
+    const revealRect = fillRevealRectRef.current;
+    if (!revealRect) return;
+
+    // Reveal the fill rect left→right (paints white into the mask)
+    gsap.fromTo(
+      revealRect,
+      { attr: { width: 0 } },
+      {
+        attr: { width: WORDMARK_VIEWBOX.width },
+        duration: 0.8,
+        ease: "power2.inOut",
+        delay: 0.15, // let overlay fade-out start first
+        onComplete: () => {
+          // Disable further brush interaction once text is filled
+          wordmarkInteractiveRef.current = false;
+          if (wordmarkRef.current) wordmarkRef.current.style.pointerEvents = "none";
+        },
+      }
+    );
+
+    // Simultaneously fade out the outlined/stroke version of the text
+    gsap.to("[data-dysigns-hero-text]", {
+      opacity: 0,
+      duration: 0.35,
+      ease: "power2.out",
+      delay: 0.15,
+    });
+  }, []);
+
   const dismissInteractionHint = useCallback(() => {
     if (interactionHintDismissedRef.current) return;
     interactionHintDismissedRef.current = true;
@@ -178,6 +217,10 @@ export function Hero() {
 
   useEffect(() => {
     if (reduced || isHeroIntroReady || isEasterEggOpen) return;
+    // Never lock scroll on mobile — native iOS momentum scroll must stay free.
+    // The intro animation plays fine without it; only desktop needs the lock
+    // so content below the hero doesn't flash in while the intro runs.
+    if (isMobile) return;
 
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
@@ -255,7 +298,8 @@ export function Hero() {
       const headingBlur   = onMobile ? 4    : 8;
       const contentShift  = onMobile ? 10   : 28;
       const trustedShift  = onMobile ? 0    : 4;
-      const scrubAmount   = onMobile ? 1.18 : 0.82;
+      // Lower scrub on mobile so fade-outs track scroll closely with no lag.
+      const scrubAmount   = onMobile ? 0.45 : 0.82;
       const headingEase   = onMobile ? "sine.out"  : "power2.out";
       const fadeEase      = onMobile ? "sine.out"  : "power1.out";
       const splitChars = splitHeadingRef.current
@@ -457,6 +501,9 @@ export function Hero() {
 
   useEffect(() => {
     if (!isEasterEggOpen) return;
+    // Easter egg is a desktop-only interaction (brush cursor requires pointer:fine).
+    // Guard anyway so it never locks mobile scroll.
+    if (isMobile) return;
 
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
@@ -966,6 +1013,15 @@ export function Hero() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
+                        {/* Animated fill rect — width 0→full after brush video ends */}
+                        <rect
+                          ref={fillRevealRectRef}
+                          x="0"
+                          y="0"
+                          width="0"
+                          height={WORDMARK_VIEWBOX.height}
+                          fill="white"
+                        />
                       </mask>
                       <clipPath id="hero-wordmark-text-clip">
                         <text
@@ -1074,6 +1130,7 @@ export function Hero() {
 
                     <motion.g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ x: rightX, opacity: splitOpacity }}>
                       <text
+                        data-dysigns-hero-text
                         x="50%"
                         y="57%"
                         textAnchor="middle"
@@ -1579,7 +1636,10 @@ export function Hero() {
             playsInline
             preload="metadata"
             className="block h-full w-full object-cover"
-            onEnded={closeEasterEgg}
+            onEnded={() => {
+              closeEasterEgg();
+              triggerFillAnimation();
+            }}
           />
         </div>
       </div>
