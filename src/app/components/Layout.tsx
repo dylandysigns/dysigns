@@ -74,6 +74,10 @@ function BackToTop() {
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Prevent iOS address-bar resize events (≈44px height change on scroll up/down)
+// from triggering ScrollTrigger.refresh() and snapping scrub animations.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 /**
  * Layout — Root shell for all pages
  *

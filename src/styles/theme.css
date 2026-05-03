@@ -114,7 +114,12 @@
     font-size: var(--font-size);
     -webkit-text-size-adjust: 100%;
     background-color: var(--page-bg);
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth is intentionally NOT set globally.
+       On iOS Safari it causes window.scrollTo(0,0) calls (route changes,
+       ScrollTrigger refresh) to animate instead of jumping instantly,
+       fighting native touch scroll during upward scrolling.
+       Elements that need smooth scroll use the behavior option explicitly
+       (e.g. the Back-to-Top button uses { behavior: "smooth" }). */
   }
 
   body {
