@@ -1589,7 +1589,7 @@ export function Hero() {
           backdropFilter: "blur(18px)",
           WebkitBackdropFilter: "blur(18px)",
         }}
-        onClick={closeEasterEgg}
+        onClick={() => { closeEasterEgg(); triggerFillAnimation(); }}
         aria-hidden={!isEasterEggOpen}
       >
         <button
@@ -1608,6 +1608,7 @@ export function Hero() {
           onClick={(event) => {
             event.stopPropagation();
             closeEasterEgg();
+            triggerFillAnimation();
           }}
         >
           Close
