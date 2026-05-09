@@ -334,7 +334,7 @@ export function SelectedProjects() {
                     <div className="aspect-[4/5] overflow-hidden">
                       <img
                         src={p.thumbnail}
-                        alt={p.title}
+                        alt={`${p.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
                         loading={i < 4 ? "eager" : "lazy"}
                         className={`w-full h-full object-cover project-thumb transition-all duration-700 ${
                           isMobile ? "" : "group-hover:scale-105"

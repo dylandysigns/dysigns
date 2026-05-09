@@ -263,7 +263,7 @@ export default function WorkPage() {
                           <div className="aspect-[4/4.7] overflow-hidden">
                             <img
                               src={project.thumbnail}
-                              alt={project.title}
+                              alt={`${project.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
                               loading={flatIndex < 4 ? "eager" : "lazy"}
                               className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                               style={{

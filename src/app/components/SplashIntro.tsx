@@ -144,7 +144,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       <div ref={logoRef} className="relative mb-5" style={{ opacity: 0 }}>
         <img
           src={logoImg}
-          alt="DYSIGNS"
+          alt="DYSIGNS – digital design agency by Dylan Kho Amsterdam Netherlands"
           className="theme-logo"
           style={{
             height: "clamp(32px, 6vw, 56px)",

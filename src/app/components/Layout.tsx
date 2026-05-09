@@ -9,8 +9,6 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
 import { LanguageProvider } from "../hooks/useLanguage";
-import logoImg from "../../assets/dysigns_white.png";
-
 /* ─── BACK TO TOP BUTTON ─── */
 function BackToTop() {
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -179,8 +177,9 @@ export default function Layout() {
     }
   }, []);
 
-  /* ─── FAVICON — same logo as header ─── */
+  /* ─── FAVICON — /favicon.png (custom round mark) ─── */
   useEffect(() => {
+    // Standard favicon
     let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
     if (!link) {
       link = document.createElement("link");
@@ -188,7 +187,16 @@ export default function Layout() {
       document.head.appendChild(link);
     }
     link.type = "image/png";
-    link.href = logoImg;
+    link.href = "/favicon.png";
+
+    // Apple touch icon (home screen on iOS)
+    let touchLink = document.querySelector<HTMLLinkElement>("link[rel='apple-touch-icon']");
+    if (!touchLink) {
+      touchLink = document.createElement("link");
+      touchLink.rel = "apple-touch-icon";
+      document.head.appendChild(touchLink);
+    }
+    touchLink.href = "/favicon.png";
   }, []);
 
   /* ─── IMAGE-LOAD REFRESH AFTER SPLASH ─── */

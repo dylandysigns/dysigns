@@ -46,6 +46,10 @@ export function ZoomToGrid() {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const isMobile =
+    typeof window !== "undefined" &&
+    !window.matchMedia("(min-width: 768px)").matches;
+
   // Preload images into browser cache (fire-and-forget, does NOT gate animation)
   useEffect(() => {
     const urls = [zoomToGridData.heroImage, ...zoomToGridData.gridImages];
@@ -72,8 +76,8 @@ export function ZoomToGrid() {
           start: "top top",
           end: () => `+=${window.innerHeight * 3}`,
           pin: true,
-          scrub: 0.5,
-          anticipatePin: 1,
+          scrub: isMobile ? 0.3 : 0.5,
+          anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
           refreshPriority: -1,
         },
@@ -166,7 +170,7 @@ export function ZoomToGrid() {
           <div className="aspect-[3/4] sm:aspect-[4/3] overflow-hidden">
             <img
               src={src}
-              alt={project.title}
+              alt={`${project.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
               className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-all duration-700"
               style={{
                 filter: isHero
@@ -293,7 +297,7 @@ export function ZoomToGrid() {
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src={zoomToGridData.heroImage}
-                alt={tileProjects[4]?.title}
+                alt={`${tileProjects[4]?.title ?? ""} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
                 className="w-full h-auto object-cover"
                 style={{
                   aspectRatio: "16/9",
@@ -337,7 +341,7 @@ export function ZoomToGrid() {
                 <div className="overflow-hidden rounded-xl group">
                   <img
                     src={src}
-                    alt={proj?.title}
+                    alt={`${proj?.title ?? ""} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
                     className="w-full h-auto object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                     style={{
                       aspectRatio: "4/3",

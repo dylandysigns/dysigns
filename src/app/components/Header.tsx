@@ -429,7 +429,7 @@ function MobileMenu({
         <div className="flex items-center gap-2">
           <img
             src={logoImg}
-            alt="DYSIGNS"
+            alt="DYSIGNS – digital design agency by Dylan Kho Amsterdam"
             className="theme-logo"
             style={{ height: 18, width: "auto" }}
             onError={(e) => {

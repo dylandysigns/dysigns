@@ -377,7 +377,7 @@ export function KindWords() {
                   <SwiperSlide key={item.id}>
                     <img
                       src={item.avatar}
-                      alt={item.name}
+                      alt={`${item.name} – DYSIGNS client review`}
                       className="w-full h-full object-cover select-none"
                       style={{
                         pointerEvents: "none",
@@ -495,7 +495,7 @@ export function KindWords() {
                   >
                     <img
                       src={current.avatar}
-                      alt=""
+                      alt={`${current.name} – DYSIGNS client review`}
                       className="w-full h-full object-cover"
                       style={{
                         filter: "grayscale(.7) brightness(.75) contrast(1.15)",

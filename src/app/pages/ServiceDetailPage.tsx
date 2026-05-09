@@ -338,7 +338,7 @@ function renderCardLayout(
       <div className="absolute inset-x-0 bottom-0 top-[38px] overflow-hidden">
         <img
           src={slide.imageSrc}
-          alt={slide.name}
+          alt={`${slide.name} – DYSIGNS agency design portfolio, clean UI and user experience by Dylan Kho`}
           className="h-full w-full object-cover"
           loading="eager"
         />

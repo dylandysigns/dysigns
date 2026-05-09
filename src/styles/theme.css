@@ -223,6 +223,16 @@
   }
 }
 
+/* Mobile: kill any inherited scroll-snap + prevent overscroll bounce */
+@media (max-width: 767px) {
+  html, body {
+    /* Disable any CSS scroll-snap on the root scroll container */
+    scroll-snap-type: none !important;
+    /* Prevent iOS rubber-band bounce at page edges, which can feel like snapping */
+    overscroll-behavior-y: none;
+  }
+}
+
 /* Selection color */
 ::selection {
   background: rgba(var(--page-fg-rgb), 0.12);

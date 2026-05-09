@@ -624,7 +624,7 @@ export default function CaseDetailPage() {
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={img}
-                  alt={`${project.title} gallery ${i + 1}`}
+                  alt={`${project.title} – case study design by Dylan Kho – DYSIGNS`}
                   className="w-full h-full object-cover"
                   style={{
                     filter: "grayscale(.7) brightness(.6) contrast(1.05)",

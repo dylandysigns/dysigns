@@ -87,7 +87,7 @@ export function VisionSection() {
           <div ref={imgRef} className="absolute inset-[-15%]">
             <img
               src={siteContent.vision.image}
-              alt="DYSIGNS vision"
+              alt="Dylan Kho – DYSIGNS digital design agency Amsterdam Netherlands"
               className="w-full h-full object-cover"
               style={{
                 filter: "grayscale(.9) brightness(.6) contrast(1.1)",
