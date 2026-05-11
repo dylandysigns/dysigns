@@ -168,27 +168,6 @@ export default function Layout() {
     };
   }, []);
 
-  /* ─── MOBILE: DISABLE ALL GSAP PINS ─── */
-  // On mobile, GSAP pin spacers lock scroll in both directions which feels
-  // unnatural. Disable all pinned triggers once after mount so the page
-  // scrolls freely. Scrub animations still play — only the scroll lock is removed.
-  // Desktop is completely untouched.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!window.matchMedia("(max-width: 767px)").matches) return;
-
-    const disablePins = () => {
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.vars.pin) st.disable(false);
-      });
-    };
-
-    // Run once immediately and again after a short delay to catch
-    // any triggers that mount slightly after the layout effect fires.
-    disablePins();
-    const t = setTimeout(disablePins, 500);
-    return () => clearTimeout(t);
-  }, []);
 
   /* ─── FONT-LOAD REFRESH ─── */
   useEffect(() => {

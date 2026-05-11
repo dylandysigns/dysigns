@@ -33,6 +33,9 @@ export function SentenceReveal() {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const isMobile =
+    typeof window !== "undefined" && window.innerWidth < 1024;
+
   /* Build character spans on mount / language change */
   useEffect(() => {
     const container = textRef.current;
@@ -100,9 +103,9 @@ export function SentenceReveal() {
           trigger: section,
           start: "top top",
           end: "+=80%",
-          pin: stage,
+          pin: isMobile ? false : stage,
           scrub: 0.3,
-          anticipatePin: 1,
+          anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
           refreshPriority: 1,
         },
