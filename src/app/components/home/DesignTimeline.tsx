@@ -35,9 +35,6 @@ export function DesignTimeline() {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const isMobile =
-    typeof window !== "undefined" && window.innerWidth < 1024;
-
   const getDistance = useCallback(() => {
     const track = trackRef.current;
     const wrap = wrapRef.current;
@@ -58,9 +55,9 @@ export function DesignTimeline() {
           trigger: wrap,
           start: "top top",
           end: () => `+=${getDistance()}`,
-          pin: isMobile ? false : true,
+          pin: true,
           scrub: 0.5,
-          anticipatePin: isMobile ? 0 : 1,
+          anticipatePin: 1,
           invalidateOnRefresh: true,
           refreshPriority: -2,
           onUpdate: (self) => {
