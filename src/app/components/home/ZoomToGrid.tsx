@@ -74,16 +74,12 @@ export function ZoomToGrid() {
         scrollTrigger: {
           trigger: wrap,
           start: "top top",
-          end: () => `+=${window.innerHeight * 3}`,
+          end: () => `+=${window.innerHeight * (isMobile ? 0.4 : 3)}`,
           pin: true,
           scrub: isMobile ? 0.3 : 0.5,
           anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
           refreshPriority: -1,
-          onEnterBack: (self) => {
-            if (window.innerWidth >= 1024) return;
-            window.scrollTo(0, self.start - 1);
-          },
         },
       });
 
