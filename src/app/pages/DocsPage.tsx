@@ -56,7 +56,7 @@ const guide: GuideSection[] = [
       {
         field: "Subtitle",
         current:
-          '"We craft brands, products, and digital experiences that move people forward."',
+          '"We grow brands through social media, web design, and digital experiences that pull people in."',
         howToChange:
           'Step 1 \u2014 content.ts line 21:\nChange the sub value:\n\nsub: "Your new subtitle here.",\n\nStep 2 \u2014 useLanguage.tsx, key "hero.sub":\n\n"hero.sub": {\n  en: "Your new subtitle here.",\n  nl: "Jouw nieuwe ondertitel hier.",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
@@ -91,9 +91,9 @@ const guide: GuideSection[] = [
       },
       {
         field: "Skill chips (4 floating labels)",
-        current: "UX / UI \u2022 Brand Identity \u2022 Web Design \u2022 Product",
+        current: "UX / UI \u2022 Brand Identity \u2022 Web Design \u2022 Social Media",
         howToChange:
-          'useLanguage.tsx keys:\n\n"hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },\n"hero.chip.brand": { en: "Brand Identity", nl: "Merkidentiteit" },\n"hero.chip.web": { en: "Web Design", nl: "Webdesign" },\n"hero.chip.product": { en: "Product", nl: "Product" },\n\nChange the text values. Keep them short (1\u20133 words).',
+          'useLanguage.tsx keys:\n\n"hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },\n"hero.chip.brand": { en: "Brand Identity", nl: "Merkidentiteit" },\n"hero.chip.web": { en: "Web Design", nl: "Webdesign" },\n"hero.chip.product": { en: "Social Media", nl: "Social media" },\n\nChange the text values. Keep them short (1\u20133 words).',
         file: "/src/app/hooks/useLanguage.tsx",
       },
     ],
@@ -161,9 +161,9 @@ const guide: GuideSection[] = [
       {
         field: "Change a project\u2019s category / tags",
         current:
-          'Categories: "Branding", "Product", "Web"\nTags: "Brand Identity", "Web Design", "Mobile App", etc.',
+          'Categories: "Branding", "Digital", "Social Media Management", "Web"\nTags: "Brand Identity", "Web Design", "Mobile App", etc.',
         howToChange:
-          'Edit the category and tags[] fields:\n\ncategory: "Product",\ntags: ["SaaS", "Product Design", "Design System"],\n\nCategories auto-generate filter tabs on /work. Adding a new unique category string creates a new filter tab automatically.',
+          'Edit the category and tags[] fields:\n\ncategory: "Branding",\ntags: ["Social Media Management", "Brand Identity", "Web Design"],\n\nCategories auto-generate filter tabs on /work. Adding a new unique category string creates a new filter tab automatically.',
         file: "/src/app/data/projects.ts",
       },
       {
@@ -338,12 +338,12 @@ const guide: GuideSection[] = [
     id: "services",
     title: "Services (4 Service Cards)",
     description:
-      "Four cards on the homepage: Brand Identity, Web Design, Product Design, Creative Direction. Each has an icon, title, and description.",
+      "Four cards on the homepage: Brand Identity, Web Design, Social Media Management, Creative Direction. Each has an icon, title, and description.",
     fields: [
       {
         field: "Service titles and descriptions",
         current:
-          "Brand Identity \u2022 Web Design \u2022 Product Design \u2022 Creative Direction",
+          "Brand Identity \u2022 Web Design \u2022 Social Media Management \u2022 Creative Direction",
         howToChange:
           'Step 1 \u2014 content.ts, siteContent.services[]:\n\n{\n  title: "Motion Design",\n  description: "Your new description...",\n},\n\nStep 2 \u2014 useLanguage.tsx, keys services.0.title through services.3.desc:\n\n"services.0.title": { en: "Motion Design", nl: "Motion Design" },\n"services.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
@@ -568,7 +568,7 @@ const guide: GuideSection[] = [
       },
       {
         field: "Filter tabs",
-        current: "All \u2022 Branding \u2022 Product \u2022 Web",
+        current: "All \u2022 Branding \u2022 Digital \u2022 Social Media Management \u2022 Web",
         howToChange:
           'Filter tabs are auto-generated from unique category values in projects.ts.\n\nIf you add a project with category: "Motion", a "Motion" tab appears automatically.\nIf you remove all projects in a category, that tab disappears.',
         file: "/src/app/data/projects.ts  (project.category)",

@@ -44,8 +44,8 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "DYSIGNS. Waar ideeën aantrekkingskracht krijgen.",
   },
   "hero.sub": {
-    en: "We turn ideas into reality and make digital work for you.",
-    nl: "We maken van ideeën realiteit en gebruiksvriendelijke digitale ervaringen die voor je werken.",
+    en: "We grow brands through social media, web design, and digital experiences that pull people in.",
+    nl: "We laten merken groeien met social media, webdesign en digitale ervaringen die mensen aantrekken.",
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
@@ -57,7 +57,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },
   "hero.chip.brand": { en: "Brand Identity", nl: "Brand identity" },
   "hero.chip.web": { en: "Web Design", nl: "Web Design" },
-  "hero.chip.product": { en: "Product", nl: "Product" },
+  "hero.chip.product": { en: "Social Media", nl: "Social media" },
 
   /* ── Partners ── */
   "partners.label": { en: "Trusted by", nl: "Vertrouwd door" },
@@ -66,8 +66,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "vision.label": { en: "Our vision", nl: "Onze visie" },
   "vision.title": { en: "ARE WE YOUR NEXT DYSIGNS?", nl: "Wij zijn DYSIGNS." },
   "vision.text": {
-    en: "We believe great design sits at the intersection of strategy and craft. Building brands and products that actually work: no fluff, no filler, just digital work that moves the needle.",
-    nl: "Wij geloven dat goed ontwerp op het snijvlak van strategie en vakmanschap ligt. Het bouwen van merken en producten die écht werken: geen poespas, alleen digitale werk dat het verschil maakt.",
+    en: "We believe great design sits at the intersection of strategy and craft. Building brands and social media systems that actually work: no fluff, no filler, just digital work that moves the needle.",
+    nl: "Wij geloven dat goed ontwerp op het snijvlak van strategie en vakmanschap ligt. Het bouwen van merken en social media systemen die écht werken: geen poespas, alleen digitaal werk dat het verschil maakt.",
   },
 
   /* ── Sentence Reveal ── */
@@ -86,20 +86,20 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "We started as a UX and UI driven company and that foundation shapes also our web design approach. Websites that combine strong visuals with clear structure, where every page is built to perform.",
     nl: "We zijn gestart als een UX en UI gedreven bedrijf en die basis vormt ook onze webdesign aanpak. Websites waar sterke visuals en een duidelijke structuur samenkomen en elke pagina is ontworpen om te presteren.",
   },
-  "services.2.title": { en: "Product Design", nl: "Productontwerp" },
+  "services.2.title": { en: "Social Media Management", nl: "Social media beheer" },
   "services.2.desc": {
-    en: "Digital products users love. From concept to design system, we bring clarity to complexity.",
-    nl: "Digitale producten waar gebruikers van houden. Van concept tot design system, we brengen helderheid in complexiteit.",
+    en: "We plan, create, and manage social content that keeps brands visible, consistent, and growing.",
+    nl: "We plannen, creëren en beheren social content die merken zichtbaar, consistent en groeiend houdt.",
   },
   "services.3.title": { en: "Creative thinking", nl: "Creative thinking" },
   "services.3.desc": {
-    en: "We steer the creative vision across campaigns, product launches, and brand initiatives.",
-    nl: "Wij sturen de creatieve visie aan bij campagnes, productlanceringen en merkinitiatieven.",
+    en: "We steer the creative vision across campaigns, content rollouts, and brand initiatives.",
+    nl: "Wij sturen de creatieve visie aan bij campagnes, contentuitrol en merkinitiatieven.",
   },
   "services.explore": { en: "Explore service", nl: "Bekijk dienst" },
   "services.pageIntro": {
-    en: "A closer look at the brand, web, product, and creative systems we build.",
-    nl: "Een nadere blik op de merk-, web-, product- en creatieve systemen die we bouwen.",
+    en: "A closer look at the brand, web, social media, and creative systems we build.",
+    nl: "Een nadere blik op de merk-, web-, social media- en creatieve systemen die we bouwen.",
   },
   "services.related": { en: "Related work", nl: "Relevant werk" },
   "services.back": { en: "Back to services", nl: "Terug naar diensten" },
@@ -133,16 +133,16 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "Webdesign",
   },
   "serviceShowcase.stelz-web-design.subtitle": {
-    en: "A conversion-focused Shopify redesign with sharper product discovery.",
-    nl: "Een conversiegerichte Shopify redesign met scherpere product discovery.",
+    en: "A conversion-focused Shopify redesign with clearer collection discovery.",
+    nl: "Een conversiegerichte Shopify redesign met helderdere collectienavigatie.",
   },
   "serviceShowcase.verkeersschool-beckers-branding.label": {
     en: "Brand Identity",
     nl: "Merkidentiteit",
   },
   "serviceShowcase.verkeersschool-beckers-branding.subtitle": {
-    en: "A full identity system translated across web, print, and the road.",
-    nl: "Een complete identiteit doorvertaald naar web, print en de weg.",
+    en: "A full identity system rolled out across social media, web, print, and the road.",
+    nl: "Een complete identiteit doorvertaald naar social media, web, print en de weg.",
   },
   "serviceShowcase.nova-brand-platform.label": {
     en: "Brand Platform",
@@ -190,8 +190,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "timeline.5.title": { en: "Launch", nl: "Lanceren" },
   "timeline.5.desc": {
-    en: "The world meets your product. We monitor, optimize and iterate.",
-    nl: "De wereld ontmoet je product. We monitoren, optimaliseren en itereren.",
+    en: "Your brand goes live. We monitor, optimize and iterate.",
+    nl: "Je merk gaat live. We monitoren, optimaliseren en itereren.",
   },
 
   /* ── Kind Words / Testimonials ── */
@@ -254,8 +254,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   },
   "about.value3.title": { en: "Lasting impact", nl: "Blijvende impact" },
   "about.value3.text": {
-    en: "We measure success not in deliverables but in outcomes\u2014brands that grow, products that scale, experiences people remember.",
-    nl: "We meten succes niet in opleverpunten maar in resultaten\u2014merken die groeien, producten die schalen, ervaringen die mensen onthouden.",
+    en: "We measure success not in deliverables but in outcomes\u2014brands that grow, communities that engage, experiences people remember.",
+    nl: "We meten succes niet in opleverpunten maar in resultaten\u2014merken die groeien, communities die betrokken raken en ervaringen die mensen onthouden.",
   },
   "about.ctaTitle": {
     en: "Interested in working together?",
@@ -334,7 +334,11 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* ── Category translations ── */
   "category.Branding": { en: "Branding", nl: "Branding" },
-  "category.Product": { en: "Product", nl: "Product" },
+  "category.Digital": { en: "Digital", nl: "Digitaal" },
+  "category.Social Media Management": {
+    en: "Social Media Management",
+    nl: "Social media beheer",
+  },
   "category.Web": { en: "Web", nl: "Web" },
 
   /* ── Tag translations ── */
@@ -352,9 +356,9 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "tag.Print": { en: "Print", nl: "Print" },
   "tag.Web": { en: "Web", nl: "Web" },
   "tag.Social Media": { en: "Social Media", nl: "Social media" },
+  "tag.Social Media Management": { en: "Social Media Management", nl: "Social media beheer" },
   "tag.Creative Direction": { en: "Creative Direction", nl: "Creatieve Regie" },
   "tag.Photography": { en: "Photography", nl: "Fotografie" },
-  "tag.Product Design": { en: "Product Design", nl: "Productontwerp" },
   "tag.Motion Design": { en: "Motion Design", nl: "Motion Design" },
 
   /* ── Project: Nova Brand Platform ── */
@@ -371,8 +375,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "42% stijging in merkherkenning binnen 6 maanden",
   },
   "project.nova-brand-platform.outcome.1": {
-    en: "Design system adopted across 3 product teams",
-    nl: "Design system overgenomen door 3 productteams",
+    en: "Design system adopted across 3 internal teams",
+    nl: "Design system overgenomen door 3 interne teams",
   },
   "project.nova-brand-platform.outcome.2": {
     en: "Reduced design-to-dev handoff time by 60%",
@@ -467,7 +471,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "STËLZ Web Design",
   },
   "project.stelz-web-design.overview": {
- en: "STËLZ asked us to redesign their website to improve conversion and simplify daily updates across teams. We created a modular Shopify setup that supports faster product discovery, a smoother add to cart flow and a clear content structure that allows quick edits without development dependency. Our collaboration evolved into a long term partnership where we continuously refine the experience through design iterations, UX optimisation and campaign driven updates. This ongoing workflow ensures the platform stays aligned with brand growth, supports new product launches and maintains strong performance across devices while enabling the STËLZ team to manage content efficiently.",
+ en: "STËLZ asked us to redesign their website to improve conversion and simplify daily updates across teams. We created a modular Shopify setup that supports faster collection discovery, a smoother add to cart flow and a clear content structure that allows quick edits without development dependency. Our collaboration evolved into a long term partnership where we continuously refine the experience through design iterations, UX optimisation and campaign driven updates. This ongoing workflow ensures the platform stays aligned with brand growth, supports new campaign launches and maintains strong performance across devices while enabling the STËLZ team to manage content efficiently.",
   nl: "STËLZ vroeg ons om hun website te herontwerpen voor meer conversie en eenvoudiger beheer. We bouwden een modulaire Shopify ervaring met snellere productkeuze, een soepelere add to cart flow en een heldere content structuur voor snelle aanpassingen.",
 },
 
@@ -546,8 +550,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Orbit SaaS Platform",
   },
   "project.orbit-saas-platform.overview": {
-    en: "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire product experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
-    nl: "Orbit moest evolueren van een ontwikkelaarstool naar een platform dat teams echt graag gebruiken. We herontwierpen de complete productervaring\u2014dashboard, instellingen, workflows\u2014en bouwden een design system dat meeschaalt met hun engineering-snelheid.",
+    en: "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire platform experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
+    nl: "Orbit moest evolueren van een ontwikkelaarstool naar een platform dat teams echt graag gebruiken. We herontwierpen de complete platformervaring\u2014dashboard, instellingen, workflows\u2014en bouwden een design system dat meeschaalt met hun engineering-snelheid.",
   },
   "project.orbit-saas-platform.outcome.0": {
     en: "User activation rate improved 67%",

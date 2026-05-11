@@ -18,7 +18,7 @@ export const activeHeadline: HeadlineKey = "A"; // ← change to swap
 export const siteContent = {
   hero: {
     headline: heroOptions[activeHeadline],
-    sub: "We craft brands, products, and digital experiences that move people forward.",
+    sub: "We grow brands through social media, web design, and digital experiences that pull people in.",
     cta1: "See work",
     cta2: "Start a project",
     portrait:
@@ -50,7 +50,7 @@ export const siteContent = {
     {
       id: "2",
       title: "Meridian App Redesign",
-      category: "Product",
+      category: "Digital",
       tags: ["Mobile App", "UX Design"],
       year: "2025",
       thumbnail:
@@ -70,7 +70,7 @@ export const siteContent = {
     {
       id: "4",
       title: "Pulse Analytics",
-      category: "Product",
+      category: "Digital",
       tags: ["Dashboard", "SaaS", "Data Viz"],
       year: "2024",
       thumbnail:
@@ -90,8 +90,8 @@ export const siteContent = {
     {
       id: "6",
       title: "Verkeersschool Beckers Branding",
-      category: "Branding",
-      tags: ["Branding", "Print", "Web", "Social Media"],
+      category: "Social Media Management",
+      tags: ["Branding", "Print", "Web", "Social Media Management"],
       year: "2026",
       thumbnail: "/images/beckers-cover-laptop-v2.png",
       variant: "F" as const,
@@ -100,7 +100,7 @@ export const siteContent = {
 
   vision: {
     title: "Create better DYSIGNS",
-    text: "We believe great design sits at the intersection of strategy and craft. 8+ years of building brands and products that actually work \u2014 no fluff, no filler, just work that moves the needle.",
+    text: "We believe great design sits at the intersection of strategy and craft. 8+ years of building brands and social media systems that actually work \u2014 no fluff, no filler, just work that moves the needle.",
     image:
       "https://images.unsplash.com/photo-1485025798926-cde0f0d24cca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGRhcmslMjBtb29keSUyMG1pbmltYWx8ZW58MXx8fHwxNzcxNTAzMzc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
@@ -140,7 +140,7 @@ export const siteContent = {
       id: "launch",
       title: "Launch",
       description:
-        "The world meets your product. We monitor, optimize, and iterate.",
+        "Your brand goes live in the world. We monitor, optimize, and iterate.",
     },
   ],
 
@@ -156,14 +156,14 @@ export const siteContent = {
         "Websites that combine stunning visuals with strategic thinking. Every page built to perform.",
     },
     {
-      title: "Product Design",
+      title: "Social Media Management",
       description:
-        "Digital products users love. From concept to design system, we bring clarity to complexity.",
+        "We plan, create, and manage social content that keeps brands visible, consistent, and growing.",
     },
     {
       title: "Creative Direction",
       description:
-        "We steer the creative vision across campaigns, product launches, and brand initiatives.",
+        "We steer the creative vision across campaigns, content rollouts, and brand initiatives.",
     },
   ],
 

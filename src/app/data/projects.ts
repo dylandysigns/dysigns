@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "We partnered with Nova Finance to reimagine their entire brand ecosystem\u2014from visual identity through to a comprehensive design system spanning web, mobile, and print. The result is a cohesive platform that communicates trust, innovation, and accessibility across every touchpoint.",
     outcomes: [
       "42% increase in brand recall within 6 months",
-      "Design system adopted across 3 product teams",
+      "Design system adopted across 3 internal teams",
       "Reduced design-to-dev handoff time by 60%",
       "Featured in Awwwards SOTD collection",
     ],
@@ -49,7 +49,7 @@ export const projects: Project[] = [
   {
     slug: "meridian-app-redesign",
     title: "Meridian App Redesign",
-    category: "Product",
+    category: "Digital",
     tags: ["Mobile App", "UX Design"],
     year: "2025",
     thumbnail:
@@ -93,7 +93,7 @@ export const projects: Project[] = [
   {
     slug: "pulse-analytics",
     title: "Pulse Analytics",
-    category: "Product",
+    category: "Digital",
     tags: ["Dashboard", "SaaS", "Data Viz"],
     year: "2024",
     thumbnail:
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.png",
     overview:
-      "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster product discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
+      "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster collection discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
     outcomes: [
       "Lead generation up 65%",
       "Average time on site doubled",
@@ -137,8 +137,8 @@ export const projects: Project[] = [
   {
     slug: "verkeersschool-beckers-branding",
     title: "Verkeersschool Beckers Branding",
-    category: "Branding",
-    tags: ["Branding", "Print", "Web", "Social Media"],
+    category: "Social Media Management",
+    tags: ["Branding", "Print", "Web", "Social Media Management"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
     thumbnail: "/images/beckers-cover-laptop-v2.png",
@@ -182,13 +182,13 @@ export const projects: Project[] = [
   {
     slug: "orbit-saas-platform",
     title: "Orbit SaaS Platform",
-    category: "Product",
-    tags: ["SaaS", "Product Design", "Design System"],
+    category: "Digital",
+    tags: ["SaaS", "Dashboard", "Design System"],
     year: "2023",
     thumbnail:
       "https://images.unsplash.com/photo-1764437180200-f0fd57fa15d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwbW90aW9uJTIwZ3JhcGhpY3MlMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE1MDg1MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     overview:
-      "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire product experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
+      "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire platform experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
     outcomes: [
       "User activation rate improved 67%",
       "Support tickets reduced by 40%",

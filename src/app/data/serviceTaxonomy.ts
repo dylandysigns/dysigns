@@ -29,8 +29,8 @@ export const serviceDefinitions: ServiceDefinition[] = [
   {
     slug: "product-design",
     contentIndex: 2,
-    rawCategories: ["Product"],
-    rawTags: ["Product Design", "Mobile App", "Dashboard", "SaaS", "Data Viz", "Design System"],
+    rawCategories: ["Social Media Management"],
+    rawTags: ["Social Media Management", "Social Media"],
   },
   {
     slug: "creative-thinking",
