@@ -168,45 +168,26 @@ export default function Layout() {
     };
   }, []);
 
-  /* ─── MOBILE: DIRECTION-AWARE PIN CONTROL ─── */
-  // On mobile, GSAP pins lock scroll in both directions which feels unnatural.
-  // Disable all pinned triggers when scrolling DOWN so the page scrolls normally.
-  // Re-enable them when scrolling UP so the sticky/scrub effect is preserved.
+  /* ─── MOBILE: DISABLE ALL GSAP PINS ─── */
+  // On mobile, GSAP pin spacers lock scroll in both directions which feels
+  // unnatural. Disable all pinned triggers once after mount so the page
+  // scrolls freely. Scrub animations still play — only the scroll lock is removed.
+  // Desktop is completely untouched.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!window.matchMedia("(max-width: 767px)").matches) return;
 
-    let lastY = window.scrollY;
-    let isDown = true;
-    let raf = 0;
-
-    const setPins = (down: boolean) => {
+    const disablePins = () => {
       ScrollTrigger.getAll().forEach((st) => {
-        if (!st.vars.pin) return;
-        if (down) {
-          st.disable(false);
-        } else {
-          st.enable(false);
-          ScrollTrigger.refresh();
-        }
+        if (st.vars.pin) st.disable(false);
       });
     };
 
-    const onScroll = () => {
-      const y = window.scrollY;
-      const nowDown = y > lastY;
-      lastY = y;
-      if (nowDown === isDown) return;
-      isDown = nowDown;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => setPins(isDown));
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-    };
+    // Run once immediately and again after a short delay to catch
+    // any triggers that mount slightly after the layout effect fires.
+    disablePins();
+    const t = setTimeout(disablePins, 500);
+    return () => clearTimeout(t);
   }, []);
 
   /* ─── FONT-LOAD REFRESH ─── */
