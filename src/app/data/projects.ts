@@ -138,7 +138,7 @@ export const projects: Project[] = [
     slug: "verkeersschool-beckers-branding",
     title: "Verkeersschool Beckers Branding",
     category: "Social Media Management",
-    tags: ["Branding", "Print", "Web", "Social Media Management"],
+    tags: ["Brand Identity", "Branding", "Print", "Web"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
     thumbnail: "/images/beckers-cover-laptop-v2.png",

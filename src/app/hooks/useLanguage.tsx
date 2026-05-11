@@ -44,8 +44,8 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "DYSIGNS. Waar ideeën aantrekkingskracht krijgen.",
   },
   "hero.sub": {
-    en: "We grow brands through social media, web design, and digital experiences that pull people in.",
-    nl: "We laten merken groeien met social media, webdesign en digitale ervaringen die mensen aantrekken.",
+    en: "We grow companies through social media, web design, and digital experiences that pull people in.",
+    nl: "We laten bedrijven groeien met social media, webdesign en digitale ervaringen die mensen aantrekken.",
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },

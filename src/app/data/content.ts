@@ -18,7 +18,7 @@ export const activeHeadline: HeadlineKey = "A"; // ← change to swap
 export const siteContent = {
   hero: {
     headline: heroOptions[activeHeadline],
-    sub: "We grow brands through social media, web design, and digital experiences that pull people in.",
+    sub: "We grow companies through social media, web design, and digital experiences that pull people in.",
     cta1: "See work",
     cta2: "Start a project",
     portrait:
@@ -91,7 +91,7 @@ export const siteContent = {
       id: "6",
       title: "Verkeersschool Beckers Branding",
       category: "Social Media Management",
-      tags: ["Branding", "Print", "Web", "Social Media Management"],
+      tags: ["Brand Identity", "Branding", "Print", "Web"],
       year: "2026",
       thumbnail: "/images/beckers-cover-laptop-v2.png",
       variant: "F" as const,
