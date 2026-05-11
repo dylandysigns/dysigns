@@ -80,6 +80,10 @@ export function ZoomToGrid() {
           anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
           refreshPriority: -1,
+          onEnterBack: (self) => {
+            if (window.innerWidth >= 1024) return;
+            window.scrollTo(0, self.start - 1);
+          },
         },
       });
 

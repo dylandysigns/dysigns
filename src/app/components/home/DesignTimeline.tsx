@@ -60,6 +60,10 @@ export function DesignTimeline() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           refreshPriority: -2,
+          onEnterBack: (self) => {
+            if (window.innerWidth >= 1024) return;
+            window.scrollTo(0, self.start - 1);
+          },
           onUpdate: (self) => {
             const p = self.progress;
 
