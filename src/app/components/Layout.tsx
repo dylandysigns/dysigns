@@ -168,6 +168,47 @@ export default function Layout() {
     };
   }, []);
 
+  /* ─── MOBILE: DIRECTION-AWARE PIN CONTROL ─── */
+  // On mobile, GSAP pins lock scroll in both directions which feels unnatural.
+  // Disable all pinned triggers when scrolling DOWN so the page scrolls normally.
+  // Re-enable them when scrolling UP so the sticky/scrub effect is preserved.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 767px)").matches) return;
+
+    let lastY = window.scrollY;
+    let isDown = true;
+    let raf = 0;
+
+    const setPins = (down: boolean) => {
+      ScrollTrigger.getAll().forEach((st) => {
+        if (!st.vars.pin) return;
+        if (down) {
+          st.disable(false);
+        } else {
+          st.enable(false);
+          ScrollTrigger.refresh();
+        }
+      });
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const nowDown = y > lastY;
+      lastY = y;
+      if (nowDown === isDown) return;
+      isDown = nowDown;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setPins(isDown));
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   /* ─── FONT-LOAD REFRESH ─── */
   useEffect(() => {
     if (document.fonts) {
