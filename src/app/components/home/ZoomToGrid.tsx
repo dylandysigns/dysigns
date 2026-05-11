@@ -74,8 +74,8 @@ export function ZoomToGrid() {
         scrollTrigger: {
           trigger: wrap,
           start: "top top",
-          end: () => `+=${window.innerHeight * (isMobile ? 0.4 : 3)}`,
-          pin: true,
+          end: isMobile ? "bottom top" : () => `+=${window.innerHeight * 3}`,
+          pin: isMobile ? false : true,
           scrub: isMobile ? 0.3 : 0.5,
           anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
