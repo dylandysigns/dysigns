@@ -50,7 +50,7 @@ type ShowcaseSlide = {
 };
 
 const SHOWCASE_PROJECT_SLUGS = [
-  "echo-fashion",
+  "powermobile",
   "stelz-web-design",
   "verkeersschool-beckers-branding",
   "nova-brand-platform",
@@ -61,10 +61,10 @@ const SHOWCASE_PROJECT_META: Record<
   (typeof SHOWCASE_PROJECT_SLUGS)[number],
   { bgColor: string; labelKey: string; subtitleKey: string }
 > = {
-  "echo-fashion": {
-    bgColor: "#b85c2a",
-    labelKey: "serviceShowcase.echo-fashion.label",
-    subtitleKey: "serviceShowcase.echo-fashion.subtitle",
+  "powermobile": {
+    bgColor: "#2d3282",
+    labelKey: "serviceShowcase.powermobile.label",
+    subtitleKey: "serviceShowcase.powermobile.subtitle",
   },
   "stelz-web-design": {
     bgColor: "#d4c9b0",

@@ -120,13 +120,13 @@ const dict: Record<string, Record<Lang, string>> = {
   "services.allServices": { en: "All services", nl: "Alle diensten" },
   "services.capabilities": { en: "Focus areas", nl: "Focusgebieden" },
   "services.closeDetail": { en: "Close", nl: "Sluiten" },
-  "serviceShowcase.echo-fashion.label": {
-    en: "Creative Direction",
-    nl: "Creatieve Regie",
+  "serviceShowcase.powermobile.label": {
+    en: "Product Design",
+    nl: "Productontwerp",
   },
-  "serviceShowcase.echo-fashion.subtitle": {
-    en: "Campaign-led branding and web design for a modern fashion label.",
-    nl: "Campagnegedreven branding en webdesign voor een modern modelabel.",
+  "serviceShowcase.powermobile.subtitle": {
+    en: "A mobile case management system built from scratch for government field teams.",
+    nl: "Een mobiel zaaksysteem from scratch gebouwd voor overheidsprofessionals in het veld.",
   },
   "serviceShowcase.stelz-web-design.label": {
     en: "Web Design",
@@ -514,30 +514,38 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Een consistente identiteit klaar voor duurzame groei",
   },
 
-  /* ── Project: Echo Fashion ── */
-  "project.echo-fashion.title": {
-    en: "Echo Fashion",
-    nl: "Echo Fashion",
+  /* ── Project: PowerMobile ── */
+  "project.powermobile.title": {
+    en: "PowerMobile",
+    nl: "PowerMobile",
   },
-  "project.echo-fashion.overview": {
-    en: "Echo is a conscious fashion label that wanted a visual identity and digital home to match their values\u2014clean, honest, and striking. We art-directed a campaign shoot, designed the brand system, and built a Shopify experience that converts while telling a story.",
-    nl: "Echo is een bewust modelabel dat een visuele identiteit en digitaal thuis wilde dat past bij hun waarden\u2014schoon, eerlijk en opvallend. We regisseerden een campagneshoot, ontwierpen het merksysteem en bouwden een Shopify-ervaring die converteert terwijl het een verhaal vertelt.",
+  "project.powermobile.overview": {
+    en: "Government field workers in the VTH sector were stuck with a legacy app that made daily case management slow and frustrating. I led the design and development of PowerMobile from the ground up—a modern, zaakgericht mobile solution that brings permit and case management directly to the field.
+
+Built entirely from scratch, PowerMobile delivers a clean interface for managing zaken, accessing interactive maps, and staying on top of workflows—all from any device. Every screen was shaped around real user needs gathered directly from government professionals.
+
+After launch, user satisfaction more than doubled—rising from 15% to 40%.",
+    nl: "Medewerkers in de buitendienst van de VTH-sector werkten met een verouderde app die dagelijks zaakbeheer traag en omslachtig maakte. Ik heb PowerMobile van de grond af aan ontworpen en ontwikkeld—een modern, zaakgericht systeem dat vergunningen en zaakbeheer direct naar het veld brengt.
+
+De app is volledig from scratch gebouwd en biedt een overzichtelijke interface voor het beheren van zaken, het raadplegen van interactieve kaarten en het bijhouden van workflows—op elk apparaat. Elk scherm is ontworpen op basis van de werkelijke behoeften van overheidsprofessionals.
+
+Na de lancering steeg de gebruikerstevredenheid van 15% naar 40%.",
   },
-  "project.echo-fashion.outcome.0": {
-    en: "Campaign imagery featured in Vogue Italia online",
-    nl: "Campagnebeelden verschenen in Vogue Italia online",
+  "project.powermobile.outcome.0": {
+    en: "User satisfaction increased from 15% to 40% post-launch",
+    nl: "Gebruikerstevredenheid steeg van 15% naar 40% na lancering",
   },
-  "project.echo-fashion.outcome.1": {
-    en: "E-commerce revenue up 52% year-over-year",
-    nl: "E-commerce-omzet 52% gestegen jaar-op-jaar",
+  "project.powermobile.outcome.1": {
+    en: "Full app built from scratch — design through development",
+    nl: "Volledige app from scratch gebouwd — van ontwerp tot ontwikkeling",
   },
-  "project.echo-fashion.outcome.2": {
-    en: "Email sign-ups increased 200% through new landing pages",
-    nl: "E-mailaanmeldingen 200% gestegen via nieuwe landingspagina\u2019s",
+  "project.powermobile.outcome.2": {
+    en: "Interactive map integration for real-time field case management",
+    nl: "Interactieve kaartintegratie voor zaakbeheer in de buitendienst",
   },
-  "project.echo-fashion.outcome.3": {
-    en: "Brand consistency score improved across all channels",
-    nl: "Merkconsistentiescore verbeterd over alle kanalen",
+  "project.powermobile.outcome.3": {
+    en: "Adopted across multiple government institutions in the VTH sector",
+    nl: "In gebruik bij meerdere overheidsinstellingen in de VTH-sector",
   },
 
   /* ── Project: Orbit SaaS Platform ── */
