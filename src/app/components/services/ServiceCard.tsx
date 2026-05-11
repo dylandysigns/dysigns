@@ -30,11 +30,12 @@ export function ServiceCard({
   const cursor = useCursor();
   const Icon = serviceIcons[slug];
   const cardRef = useRef<HTMLAnchorElement>(null);
+  const rectCache = useRef<DOMRect | null>(null);
 
   const handleTilt = useCallback((e: React.MouseEvent) => {
     const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
+    const rect = rectCache.current;
+    if (!el || !rect) return;
     const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 5;
     const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -5;
     gsap.to(el, { rotateY, rotateX, y: -4, duration: 0.4, ease: "power2.out" });
@@ -59,12 +60,14 @@ export function ServiceCard({
       }}
       onMouseMove={handleTilt}
       onMouseEnter={(e) => {
+        rectCache.current = (e.currentTarget as HTMLElement).getBoundingClientRect();
         cursor.set("link");
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .16)";
         el.style.background = "rgba(var(--page-fg-rgb), .03)";
       }}
       onMouseLeave={(e) => {
+        rectCache.current = null;
         cursor.reset();
         resetTilt();
         const el = e.currentTarget as HTMLElement;
