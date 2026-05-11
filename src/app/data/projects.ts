@@ -162,11 +162,11 @@ export const projects: Project[] = [
     slug: "powermobile",
     title: "PowerMobile",
     category: "Product",
-    tags: ["Product Design", "UX/UI Design", "App Development", "User Research"],
+    tags: ["UX Design", "Development", "Mobile App", "Dashboard", "SaaS"],
     year: "2026",
     thumbnail: "/images/powermobile-hero.png",
     overview:
-      "Government field workers in the VTH sector were stuck with a legacy app that made daily case management slow and frustrating. I led the design and development of PowerMobile from the ground up\u2014a modern, zaakgericht mobile solution that brings permit and case management directly to the field.\n\nBuilt entirely from scratch, PowerMobile delivers a clean interface for managing zaken, accessing interactive maps, and staying on top of workflows\u2014all from any device. Every screen was shaped around real user needs gathered directly from government professionals.\n\nAfter launch, user satisfaction more than doubled\u2014rising from 15% to 40%.",
+      "The Challenge\n\nFor enforcement officers and other field workers in the VTH sector (Vergunning, Toezicht en Handhaving), the real work happens on the street. Yet these government professionals were using an outdated app that made case management in the field unnecessarily slow and cumbersome. There was an urgent need for a fast, reliable system that supported their work rather than slowing it down.\n\nThe Solution\n\nTo tackle this, I designed and developed PowerMobile entirely from scratch. As lead for both design and technical development, I built a modern, case-oriented system that makes permit and case management directly accessible in the field. The app features an intuitive interface for managing cases, consulting interactive maps, and tracking workflows\u2014fully responsive across all devices.\n\nThe Result\n\nEvery part of PowerMobile was shaped around the day-to-day realities of government professionals. The impact was immediate: user satisfaction rose from 15% with the old system to over 40% with the new app.",
     outcomes: [
       "User satisfaction increased from 15% to 40% post-launch",
       "Full app built from scratch \u2014 design through development",
@@ -174,8 +174,8 @@ export const projects: Project[] = [
       "Adopted across multiple government institutions in the VTH sector",
     ],
     gallery: [
-      "/images/powermobile-hero.png",
       "/images/powermobile-overview.png",
+      "/images/powermobile-devices.png",
       "/images/powermobile-maps.png",
     ],
   },
