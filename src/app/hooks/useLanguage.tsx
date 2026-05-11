@@ -520,16 +520,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "PowerMobile",
   },
   "project.powermobile.overview": {
-    en: "Government field workers in the VTH sector were stuck with a legacy app that made daily case management slow and frustrating. I led the design and development of PowerMobile from the ground up—a modern, zaakgericht mobile solution that brings permit and case management directly to the field.
-
-Built entirely from scratch, PowerMobile delivers a clean interface for managing zaken, accessing interactive maps, and staying on top of workflows—all from any device. Every screen was shaped around real user needs gathered directly from government professionals.
-
-After launch, user satisfaction more than doubled—rising from 15% to 40%.",
-    nl: "Medewerkers in de buitendienst van de VTH-sector werkten met een verouderde app die dagelijks zaakbeheer traag en omslachtig maakte. Ik heb PowerMobile van de grond af aan ontworpen en ontwikkeld—een modern, zaakgericht systeem dat vergunningen en zaakbeheer direct naar het veld brengt.
-
-De app is volledig from scratch gebouwd en biedt een overzichtelijke interface voor het beheren van zaken, het raadplegen van interactieve kaarten en het bijhouden van workflows—op elk apparaat. Elk scherm is ontworpen op basis van de werkelijke behoeften van overheidsprofessionals.
-
-Na de lancering steeg de gebruikerstevredenheid van 15% naar 40%.",
+    en: "Government field workers in the VTH sector were stuck with a legacy app that made daily case management slow and frustrating. I led the design and development of PowerMobile from the ground up—a modern, zaakgericht mobile solution that brings permit and case management directly to the field.\n\nBuilt entirely from scratch, PowerMobile delivers a clean interface for managing zaken, accessing interactive maps, and staying on top of workflows—all from any device. Every screen was shaped around real user needs gathered directly from government professionals.\n\nAfter launch, user satisfaction more than doubled—rising from 15% to 40%.",
+    nl: "Medewerkers in de buitendienst van de VTH-sector werkten met een verouderde app die dagelijks zaakbeheer traag en omslachtig maakte. Ik heb PowerMobile van de grond af aan ontworpen en ontwikkeld—een modern, zaakgericht systeem dat vergunningen en zaakbeheer direct naar het veld brengt.\n\nDe app is volledig from scratch gebouwd en biedt een overzichtelijke interface voor het beheren van zaken, het raadplegen van interactieve kaarten en het bijhouden van workflows—op elk apparaat. Elk scherm is ontworpen op basis van de werkelijke behoeften van overheidsprofessionals.\n\nNa de lancering steeg de gebruikerstevredenheid van 15% naar 40%.",
   },
   "project.powermobile.outcome.0": {
     en: "User satisfaction increased from 15% to 40% post-launch",
