@@ -31,6 +31,8 @@ export function ServiceCard({
   const Icon = serviceIcons[slug];
   const cardRef = useRef<HTMLAnchorElement>(null);
   const rectCache = useRef<DOMRect | null>(null);
+  const isTouch =
+    typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
 
   const handleTilt = useCallback((e: React.MouseEvent) => {
     const el = cardRef.current;
@@ -56,17 +58,17 @@ export function ServiceCard({
         border: "1px solid rgba(var(--page-fg-rgb), .06)",
         background: "rgba(var(--page-fg-rgb), .02)",
         transition: "border-color .4s, background-color .4s",
-        perspective: "900px",
+        perspective: isTouch ? undefined : "900px",
       }}
-      onMouseMove={handleTilt}
-      onMouseEnter={(e) => {
+      onMouseMove={isTouch ? undefined : handleTilt}
+      onMouseEnter={isTouch ? undefined : (e) => {
         rectCache.current = (e.currentTarget as HTMLElement).getBoundingClientRect();
         cursor.set("link");
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .16)";
         el.style.background = "rgba(var(--page-fg-rgb), .03)";
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={isTouch ? undefined : (e) => {
         rectCache.current = null;
         cursor.reset();
         resetTilt();
