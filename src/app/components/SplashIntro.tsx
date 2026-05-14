@@ -175,7 +175,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
             letterSpacing: ".01em",
           }}
         >
-          Something worth remembering.
+          We make it. You profit.
         </span>
       </div>
 

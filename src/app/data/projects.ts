@@ -138,7 +138,7 @@ export const projects: Project[] = [
     slug: "verkeersschool-beckers-branding",
     title: "Verkeersschool Beckers Branding",
     category: "Social Media Management",
-    tags: ["Brand Identity", "Branding", "Print", "Web"],
+    tags: ["Branding", "Print", "Web"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
     thumbnail: "/images/beckers-cover-laptop-v2.png",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
   {
     slug: "powermobile",
     title: "PowerMobile",
-    category: "Product",
+    category: "Digital",
     tags: ["UX Design", "Development", "Mobile App", "Dashboard", "SaaS"],
     year: "2026",
     thumbnail: "/images/powermobile-hero.png",
