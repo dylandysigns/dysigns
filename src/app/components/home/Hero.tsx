@@ -139,6 +139,9 @@ export function Hero() {
     filledBuckets: 0,
     videoUnlocked: false,
   });
+  // Tracks the Promise returned by video.play() so we can safely call
+  // pause() after it resolves — Safari throws if pause() races play().
+  const playPromiseRef = useRef<Promise<void> | null>(null);
 
   const reduced =
     typeof window !== "undefined" &&
@@ -450,6 +453,7 @@ export function Hero() {
       gsap.killTweensOf([overlay, frame, video]);
       gsap.set(overlay, {
         display: "flex",
+        visibility: "visible",
         pointerEvents: "auto",
       });
 
@@ -466,7 +470,8 @@ export function Hero() {
         0,
       );
       video.currentTime = 0;
-      video.play().catch(() => {});
+      playPromiseRef.current = video.play();
+      playPromiseRef.current.catch(() => {});
       return;
     }
 
@@ -475,9 +480,10 @@ export function Hero() {
       onComplete: () => {
         gsap.set(overlay, {
           display: "none",
+          visibility: "hidden",
           pointerEvents: "none",
         });
-        video.currentTime = 0;
+        try { video.currentTime = 0; } catch (_) {}
       },
     });
     tl.to(frame, {
@@ -496,8 +502,30 @@ export function Hero() {
       },
       0,
     );
-    video.pause();
+    // Safari: pause() must wait for the play() Promise to resolve first.
+    const safePause = () => { try { video.pause(); } catch (_) {} };
+    if (playPromiseRef.current) {
+      playPromiseRef.current.then(safePause).catch(safePause);
+      playPromiseRef.current = null;
+    } else {
+      safePause();
+    }
   }, [isEasterEggOpen]);
+
+  /* ─── SAFARI: NATIVE VIDEO ENDED LISTENER ─── */
+  // React's synthetic onEnded is unreliable for <video> in Safari.
+  // Attach a native addEventListener so the overlay always hides when
+  // the video finishes, regardless of browser event handling quirks.
+  useEffect(() => {
+    const video = fullscreenVideoRef.current;
+    if (!video) return;
+    const onVideoEnded = () => {
+      closeEasterEgg();
+      triggerFillAnimation();
+    };
+    video.addEventListener("ended", onVideoEnded);
+    return () => video.removeEventListener("ended", onVideoEnded);
+  }, [closeEasterEgg, triggerFillAnimation]);
 
   useEffect(() => {
     if (!isEasterEggOpen) return;
@@ -848,7 +876,15 @@ export function Hero() {
       <div
         ref={maskAreaRef}
         className="sticky top-0 h-[100dvh] overflow-hidden"
-        style={{ zIndex: 1 }}
+        style={{
+          zIndex: 1,
+          // Force a GPU compositing layer in Safari so the light band's
+          // mix-blend-mode:screen + filter:blur stay on the GPU path and
+          // don't cause full-page software repaints.
+          transform: "translateZ(0)",
+          WebkitTransform: "translateZ(0)",
+          isolation: "isolate",
+        }}
         data-hero-zone
       >
         {/* noise */}
