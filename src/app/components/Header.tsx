@@ -698,7 +698,7 @@ export function Header() {
       >
         <img
           src={logoImg}
-          alt="DYSIGNS"
+          alt="DYSIGNS – UX/UI and web design agency by Dylan Kho, Almere Netherlands"
           className="theme-logo"
           style={{
             height: 18,

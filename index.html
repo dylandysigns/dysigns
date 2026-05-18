@@ -21,33 +21,40 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <!-- Primary SEO -->
-      <title>DYSIGNS — Brand Identity, Web Design & Social Media | Amsterdam</title>
-      <meta name="description" content="DYSIGNS is a Amsterdam-based design studio by Dylan Kho. We grow companies through brand identity, web design, and social media management that pulls people in." />
-      <meta name="keywords" content="design studio Amsterdam, brand identity, web design, social media management, UX design, Dylan Kho, DYSIGNS" />
+      <!-- ─── PRIMARY SEO ─── -->
+      <title>DYSIGNS — AI-Powered UX/UI & Web Design Agency Almere, Netherlands | Dylan Kho</title>
+      <meta name="description" content="DYSIGNS is an AI-powered UX/UI design and web design agency in Almere, Netherlands, founded by Dylan Kho. We grow companies online through UX/UI design, web design, social media marketing, and digital branding." />
+      <meta name="keywords" content="dysigns, Dylan Kho, Dylan Kho designer, UX UI design agency Netherlands, AI web design agency Almere, micro influencer marketing Netherlands, web design agency Almere, social media marketing Netherlands, boost companies online, digital branding Netherlands" />
       <meta name="author" content="Dylan Kho — DYSIGNS" />
       <link rel="canonical" href="https://dylandysigns.com/" />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-      <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+      <!-- ─── OPEN GRAPH — Instagram, LinkedIn, WhatsApp, Facebook ─── -->
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://dylandysigns.com/" />
-      <meta property="og:title" content="DYSIGNS — Brand Identity, Web Design & Social Media | Amsterdam" />
-      <meta property="og:description" content="Amsterdam design studio specialising in brand identity, web design, and social media management. We grow companies through digital experiences that pull people in." />
+      <meta property="og:title" content="DYSIGNS — AI UX/UI & Web Design Agency | Almere, Netherlands" />
+      <meta property="og:description" content="AI-powered UX/UI design, web design, and social media marketing agency in Almere, Netherlands. Founded by Dylan Kho. We grow companies online." />
       <meta property="og:image" content="https://dylandysigns.com/images/og-cover.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="DYSIGNS – AI UX/UI & Web Design Agency by Dylan Kho, Almere Netherlands" />
       <meta property="og:site_name" content="DYSIGNS" />
       <meta property="og:locale" content="en_US" />
+      <meta property="og:locale:alternate" content="nl_NL" />
 
-      <!-- Twitter / X card -->
+      <!-- ─── TWITTER / X CARD ─── -->
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@dylandysigns" />
-      <meta name="twitter:title" content="DYSIGNS — Brand Identity, Web Design & Social Media" />
-      <meta name="twitter:description" content="Amsterdam design studio. Brand identity, web design, social media management — digital experiences that pull people in." />
+      <meta name="twitter:creator" content="@dylandysigns" />
+      <meta name="twitter:title" content="DYSIGNS — AI UX/UI & Web Design Agency | Almere, Netherlands" />
+      <meta name="twitter:description" content="AI-powered UX/UI design, web design & social media marketing by Dylan Kho — Almere, Netherlands. We grow companies online." />
       <meta name="twitter:image" content="https://dylandysigns.com/images/og-cover.png" />
+      <meta name="twitter:image:alt" content="DYSIGNS – AI web design agency by Dylan Kho, Almere Netherlands" />
 
-      <!-- Structured data — Person + Organization (helps Google & AI understand who you are) -->
+      <!-- ─── STRUCTURED DATA (JSON-LD) ─── -->
+      <!-- Google uses this to identify DYSIGNS as an entity, rank for local searches,
+           and surface Dylan Kho as a named professional. AI tools (ChatGPT, Perplexity)
+           also use this schema to answer "who is Dylan Kho" / "design agency Almere". -->
       <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -57,28 +64,102 @@
             "@id": "https://dylandysigns.com/#person",
             "name": "Dylan Kho",
             "url": "https://dylandysigns.com",
-            "jobTitle": "Designer & Developer",
+            "jobTitle": "Founder & Creative Director",
+            "description": "Dylan Kho is a designer and developer based in Almere, Netherlands. He founded DYSIGNS, an AI-powered UX/UI design and web design agency.",
             "worksFor": { "@id": "https://dylandysigns.com/#organization" },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Almere",
+              "addressCountry": "NL"
+            },
             "sameAs": [
               "https://www.instagram.com/dylan.kho"
             ]
           },
           {
-            "@type": "Organization",
+            "@type": ["Organization", "ProfessionalService"],
             "@id": "https://dylandysigns.com/#organization",
             "name": "DYSIGNS",
+            "alternateName": "Dysigns Design Agency",
             "url": "https://dylandysigns.com",
-            "logo": "https://dylandysigns.com/favicon.png",
-            "description": "Amsterdam design studio specialising in brand identity, web design, and social media management.",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dylandysigns.com/favicon.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://dylandysigns.com/images/og-cover.png",
+            "description": "DYSIGNS is an AI-powered UX/UI design, web design, and social media marketing agency based in Almere, Netherlands. Founded by Dylan Kho.",
+            "founder": { "@id": "https://dylandysigns.com/#person" },
+            "foundingDate": "2020",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Amsterdam",
+              "addressLocality": "Almere",
+              "addressRegion": "Flevoland",
               "addressCountry": "NL"
             },
+            "areaServed": ["Netherlands", "Belgium", "Europe"],
+            "knowsAbout": [
+              "UX/UI Design",
+              "Web Design",
+              "Social Media Marketing",
+              "Digital Branding",
+              "Micro-Influencer Marketing",
+              "AI-Powered Design"
+            ],
             "contactPoint": {
               "@type": "ContactPoint",
               "email": "hello@dylandysigns.com",
-              "contactType": "customer service"
+              "telephone": "+31626814488",
+              "contactType": "customer service",
+              "availableLanguage": ["English", "Dutch"]
+            },
+            "sameAs": [
+              "https://www.instagram.com/dylan.kho"
+            ]
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://dylandysigns.com/#localbusiness",
+            "name": "DYSIGNS",
+            "url": "https://dylandysigns.com",
+            "image": "https://dylandysigns.com/images/og-cover.png",
+            "logo": "https://dylandysigns.com/favicon.png",
+            "description": "AI-powered UX/UI design, web design, and social media marketing agency in Almere, Netherlands, founded by Dylan Kho.",
+            "priceRange": "€€",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Almere",
+              "addressRegion": "Flevoland",
+              "postalCode": "1300",
+              "addressCountry": "NL"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 52.3702,
+              "longitude": 5.2197
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+              }
+            ],
+            "telephone": "+31626814488",
+            "email": "hello@dylandysigns.com",
+            "founder": { "@id": "https://dylandysigns.com/#person" },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "DYSIGNS Services",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UX/UI Design" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Marketing" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Branding" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Micro-Influencer Marketing" } }
+              ]
             },
             "sameAs": [
               "https://www.instagram.com/dylan.kho"
@@ -89,11 +170,24 @@
             "@id": "https://dylandysigns.com/#website",
             "url": "https://dylandysigns.com",
             "name": "DYSIGNS",
-            "publisher": { "@id": "https://dylandysigns.com/#organization" }
+            "description": "AI-powered UX/UI design and web design agency in Almere, Netherlands",
+            "publisher": { "@id": "https://dylandysigns.com/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://dylandysigns.com/work?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
           }
         ]
       }
       </script>
+
+      <!-- ─── PERFORMANCE: PRECONNECT & PRELOAD ─── -->
+      <!-- Establish early connections to Google Fonts to reduce font latency -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <!-- Preload the hero background image so LCP is fast -->
+      <link rel="preload" as="image" href="/images/powermobile-hero.png" />
 
       <link rel="icon" type="image/png" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/favicon.png" />
@@ -104,4 +198,3 @@
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
-  
