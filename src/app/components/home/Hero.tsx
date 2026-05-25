@@ -388,19 +388,19 @@ export function Hero() {
       }
 
       if (splitHeadingRef.current) {
+        // No filter:blur — blur animation forces software rasterisation in Safari
+        // on every scrub frame. Scale + opacity alone look clean and run on GPU.
         tl.fromTo(
           splitHeadingRef.current,
           {
             yPercent: headingLift,
             scale: headingScale,
             opacity: 0,
-            filter: `blur(${headingBlur}px)`,
           },
           {
             yPercent: 0,
             scale: 1,
             opacity: 1,
-            filter: "blur(0px)",
             duration: splitDuration,
             ease: headingEase,
           },
@@ -982,7 +982,10 @@ export function Hero() {
           }}
         />
 
-        {/* light band */}
+        {/* light band — gradient-only, no filter:blur and no mixBlendMode.
+            filter:blur(60px) + mixBlendMode:screen on an animated element forces
+            full software rasterisation on every frame in Safari. A wider, softer
+            gradient stop spread achieves the same diffuse-glow look on GPU. */}
         <div
           ref={lightRef}
           className="absolute pointer-events-none"
@@ -995,9 +998,7 @@ export function Hero() {
             left: "50%",
             transform: "translate(-50%,-50%)",
             background:
-              "linear-gradient(90deg,transparent 5%,rgba(var(--page-fg-rgb), .02) 35%,rgba(var(--page-fg-rgb), .04) 50%,rgba(var(--page-fg-rgb), .02) 65%,transparent 95%)",
-            filter: "blur(60px)",
-            mixBlendMode: "screen",
+              "linear-gradient(90deg,transparent 0%,rgba(var(--page-fg-rgb), .006) 18%,rgba(var(--page-fg-rgb), .018) 38%,rgba(var(--page-fg-rgb), .028) 50%,rgba(var(--page-fg-rgb), .018) 62%,rgba(var(--page-fg-rgb), .006) 82%,transparent 100%)",
             willChange: "transform",
           }}
         />
@@ -1196,8 +1197,6 @@ export function Hero() {
                               width: "100%",
                               height: "100%",
                               objectFit: "cover",
-                              filter:
-                                "saturate(1.05) contrast(1.08) brightness(.78)",
                             }}
                           />
                         </div>

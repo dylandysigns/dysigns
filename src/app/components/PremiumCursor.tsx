@@ -250,7 +250,9 @@ function GlassCursor({
         orbRef.current.style.transform = `translate3d(${cx}px,${cy}px,0) translate(-50%,-50%)`;
       }
 
-      /* 3. Magnification overlay — zoom the DYSIGNS text through the orb */
+      /* 3. Magnification overlay — zoom the DYSIGNS text through the orb.
+            The overlay is a sized circular div (not a full-page clipped element).
+            Moving it via translate3d is GPU-composited on Safari; clipPath is not. */
       if (!reduced && magOverlayRef.current && magMirrorRef.current) {
         const textEl = document.querySelector<HTMLElement>(
           "[data-dysigns-hero-text]",
@@ -258,18 +260,24 @@ function GlassCursor({
 
         if (textEl && overHero && magMirrorRef.current.children.length > 0) {
           const rect = textEl.getBoundingClientRect();
+          // Overlay top-left sits at (cx - ORB_RADIUS, cy - ORB_RADIUS).
+          // Mirror must be offset so text pixels appear at their true viewport pos.
+          const overlayLeft = cx - ORB_RADIUS;
+          const overlayTop  = cy - ORB_RADIUS;
 
           magOverlayRef.current.style.visibility = "visible";
-          magOverlayRef.current.style.clipPath = `circle(${ORB_RADIUS}px at ${cx}px ${cy}px)`;
+          magOverlayRef.current.style.transform = `translate3d(${overlayLeft}px,${overlayTop}px,0)`;
 
-          magMirrorRef.current.style.left = `${rect.left}px`;
-          magMirrorRef.current.style.top = `${rect.top}px`;
-          magMirrorRef.current.style.width = `${rect.width}px`;
+          magMirrorRef.current.style.left = `${rect.left - overlayLeft}px`;
+          magMirrorRef.current.style.top  = `${rect.top  - overlayTop}px`;
+          magMirrorRef.current.style.width  = `${rect.width}px`;
           magMirrorRef.current.style.height = `${rect.height}px`;
+          // Scale origin = cursor position in mirror's local coord system
           magMirrorRef.current.style.transformOrigin = `${cx - rect.left}px ${cy - rect.top}px`;
           magMirrorRef.current.style.transform = `scale(${MAG_SCALE})`;
         } else {
           magOverlayRef.current.style.visibility = "hidden";
+          magOverlayRef.current.style.transform = "translate3d(-400px,-400px,0)";
         }
       }
 
@@ -299,70 +307,28 @@ function GlassCursor({
 
   return (
     <>
-      {/* ═══ SVG FILTER — glass orb distortion for magnified text ═══ */}
-      {!reduced && (
-        <svg
-          width="0"
-          height="0"
-          style={{ position: "absolute" }}
-          aria-hidden
-        >
-          <defs>
-            <filter
-              id="orb-glass-distort"
-              x="-20%"
-              y="-20%"
-              width="140%"
-              height="140%"
-              colorInterpolationFilters="sRGB"
-            >
-              {/* Smooth low-frequency warp → fisheye barrel distortion feel */}
-              <feTurbulence
-                type="turbulence"
-                baseFrequency="0.003 0.003"
-                numOctaves="1"
-                seed="2"
-                result="rawWarp"
-              />
-              {/* Blur the turbulence to remove all granularity → smooth radial field */}
-              <feGaussianBlur in="rawWarp" stdDeviation="12" result="smoothWarp" />
-              {/* Apply smooth displacement → clean barrel distortion */}
-              <feDisplacementMap
-                in="SourceGraphic"
-                in2="smoothWarp"
-                scale="22"
-                xChannelSelector="R"
-                yChannelSelector="G"
-                result="displaced"
-              />
-              {/* Subtle chromatic colour shift for glass realism */}
-              <feColorMatrix
-                in="displaced"
-                type="matrix"
-                values="1.06 0 0 0 0
-                        0 1.02 0 0 0
-                        0 0 1.08 0 0
-                        0 0 0 1 0"
-              />
-            </filter>
-          </defs>
-        </svg>
-      )}
-
-      {/* ═══ MAGNIFICATION OVERLAY — zoomed text through orb ═══ */}
+      {/* ═══ MAGNIFICATION OVERLAY — zoomed text through orb ═══
+          Uses a sized circular div with overflow:hidden instead of a
+          full-viewport clipPath + SVG filter. clipPath on inset:0 elements
+          and feTurbulence/feGaussianBlur SVG filters are evaluated in
+          software on every rAF in Safari — replacing with a GPU-composited
+          translate3d transform and border-radius eliminates the jank.     */}
       {!reduced && (
         <div
           ref={magOverlayRef}
           style={{
             position: "fixed",
-            inset: 0,
+            top: 0,
+            left: 0,
+            width: ORB_DIAMETER,
+            height: ORB_DIAMETER,
+            borderRadius: "50%",
             overflow: "hidden",
             pointerEvents: "none",
             zIndex: 9996,
             visibility: "hidden",
-            clipPath: "circle(0px at -200px -200px)",
-            willChange: "clip-path",
-            filter: "url(#orb-glass-distort)",
+            willChange: "transform",
+            transform: "translate3d(-400px,-400px,0)",
           }}
           aria-hidden
         >
@@ -375,9 +341,6 @@ function GlassCursor({
               overflow: "visible",
               background: "transparent",
               willChange: "transform",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
             }}
           />
         </div>
@@ -401,17 +364,13 @@ function GlassCursor({
             width: isActive ? DOT_ACTIVE : DOT_SIZE,
             height: isActive ? DOT_ACTIVE : DOT_SIZE,
             background: isActive
-              ? "rgba(var(--page-fg-rgb), .08)"
+              ? "rgba(var(--page-fg-rgb), .10)"
               : "rgba(var(--page-fg-rgb), .85)",
             border: isActive
               ? "1px solid rgba(var(--page-fg-rgb), .2)"
               : "1px solid transparent",
-            backdropFilter: isActive ? "blur(12px) saturate(1.3)" : "none",
-            WebkitBackdropFilter: isActive
-              ? "blur(12px) saturate(1.3)"
-              : "none",
             transition:
-              "width .35s cubic-bezier(.22,1,.36,1), height .35s cubic-bezier(.22,1,.36,1), background .3s, border .3s, backdrop-filter .3s",
+              "width .35s cubic-bezier(.22,1,.36,1), height .35s cubic-bezier(.22,1,.36,1), background .3s, border .3s",
             transform: "translate(-50%,-50%)",
             boxShadow: isActive
               ? "0 4px 20px rgba(var(--page-shadow-rgb), .18), inset 0 0.5px 0 rgba(var(--page-fg-rgb), .08)"
@@ -453,15 +412,15 @@ function GlassCursor({
           }}
           aria-hidden
         >
-          {/* Transparent glass body — uses backdrop-filter for clarity */}
+          {/* Transparent glass body — subtle gradient fill only (no backdrop-filter:
+              backdrop-filter on an element transforming every rAF causes software
+              rasterisation in Safari). The visual glass look is handled by the
+              magnification overlay + highlights below. */}
           <div
             className="absolute inset-0 rounded-full"
             style={{
               background:
-                "radial-gradient(circle at 40% 35%, rgba(var(--page-fg-rgb), .04) 0%, rgba(var(--page-fg-rgb), .01) 50%, transparent 100%)",
-              backdropFilter: "brightness(1.15) contrast(1.08) saturate(1.2)",
-              WebkitBackdropFilter:
-                "brightness(1.15) contrast(1.08) saturate(1.2)",
+                "radial-gradient(circle at 40% 35%, rgba(var(--page-fg-rgb), .06) 0%, rgba(var(--page-fg-rgb), .02) 50%, transparent 100%)",
             }}
           />
 

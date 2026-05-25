@@ -166,17 +166,23 @@ export function ZoomToGrid() {
             ...style,
           }}
         >
-          {/* Responsive aspect container — portrait on mobile, landscape on desktop */}
-          <div className="aspect-[3/4] sm:aspect-[4/3] overflow-hidden">
+          {/* Responsive aspect container.
+              Filter sits on the wrapper div, NOT on the img — this prevents
+              Safari from rasterising a filtered texture on every hover-scale
+              frame (filter + transform on the same element = software path). */}
+          <div
+            className="aspect-[3/4] sm:aspect-[4/3] overflow-hidden"
+            style={{
+              filter: isHero
+                ? "grayscale(.85) brightness(.55) contrast(1.1)"
+                : "grayscale(.8) brightness(.55) contrast(1.05)",
+            }}
+          >
             <img
               src={src}
               alt={`${project.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
-              className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-all duration-700"
-              style={{
-                filter: isHero
-                  ? "grayscale(.85) brightness(.55) contrast(1.1)"
-                  : "grayscale(.8) brightness(.55) contrast(1.05)",
-              }}
+              className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
+              style={{ willChange: "transform" }}
               loading="lazy"
             />
           </div>
@@ -382,7 +388,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[0] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[0]} project={tileProjects[0]} />
             </div>
@@ -390,7 +396,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[1] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[1]} project={tileProjects[1]} />
             </div>
@@ -398,7 +404,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[2] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[2]} project={tileProjects[2]} />
             </div>
@@ -408,7 +414,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[3] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[3]} project={tileProjects[3]} />
             </div>
@@ -427,7 +433,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[4] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[4]} project={tileProjects[5]} />
             </div>
@@ -437,7 +443,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[5] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[5]} project={tileProjects[6]} />
             </div>
@@ -445,7 +451,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[6] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[6]} project={tileProjects[7]} />
             </div>
@@ -453,7 +459,7 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[7] = el;
               }}
-              style={{ opacity: 0 }}
+              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile src={gridImages[7]} project={tileProjects[8]} />
             </div>
