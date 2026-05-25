@@ -167,6 +167,17 @@ export function Hero() {
     // Desktop only — mobile never reaches this (brush requires pointer:fine)
     if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) return;
 
+    // Stop the looping wordmark video and hide its compositor layer.
+    // Safari keeps the foreignObject+video layer composited even at opacity:0 —
+    // display:none is the only reliable way to release it.
+    if (wordmarkVideoLayerRef.current) {
+      wordmarkVideoLayerRef.current.style.display = "none";
+    }
+    if (wordmarkVideoRef.current) {
+      try { wordmarkVideoRef.current.pause(); } catch (_) {}
+      wordmarkVideoRef.current.currentTime = 0;
+    }
+
     const revealRect = fillRevealRectRef.current;
     if (!revealRect) return;
 
@@ -304,9 +315,9 @@ export function Hero() {
         visibility: "visible",
       });
 
-      // Initial positions — ensure SVG halves start centered
-      splitLeftRef.current?.setAttribute("transform", "translate(0,0)");
-      splitRightRef.current?.setAttribute("transform", "translate(0,0)");
+      // Ensure CSS transforms start at identity (will-change:transform is set in JSX)
+      if (splitLeftRef.current) splitLeftRef.current.style.transform = "translate3d(0,0,0)";
+      if (splitRightRef.current) splitRightRef.current.style.transform = "translate3d(0,0,0)";
 
       let tl: gsap.core.Timeline;
 
@@ -327,7 +338,10 @@ export function Hero() {
                 p >= (onMobile ? 0.99 : 0.84) ? "hidden" : "visible";
             }
 
-            // Drive SVG split translate via native attribute (GPU path on Safari)
+            // Drive SVG split translate via CSS transform so will-change:transform
+            // on the <g> elements actually activates the GPU compositor path in
+            // Safari. setAttribute("transform") bypasses CSS compositing entirely,
+            // rendering will-change ineffective.
             if (splitLeftRef.current && splitRightRef.current) {
               // Hold from 0→splitStart, then animate to 0.92
               const splitP = gsap.utils.clamp(
@@ -341,8 +355,8 @@ export function Hero() {
                 ? window.innerWidth * 3
                 : window.innerWidth * 1.2;
               const x = maxX * splitP;
-              splitLeftRef.current.setAttribute("transform", `translate(${-x},0)`);
-              splitRightRef.current.setAttribute("transform", `translate(${x},0)`);
+              splitLeftRef.current.style.transform = `translate3d(${-x}px,0,0)`;
+              splitRightRef.current.style.transform = `translate3d(${x}px,0,0)`;
 
               // Mobile: fade out split halves toward end of scroll
               if (onMobile) {
@@ -452,8 +466,8 @@ export function Hero() {
       if (wordmarkSvgRef.current) {
         wordmarkSvgRef.current.style.visibility = "visible";
       }
-      splitLeftRef.current?.setAttribute("transform", "translate(0,0)");
-      splitRightRef.current?.setAttribute("transform", "translate(0,0)");
+      if (splitLeftRef.current) splitLeftRef.current.style.transform = "translate3d(0,0,0)";
+      if (splitRightRef.current) splitRightRef.current.style.transform = "translate3d(0,0,0)";
       ctx.revert();
     };
   }, [reduced]);
@@ -497,13 +511,20 @@ export function Hero() {
     gsap.killTweensOf([overlay, frame, video]);
     const tl = gsap.timeline({
       onComplete: () => {
+        // Remove backdrop-filter before display:none — Safari may hold the blur
+        // compositor layer open if the element is hidden while backdrop-filter
+        // is still declared. Clearing it first ensures the layer is released.
+        overlay.style.backdropFilter = "none";
+        (overlay.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = "none";
         gsap.set(overlay, {
           display: "none",
           visibility: "hidden",
           pointerEvents: "none",
         });
-        // Safari: GSAP display:none on the parent doesn't immediately release
-        // the video's GPU compositor layer. Hide the video element explicitly.
+        // Explicit pause + hide — belt-and-suspenders for Safari. The safePause
+        // below is deferred via Promise so it may fire after the animation ends;
+        // calling pause() here ensures it also happens synchronously on cleanup.
+        try { video.pause(); } catch (_) {}
         video.style.display = "none";
         video.style.visibility = "hidden";
         try { video.currentTime = 0; } catch (_) {}
@@ -602,10 +623,11 @@ export function Hero() {
       wordmarkRef.current.style.pointerEvents = "none";
     }
     if (wordmarkVideoLayerRef.current) {
-      gsap.set(wordmarkVideoLayerRef.current, { opacity: 0 });
+      wordmarkVideoLayerRef.current.style.display = "none";
+      wordmarkVideoLayerRef.current.style.opacity = "0";
     }
     if (wordmarkVideoRef.current) {
-      wordmarkVideoRef.current.pause();
+      try { wordmarkVideoRef.current.pause(); } catch (_) {}
       wordmarkVideoRef.current.currentTime = 0;
     }
 
@@ -615,6 +637,8 @@ export function Hero() {
       const wordmarkVideo = wordmarkVideoRef.current;
       const fullscreenVideo = fullscreenVideoRef.current;
       if (wordmarkVideoLayerRef.current) {
+        // Reveal the layer (remove display:none guard set during init/cleanup)
+        wordmarkVideoLayerRef.current.style.display = "";
         gsap
           .timeline()
           .to(wordmarkVideoLayerRef.current, {
@@ -627,6 +651,18 @@ export function Hero() {
             opacity: 0,
             duration: 0.4,
             ease: "power2.inOut",
+            onComplete: () => {
+              // Restore display:none so Safari releases the foreignObject
+              // compositor layer. A <video> inside <foreignObject> inside an SVG
+              // mask is still composited at opacity:0 — display:none is the only
+              // reliable way to drop it from Safari's render tree.
+              if (wordmarkVideoLayerRef.current) {
+                wordmarkVideoLayerRef.current.style.display = "none";
+              }
+              if (wordmarkVideoRef.current) {
+                try { wordmarkVideoRef.current.pause(); } catch (_) {}
+              }
+            },
           });
       }
       if (wordmarkVideoRef.current) {
@@ -1150,7 +1186,7 @@ export function Hero() {
 
                     <g
                       ref={wordmarkVideoLayerRef}
-                      style={{ opacity: 0, pointerEvents: "none" }}
+                      style={{ opacity: 0, pointerEvents: "none", display: "none" }}
                     >
                       <foreignObject
                         x="0"
@@ -1676,9 +1712,7 @@ export function Hero() {
           zIndex: 120,
           opacity: 0,
           pointerEvents: "none",
-          background: "rgba(0, 0, 0, .92)",
-          backdropFilter: "blur(18px)",
-          WebkitBackdropFilter: "blur(18px)",
+          background: "rgba(0, 0, 0, .94)",
         }}
         onClick={() => { closeEasterEgg(); triggerFillAnimation(); }}
         aria-hidden={!isEasterEggOpen}
@@ -1690,11 +1724,9 @@ export function Hero() {
             zIndex: 6,
             minWidth: 144,
             textAlign: "center",
-            background: "rgba(0,0,0,.56)",
+            background: "rgba(0,0,0,.72)",
             border: "1px solid rgba(255,255,255,.22)",
             boxShadow: "0 16px 36px rgba(0,0,0,.26)",
-            backdropFilter: "blur(14px)",
-            WebkitBackdropFilter: "blur(14px)",
           }}
           onClick={(event) => {
             event.stopPropagation();
