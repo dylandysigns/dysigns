@@ -248,6 +248,40 @@ export function Hero() {
     });
   }, [scrollYProgress]);
 
+  /* ─── SVG SPLIT TRANSFORM SYNC (Safari fix) ─── */
+  // Safari does not GPU-composite CSS transforms on SVG elements the same way
+  // Chrome does, causing jank on scroll. Drive the SVG `transform` *attribute*
+  // directly from the MotionValues so the browser uses its native SVG pipeline.
+  useEffect(() => {
+    const resolveToPixels = (v: string | number): number => {
+      if (typeof v === "number") return v;
+      const m = String(v).match(/(-?[\d.]+)vw/);
+      return m ? (parseFloat(m[1]) / 100) * window.innerWidth : parseFloat(String(v)) || 0;
+    };
+
+    const applyLeft = (v: string | number) => {
+      splitLeftRef.current?.setAttribute("transform", `translate(${resolveToPixels(v)},0)`);
+    };
+    const applyRight = (v: string | number) => {
+      splitRightRef.current?.setAttribute("transform", `translate(${resolveToPixels(v)},0)`);
+    };
+    const applyOpacity = (v: number) => {
+      const o = String(v);
+      if (splitLeftRef.current) splitLeftRef.current.style.opacity = o;
+      if (splitRightRef.current) splitRightRef.current.style.opacity = o;
+    };
+
+    // Apply initial values immediately so there's no flash on mount.
+    applyLeft(leftX.get());
+    applyRight(rightX.get());
+    applyOpacity(splitOpacity.get());
+
+    const unsubLeft = leftX.on("change", applyLeft);
+    const unsubRight = rightX.on("change", applyRight);
+    const unsubOp = splitOpacity.on("change", applyOpacity);
+    return () => { unsubLeft(); unsubRight(); unsubOp(); };
+  }, [leftX, rightX, splitOpacity]);
+
   /* ─── LIGHT BAND DRIFT ─── */
   useEffect(() => {
     if (reduced || isLowPower) return;
@@ -338,8 +372,8 @@ export function Hero() {
         },
       });
 
-      // Split-left and split-right x-motion is driven by Framer Motion
-      // (leftX / rightX MotionValues on motion.g) — no GSAP tween needed here.
+      // Split-left and split-right x-motion is driven by MotionValue subscriptions
+      // that set the SVG transform attribute directly — no GSAP tween needed here.
 
       if (wordmarkVideoLayerRef.current) {
         tl.to(
@@ -450,6 +484,9 @@ export function Hero() {
     if (!overlay || !frame || !video) return;
 
     if (isEasterEggOpen) {
+      // Safari: restore video element that was explicitly hidden on close.
+      video.style.display = "";
+      video.style.visibility = "";
       gsap.killTweensOf([overlay, frame, video]);
       gsap.set(overlay, {
         display: "flex",
@@ -483,6 +520,10 @@ export function Hero() {
           visibility: "hidden",
           pointerEvents: "none",
         });
+        // Safari: GSAP display:none on the parent doesn't immediately release
+        // the video's GPU compositor layer. Hide the video element explicitly.
+        video.style.display = "none";
+        video.style.visibility = "hidden";
         try { video.currentTime = 0; } catch (_) {}
       },
     });
@@ -638,6 +679,23 @@ export function Hero() {
       state.filledBuckets += 1;
     };
 
+    // Safari fires pointermove at display refresh rate (up to 120 Hz). Throttle
+    // the expensive SVG setAttribute call to once per animation frame while still
+    // accumulating every pointer point for coverage accuracy.
+    let paintRafId: number | null = null;
+    let pendingPathFlush = false;
+    const flushPath = () => {
+      paintRafId = null;
+      if (pendingPathFlush) {
+        paintPath.setAttribute("d", state.d);
+        pendingPathFlush = false;
+      }
+    };
+    const schedulePaintFlush = () => {
+      pendingPathFlush = true;
+      if (paintRafId === null) paintRafId = requestAnimationFrame(flushPath);
+    };
+
     const paintTo = (x: number, y: number, start = false) => {
       if (!wordmarkInteractiveRef.current) return;
       if (start || state.lastX === null || state.lastY === null) {
@@ -660,7 +718,7 @@ export function Hero() {
 
       state.lastX = x;
       state.lastY = y;
-      paintPath.setAttribute("d", state.d);
+      schedulePaintFlush();
 
       const coverageRatio = state.filledBuckets / VIDEO_EASTER_EGG_BUCKETS;
       if (
@@ -700,6 +758,10 @@ export function Hero() {
     wordmark.addEventListener("pointerleave", onPointerLeave);
 
     return () => {
+      if (paintRafId !== null) {
+        cancelAnimationFrame(paintRafId);
+        paintRafId = null;
+      }
       if (videoRevealTimeoutRef.current) {
         window.clearTimeout(videoRevealTimeoutRef.current);
         videoRevealTimeoutRef.current = null;
@@ -721,6 +783,17 @@ export function Hero() {
       mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
     };
 
+    // Use GSAP quickSetters for the light band so GSAP manages all of its
+    // transforms in one pipeline — avoids fighting the rotation tween that
+    // GSAP also runs on lightRef (overwriting style.transform directly would
+    // clobber the rotation and cause jitter in Safari).
+    const lightXSet = lightRef.current
+      ? gsap.quickSetter(lightRef.current, "x", "px")
+      : null;
+    const lightYSet = lightRef.current
+      ? gsap.quickSetter(lightRef.current, "y", "px")
+      : null;
+
     const tick = () => {
       target.current.x += (mouse.current.x - target.current.x) * 0.08;
       target.current.y += (mouse.current.y - target.current.y) * 0.08;
@@ -732,8 +805,9 @@ export function Hero() {
       if (bgRef.current) {
         bgRef.current.style.transform = `translate3d(${tx * LAYERS.bg * w}px,${ty * LAYERS.bg * h}px,0)`;
       }
-      if (lightRef.current) {
-        lightRef.current.style.transform = `translate(-50%,-50%) translate3d(${tx * LAYERS.light * w}px,${ty * LAYERS.light * h}px,0)`;
+      if (lightXSet && lightYSet) {
+        lightXSet(tx * LAYERS.light * w);
+        lightYSet(ty * LAYERS.light * h);
       }
       if (chipsRef.current) {
         const children = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", chipsRef.current);
@@ -1130,7 +1204,7 @@ export function Hero() {
                       </foreignObject>
                     </g>
 
-                    <motion.g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ x: leftX, opacity: splitOpacity }}>
+                    <g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ willChange: "transform, opacity" }}>
                       <text
                         data-dysigns-hero-text
                         x="50%"
@@ -1162,9 +1236,9 @@ export function Hero() {
                       >
                         DYSIGNS
                       </text>
-                    </motion.g>
+                    </g>
 
-                    <motion.g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ x: rightX, opacity: splitOpacity }}>
+                    <g ref={splitRightRef} clipPath="url(#hero-wordmark-right-clip)" style={{ willChange: "transform, opacity" }}>
                       <text
                         data-dysigns-hero-text
                         x="50%"
@@ -1196,7 +1270,7 @@ export function Hero() {
                       >
                         DYSIGNS
                       </text>
-                    </motion.g>
+                    </g>
                   </svg>
                 </div>
 
