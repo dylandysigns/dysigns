@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin } from "lucide-react";
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { usePageTransition } from "../../hooks/useTransition";
@@ -147,21 +147,13 @@ export function Hero() {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ─── SCROLL SPLIT (Framer Motion) ─── */
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-  // Mobile needs ±300vw so SVG halves clear every iPhone screen size before the
-  // animation ends. Desktop ±120vw is sufficient at larger sizes.
+  // Breakpoint constant — used for scroll-lock guard and GSAP split sizing.
+  // (Framer Motion useScroll/useTransform removed: running two scroll-processing
+  //  pipelines simultaneously causes jank on Safari. Split is now driven entirely
+  //  by GSAP ScrollTrigger's onUpdate — one driver, zero coordination overhead.)
   const isMobile =
     typeof window !== "undefined" &&
     !window.matchMedia("(min-width: 768px)").matches;
-  const leftX  = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ? "-300vw" : "-120vw"]);
-  const rightX = useTransform(scrollYProgress, [0, 0.12, 0.92], ["0vw", "0vw", isMobile ?  "300vw" :  "120vw"]);
-  // Mobile only: fade the halves out starting at 60% scroll so they dissolve
-  // gracefully rather than clipping abruptly. On desktop keep opacity constant.
-  const splitOpacity = useTransform(scrollYProgress, [0.6, 1.0], isMobile ? [1, 0] : [1, 1]);
 
   const closeEasterEgg = useCallback(() => {
     setIsEasterEggOpen(false);
@@ -236,51 +228,8 @@ export function Hero() {
     };
   }, [isEasterEggOpen, isHeroIntroReady, reduced]);
 
-  /* ─── WORDMARK SVG VISIBILITY ─── */
-  // Hide the SVG once the halves are fully offscreen so it doesn't interfere
-  // with whatever is revealed behind the split.
-  useEffect(() => {
-    return scrollYProgress.on("change", (v) => {
-      if (!wordmarkSvgRef.current) return;
-      // On mobile the opacity MotionValue handles the fade — push visibility:hidden
-      // to 0.99 so it never fires abruptly before the text has finished fading.
-      wordmarkSvgRef.current.style.visibility = v >= (isMobile ? 0.99 : 0.84) ? "hidden" : "visible";
-    });
-  }, [scrollYProgress]);
-
-  /* ─── SVG SPLIT TRANSFORM SYNC (Safari fix) ─── */
-  // Safari does not GPU-composite CSS transforms on SVG elements the same way
-  // Chrome does, causing jank on scroll. Drive the SVG `transform` *attribute*
-  // directly from the MotionValues so the browser uses its native SVG pipeline.
-  useEffect(() => {
-    const resolveToPixels = (v: string | number): number => {
-      if (typeof v === "number") return v;
-      const m = String(v).match(/(-?[\d.]+)vw/);
-      return m ? (parseFloat(m[1]) / 100) * window.innerWidth : parseFloat(String(v)) || 0;
-    };
-
-    const applyLeft = (v: string | number) => {
-      splitLeftRef.current?.setAttribute("transform", `translate(${resolveToPixels(v)},0)`);
-    };
-    const applyRight = (v: string | number) => {
-      splitRightRef.current?.setAttribute("transform", `translate(${resolveToPixels(v)},0)`);
-    };
-    const applyOpacity = (v: number) => {
-      const o = String(v);
-      if (splitLeftRef.current) splitLeftRef.current.style.opacity = o;
-      if (splitRightRef.current) splitRightRef.current.style.opacity = o;
-    };
-
-    // Apply initial values immediately so there's no flash on mount.
-    applyLeft(leftX.get());
-    applyRight(rightX.get());
-    applyOpacity(splitOpacity.get());
-
-    const unsubLeft = leftX.on("change", applyLeft);
-    const unsubRight = rightX.on("change", applyRight);
-    const unsubOp = splitOpacity.on("change", applyOpacity);
-    return () => { unsubLeft(); unsubRight(); unsubOp(); };
-  }, [leftX, rightX, splitOpacity]);
+  /* SVG visibility and split transforms are now handled inside the GSAP
+     ScrollTrigger onUpdate below — no separate effects needed. */
 
   /* ─── LIGHT BAND DRIFT ─── */
   useEffect(() => {
@@ -332,7 +281,6 @@ export function Hero() {
       const splitHold     = onMobile ? 1.24 : 1.24;
       const headingLift   = onMobile ? 8    : 18;
       const headingScale  = onMobile ? 0.994 : 0.975;
-      const headingBlur   = onMobile ? 4    : 8;
       const contentShift  = onMobile ? 10   : 28;
       const trustedShift  = onMobile ? 0    : 4;
       // Lower scrub on mobile so fade-outs track scroll closely with no lag.
@@ -356,24 +304,56 @@ export function Hero() {
         visibility: "visible",
       });
 
+      // Initial positions — ensure SVG halves start centered
+      splitLeftRef.current?.setAttribute("transform", "translate(0,0)");
+      splitRightRef.current?.setAttribute("transform", "translate(0,0)");
+
       let tl: gsap.core.Timeline;
 
       tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          // "bottom bottom" = section-bottom aligns with viewport-bottom at
-          // scroll=150dvh — exactly when the sticky releases.  This keeps
-          // the GSAP timeline in sync with the Framer Motion split range.
           end: "bottom bottom",
           scrub: scrubAmount,
           refreshPriority: 2,
           invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+
+            // Hide the SVG wordmark once it's scrolled fully off-screen
+            if (wordmarkSvgRef.current) {
+              wordmarkSvgRef.current.style.visibility =
+                p >= (onMobile ? 0.99 : 0.84) ? "hidden" : "visible";
+            }
+
+            // Drive SVG split translate via native attribute (GPU path on Safari)
+            if (splitLeftRef.current && splitRightRef.current) {
+              // Hold from 0→splitStart, then animate to 0.92
+              const splitP = gsap.utils.clamp(
+                0,
+                1,
+                onMobile
+                  ? p / 0.92
+                  : (p - splitStart) / (0.92 - splitStart),
+              );
+              const maxX = onMobile
+                ? window.innerWidth * 3
+                : window.innerWidth * 1.2;
+              const x = maxX * splitP;
+              splitLeftRef.current.setAttribute("transform", `translate(${-x},0)`);
+              splitRightRef.current.setAttribute("transform", `translate(${x},0)`);
+
+              // Mobile: fade out split halves toward end of scroll
+              if (onMobile) {
+                const fadeP = gsap.utils.clamp(0, 1, (p - 0.6) / 0.4);
+                splitLeftRef.current.style.opacity = String(1 - fadeP);
+                splitRightRef.current.style.opacity = String(1 - fadeP);
+              }
+            }
+          },
         },
       });
-
-      // Split-left and split-right x-motion is driven by MotionValue subscriptions
-      // that set the SVG transform attribute directly — no GSAP tween needed here.
 
       if (wordmarkVideoLayerRef.current) {
         tl.to(
@@ -472,6 +452,8 @@ export function Hero() {
       if (wordmarkSvgRef.current) {
         wordmarkSvgRef.current.style.visibility = "visible";
       }
+      splitLeftRef.current?.setAttribute("transform", "translate(0,0)");
+      splitRightRef.current?.setAttribute("transform", "translate(0,0)");
       ctx.revert();
     };
   }, [reduced]);
