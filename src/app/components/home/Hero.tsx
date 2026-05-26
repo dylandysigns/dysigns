@@ -132,7 +132,9 @@ export function Hero() {
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
   const paintState = useRef({
-    d: "",
+    // Array of SVG path segments — join on flush only.
+    // Avoids O(n) string copies that happen when growing a path string in a loop.
+    segs: [] as string[],
     lastX: null as number | null,
     lastY: null as number | null,
     coverage: new Uint8Array(VIDEO_EASTER_EGG_BUCKETS),
@@ -607,7 +609,7 @@ export function Hero() {
     if (!wordmark || !svg || !paintPath) return;
 
     const state = paintState.current;
-    state.d = "";
+    state.segs = [];
     state.lastX = null;
     state.lastY = null;
     state.coverage = new Uint8Array(VIDEO_EASTER_EGG_BUCKETS);
@@ -680,15 +682,6 @@ export function Hero() {
       }, 220);
     };
 
-    const toSvgPoint = (event: PointerEvent) => {
-      const point = svg.createSVGPoint();
-      point.x = event.clientX;
-      point.y = event.clientY;
-      const matrix = svg.getScreenCTM();
-      if (!matrix) return null;
-      return point.matrixTransform(matrix.inverse());
-    };
-
     const markCoverage = (x: number) => {
       const normalized = gsap.utils.clamp(0, 0.9999, x / WORDMARK_VIEWBOX.width);
       const bucketIndex = Math.floor(normalized * VIDEO_EASTER_EGG_BUCKETS);
@@ -697,15 +690,33 @@ export function Hero() {
       state.filledBuckets += 1;
     };
 
-    // Safari fires pointermove at display refresh rate (up to 120 Hz). Throttle
-    // the expensive SVG setAttribute call to once per animation frame while still
-    // accumulating every pointer point for coverage accuracy.
+    // Cache the SVG's screen CTM inverse so pointer→SVG coordinate mapping
+    // never calls getScreenCTM() at 60–120 Hz. getScreenCTM() forces a style
+    // recalculation on Safari; computing it once and caching the inverse cuts
+    // the per-event cost to a single DOMPoint matrixTransform.
+    let cachedInverse: DOMMatrix | null = null;
+    const updateCTM = () => {
+      const m = svg.getScreenCTM();
+      cachedInverse = m ? m.inverse() : null;
+    };
+    updateCTM();
+    window.addEventListener("resize", updateCTM, { passive: true });
+
+    const toSvgPoint = (event: PointerEvent) => {
+      if (!cachedInverse) return null;
+      return new DOMPoint(event.clientX, event.clientY).matrixTransform(cachedInverse);
+    };
+
+    // Throttle the SVG setAttribute flush to once per rAF. pointermove fires at
+    // display rate (up to 120 Hz) — all points are accumulated between flushes.
+    // Path segments are stored as a string[] and joined on flush only: avoids the
+    // O(n) full-string copies that happen when appending to a growing string.
     let paintRafId: number | null = null;
     let pendingPathFlush = false;
     const flushPath = () => {
       paintRafId = null;
       if (pendingPathFlush) {
-        paintPath.setAttribute("d", state.d);
+        paintPath.setAttribute("d", state.segs.join(" "));
         pendingPathFlush = false;
       }
     };
@@ -717,21 +728,19 @@ export function Hero() {
     const paintTo = (x: number, y: number, start = false) => {
       if (!wordmarkInteractiveRef.current) return;
       if (start || state.lastX === null || state.lastY === null) {
-        state.d += `${state.d ? " " : ""}M ${x.toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${y.toFixed(2)}`;
+        state.segs.push(`M ${x.toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${y.toFixed(2)}`);
         markCoverage(x);
       } else {
         const dx = x - state.lastX;
         const dy = y - state.lastY;
         const distance = Math.hypot(dx, dy);
         const steps = Math.max(1, Math.ceil(distance / 12));
-        let nextPath = state.d;
         for (let i = 1; i <= steps; i += 1) {
           const px = state.lastX + (dx * i) / steps;
           const py = state.lastY + (dy * i) / steps;
-          nextPath += ` L ${px.toFixed(2)} ${py.toFixed(2)}`;
+          state.segs.push(`L ${px.toFixed(2)} ${py.toFixed(2)}`);
           markCoverage(px);
         }
-        state.d = nextPath;
       }
 
       state.lastX = x;
@@ -776,6 +785,7 @@ export function Hero() {
     wordmark.addEventListener("pointerleave", onPointerLeave);
 
     return () => {
+      window.removeEventListener("resize", updateCTM);
       if (paintRafId !== null) {
         cancelAnimationFrame(paintRafId);
         paintRafId = null;
@@ -796,9 +806,21 @@ export function Hero() {
     if (!bgRef.current) return;
     let raf = 0;
 
+    // Cache viewport dimensions — avoids layout reads inside the rAF tick.
+    let viewW = window.innerWidth;
+    let viewH = window.innerHeight;
+    const onResize = () => { viewW = window.innerWidth; viewH = window.innerHeight; };
+    window.addEventListener("resize", onResize, { passive: true });
+
+    // Cache chip element list once — querySelectorAll inside rAF runs at 60fps otherwise.
+    const chipEls = chipsRef.current
+      ? (gsap.utils.toArray<HTMLElement>("[data-hero-pill]", chipsRef.current) as HTMLElement[])
+      : ([] as HTMLElement[]);
+    const chipCount = chipEls.length;
+
     const onMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
+      mouse.current.x = (e.clientX / viewW - 0.5) * 2;
+      mouse.current.y = (e.clientY / viewH - 0.5) * 2;
     };
 
     // Use GSAP quickSetters for the light band so GSAP manages all of its
@@ -817,23 +839,17 @@ export function Hero() {
       target.current.y += (mouse.current.y - target.current.y) * 0.08;
       const tx = target.current.x;
       const ty = target.current.y;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
 
       if (bgRef.current) {
-        bgRef.current.style.transform = `translate3d(${tx * LAYERS.bg * w}px,${ty * LAYERS.bg * h}px,0)`;
+        bgRef.current.style.transform = `translate3d(${tx * LAYERS.bg * viewW}px,${ty * LAYERS.bg * viewH}px,0)`;
       }
       if (lightXSet && lightYSet) {
-        lightXSet(tx * LAYERS.light * w);
-        lightYSet(ty * LAYERS.light * h);
+        lightXSet(tx * LAYERS.light * viewW);
+        lightYSet(ty * LAYERS.light * viewH);
       }
-      if (chipsRef.current) {
-        const children = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", chipsRef.current);
-        for (let i = 0; i < children.length; i++) {
-          const el = children[i];
-          const lag = 1 + i * 0.3;
-          el.style.transform = `translate3d(${tx * LAYERS.chip * w * lag}px,${ty * LAYERS.chip * h * lag}px,0)`;
-        }
+      for (let i = 0; i < chipCount; i++) {
+        const lag = 1 + i * 0.3;
+        chipEls[i].style.transform = `translate3d(${tx * LAYERS.chip * viewW * lag}px,${ty * LAYERS.chip * viewH * lag}px,0)`;
       }
 
       raf = requestAnimationFrame(tick);
@@ -844,6 +860,7 @@ export function Hero() {
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("resize", onResize);
       cancelAnimationFrame(raf);
     };
   }, [reduced]);
@@ -970,12 +987,13 @@ export function Hero() {
         className="sticky top-0 h-[100dvh] overflow-hidden"
         style={{
           zIndex: 1,
-          // Force a GPU compositing layer in Safari so the light band's
-          // mix-blend-mode:screen + filter:blur stay on the GPU path and
-          // don't cause full-page software repaints.
+          // Force a GPU compositing layer for the hero sticky zone.
+          // isolation:isolate was previously needed for mix-blend-mode:screen on
+          // the light band (removed in Round 2). Without it, Safari can composite
+          // the child layers (split <g> elements, light band) independently rather
+          // than as a single blending group, reducing re-composite area.
           transform: "translateZ(0)",
           WebkitTransform: "translateZ(0)",
-          isolation: "isolate",
         }}
         data-hero-zone
       >
@@ -997,6 +1015,7 @@ export function Hero() {
             zIndex: 0,
             background:
               "radial-gradient(circle at 50% 48%, rgba(var(--page-fg-rgb), .035) 0%, rgba(var(--page-fg-rgb), .012) 24%, transparent 62%)",
+            willChange: "transform",
           }}
         />
 
@@ -1104,7 +1123,6 @@ export function Hero() {
                         style={{
                           display: "inline-block",
                           color: "rgba(var(--page-fg-rgb), .56)",
-                          textShadow: "0 0 0 rgba(255,255,255,0)",
                         }}
                       >
                         {char === " " ? "\u00A0" : char}
@@ -1770,25 +1788,9 @@ export function Hero() {
 
       {/* Keyframes + mobile overrides */}
       <style>{`
-        @keyframes availDotPulse {
-          0%, 100% {
-            box-shadow: 0 0 6px rgba(74,222,128,.6), 0 0 14px rgba(74,222,128,.3), 0 0 28px rgba(74,222,128,.12);
-            transform: scale(1);
-          }
-          50% {
-            box-shadow: 0 0 10px rgba(74,222,128,.8), 0 0 22px rgba(74,222,128,.4), 0 0 40px rgba(74,222,128,.18);
-            transform: scale(1.15);
-          }
-        }
         @keyframes uxPillPulse {
-          0%, 100% {
-            box-shadow: 0 0 0 0 rgba(var(--page-fg-rgb), .15), 0 0 8px rgba(var(--page-fg-rgb), .08);
-            border-color: rgba(var(--page-fg-rgb), .15);
-          }
-          50% {
-            box-shadow: 0 0 12px 4px rgba(var(--page-fg-rgb), .12), 0 0 24px rgba(var(--page-fg-rgb), .06);
-            border-color: rgba(var(--page-fg-rgb), .25);
-          }
+          0%, 100% { opacity: 0.72; transform: scale(1); }
+          50%       { opacity: 1;    transform: scale(1.018); }
         }
 
         /* ─── MOBILE HERO (below md = 768px) ─── */
