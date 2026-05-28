@@ -308,8 +308,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "In 20 jaar ondernemen heb ik nog nooit een designer gehad die mijn idee in een keer zo goed wist te visualiseren.",
   },
   "testimonial.t3.quote": {
-    en: "DYSIGNS and Studio75 have built a strong partnership with clear communication, fast delivery and consistent quality.",
-    nl: "DYSIGNS en Studio75 werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
+    en: "DYSIGNS and Fijne Gasten have built a strong partnership with clear communication, fast delivery and consistent quality.",
+    nl: "DYSIGNS en Fijne Gasten werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
   },
   "testimonial.t4.quote": {
     en: "The website they designed didn\u2019t just look incredible — it transformed how our customers experience our brand.",

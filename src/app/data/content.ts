@@ -189,10 +189,10 @@ export const siteContent = {
     {
       id: "t3",
       quote:
-        "DYSIGNS en Studio75 werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
+        "DYSIGNS en Fijne Gasten werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
       name: "Luuk Beudeker",
       role: "Founder",
-      company: "Studio75",
+      company: "Fijne Gasten",
       avatar:
 "/images/luuk-studio.png"},
     // {
