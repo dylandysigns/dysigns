@@ -52,6 +52,7 @@ type ShowcaseSlide = {
 const SHOWCASE_PROJECT_SLUGS = [
   "stelz-web-design",
   "verkeersschool-beckers-branding",
+  "powermobile",
   "nova-brand-platform",
   "flux-motion-identity",
 ] as const;
@@ -69,6 +70,11 @@ const SHOWCASE_PROJECT_META: Record<
     bgColor: "#3f4a57",
     labelKey: "serviceShowcase.verkeersschool-beckers-branding.label",
     subtitleKey: "serviceShowcase.verkeersschool-beckers-branding.subtitle",
+  },
+  "powermobile": {
+    bgColor: "#1a2535",
+    labelKey: "serviceShowcase.powermobile.label",
+    subtitleKey: "serviceShowcase.powermobile.subtitle",
   },
   "nova-brand-platform": {
     bgColor: "#1a1a1a",
