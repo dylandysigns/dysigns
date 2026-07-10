@@ -240,7 +240,7 @@ export default function GiftFatinsBirthdayPage() {
           }}
         >
           {phase === "intro"
-            ? "Een cadeau van de mystery box."
+            ? "Goedzo bebe dat je de hele mystery box hebt open gemaakt anders had je misschien wel een cadeau gemist."
             : "We gaan er een leuke dag van maken"}
         </p>
 
@@ -375,7 +375,7 @@ function GiftCard({ visible }: { visible: boolean }) {
           marginBottom: 22,
         }}
       >
-        250 euro Roermond Outlet voor vandaag
+        300 euro spend-te-goed Roermond
       </h2>
 
       {/* Warm sub copy */}
@@ -389,7 +389,7 @@ function GiftCard({ visible }: { visible: boolean }) {
           marginBottom: 28,
         }}
       >
-        Dit is een digitaal cadeau van mijn mystery box, als je niks vind kan je het gebruiken voor iets anders.
+        Dit hoort bij de mystery cadeaubox, je hoeft niet alles uit te geven en mag je ook inruilen voor cash voor op vakantie.
       </p>
 
       {/* Signature */}
