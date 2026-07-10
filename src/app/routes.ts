@@ -9,8 +9,11 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
 
 export const router = createBrowserRouter([
+  // Hidden, unlinked page — no Header/Footer, no sitemap entry, noindex injected at runtime
+  { path: "/fatins-birthday", Component: FatinsBirthdayPage },
   {
     path: "/",
     Component: Layout,
