@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /fatins-birthday
+Disallow: /gift-fatins-birthday
 
 Sitemap: https://dylandysigns.com/sitemap.xml
