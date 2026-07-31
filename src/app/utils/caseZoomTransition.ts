@@ -59,6 +59,11 @@ export function resolveCaseTransitionSource(rootEl: HTMLElement): HTMLElement {
 }
 
 export function readTransitionFrom(): TransitionFromState | null {
+  // Called during render (via useMemo in CaseDetailPage), so it must not
+  // throw when there is no sessionStorage — e.g. during build-time
+  // prerendering in Node. In the browser this is always defined, so
+  // client behavior is unchanged.
+  if (typeof sessionStorage === "undefined") return null;
   const raw = sessionStorage.getItem(TRANSITION_FROM_STORAGE_KEY);
   if (!raw) return null;
 

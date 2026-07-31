@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, type RouteObject } from "react-router";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
@@ -12,7 +12,10 @@ import NotFoundPage from "./pages/NotFoundPage";
 import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
 import GiftFatinsBirthdayPage from "./pages/GiftFatinsBirthdayPage";
 
-export const router = createBrowserRouter([
+// Shared route definitions — consumed by createBrowserRouter (client) and by
+// scripts/prerender.mjs (createMemoryRouter, build-time HTML generation) so
+// there is a single source of truth for the route tree.
+export const routes: RouteObject[] = [
   // Hidden, unlinked pages — no Header/Footer, no sitemap entry, noindex injected at runtime
   { path: "/fatins-birthday", Component: FatinsBirthdayPage },
   { path: "/gift-fatins-birthday", Component: GiftFatinsBirthdayPage },
@@ -31,4 +34,10 @@ export const router = createBrowserRouter([
       { path: "*", Component: NotFoundPage },
     ],
   },
-]);
+];
+
+// Guarded: createBrowserRouter touches `document`, which does not exist
+// when this module is loaded under Node for build-time prerendering
+// (scripts/prerender.mjs only needs the `routes` array above, never this
+// export). In the browser this behaves exactly as before.
+export const router = typeof document !== "undefined" ? createBrowserRouter(routes) : undefined;
