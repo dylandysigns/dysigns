@@ -254,3 +254,69 @@
     opacity: 0.5;
   }
 }
+
+/* ─── CONTENT-PROSE (fase 2) ───────────────────────────────────────────
+   Styling for markdown-sourced page bodies (content/*.md). Reuses the
+   same font stack and --page-fg / --page-fg-rgb tokens as the rest of
+   the site — no new typography scale introduced. */
+.content-prose h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  color: var(--page-fg);
+  line-height: 1.25;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.content-prose h2:first-child {
+  margin-top: 0;
+}
+
+.content-prose h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--page-fg);
+  line-height: 1.3;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.content-prose p {
+  font-size: .95rem;
+  line-height: 1.75;
+  color: rgba(var(--page-fg-rgb), .65);
+  margin-bottom: 1rem;
+}
+
+.content-prose ul,
+.content-prose ol {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+  color: rgba(var(--page-fg-rgb), .65);
+  font-size: .95rem;
+  line-height: 1.75;
+}
+
+.content-prose li {
+  margin-bottom: 0.35rem;
+}
+
+.content-prose a {
+  color: var(--page-fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(var(--page-fg-rgb), .3);
+}
+
+.content-prose a:hover {
+  text-decoration-color: rgba(var(--page-fg-rgb), .7);
+}
+
+.content-prose strong {
+  color: var(--page-fg);
+  font-weight: 600;
+}

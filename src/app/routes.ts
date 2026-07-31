@@ -11,6 +11,15 @@ import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
 import GiftFatinsBirthdayPage from "./pages/GiftFatinsBirthdayPage";
+import {
+  WebdesignAlmerePage,
+  UxUiDesignPage,
+  ShopifyDevelopmentPage,
+  BrandingPage,
+} from "./pages/ServicePages";
+import CasesOverviewPage from "./pages/CasesOverviewPage";
+import CaseContentPage from "./pages/CaseContentPage";
+import OverDylanKhoPage from "./pages/OverDylanKhoPage";
 
 // Shared route definitions — consumed by createBrowserRouter (client) and by
 // scripts/prerender.mjs (createMemoryRouter, build-time HTML generation) so
@@ -24,6 +33,17 @@ export const routes: RouteObject[] = [
     Component: Layout,
     children: [
       { index: true, Component: HomePage },
+      // Fase 2 — nieuwe pagina-structuur uit de brief. Additief naast de
+      // bestaande routes hieronder: die blijven ongewijzigd werken tot
+      // fase 7 (redirects/canonicalisatie) expliciet over hun lot beslist.
+      { path: "webdesign-almere", Component: WebdesignAlmerePage },
+      { path: "ux-ui-design", Component: UxUiDesignPage },
+      { path: "shopify-development", Component: ShopifyDevelopmentPage },
+      { path: "branding", Component: BrandingPage },
+      { path: "cases", Component: CasesOverviewPage },
+      { path: "cases/:slug", Component: CaseContentPage },
+      { path: "over-dylan-kho", Component: OverDylanKhoPage },
+      // Bestaande routes — ongewijzigd.
       { path: "work", Component: WorkPage },
       { path: "work/:slug", Component: CaseDetailPage },
       { path: "services", Component: ServicesPage },

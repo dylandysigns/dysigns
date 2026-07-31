@@ -44,8 +44,20 @@ const SERVICE_SLUGS = [
   "creative-thinking",
 ];
 
+// Fase 2 — nieuwe casestructuur (content/cases/*.md).
+const CASE_SLUGS = ["stelz", "a-cafe", "dahley-tonia", "studio75"];
+
 const routesToPrerender = [
   "/",
+  // Fase 2 — nieuwe pagina-structuur.
+  "/webdesign-almere",
+  "/ux-ui-design",
+  "/shopify-development",
+  "/branding",
+  "/cases",
+  ...CASE_SLUGS.map((slug) => `/cases/${slug}`),
+  "/over-dylan-kho",
+  // Bestaande routes.
   "/work",
   ...PROJECT_SLUGS.map((slug) => `/work/${slug}`),
   "/services",

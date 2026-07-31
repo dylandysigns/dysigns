@@ -37,6 +37,26 @@ export default function NotFoundPage() {
         >
           Go home
         </a>
+
+        <nav aria-label="Hoofdsecties" className="mt-10">
+          <ul
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+            style={{
+              fontSize: ".72rem",
+              color: "rgba(var(--page-fg-rgb), .4)",
+              listStyle: "none",
+              padding: 0,
+            }}
+          >
+            <li><a href="/cases" style={{ color: "inherit" }}>Cases</a></li>
+            <li><a href="/webdesign-almere" style={{ color: "inherit" }}>Webdesign Almere</a></li>
+            <li><a href="/ux-ui-design" style={{ color: "inherit" }}>UX/UI Design</a></li>
+            <li><a href="/shopify-development" style={{ color: "inherit" }}>Shopify development</a></li>
+            <li><a href="/branding" style={{ color: "inherit" }}>Branding</a></li>
+            <li><a href="/over-dylan-kho" style={{ color: "inherit" }}>Over Dylan Kho</a></li>
+            <li><a href="/contact" style={{ color: "inherit" }}>Contact</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

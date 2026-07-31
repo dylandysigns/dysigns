@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
+import { Breadcrumb } from "../components/Breadcrumb";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -124,6 +125,10 @@ export default function ContactPage() {
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12"
       style={{ background: "var(--page-bg)" }}
     >
+      <div className="absolute top-24 left-6 md:left-12">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+      </div>
+
       <svg
         className="absolute top-6 left-6 w-10 h-10 pointer-events-none"
         viewBox="0 0 40 40"
