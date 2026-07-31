@@ -15,6 +15,7 @@ import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { useSiteContent } from "../hooks/useSiteContent";
 import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
+import { Seo } from "../components/Seo";
 import {
   openCaseWithZoom,
   prepareForCaseNavigation,
@@ -867,6 +868,12 @@ export default function ServiceDetailPage() {
   if (!service || !serviceContent) {
     return (
       <section className="min-h-screen flex items-center justify-center pt-24 px-6">
+        <Seo
+          title="Dienst niet gevonden | DYSIGNS"
+          description="Deze dienst bestaat niet (meer)."
+          path={`/services/${slug ?? ""}`}
+          robots="noindex, nofollow"
+        />
         <div className="text-center">
           <h1
             style={{
@@ -902,6 +909,13 @@ export default function ServiceDetailPage() {
       className="relative overflow-x-clip px-6 pb-24 pt-24 md:px-12 md:pb-28 lg:px-16"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title={`${serviceContent.title} | DYSIGNS`}
+        description={serviceContent.description.length > 155
+          ? `${serviceContent.description.slice(0, 152)}…`
+          : serviceContent.description}
+        path={`/services/${slug ?? ""}`}
+      />
       <div className="mx-auto max-w-[1320px]">
         <TransitionLink
           to="/services"

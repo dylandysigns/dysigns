@@ -5,6 +5,10 @@ import { ZoomToGrid } from "../components/home/ZoomToGrid";
 import { Services } from "../components/home/Services";
 import { KindWords } from "../components/home/KindWords";
 import { ContactBand } from "../components/home/ContactBand";
+import { Seo } from "../components/Seo";
+import { getContent } from "../content/loadContent";
+
+const homeContent = getContent("home.md");
 
 export default function HomePage() {
   /**
@@ -23,6 +27,11 @@ export default function HomePage() {
 
   return (
     <>
+      <Seo
+        title={homeContent.frontmatter.title}
+        description={homeContent.frontmatter.description}
+        path="/"
+      />
       <Hero />
       <ZoomToGrid />
       <Services />

@@ -6,6 +6,7 @@ import { projects as rawProjects } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
+import { Seo } from "../components/Seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,6 +117,11 @@ export default function WorkPage() {
       className="relative pt-32 pb-24 md:pb-36 px-6 md:px-12 lg:px-16"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title="Werk | DYSIGNS"
+        description="Bekijk projecten van DYSIGNS: webdesign, branding en digitale interfaces voor ondernemers en bureaus."
+        path="/work"
+      />
       <div className="max-w-[1320px] mx-auto">
         <div className="mb-12">
           <span

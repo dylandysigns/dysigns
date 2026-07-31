@@ -1,27 +1,48 @@
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
+import { Seo } from "./Seo";
 import type { ContentEntry } from "../content/loadContent";
 
 /**
- * ContentPage — shared shell for markdown-driven pages (fase 2).
+ * ContentPage — shared shell for markdown-driven pages (fase 2/3).
  * Reuses the site's existing typography tokens (--page-fg, --page-fg-rgb,
  * Inter / Instrument Serif) — no new visual language introduced.
+ * Renders <Seo> from the entry's own frontmatter (title/description),
+ * so every page using this shell automatically gets fase 3 head values.
  */
 export function ContentPage({
   entry,
   eyebrow,
   breadcrumb,
+  ogType,
+  robots,
+  path: pathOverride,
 }: {
   entry: ContentEntry;
   eyebrow: string;
   breadcrumb: BreadcrumbItem[];
+  ogType?: "website" | "article";
+  robots?: string;
+  /** Route path, e.g. "/cases/stelz". Defaults to "/" + frontmatter.slug —
+   * pass explicitly when the route nests under a prefix the slug alone
+   * doesn't encode (e.g. cases live under /cases/:slug, not /:slug). */
+  path?: string;
 }) {
   const heading = entry.frontmatter.heading || entry.frontmatter.title;
+  const path =
+    pathOverride ?? (entry.frontmatter.slug === "/" ? "/" : `/${entry.frontmatter.slug}`);
 
   return (
     <section
       className="relative"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title={entry.frontmatter.title}
+        description={entry.frontmatter.description}
+        path={path}
+        ogType={ogType}
+        robots={robots}
+      />
       <div className="max-w-[800px] mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="mb-8">
           <Breadcrumb items={breadcrumb} />

@@ -1,6 +1,14 @@
+import { Seo } from "../components/Seo";
+
 export default function NotFoundPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
+      <Seo
+        title="Pagina niet gevonden | DYSIGNS"
+        description="Deze pagina bestaat niet (meer)."
+        path="/404"
+        robots="noindex, nofollow"
+      />
       <div className="text-center">
         <h1
           style={{

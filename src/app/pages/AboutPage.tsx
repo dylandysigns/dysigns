@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { aboutImage } from "../data/projects";
+import { Seo } from "../components/Seo";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
@@ -113,6 +114,11 @@ export default function AboutPage() {
       className="relative"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title="Over ons | DYSIGNS"
+        description="DYSIGNS is een digital design bureau uit Almere, opgericht door Dylan Kho. Maak kennis met wie we zijn en waar we voor staan."
+        path="/about"
+      />
       <div
         className="relative w-full overflow-hidden"
         style={{ height: "55vh", minHeight: 350 }}

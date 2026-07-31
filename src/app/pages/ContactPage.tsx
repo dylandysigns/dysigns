@@ -6,8 +6,12 @@ import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
+import { getContent } from "../content/loadContent";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const contactContent = getContent("contact.md");
 
 /* WhatsApp inline SVG icon — same as Header / Footer */
 function WhatsAppIcon({ size = 18, className = "" }: { size?: number; className?: string }) {
@@ -125,6 +129,11 @@ export default function ContactPage() {
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12"
       style={{ background: "var(--page-bg)" }}
     >
+      <Seo
+        title={contactContent.frontmatter.title}
+        description={contactContent.frontmatter.description}
+        path="/contact"
+      />
       <div className="absolute top-24 left-6 md:left-12">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
       </div>

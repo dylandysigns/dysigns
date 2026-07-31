@@ -5,6 +5,7 @@ import { ServiceCard } from "../components/services/ServiceCard";
 import { serviceDefinitions } from "../data/serviceTaxonomy";
 import { useLanguage } from "../hooks/useLanguage";
 import { useSiteContent } from "../hooks/useSiteContent";
+import { Seo } from "../components/Seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,11 @@ export default function ServicesPage() {
       className="relative pt-32 pb-24 md:pb-36 px-6 md:px-12 lg:px-16"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title="Diensten | DYSIGNS"
+        description="Brand identity, UX/UI design, social media management en creative direction — de diensten van DYSIGNS."
+        path="/services"
+      />
       <div className="max-w-[1200px] mx-auto">
         <div className="max-w-[760px] mb-14 md:mb-16">
           <span

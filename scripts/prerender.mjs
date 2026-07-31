@@ -66,6 +66,43 @@ const routesToPrerender = [
   "/contact",
 ];
 
+// Fase 3 — inject each route's captured <Seo> values into its own <head>.
+// Regexes target each tag by its distinguishing attribute (name=/
+// property=/rel=) and replace only the value, so the rest of the base
+// template (JSON-LD, preloads, favicon, og:image, twitter:card, ...)
+// stays untouched and identical across routes.
+function escapeAttr(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function replaceTag(html, regex, replacementValue, label) {
+  if (!regex.test(html)) {
+    throw new Error(`Kon ${label} niet vinden in de HTML-template om te vervangen.`);
+  }
+  return html.replace(regex, replacementValue);
+}
+
+function injectHead(html, meta, canonicalUrl) {
+  const title = escapeAttr(meta.title);
+  const description = escapeAttr(meta.description);
+  const robots = escapeAttr(meta.robots ?? "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1");
+  const url = escapeAttr(canonicalUrl);
+  const ogType = escapeAttr(meta.ogType ?? "website");
+
+  let out = html;
+  out = replaceTag(out, /<title>[^<]*<\/title>/, `<title>${title}</title>`, "<title>");
+  out = replaceTag(out, /(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="description"');
+  out = replaceTag(out, /(<meta\s+name="robots"\s+content=")[^"]*(")/, `$1${robots}$2`, 'meta name="robots"');
+  out = replaceTag(out, /(<link\s+rel="canonical"\s+href=")[^"]*(")/, `$1${url}$2`, 'link rel="canonical"');
+  out = replaceTag(out, /(<meta\s+property="og:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta property="og:title"');
+  out = replaceTag(out, /(<meta\s+property="og:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta property="og:description"');
+  out = replaceTag(out, /(<meta\s+property="og:url"\s+content=")[^"]*(")/, `$1${url}$2`, 'meta property="og:url"');
+  out = replaceTag(out, /(<meta\s+property="og:type"\s+content=")[^"]*(")/, `$1${ogType}$2`, 'meta property="og:type"');
+  out = replaceTag(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta name="twitter:title"');
+  out = replaceTag(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="twitter:description"');
+  return out;
+}
+
 async function run() {
   const vite = await createServer({
     root,
@@ -94,6 +131,17 @@ async function run() {
   // the long-established, synchronous-safe SSR pattern for this case.
   const { StaticRouter, useRoutes } = await vite.ssrLoadModule("react-router");
 
+  // Fase 3 — must load through the SAME Vite SSR module graph as the app
+  // code (Layout.tsx, page components) that imports these, for the exact
+  // dual-instance reason noted above for react-router: a plain top-level
+  // `import` here would create a second, disconnected copy of the
+  // capturedMeta module-level variable, and this script would always read
+  // it back as null.
+  const { getCapturedMeta, resetCapturedMeta } = await vite.ssrLoadModule(
+    "/src/app/seo/capturedMeta.ts",
+  );
+  const { validatePageMeta, canonicalUrl } = await vite.ssrLoadModule("/src/app/seo/meta.ts");
+
   function RouteTree({ url }) {
     return React.createElement(
       StaticRouter,
@@ -111,11 +159,20 @@ async function run() {
   }
 
   for (const url of routesToPrerender) {
+    resetCapturedMeta();
     const appHtml = renderToStaticMarkup(React.createElement(RouteTree, { url }));
-    const html = template.replace(
+    let html = template.replace(
       '<div id="root"></div>',
       `<div id="root">${appHtml}</div>`,
     );
+
+    const meta = getCapturedMeta();
+    if (meta) {
+      validatePageMeta(meta); // throws (fails the build) if title/description too long
+      html = injectHead(html, meta, canonicalUrl(meta.path));
+    } else {
+      console.warn(`  ! ${url}: geen <Seo> gevonden, head blijft de standaardwaarden houden`);
+    }
 
     const outPath =
       url === "/"
@@ -128,13 +185,19 @@ async function run() {
   }
 
   // 404.html — same shell, NotFoundPage renders for any unmatched path.
+  resetCapturedMeta();
   const notFoundHtml = renderToStaticMarkup(
     React.createElement(RouteTree, { url: "/__404__" }),
   );
-  const notFoundPage = template.replace(
+  let notFoundPage = template.replace(
     '<div id="root"></div>',
     `<div id="root">${notFoundHtml}</div>`,
   );
+  const notFoundMeta = getCapturedMeta();
+  if (notFoundMeta) {
+    validatePageMeta(notFoundMeta);
+    notFoundPage = injectHead(notFoundPage, notFoundMeta, canonicalUrl(notFoundMeta.path));
+  }
   await fs.writeFile(path.join(distDir, "404.html"), notFoundPage);
   console.log("prerendered 404 -> 404.html");
 

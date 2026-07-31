@@ -6,6 +6,7 @@
  */
 
 import { useState, useCallback } from "react";
+import { Seo } from "../components/Seo";
 
 /* ─── Types ─── */
 interface Field {
@@ -790,6 +791,12 @@ export default function DocsPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#000", color: "#fff" }}>
+      <Seo
+        title="Docs | DYSIGNS"
+        description="Interne content-editing gids, niet bedoeld voor indexering."
+        path="/docs"
+        robots="noindex, nofollow"
+      />
       <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-24 md:py-36">
         {/* ── Header ── */}
         <div style={{ marginBottom: "2rem" }}>

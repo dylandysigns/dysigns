@@ -7,6 +7,16 @@ import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
+import { Seo } from "../components/Seo";
+
+// Meta description max is 155 chars (fase 3 validation) — project.overview
+// is longer prose, so truncate at a word boundary rather than fabricate
+// a separate summary.
+function truncateForDescription(text: string, max = 155): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  return clean.slice(0, clean.lastIndexOf(" ", max - 1)) + "…";
+}
 import {
   clearTransitionFrom,
   consumeCaseTransitionOverlay,
@@ -324,6 +334,12 @@ export default function CaseDetailPage() {
   if (!project) {
     return (
       <section className="min-h-screen flex items-center justify-center pt-24">
+        <Seo
+          title="Case niet gevonden | DYSIGNS"
+          description="Deze case bestaat niet (meer)."
+          path={`/work/${slug ?? ""}`}
+          robots="noindex, nofollow"
+        />
         <div className="text-center">
           <h1
             style={{
@@ -362,6 +378,12 @@ export default function CaseDetailPage() {
       className="relative"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title={`${project.title} | DYSIGNS`}
+        description={truncateForDescription(project.overview)}
+        path={`/work/${slug ?? ""}`}
+        ogType="article"
+      />
       {pageCoverImage ? (
         <div
           id="pageCover"

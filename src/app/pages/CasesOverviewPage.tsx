@@ -1,4 +1,5 @@
 import { Breadcrumb } from "../components/Breadcrumb";
+import { Seo } from "../components/Seo";
 import { getContent, getAllCases } from "../content/loadContent";
 
 export default function CasesOverviewPage() {
@@ -10,6 +11,11 @@ export default function CasesOverviewPage() {
       className="relative"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
+      <Seo
+        title={entry.frontmatter.title}
+        description={entry.frontmatter.description}
+        path="/cases"
+      />
       <div className="max-w-[800px] mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="mb-8">
           <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Cases" }]} />

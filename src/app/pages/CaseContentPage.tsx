@@ -16,6 +16,8 @@ export default function CaseContentPage() {
     <ContentPage
       entry={entry}
       eyebrow="Case"
+      path={`/cases/${slug}`}
+      ogType="article"
       breadcrumb={[
         { label: "Home", href: "/" },
         { label: "Cases", href: "/cases" },
