@@ -4,9 +4,13 @@ description: Projecten van DYSIGNS voor merken in food, retail en e-commerce. Be
 heading: Cases
 slug: cases
 answerBlock: |
-  TODO_DYLAN — antwoordblok van 40 tot 60 woorden dat samenvat wat voor
-  cases hier staan en voor wie dat relevant is.
-lastUpdated: 2026-07-31
+  Een overzicht van projecten van DYSIGNS: websites, webshops en
+  digitale interfaces gebouwd voor ondernemers, scale-ups en bureaus in
+  Nederland en België. Elke case toont de vraag, de aanpak, wat er
+  gebouwd is en het resultaat — inclusief de gebruikte techniek.
+lastUpdated: 2026-08-01
 ---
 
-TODO_DYLAN — korte intro boven het case-overzicht.
+TODO_DYLAN — korte intro boven het case-overzicht, pas relevant zodra de
+onderliggende cases (content/cases/*.md) echte inhoud hebben in plaats
+van TODO_DYLAN-placeholders.

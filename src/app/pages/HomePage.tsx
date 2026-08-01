@@ -7,6 +7,7 @@ import { KindWords } from "../components/home/KindWords";
 import { ContactBand } from "../components/home/ContactBand";
 import { Seo } from "../components/Seo";
 import { getContent } from "../content/loadContent";
+import { faqPageSchema } from "../seo/schema";
 
 const homeContent = getContent("home.md");
 
@@ -31,6 +32,11 @@ export default function HomePage() {
         title={homeContent.frontmatter.title}
         description={homeContent.frontmatter.description}
         path="/"
+        schema={
+          homeContent.faqItems.length > 0
+            ? [faqPageSchema(homeContent.faqItems)]
+            : undefined
+        }
       />
       <Hero />
       <ZoomToGrid />

@@ -4,10 +4,11 @@ description: Logo, huisstijl en designsysteem voor merken die online groeien. DY
 heading: Branding
 slug: branding
 answerBlock: |
-  TODO_DYLAN — antwoordblok van 40 tot 60 woorden dat direct beantwoordt
-  wie, wat, voor wie en waar voor de dienst branding. Geen marketingtaal,
-  concrete feiten.
-lastUpdated: 2026-07-31
+  DYSIGNS ontwikkelt visuele identiteiten vanuit Almere, voor merken in
+  Nederland en België die online willen groeien. Van strategie tot
+  logo en huisstijl — met een systeem dat consistent doorwerkt in je
+  website, webshop en social kanalen, niet alleen op papier blijft.
+lastUpdated: 2026-08-01
 ---
 
 ## Wat kost branding?
@@ -20,21 +21,26 @@ TODO_DYLAN — doorlooptijd in weken.
 
 ## Wat je krijgt
 
-### TODO_DYLAN
+### Merkstrategie
 
-TODO_DYLAN
+Helderheid over waar je merk voor staat, vóórdat er een logo of kleur
+wordt gekozen.
 
-### TODO_DYLAN
+### Logo & huisstijl
 
-TODO_DYLAN
+Een visuele identiteit inclusief logo, kleuren, typografie en
+toepassingen.
 
-### TODO_DYLAN
+### Designsysteem
 
-TODO_DYLAN
+Richtlijnen zodat je merk consistent blijft, ook wanneer nieuwe
+uitingen door anderen gemaakt worden.
 
 ## Voor wie
 
-TODO_DYLAN
+Voor merken die willen groeien en een visuele identiteit nodig hebben
+die meegaat in hun website, webshop en social kanalen — niet een losse
+huisstijl die daar los van staat.
 
 ## Cases
 
@@ -42,4 +48,32 @@ TODO_DYLAN — minimaal twee gerelateerde cases, zie fase 6 voor de interne-link
 
 ## Veelgestelde vragen
 
-TODO_DYLAN — drie tot vijf vragen, antwoorden beginnen met het antwoord, geen inleiding.
+### Begint branding altijd bij een nieuw logo?
+
+Niet per se — soms is een bestaand logo nog goed, maar ontbreekt er een
+consistent systeem eromheen dat het merk overal even herkenbaar maakt.
+We kijken eerst naar wat er al staat en wat daarvan bruikbaar is,
+vóórdat we voorstellen om alles opnieuw te doen.
+
+### Werken jullie ook aan een bestaande huisstijl, of alleen vanaf nul?
+
+Beide. Een bestaande huisstijl aanscherpen en uitbreiden komt net zo
+vaak voor als een merk vanaf nul opbouwen. In beide gevallen begint het
+traject met helderheid over waar het merk voor staat, niet meteen met
+nieuwe kleuren of een nieuw logo.
+
+### Krijg ik ook richtlijnen voor social media mee?
+
+Ja, een designsysteem dat doorwerkt in je social kanalen is onderdeel
+van een brandingtraject, niet een aparte losse dienst. Dat betekent
+duidelijke richtlijnen voor hoe het merk visueel terugkomt in posts,
+templates en andere uitingen, zodat die niet los komen te staan van de
+rest van de identiteit.
+
+### Bouwen jullie de website of webshop ook, of alleen de identiteit?
+
+Beide is mogelijk. Naast branding bouwt DYSIGNS ook websites via
+webdesign en webshops via Shopify development, dus een identiteit kan
+in hetzelfde traject doorvertaald worden naar een nieuwe site of
+webshop in plaats van dat de identiteit los blijft staan van waar hij
+uiteindelijk zichtbaar wordt.

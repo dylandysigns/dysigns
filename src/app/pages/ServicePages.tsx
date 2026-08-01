@@ -1,6 +1,6 @@
 import { ContentPage } from "../components/ContentPage";
 import { getContent } from "../content/loadContent";
-import { serviceSchema } from "../seo/schema";
+import { serviceSchema, faqPageSchema } from "../seo/schema";
 
 /**
  * The four active service pages (fase 2). Exactly these four — no more —
@@ -26,6 +26,10 @@ function ServicePage({ slug, label }: { slug: string; label: string }) {
           description: entry.frontmatter.description,
           path,
         }),
+        // Only emits real Q&A — extractFaqItems() already filters out
+        // TODO_DYLAN placeholder answers, so this is [] until genuine
+        // content exists (fase 4's deferred FAQPage, now unblocked).
+        ...(entry.faqItems.length > 0 ? [faqPageSchema(entry.faqItems)] : []),
       ]}
     />
   );
