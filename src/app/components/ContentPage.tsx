@@ -1,13 +1,16 @@
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { Seo } from "./Seo";
+import { breadcrumbListSchema } from "../seo/schema";
 import type { ContentEntry } from "../content/loadContent";
 
 /**
- * ContentPage — shared shell for markdown-driven pages (fase 2/3).
+ * ContentPage — shared shell for markdown-driven pages (fase 2/3/4).
  * Reuses the site's existing typography tokens (--page-fg, --page-fg-rgb,
  * Inter / Instrument Serif) — no new visual language introduced.
  * Renders <Seo> from the entry's own frontmatter (title/description),
- * so every page using this shell automatically gets fase 3 head values.
+ * so every page using this shell automatically gets fase 3 head values,
+ * plus a BreadcrumbList schema built from the same breadcrumb items
+ * shown on the page (fase 4) and any page-type-specific schema passed in.
  */
 export function ContentPage({
   entry,
@@ -16,6 +19,7 @@ export function ContentPage({
   ogType,
   robots,
   path: pathOverride,
+  extraSchema,
 }: {
   entry: ContentEntry;
   eyebrow: string;
@@ -26,10 +30,20 @@ export function ContentPage({
    * pass explicitly when the route nests under a prefix the slug alone
    * doesn't encode (e.g. cases live under /cases/:slug, not /:slug). */
   path?: string;
+  /** Page-type schema (Service/CreativeWork/ProfilePage/...) from
+   * src/app/seo/schema.ts — appended alongside the BreadcrumbList. */
+  extraSchema?: object[];
 }) {
   const heading = entry.frontmatter.heading || entry.frontmatter.title;
   const path =
     pathOverride ?? (entry.frontmatter.slug === "/" ? "/" : `/${entry.frontmatter.slug}`);
+
+  const breadcrumbSchema = breadcrumbListSchema(
+    breadcrumb.map((item) => ({
+      name: item.label,
+      path: item.href ?? path, // current page has no href — it's its own URL
+    })),
+  );
 
   return (
     <section
@@ -42,6 +56,7 @@ export function ContentPage({
         path={path}
         ogType={ogType}
         robots={robots}
+        schema={[breadcrumbSchema, ...(extraSchema ?? [])]}
       />
       <div className="max-w-[800px] mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="mb-8">

@@ -100,6 +100,26 @@ function injectHead(html, meta, canonicalUrl) {
   out = replaceTag(out, /(<meta\s+property="og:type"\s+content=")[^"]*(")/, `$1${ogType}$2`, 'meta property="og:type"');
   out = replaceTag(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta name="twitter:title"');
   out = replaceTag(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="twitter:description"');
+
+  // Fase 4 — page-type JSON-LD (Service/CreativeWork/ProfilePage/
+  // BreadcrumbList/...), merged into the SAME @graph array as the
+  // site-wide script (id="site-schema": Person, Organization,
+  // LocalBusiness, WebSite) rather than a second separate <script> tag.
+  // @id references (e.g. CreativeWork.author -> #person) only resolve
+  // unambiguously within one JSON-LD graph — two separate script blocks
+  // on the same page is a widely-tolerated pattern in practice, but
+  // merging into one graph removes any doubt entirely.
+  if (meta.schema && meta.schema.length > 0) {
+    const siteSchemaRegex = /(<script type="application\/ld\+json" id="site-schema">)([\s\S]*?)(<\/script>)/;
+    const match = out.match(siteSchemaRegex);
+    if (!match) {
+      throw new Error('Kon <script type="application/ld+json" id="site-schema"> niet vinden om fase 4-schema in samen te voegen.');
+    }
+    const siteSchema = JSON.parse(match[2]);
+    siteSchema["@graph"].push(...meta.schema);
+    out = out.replace(siteSchemaRegex, `$1\n      ${JSON.stringify(siteSchema)}\n      $3`);
+  }
+
   return out;
 }
 

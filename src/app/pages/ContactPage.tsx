@@ -8,6 +8,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { getContent } from "../content/loadContent";
+import { breadcrumbListSchema } from "../seo/schema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,6 +134,12 @@ export default function ContactPage() {
         title={contactContent.frontmatter.title}
         description={contactContent.frontmatter.description}
         path="/contact"
+        schema={[
+          breadcrumbListSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ]}
       />
       <div className="absolute top-24 left-6 md:left-12">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />

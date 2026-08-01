@@ -1,5 +1,6 @@
 import { ContentPage } from "../components/ContentPage";
 import { getContent } from "../content/loadContent";
+import { serviceSchema } from "../seo/schema";
 
 /**
  * The four active service pages (fase 2). Exactly these four — no more —
@@ -9,6 +10,7 @@ import { getContent } from "../content/loadContent";
 
 function ServicePage({ slug, label }: { slug: string; label: string }) {
   const entry = getContent(`services/${slug}.md`);
+  const path = `/${slug}`;
   return (
     <ContentPage
       entry={entry}
@@ -17,6 +19,13 @@ function ServicePage({ slug, label }: { slug: string; label: string }) {
         { label: "Home", href: "/" },
         { label: "Diensten" },
         { label },
+      ]}
+      extraSchema={[
+        serviceSchema({
+          name: label,
+          description: entry.frontmatter.description,
+          path,
+        }),
       ]}
     />
   );

@@ -10,6 +10,9 @@ export interface PageMeta {
   path: string;
   ogType?: "website" | "article";
   robots?: string;
+  /** Page-type JSON-LD nodes (fase 4) — built via src/app/seo/schema.ts
+   * helpers, e.g. [breadcrumbListSchema(...), serviceSchema(...)]. */
+  schema?: object[];
 }
 
 export function canonicalUrl(path: string): string {

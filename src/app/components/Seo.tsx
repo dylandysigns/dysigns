@@ -37,6 +37,27 @@ function setCanonicalLink(href: string) {
   el.setAttribute("href", href);
 }
 
+const SITE_SCHEMA_SCRIPT_ID = "site-schema";
+
+// The site-wide graph (Person, Organization, LocalBusiness, WebSite) as
+// originally server-rendered — captured once, before this module's own
+// mutations touch the DOM, so repeated SPA navigations always merge
+// page-specific nodes onto the pristine base instead of onto whatever
+// the previous page already merged in (which would accumulate forever).
+let baseGraph: object[] | null = null;
+
+function setPageSchema(nodes: object[] | undefined) {
+  const el = document.getElementById(SITE_SCHEMA_SCRIPT_ID) as HTMLScriptElement | null;
+  if (!el) return; // shouldn't happen — index.html always ships this script
+
+  if (baseGraph === null) {
+    baseGraph = (JSON.parse(el.textContent || "{}")["@graph"] ?? []) as object[];
+  }
+
+  const graph = nodes && nodes.length > 0 ? [...baseGraph, ...nodes] : baseGraph;
+  el.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+}
+
 /**
  * Seo — per-page head values (fase 3).
  *
@@ -68,7 +89,12 @@ export function Seo(meta: PageMeta) {
     setMetaByName("twitter:title", meta.title);
     setMetaByName("twitter:description", meta.description);
     setMetaByName("twitter:image", OG_IMAGE);
-  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots]);
+    setPageSchema(meta.schema);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- schema is a
+    // freshly-built array of object literals on every render; comparing
+    // its JSON string (not the reference) avoids re-running this effect
+    // on every render while still reacting to actual content changes.
+  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots, JSON.stringify(meta.schema)]);
 
   return null;
 }

@@ -1,6 +1,7 @@
 import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { getContent, getAllCases } from "../content/loadContent";
+import { breadcrumbListSchema } from "../seo/schema";
 
 export default function CasesOverviewPage() {
   const entry = getContent("cases-overview.md");
@@ -15,6 +16,12 @@ export default function CasesOverviewPage() {
         title={entry.frontmatter.title}
         description={entry.frontmatter.description}
         path="/cases"
+        schema={[
+          breadcrumbListSchema([
+            { name: "Home", path: "/" },
+            { name: "Cases", path: "/cases" },
+          ]),
+        ]}
       />
       <div className="max-w-[800px] mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="mb-8">
