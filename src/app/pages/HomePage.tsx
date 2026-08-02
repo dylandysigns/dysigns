@@ -42,6 +42,24 @@ export default function HomePage() {
       <ZoomToGrid />
       <Services />
       <KindWords />
+      {/* Renders content/home.md's body — "Wat DYSIGNS doet" (links to
+          the 4 service pages, fase 6), "Hoe we werken", FAQ. Without
+          this, the FAQPage schema above would describe content that
+          isn't actually visible on the page, which structured-data
+          guidelines explicitly warn against. Reuses the same
+          .content-prose treatment as the other content-driven pages —
+          no new visual language. */}
+      <section
+        className="relative"
+        style={{ background: "var(--page-bg)" }}
+      >
+        <div className="max-w-[800px] mx-auto px-6 md:px-12 py-16 md:py-24">
+          <div
+            className="content-prose"
+            dangerouslySetInnerHTML={{ __html: homeContent.bodyHtml }}
+          />
+        </div>
+      </section>
       <ContactBand />
     </>
   );

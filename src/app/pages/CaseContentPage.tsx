@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { ContentPage } from "../components/ContentPage";
+import { CaseFooterLinks } from "../components/CaseFooterLinks";
 import { getContent, getCaseSlugs } from "../content/loadContent";
 import { creativeWorkSchema } from "../seo/schema";
 import NotFoundPage from "./NotFoundPage";
@@ -34,6 +35,8 @@ export default function CaseContentPage() {
           datePublished: entry.frontmatter.lastUpdated,
         }),
       ]}
-    />
+    >
+      <CaseFooterLinks caseEntry={entry} />
+    </ContentPage>
   );
 }

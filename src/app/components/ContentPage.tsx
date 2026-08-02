@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { Seo } from "./Seo";
 import { breadcrumbListSchema } from "../seo/schema";
@@ -20,6 +21,7 @@ export function ContentPage({
   robots,
   path: pathOverride,
   extraSchema,
+  children,
 }: {
   entry: ContentEntry;
   eyebrow: string;
@@ -33,6 +35,10 @@ export function ContentPage({
   /** Page-type schema (Service/CreativeWork/ProfilePage/...) from
    * src/app/seo/schema.ts — appended alongside the BreadcrumbList. */
   extraSchema?: object[];
+  /** Rendered after the markdown body — for component-driven sections
+   * (fase 6 related-cases, author byline) that can't live in static
+   * markdown because they depend on other content entries. */
+  children?: ReactNode;
 }) {
   const heading = entry.frontmatter.heading || entry.frontmatter.title;
   const path =
@@ -108,6 +114,8 @@ export function ContentPage({
           className="content-prose mt-10"
           dangerouslySetInnerHTML={{ __html: entry.bodyHtml }}
         />
+
+        {children}
       </div>
     </section>
   );

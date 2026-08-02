@@ -4,6 +4,7 @@ description: TODO_DYLAN — uniek, max 150 tekens, benoem klant en resultaat.
 heading: "STËLZ: TODO_DYLAN"
 slug: stelz
 client: STËLZ
+services: webdesign-almere, ux-ui-design
 answerBlock: |
   TODO_DYLAN — antwoordblok: klant, vraag, oplossing, resultaat.
 lastUpdated: 2026-07-31

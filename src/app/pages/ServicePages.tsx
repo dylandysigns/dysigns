@@ -1,4 +1,5 @@
 import { ContentPage } from "../components/ContentPage";
+import { RelatedCases } from "../components/RelatedCases";
 import { getContent } from "../content/loadContent";
 import { serviceSchema, faqPageSchema } from "../seo/schema";
 
@@ -31,7 +32,9 @@ function ServicePage({ slug, label }: { slug: string; label: string }) {
         // content exists (fase 4's deferred FAQPage, now unblocked).
         ...(entry.faqItems.length > 0 ? [faqPageSchema(entry.faqItems)] : []),
       ]}
-    />
+    >
+      <RelatedCases serviceSlug={slug} serviceLabel={label} />
+    </ContentPage>
   );
 }
 

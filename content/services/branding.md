@@ -42,10 +42,6 @@ Voor merken die willen groeien en een visuele identiteit nodig hebben
 die meegaat in hun website, webshop en social kanalen — niet een losse
 huisstijl die daar los van staat.
 
-## Cases
-
-TODO_DYLAN — minimaal twee gerelateerde cases, zie fase 6 voor de interne-linklogica.
-
 ## Veelgestelde vragen
 
 ### Begint branding altijd bij een nieuw logo?

@@ -42,10 +42,6 @@ doorontwikkeling.
 Voor ondernemers en bureaus met een Shopify-webshop die verder wil dan
 een standaardtheme, of die een bestaande shop wil laten verbeteren.
 
-## Cases
-
-TODO_DYLAN — minimaal twee gerelateerde cases, zie fase 6 voor de interne-linklogica.
-
 ## Wanneer Shopify niet de juiste keuze is
 
 Shopify is sterk voor de meeste e-commerce use cases, maar niet voor

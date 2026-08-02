@@ -13,22 +13,22 @@ lastUpdated: 2026-08-01
 
 ## Wat DYSIGNS doet
 
-### Webdesign Almere
+### [Webdesign Almere](/webdesign-almere)
 
 Maatwerk websites die er niet alleen goed uitzien, maar ook presteren —
 van eerste ontwerp tot een werkende, snelle site.
 
-### UX/UI design
+### [UX/UI design](/ux-ui-design)
 
 Van gebruikersonderzoek tot een compleet designsysteem, zodat interfaces
 logisch aanvoelen voor de mensen die ze daadwerkelijk gebruiken.
 
-### Shopify development
+### [Shopify development](/shopify-development)
 
 Maatwerk Shopify-thema's en custom secties voor webshops die moeten
 blijven converteren, niet alleen goed ogen.
 
-### Branding
+### [Branding](/branding)
 
 Een visuele identiteit die verder gaat dan een logo — een systeem dat
 meegaat in je website, webshop en social kanalen.

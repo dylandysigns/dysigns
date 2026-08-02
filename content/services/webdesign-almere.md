@@ -42,10 +42,6 @@ Voor ondernemers, scale-ups en bureaus die een website willen die
 verder gaat dan een sjabloon — en die liever met één vast
 aanspreekpunt werken dan met een wisselend team.
 
-## Cases
-
-TODO_DYLAN — minimaal twee gerelateerde cases, zie fase 6 voor de interne-linklogica.
-
 ## Veelgestelde vragen
 
 ### Bouwen jullie op een bestaand platform, of volledig op maat?

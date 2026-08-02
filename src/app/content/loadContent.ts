@@ -89,3 +89,42 @@ export function getAllCases(): ContentEntry[] {
     .map((slug) => getContent(`cases/${slug}.md`))
     .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
 }
+
+/** `services:` frontmatter is a comma-separated list of service slugs,
+ * e.g. "webdesign-almere, ux-ui-design". Empty/absent until a case has
+ * a confirmed real relationship to a service — see getCasesForService(). */
+export function getCaseServiceSlugs(caseEntry: ContentEntry): string[] {
+  const raw = caseEntry.frontmatter.services;
+  if (!raw) return [];
+  return raw.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
+export interface RelatedCase {
+  entry: ContentEntry;
+  /** True when this case is genuinely tagged to the service (real data,
+   * e.g. STËLZ's existing "Web Design"/"UX Design" project tags) — false
+   * means it's a fallback fill-in, not a confirmed relationship. */
+  confirmed: boolean;
+}
+
+/** Cases for a service page's "Cases" section (fase 6: "minimaal twee
+ * gerelateerde cases"). Tagged cases are genuine, sourced relationships;
+ * most cases have no `services` tag yet (their content is still
+ * TODO_DYLAN, so no real service-specific claim can be made about them).
+ * Rather than inventing which service each untagged case belongs to,
+ * confirmed matches are returned first and the list is padded with
+ * untagged cases — flagged as unconfirmed — up to `minCount`, so the
+ * page still meets the "at least two" requirement without asserting a
+ * relationship nobody has verified. */
+export function getCasesForService(serviceSlug: string, minCount = 2): RelatedCase[] {
+  const all = getAllCases();
+  const confirmed = all.filter((c) => getCaseServiceSlugs(c).includes(serviceSlug));
+  const rest = all.filter((c) => !getCaseServiceSlugs(c).includes(serviceSlug));
+
+  const result: RelatedCase[] = confirmed.map((entry) => ({ entry, confirmed: true }));
+  for (const entry of rest) {
+    if (result.length >= minCount) break;
+    result.push({ entry, confirmed: false });
+  }
+  return result;
+}

@@ -43,10 +43,6 @@ Voor teams die een app, portal of webshop hebben waarvan de interface
 niet meer aansluit bij wat gebruikers nodig hebben — of die vanaf nul
 beginnen en het meteen goed willen opzetten.
 
-## Cases
-
-TODO_DYLAN — minimaal twee gerelateerde cases, zie fase 6 voor de interne-linklogica.
-
 ## Toegankelijkheid en WCAG
 
 Toegankelijkheid nemen we mee als onderdeel van het ontwerpproces, niet
