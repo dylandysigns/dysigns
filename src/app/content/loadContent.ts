@@ -23,14 +23,14 @@ export interface ContentEntry {
 // correctly yield an empty array — there's nothing to structure yet.
 function extractFaqItems(markdownBody: string): FaqItem[] {
   // Split the whole body on every top-level "## " heading, then find the
-  // chunk whose heading is "Veelgestelde vragen" — avoids the multiline
-  // `$`-in-lookahead trap (it matches at every line end, not just the
-  // section boundary, so a lazy capture up to it grabs nothing at all).
+  // chunk whose heading is "Frequently asked questions" — avoids the
+  // multiline `$`-in-lookahead trap (it matches at every line end, not
+  // just the section boundary, so a lazy capture up to it grabs nothing).
   const sections = markdownBody.split(/\r?\n(?=## )/);
-  const faqSection = sections.find((s) => s.startsWith("## Veelgestelde vragen"));
+  const faqSection = sections.find((s) => s.startsWith("## Frequently asked questions"));
   if (!faqSection) return [];
 
-  const section = faqSection.replace(/^## Veelgestelde vragen\r?\n?/, "");
+  const section = faqSection.replace(/^## Frequently asked questions\r?\n?/, "");
   const items: FaqItem[] = [];
   const questionBlocks = section.split(/(?=^### )/m).filter((b) => b.trim());
 
@@ -80,13 +80,28 @@ export function getContent(relativePath: string): ContentEntry {
 
 export function getCaseSlugs(): string[] {
   return Array.from(entriesByPath.keys())
-    .filter((path) => path.includes("/content/cases/"))
+    .filter((path) => path.includes("/content/work/"))
     .map((path) => path.split("/").pop()!.replace(/\.md$/, ""));
 }
 
 export function getAllCases(): ContentEntry[] {
   return getCaseSlugs()
-    .map((slug) => getContent(`cases/${slug}.md`))
+    .map((slug) => getContent(`work/${slug}.md`))
+    .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
+}
+
+/** No real articles exist yet — this returns [] until content/insights/
+ * has real .md files. The /insights and /insights/[slug] routes are
+ * still wired up (per the route list) so the route structure is ready. */
+export function getInsightSlugs(): string[] {
+  return Array.from(entriesByPath.keys())
+    .filter((path) => path.includes("/content/insights/"))
+    .map((path) => path.split("/").pop()!.replace(/\.md$/, ""));
+}
+
+export function getAllInsights(): ContentEntry[] {
+  return getInsightSlugs()
+    .map((slug) => getContent(`insights/${slug}.md`))
     .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
 }
 

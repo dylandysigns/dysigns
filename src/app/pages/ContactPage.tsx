@@ -212,6 +212,165 @@ export default function ContactPage() {
           {t("contact.sub")}
         </p>
 
+        {/* Contact form — at the top of the page, per the brief: nobody
+            arriving from the pricing FAQ should have to scroll first.
+            Netlify Forms (native platform feature, no new dependency):
+            the name="contact" + data-netlify="true" + honeypot below are
+            enough for Netlify's build-time form detection to pick this
+            up, since /contact is prerendered to static HTML. */}
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/contact?submitted=true"
+          className="mt-10 mx-auto max-w-md text-left"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p style={{ position: "absolute", left: "-9999px" }}>
+            <label>
+              Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+            </label>
+          </p>
+
+          <div className="flex flex-col gap-4">
+            <div>
+              <label
+                htmlFor="contact-name"
+                style={{
+                  display: "block",
+                  fontSize: ".72rem",
+                  fontWeight: 500,
+                  letterSpacing: ".08em",
+                  textTransform: "uppercase",
+                  color: "rgba(var(--page-fg-rgb), .5)",
+                  marginBottom: ".4rem",
+                }}
+              >
+                Name
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                required
+                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .03)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
+                  color: "var(--page-fg)",
+                  fontSize: "1rem",
+                }}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-email"
+                style={{
+                  display: "block",
+                  fontSize: ".72rem",
+                  fontWeight: 500,
+                  letterSpacing: ".08em",
+                  textTransform: "uppercase",
+                  color: "rgba(var(--page-fg-rgb), .5)",
+                  marginBottom: ".4rem",
+                }}
+              >
+                Email
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .03)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
+                  color: "var(--page-fg)",
+                  fontSize: "1rem",
+                }}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-deadline"
+                style={{
+                  display: "block",
+                  fontSize: ".72rem",
+                  fontWeight: 500,
+                  letterSpacing: ".08em",
+                  textTransform: "uppercase",
+                  color: "rgba(var(--page-fg-rgb), .5)",
+                  marginBottom: ".4rem",
+                }}
+              >
+                Deadline (optional)
+              </label>
+              <input
+                id="contact-deadline"
+                name="deadline"
+                type="text"
+                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .03)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
+                  color: "var(--page-fg)",
+                  fontSize: "1rem",
+                }}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="contact-message"
+                style={{
+                  display: "block",
+                  fontSize: ".72rem",
+                  fontWeight: 500,
+                  letterSpacing: ".08em",
+                  textTransform: "uppercase",
+                  color: "rgba(var(--page-fg-rgb), .5)",
+                  marginBottom: ".4rem",
+                }}
+              >
+                What do you want to achieve?
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                rows={4}
+                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                style={{
+                  background: "rgba(var(--page-fg-rgb), .03)",
+                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
+                  color: "var(--page-fg)",
+                  fontSize: "1rem",
+                  resize: "vertical",
+                }}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="mt-2 rounded-full px-6 py-3 transition-colors duration-300"
+              style={{
+                background: "var(--page-fg)",
+                color: "var(--page-bg)",
+                fontSize: ".95rem",
+                fontWeight: 600,
+              }}
+              onMouseEnter={() => cursor.set("link")}
+              onMouseLeave={() => cursor.reset()}
+            >
+              Send
+            </button>
+          </div>
+        </form>
+
         <div
           ref={contentRef}
           className="mt-12 space-y-6"

@@ -12,16 +12,16 @@ const h2Style = {
 } as const;
 
 /**
- * RelatedCases — every service page links to at least two related
- * cases, with descriptive anchor text (never "read more").
+ * RelatedCases — fase 6: "elke servicepagina linkt naar minimaal twee
+ * gerelateerde cases", with descriptive anchor text (never "lees meer").
  *
  * Only STËLZ currently has a genuine, sourced service relationship (its
  * existing project tags — Web Design, UX Design — are real data, not
- * invented). The other cases have no confirmed service yet, since their
- * content is still mostly TODO_DYLAN. getCasesForService() pads the
- * list with those unconfirmed cases to meet the "at least two" minimum,
- * and this component phrases them differently — "other work" rather
- * than claiming a specific relevance nobody has verified.
+ * invented). The other three cases have no confirmed service yet, since
+ * their content is still TODO_DYLAN. getCasesForService() pads the list
+ * with those unconfirmed cases to meet the "at least two" minimum, and
+ * this component phrases them differently — "ander werk" rather than
+ * claiming a specific relevance nobody has verified.
  */
 export function RelatedCases({ serviceSlug, serviceLabel }: { serviceSlug: string; serviceLabel: string }) {
   const cases = getCasesForService(serviceSlug, 2);
@@ -33,7 +33,7 @@ export function RelatedCases({ serviceSlug, serviceLabel }: { serviceSlug: strin
       <ul className="flex flex-col gap-3" style={{ listStyle: "none", padding: 0 }}>
         {cases.map(({ entry, confirmed }) => {
           const client = entry.frontmatter.client || entry.frontmatter.heading;
-          const href = `/work/${entry.frontmatter.slug}`;
+          const href = `/cases/${entry.frontmatter.slug}`;
           return (
             <li key={href}>
               <a
@@ -47,8 +47,8 @@ export function RelatedCases({ serviceSlug, serviceLabel }: { serviceSlug: strin
                 }}
               >
                 {confirmed
-                  ? `${client}: how we approached this for ${serviceLabel.toLowerCase()}`
-                  : `${client}: other work from DYSIGNS`}
+                  ? `${client} — hoe we dit hebben aangepakt binnen ${serviceLabel.toLowerCase()}`
+                  : `${client} — ander werk van DYSIGNS`}
               </a>
             </li>
           );

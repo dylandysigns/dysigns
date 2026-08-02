@@ -40,7 +40,7 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Hero ── */
   "hero.headline.A": {
-    en: "DYSIGNS. Where ideas turn into pull.",
+    en: "We design, build and grow digital products",
     nl: "DYSIGNS. Waar ideeën aantrekkingskracht krijgen.",
   },
   "hero.sub": {
@@ -215,11 +215,11 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Contact Band ── */
   "contact.headline": {
-    en: "Lets just talk, we\u2019re very chill.",
+    en: "Have a project in mind?",
     nl: "Laten we lekker babbelen, we zijn heel gezellig.",
   },
   "contact.sub": {
-    en: "Got a idea in mind? We\u2019d love to make something unique with you.",
+    en: "Tell us briefly what you want to achieve and what your deadline looks like. Reply within one business day, first conversation free.",
     nl: "Heb je een idee in gedachten? We houden van unieke dingen.",
   },
   "contact.emailUs": { en: "Email us", nl: "E-mail ons" },

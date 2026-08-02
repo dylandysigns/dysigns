@@ -25,43 +25,26 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 
-const PROJECT_SLUGS = [
-  "nova-brand-platform",
-  "meridian-app-redesign",
-  "arco-ecommerce",
-  "pulse-analytics",
-  "stelz-web-design",
-  "verkeersschool-beckers-branding",
-  "powermobile",
-  "orbit-saas-platform",
-  "flux-motion-identity",
-];
+// English-first, full-service rebuild (follow-up brief) — content/work/*.md.
+const CASE_SLUGS = ["stelz", "a-cafe", "studio75"];
 
-const SERVICE_SLUGS = [
-  "brand-identity",
-  "ux-ui-web-design",
-  "product-design",
-  "creative-thinking",
-];
-
-// Fase 2 — nieuwe casestructuur (content/cases/*.md).
-const CASE_SLUGS = ["stelz", "a-cafe", "dahley-tonia", "studio75"];
+// No articles exist yet (content/insights/ is empty) — route is wired up
+// and ready, but there is nothing to prerender at /insights/[slug] until
+// real content exists.
+const INSIGHT_SLUGS = [];
 
 const routesToPrerender = [
   "/",
-  // Fase 2 — nieuwe pagina-structuur.
-  "/webdesign-almere",
+  "/web-design",
+  "/social-media-meta-ads",
   "/ux-ui-design",
-  "/shopify-development",
   "/branding",
-  "/cases",
-  ...CASE_SLUGS.map((slug) => `/cases/${slug}`),
-  "/over-dylan-kho",
-  // Bestaande routes.
+  "/ai-implementation",
+  "/shopify-development", // subpage under web design, not in navigation
   "/work",
-  ...PROJECT_SLUGS.map((slug) => `/work/${slug}`),
-  "/services",
-  ...SERVICE_SLUGS.map((slug) => `/services/${slug}`),
+  ...CASE_SLUGS.map((slug) => `/work/${slug}`),
+  "/insights",
+  ...INSIGHT_SLUGS.map((slug) => `/insights/${slug}`),
   "/about",
   "/contact",
 ];

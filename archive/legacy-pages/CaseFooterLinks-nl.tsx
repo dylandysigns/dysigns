@@ -22,13 +22,15 @@ const linkStyle = {
 } as const;
 
 /**
- * CaseFooterLinks — case pages link back to their service page with
- * descriptive anchor text, and show an author byline to /about.
+ * CaseFooterLinks — fase 6: case pages link back to their service page
+ * with descriptive anchor text, and show an author byline to
+ * /over-dylan-kho.
  *
  * Only STËLZ has a confirmed service relationship (real, pre-existing
- * project tags). For cases without one, claiming a specific service
- * would be invented, so this links to all five services generically
- * instead of picking one.
+ * project tags). For cases without one — all content besides the client
+ * name is still TODO_DYLAN — claiming a specific service would be
+ * invented, so this links to all four services generically instead of
+ * picking one.
  */
 export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
   const client = caseEntry.frontmatter.client || caseEntry.frontmatter.heading;
@@ -38,12 +40,16 @@ export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
 
   return (
     <div>
-      <h2 style={h2Style}>{taggedServices.length > 0 ? "Service" : "Services"}</h2>
+      <h2 style={h2Style}>
+        {taggedServices.length > 0 ? "Dienst" : "Diensten"}
+      </h2>
       <ul className="flex flex-col gap-2 mb-8" style={{ listStyle: "none", padding: 0 }}>
         {servicesToShow.map((s) => (
           <li key={s.slug}>
             <a href={`/${s.slug}`} style={linkStyle}>
-              {taggedServices.length > 0 ? `See our ${s.label} service` : s.label}
+              {taggedServices.length > 0
+                ? `Bekijk onze ${s.label}-dienst`
+                : s.label}
             </a>
           </li>
         ))}
@@ -56,11 +62,11 @@ export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
           fontStyle: "italic",
         }}
       >
-        Case by{" "}
-        <a href="/about" style={{ ...linkStyle, fontStyle: "normal" }}>
+        Case van{" "}
+        <a href="/over-dylan-kho" style={{ ...linkStyle, fontStyle: "normal" }}>
           Dylan Kho
         </a>
-        , for {client}.
+        , voor {client}.
       </p>
     </div>
   );

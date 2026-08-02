@@ -1,85 +1,61 @@
 ---
-title: UX/UI design bureau | DYSIGNS Almere
-description: UX en UI design voor apps, portals en webshops. Van gebruikersonderzoek en wireframes tot een compleet designsysteem. DYSIGNS ontwerpt vanuit Almere.
-heading: UX/UI Design
-slug: ux-ui-design
+title: "UX/UI Design Agency | DYSIGNS"
+description: "UX and UI design for apps, portals and dashboards. DYSIGNS goes from user research to a complete design system, based in the Netherlands."
+heading: "UX/UI design"
+slug: "ux-ui-design"
 answerBlock: |
-  DYSIGNS ontwerpt UX en UI voor apps, portals en webshops, vanuit
-  Almere voor opdrachtgevers in Nederland en België. We beginnen bij
-  gebruikersonderzoek en eindigen bij een compleet designsysteem, zodat
-  interfaces logisch aanvoelen voor de mensen die ze daadwerkelijk
-  gebruiken — niet alleen goed ogen op een presentatieslide.
-lastUpdated: 2026-08-01
+  DYSIGNS designs UX and UI for apps, portals and dashboards, for
+  clients worldwide from a base in the Netherlands. We start at user
+  research and end at a complete design system, including complex
+  portals and dashboards, so interfaces hold up for the people who
+  actually have to use them every day.
+lastUpdated: "2026-08-02"
 ---
 
-## Wat kost UX/UI design?
+## What this includes
 
-TODO_DYLAN — prijsindicatie of bandbreedte.
+### Research
 
-## Hoe lang duurt het?
+A clear picture of who your users actually are and where they currently get stuck.
 
-TODO_DYLAN — doorlooptijd in weken.
+### Wireframes and prototypes
 
-## Wat je krijgt
+Interactive prototypes to test a concept with real users before a single screen gets built.
 
-### Onderzoek
+### Design system
 
-Inzicht in wie je gebruikers zijn en waar ze in het huidige product of
-proces vastlopen.
+A consistent set of components and patterns, so new screens get designed faster and stay consistent with each other.
 
-### Wireframes & prototypes
+## Why this sits with design and development
 
-Interactieve prototypes om een concept te testen vóórdat het gebouwd
-wordt.
+A design system that never gets handed to development in a usable form ends up redrawn from scratch by whoever builds it. Because the same team designs and builds here, the components that come out of a UX/UI project are the ones that actually ship.
 
-### Designsysteem
+## Who it is for
 
-Een consistente set componenten en patronen, zodat nieuwe schermen
-sneller en consistenter ontworpen kunnen worden.
+For teams whose app, portal or dashboard no longer matches what users actually need, or who are starting from nothing and want to set it up properly from day one, including complex portals and dashboards.
 
-## Voor wie
+## Cases
 
-Voor teams die een app, portal of webshop hebben waarvan de interface
-niet meer aansluit bij wat gebruikers nodig hebben — of die vanaf nul
-beginnen en het meteen goed willen opzetten.
+TODO_DYLAN: link to at least two related cases.
 
-## Toegankelijkheid en WCAG
+## Frequently asked questions
 
-Toegankelijkheid nemen we mee als onderdeel van het ontwerpproces, niet
-als losse check achteraf — denk aan contrast, focusstaten en
-toetsenbordnavigatie. TODO_DYLAN — bevestig of er specifiek op een
-WCAG-niveau (bijv. AA) wordt getoetst en of daar auditrapporten van
-bestaan.
+### How much does UX/UI design cost?
 
-## Veelgestelde vragen
+We do not work with a minimum or a maximum. Every project differs in scope and complexity, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation.
 
-### Beginnen jullie altijd met onderzoek?
+### Do you always start with research?
 
-Niet per se — dat hangt af van wat er al bekend is over de gebruikers
-en het probleem. Als die kennis er al is, bijvoorbeeld uit eerdere
-onderzoeken of data, starten we sneller bij het ontwerp zelf in plaats
-van bestaand werk over te doen. Ontbreekt die kennis, dan begint een
-traject wél bij onderzoek.
+Not necessarily. That depends on what is already known about the users and the problem. If that knowledge already exists, we move faster into design itself instead of repeating work that has already been done.
 
-### Leveren jullie ook de UI-componenten aan voor developers?
+### Do you hand off UI components to developers?
 
-Ja, een designsysteem met herbruikbare componenten is standaard
-onderdeel van een UX/UI-traject, zodat overdracht naar development
-soepel verloopt. Denk aan knoppen, formuliervelden en andere
-bouwstenen die consistent herbruikt kunnen worden, in plaats van dat
-elk scherm opnieuw los wordt uitgewerkt.
+Yes, a design system with reusable components is a standard part of a UX/UI project, so the handoff to development goes smoothly.
 
-### Werken jullie samen met een bestaand development-team?
+### Do you work with an existing development team?
 
-Ja, we sluiten aan op bestaande teams en tools — de UX/UI-uitkomsten
-zijn bedoeld om direct bruikbaar te zijn voor de developers die ermee
-verder moeten, niet om los van de technische realiteit te ontstaan. Dat
-voorkomt vertraging bij de overdracht van ontwerp naar bouw.
+Yes. We build on existing teams and tools, so the UX/UI output is meant to be directly usable by whoever builds it, not created separately from the technical reality.
 
-### Is dit ook geschikt voor een bestaand product, of alleen nieuwbouw?
+### Is this also suitable for an existing product, not just new builds?
 
-Beide. Een bestaand product verbeteren begint vaak bij onderzoek naar
-waar gebruikers nu concreet vastlopen, terwijl nieuwbouw start bij de
-eerste gebruikersvraag: wie gaat dit gebruiken, en waarvoor precies.
-De aanpak verschilt, maar het uitgangspunt — de gebruiker — blijft
-hetzelfde.
+Both. Improving an existing product usually starts with research into where users currently get stuck; a new build starts with the first question about who is going to use it and why. The approach differs, but the user stays the starting point either way.

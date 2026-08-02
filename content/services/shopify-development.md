@@ -1,84 +1,57 @@
 ---
-title: Shopify webshop laten bouwen of verbeteren | DYSIGNS
-description: Maatwerk Shopify thema's, custom Liquid secties, Shopify Markets en Flow automatisering. DYSIGNS bouwt en onderhoudt webshops die blijven converteren.
-heading: Shopify development
-slug: shopify-development
+title: "Shopify Development Agency | DYSIGNS"
+description: "Custom Shopify themes, Liquid sections and Shopify Markets from DYSIGNS. Stores built to keep converting, not just to launch."
+heading: "Shopify development"
+slug: "shopify-development"
 answerBlock: |
-  DYSIGNS bouwt en verbetert Shopify-webshops vanuit Almere, voor
-  ondernemers en bureaus in Nederland en België. Van maatwerk thema's
-  en custom Liquid-secties tot Shopify Markets en Flow-automatisering —
-  gericht op webshops die blijven converteren, niet alleen goed ogen op
-  de dag van livegang.
-lastUpdated: 2026-08-01
+  DYSIGNS builds and improves Shopify stores for founders and
+  agencies worldwide, based in the Netherlands. From custom themes and
+  Liquid sections to Shopify Markets and Flow automation, part of our
+  wider web design and development offering, built to keep
+  converting, not only to launch well.
+lastUpdated: "2026-08-02"
 ---
 
-## Wat kost een Shopify webshop?
+## What this includes
 
-TODO_DYLAN — prijsindicatie of bandbreedte.
+### Custom theme
 
-## Hoe lang duurt het?
+A Shopify theme fitted to your brand, not an adjusted default template.
 
-TODO_DYLAN — doorlooptijd in weken.
+### Custom functionality
 
-## Wat je krijgt
+Liquid sections and apps built for what your store specifically needs.
 
-### Maatwerk thema
+### Optimisation and maintenance
 
-Een Shopify-thema afgestemd op je merk, niet een aangepaste
-standaardtemplate.
+A store that keeps performing after launch, with room to keep developing it further.
 
-### Custom functionaliteit
+## When Shopify is not the right choice
 
-Liquid-secties en apps op maat voor wat jouw webshop specifiek nodig
-heeft.
+Shopify is strong for most e-commerce use cases, but it is not always the best fit, for example with very specific backend integrations or once platform costs at high volume start outweighing the convenience. We give an honest recommendation when another platform suits you better, even if that means we do not start a Shopify project.
 
-### Optimalisatie & onderhoud
+## Who it is for
 
-Een webshop die na livegang blijft presteren, met ruimte voor
-doorontwikkeling.
+For founders and agencies with a Shopify store that needs to go beyond a standard theme, or who want an existing store improved rather than rebuilt.
 
-## Voor wie
+## Cases
 
-Voor ondernemers en bureaus met een Shopify-webshop die verder wil dan
-een standaardtheme, of die een bestaande shop wil laten verbeteren.
+TODO_DYLAN: link to at least two related cases.
 
-## Wanneer Shopify niet de juiste keuze is
+## Frequently asked questions
 
-Shopify is sterk voor de meeste e-commerce use cases, maar niet voor
-elke situatie de beste keuze — bijvoorbeeld bij zeer specifieke
-backend-integraties of wanneer platformkosten bij hoog volume zwaarder
-gaan wegen dan het gemak. We adviseren eerlijk als een ander platform
-beter bij je past, ook als dat betekent dat we geen Shopify-traject
-starten.
+### Can an existing Shopify store be improved, or does it need a rebuild?
 
-## Veelgestelde vragen
+Often an existing store can be improved without rebuilding everything, depending on the current technical state of the theme and the apps already in use.
 
-### Kan een bestaande Shopify-shop verbeterd worden, of moet die opnieuw?
+### Do you work with existing Shopify apps and integrations?
 
-Vaak kan een bestaande shop verbeterd worden zonder alles opnieuw te
-bouwen — dat hangt af van de huidige technische staat van het thema en
-de apps die al gebruikt worden. Waar het thema en de basis gezond zijn,
-werken we daarop door; alleen bij een echt verouderde of vastgelopen
-opzet is een nieuwe start de betere keuze.
+Yes, we build on what already works and add where needed, instead of replacing everything by default.
 
-### Werken jullie met bestaande Shopify-apps en integraties?
+### Do you support multiple languages or countries through Shopify Markets?
 
-Ja, we bouwen op wat er al werkt en vullen aan waar nodig, in plaats
-van standaard alles te vervangen. Bestaande koppelingen met
-bijvoorbeeld een boekhoudsysteem of voorraadbeheer blijven zoveel
-mogelijk intact, zodat een traject niet onnodig groter wordt dan het
-hoeft te zijn.
+Yes, Shopify Markets is part of what we implement when a store needs to sell internationally.
 
-### Ondersteunen jullie meerdere talen of landen via Shopify Markets?
+### Do you stay involved after launch?
 
-Ja, Shopify Markets is onderdeel van wat we implementeren wanneer een
-webshop internationaal moet verkopen. Dat omvat onder meer aparte
-prijzen, valuta en content per land of regio, zodat een webshop
-soepel meerdere markten tegelijk kan bedienen zonder losse shops
-ernaast.
-
-### Blijven jullie na livegang betrokken?
-
-TODO_DYLAN — bevestig of onderhoud/doorontwikkeling na livegang een
-standaard onderdeel is en onder welke voorwaarden, en of dit als losse
-dienst of als vast onderdeel van een traject wordt aangeboden.
+TODO_DYLAN: confirm whether maintenance and further development after launch is a standard part of this service.

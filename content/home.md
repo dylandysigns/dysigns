@@ -1,106 +1,144 @@
 ---
-title: Full-Service Digital Agency Almere | DYSIGNS
-description: DYSIGNS is een full-service digital agency uit Almere: UX/UI design, webdesign, Shopify development, branding en meer.
-slug: /
+title: "Design, Development & Growth Agency | DYSIGNS"
+description: "DYSIGNS designs, builds and grows digital products. Web design, UX/UI, Shopify, branding, Meta Ads and AI implementation from one team in the Netherlands."
+slug: "/"
+heading: "We design, build and grow digital products"
 answerBlock: |
-  DYSIGNS is een digital design bureau uit Almere, opgericht door Dylan Kho.
-  We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces
-  voor ondernemers, scale-ups en bureaus in Nederland en België. Werk je
-  liever met één vast aanspreekpunt dan met een groot bureau, dan zit je
-  hier goed.
-lastUpdated: 2026-08-01
+  DYSIGNS is a full-service digital agency founded by Dylan Kho. We
+  handle the whole journey: UX and brand identity, websites and
+  Shopify stores, AI implementation, and the social and paid campaigns
+  that bring in customers afterwards. One partner instead of four
+  vendors pointing at each other. Based in the Netherlands, working
+  with clients worldwide.
+lastUpdated: "2026-08-02"
 ---
 
-## Wat DYSIGNS doet
+## What DYSIGNS does
 
-### [Webdesign Almere](/webdesign-almere)
+Design, development and marketing sit in the same team. That removes handovers, duplicate briefings and the argument about who owns what.
 
-Maatwerk websites die er niet alleen goed uitzien, maar ook presteren —
-van eerste ontwerp tot een werkende, snelle site.
+### [Web design and development](/web-design)
+
+Custom websites and Shopify stores. Fast, findable and built to keep performing.
+
+### [Social media and Meta Ads](/social-media-meta-ads)
+
+Content, campaigns and ad management. We build the landing page too, so we optimise the full funnel.
 
 ### [UX/UI design](/ux-ui-design)
 
-Van gebruikersonderzoek tot een compleet designsysteem, zodat interfaces
-logisch aanvoelen voor de mensen die ze daadwerkelijk gebruiken.
-
-### [Shopify development](/shopify-development)
-
-Maatwerk Shopify-thema's en custom secties voor webshops die moeten
-blijven converteren, niet alleen goed ogen.
+From user research to a complete design system. Including complex portals and dashboards.
 
 ### [Branding](/branding)
 
-Een visuele identiteit die verder gaat dan een logo — een systeem dat
-meegaat in je website, webshop en social kanalen.
+More than a logo. A visual system that holds up across every channel.
 
-## Recente projecten
+### [AI implementation](/ai-implementation)
 
-TODO_DYLAN — selectie van drie tot vier cases met korte toelichting.
-Kan pas ingevuld worden zodra er echte case-content bestaat (zie
-content/cases/*.md, nu nog allemaal TODO_DYLAN).
+We are not better than AI. Nobody is. We do know where it saves real time and where it stays an expensive demo.
 
-## Hoe we werken
+## Recent projects
 
-### Ontdekken
+### [STËLZ](/work/stelz)
 
-We verdiepen ons in jouw wereld — gesprekken met stakeholders,
-concurrentieanalyse en inzicht in de eindgebruiker.
+Shopify development, expansion into the Belgian market through Shopify Markets, EU compliance and accessibility.
 
-### Bepalen
+Result: lead generation up 65%, average time on site doubled, mobile conversion rate improved 3×, and the site won CSS Design Awards site of the month.
 
-Strategie wordt concreet. We brengen het probleem in kaart en stellen
-samen een creatieve briefing op.
+### [A/Café](/work/a-cafe)
 
-### Ontwerpen
+App development, design and UX for a self-ordering kiosk, with the POS and kitchen display carried through in the same visual identity. Email marketing set up end to end.
 
-Concepten krijgen vorm — visuele systemen en uitgewerkte designs.
+One connected ordering system from kiosk to kitchen, where guest, staff and brand speak the same language.
 
-### Prototypen
+### [Studio75](/work/studio75)
 
-Ideeën worden tastbaar in interactieve prototypes die we testen en
-verfijnen.
+Branding through co-creation. From ideation and moodboards to a fully developed identity, built together and translated into practice.
 
-### Bouwen
+## How we work
 
-Pixel-perfecte uitvoering, samen met development. Elk detail wordt
-gebouwd zoals het bedoeld is.
+Six phases, from first conversation to ongoing optimisation. Not every project runs through all of them, but the order stays the same.
 
-### Lanceren
+### 1. Discover
 
-Je site of merk gaat live. Daarna monitoren, optimaliseren en
-doorontwikkelen we samen met je mee.
+We dig into your market, your customer and your numbers. Stakeholder conversations, competitive analysis and a clear picture of who your end user actually is.
 
-## Veelgestelde vragen
+### 2. Define
 
-### Werken jullie met bedrijven buiten Almere?
+Strategy becomes concrete. We map the problem, agree on what success means and capture it in a creative brief we both stand behind.
 
-Ja, DYSIGNS werkt met ondernemers, scale-ups en bureaus door heel
-Nederland en België, niet alleen in en om Almere. De meeste
-samenwerkingen verlopen grotendeels op afstand — met korte, heldere
-communicatie — terwijl Almere de vaste thuisbasis blijft van waaruit
-elk project wordt aangestuurd.
+### 3. Design
 
-### Werk ik direct met Dylan, of met een team?
+Concepts take shape. Visual systems, finished designs and the rules behind them, so the work holds up once you take it forward yourself.
 
-Je hebt één vast aanspreekpunt in plaats van een wisselend team dat per
-fase verandert. Dat betekent kortere lijnen, snellere feedbackrondes en
-geen ruis tussen schakels — je legt iets één keer uit, niet steeds
-opnieuw aan een nieuw teamlid.
+### 4. Prototype
 
-### In welke talen kan ik met DYSIGNS communiceren?
+Ideas become tangible in interactive prototypes. We test them with real users and refine before a single line of production code gets written.
 
-Nederlands en Engels, beide even soepel — voor overleg, documentatie en
-alle communicatie tijdens een traject. Of een project nu vanuit
-Nederland, België of internationaal wordt aangestuurd, de taal past
-zich aan wat voor jou het prettigst werkt, zonder dat dit invloed heeft
-op de kwaliteit van de samenwerking.
+### 5. Build
 
-### Kan DYSIGNS ook een bestaand project overnemen of doorontwikkelen?
+Precise execution in development. Fast, accessible and technically findable, built the way it was designed rather than the way it happened to fit.
 
-TODO_DYLAN — bevestig of dit een dienst is die actief wordt aangeboden,
-en zo ja, onder welke voorwaarden.
+### 6. Launch and grow
+
+Your site, store or brand goes live. From there we monitor and optimise, and put ads and content to work to turn it into traffic and revenue.
+
+## Launch is the start, not the finish
+
+Most agencies hand over the keys and disappear. We stay: campaigns, content, conversion tracking and iteration on what the data shows. Because we designed and built it, we know exactly which lever to pull when the numbers move.
+
+- [Paid social](/social-media-meta-ads)
+- [Content](/social-media-meta-ads)
+- [Conversion optimisation](/social-media-meta-ads)
+
+## Frequently asked questions
+
+### How much does a website or online store cost?
+
+We do not work with a minimum or a maximum. Every project differs in scope, technology and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation. [Book a free intro call](/contact)
+
+### Do you work with clients outside the Netherlands?
+
+Yes. DYSIGNS works with founders, scale-ups and agencies worldwide. Most collaborations run largely remote, with short lines and clear communication in English or Dutch. Almere and Amsterdam are the home base from which every project is run.
+
+### Do I work directly with Dylan or with a team?
+
+You get one fixed point of contact instead of a rotating team per phase. How many people work on it depends on the project: sometimes that is Dylan alone, on larger engagements specialists for design, development or advertising join in. You explain it once, we handle the rest.
+
+### Can you take over an existing website or store?
+
+Absolutely. You do not need to start over to move forward. We iterate on what you already have: first a look at what is there and what is holding it back, then improvements step by step. That often delivers results faster than a full rebuild.
+
+### Do you only design, or do you build as well?
+
+Both, and that is the point. Design and development sit with the same partner, so nothing gets lost in the handover. If you only need design because you have your own development team, we deliver a full handoff with design system and specifications.
+
+### Which platforms do you build on?
+
+We decide per project, because the right choice depends on your scale, your markets and who maintains it afterwards. Shopify is the most common for online stores. For large or complex commerce we look at headless options like Medusa. For websites we build custom front end.
+
+### Do you also manage social media and ads on an ongoing basis?
+
+Yes. Alongside projects we run continuous engagements for content production, campaign management and Meta advertising. These run monthly with a set number of hours and a fixed contact. Ad spend sits separately and stays under your control. We start with a three month period, because campaigns below that simply do not gather enough data to steer on.
+
+### Cannot AI just do your job?
+
+Parts of it, certainly, and we use those tools daily ourselves. We are not better than AI, nobody is. The difference is knowing what to do with it: which problem you are solving, what you hand to a model and what you should deliberately not automate.
+
+### What makes a full-service agency different from hiring specialists?
+
+With separate vendors you become the project manager between designer, developer and marketer. At DYSIGNS it sits in one track: whoever makes the ad knows the landing page, and whoever builds the store knows the brand. Less coordination, less lost in translation.
+
+### Which languages can I work with you in?
+
+English and Dutch, both equally fluent, across calls, documentation and delivery. Whether a project is run from the Netherlands or from the other side of the world, the language adapts without affecting the quality of the work.
 
 ## Contact
 
-Heb je een project in gedachten? Neem [contact](/contact) op — we
-reageren binnen één werkdag.
+Have a project in mind? Tell us briefly what you want to achieve and what your deadline looks like. You get a reply within one business day. The first conversation is free and carries no obligation.
+
+Email: [info@dylandysigns.com](mailto:info@dylandysigns.com)
+Phone and WhatsApp: [+31 6 26814488](tel:+31626814488)
+Book an intro call: [go to the contact form](/contact)
+
+Almere and Amsterdam, Netherlands. Chamber of Commerce and VAT numbers are listed in the footer.

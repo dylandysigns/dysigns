@@ -40,7 +40,7 @@ export function serviceSchema(opts: {
     description: opts.description,
     url: canonicalUrl(opts.path),
     provider: { "@id": ORG_ID },
-    areaServed: opts.areaServed ?? ["Almere", "Netherlands"],
+    areaServed: opts.areaServed ?? ["Worldwide"],
   };
 }
 
@@ -74,11 +74,11 @@ export interface FaqItem {
   answer: string;
 }
 
-// Built for reuse once fase 5 supplies real FAQ copy. Not attached to any
-// page yet — every "Veelgestelde vragen" section currently holds a
-// TODO_DYLAN placeholder, not real question/answer pairs, and emitting
-// FAQPage schema over placeholder text would be exactly the kind of fake
-// markup Google's structured-data guidelines warn against.
+// Only ever called with real, extracted question/answer pairs (see
+// extractFaqItems in loadContent.ts, which filters out TODO_DYLAN
+// answers) — emitting FAQPage schema over placeholder text would be
+// exactly the kind of fake markup Google's structured-data guidelines
+// warn against.
 export function faqPageSchema(items: FaqItem[]) {
   return {
     "@type": "FAQPage",

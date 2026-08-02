@@ -10,10 +10,13 @@ export const heroOptions = {
   D: "DYSIGNS. From first scroll to final detail.",
   E: "DYSIGNS. Where brands find their shape.",
   F: "DYSIGNS. Built to be remembered.",
+  // Follow-up brief (English-first, full-service repositioning) — exact
+  // wording given, not to be shortened or replaced with a tagline.
+  G: "We design, build and grow digital products",
 };
 
 export type HeadlineKey = keyof typeof heroOptions;
-export const activeHeadline: HeadlineKey = "A"; // ← change to swap
+export const activeHeadline: HeadlineKey = "G"; // ← change to swap
 
 export const siteContent = {
   hero: {
@@ -250,7 +253,7 @@ export const siteContent = {
   contact: {
     headline: "Let\u2019s build something together",
     sub: "Got a idea in mind? We\u2019d love to make something unique with you.",
-    email: "hello@dylandysigns.com",
+    email: "info@dylandysigns.com",
     whatsapp: "+31626814488",
   },
 

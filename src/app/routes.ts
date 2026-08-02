@@ -1,29 +1,33 @@
 import { createBrowserRouter, type RouteObject } from "react-router";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
-import WorkPage from "./pages/WorkPage";
-import CaseDetailPage from "./pages/CaseDetailPage";
-import ServicesPage from "./pages/ServicesPage";
-import ServiceDetailPage from "./pages/ServiceDetailPage";
+import {
+  WebDesignPage,
+  SocialMediaMetaAdsPage,
+  UxUiDesignPage,
+  BrandingPage,
+  AiImplementationPage,
+  ShopifyDevelopmentPage,
+} from "./pages/ServicePages";
+import WorkOverviewPage from "./pages/WorkOverviewPage";
+import WorkDetailPage from "./pages/WorkDetailPage";
+import InsightsOverviewPage from "./pages/InsightsOverviewPage";
+import InsightsDetailPage from "./pages/InsightsDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
 import GiftFatinsBirthdayPage from "./pages/GiftFatinsBirthdayPage";
-import {
-  WebdesignAlmerePage,
-  UxUiDesignPage,
-  ShopifyDevelopmentPage,
-  BrandingPage,
-} from "./pages/ServicePages";
-import CasesOverviewPage from "./pages/CasesOverviewPage";
-import CaseContentPage from "./pages/CaseContentPage";
-import OverDylanKhoPage from "./pages/OverDylanKhoPage";
 
 // Shared route definitions — consumed by createBrowserRouter (client) and by
 // scripts/prerender.mjs (createMemoryRouter, build-time HTML generation) so
 // there is a single source of truth for the route tree.
+//
+// Follow-up brief (English-first, full-service repositioning) — this is the
+// definitive route list. The earlier Dutch routes and the original
+// English-language legacy pages (/services, the old /work and /about) have
+// been archived under archive/ and are no longer wired in here.
 export const routes: RouteObject[] = [
   // Hidden, unlinked pages — no Header/Footer, no sitemap entry, noindex injected at runtime
   { path: "/fatins-birthday", Component: FatinsBirthdayPage },
@@ -33,21 +37,17 @@ export const routes: RouteObject[] = [
     Component: Layout,
     children: [
       { index: true, Component: HomePage },
-      // Fase 2 — nieuwe pagina-structuur uit de brief. Additief naast de
-      // bestaande routes hieronder: die blijven ongewijzigd werken tot
-      // fase 7 (redirects/canonicalisatie) expliciet over hun lot beslist.
-      { path: "webdesign-almere", Component: WebdesignAlmerePage },
+      { path: "web-design", Component: WebDesignPage },
+      { path: "social-media-meta-ads", Component: SocialMediaMetaAdsPage },
       { path: "ux-ui-design", Component: UxUiDesignPage },
-      { path: "shopify-development", Component: ShopifyDevelopmentPage },
       { path: "branding", Component: BrandingPage },
-      { path: "cases", Component: CasesOverviewPage },
-      { path: "cases/:slug", Component: CaseContentPage },
-      { path: "over-dylan-kho", Component: OverDylanKhoPage },
-      // Bestaande routes — ongewijzigd.
-      { path: "work", Component: WorkPage },
-      { path: "work/:slug", Component: CaseDetailPage },
-      { path: "services", Component: ServicesPage },
-      { path: "services/:slug", Component: ServiceDetailPage },
+      { path: "ai-implementation", Component: AiImplementationPage },
+      // Underneath web design, not in navigation — see ServicePages.tsx.
+      { path: "shopify-development", Component: ShopifyDevelopmentPage },
+      { path: "work", Component: WorkOverviewPage },
+      { path: "work/:slug", Component: WorkDetailPage },
+      { path: "insights", Component: InsightsOverviewPage },
+      { path: "insights/:slug", Component: InsightsDetailPage },
       { path: "about", Component: AboutPage },
       { path: "contact", Component: ContactPage },
       { path: "docs", Component: DocsPage },

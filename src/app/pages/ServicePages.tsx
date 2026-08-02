@@ -4,32 +4,36 @@ import { getContent } from "../content/loadContent";
 import { serviceSchema, faqPageSchema } from "../seo/schema";
 
 /**
- * The four active service pages (fase 2). Exactly these four — no more —
- * per the brief: "Diensten die niet actief verkocht worden krijgen geen
- * pagina." Each reads its content from content/services/*.md.
+ * The five active service pages, plus Shopify development as a subpage
+ * under web design (not in navigation — vervolgopdracht: "de query
+ * 'shopify store development' is too valuable to give up but does not
+ * belong in the main navigation"). Each reads its content from
+ * content/services/*.md.
  */
 
-function ServicePage({ slug, label }: { slug: string; label: string }) {
+function ServicePage({
+  slug,
+  label,
+  breadcrumb,
+}: {
+  slug: string;
+  label: string;
+  breadcrumb: { label: string; href?: string }[];
+}) {
   const entry = getContent(`services/${slug}.md`);
   const path = `/${slug}`;
   return (
     <ContentPage
       entry={entry}
-      eyebrow="Dienst"
-      breadcrumb={[
-        { label: "Home", href: "/" },
-        { label: "Diensten" },
-        { label },
-      ]}
+      eyebrow="Service"
+      breadcrumb={breadcrumb}
       extraSchema={[
         serviceSchema({
           name: label,
           description: entry.frontmatter.description,
           path,
+          areaServed: ["Worldwide"],
         }),
-        // Only emits real Q&A — extractFaqItems() already filters out
-        // TODO_DYLAN placeholder answers, so this is [] until genuine
-        // content exists (fase 4's deferred FAQPage, now unblocked).
         ...(entry.faqItems.length > 0 ? [faqPageSchema(entry.faqItems)] : []),
       ]}
     >
@@ -38,18 +42,68 @@ function ServicePage({ slug, label }: { slug: string; label: string }) {
   );
 }
 
-export function WebdesignAlmerePage() {
-  return <ServicePage slug="webdesign-almere" label="Webdesign Almere" />;
+const HOME_CRUMB = { label: "Home", href: "/" };
+
+export function WebDesignPage() {
+  return (
+    <ServicePage
+      slug="web-design"
+      label="Web design and development"
+      breadcrumb={[HOME_CRUMB, { label: "Web design and development" }]}
+    />
+  );
+}
+
+export function SocialMediaMetaAdsPage() {
+  return (
+    <ServicePage
+      slug="social-media-meta-ads"
+      label="Social media and Meta Ads"
+      breadcrumb={[HOME_CRUMB, { label: "Social media and Meta Ads" }]}
+    />
+  );
 }
 
 export function UxUiDesignPage() {
-  return <ServicePage slug="ux-ui-design" label="UX/UI Design" />;
-}
-
-export function ShopifyDevelopmentPage() {
-  return <ServicePage slug="shopify-development" label="Shopify development" />;
+  return (
+    <ServicePage
+      slug="ux-ui-design"
+      label="UX/UI design"
+      breadcrumb={[HOME_CRUMB, { label: "UX/UI design" }]}
+    />
+  );
 }
 
 export function BrandingPage() {
-  return <ServicePage slug="branding" label="Branding" />;
+  return (
+    <ServicePage
+      slug="branding"
+      label="Branding"
+      breadcrumb={[HOME_CRUMB, { label: "Branding" }]}
+    />
+  );
+}
+
+export function AiImplementationPage() {
+  return (
+    <ServicePage
+      slug="ai-implementation"
+      label="AI implementation"
+      breadcrumb={[HOME_CRUMB, { label: "AI implementation" }]}
+    />
+  );
+}
+
+export function ShopifyDevelopmentPage() {
+  return (
+    <ServicePage
+      slug="shopify-development"
+      label="Shopify development"
+      breadcrumb={[
+        HOME_CRUMB,
+        { label: "Web design and development", href: "/web-design" },
+        { label: "Shopify development" },
+      ]}
+    />
+  );
 }

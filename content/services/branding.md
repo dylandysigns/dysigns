@@ -1,75 +1,61 @@
 ---
-title: Branding en visuele identiteit | DYSIGNS Almere
-description: Logo, huisstijl en designsysteem voor merken die online groeien. DYSIGNS ontwikkelt visuele identiteiten die doorwerken in je site, shop en socials.
-heading: Branding
-slug: branding
+title: "Branding Agency | DYSIGNS"
+description: "Branding and visual identity from DYSIGNS. A visual system that holds up across every channel, from strategy to logo and beyond."
+heading: "Branding"
+slug: "branding"
 answerBlock: |
-  DYSIGNS ontwikkelt visuele identiteiten vanuit Almere, voor merken in
-  Nederland en België die online willen groeien. Van strategie tot
-  logo en huisstijl — met een systeem dat consistent doorwerkt in je
-  website, webshop en social kanalen, niet alleen op papier blijft.
-lastUpdated: 2026-08-01
+  DYSIGNS develops visual identities for brands worldwide, based in
+  the Netherlands. We work from strategy through to logo and a full
+  visual system, one that carries through consistently into your
+  site, store and social channels rather than staying a set of files
+  nobody applies consistently.
+lastUpdated: "2026-08-02"
 ---
 
-## Wat kost branding?
+## What this includes
 
-TODO_DYLAN — prijsindicatie of bandbreedte.
+### Brand strategy
 
-## Hoe lang duurt het?
+Clarity on what your brand stands for, before a logo or a colour gets chosen.
 
-TODO_DYLAN — doorlooptijd in weken.
+### Logo and visual identity
 
-## Wat je krijgt
+A visual identity including logo, colours, typography and applications.
 
-### Merkstrategie
+### Design system
 
-Helderheid over waar je merk voor staat, vóórdat er een logo of kleur
-wordt gekozen.
+Guidelines so the brand stays consistent even when new material is produced by someone else later.
 
-### Logo & huisstijl
+## Why this sits with design and development
 
-Een visuele identiteit inclusief logo, kleuren, typografie en
-toepassingen.
+A brand identity that never gets carried into the actual site or store ends up as a set of files nobody applies consistently. Because the same team can also design and build what the identity lives on, the system holds up past the first handoff.
 
-### Designsysteem
+## Who it is for
 
-Richtlijnen zodat je merk consistent blijft, ook wanneer nieuwe
-uitingen door anderen gemaakt worden.
+For brands that want to grow and need a visual identity that carries into their website, store and social channels, not a standalone style guide disconnected from where the brand actually shows up.
 
-## Voor wie
+## Cases
 
-Voor merken die willen groeien en een visuele identiteit nodig hebben
-die meegaat in hun website, webshop en social kanalen — niet een losse
-huisstijl die daar los van staat.
+TODO_DYLAN: link to at least two related cases.
 
-## Veelgestelde vragen
+## Frequently asked questions
 
-### Begint branding altijd bij een nieuw logo?
+### How much does branding cost?
 
-Niet per se — soms is een bestaand logo nog goed, maar ontbreekt er een
-consistent systeem eromheen dat het merk overal even herkenbaar maakt.
-We kijken eerst naar wat er al staat en wat daarvan bruikbaar is,
-vóórdat we voorstellen om alles opnieuw te doen.
+We do not work with a minimum or a maximum. Every project differs in scope and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation.
 
-### Werken jullie ook aan een bestaande huisstijl, of alleen vanaf nul?
+### Does branding always start with a new logo?
 
-Beide. Een bestaande huisstijl aanscherpen en uitbreiden komt net zo
-vaak voor als een merk vanaf nul opbouwen. In beide gevallen begint het
-traject met helderheid over waar het merk voor staat, niet meteen met
-nieuwe kleuren of een nieuw logo.
+Not necessarily. Sometimes an existing logo still works but the system around it is missing. We look at what already exists before proposing to redo everything.
 
-### Krijg ik ook richtlijnen voor social media mee?
+### Do you work on an existing identity, or only from scratch?
 
-Ja, een designsysteem dat doorwerkt in je social kanalen is onderdeel
-van een brandingtraject, niet een aparte losse dienst. Dat betekent
-duidelijke richtlijnen voor hoe het merk visueel terugkomt in posts,
-templates en andere uitingen, zodat die niet los komen te staan van de
-rest van de identiteit.
+Both. Sharpening and extending an existing identity comes up just as often as building a brand from nothing.
 
-### Bouwen jullie de website of webshop ook, of alleen de identiteit?
+### Do I get guidelines for social media too?
 
-Beide is mogelijk. Naast branding bouwt DYSIGNS ook websites via
-webdesign en webshops via Shopify development, dus een identiteit kan
-in hetzelfde traject doorvertaald worden naar een nieuwe site of
-webshop in plaats van dat de identiteit los blijft staan van waar hij
-uiteindelijk zichtbaar wordt.
+Yes, a design system that carries into your social channels is part of a branding engagement, not a separate add-on.
+
+### Do you also build the site or store the identity goes on?
+
+Yes, see [web design and development](/web-design) if the identity also needs to be carried into a new site or store.
