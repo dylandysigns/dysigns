@@ -60,6 +60,7 @@ export function ContentPage({
         title={entry.frontmatter.title}
         description={entry.frontmatter.description}
         path={path}
+        lastmod={entry.frontmatter.lastUpdated}
         ogType={ogType}
         robots={robots}
         schema={[breadcrumbSchema, ...(extraSchema ?? [])]}

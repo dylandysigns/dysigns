@@ -32,6 +32,7 @@ export default function HomePage() {
         title={homeContent.frontmatter.title}
         description={homeContent.frontmatter.description}
         path="/"
+        lastmod={homeContent.frontmatter.lastUpdated}
         schema={
           homeContent.faqItems.length > 0
             ? [faqPageSchema(homeContent.faqItems)]

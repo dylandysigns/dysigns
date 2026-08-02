@@ -1,5 +1,30 @@
 User-agent: *
 Allow: /
+Disallow: /docs
+Disallow: /fatins-birthday
+Disallow: /gift-fatins-birthday
+
+User-agent: GPTBot
+Allow: /
+Disallow: /docs
+Disallow: /fatins-birthday
+Disallow: /gift-fatins-birthday
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /docs
+Disallow: /fatins-birthday
+Disallow: /gift-fatins-birthday
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /docs
+Disallow: /fatins-birthday
+Disallow: /gift-fatins-birthday
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
 

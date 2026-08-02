@@ -13,6 +13,11 @@ export interface PageMeta {
   /** Page-type JSON-LD nodes (fase 4) — built via src/app/seo/schema.ts
    * helpers, e.g. [breadcrumbListSchema(...), serviceSchema(...)]. */
   schema?: object[];
+  /** ISO date (YYYY-MM-DD) from the page's own content frontmatter
+   * (`lastUpdated`) — fase 7's sitemap.xml uses this as <lastmod>.
+   * Left undefined for pages with no content file (legacy routes);
+   * the sitemap generator omits <lastmod> rather than inventing one. */
+  lastmod?: string;
 }
 
 export function canonicalUrl(path: string): string {

@@ -16,6 +16,7 @@ export default function CasesOverviewPage() {
         title={entry.frontmatter.title}
         description={entry.frontmatter.description}
         path="/cases"
+        lastmod={entry.frontmatter.lastUpdated}
         schema={[
           breadcrumbListSchema([
             { name: "Home", path: "/" },

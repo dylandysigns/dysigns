@@ -178,6 +178,21 @@ async function run() {
     throw new Error('Could not find <div id="root"></div> in dist/index.html — template shape changed.');
   }
 
+  // Fase 7 — sitemap.xml, generated from the actual routes below (never a
+  // hardcoded URL list). lastmod comes from each page's own content
+  // frontmatter (via captured PageMeta.lastmod); omitted for routes that
+  // have no content file rather than inventing a date. Pages that opt
+  // into noindex (fase 3's robots override) are excluded — Google's own
+  // guidance is that noindexed pages shouldn't be in the sitemap.
+  const sitemapEntries = [];
+
+  function priorityFor(url) {
+    if (url === "/") return { priority: "1.0", changefreq: "weekly" };
+    const segments = url.split("/").filter(Boolean);
+    if (segments.length === 1) return { priority: "0.8", changefreq: "monthly" };
+    return { priority: "0.7", changefreq: "monthly" };
+  }
+
   for (const url of routesToPrerender) {
     resetCapturedMeta();
     const appHtml = renderToStaticMarkup(React.createElement(RouteTree, { url }));
@@ -190,8 +205,12 @@ async function run() {
     if (meta) {
       validatePageMeta(meta); // throws (fails the build) if title/description too long
       html = injectHead(html, meta, canonicalUrl(meta.path));
+      if (!meta.robots || !meta.robots.includes("noindex")) {
+        sitemapEntries.push({ url, lastmod: meta.lastmod, ...priorityFor(url) });
+      }
     } else {
       console.warn(`  ! ${url}: geen <Seo> gevonden, head blijft de standaardwaarden houden`);
+      sitemapEntries.push({ url, lastmod: undefined, ...priorityFor(url) });
     }
 
     const outPath =
@@ -203,6 +222,19 @@ async function run() {
     await fs.writeFile(outPath, html);
     console.log(`prerendered ${url} -> ${path.relative(distDir, outPath)}`);
   }
+
+  const sitemapXml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...sitemapEntries.map((e) => {
+      const lastmodTag = e.lastmod ? `\n    <lastmod>${e.lastmod}</lastmod>` : "";
+      return `  <url>\n    <loc>${canonicalUrl(e.url)}</loc>${lastmodTag}\n    <priority>${e.priority}</priority>\n    <changefreq>${e.changefreq}</changefreq>\n  </url>`;
+    }),
+    "</urlset>",
+    "",
+  ].join("\n");
+  await fs.writeFile(path.join(distDir, "sitemap.xml"), sitemapXml);
+  console.log(`gegenereerd: sitemap.xml (${sitemapEntries.length} routes)`);
 
   // 404.html — same shell, NotFoundPage renders for any unmatched path.
   resetCapturedMeta();

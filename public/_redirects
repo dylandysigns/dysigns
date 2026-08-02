@@ -1,1 +1,29 @@
+# Fase 7 — canonieke host, https, trailing slash.
+# Canoniek: https://dylandysigns.com (geen www, geen trailing slash
+# behalve root) — consistent met elke canonical/og:url/JSON-LD @id die
+# in deze site staat. Rules worden top-naar-onder verwerkt, eerste match
+# wint, dus de volgorde hieronder is belangrijk.
+#
+# LET OP (eerlijke kanttekening): dit gedrag kon niet live tegen een
+# draaiende Netlify-omgeving getest worden vanuit deze sandbox — alleen
+# de build zelf is hier te draaien, niet Netlify's eigen redirect-engine.
+# Controleer na deploy expliciet: http://, https://www., en een pad met
+# trailing slash (bijv. /work/) horen allemaal 301 te redirecten naar de
+# canonieke vorm.
+
+# Root ("/") beschermen vóórdat de trailing-slash-regel hieronder kan
+# matchen — "/" is zelf de canonieke vorm (met slash), niet iets om van
+# te stripped.
+/ /index.html 200
+
+# www -> non-www, altijd https (force-flag ! zorgt dat dit ook vuurt als
+# er toevallig een bestand op dat pad matcht).
+http://www.dylandysigns.com/* https://dylandysigns.com/:splat 301!
+https://www.dylandysigns.com/* https://dylandysigns.com/:splat 301!
+http://dylandysigns.com/* https://dylandysigns.com/:splat 301!
+
+# Trailing slash strippen (behalve root, al afgevangen hierboven).
+/*/  /:splat  301!
+
+# SPA-fallback — moet als laatste, na alle redirects hierboven.
 /* /index.html 200

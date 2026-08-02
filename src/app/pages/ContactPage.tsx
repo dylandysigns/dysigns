@@ -134,6 +134,7 @@ export default function ContactPage() {
         title={contactContent.frontmatter.title}
         description={contactContent.frontmatter.description}
         path="/contact"
+        lastmod={contactContent.frontmatter.lastUpdated}
         schema={[
           breadcrumbListSchema([
             { name: "Home", path: "/" },
