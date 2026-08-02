@@ -1,6 +1,6 @@
 ---
-title: Webdesign & UX bureau in Almere | DYSIGNS
-description: DYSIGNS ontwerpt en bouwt websites, webshops en interfaces vanuit Almere. UX/UI design, Shopify development en branding voor ondernemers en bureaus.
+title: Full-Service Digital Agency Almere | DYSIGNS
+description: DYSIGNS is een full-service digital agency uit Almere: UX/UI design, webdesign, Shopify development, branding en meer.
 slug: /
 answerBlock: |
   DYSIGNS is een digital design bureau uit Almere, opgericht door Dylan Kho.

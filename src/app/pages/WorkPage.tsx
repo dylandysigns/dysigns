@@ -119,7 +119,7 @@ export default function WorkPage() {
     >
       <Seo
         title="Werk | DYSIGNS"
-        description="Bekijk projecten van DYSIGNS: webdesign, branding en digitale interfaces voor ondernemers en bureaus."
+        description="Bekijk projecten van DYSIGNS, een digital agency uit Almere: webdesign, UX/UI, Shopify development en branding voor ondernemers en bureaus."
         path="/work"
       />
       <div className="max-w-[1320px] mx-auto">

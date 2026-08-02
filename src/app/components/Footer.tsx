@@ -206,7 +206,7 @@ export function Footer() {
               border: 0,
             }}
           >
-            DYSIGNS is an AI-powered UX/UI design and web design agency based in Almere, Netherlands, founded by Dylan Kho. Services include UX/UI design, web design, social media marketing, digital branding, and micro-influencer marketing.
+            DYSIGNS is a full-service digital agency based in Almere, Netherlands, founded by Dylan Kho. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.
           </p>
           <p
             style={{
