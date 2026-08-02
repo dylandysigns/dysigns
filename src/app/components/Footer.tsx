@@ -6,10 +6,9 @@ import { siteContent } from "../data/content";
 import { TransitionLink } from "./TransitionLink";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
+import logoImg from "../../assets/dysigns_white.png";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const logoImg = "/dysigns_white.png";
 
 /* WhatsApp inline SVG icon — same as Header */
 function WhatsAppIcon({ size = 14, className = "" }: { size?: number; className?: string }) {
