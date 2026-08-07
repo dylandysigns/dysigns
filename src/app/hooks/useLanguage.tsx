@@ -266,6 +266,15 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.or": { en: "OR", nl: "OF" },
   "contact.sendWhatsapp": { en: "Send me a WhatsApp!", nl: "Stuur een WhatsApp!" },
 
+  /* ── Thank You Page ── */
+  "thankyou.label": { en: "Message sent", nl: "Bericht verstuurd" },
+  "thankyou.headline": { en: "Thanks, got it.", nl: "Bedankt, binnen." },
+  "thankyou.sub": {
+    en: "Your message is on its way to us. We reply within one business day.",
+    nl: "Je bericht is onderweg naar ons. We reageren binnen één werkdag.",
+  },
+  "thankyou.backHome": { en: "Back to home", nl: "Terug naar home" },
+
   /* ── About Page ── */
   "about.label": { en: "About us", nl: "Over ons" },
   "about.storyTitle": {

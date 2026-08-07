@@ -60,6 +60,13 @@ const enRoutes = [
 const routesToPrerender = [
   ...enRoutes,
   ...enRoutes.map((url) => (url === "/" ? "/nl" : `/nl${url}`)),
+  // Netlify Forms' native POST redirect target — needs to exist as a
+  // real static file for the browser to land on after submit. noindex
+  // (set on the page itself), so it's excluded from the sitemap
+  // automatically same as any other noindex route. English-only, not
+  // mirrored under /nl — the contact form's action is a single static
+  // path regardless of which language it was submitted from.
+  "/thank-you",
 ];
 
 // Fase 3 — inject each route's captured <Seo> values into its own <head>.

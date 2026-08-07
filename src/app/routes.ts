@@ -15,6 +15,7 @@ import InsightsOverviewPage from "./pages/InsightsOverviewPage";
 import InsightsDetailPage from "./pages/InsightsDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ThankYouPage from "./pages/ThankYouPage";
 import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
@@ -61,6 +62,12 @@ export const routes: RouteObject[] = [
     Component: Layout,
     children: [
       ...localizedChildren,
+      // Netlify Forms' native POST redirect target (contact form's
+      // action="/thank-you") — always this one English path regardless
+      // of which language the form was submitted from, since the form
+      // itself has a single static action for Netlify's build-time form
+      // detection to find.
+      { path: "thank-you", Component: ThankYouPage },
       { path: "docs", Component: DocsPage },
       { path: "*", Component: NotFoundPage },
     ],

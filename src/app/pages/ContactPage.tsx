@@ -212,8 +212,64 @@ export default function ContactPage() {
           ref={contentRef}
           className="mt-10 space-y-6"
         >
-          <form
+          <a
             ref={(el) => { cardsRef.current[0] = el; }}
+            href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
+            style={{
+              border: "1px solid rgba(var(--page-fg-rgb), .08)",
+              background: "rgba(var(--page-fg-rgb), .02)",
+              color: "rgba(var(--page-fg-rgb), .55)",
+              opacity: 0,
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "rgba(var(--page-fg-rgb), .18)";
+              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+              cursor.set("link");
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor =
+                "rgba(var(--page-fg-rgb), .08)";
+              (e.currentTarget as HTMLElement).style.color =
+                "rgba(var(--page-fg-rgb), .55)";
+              cursor.reset();
+            }}
+          >
+            <WhatsAppIcon size={18} />
+            <span
+              style={{
+                fontSize: "1rem",
+                fontWeight: 500,
+              }}
+            >
+              {t("contact.sendWhatsapp")}
+            </span>
+          </a>
+
+          <div className="flex items-center gap-4 max-w-[420px] mx-auto">
+            <span
+              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
+            />
+            <span
+              style={{
+                fontFamily: "'Instrument Serif',serif",
+                fontStyle: "italic",
+                fontSize: "1rem",
+                color: "rgba(var(--page-fg-rgb), .5)",
+              }}
+            >
+              {t("contact.or")}
+            </span>
+            <span
+              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
+            />
+          </div>
+
+          <form
+            ref={(el) => { cardsRef.current[1] = el; }}
             name="contact"
             method="POST"
             data-netlify="true"
@@ -367,62 +423,6 @@ export default function ContactPage() {
               </span>
             </button>
           </form>
-
-          <div className="flex items-center gap-4 max-w-[420px] mx-auto">
-            <span
-              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
-            />
-            <span
-              style={{
-                fontFamily: "'Instrument Serif',serif",
-                fontStyle: "italic",
-                fontSize: "1rem",
-                color: "rgba(var(--page-fg-rgb), .5)",
-              }}
-            >
-              {t("contact.or")}
-            </span>
-            <span
-              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
-            />
-          </div>
-
-          <a
-            ref={(el) => { cardsRef.current[1] = el; }}
-            href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
-            style={{
-              border: "1px solid rgba(var(--page-fg-rgb), .08)",
-              background: "rgba(var(--page-fg-rgb), .02)",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              opacity: 0,
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .18)";
-              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
-              cursor.set("link");
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .08)";
-              (e.currentTarget as HTMLElement).style.color =
-                "rgba(var(--page-fg-rgb), .55)";
-              cursor.reset();
-            }}
-          >
-            <WhatsAppIcon size={18} />
-            <span
-              style={{
-                fontSize: "1rem",
-                fontWeight: 500,
-              }}
-            >
-              {t("contact.sendWhatsapp")}
-            </span>
-          </a>
 
           <div className="pt-8">
             <span
