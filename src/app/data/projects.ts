@@ -202,6 +202,30 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "a-cafe-app-design",
+    title: "A/Café App Design",
+    category: "App Design",
+    tags: ["App Design", "UX Design", "Email Marketing"],
+    year: "2026",
+    thumbnail: "/images/placeholder-case.svg",
+    overview:
+      "DYSIGNS designed and built a self-ordering kiosk app for A/Café, carrying the POS and kitchen display through in the same visual identity. Email marketing was set up end to end alongside it, so guest, staff and brand speak the same language across the whole ordering system.",
+    outcomes: [],
+    gallery: ["/images/placeholder-case.svg"],
+  },
+  {
+    slug: "studio75-branding",
+    title: "Studio75 Branding",
+    category: "Branding",
+    tags: ["Brand Identity", "Co-Creation"],
+    year: "2026",
+    thumbnail: "/images/placeholder-case.svg",
+    overview:
+      "DYSIGNS developed the Studio75 identity through co-creation, based in the Netherlands and working directly with the client throughout. From ideation and moodboards to a fully developed identity, built together rather than handed over, and translated directly into practice instead of staying a standalone style guide.",
+    outcomes: [],
+    gallery: ["/images/placeholder-case.svg"],
+  },
+  {
     slug: "flux-motion-identity",
     title: "Flux Motion Identity",
     category: "Branding",
@@ -225,21 +249,11 @@ export const projects: Project[] = [
   },
 ];
 
-/** Zoom-to-grid section images and headlines */
+/** Zoom-to-grid section hero image — grid tiles now use each project's own
+ * `thumbnail` directly instead of a separately curated image list, so a
+ * tile can never show a different project's photo than the one it links to. */
 export const zoomToGridData = {
-  heroImage:"../images/mobilestelz.png",
-  headlineStart: "Projects",
-  headlineEnd: "we're proud of",
-  gridImages: [
-    "https://images.unsplash.com/photo-1761404382584-9e3ff1da40d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMHdvcmtzcGFjZSUyMG1vZGVybiUyMGRhcmslMjBtb29keXxlbnwxfHx8fDE3NzE1MDg1MTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1558707538-c56435bdcdf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0eXBvZ3JhcGh5JTIwcG9zdGVyJTIwZGVzaWduJTIwbW9ub2Nocm9tZXxlbnwxfHx8fDE3NzE1MDg1MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwZGVzaWduJTIwcHJvdG90eXBlJTIwbWluaW1hbHxlbnwxfHx8fDE3NzE1MDg1MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1658863025658-4a259cc68fc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMHN0YXRpb25lcnklMjBtb2NrdXAlMjBlbGVnYW50fGVufDF8fHx8MTc3MTUwODUxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "/images/beckers-cover-laptop-v2.png",
-    "/images/powermobile-hero.png",
-    "https://images.unsplash.com/photo-1575176647987-4c1a2e598950?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwYWNrYWdpbmclMjBkZXNpZ24lMjBlbGVnYW50JTIwZGFya3xlbnwxfHx8fDE3NzE1ODg0OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1688141585146-1fb4a1358c87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGRlc2lnbiUyMGRhcmslMjBtb29keXxlbnwxfHx8fDE3NzE1ODg0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  ],
+  heroImage: "/images/mobilestelz.png",
 };
 
 export const aboutImage =

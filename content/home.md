@@ -13,48 +13,6 @@ answerBlock: |
 lastUpdated: "2026-08-02"
 ---
 
-## What DYSIGNS does
-
-Design, development and marketing sit in the same team. That removes handovers, duplicate briefings and the argument about who owns what.
-
-### [Web design and development](/web-design)
-
-Custom websites and Shopify stores. Fast, findable and built to keep performing.
-
-### [Social media and Meta Ads](/social-media-meta-ads)
-
-Content, campaigns and ad management. We build the landing page too, so we optimise the full funnel.
-
-### [UX/UI design](/ux-ui-design)
-
-From user research to a complete design system. Including complex portals and dashboards.
-
-### [Branding](/branding)
-
-More than a logo. A visual system that holds up across every channel.
-
-### [AI implementation](/ai-implementation)
-
-We are not better than AI. Nobody is. We do know where it saves real time and where it stays an expensive demo.
-
-## Recent projects
-
-### [STËLZ](/work/stelz)
-
-Shopify development, expansion into the Belgian market through Shopify Markets, EU compliance and accessibility.
-
-Result: lead generation up 65%, average time on site doubled, mobile conversion rate improved 3×, and the site won CSS Design Awards site of the month.
-
-### [A/Café](/work/a-cafe)
-
-App development, design and UX for a self-ordering kiosk, with the POS and kitchen display carried through in the same visual identity. Email marketing set up end to end.
-
-One connected ordering system from kiosk to kitchen, where guest, staff and brand speak the same language.
-
-### [Studio75](/work/studio75)
-
-Branding through co-creation. From ideation and moodboards to a fully developed identity, built together and translated into practice.
-
 ## How we work
 
 Six phases, from first conversation to ongoing optimisation. Not every project runs through all of them, but the order stays the same.
@@ -132,6 +90,10 @@ With separate vendors you become the project manager between designer, developer
 ### Which languages can I work with you in?
 
 English and Dutch, both equally fluent, across calls, documentation and delivery. Whether a project is run from the Netherlands or from the other side of the world, the language adapts without affecting the quality of the work.
+
+### What does the onboarding and project roadmap look like from start to launch?
+
+During onboarding, we create a clear roadmap for your project together. From the very beginning, we communicate openly about every step: from discovery and planning to design, development, testing, and going live. This way, you always know what to expect and when.
 
 ## Contact
 

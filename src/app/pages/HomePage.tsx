@@ -3,15 +3,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Hero } from "../components/home/Hero";
 import { ZoomToGrid } from "../components/home/ZoomToGrid";
 import { Services } from "../components/home/Services";
+import { Process } from "../components/home/Process";
 import { KindWords } from "../components/home/KindWords";
+import { AfterLaunch } from "../components/home/AfterLaunch";
+import { FAQ } from "../components/home/FAQ";
 import { ContactBand } from "../components/home/ContactBand";
 import { Seo } from "../components/Seo";
-import { getContent } from "../content/loadContent";
+import { getLocalizedContent } from "../content/loadContent";
 import { faqPageSchema } from "../seo/schema";
-
-const homeContent = getContent("home.md");
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function HomePage() {
+  const { lang } = useLanguage();
+  const homeContent = getLocalizedContent("home.md", lang);
+
   /**
    * Coordinated refresh — after ALL child sections have mounted and
    * created their ScrollTriggers / pin-spacers, do one final refresh
@@ -42,25 +47,10 @@ export default function HomePage() {
       <Hero />
       <ZoomToGrid />
       <Services />
+      <Process />
       <KindWords />
-      {/* Renders content/home.md's body — "Wat DYSIGNS doet" (links to
-          the 4 service pages, fase 6), "Hoe we werken", FAQ. Without
-          this, the FAQPage schema above would describe content that
-          isn't actually visible on the page, which structured-data
-          guidelines explicitly warn against. Reuses the same
-          .content-prose treatment as the other content-driven pages —
-          no new visual language. */}
-      <section
-        className="relative"
-        style={{ background: "var(--page-bg)" }}
-      >
-        <div className="max-w-[800px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div
-            className="content-prose"
-            dangerouslySetInnerHTML={{ __html: homeContent.bodyHtml }}
-          />
-        </div>
-      </section>
+      <AfterLaunch />
+      <FAQ />
       <ContactBand />
     </>
   );

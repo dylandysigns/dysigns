@@ -10,6 +10,10 @@ import type { FaqItem } from "../seo/schema";
 export interface ContentEntry {
   frontmatter: Frontmatter;
   bodyHtml: string;
+  /** Raw markdown body (pre-HTML), for components that need to parse out
+   * a specific section themselves (getProcessSteps, getAfterLaunchContent)
+   * rather than rendering the whole body as one prose blob. */
+  rawBody: string;
   /** Real question/answer pairs found under "## Veelgestelde vragen",
    * extracted from the raw markdown (fase 5) — empty until a page has
    * actual FAQ copy, not TODO_DYLAN placeholders. Used to drive
@@ -46,6 +50,114 @@ function extractFaqItems(markdownBody: string): FaqItem[] {
   return items;
 }
 
+// Generic "## Heading" section extractor, same split-on-every-"## "
+// approach as extractFaqItems (avoids the multiline `$`-in-lookahead
+// trap noted above). Returns the raw markdown body of that section, or
+// null if the heading doesn't exist.
+function extractSection(markdownBody: string, heading: string): string | null {
+  const sections = markdownBody.split(/\r?\n(?=## )/);
+  const match = sections.find((s) => s.startsWith(`## ${heading}`));
+  if (!match) return null;
+  return match.replace(new RegExp(`^## ${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\r?\\n?`), "").trim();
+}
+
+export interface ProcessStep {
+  number: string;
+  title: string;
+  body: string;
+}
+
+/** Parses the numbered "### 1. Discover" / "### 2. Define" ... sub-headings
+ * under "## How we work" into {number, title, body} — used by the
+ * homepage Process section. Reads content/home.md directly rather than
+ * duplicating the six steps as separate hardcoded data, so the step
+ * text has one source of truth. */
+export function getProcessSteps(markdownBody: string): ProcessStep[] {
+  const section = extractSection(markdownBody, "How we work");
+  if (!section) return [];
+  const blocks = section.split(/(?=^### )/m).filter((b) => b.trim());
+  const steps: ProcessStep[] = [];
+  for (const block of blocks) {
+    const match = block.match(/^### (\d+)\.\s*(.+)\r?\n([\s\S]*)$/);
+    if (!match) continue;
+    steps.push({
+      number: match[1],
+      title: match[2].trim(),
+      body: match[3].trim().replace(/\s+/g, " "),
+    });
+  }
+  return steps;
+}
+
+export interface AfterLaunchContent {
+  heading: string;
+  body: string;
+  points: { label: string; href: string }[];
+}
+
+/** Parses "## Launch is the start, not the finish" into its paragraph
+ * plus the three "- [Label](/href)" bullet points underneath. */
+export function getAfterLaunchContent(markdownBody: string): AfterLaunchContent | null {
+  const section = extractSection(markdownBody, "Launch is the start, not the finish");
+  if (!section) return null;
+  const lines = section.split(/\r?\n/);
+  const bodyLines: string[] = [];
+  const points: { label: string; href: string }[] = [];
+  for (const line of lines) {
+    const linkMatch = line.match(/^-\s*\[([^\]]+)\]\(([^)]+)\)/);
+    if (linkMatch) {
+      points.push({ label: linkMatch[1], href: linkMatch[2] });
+    } else if (line.trim()) {
+      bodyLines.push(line.trim());
+    }
+  }
+  return {
+    heading: "Launch is the start, not the finish",
+    body: bodyLines.join(" "),
+    points,
+  };
+}
+
+export interface ServiceIncludeItem {
+  title: string;
+  description: string;
+  /** Present when a carousel slide should link somewhere (e.g. the
+   * service-page carousel showing other services) — absent for the
+   * plain "what this includes" list, which isn't a link target. */
+  href?: string;
+}
+
+/** Parses the "### Title" sub-headings (and their one-line paragraph)
+ * under "## What this includes" — used by the service-page carousel.
+ * Reads each service's own content/services/*.md rather than a separate
+ * hand-maintained slide list, so title and description can never drift
+ * out of sync with what the page itself says. */
+export function getServiceIncludes(markdownBody: string): ServiceIncludeItem[] {
+  const section = extractSection(markdownBody, "What this includes");
+  if (!section) return [];
+  const blocks = section.split(/(?=^### )/m).filter((b) => b.trim());
+  const items: ServiceIncludeItem[] = [];
+  for (const block of blocks) {
+    const match = block.match(/^### (.+)\r?\n([\s\S]*)$/);
+    if (!match) continue;
+    items.push({
+      title: match[1].trim(),
+      description: match[2].trim().replace(/\s+/g, " "),
+    });
+  }
+  return items;
+}
+
+/** Plain single-paragraph section (e.g. "Who it is for") — returns the
+ * section's text with line-wrapping collapsed, or null if the heading
+ * isn't present. Used on service pages so this copy can be laid out
+ * deliberately instead of dumped as generic prose. */
+export function getSectionParagraph(markdownBody: string, heading: string): string | null {
+  const section = extractSection(markdownBody, heading);
+  if (!section) return null;
+  return section.trim().replace(/\s+/g, " ");
+}
+
 const rawModules = import.meta.glob("/content/**/*.md", {
   query: "?raw",
   import: "default",
@@ -59,6 +171,7 @@ for (const [path, raw] of Object.entries(rawModules)) {
   entriesByPath.set(path, {
     frontmatter,
     bodyHtml: marked.parse(body, { async: false }) as string,
+    rawBody: body,
     faqItems: extractFaqItems(body),
   });
 }
@@ -76,6 +189,20 @@ export function getContent(relativePath: string): ContentEntry {
     throw new Error(`Content file not found: content/${relativePath}`);
   }
   return entry;
+}
+
+/** Locale-aware content lookup — tries `{relativePath}` with `.nl.md`
+ * instead of `.md` for Dutch, falls back to the English file if no Dutch
+ * translation exists yet for that path. Keeps English the guaranteed
+ * default (nothing regresses for paths without a translation) while
+ * letting individual pages opt into a real NL version as it's written. */
+export function getLocalizedContent(relativePath: string, lang: "en" | "nl"): ContentEntry {
+  if (lang === "nl") {
+    const nlPath = relativePath.replace(/\.md$/, ".nl.md");
+    const nlEntry = findByPathSuffix(`/content/${nlPath}`);
+    if (nlEntry) return nlEntry;
+  }
+  return getContent(relativePath);
 }
 
 export function getCaseSlugs(): string[] {

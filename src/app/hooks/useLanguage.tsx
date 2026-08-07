@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
+import React, { createContext, useContext, useMemo, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router";
 
 export type Lang = "en" | "nl";
 
@@ -40,19 +41,15 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Hero ── */
   "hero.headline.A": {
-    en: "We design, build and grow digital products",
-    nl: "DYSIGNS. Waar ideeën aantrekkingskracht krijgen.",
-  },
-  "hero.sub": {
-    en: "We grow companies through social media, web design, and digital experiences that pull people in.",
-    nl: "We laten bedrijven groeien met social media, webdesign en digitale ervaringen die mensen aantrekken.",
+    en: "DYSIGNS is a full-service digital agency creating brands, websites, and social campaigns that transform company values into meaningful business value.",
+    nl: "DYSIGNS is een full-service digital agency die bedrijfswaarden vertaalt naar sterke merken, websites en socialmediacampagnes die impact maken.",
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
   "hero.available": { en: "Available for projects, Amsterdam", nl: "Beschikbaar voor projecten, Amsterdam" },
-  "hero.brushHere": { en: "BRUSH HERE", nl: "BRUSH HIER" },
-  "hero.keepBrushing": { en: "KEEP BRUSHING", nl: "BLIJF BRUSHEN" },
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
+  "hero.watchVideo": { en: "Watch video", nl: "Bekijk video" },
+  "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
   "hero.chip.strategy": { en: "Strategy", nl: "Strategie" },
   "hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },
   "hero.chip.brand": { en: "Brand Identity", nl: "Brand identity" },
@@ -75,6 +72,38 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Services ── */
   "services.label": { en: "What we do", nl: "Wat wij doen" },
+  "services.includesCarousel": { en: "What's included", nl: "Wat is inbegrepen" },
+  "services.introHeading": {
+    en: "Design, development and marketing, in one team",
+    nl: "Design, development en marketing, in één team",
+  },
+  "services.introText": {
+    en: "A full-service digital agency in the Netherlands, working with clients worldwide. UX, brand, websites, Shopify, AI implementation, and the campaigns that bring customers in afterwards. One partner instead of four vendors pointing at each other.",
+    nl: "Een full-service digital agency in Nederland, met klanten wereldwijd. UX, branding, websites, Shopify, AI-implementatie en de campagnes die daarna klanten binnenhalen. Eén partner in plaats van vier partijen die naar elkaar wijzen.",
+  },
+  "services.eyebrow": { en: "Service", nl: "Dienst" },
+  "services.explorePrefix": { en: "Explore", nl: "Bekijk" },
+  "services.whatIncludes": { en: "What this includes", nl: "Wat dit inhoudt" },
+  "services.whoHeading": { en: "Who it is for", nl: "Voor wie is dit" },
+  "services.alsoFrom": { en: "Also from DYSIGNS", nl: "Ook van DYSIGNS" },
+  "services.faqHeading": { en: "Frequently asked questions", nl: "Veelgestelde vragen" },
+  "faq.group.workingTogether": { en: "Working together", nl: "Samenwerken" },
+  "faq.group.servicesPlatforms": { en: "Services and platforms", nl: "Diensten en platforms" },
+  "faq.group.practical": { en: "Practical", nl: "Praktisch" },
+  "process.heading": { en: "How we work", nl: "Hoe wij werken" },
+  "afterLaunch.heading": {
+    en: "Launch is the start, not the finish",
+    nl: "Livegang is het begin, niet het einde",
+  },
+  "services.whyHeadingDefault": {
+    en: "Why this sits with design and development",
+    nl: "Waarom dit bij design en development hoort",
+  },
+  "services.shopifyWhyHeading": {
+    en: "When Shopify is not the right choice",
+    nl: "Wanneer Shopify niet de juiste keuze is",
+  },
+  "breadcrumb.home": { en: "Home", nl: "Home" },
   "services.title": { en: "Services", nl: "Diensten" },
   "services.0.title": { en: "Brand Identity", nl: "Merkidentiteit" },
   "services.0.desc": {
@@ -215,16 +244,27 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Contact Band ── */
   "contact.headline": {
-    en: "Have a project in mind?",
+    en: "Let’s just talk, we’re very chill.",
     nl: "Laten we lekker babbelen, we zijn heel gezellig.",
   },
   "contact.sub": {
-    en: "Tell us briefly what you want to achieve and what your deadline looks like. Reply within one business day, first conversation free.",
+    en: "Got a idea in mind? We’d love to make something unique with you.",
     nl: "Heb je een idee in gedachten? We houden van unieke dingen.",
   },
   "contact.emailUs": { en: "Email us", nl: "E-mail ons" },
+  "contact.viewForm": { en: "Go to the contact form", nl: "Ga naar het contactformulier" },
   "contact.label": { en: "Contact", nl: "Contact" },
   "contact.followUs": { en: "Follow us", nl: "Volg ons" },
+  "contact.form.emailLabel": { en: "Your email", nl: "Jouw e-mail" },
+  "contact.form.emailPlaceholder": { en: "you@awesome.com", nl: "jij@geweldig.nl" },
+  "contact.form.messageLabel": { en: "What's on your mind?", nl: "Waar denk je aan?" },
+  "contact.form.messagePlaceholder": {
+    en: "Tell us about your idea, your project, or just say hi...",
+    nl: "Vertel over je idee, je project, of zeg gewoon hoi...",
+  },
+  "contact.form.submit": { en: "Send it over", nl: "Verstuur maar" },
+  "contact.or": { en: "OR", nl: "OF" },
+  "contact.sendWhatsapp": { en: "Send me a WhatsApp!", nl: "Stuur een WhatsApp!" },
 
   /* ── About Page ── */
   "about.label": { en: "About us", nl: "Over ons" },
@@ -239,8 +279,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "about.valuesLabel": { en: "What we believe", nl: "Waar we in geloven" },
   "about.value0.title": { en: "Craft over shortcuts", nl: "Vakmanschap boven shortcuts" },
   "about.value0.text": {
-    en: "Every pixel, every interaction, every word\u2014we obsess over the details because that\u2019s where the magic lives.",
-    nl: "Elke pixel, elke interactie, elk woord\u2014we zijn geobsedeerd door de details, want daar zit de magie.",
+    en: "Every pixel, every interaction, every word: we obsess over the details because that\u2019s where the magic lives.",
+    nl: "Elke pixel, elke interactie, elk woord: we zijn geobsedeerd door de details, want daar zit de magie.",
   },
   "about.value1.title": { en: "Strategy first", nl: "Strategie eerst" },
   "about.value1.text": {
@@ -254,8 +294,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   },
   "about.value3.title": { en: "Lasting impact", nl: "Blijvende impact" },
   "about.value3.text": {
-    en: "We measure success not in deliverables but in outcomes\u2014brands that grow, communities that engage, experiences people remember.",
-    nl: "We meten succes niet in opleverpunten maar in resultaten\u2014merken die groeien, communities die betrokken raken en ervaringen die mensen onthouden.",
+    en: "We measure success not in deliverables but in outcomes: brands that grow, communities that engage, experiences people remember.",
+    nl: "We meten succes niet in opleverpunten maar in resultaten: merken die groeien, communities die betrokken raken en ervaringen die mensen onthouden.",
   },
   "about.ctaTitle": {
     en: "Interested in working together?",
@@ -266,6 +306,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   /* ── Work Page ── */
   "work.label": { en: "Our work", nl: "Ons werk" },
   "work.title": { en: "Selected projects", nl: "Geselecteerde projecten" },
+  "work.viewAll": { en: "View all work", nl: "Bekijk al het werk" },
   "work.filterAll": { en: "All", nl: "Alle" },
   "work.clearFilters": { en: "Reset filters", nl: "Filters resetten" },
   "work.filteredBy": { en: "Filtered by", nl: "Gefilterd op" },
@@ -333,6 +374,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   },
 
   /* ── Category translations ── */
+  "category.App Design": { en: "App Design", nl: "App Design" },
   "category.Branding": { en: "Branding", nl: "Branding" },
   "category.Digital": { en: "Digital", nl: "Digitaal" },
   "category.Social Media Management": {
@@ -343,6 +385,9 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* ── Tag translations ── */
   "tag.Brand Identity": { en: "Brand Identity", nl: "Merkidentiteit" },
+  "tag.App Design": { en: "App Design", nl: "App Design" },
+  "tag.Email Marketing": { en: "Email Marketing", nl: "E-mailmarketing" },
+  "tag.Co-Creation": { en: "Co-Creation", nl: "Co-creatie" },
   "tag.Web Design": { en: "Web Design", nl: "Webdesign" },
   "tag.Design System": { en: "Design System", nl: "Design System" },
   "tag.Mobile App": { en: "Mobile App", nl: "Mobiele App" },
@@ -595,22 +640,62 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "Featured on It\u2019s Nice That and Brand New",
     nl: "Verschenen op It\u2019s Nice That en Brand New",
   },
+
+  /* \u2500\u2500 Project: A/Caf\u00e9 App Design \u2500\u2500 */
+  "project.a-cafe-app-design.title": {
+    en: "A/Caf\u00e9 App Design",
+    nl: "A/Caf\u00e9 App Design",
+  },
+  "project.a-cafe-app-design.overview": {
+    en: "DYSIGNS designed and built a self-ordering kiosk app for A/Caf\u00e9, carrying the POS and kitchen display through in the same visual identity. Email marketing was set up end to end alongside it, so guest, staff and brand speak the same language across the whole ordering system.",
+    nl: "DYSIGNS ontwierp en bouwde een self-order kiosk-app voor A/Caf\u00e9, met de kassa en het keukendisplay in dezelfde visuele identiteit doorgevoerd. E-mailmarketing werd end-to-end ingericht, zodat gast, personeel en merk dezelfde taal spreken door het hele bestelsysteem heen.",
+  },
+
+  /* \u2500\u2500 Project: Studio75 Branding \u2500\u2500 */
+  "project.studio75-branding.title": {
+    en: "Studio75 Branding",
+    nl: "Studio75 Branding",
+  },
+  "project.studio75-branding.overview": {
+    en: "DYSIGNS developed the Studio75 identity through co-creation, based in the Netherlands and working directly with the client throughout. From ideation and moodboards to a fully developed identity, built together rather than handed over, and translated directly into practice instead of staying a standalone style guide.",
+    nl: "DYSIGNS ontwikkelde de identiteit van Studio75 via co-creatie, vanuit Nederland en steeds in direct contact met de klant. Van ideevorming en moodboards tot een volledig uitgewerkte identiteit, samen gebouwd in plaats van opgeleverd, en direct vertaald naar de praktijk in plaats van een losstaande stijlgids.",
+  },
 };
+
+// A page's language is a property of its URL, not a remembered client
+// preference — /nl/... is the Dutch tree, everything else is English.
+// This is what makes prerendering, hreflang, and sitemap entries actually
+// correct per language: the same component tree renders differently
+// depending on where the router mounted it, no client-only state that a
+// crawler (or a fresh prerender pass) would never see.
+export function pathIsDutch(pathname: string): boolean {
+  return pathname === "/nl" || pathname.startsWith("/nl/");
+}
+
+export function toLangPath(pathname: string, lang: Lang): string {
+  const isNl = pathIsDutch(pathname);
+  if (lang === "nl") {
+    if (isNl) return pathname;
+    return pathname === "/" ? "/nl" : `/nl${pathname}`;
+  }
+  if (!isNl) return pathname;
+  const stripped = pathname.slice(3); // remove leading "/nl"
+  return stripped === "" ? "/" : stripped;
+}
 
 /* ─── PROVIDER ─── */
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("dysigns-lang");
-      if (saved === "nl" || saved === "en") return saved;
-    }
-    return "en";
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const lang: Lang = pathIsDutch(location.pathname) ? "nl" : "en";
 
-  const setLang = useCallback((l: Lang) => {
-    setLangState(l);
-    if (typeof window !== "undefined") localStorage.setItem("dysigns-lang", l);
-  }, []);
+  const setLang = useCallback(
+    (l: Lang) => {
+      const target = toLangPath(location.pathname, l);
+      if (target !== location.pathname) navigate(target + location.search);
+    },
+    [location.pathname, location.search, navigate],
+  );
 
   const toggleLang = useCallback(() => {
     setLang(lang === "en" ? "nl" : "en");

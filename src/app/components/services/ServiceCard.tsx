@@ -1,34 +1,29 @@
 import { useRef, useCallback } from "react";
-import { ArrowRight, Box, Compass, Layout, LucideIcon, Palette } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { TransitionLink } from "../TransitionLink";
 import { useCursor } from "../../hooks/useCursor";
 import { type ServiceSlug } from "../../data/serviceTaxonomy";
 
-const serviceIcons: Record<ServiceSlug, LucideIcon> = {
-  "brand-identity": Palette,
-  "ux-ui-web-design": Layout,
-  "product-design": Box,
-  "creative-thinking": Compass,
-};
-
 interface ServiceCardProps {
-  ctaLabel: string;
   description: string;
   href: string;
+  index: number;
   slug: ServiceSlug;
   title: string;
+  /** Descriptive anchor text, e.g. "Explore web design and development" — never "read more". */
+  linkLabel: string;
 }
 
 export function ServiceCard({
-  ctaLabel,
   description,
   href,
+  index,
   slug,
   title,
+  linkLabel,
 }: ServiceCardProps) {
   const cursor = useCursor();
-  const Icon = serviceIcons[slug];
   const cardRef = useRef<HTMLAnchorElement>(null);
   const rectCache = useRef<DOMRect | null>(null);
   const isTouch =
@@ -51,9 +46,10 @@ export function ServiceCard({
 
   return (
     <TransitionLink
-      ref={cardRef}
       to={href}
-      className="group relative block h-full rounded-xl overflow-hidden focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+      ref={cardRef}
+      aria-label={linkLabel}
+      className="group relative flex h-full flex-col rounded-xl overflow-hidden focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
       style={{
         border: "1px solid rgba(var(--page-fg-rgb), .06)",
         background: "rgba(var(--page-fg-rgb), .02)",
@@ -63,72 +59,48 @@ export function ServiceCard({
       onMouseMove={isTouch ? undefined : handleTilt}
       onMouseEnter={isTouch ? undefined : (e) => {
         rectCache.current = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        cursor.set("link");
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .16)";
         el.style.background = "rgba(var(--page-fg-rgb), .03)";
+        cursor.set("link");
       }}
       onMouseLeave={isTouch ? undefined : (e) => {
         rectCache.current = null;
-        cursor.reset();
         resetTilt();
         const el = e.currentTarget as HTMLElement;
         el.style.borderColor = "rgba(var(--page-fg-rgb), .06)";
         el.style.background = "rgba(var(--page-fg-rgb), .02)";
-      }}
-      onFocus={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.borderColor = "rgba(var(--page-fg-rgb), .18)";
-      }}
-      onBlur={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.borderColor = "rgba(var(--page-fg-rgb), .06)";
+        cursor.reset();
       }}
     >
       <svg
-        className="absolute top-0 left-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500"
+        className="absolute top-0 left-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         viewBox="0 0 32 32"
       >
-        <path
-          d="M0 14 L0 0 L14 0"
-          stroke="rgba(var(--page-fg-rgb), .2)"
-          strokeWidth="1"
-          fill="none"
-        />
+        <path d="M0 14 L0 0 L14 0" stroke="rgba(var(--page-fg-rgb), .2)" strokeWidth="1" fill="none" />
       </svg>
       <svg
-        className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500"
+        className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         viewBox="0 0 32 32"
       >
-        <path
-          d="M32 18 L32 32 L18 32"
-          stroke="rgba(var(--page-fg-rgb), .2)"
-          strokeWidth="1"
-          fill="none"
-        />
+        <path d="M32 18 L32 32 L18 32" stroke="rgba(var(--page-fg-rgb), .2)" strokeWidth="1" fill="none" />
       </svg>
 
-      <div
-        className="absolute inset-0 -translate-x-full group-hover:translate-x-full group-focus-visible:translate-x-full pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .05),transparent)",
-          transition: "transform .7s ease-out",
-        }}
-      />
-
-      <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
-        <div className="flex items-start gap-4">
-          <Icon
-            size={22}
-            strokeWidth={1.5}
-            className="transition-colors duration-300"
-            style={{ color: "rgba(var(--page-fg-rgb), .35)" }}
-          />
-        </div>
+      <div className="relative z-10 flex h-full flex-col p-6 md:p-7">
+        <span
+          style={{
+            fontFamily: "'Inter',sans-serif",
+            fontSize: "1.4rem",
+            fontWeight: 700,
+            letterSpacing: "-.02em",
+            color: "rgba(var(--page-fg-rgb), .35)",
+          }}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
 
         <h3
-          className="mt-6"
+          className="mt-5"
           style={{
             fontFamily: "'Inter',sans-serif",
             fontSize: "1rem",
@@ -152,7 +124,7 @@ export function ServiceCard({
         </p>
 
         <div
-          className="mt-auto inline-flex items-center gap-2 pt-6"
+          className="mt-auto pt-6 inline-flex items-center gap-2"
           style={{
             fontSize: ".64rem",
             fontWeight: 600,
@@ -161,7 +133,7 @@ export function ServiceCard({
             color: "rgba(var(--page-fg-rgb), .5)",
           }}
         >
-          <span>{ctaLabel}</span>
+          <span>{linkLabel}</span>
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
         </div>
       </div>

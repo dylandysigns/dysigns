@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { MapPin, Play, X } from "lucide-react";
 import { TransitionLink } from "../TransitionLink";
+import { MagneticFillButton } from "../MagneticFillButton";
 import { useCursor } from "../../hooks/useCursor";
-import { usePageTransition } from "../../hooks/useTransition";
 import { isLowPower } from "../Layout";
 import { useLanguage } from "../../hooks/useLanguage";
 import { Partners } from "./Partners";
@@ -15,7 +14,6 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─── PARALLAX STRENGTH ─── */
 const LAYERS = {
   bg: 0.008,
-  light: 0.025,
   chip: 0.018,
 };
 
@@ -23,10 +21,6 @@ const WORDMARK_VIEWBOX = {
   width: 2440,
   height: 520,
 };
-
-const VIDEO_EASTER_EGG_THRESHOLD = 0.35;
-const VIDEO_EASTER_EGG_BUCKETS = 120;
-const INTERACTION_HINT_COPY_THRESHOLD = 0.01;
 
 /**
  * Split an element's text content into per-word spans for staggered animation.
@@ -54,45 +48,38 @@ function splitWords(el: HTMLElement): HTMLSpanElement[] {
 }
 
 export function Hero() {
-  const [isEasterEggOpen, setIsEasterEggOpen] = useState(false);
   const [isHeroIntroReady, setIsHeroIntroReady] = useState(false);
-  const [showBrushHereHint, setShowBrushHereHint] = useState(true);
-  const [brushHintText, setBrushHintText] = useState("hero.brushHere");
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
-  const lightRef = useRef<HTMLDivElement>(null);
   const chipsRef = useRef<HTMLDivElement>(null);
   const mobileChipsRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const trustedRef = useRef<HTMLDivElement>(null);
+  const irisRef = useRef<HTMLDivElement>(null);
+  const bgVideoRef = useRef<HTMLVideoElement>(null);
 
   const maskAreaRef = useRef<HTMLDivElement>(null);
   const maskTextRef = useRef<HTMLDivElement>(null);
-  const wordmarkRef = useRef<HTMLDivElement>(null);
   const wordmarkSvgRef = useRef<SVGSVGElement>(null);
-  const interactionHintDismissedRef = useRef(false);
-  const wordmarkInteractiveRef = useRef(false);
-  const paintPathRef = useRef<SVGPathElement>(null);
-  const wordmarkVideoLayerRef = useRef<SVGGElement>(null);
-  const wordmarkVideoRef = useRef<HTMLVideoElement>(null);
-  const fullscreenVideoRef = useRef<HTMLVideoElement>(null);
-  const easterEggOverlayRef = useRef<HTMLDivElement>(null);
-  const easterEggFrameRef = useRef<HTMLDivElement>(null);
-  const videoRevealTimeoutRef = useRef<number | null>(null);
   const splitLeftRef = useRef<SVGGElement>(null);
   const splitRightRef = useRef<SVGGElement>(null);
   const splitHeadingRef = useRef<HTMLDivElement>(null);
-  const brushHintTextRef = useRef("hero.brushHere");
-  // Desktop: animated fill-reveal rect inside the paint mask (left→right after brush video)
-  const fillRevealRectRef = useRef<SVGRectElement>(null);
 
   const cursor = useCursor();
-  const { navigateTo } = usePageTransition();
   const { t } = useLanguage();
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!videoModalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setVideoModalOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [videoModalOpen]);
   const splitHeadingChars = Array.from(t("sentence"));
   const chipLabels = {
     strategy: t("hero.chip.strategy").toUpperCase(),
@@ -103,47 +90,34 @@ export function Hero() {
   };
   const mobileChips = [
     {
-      to: "/services/ux-ui-web-design",
+      to: "/ux-ui-design",
       label: chipLabels.ux,
       className: "left-1/2 top-[10%] -translate-x-1/2",
       featured: true,
     },
     {
-      to: "/services/product-design",
+      to: "/social-media-meta-ads",
       label: chipLabels.product,
       className: "left-4 top-[29%]",
     },
     {
-      to: "/services/ux-ui-web-design",
+      to: "/web-design",
       label: chipLabels.web,
       className: "right-4 top-[29%]",
     },
     {
-      to: "/services/brand-identity",
+      to: "/branding",
       label: chipLabels.brand,
       className: "left-5 bottom-[24%]",
     },
     {
-      to: "/services/creative-thinking",
+      to: "/ai-implementation",
       label: chipLabels.strategy,
       className: "right-5 bottom-[24%]",
     },
   ];
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
-  const paintState = useRef({
-    // Array of SVG path segments — join on flush only.
-    // Avoids O(n) string copies that happen when growing a path string in a loop.
-    segs: [] as string[],
-    lastX: null as number | null,
-    lastY: null as number | null,
-    coverage: new Uint8Array(VIDEO_EASTER_EGG_BUCKETS),
-    filledBuckets: 0,
-    videoUnlocked: false,
-  });
-  // Tracks the Promise returned by video.play() so we can safely call
-  // pause() after it resolves — Safari throws if pause() races play().
-  const playPromiseRef = useRef<Promise<void> | null>(null);
 
   const reduced =
     typeof window !== "undefined" &&
@@ -157,64 +131,6 @@ export function Hero() {
     typeof window !== "undefined" &&
     !window.matchMedia("(min-width: 768px)").matches;
 
-  const closeEasterEgg = useCallback(() => {
-    setIsEasterEggOpen(false);
-  }, []);
-
-  /* ─── DESKTOP: FILL DYSIGNS AFTER BRUSH VIDEO ─── */
-  // Called when the fullscreen easter-egg video ends. Animates the paint mask's
-  // fill-reveal rect from 0 → full width (left-to-right brush-fill effect) and
-  // fades out the outlined stroke text simultaneously.
-  const triggerFillAnimation = useCallback(() => {
-    // Desktop only — mobile never reaches this (brush requires pointer:fine)
-    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) return;
-
-    // Stop the looping wordmark video and hide its compositor layer.
-    // Safari keeps the foreignObject+video layer composited even at opacity:0 —
-    // display:none is the only reliable way to release it.
-    if (wordmarkVideoLayerRef.current) {
-      wordmarkVideoLayerRef.current.style.display = "none";
-    }
-    if (wordmarkVideoRef.current) {
-      try { wordmarkVideoRef.current.pause(); } catch (_) {}
-      wordmarkVideoRef.current.currentTime = 0;
-    }
-
-    const revealRect = fillRevealRectRef.current;
-    if (!revealRect) return;
-
-    // Reveal the fill rect left→right (paints white into the mask)
-    gsap.fromTo(
-      revealRect,
-      { attr: { width: 0 } },
-      {
-        attr: { width: WORDMARK_VIEWBOX.width },
-        duration: 0.8,
-        ease: "power2.inOut",
-        delay: 0.15, // let overlay fade-out start first
-        onComplete: () => {
-          // Disable further brush interaction once text is filled
-          wordmarkInteractiveRef.current = false;
-          if (wordmarkRef.current) wordmarkRef.current.style.pointerEvents = "none";
-        },
-      }
-    );
-
-    // Simultaneously fade out the outlined/stroke version of the text
-    gsap.to("[data-dysigns-hero-text]", {
-      opacity: 0,
-      duration: 0.35,
-      ease: "power2.out",
-      delay: 0.15,
-    });
-  }, []);
-
-  const dismissInteractionHint = useCallback(() => {
-    if (interactionHintDismissedRef.current) return;
-    interactionHintDismissedRef.current = true;
-    setShowBrushHereHint(false);
-  }, []);
-
   useEffect(() => {
     if (reduced) {
       setIsHeroIntroReady(true);
@@ -224,7 +140,7 @@ export function Hero() {
   }, [reduced]);
 
   useEffect(() => {
-    if (reduced || isHeroIntroReady || isEasterEggOpen) return;
+    if (reduced || isHeroIntroReady) return;
     // Never lock scroll on mobile — native iOS momentum scroll must stay free.
     // The intro animation plays fine without it; only desktop needs the lock
     // so content below the hero doesn't flash in while the intro runs.
@@ -239,39 +155,10 @@ export function Hero() {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
     };
-  }, [isEasterEggOpen, isHeroIntroReady, reduced]);
+  }, [isHeroIntroReady, reduced]);
 
   /* SVG visibility and split transforms are now handled inside the GSAP
      ScrollTrigger onUpdate below — no separate effects needed. */
-
-  /* ─── LIGHT BAND DRIFT ─── */
-  useEffect(() => {
-    if (reduced || isLowPower) return;
-    if (!lightRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(lightRef.current, {
-        rotation: 360,
-        duration: 28,
-        repeat: -1,
-        ease: "none",
-      });
-      gsap.to(lightRef.current, {
-        x: "8vw",
-        yoyo: true,
-        repeat: -1,
-        duration: 9,
-        ease: "sine.inOut",
-      });
-      gsap.to(lightRef.current, {
-        y: "5vh",
-        yoyo: true,
-        repeat: -1,
-        duration: 11,
-        ease: "sine.inOut",
-      });
-    });
-    return () => ctx.revert();
-  }, [reduced]);
 
   /* ─── WORDMARK SPLIT ON SCROLL ─── */
   useEffect(() => {
@@ -371,18 +258,6 @@ export function Hero() {
         },
       });
 
-      if (wordmarkVideoLayerRef.current) {
-        tl.to(
-          wordmarkVideoLayerRef.current,
-          {
-            opacity: 0,
-            duration: 0.22,
-            ease: "none",
-          },
-          splitStart,
-        );
-      }
-
       if (splitHeadingRef.current) {
         // No filter:blur — blur animation forces software rasterisation in Safari
         // on every scrub frame. Scale + opacity alone look clean and run on GPU.
@@ -474,331 +349,9 @@ export function Hero() {
     };
   }, [reduced]);
 
-  /* ─── FULLSCREEN EASTER EGG OVERLAY ─── */
-  useEffect(() => {
-    const overlay = easterEggOverlayRef.current;
-    const frame = easterEggFrameRef.current;
-    const video = fullscreenVideoRef.current;
-    if (!overlay || !frame || !video) return;
-
-    if (isEasterEggOpen) {
-      // Safari: restore video element that was explicitly hidden on close.
-      video.style.display = "";
-      video.style.visibility = "";
-      gsap.killTweensOf([overlay, frame, video]);
-      gsap.set(overlay, {
-        display: "flex",
-        visibility: "visible",
-        pointerEvents: "auto",
-      });
-
-      const tl = gsap.timeline();
-      tl.fromTo(
-        overlay,
-        { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.42, ease: "power2.out" },
-      );
-      tl.fromTo(
-        frame,
-        { y: 32, scale: 0.985, autoAlpha: 0 },
-        { y: 0, scale: 1, autoAlpha: 1, duration: 0.7, ease: "power3.out" },
-        0,
-      );
-      video.currentTime = 0;
-      playPromiseRef.current = video.play();
-      playPromiseRef.current.catch(() => {});
-      return;
-    }
-
-    gsap.killTweensOf([overlay, frame, video]);
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Remove backdrop-filter before display:none — Safari may hold the blur
-        // compositor layer open if the element is hidden while backdrop-filter
-        // is still declared. Clearing it first ensures the layer is released.
-        overlay.style.backdropFilter = "none";
-        (overlay.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = "none";
-        gsap.set(overlay, {
-          display: "none",
-          visibility: "hidden",
-          pointerEvents: "none",
-        });
-        // Explicit pause + hide — belt-and-suspenders for Safari. The safePause
-        // below is deferred via Promise so it may fire after the animation ends;
-        // calling pause() here ensures it also happens synchronously on cleanup.
-        try { video.pause(); } catch (_) {}
-        video.style.display = "none";
-        video.style.visibility = "hidden";
-        try { video.currentTime = 0; } catch (_) {}
-      },
-    });
-    tl.to(frame, {
-      y: 18,
-      scale: 0.992,
-      autoAlpha: 0,
-      duration: 0.26,
-      ease: "power2.inOut",
-    });
-    tl.to(
-      overlay,
-      {
-        autoAlpha: 0,
-        duration: 0.24,
-        ease: "power2.inOut",
-      },
-      0,
-    );
-    // Safari: pause() must wait for the play() Promise to resolve first.
-    const safePause = () => { try { video.pause(); } catch (_) {} };
-    if (playPromiseRef.current) {
-      playPromiseRef.current.then(safePause).catch(safePause);
-      playPromiseRef.current = null;
-    } else {
-      safePause();
-    }
-  }, [isEasterEggOpen]);
-
-  /* ─── SAFARI: NATIVE VIDEO ENDED LISTENER ─── */
-  // React's synthetic onEnded is unreliable for <video> in Safari.
-  // Attach a native addEventListener so the overlay always hides when
-  // the video finishes, regardless of browser event handling quirks.
-  useEffect(() => {
-    const video = fullscreenVideoRef.current;
-    if (!video) return;
-    const onVideoEnded = () => {
-      closeEasterEgg();
-      triggerFillAnimation();
-    };
-    video.addEventListener("ended", onVideoEnded);
-    return () => video.removeEventListener("ended", onVideoEnded);
-  }, [closeEasterEgg, triggerFillAnimation]);
-
-  useEffect(() => {
-    if (!isEasterEggOpen) return;
-    // Easter egg is a desktop-only interaction (brush cursor requires pointer:fine).
-    // Guard anyway so it never locks mobile scroll.
-    if (isMobile) return;
-
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeEasterEgg();
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [closeEasterEgg, isEasterEggOpen]);
-
-  /* ─── OUTLINED WORDMARK PERSISTENT PAINT REVEAL ─── */
-  useEffect(() => {
-    if (reduced || isLowPower) return;
-    if (!window.matchMedia("(min-width: 768px) and (pointer: fine)").matches)
-      return;
-    const wordmark = wordmarkRef.current;
-    const svg = wordmarkSvgRef.current;
-    const paintPath = paintPathRef.current;
-    if (!wordmark || !svg || !paintPath) return;
-
-    const state = paintState.current;
-    state.segs = [];
-    state.lastX = null;
-    state.lastY = null;
-    state.coverage = new Uint8Array(VIDEO_EASTER_EGG_BUCKETS);
-    state.filledBuckets = 0;
-    state.videoUnlocked = false;
-    interactionHintDismissedRef.current = false;
-    brushHintTextRef.current = "hero.brushHere";
-    setShowBrushHereHint(true);
-    setBrushHintText("hero.brushHere");
-    wordmarkInteractiveRef.current = false;
-    paintPath.setAttribute("d", "");
-    if (wordmarkRef.current) {
-      wordmarkRef.current.style.pointerEvents = "none";
-    }
-    if (wordmarkVideoLayerRef.current) {
-      wordmarkVideoLayerRef.current.style.display = "none";
-      wordmarkVideoLayerRef.current.style.opacity = "0";
-    }
-    if (wordmarkVideoRef.current) {
-      try { wordmarkVideoRef.current.pause(); } catch (_) {}
-      wordmarkVideoRef.current.currentTime = 0;
-    }
-
-    const unlockVideo = () => {
-      if (state.videoUnlocked) return;
-      state.videoUnlocked = true;
-      const wordmarkVideo = wordmarkVideoRef.current;
-      const fullscreenVideo = fullscreenVideoRef.current;
-      if (wordmarkVideoLayerRef.current) {
-        // Reveal the layer (remove display:none guard set during init/cleanup)
-        wordmarkVideoLayerRef.current.style.display = "";
-        gsap
-          .timeline()
-          .to(wordmarkVideoLayerRef.current, {
-            opacity: 0.84,
-            duration: 0.32,
-            ease: "power2.out",
-            overwrite: true,
-          })
-          .to(wordmarkVideoLayerRef.current, {
-            opacity: 0,
-            duration: 0.4,
-            ease: "power2.inOut",
-            onComplete: () => {
-              // Restore display:none so Safari releases the foreignObject
-              // compositor layer. A <video> inside <foreignObject> inside an SVG
-              // mask is still composited at opacity:0 — display:none is the only
-              // reliable way to drop it from Safari's render tree.
-              if (wordmarkVideoLayerRef.current) {
-                wordmarkVideoLayerRef.current.style.display = "none";
-              }
-              if (wordmarkVideoRef.current) {
-                try { wordmarkVideoRef.current.pause(); } catch (_) {}
-              }
-            },
-          });
-      }
-      if (wordmarkVideoRef.current) {
-        wordmarkVideo.currentTime = 0;
-        wordmarkVideo.play().catch(() => {});
-      }
-      if (fullscreenVideo) {
-        fullscreenVideo.currentTime = 0;
-      }
-      if (videoRevealTimeoutRef.current) {
-        window.clearTimeout(videoRevealTimeoutRef.current);
-      }
-      videoRevealTimeoutRef.current = window.setTimeout(() => {
-        setIsEasterEggOpen(true);
-      }, 220);
-    };
-
-    const markCoverage = (x: number) => {
-      const normalized = gsap.utils.clamp(0, 0.9999, x / WORDMARK_VIEWBOX.width);
-      const bucketIndex = Math.floor(normalized * VIDEO_EASTER_EGG_BUCKETS);
-      if (state.coverage[bucketIndex]) return;
-      state.coverage[bucketIndex] = 1;
-      state.filledBuckets += 1;
-    };
-
-    // Cache the SVG's screen CTM inverse so pointer→SVG coordinate mapping
-    // never calls getScreenCTM() at 60–120 Hz. getScreenCTM() forces a style
-    // recalculation on Safari; computing it once and caching the inverse cuts
-    // the per-event cost to a single DOMPoint matrixTransform.
-    let cachedInverse: DOMMatrix | null = null;
-    const updateCTM = () => {
-      const m = svg.getScreenCTM();
-      cachedInverse = m ? m.inverse() : null;
-    };
-    updateCTM();
-    window.addEventListener("resize", updateCTM, { passive: true });
-
-    const toSvgPoint = (event: PointerEvent) => {
-      if (!cachedInverse) return null;
-      return new DOMPoint(event.clientX, event.clientY).matrixTransform(cachedInverse);
-    };
-
-    // Throttle the SVG setAttribute flush to once per rAF. pointermove fires at
-    // display rate (up to 120 Hz) — all points are accumulated between flushes.
-    // Path segments are stored as a string[] and joined on flush only: avoids the
-    // O(n) full-string copies that happen when appending to a growing string.
-    let paintRafId: number | null = null;
-    let pendingPathFlush = false;
-    const flushPath = () => {
-      paintRafId = null;
-      if (pendingPathFlush) {
-        paintPath.setAttribute("d", state.segs.join(" "));
-        pendingPathFlush = false;
-      }
-    };
-    const schedulePaintFlush = () => {
-      pendingPathFlush = true;
-      if (paintRafId === null) paintRafId = requestAnimationFrame(flushPath);
-    };
-
-    const paintTo = (x: number, y: number, start = false) => {
-      if (!wordmarkInteractiveRef.current) return;
-      if (start || state.lastX === null || state.lastY === null) {
-        state.segs.push(`M ${x.toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${y.toFixed(2)}`);
-        markCoverage(x);
-      } else {
-        const dx = x - state.lastX;
-        const dy = y - state.lastY;
-        const distance = Math.hypot(dx, dy);
-        const steps = Math.max(1, Math.ceil(distance / 12));
-        for (let i = 1; i <= steps; i += 1) {
-          const px = state.lastX + (dx * i) / steps;
-          const py = state.lastY + (dy * i) / steps;
-          state.segs.push(`L ${px.toFixed(2)} ${py.toFixed(2)}`);
-          markCoverage(px);
-        }
-      }
-
-      state.lastX = x;
-      state.lastY = y;
-      schedulePaintFlush();
-
-      const coverageRatio = state.filledBuckets / VIDEO_EASTER_EGG_BUCKETS;
-      if (
-        brushHintTextRef.current !== "hero.keepBrushing" &&
-        coverageRatio >= INTERACTION_HINT_COPY_THRESHOLD
-      ) {
-        brushHintTextRef.current = "hero.keepBrushing";
-        setBrushHintText("hero.keepBrushing");
-      }
-      if (!interactionHintDismissedRef.current && coverageRatio >= VIDEO_EASTER_EGG_THRESHOLD) {
-        dismissInteractionHint();
-      }
-      if (!state.videoUnlocked && coverageRatio >= VIDEO_EASTER_EGG_THRESHOLD) {
-        unlockVideo();
-      }
-    };
-
-    const onPointerEnter = (event: PointerEvent) => {
-      const point = toSvgPoint(event);
-      if (!point) return;
-      paintTo(point.x, point.y, true);
-    };
-
-    const onPointerMove = (event: PointerEvent) => {
-      const point = toSvgPoint(event);
-      if (!point) return;
-      paintTo(point.x, point.y);
-    };
-
-    const onPointerLeave = () => {
-      state.lastX = null;
-      state.lastY = null;
-    };
-
-    wordmark.addEventListener("pointerenter", onPointerEnter);
-    wordmark.addEventListener("pointermove", onPointerMove);
-    wordmark.addEventListener("pointerleave", onPointerLeave);
-
-    return () => {
-      window.removeEventListener("resize", updateCTM);
-      if (paintRafId !== null) {
-        cancelAnimationFrame(paintRafId);
-        paintRafId = null;
-      }
-      if (videoRevealTimeoutRef.current) {
-        window.clearTimeout(videoRevealTimeoutRef.current);
-        videoRevealTimeoutRef.current = null;
-      }
-      wordmark.removeEventListener("pointerenter", onPointerEnter);
-      wordmark.removeEventListener("pointermove", onPointerMove);
-      wordmark.removeEventListener("pointerleave", onPointerLeave);
-    };
-  }, [dismissInteractionHint, reduced]);
+  /* Brush/paint-reveal interaction and its fullscreen video easter egg have
+     been removed entirely (both used /images/dysigns_reveal.mp4) — the
+     wordmark is now a plain static mark, no pointer tracking. */
 
   /* ─── CURSOR PARALLAX ─── */
   useEffect(() => {
@@ -823,17 +376,6 @@ export function Hero() {
       mouse.current.y = (e.clientY / viewH - 0.5) * 2;
     };
 
-    // Use GSAP quickSetters for the light band so GSAP manages all of its
-    // transforms in one pipeline — avoids fighting the rotation tween that
-    // GSAP also runs on lightRef (overwriting style.transform directly would
-    // clobber the rotation and cause jitter in Safari).
-    const lightXSet = lightRef.current
-      ? gsap.quickSetter(lightRef.current, "x", "px")
-      : null;
-    const lightYSet = lightRef.current
-      ? gsap.quickSetter(lightRef.current, "y", "px")
-      : null;
-
     const tick = () => {
       target.current.x += (mouse.current.x - target.current.x) * 0.08;
       target.current.y += (mouse.current.y - target.current.y) * 0.08;
@@ -842,10 +384,6 @@ export function Hero() {
 
       if (bgRef.current) {
         bgRef.current.style.transform = `translate3d(${tx * LAYERS.bg * viewW}px,${ty * LAYERS.bg * viewH}px,0)`;
-      }
-      if (lightXSet && lightYSet) {
-        lightXSet(tx * LAYERS.light * viewW);
-        lightYSet(ty * LAYERS.light * viewH);
       }
       for (let i = 0; i < chipCount; i++) {
         const lag = 1 + i * 0.3;
@@ -870,15 +408,11 @@ export function Hero() {
     if (reduced) {
       setIsHeroIntroReady(true);
       gsap.set(
-        [headRef.current, subRef.current, ctaRef.current, trustedRef.current],
+        [headRef.current, ctaRef.current, trustedRef.current],
         { opacity: 1 },
       );
       if (dotRef.current) gsap.set(dotRef.current, { opacity: 1 });
       if (maskTextRef.current) gsap.set(maskTextRef.current, { opacity: 1 });
-      wordmarkInteractiveRef.current = true;
-      if (wordmarkRef.current) {
-        wordmarkRef.current.style.pointerEvents = "auto";
-      }
       if (heroContentRef.current)
         gsap.set(heroContentRef.current, { opacity: 1 });
       return;
@@ -887,6 +421,32 @@ export function Hero() {
     if (!maskTextRef.current) return;
 
     setIsHeroIntroReady(false);
+
+    /* Iris/aperture reveal — a punched-hole mask (radial-gradient, not
+       clip-path, so the hole grows from center outward rather than the
+       covering disc shrinking to a point) opens over the whole sticky
+       zone before/while the rest of the intro plays underneath it. */
+    let irisTween: gsap.core.Tween | null = null;
+    if (irisRef.current) {
+      gsap.set(irisRef.current, { opacity: 1 });
+      const maxRadius = Math.hypot(window.innerWidth, window.innerHeight) / 2 + 40;
+      const irisState = { r: 0 };
+      irisTween = gsap.to(irisState, {
+        r: maxRadius,
+        duration: 1.3,
+        ease: "power3.inOut",
+        delay: 0.12,
+        onUpdate: () => {
+          if (!irisRef.current) return;
+          const mask = `radial-gradient(circle at 50% 50%, transparent ${irisState.r}px, black ${irisState.r + 2}px)`;
+          irisRef.current.style.maskImage = mask;
+          irisRef.current.style.webkitMaskImage = mask;
+        },
+        onComplete: () => {
+          if (irisRef.current) irisRef.current.style.opacity = "0";
+        },
+      });
+    }
 
     const tl = gsap.timeline({
       delay: 0.12,
@@ -902,16 +462,6 @@ export function Hero() {
         { scale: 1.2, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.6, ease: "power2.out" },
         0.1,
-      );
-      tl.call(
-        () => {
-          wordmarkInteractiveRef.current = true;
-          if (wordmarkRef.current) {
-            wordmarkRef.current.style.pointerEvents = "auto";
-          }
-        },
-        undefined,
-        1.98,
       );
     }
 
@@ -942,16 +492,10 @@ export function Hero() {
     }
 
     tl.fromTo(
-      subRef.current,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
-      "-=.3",
-    );
-    tl.fromTo(
       ctaRef.current,
       { y: 16, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
-      "-=.2",
+      "-=.3",
     );
     tl.fromTo(
       trustedRef.current,
@@ -972,6 +516,7 @@ export function Hero() {
 
     return () => {
       tl.kill();
+      irisTween?.kill();
     };
   }, [reduced]);
 
@@ -997,6 +542,104 @@ export function Hero() {
         }}
         data-hero-zone
       >
+        {/* iris/aperture reveal — opaque cover, punched open via mask on
+            first load only. Default opacity:0 so no-JS/reduced-motion
+            visitors never see a cover at all, matching the rest of this
+            section's hidden-state-set-in-JS-only convention. */}
+        <div
+          ref={irisRef}
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 60,
+            opacity: 0,
+            background: "var(--page-bg)",
+          }}
+        />
+
+        {/* Background video — muted, looping, decorative b-roll behind the
+            hero content. Dominant enough to actually read as a video, but
+            still darkened/desaturated so the wordmark and headline stay
+            fully legible on top of it. Clicking the wordmark itself, or
+            the "Watch video" pill bottom-right, opens the full video in
+            the lightbox below. Skipped under prefers-reduced-motion, same
+            as every other autoplaying layer in this component. */}
+        {!reduced && (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 overflow-hidden pointer-events-none"
+            style={{ zIndex: -1 }}
+          >
+            <video
+              ref={bgVideoRef}
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/videos/dysigns-intro.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              style={{
+                opacity: 0.65,
+                filter: "brightness(.75) contrast(1.05) grayscale(.3)",
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 45%, rgba(0,0,0,.3) 0%, rgba(0,0,0,.62) 78%)",
+              }}
+            />
+          </div>
+        )}
+
+        {!reduced && (
+          <button
+            type="button"
+            onClick={() => setVideoModalOpen(true)}
+            aria-label={t("hero.watchVideo")}
+            className="absolute bottom-5 right-5 md:bottom-8 md:right-8 flex items-center gap-2 rounded-full transition-all duration-300"
+            style={{
+              zIndex: 25,
+              padding: "9px 16px 9px 12px",
+              border: "1px solid rgba(var(--page-fg-rgb), .22)",
+              background: "rgba(var(--page-fg-rgb), .1)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              color: "var(--page-fg)",
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .4)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .18)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .22)";
+              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .1)";
+            }}
+          >
+            <span
+              className="grid flex-shrink-0 place-items-center rounded-full"
+              style={{ width: 20, height: 20, background: "var(--page-fg)" }}
+            >
+              <Play size={9} fill="var(--page-bg)" color="var(--page-bg)" style={{ marginLeft: 1 }} />
+            </span>
+            <span
+              style={{
+                fontSize: ".72rem",
+                fontWeight: 600,
+                letterSpacing: ".04em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {t("hero.watchVideo")}
+            </span>
+          </button>
+        )}
+
         {/* noise */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -1015,27 +658,6 @@ export function Hero() {
             zIndex: 0,
             background:
               "radial-gradient(circle at 50% 48%, rgba(var(--page-fg-rgb), .035) 0%, rgba(var(--page-fg-rgb), .012) 24%, transparent 62%)",
-            willChange: "transform",
-          }}
-        />
-
-        {/* light band — gradient-only, no filter:blur and no mixBlendMode.
-            filter:blur(60px) + mixBlendMode:screen on an animated element forces
-            full software rasterisation on every frame in Safari. A wider, softer
-            gradient stop spread achieves the same diffuse-glow look on GPU. */}
-        <div
-          ref={lightRef}
-          className="absolute pointer-events-none"
-          data-hero-light
-          style={{
-            zIndex: 1,
-            width: "130vmax",
-            height: "40vmax",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-            background:
-              "linear-gradient(90deg,transparent 0%,rgba(var(--page-fg-rgb), .006) 18%,rgba(var(--page-fg-rgb), .018) 38%,rgba(var(--page-fg-rgb), .028) 50%,rgba(var(--page-fg-rgb), .018) 62%,rgba(var(--page-fg-rgb), .006) 82%,transparent 100%)",
             willChange: "transform",
           }}
         />
@@ -1132,9 +754,24 @@ export function Hero() {
                 </div>
 
                 <div
-                  ref={wordmarkRef}
-                  className="pointer-events-auto absolute left-1/2 top-[50.5%] flex w-[min(134vw,874px)] max-w-none -translate-x-1/2 -translate-y-1/2 items-center justify-center select-none sm:top-[51%] sm:w-[min(134vw,980px)] md:top-[54%] md:w-[min(132vw,1820px)] xl:w-[min(124vw,1880px)]"
-                  style={{ zIndex: 20 }}
+                  className="absolute left-1/2 top-[50.5%] flex w-[min(134vw,874px)] max-w-none -translate-x-1/2 -translate-y-1/2 items-center justify-center select-none sm:top-[51%] sm:w-[min(134vw,980px)] md:top-[54%] md:w-[min(132vw,1820px)] xl:w-[min(124vw,1880px)]"
+                  style={{ zIndex: 20, cursor: reduced ? undefined : "pointer" }}
+                  role={reduced ? undefined : "button"}
+                  tabIndex={reduced ? undefined : 0}
+                  aria-label={reduced ? undefined : t("hero.watchVideo")}
+                  onClick={reduced ? undefined : () => setVideoModalOpen(true)}
+                  onKeyDown={
+                    reduced
+                      ? undefined
+                      : (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setVideoModalOpen(true);
+                          }
+                        }
+                  }
+                  onMouseEnter={reduced ? undefined : () => cursor.set("view", t("hero.watchVideo"))}
+                  onMouseLeave={reduced ? undefined : () => cursor.reset()}
                 >
                   <svg
                     ref={wordmarkSvgRef}
@@ -1143,47 +780,6 @@ export function Hero() {
                     aria-hidden="true"
                   >
                     <defs>
-                      <mask id="hero-wordmark-paint-mask">
-                        <rect
-                          x="0"
-                          y="0"
-                          width={WORDMARK_VIEWBOX.width}
-                          height={WORDMARK_VIEWBOX.height}
-                          fill="black"
-                        />
-                        <path
-                          ref={paintPathRef}
-                          d=""
-                          fill="none"
-                          stroke="white"
-                          strokeWidth="136"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        {/* Animated fill rect — width 0→full after brush video ends */}
-                        <rect
-                          ref={fillRevealRectRef}
-                          x="0"
-                          y="0"
-                          width="0"
-                          height={WORDMARK_VIEWBOX.height}
-                          fill="white"
-                        />
-                      </mask>
-                      <clipPath id="hero-wordmark-text-clip">
-                        <text
-                          x="50%"
-                          y="57%"
-                          textAnchor="middle"
-                          dominantBaseline="middle"
-                          fontFamily="Inter, sans-serif"
-                          fontSize="402"
-                          fontWeight="900"
-                          letterSpacing="-34"
-                        >
-                          DYSIGNS
-                        </text>
-                      </clipPath>
                       <clipPath id="hero-wordmark-left-clip">
                         <rect
                           x="0"
@@ -1201,43 +797,6 @@ export function Hero() {
                         />
                       </clipPath>
                     </defs>
-
-                    <g
-                      ref={wordmarkVideoLayerRef}
-                      style={{ opacity: 0, pointerEvents: "none", display: "none" }}
-                    >
-                      <foreignObject
-                        x="0"
-                        y="0"
-                        width={WORDMARK_VIEWBOX.width}
-                        height={WORDMARK_VIEWBOX.height}
-                        clipPath="url(#hero-wordmark-text-clip)"
-                        mask="url(#hero-wordmark-paint-mask)"
-                      >
-                        <div
-                          xmlns="http://www.w3.org/1999/xhtml"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <video
-                            ref={wordmarkVideoRef}
-                            src="/images/dysigns_reveal.mp4"
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                            }}
-                          />
-                        </div>
-                      </foreignObject>
-                    </g>
 
                     <g ref={splitLeftRef} clipPath="url(#hero-wordmark-left-clip)" style={{ willChange: "transform, opacity" }}>
                       <text
@@ -1267,7 +826,6 @@ export function Hero() {
                         fontWeight="900"
                         letterSpacing="-34"
                         fill="var(--page-fg)"
-                        mask="url(#hero-wordmark-paint-mask)"
                       >
                         DYSIGNS
                       </text>
@@ -1301,7 +859,6 @@ export function Hero() {
                         fontWeight="900"
                         letterSpacing="-34"
                         fill="var(--page-fg)"
-                        mask="url(#hero-wordmark-paint-mask)"
                       >
                         DYSIGNS
                       </text>
@@ -1309,54 +866,6 @@ export function Hero() {
                   </svg>
                 </div>
 
-                <AnimatePresence>
-                  {showBrushHereHint ? (
-                    <motion.div
-                      key="brush-here-hint"
-                      className="pointer-events-none fixed left-1/2 top-[76px] z-[28] hidden -translate-x-1/2 md:block"
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      aria-hidden="true"
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        <div
-                          style={{
-                            padding: "6px 14px",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontFamily: "'Inter',sans-serif",
-                              fontSize: "11px",
-                              fontWeight: 600,
-                              letterSpacing: ".18em",
-                              textTransform: "uppercase",
-                              color: "rgba(255,255,255,.5)",
-                              whiteSpace: "nowrap",
-                              textShadow:
-                                "0 0 10px rgba(255,255,255,.16), 0 0 18px rgba(255,255,255,.08)",
-                            }}
-                          >
-                            {t(brushHintText)}
-                          </span>
-                        </div>
-
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: 1,
-                            color: "rgba(255,255,255,.42)",
-                            animation: "heroBrushHintChevron 1.2s ease-in-out infinite",
-                          }}
-                        >
-                          ↓
-                        </span>
-                      </div>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
               </div>
             </div>
 
@@ -1366,7 +875,7 @@ export function Hero() {
               style={{ zIndex: 38 }}
             >
               <TransitionLink
-                to="/services/ux-ui-web-design"
+                to="/ux-ui-design"
                 className="absolute left-1/2 top-[8%] -translate-x-1/2"
                 data-hero-pill
                 style={{
@@ -1406,7 +915,7 @@ export function Hero() {
               </TransitionLink>
 
               <TransitionLink
-                to="/services/brand-identity"
+                to="/branding"
                 className="absolute bottom-[22%] left-[6%]"
                 data-hero-pill
                 style={{
@@ -1442,7 +951,7 @@ export function Hero() {
               </TransitionLink>
 
               <TransitionLink
-                to="/services/ux-ui-web-design"
+                to="/web-design"
                 className="absolute right-[8%] top-[18%]"
                 data-hero-pill
                 style={{
@@ -1478,7 +987,7 @@ export function Hero() {
               </TransitionLink>
 
               <TransitionLink
-                to="/services/product-design"
+                to="/social-media-meta-ads"
                 className="absolute left-[7%] top-[22%] hidden lg:block"
                 data-hero-pill
                 style={{
@@ -1514,7 +1023,7 @@ export function Hero() {
               </TransitionLink>
 
               <TransitionLink
-                to="/services/creative-thinking"
+                to="/ai-implementation"
                 className="absolute bottom-[26%] right-[7%] hidden lg:block"
                 data-hero-pill
                 style={{
@@ -1601,96 +1110,29 @@ export function Hero() {
 
           <div ref={heroContentRef} className="relative z-30 -mt-14 pb-0 md:-mt-24" data-hero-content>
             <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 md:gap-6">
-              <div className="mx-auto max-w-4xl text-center">
+              <div className="mx-auto max-w-5xl text-center">
                 <h1
                   ref={headRef}
                   style={{
                     fontFamily: "'Inter',sans-serif",
-                    fontSize: "clamp(1.55rem,4vw,3.3rem)",
-                    fontWeight: 700,
-                    lineHeight: 1.08,
-                    letterSpacing: "-.04em",
+                    fontSize: "clamp(.78rem,1.85vw,1.1rem)",
+                    fontWeight: 600,
+                    lineHeight: 1.32,
+                    letterSpacing: "-.02em",
                     color: "var(--page-fg)",
-                    opacity: 0,
                   }}
                 >
                   {t("hero.headline.A")}
                 </h1>
-                <p
-                  ref={subRef}
-                  className="mx-auto mt-1 max-w-xl md:mt-3"
-                  style={{
-                    fontFamily: "'Instrument Serif',serif",
-                    fontSize: "clamp(.95rem,1.25vw,1.15rem)",
-                    fontStyle: "italic",
-                    color: "rgba(var(--page-fg-rgb), .6)",
-                    letterSpacing: ".01em",
-                    lineHeight: 1.6,
-                    opacity: 0,
-                  }}
-                >
-                  {t("hero.sub")}
-                </p>
+                {/* Single primary action, per the brief: "Onder de hero één
+                    primaire actie naar /contact. Eén, niet drie." */}
                 <div
                   ref={ctaRef}
-                  className="mt-3 flex flex-wrap items-center justify-center gap-3 md:mt-6 md:gap-4"
-                  style={{ opacity: 0 }}
+                  className="mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-7"
                 >
-                  <a
-                    href="/work"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo("/work");
-                    }}
-                    className="group relative overflow-hidden rounded-full px-7 py-3"
-                    style={{
-                      fontSize: ".75rem",
-                      fontWeight: 600,
-                      letterSpacing: ".06em",
-                      textTransform: "uppercase",
-                      color: "var(--page-fg)",
-                      border: "1px solid rgba(var(--page-fg-rgb), .2)",
-                    }}
-                    onMouseEnter={() => cursor.set("link", t("cursor.viewWork"))}
-                    onMouseLeave={() => cursor.reset()}
-                  >
-                    <span
-                      className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
-                      style={{
-                        background:
-                          "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
-                        transition: "transform .7s ease-out",
-                      }}
-                    />
-                    {t("hero.cta1")}
-                  </a>
-                  <a
-                    href="/contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo("/contact");
-                    }}
-                    className="rounded-full px-7 py-3"
-                    style={{
-                      fontSize: ".75rem",
-                      fontWeight: 500,
-                      letterSpacing: ".06em",
-                      textTransform: "uppercase",
-                      color: "rgba(var(--page-fg-rgb), .6)",
-                      transition: "color .3s",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
-                      cursor.set("link", t("cursor.contact"));
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color =
-                        "rgba(var(--page-fg-rgb), .6)";
-                      cursor.reset();
-                    }}
-                  >
+                  <MagneticFillButton to="/contact" cursorLabel={t("cursor.contact")}>
                     {t("hero.cta2")}
-                  </a>
+                  </MagneticFillButton>
                 </div>
               </div>
             </div>
@@ -1723,69 +1165,6 @@ export function Hero() {
         style={{ zIndex: 3, background: "var(--page-bg)" }}
       />
 
-      <div
-        ref={easterEggOverlayRef}
-        className="fixed inset-0 hidden items-center justify-center"
-        style={{
-          zIndex: 120,
-          opacity: 0,
-          pointerEvents: "none",
-          background: "rgba(0, 0, 0, .94)",
-        }}
-        onClick={() => { closeEasterEgg(); triggerFillAnimation(); }}
-        aria-hidden={!isEasterEggOpen}
-      >
-        <button
-          type="button"
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full px-5 py-3 text-[.68rem] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:text-white md:bottom-8"
-          style={{
-            zIndex: 6,
-            minWidth: 144,
-            textAlign: "center",
-            background: "rgba(0,0,0,.72)",
-            border: "1px solid rgba(255,255,255,.22)",
-            boxShadow: "0 16px 36px rgba(0,0,0,.26)",
-          }}
-          onClick={(event) => {
-            event.stopPropagation();
-            closeEasterEgg();
-            triggerFillAnimation();
-          }}
-        >
-          Close
-        </button>
-        <div
-          ref={easterEggFrameRef}
-          className="relative h-full w-full overflow-hidden"
-          style={{
-            opacity: 0,
-            background: "rgba(255,255,255,.03)",
-          }}
-          onClick={(event) => event.stopPropagation()}
-        >
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              zIndex: 1,
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.08) 26%, rgba(0,0,0,.18) 100%)",
-            }}
-          />
-          <video
-            ref={fullscreenVideoRef}
-            src="/images/dysigns_reveal.mp4"
-            muted
-            playsInline
-            preload="metadata"
-            className="block h-full w-full object-cover"
-            onEnded={() => {
-              closeEasterEgg();
-              triggerFillAnimation();
-            }}
-          />
-        </div>
-      </div>
-
       {/* Keyframes + mobile overrides */}
       <style>{`
         @keyframes uxPillPulse {
@@ -1803,10 +1182,6 @@ export function Hero() {
             overflow: clip !important;
             overflow-clip-margin: 400vw !important;
           }
-          /* DYSIGNS: solid-filled white (removes paint-reveal mask which starts fully black) */
-          [data-hero-zone] text[mask] {
-            mask: none !important;
-          }
           /* Ensure "Trusted by" clears the iOS home indicator on all iPhone heights.
              mt-auto on the trusted row handles vertical docking; this just adds
              safe-area clearance with a 1.5rem fallback. */
@@ -1815,6 +1190,53 @@ export function Hero() {
           }
         }
       `}</style>
+
+      {/* Video lightbox — opened by the wordmark or the "Watch video"
+          pill. Real video controls here (unlike the muted background
+          layer), closes on backdrop click, the × button, or Escape. */}
+      {videoModalOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center p-4 md:p-10"
+          style={{ zIndex: 300, background: "rgba(0,0,0,.92)" }}
+          onClick={() => setVideoModalOpen(false)}
+        >
+          <button
+            type="button"
+            aria-label={t("hero.closeVideo")}
+            onClick={(e) => {
+              e.stopPropagation();
+              setVideoModalOpen(false);
+            }}
+            className="absolute grid place-items-center rounded-full transition-colors duration-300"
+            style={{
+              top: 20,
+              right: 20,
+              width: 44,
+              height: 44,
+              border: "1px solid rgba(255,255,255,.2)",
+              background: "rgba(255,255,255,.06)",
+              color: "#fff",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,.14)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,.06)";
+            }}
+          >
+            <X size={18} />
+          </button>
+          <video
+            src="/videos/dysigns-intro.mp4"
+            controls
+            autoPlay
+            playsInline
+            className="max-h-full max-w-full rounded-lg"
+            style={{ boxShadow: "0 30px 90px rgba(0,0,0,.6)" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }

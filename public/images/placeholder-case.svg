@@ -1,0 +1,5 @@
+<svg viewBox="0 0 960 1200" width="960" height="1200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Image coming soon">
+  <rect width="960" height="1200" fill="#0a0a0a" />
+  <rect x="0.5" y="0.5" width="959" height="1199" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,.28)" font-family="Inter, sans-serif" font-size="34" font-weight="500" letter-spacing="3">IMAGE COMING SOON</text>
+</svg>

@@ -34,9 +34,6 @@ Shopify is strong for most e-commerce use cases, but it is not always the best f
 
 For founders and agencies with a Shopify store that needs to go beyond a standard theme, or who want an existing store improved rather than rebuilt.
 
-## Cases
-
-TODO_DYLAN: link to at least two related cases.
 
 ## Frequently asked questions
 

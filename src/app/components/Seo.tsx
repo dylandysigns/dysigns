@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import {
   type PageMeta,
   canonicalUrl,
+  alternateUrl,
   OG_IMAGE,
   DEFAULT_ROBOTS,
 } from "../seo/meta";
 import { setCapturedMeta } from "../seo/capturedMeta";
+import { useLanguage } from "../hooks/useLanguage";
 
 function setMetaByName(name: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
@@ -32,6 +34,17 @@ function setCanonicalLink(href: string) {
   if (!el) {
     el = document.createElement("link");
     el.setAttribute("rel", "canonical");
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
+function setHreflangLink(hreflang: string, href: string) {
+  let el = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`);
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "alternate");
+    el.setAttribute("hreflang", hreflang);
     document.head.appendChild(el);
   }
   el.setAttribute("href", href);
@@ -72,19 +85,30 @@ function setPageSchema(nodes: object[] | undefined) {
  */
 export function Seo(meta: PageMeta) {
   setCapturedMeta(meta);
+  const { lang } = useLanguage();
 
   useEffect(() => {
+    // meta.path is always the canonical ENGLISH identity of the page
+    // (every call site passes e.g. "/web-design" regardless of which
+    // language is actually rendering) — the real, language-correct URL
+    // is derived here from the current lang.
+    const effectivePath =
+      lang === "nl" ? (meta.path === "/" ? "/nl" : `/nl${meta.path}`) : meta.path;
+
     document.title = meta.title;
     setMetaByName("description", meta.description);
     setMetaByName("robots", meta.robots ?? DEFAULT_ROBOTS);
-    setCanonicalLink(canonicalUrl(meta.path));
+    setCanonicalLink(canonicalUrl(effectivePath));
+    setHreflangLink("en", alternateUrl(meta.path, "en"));
+    setHreflangLink("nl", alternateUrl(meta.path, "nl"));
+    setHreflangLink("x-default", alternateUrl(meta.path, "en"));
     setMetaByProperty("og:title", meta.title);
     setMetaByProperty("og:description", meta.description);
-    setMetaByProperty("og:url", canonicalUrl(meta.path));
+    setMetaByProperty("og:url", canonicalUrl(effectivePath));
     setMetaByProperty("og:type", meta.ogType ?? "website");
     setMetaByProperty("og:image", OG_IMAGE);
-    setMetaByProperty("og:locale", "nl_NL");
-    setMetaByProperty("og:locale:alternate", "en_US");
+    setMetaByProperty("og:locale", lang === "nl" ? "nl_NL" : "en_US");
+    setMetaByProperty("og:locale:alternate", lang === "nl" ? "en_US" : "nl_NL");
     setMetaByName("twitter:card", "summary_large_image");
     setMetaByName("twitter:title", meta.title);
     setMetaByName("twitter:description", meta.description);
@@ -94,7 +118,7 @@ export function Seo(meta: PageMeta) {
     // freshly-built array of object literals on every render; comparing
     // its JSON string (not the reference) avoids re-running this effect
     // on every render while still reacting to actual content changes.
-  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots, JSON.stringify(meta.schema)]);
+  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots, lang, JSON.stringify(meta.schema)]);
 
   return null;
 }

@@ -17,10 +17,17 @@ export default function InsightsOverviewPage() {
             <li key={a.frontmatter.slug}>
               <a
                 href={`/insights/${a.frontmatter.slug}`}
+                className="transition-colors duration-300"
                 style={{
                   fontSize: "1.1rem",
                   fontWeight: 600,
                   color: "var(--page-fg)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .6)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
                 }}
               >
                 {a.frontmatter.heading || a.frontmatter.title}

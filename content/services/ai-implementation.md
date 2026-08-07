@@ -3,6 +3,7 @@ title: "AI Implementation Agency | DYSIGNS"
 description: "AI implementation for real workflows, not demos. DYSIGNS identifies where AI saves time inside your product, site or team and builds it in."
 heading: "AI implementation"
 slug: "ai-implementation"
+includes: "Workflow assessment, custom implementation, documentation and handoff"
 answerBlock: |
   DYSIGNS implements AI where it genuinely saves time, inside real
   products and workflows rather than as a standalone demo. Based in
@@ -33,10 +34,6 @@ An AI feature that ignores how the rest of your product looks and behaves gets u
 ## Who it is for
 
 For founders, scale-ups and agencies who suspect AI could save real time somewhere in their product or workflow, but want an honest assessment before committing budget to it.
-
-## Cases
-
-TODO_DYLAN: link to at least two related cases once AI-implementation-specific case content exists.
 
 ## Frequently asked questions
 

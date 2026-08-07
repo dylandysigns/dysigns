@@ -25,6 +25,14 @@ export function canonicalUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }
 
+// `path` here is always the canonical ENGLISH path (what every page's
+// <Seo path="..."> already passes) — used to build the Dutch mirror URL
+// for hreflang, regardless of which language is actually rendering.
+export function alternateUrl(path: string, lang: "en" | "nl"): string {
+  if (lang === "en") return canonicalUrl(path);
+  return canonicalUrl(path === "/" ? "/nl" : `/nl${path}`);
+}
+
 // Build-time validation (fase 3 requirement): title <= 60 chars,
 // description <= 155 chars. Called from scripts/prerender.mjs for every
 // captured PageMeta — throws to fail the build on violation.

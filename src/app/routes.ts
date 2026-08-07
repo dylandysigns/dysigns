@@ -9,8 +9,8 @@ import {
   AiImplementationPage,
   ShopifyDevelopmentPage,
 } from "./pages/ServicePages";
-import WorkOverviewPage from "./pages/WorkOverviewPage";
-import WorkDetailPage from "./pages/WorkDetailPage";
+import WorkPage from "./pages/WorkPage";
+import CaseDetailPage from "./pages/CaseDetailPage";
 import InsightsOverviewPage from "./pages/InsightsOverviewPage";
 import InsightsDetailPage from "./pages/InsightsDetailPage";
 import AboutPage from "./pages/AboutPage";
@@ -26,8 +26,32 @@ import GiftFatinsBirthdayPage from "./pages/GiftFatinsBirthdayPage";
 //
 // Follow-up brief (English-first, full-service repositioning) — this is the
 // definitive route list. The earlier Dutch routes and the original
-// English-language legacy pages (/services, the old /work and /about) have
-// been archived under archive/ and are no longer wired in here.
+// /services page have been archived under archive/ and are no longer wired
+// in here. /work and /about were reverted back to the original,
+// projects.ts-backed pages (see archive/content-driven-pages/ for the
+// content/work-*.md-driven versions that briefly replaced them).
+// Shared between the English tree (mounted at "/") and the Dutch tree
+// (mounted at "/nl") — same components both times. Each page reads its
+// language from the URL (useLanguage derives it from location.pathname),
+// not from these route definitions, so mirroring the array is enough to
+// get a fully separate, crawlable, correctly-lang-tagged URL per page.
+const localizedChildren: RouteObject[] = [
+  { index: true, Component: HomePage },
+  { path: "web-design", Component: WebDesignPage },
+  { path: "social-media-meta-ads", Component: SocialMediaMetaAdsPage },
+  { path: "ux-ui-design", Component: UxUiDesignPage },
+  { path: "branding", Component: BrandingPage },
+  { path: "ai-implementation", Component: AiImplementationPage },
+  // Underneath web design, not in navigation — see ServicePages.tsx.
+  { path: "shopify-development", Component: ShopifyDevelopmentPage },
+  { path: "work", Component: WorkPage },
+  { path: "work/:slug", Component: CaseDetailPage },
+  { path: "insights", Component: InsightsOverviewPage },
+  { path: "insights/:slug", Component: InsightsDetailPage },
+  { path: "about", Component: AboutPage },
+  { path: "contact", Component: ContactPage },
+];
+
 export const routes: RouteObject[] = [
   // Hidden, unlinked pages — no Header/Footer, no sitemap entry, noindex injected at runtime
   { path: "/fatins-birthday", Component: FatinsBirthdayPage },
@@ -36,21 +60,16 @@ export const routes: RouteObject[] = [
     path: "/",
     Component: Layout,
     children: [
-      { index: true, Component: HomePage },
-      { path: "web-design", Component: WebDesignPage },
-      { path: "social-media-meta-ads", Component: SocialMediaMetaAdsPage },
-      { path: "ux-ui-design", Component: UxUiDesignPage },
-      { path: "branding", Component: BrandingPage },
-      { path: "ai-implementation", Component: AiImplementationPage },
-      // Underneath web design, not in navigation — see ServicePages.tsx.
-      { path: "shopify-development", Component: ShopifyDevelopmentPage },
-      { path: "work", Component: WorkOverviewPage },
-      { path: "work/:slug", Component: WorkDetailPage },
-      { path: "insights", Component: InsightsOverviewPage },
-      { path: "insights/:slug", Component: InsightsDetailPage },
-      { path: "about", Component: AboutPage },
-      { path: "contact", Component: ContactPage },
+      ...localizedChildren,
       { path: "docs", Component: DocsPage },
+      { path: "*", Component: NotFoundPage },
+    ],
+  },
+  {
+    path: "/nl",
+    Component: Layout,
+    children: [
+      ...localizedChildren,
       { path: "*", Component: NotFoundPage },
     ],
   },

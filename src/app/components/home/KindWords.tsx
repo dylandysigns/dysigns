@@ -547,6 +547,18 @@ export function KindWords() {
                       transition:
                         "width .35s cubic-bezier(.22,1,.36,1), background .35s",
                     }}
+                    onMouseEnter={(e) => {
+                      if (i !== sourceIndex) {
+                        (e.currentTarget as HTMLElement).style.background =
+                          "rgba(var(--page-fg-rgb), 0.45)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (i !== sourceIndex) {
+                        (e.currentTarget as HTMLElement).style.background =
+                          "rgba(var(--page-fg-rgb), 0.2)";
+                      }
+                    }}
                   />
                 ))}
               </div>

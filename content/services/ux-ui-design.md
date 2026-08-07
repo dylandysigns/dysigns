@@ -3,6 +3,7 @@ title: "UX/UI Design Agency | DYSIGNS"
 description: "UX and UI design for apps, portals and dashboards. DYSIGNS goes from user research to a complete design system, based in the Netherlands."
 heading: "UX/UI design"
 slug: "ux-ui-design"
+includes: "User research, wireframes and prototypes, design systems, accessibility review"
 answerBlock: |
   DYSIGNS designs UX and UI for apps, portals and dashboards, for
   clients worldwide from a base in the Netherlands. We start at user
@@ -33,10 +34,6 @@ A design system that never gets handed to development in a usable form ends up r
 ## Who it is for
 
 For teams whose app, portal or dashboard no longer matches what users actually need, or who are starting from nothing and want to set it up properly from day one, including complex portals and dashboards.
-
-## Cases
-
-TODO_DYLAN: link to at least two related cases.
 
 ## Frequently asked questions
 

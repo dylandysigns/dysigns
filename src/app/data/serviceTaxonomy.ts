@@ -1,85 +1,35 @@
-import { type Project } from "./projects";
-
+// Five active services (English-first, full-service rebuild). Replaces
+// the earlier four-service Dutch taxonomy — this file no longer maps
+// project tags to services (that mapping doesn't exist for the new
+// content/work/*.md cases yet), it's purely the source list for the
+// homepage "What we do" section and its routes.
 export type ServiceSlug =
-  | "brand-identity"
-  | "ux-ui-web-design"
-  | "product-design"
-  | "creative-thinking";
+  | "web-design"
+  | "social-media-meta-ads"
+  | "ux-ui-design"
+  | "branding"
+  | "ai-implementation";
 
 export interface ServiceDefinition {
   slug: ServiceSlug;
-  contentIndex: number;
-  rawCategories: string[];
-  rawTags: string[];
 }
 
 export const serviceDefinitions: ServiceDefinition[] = [
-  {
-    slug: "brand-identity",
-    contentIndex: 0,
-    rawCategories: ["Branding"],
-    rawTags: ["Brand Identity", "Print"],
-  },
-  {
-    slug: "ux-ui-web-design",
-    contentIndex: 1,
-    rawCategories: ["Web"],
-    rawTags: ["Web Design", "UX Design", "E-Commerce", "Development"],
-  },
-  {
-    slug: "product-design",
-    contentIndex: 2,
-    rawCategories: ["Social Media Management"],
-    rawTags: ["Social Media Management", "Social Media"],
-  },
-  {
-    slug: "creative-thinking",
-    contentIndex: 3,
-    rawCategories: [],
-    rawTags: ["Creative Direction", "Photography", "Motion Design"],
-  },
+  { slug: "web-design" },
+  { slug: "social-media-meta-ads" },
+  { slug: "ux-ui-design" },
+  { slug: "branding" },
+  { slug: "ai-implementation" },
 ];
 
-const serviceBySlug = new Map(serviceDefinitions.map((service) => [service.slug, service]));
-const tagToServiceSlug = new Map<string, ServiceSlug>();
-
-serviceDefinitions.forEach((service) => {
-  service.rawTags.forEach((tag) => {
-    tagToServiceSlug.set(tag, service.slug);
-  });
-});
-
-export function getServiceDefinitionBySlug(slug: string | undefined) {
-  if (!slug) return undefined;
-  return serviceBySlug.get(slug as ServiceSlug);
-}
-
-export function getServiceSlugForTag(tag: string) {
-  return tagToServiceSlug.get(tag);
-}
-
-export function getServiceSlugsForProject(project: Pick<Project, "category" | "tags">) {
-  const matches = new Set<ServiceSlug>();
-
-  project.tags.forEach((tag) => {
-    const mapped = getServiceSlugForTag(tag);
-    if (mapped) matches.add(mapped);
-  });
-
-  if (matches.size === 0) {
-    serviceDefinitions.forEach((service) => {
-      if (service.rawCategories.includes(project.category)) {
-        matches.add(service.slug);
-      }
-    });
-  }
-
-  return Array.from(matches);
-}
-
-export function projectMatchesService(
-  project: Pick<Project, "category" | "tags">,
-  serviceSlug: ServiceSlug,
-) {
-  return getServiceSlugsForProject(project).includes(serviceSlug);
-}
+// One real project image per service, from an actual DYSIGNS case that
+// matches that service — never a stock/placeholder photo standing in for
+// work that wasn't done. Services without a matching case (AI
+// implementation) fall back to no image rather than a misleading one.
+export const serviceHeroImages: Partial<Record<string, string>> = {
+  "web-design": "/images/stelz-laptop.png",
+  "shopify-development": "/images/stelz-laptop.png",
+  "ux-ui-design": "/images/powermobile-overview.png",
+  branding: "/images/beckers-brand-board.png",
+  "social-media-meta-ads": "/images/beckers-phone-mockup.png",
+};

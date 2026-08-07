@@ -1,133 +1,40 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useCursor } from "../../hooks/useCursor";
 
 /**
- * Partners / "Trusted by" — Monochrome SVG placeholder logos.
+ * Partners / "Trusted by" — continuous logo slider.
  *
- * INFINITE LOOP: The track contains 3× copies of the logos.
- * GSAP tweens raw pixel `x` from 0 → -oneSetWidth, repeat: -1.
- * Because logos are tripled, the snap from -oneSetWidth back to 0
- * is visually identical — seamless.
+ * INFINITE LOOP: the track contains 3× copies of the logos. GSAP tweens
+ * raw pixel `x` from 0 → -oneSetWidth, repeat: -1. Because logos are
+ * tripled, the snap from -oneSetWidth back to 0 is visually identical —
+ * seamless, no jump. No xPercent anywhere — everything is in raw pixels
+ * to avoid the offsetWidth vs scrollWidth mismatch that caused jumps.
  *
- * No xPercent is used anywhere — everything is in raw pixels to
- * avoid the offsetWidth vs scrollWidth mismatch that caused jumps.
+ * Every logo is a plain <img alt="{brand name}">, always in the HTML
+ * regardless of scroll/animation state — these are entity signals, not
+ * decoration. Only the 2nd and 3rd (duplicate) copies get
+ * aria-hidden="true" so screen readers don't announce each name three
+ * times; the first copy stays fully accessible.
  */
 
-/* ─── Individual logo components ─── */
-const LOGO_H = 60;
-const FILL = "currentColor";
-
-const MARK_W = 32;  // width of the logo mark portion, used to position text
-const TEXT_X = 0;
-
-function StelzLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="STËLZ">
-      <image href="/logos/STELZ1.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="14" fontWeight="700" letterSpacing="0.2" fill={FILL}>
-
-      </text>
-    </svg>
-  );
+interface Logo {
+  name: string;
+  url: string;
+  src: string;
 }
 
-function BiyuLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="BIYU">
-      <image href="/logos/BIYU.svg" x="0" y="-1" width={MARK_W} height="30" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="14" fontWeight="700" letterSpacing="0.1" fill={FILL}>
-
-      </text>
-    </svg>
-  );
-}
-
-function KultAndAceLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="KULT AND ACE">
-      <image href="/logos/KultAndAce.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.1" fill={FILL}>
-     </text>
-    </svg>
-  );
-}
-
-function FijneGastenLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="FIJNE GASTEN">
-      <image href="/logos/Fijne-gasten.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.1" fill={FILL}>
-
-      </text>
-    </svg>
-  );
-}
-
-function JdLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="JD">
-      <image href="/logos/JD.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="14" fontWeight="700" letterSpacing="0.2" fill={FILL}>
-      </text>
-    </svg>
-  );
-}
-
-function PactLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="PACT">
-      <image href="/logos/PACT.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="14" fontWeight="700" letterSpacing="0.2" fill={FILL}>
-
-      </text>
-    </svg>
-  );
-}
-
-function ACafeLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="A/CAFE">
-      <image href="/logos/ACAFE.svg" x="0" y="-1" width={MARK_W} height="30" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="13" fontWeight="700" letterSpacing="0.15" fill={FILL}>
-
-      </text>
-    </svg>
-  );
-}
-
-function XprnzLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="XPRNZ">
-      <image href="/logos/XPRNZ.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="14" fontWeight="700" letterSpacing="0.1" fill={FILL}>
-
-      </text>
-    </svg>
-  );
-}
-
-function PureAndCureLogo() {
-  return (
-    <svg height={LOGO_H} viewBox="0 0 50 24" fill="none" role="img" aria-label="PUREANDCURE">
-      <image href="/logos/pureandcure.svg" x="0" y="-1" width={MARK_W} height="26" preserveAspectRatio="xMidYMid meet" />
-      <text x={TEXT_X} y="18" fontFamily="Inter,system-ui,sans-serif" fontSize="12" fontWeight="700" letterSpacing="0.1" fill={FILL}>
-      </text>
-    </svg>
-  );
-}
-
-const LOGOS: { name: string; url: string; Component: React.FC }[] = [
-  { name: "STËLZ", url: "https://drinkstelz.com/", Component: StelzLogo },
-  { name: "BIYU", url: "https://bi-yu.nl/", Component: BiyuLogo },
-  { name: "KULT AND ACE", url: "http://kultandace.com/", Component: KultAndAceLogo },
-  { name: "FIJNE GASTEN", url: "http://www.fijnegasten.nl/", Component: FijneGastenLogo },
-  { name: "JD", url: "https://www.jdsports.nl/", Component: JdLogo },
-  { name: "PACT", url: "https://www.pactamsterdam.nl/", Component: PactLogo },
-  { name: "A/CAFE", url: "https://acafe.amsterdam/", Component: ACafeLogo },
-  { name: "XPRNZ", url: "https://xprnz.nl/", Component: XprnzLogo },
-  { name: "PUREANDCURE", url: "https://pureandcure.com/", Component: PureAndCureLogo },
+const LOGOS: Logo[] = [
+  { name: "STËLZ", url: "https://drinkstelz.com/", src: "/logos/STELZ1.svg" },
+  { name: "BIYU", url: "https://www.biyu.world/", src: "/logos/BIYU.svg" },
+  { name: "KULT AND ACE", url: "http://kultandace.com/", src: "/logos/KultAndAce.svg" },
+  { name: "FIJNE GASTEN", url: "http://www.fijnegasten.nl/", src: "/logos/Fijne-gasten.svg" },
+  { name: "JD", url: "https://www.jdsports.nl/", src: "/logos/JD.svg" },
+  { name: "PACT", url: "https://pact-worldwide.com/en/corporates/", src: "/logos/PACT.svg" },
+  { name: "A/CAFE", url: "https://acafegroup.com/", src: "/logos/ACAFE.svg" },
+  { name: "XPRNZ", url: "https://xprnz.nl/", src: "/logos/XPRNZ.svg" },
+  { name: "PUREANDCURE", url: "https://pureandcure.com/", src: "/logos/pureandcure.svg" },
 ];
 
 interface PartnersProps {
@@ -139,10 +46,13 @@ export function Partners({ variant = "section" }: PartnersProps) {
   const { t } = useLanguage();
   const cursor = useCursor();
   const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const reduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isHero = variant === "hero";
 
   /* ── Auto-scroll — pure pixel x, no xPercent ── */
   useEffect(() => {
@@ -152,8 +62,11 @@ export function Partners({ variant = "section" }: PartnersProps) {
 
     let cancelled = false;
 
-    // Defer one frame so layout is fully settled and scrollWidth is accurate
-    const raf = requestAnimationFrame(() => {
+    // Defer briefly so layout is fully settled and scrollWidth is accurate.
+    // setTimeout rather than requestAnimationFrame deliberately — rAF is
+    // paused entirely in a backgrounded tab, which would leave the slider
+    // stuck uninitialised if the page was opened in the background.
+    const timeout = window.setTimeout(() => {
       if (cancelled || !track) return;
 
       const oneSet = track.scrollWidth / 3;
@@ -164,26 +77,40 @@ export function Partners({ variant = "section" }: PartnersProps) {
 
       tweenRef.current = gsap.to(track, {
         x: -oneSet,
-        duration: 32,
+        duration: 34,
         repeat: -1,
         ease: "none",
       });
-    });
+    }, 0);
 
     return () => {
       cancelled = true;
-      cancelAnimationFrame(raf);
+      window.clearTimeout(timeout);
       if (tweenRef.current) {
         tweenRef.current.kill();
         tweenRef.current = null;
       }
       gsap.set(track, { clearProps: "transform" });
     };
-  }, [reduced, variant]);
+  }, [reduced]);
 
-  /* 3× copies for seamless infinite loop */
+  /* Pause on hover and on keyboard focus (whichever is active) — resume
+     only once neither is true. React's onFocus/onBlur bubble (unlike
+     native DOM focus/blur), so putting them on the track container
+     catches focus entering/leaving any logo link inside it. */
+  useEffect(() => {
+    const tween = tweenRef.current;
+    if (!tween) return;
+    if (hovered || focused) {
+      tween.pause();
+    } else {
+      tween.resume();
+    }
+  }, [hovered, focused]);
+
+  /* 3× copies for a seamless infinite loop, same for both variants —
+     only copies 2 and 3 are aria-hidden so names aren't announced 3x. */
   const items = [...LOGOS, ...LOGOS, ...LOGOS];
-  const isHero = variant === "hero";
 
   return (
     <section
@@ -241,6 +168,10 @@ export function Partners({ variant = "section" }: PartnersProps) {
             ref={trackRef}
             className={`flex items-center whitespace-nowrap select-none touch-pan-y ${isHero ? "py-1" : ""}`}
             style={{ willChange: "transform" }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
           >
           {items.map((logo, i) => (
             <a
@@ -249,16 +180,20 @@ export function Partners({ variant = "section" }: PartnersProps) {
               target="_blank"
               rel="noopener noreferrer"
               draggable={false}
-              className="flex-shrink-0 transition-colors duration-350"
+              aria-hidden={i >= LOGOS.length ? "true" : undefined}
+              tabIndex={i >= LOGOS.length ? -1 : undefined}
+              className="flex-shrink-0 transition-colors duration-350 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded"
               style={{
                 color: isHero
                   ? "rgba(var(--page-fg-rgb), .94)"
                   : "rgba(var(--page-fg-rgb), .35)",
-                height: isHero ? 76 : LOGO_H,
+                height: isHero ? 64 : 52,
                 paddingLeft: isHero ? 30 : 0,
                 paddingRight: isHero ? 30 : 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 opacity: 1,
-                filter: "none",
                 transition: isHero
                   ? "opacity .32s ease, transform .32s ease"
                   : "color .32s ease",
@@ -268,7 +203,6 @@ export function Partners({ variant = "section" }: PartnersProps) {
                   isHero
                     ? "rgba(var(--page-fg-rgb), 1)"
                     : "rgba(var(--page-fg-rgb), .75)";
-                (e.currentTarget as HTMLElement).style.opacity = "1";
                 (e.currentTarget as HTMLElement).style.transform = isHero
                   ? "translateY(-1px)"
                   : "none";
@@ -279,12 +213,30 @@ export function Partners({ variant = "section" }: PartnersProps) {
                   isHero
                     ? "rgba(var(--page-fg-rgb), .94)"
                     : "rgba(var(--page-fg-rgb), .35)";
-                (e.currentTarget as HTMLElement).style.opacity = "1";
                 (e.currentTarget as HTMLElement).style.transform = "none";
                 cursor.reset();
               }}
             >
-              <logo.Component />
+              <img
+                src={logo.src}
+                alt={logo.name}
+                style={{
+                  // Fixed box, not height-only — some logo files are
+                  // square (1200x1200) and some are wide wordmarks
+                  // (e.g. pureandcure.svg is ~5.7:1), so matching only
+                  // height let the wide one render nearly 6x wider than
+                  // the square ones. object-fit: contain keeps every
+                  // logo the same optical footprint regardless of its
+                  // native aspect ratio.
+                  width: isHero ? 84 : 68,
+                  height: isHero ? 48 : 40,
+                  objectFit: "contain",
+                  objectPosition: "center",
+                  display: "block",
+                }}
+                draggable={false}
+                loading="lazy"
+              />
             </a>
           ))}
           </div>

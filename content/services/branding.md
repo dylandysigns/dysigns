@@ -3,6 +3,7 @@ title: "Branding Agency | DYSIGNS"
 description: "Branding and visual identity from DYSIGNS. A visual system that holds up across every channel, from strategy to logo and beyond."
 heading: "Branding"
 slug: "branding"
+includes: "Brand strategy, logo and visual identity, design systems, brand guidelines"
 answerBlock: |
   DYSIGNS develops visual identities for brands worldwide, based in
   the Netherlands. We work from strategy through to logo and a full
@@ -33,10 +34,6 @@ A brand identity that never gets carried into the actual site or store ends up a
 ## Who it is for
 
 For brands that want to grow and need a visual identity that carries into their website, store and social channels, not a standalone style guide disconnected from where the brand actually shows up.
-
-## Cases
-
-TODO_DYLAN: link to at least two related cases.
 
 ## Frequently asked questions
 

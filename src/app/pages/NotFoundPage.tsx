@@ -33,7 +33,7 @@ export default function NotFoundPage() {
         </p>
         <a
           href="/"
-          className="inline-block mt-6 px-5 py-2 rounded-full"
+          className="inline-block mt-6 px-5 py-2 rounded-full transition-all duration-300"
           style={{
             fontSize: ".72rem",
             fontWeight: 500,
@@ -41,6 +41,14 @@ export default function NotFoundPage() {
             textTransform: "uppercase",
             color: "rgba(var(--page-fg-rgb), .4)",
             border: "1px solid rgba(var(--page-fg-rgb), .15)",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .35)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .4)";
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .15)";
           }}
         >
           Go home
@@ -56,13 +64,31 @@ export default function NotFoundPage() {
               padding: 0,
             }}
           >
-            <li><a href="/cases" style={{ color: "inherit" }}>Cases</a></li>
-            <li><a href="/webdesign-almere" style={{ color: "inherit" }}>Webdesign Almere</a></li>
-            <li><a href="/ux-ui-design" style={{ color: "inherit" }}>UX/UI Design</a></li>
-            <li><a href="/shopify-development" style={{ color: "inherit" }}>Shopify development</a></li>
-            <li><a href="/branding" style={{ color: "inherit" }}>Branding</a></li>
-            <li><a href="/over-dylan-kho" style={{ color: "inherit" }}>Over Dylan Kho</a></li>
-            <li><a href="/contact" style={{ color: "inherit" }}>Contact</a></li>
+            {[
+              { href: "/cases", label: "Cases" },
+              { href: "/webdesign-almere", label: "Webdesign Almere" },
+              { href: "/ux-ui-design", label: "UX/UI Design" },
+              { href: "/shopify-development", label: "Shopify development" },
+              { href: "/branding", label: "Branding" },
+              { href: "/over-dylan-kho", label: "Over Dylan Kho" },
+              { href: "/contact", label: "Contact" },
+            ].map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="transition-colors duration-300"
+                  style={{ color: "inherit" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = "inherit";
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

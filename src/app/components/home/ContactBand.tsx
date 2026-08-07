@@ -8,8 +8,8 @@ import { useLanguage } from "../../hooks/useLanguage";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* WhatsApp inline SVG icon — same as Header */
-function WhatsAppIcon({ size = 15 }: { size?: number }) {
+/* WhatsApp inline SVG icon — same as Header / Footer / ContactPage */
+function WhatsAppIcon({ size = 18 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -37,30 +37,29 @@ export function ContactBand() {
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
+
+    // Hidden state set here, client-side, on mount — never baked into the
+    // JSX/SSR output as opacity:0 (would leave this section permanently
+    // invisible to crawlers and no-JS users).
+    if (headRef.current) gsap.set(headRef.current, { y: 30, opacity: 0 });
+    if (ctaRef.current) gsap.set(ctaRef.current, { y: 20, opacity: 0 });
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headRef.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: headRef.current, start: "top 85%", once: true },
-        },
-      );
-      gsap.fromTo(
-        ctaRef.current,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          delay: 0.15,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ctaRef.current, start: "top 90%", once: true },
-        },
-      );
+      gsap.to(headRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: { trigger: headRef.current, start: "top 85%", once: true },
+      });
+      gsap.to(ctaRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.15,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ctaRef.current, start: "top 90%", once: true },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -110,7 +109,6 @@ export function ContactBand() {
           letterSpacing: "-.04em",
           color: "var(--page-fg)",
           lineHeight: 1.1,
-          opacity: 0,
         }}
       >
         {t("contact.headline")}
@@ -131,11 +129,10 @@ export function ContactBand() {
       <div
         ref={ctaRef}
         className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        style={{ opacity: 0 }}
       >
         <a
           href={`mailto:${c.email}`}
-          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full group"
+          className="group relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full transition-all duration-300"
           style={{
             fontSize: ".78rem",
             fontWeight: 600,
@@ -143,9 +140,18 @@ export function ContactBand() {
             textTransform: "uppercase",
             color: "var(--page-fg)",
             border: "1px solid rgba(var(--page-fg-rgb), .2)",
+            background: "rgba(var(--page-fg-rgb), 0)",
           }}
-          onMouseEnter={() => cursor.set("link")}
-          onMouseLeave={() => cursor.reset()}
+          onMouseEnter={(e) => {
+            cursor.set("link");
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .45)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .06)";
+          }}
+          onMouseLeave={(e) => {
+            cursor.reset();
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .2)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), 0)";
+          }}
         >
           <span
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
@@ -155,33 +161,45 @@ export function ContactBand() {
               transition: "transform .7s ease-out",
             }}
           />
-          <Mail size={15} strokeWidth={1.5} /> {t("contact.emailUs")}
+          <Mail size={16} strokeWidth={1.75} />
+          {t("contact.emailUs")}
         </a>
+
         <a
           href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full group"
+          className="group relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full transition-all duration-300"
           style={{
             fontSize: ".78rem",
-            fontWeight: 500,
+            fontWeight: 600,
             letterSpacing: ".06em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .5)",
-            border: "1px solid rgba(var(--page-fg-rgb), .1)",
+            color: "var(--page-fg)",
+            border: "1px solid rgba(var(--page-fg-rgb), .2)",
+            background: "rgba(var(--page-fg-rgb), 0)",
           }}
-          onMouseEnter={() => cursor.set("link")}
-          onMouseLeave={() => cursor.reset()}
+          onMouseEnter={(e) => {
+            cursor.set("link");
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .45)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .06)";
+          }}
+          onMouseLeave={(e) => {
+            cursor.reset();
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .2)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), 0)";
+          }}
         >
           <span
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
             style={{
               background:
-                "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .06),transparent)",
+                "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
               transition: "transform .7s ease-out",
             }}
           />
-          <WhatsAppIcon size={15} /> WhatsApp
+          <WhatsAppIcon size={16} />
+          WhatsApp
         </a>
       </div>
     </section>

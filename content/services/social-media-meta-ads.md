@@ -3,6 +3,7 @@ title: "Social Media & Meta Ads Agency | DYSIGNS"
 description: "Social media management and Meta Ads for founders and scale-ups. We build the landing page too, so the full funnel gets optimised, not just the click."
 heading: "Social media and Meta Ads"
 slug: "social-media-meta-ads"
+includes: "Content production, campaign management, creative production, reporting"
 answerBlock: |
   DYSIGNS runs social media and Meta advertising for founders,
   scale-ups and agencies worldwide, based in the Netherlands. Because
@@ -33,10 +34,6 @@ Most agencies that run your ads never see the page they lead to, and most agenci
 ## Who it is for
 
 For founders, scale-ups and agencies who want social media and paid campaigns to connect directly to a site or store DYSIGNS also designed and built, or who are open to us taking over that connection.
-
-## Cases
-
-TODO_DYLAN: link to at least two related cases once case content includes marketing-specific results.
 
 ## Frequently asked questions
 

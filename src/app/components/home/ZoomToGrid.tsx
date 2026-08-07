@@ -5,6 +5,7 @@ import { zoomToGridData } from "../../data/projects";
 import type { Project } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
 import { ProjectZoomLink } from "../ProjectZoomLink";
+import { TransitionLink } from "../TransitionLink";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
@@ -22,7 +23,25 @@ gsap.registerPlugin(ScrollTrigger);
  * this section refreshes after Hero (2) and SentenceReveal (1).
  *
  * NOTE: resize + font-load ScrollTrigger.refresh is handled globally in Layout.tsx
+ *
+ * Explicit slug list (not the raw first-9-in-array) so this grid can
+ * be curated independently of projects.ts's own order. STELZ stays the
+ * hero/center tile (index 4). Pulse Analytics and Flux Motion Identity
+ * were dropped from this grid in favour of the two real, current cases
+ * (A/Café, Studio75) — they're still listed on /work itself, just not
+ * featured here.
  */
+const ZOOM_GRID_SLUGS = [
+  "nova-brand-platform",
+  "meridian-app-redesign",
+  "arco-ecommerce",
+  "verkeersschool-beckers-branding",
+  "stelz-web-design", // hero / center tile
+  "powermobile",
+  "orbit-saas-platform",
+  "a-cafe-app-design",
+  "studio75-branding",
+];
 
 export function ZoomToGrid() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -39,8 +58,15 @@ export function ZoomToGrid() {
   const tRef = useRef(t);
   tRef.current = t;
 
-  /* Map each grid position (row-major, including hero center) to a translated project. */
-  const tileProjects = useMemo(() => translatedProjects.slice(0, 9), [translatedProjects]);
+  /* Map each grid position (row-major, including hero center) to a translated project,
+     by explicit slug rather than raw array order. */
+  const tileProjects = useMemo(
+    () =>
+      ZOOM_GRID_SLUGS.map((slug) => translatedProjects.find((p) => p.slug === slug)).filter(
+        (p): p is (typeof translatedProjects)[number] => Boolean(p),
+      ),
+    [translatedProjects],
+  );
 
   const reduced =
     typeof window !== "undefined" &&
@@ -52,12 +78,12 @@ export function ZoomToGrid() {
 
   // Preload images into browser cache (fire-and-forget, does NOT gate animation)
   useEffect(() => {
-    const urls = [zoomToGridData.heroImage, ...zoomToGridData.gridImages];
+    const urls = [zoomToGridData.heroImage, ...tileProjects.map((p) => p.thumbnail)];
     urls.forEach((url) => {
       const img = new Image();
       img.src = url;
     });
-  }, []);
+  }, [tileProjects]);
 
   // GSAP animation — re-runs on language change to retarget refs
   useEffect(() => {
@@ -77,7 +103,14 @@ export function ZoomToGrid() {
           end: () => `+=${window.innerHeight * 3}`,
           pin: true,
           scrub: isMobile ? 0.3 : 0.5,
-          anticipatePin: isMobile ? 0 : 1,
+          // anticipatePin must stay 1 on mobile too — this section pins
+          // immediately after Hero's own sticky zone (see Hero.tsx's
+          // `sticky top-0 h-[100dvh]` wrapper), and GSAP's docs are
+          // explicit that anticipatePin:0 right after another
+          // pinned/sticky element causes a visible jump at the handoff.
+          // That handoff is exactly the "hero to next section" boundary
+          // reported as broken on mobile.
+          anticipatePin: 1,
           invalidateOnRefresh: true,
           refreshPriority: -1,
         },
@@ -132,18 +165,17 @@ export function ZoomToGrid() {
     };
   }, [reduced, lang]);
 
-  const gridImages = zoomToGridData.gridImages;
-
-  /** Shared tile component — uses tRef so identity is stable across lang switches */
+  /** Shared tile component — uses tRef so identity is stable across lang switches.
+   * Always shows the linked project's own thumbnail (or the dedicated hero
+   * image for the center tile) — never a separately curated, possibly
+   * mismatched image. */
   const Tile = useCallback(
     ({
-      src,
       project,
       refCb,
       style,
       isHero,
     }: {
-      src: string;
       project: Project;
       refCb?: (el: HTMLDivElement | null) => void;
       style?: React.CSSProperties;
@@ -179,7 +211,7 @@ export function ZoomToGrid() {
             }}
           >
             <img
-              src={src}
+              src={isHero ? zoomToGridData.heroImage : project.thumbnail}
               alt={`${project.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
               className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
               style={{ willChange: "transform" }}
@@ -330,24 +362,23 @@ export function ZoomToGrid() {
           </h2>
         </div>
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-3">
-          {gridImages.map((src, i) => {
-            /* gridImages has 8 entries; map each to the correct non-hero project */
-            const proj = tileProjects[i < 4 ? i : i + 1]; // skip hero at index 4
-            return (
+          {tileProjects
+            .filter((_, i) => i !== 4) // hero tile shown separately above
+            .map((proj) => (
               <ProjectZoomLink
-                key={i}
-                to={`/work/${proj?.slug}`}
-                projectSlug={proj?.slug ?? ""}
-                imageSrc={proj?.thumbnail ?? src}
-                transitionId={`zoom-grid-${proj?.slug ?? i}`}
+                key={proj.slug}
+                to={`/work/${proj.slug}`}
+                projectSlug={proj.slug}
+                imageSrc={proj.thumbnail}
+                transitionId={`zoom-grid-${proj.slug}`}
                 className="block"
                 onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
                 onMouseLeave={() => cursor.reset()}
               >
                 <div className="overflow-hidden rounded-xl group">
                   <img
-                    src={src}
-                    alt={`${proj?.title ?? ""} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
+                    src={proj.thumbnail}
+                    alt={`${proj.title} – Dylan Kho – DYSIGNS branding and identity design portfolio`}
                     className="w-full h-auto object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                     style={{
                       aspectRatio: "4/3",
@@ -357,8 +388,24 @@ export function ZoomToGrid() {
                   />
                 </div>
               </ProjectZoomLink>
-            );
-          })}
+            ))}
+        </div>
+        <div className="mt-10 text-center">
+          <TransitionLink
+            to="/work"
+            className="inline-flex items-center gap-2"
+            style={{
+              fontSize: ".75rem",
+              fontWeight: 500,
+              letterSpacing: ".1em",
+              textTransform: "uppercase",
+              color: "rgba(var(--page-fg-rgb), .55)",
+            }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
+          >
+            {t("work.viewAll")}
+          </TransitionLink>
         </div>
       </section>
     );
@@ -390,7 +437,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[0]} project={tileProjects[0]} />
+              <Tile project={tileProjects[0]} />
             </div>
             <div
               ref={(el) => {
@@ -398,7 +445,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[1]} project={tileProjects[1]} />
+              <Tile project={tileProjects[1]} />
             </div>
             <div
               ref={(el) => {
@@ -406,7 +453,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[2]} project={tileProjects[2]} />
+              <Tile project={tileProjects[2]} />
             </div>
 
             {/* Row 2 */}
@@ -416,12 +463,11 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[3]} project={tileProjects[3]} />
+              <Tile project={tileProjects[3]} />
             </div>
 
             {/* Hero tile (center) */}
             <Tile
-              src={zoomToGridData.heroImage}
               project={tileProjects[4]}
               refCb={(el) => {
                 heroRef.current = el;
@@ -435,7 +481,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[4]} project={tileProjects[5]} />
+              <Tile project={tileProjects[5]} />
             </div>
 
             {/* Row 3 */}
@@ -445,7 +491,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[5]} project={tileProjects[6]} />
+              <Tile project={tileProjects[6]} />
             </div>
             <div
               ref={(el) => {
@@ -453,7 +499,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[6]} project={tileProjects[7]} />
+              <Tile project={tileProjects[7]} />
             </div>
             <div
               ref={(el) => {
@@ -461,9 +507,31 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile src={gridImages[7]} project={tileProjects[8]} />
+              <Tile project={tileProjects[8]} />
             </div>
           </div>
+        </div>
+
+        <div
+          className="absolute bottom-6 left-0 right-0 text-center"
+          style={{ zIndex: 2 }}
+        >
+          <TransitionLink
+            to="/work"
+            className="inline-flex items-center gap-2"
+            style={{
+              fontSize: ".72rem",
+              fontWeight: 500,
+              letterSpacing: ".1em",
+              textTransform: "uppercase",
+              color: "rgba(var(--page-fg-rgb), .55)",
+              textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
+            }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
+          >
+            {t("work.viewAll")}
+          </TransitionLink>
         </div>
       </div>
     </div>

@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
-import { Mail, ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
-import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { getContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
@@ -43,8 +41,10 @@ export default function ContactPage() {
 
   const labelRef = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLElement | null)[]>([]);
   const socialsRef = useRef<HTMLDivElement>(null);
+  const submitFillRef = useRef<HTMLSpanElement>(null);
+  const submitRectRef = useRef<DOMRect | null>(null);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -142,10 +142,6 @@ export default function ContactPage() {
           ]),
         ]}
       />
-      <div className="absolute top-24 left-6 md:left-12">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
-      </div>
-
       <svg
         className="absolute top-6 left-6 w-10 h-10 pointer-events-none"
         viewBox="0 0 40 40"
@@ -212,208 +208,184 @@ export default function ContactPage() {
           {t("contact.sub")}
         </p>
 
-        {/* Contact form — at the top of the page, per the brief: nobody
-            arriving from the pricing FAQ should have to scroll first.
-            Netlify Forms (native platform feature, no new dependency):
-            the name="contact" + data-netlify="true" + honeypot below are
-            enough for Netlify's build-time form detection to pick this
-            up, since /contact is prerendered to static HTML. */}
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          action="/contact?submitted=true"
-          className="mt-10 mx-auto max-w-md text-left"
+        <div
+          ref={contentRef}
+          className="mt-10 space-y-6"
         >
-          <input type="hidden" name="form-name" value="contact" />
-          <p style={{ position: "absolute", left: "-9999px" }}>
-            <label>
-              Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
-            </label>
-          </p>
-
-          <div className="flex flex-col gap-4">
-            <div>
-              <label
-                htmlFor="contact-name"
-                style={{
-                  display: "block",
-                  fontSize: ".72rem",
-                  fontWeight: 500,
-                  letterSpacing: ".08em",
-                  textTransform: "uppercase",
-                  color: "rgba(var(--page-fg-rgb), .5)",
-                  marginBottom: ".4rem",
-                }}
-              >
-                Name
+          <form
+            ref={(el) => { cardsRef.current[0] = el; }}
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/thank-you"
+            className="text-left p-6 sm:p-8 rounded-2xl"
+            style={{
+              border: "1px solid rgba(var(--page-fg-rgb), .08)",
+              background: "rgba(var(--page-fg-rgb), .02)",
+              opacity: 0,
+              transform: "rotate(-0.4deg)",
+            }}
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Don't fill this out: <input name="bot-field" />
               </label>
-              <input
-                id="contact-name"
-                name="name"
-                type="text"
-                required
-                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
-                style={{
-                  background: "rgba(var(--page-fg-rgb), .03)",
-                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
-                  color: "var(--page-fg)",
-                  fontSize: "1rem",
-                }}
-              />
-            </div>
+            </p>
 
             <div>
               <label
                 htmlFor="contact-email"
+                className="block mb-2"
                 style={{
-                  display: "block",
-                  fontSize: ".72rem",
-                  fontWeight: 500,
-                  letterSpacing: ".08em",
-                  textTransform: "uppercase",
-                  color: "rgba(var(--page-fg-rgb), .5)",
-                  marginBottom: ".4rem",
+                  fontFamily: "'Instrument Serif',serif",
+                  fontStyle: "italic",
+                  fontSize: "1.15rem",
+                  color: "var(--page-fg)",
                 }}
               >
-                Email
+                {t("contact.form.emailLabel")}
               </label>
               <input
                 id="contact-email"
-                name="email"
                 type="email"
+                name="email"
                 required
-                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                placeholder={t("contact.form.emailPlaceholder")}
+                className="w-full bg-transparent outline-none"
                 style={{
-                  background: "rgba(var(--page-fg-rgb), .03)",
-                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
-                  color: "var(--page-fg)",
+                  fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
+                  color: "var(--page-fg)",
+                  padding: "12px 4px",
+                  borderBottom: "1.5px dashed rgba(var(--page-fg-rgb), .2)",
+                }}
+                onFocus={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderBottomColor =
+                    "rgba(var(--page-fg-rgb), .5)";
+                }}
+                onBlur={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderBottomColor =
+                    "rgba(var(--page-fg-rgb), .2)";
                 }}
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="contact-deadline"
-                style={{
-                  display: "block",
-                  fontSize: ".72rem",
-                  fontWeight: 500,
-                  letterSpacing: ".08em",
-                  textTransform: "uppercase",
-                  color: "rgba(var(--page-fg-rgb), .5)",
-                  marginBottom: ".4rem",
-                }}
-              >
-                Deadline (optional)
-              </label>
-              <input
-                id="contact-deadline"
-                name="deadline"
-                type="text"
-                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
-                style={{
-                  background: "rgba(var(--page-fg-rgb), .03)",
-                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
-                  color: "var(--page-fg)",
-                  fontSize: "1rem",
-                }}
-              />
-            </div>
-
-            <div>
+            <div className="mt-6">
               <label
                 htmlFor="contact-message"
+                className="block mb-2"
                 style={{
-                  display: "block",
-                  fontSize: ".72rem",
-                  fontWeight: 500,
-                  letterSpacing: ".08em",
-                  textTransform: "uppercase",
-                  color: "rgba(var(--page-fg-rgb), .5)",
-                  marginBottom: ".4rem",
+                  fontFamily: "'Instrument Serif',serif",
+                  fontStyle: "italic",
+                  fontSize: "1.15rem",
+                  color: "var(--page-fg)",
                 }}
               >
-                What do you want to achieve?
+                {t("contact.form.messageLabel")}
               </label>
               <textarea
                 id="contact-message"
                 name="message"
                 required
                 rows={4}
-                className="w-full rounded-lg px-4 py-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+                placeholder={t("contact.form.messagePlaceholder")}
+                className="w-full bg-transparent outline-none resize-none"
                 style={{
-                  background: "rgba(var(--page-fg-rgb), .03)",
-                  border: "1px solid rgba(var(--page-fg-rgb), .12)",
-                  color: "var(--page-fg)",
+                  fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
-                  resize: "vertical",
+                  color: "var(--page-fg)",
+                  padding: "12px 4px",
+                  borderBottom: "1.5px dashed rgba(var(--page-fg-rgb), .2)",
+                }}
+                onFocus={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderBottomColor =
+                    "rgba(var(--page-fg-rgb), .5)";
+                }}
+                onBlur={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderBottomColor =
+                    "rgba(var(--page-fg-rgb), .2)";
                 }}
               />
             </div>
 
             <button
               type="submit"
-              className="mt-2 rounded-full px-6 py-3 transition-colors duration-300"
+              className="relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-full"
               style={{
-                background: "var(--page-fg)",
-                color: "var(--page-bg)",
-                fontSize: ".95rem",
-                fontWeight: 600,
+                border: "1.5px solid rgba(var(--page-fg-rgb), .25)",
+                background: "transparent",
+                padding: "15px 22px",
+                isolation: "isolate",
               }}
-              onMouseEnter={() => cursor.set("link")}
-              onMouseLeave={() => cursor.reset()}
+              onMouseEnter={(e) => {
+                cursor.set("link");
+                const rect = e.currentTarget.getBoundingClientRect();
+                submitRectRef.current = rect;
+                const fill = submitFillRef.current;
+                if (fill) {
+                  const px = ((e.clientX - rect.left) / rect.width) * 100;
+                  const py = ((e.clientY - rect.top) / rect.height) * 100;
+                  fill.style.transition = "none";
+                  fill.style.clipPath = `circle(0% at ${px}% ${py}%)`;
+                  void fill.offsetHeight;
+                  fill.style.transition = "clip-path .55s cubic-bezier(.16,1,.3,1)";
+                  fill.style.clipPath = `circle(140% at ${px}% ${py}%)`;
+                }
+              }}
+              onMouseLeave={(e) => {
+                cursor.reset();
+                const rect = submitRectRef.current;
+                const fill = submitFillRef.current;
+                if (rect && fill) {
+                  const px = ((e.clientX - rect.left) / rect.width) * 100;
+                  const py = ((e.clientY - rect.top) / rect.height) * 100;
+                  fill.style.clipPath = `circle(0% at ${px}% ${py}%)`;
+                }
+                submitRectRef.current = null;
+              }}
             >
-              Send
+              <span
+                ref={submitFillRef}
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{ background: "var(--page-fg)", clipPath: "circle(0% at 50% 50%)" }}
+              />
+              <span
+                style={{
+                  position: "relative",
+                  color: "var(--page-fg)",
+                  mixBlendMode: "difference",
+                  fontFamily: "'Inter',sans-serif",
+                  fontSize: ".9rem",
+                  fontWeight: 600,
+                  letterSpacing: "-.01em",
+                }}
+              >
+                {t("contact.form.submit")}
+              </span>
             </button>
-          </div>
-        </form>
+          </form>
 
-        <div
-          ref={contentRef}
-          className="mt-12 space-y-6"
-        >
-          <a
-            ref={(el) => { cardsRef.current[0] = el; }}
-            href={`mailto:${c.email}`}
-            className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
-            style={{
-              border: "1px solid rgba(var(--page-fg-rgb), .08)",
-              background: "rgba(var(--page-fg-rgb), .02)",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              opacity: 0,
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .18)";
-              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
-              cursor.set("link");
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .08)";
-              (e.currentTarget as HTMLElement).style.color =
-                "rgba(var(--page-fg-rgb), .55)";
-              cursor.reset();
-            }}
-          >
-            <Mail size={18} strokeWidth={1.5} style={{ opacity: 0.72 }} />
+          <div className="flex items-center gap-4 max-w-[420px] mx-auto">
+            <span
+              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
+            />
             <span
               style={{
+                fontFamily: "'Instrument Serif',serif",
+                fontStyle: "italic",
                 fontSize: "1rem",
-                fontWeight: 500,
+                color: "rgba(var(--page-fg-rgb), .5)",
               }}
             >
-              {c.email}
+              {t("contact.or")}
             </span>
-            <ArrowUpRight
-              size={14}
-              className="transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              style={{ opacity: 0.55 }}
+            <span
+              style={{ flex: 1, height: 1, background: "rgba(var(--page-fg-rgb), .12)" }}
             />
-          </a>
+          </div>
 
           <a
             ref={(el) => { cardsRef.current[1] = el; }}
@@ -448,13 +420,8 @@ export default function ContactPage() {
                 fontWeight: 500,
               }}
             >
-              WhatsApp
+              {t("contact.sendWhatsapp")}
             </span>
-            <ArrowUpRight
-              size={14}
-              className="transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              style={{ opacity: 0.55 }}
-            />
           </a>
 
           <div className="pt-8">

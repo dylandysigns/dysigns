@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLanguage } from "../../hooks/useLanguage";
-import { useSiteContent } from "../../hooks/useSiteContent";
 import { serviceDefinitions } from "../../data/serviceTaxonomy";
 import { ServiceCard } from "../services/ServiceCard";
+import { getLocalizedContent } from "../../content/loadContent";
+import { useLanguage } from "../../hooks/useLanguage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,40 +12,51 @@ export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const { t } = useLanguage();
-  const content = useSiteContent();
+  const { t, lang } = useLanguage();
+
+  // Recomputed per language — content/services/{slug}.nl.md when it
+  // exists, English otherwise (getLocalizedContent's own fallback).
+  const services = serviceDefinitions.map(({ slug }) => {
+    const entry = getLocalizedContent(`services/${slug}.md`, lang);
+    return {
+      slug,
+      title: entry.frontmatter.heading || entry.frontmatter.title,
+      description: entry.frontmatter.description,
+    };
+  });
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
+    // Initial hidden state is set here, client-side, on mount — never as an
+    // inline style in the JSX itself. The server-rendered HTML (and the
+    // no-JS case) shows this section at full opacity; GSAP only animates
+    // from invisible to visible once it has actually attached.
+    if (headRef.current) gsap.set(headRef.current, { y: 30, opacity: 0 });
+    cardsRef.current.forEach((card) => {
+      if (card) gsap.set(card, { y: 40, opacity: 0 });
+    });
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headRef.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: headRef.current, start: "top 85%", once: true },
-        },
-      );
+      gsap.to(headRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: { trigger: headRef.current, start: "top 85%", once: true },
+      });
 
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
-        gsap.fromTo(
-          card,
-          { y: 40, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            delay: i * 0.08,
-            ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 90%", once: true },
-          },
-        );
+        gsap.to(card, {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          delay: i * 0.06,
+          ease: "power3.out",
+          scrollTrigger: { trigger: card, start: "top 90%", once: true },
+        });
       });
     }, sectionRef);
 
@@ -56,14 +67,14 @@ export function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-24 md:py-36 px-6 md:px-12 lg:px-16"
+      className="relative py-16 md:py-20 px-6 md:px-12 lg:px-16"
       style={{
         background: "var(--page-bg)",
         borderTop: "1px solid rgba(var(--page-fg-rgb), .04)",
       }}
     >
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-16">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="mb-10 md:mb-12">
           <span
             style={{
               fontSize: ".7rem",
@@ -85,36 +96,45 @@ export function Services() {
               letterSpacing: "-.03em",
               color: "var(--page-fg)",
               lineHeight: 1.1,
-              opacity: 0,
             }}
           >
-            {t("services.title")}
+            {t("services.introHeading")}
           </h2>
+          {/* Compensates for removing the hero's supporting paragraph — this
+              is now the only place on the homepage that says who DYSIGNS
+              is, what it does, for whom and where. Full version (with
+              founder name) lives on /about. */}
+          <p
+            className="mt-4 max-w-2xl"
+            style={{
+              fontSize: ".95rem",
+              lineHeight: 1.6,
+              color: "rgba(var(--page-fg-rgb), .6)",
+            }}
+          >
+            {t("services.introText")}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
-          {content.services.map((s, i) => {
-            const service = serviceDefinitions[i];
-
-            return (
-              <div
-                key={i}
-                className="h-full"
-                ref={(el) => {
-                  cardsRef.current[i] = el;
-                }}
-                style={{ opacity: 0 }}
-              >
-                <ServiceCard
-                  ctaLabel={t("services.explore")}
-                  description={s.description}
-                  href={`/services/${service.slug}`}
-                  slug={service.slug}
-                  title={s.title}
-                />
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 auto-rows-fr">
+          {services.map((s, i) => (
+            <div
+              key={s.slug}
+              className="h-full"
+              ref={(el) => {
+                cardsRef.current[i] = el;
+              }}
+            >
+              <ServiceCard
+                title={s.title}
+                description={s.description}
+                href={`/${s.slug}`}
+                slug={s.slug}
+                index={i}
+                linkLabel={`${t("services.explorePrefix")} ${s.title.toLowerCase()}`}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

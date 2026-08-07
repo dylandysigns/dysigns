@@ -5,6 +5,10 @@ heading: "STËLZ: a Shopify redesign built to lift conversion"
 slug: "stelz"
 client: "STËLZ"
 services: "web-design, shopify-development"
+image: "/images/mobilestelz.png"
+imageAlt: "STËLZ Shopify store, redesigned by DYSIGNS"
+imageWidth: "960"
+imageHeight: "1200"
 answerBlock: |
   STËLZ asked DYSIGNS to redesign their website to lift conversion and
   keep updates easy. We delivered a modular Shopify experience with

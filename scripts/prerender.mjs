@@ -25,15 +25,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 
-// English-first, full-service rebuild (follow-up brief) — content/work/*.md.
-const CASE_SLUGS = ["stelz", "a-cafe", "studio75"];
+// /work and /about reverted to the original projects.ts-backed pages —
+// slugs read directly from src/app/data/projects.ts so this list can't
+// silently drift out of sync with the actual project data.
+const projectsSource = await fs.readFile(
+  path.join(root, "src/app/data/projects.ts"),
+  "utf-8",
+);
+const CASE_SLUGS = [...projectsSource.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]);
 
 // No articles exist yet (content/insights/ is empty) — route is wired up
 // and ready, but there is nothing to prerender at /insights/[slug] until
 // real content exists.
 const INSIGHT_SLUGS = [];
 
-const routesToPrerender = [
+// English routes — also mirrored under /nl below for the Dutch tree
+// (real, separately-crawlable URLs, not a client-side language toggle).
+const enRoutes = [
   "/",
   "/web-design",
   "/social-media-meta-ads",
@@ -47,6 +55,11 @@ const routesToPrerender = [
   ...INSIGHT_SLUGS.map((slug) => `/insights/${slug}`),
   "/about",
   "/contact",
+];
+
+const routesToPrerender = [
+  ...enRoutes,
+  ...enRoutes.map((url) => (url === "/" ? "/nl" : `/nl${url}`)),
 ];
 
 // Fase 3 — inject each route's captured <Seo> values into its own <head>.
@@ -65,22 +78,33 @@ function replaceTag(html, regex, replacementValue, label) {
   return html.replace(regex, replacementValue);
 }
 
-function injectHead(html, meta, canonicalUrl) {
+function injectHead(html, meta, canonicalUrl, i18n) {
   const title = escapeAttr(meta.title);
   const description = escapeAttr(meta.description);
   const robots = escapeAttr(meta.robots ?? "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1");
   const url = escapeAttr(canonicalUrl);
   const ogType = escapeAttr(meta.ogType ?? "website");
+  const locale = i18n.lang === "nl" ? "nl_NL" : "en_US";
+  const localeAlt = i18n.lang === "nl" ? "en_US" : "nl_NL";
 
   let out = html;
   out = replaceTag(out, /<title>[^<]*<\/title>/, `<title>${title}</title>`, "<title>");
   out = replaceTag(out, /(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="description"');
   out = replaceTag(out, /(<meta\s+name="robots"\s+content=")[^"]*(")/, `$1${robots}$2`, 'meta name="robots"');
-  out = replaceTag(out, /(<link\s+rel="canonical"\s+href=")[^"]*(")/, `$1${url}$2`, 'link rel="canonical"');
+  out = replaceTag(
+    out,
+    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/>/,
+    // hreflang alternates inserted right after canonical — x-default
+    // points at the English URL, matching the site's English-first setup.
+    `<link rel="canonical" href="${url}" />\n      <link rel="alternate" hreflang="en" href="${escapeAttr(i18n.enUrl)}" />\n      <link rel="alternate" hreflang="nl" href="${escapeAttr(i18n.nlUrl)}" />\n      <link rel="alternate" hreflang="x-default" href="${escapeAttr(i18n.enUrl)}" />`,
+    'link rel="canonical"',
+  );
   out = replaceTag(out, /(<meta\s+property="og:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta property="og:title"');
   out = replaceTag(out, /(<meta\s+property="og:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta property="og:description"');
   out = replaceTag(out, /(<meta\s+property="og:url"\s+content=")[^"]*(")/, `$1${url}$2`, 'meta property="og:url"');
   out = replaceTag(out, /(<meta\s+property="og:type"\s+content=")[^"]*(")/, `$1${ogType}$2`, 'meta property="og:type"');
+  out = replaceTag(out, /(<meta\s+property="og:locale"\s+content=")[^"]*(")/, `$1${locale}$2`, 'meta property="og:locale"');
+  out = replaceTag(out, /(<meta\s+property="og:locale:alternate"\s+content=")[^"]*(")/, `$1${localeAlt}$2`, 'meta property="og:locale:alternate"');
   out = replaceTag(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta name="twitter:title"');
   out = replaceTag(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="twitter:description"');
 
@@ -184,10 +208,18 @@ async function run() {
       `<div id="root">${appHtml}</div>`,
     );
 
+    const isNl = url === "/nl" || url.startsWith("/nl/");
+    const enUrlPath = isNl ? (url.slice(3) || "/") : url;
+    const nlUrlPath = isNl ? url : (url === "/" ? "/nl" : `/nl${url}`);
+
     const meta = getCapturedMeta();
     if (meta) {
       validatePageMeta(meta); // throws (fails the build) if title/description too long
-      html = injectHead(html, meta, canonicalUrl(meta.path));
+      html = injectHead(html, meta, canonicalUrl(url), {
+        lang: isNl ? "nl" : "en",
+        enUrl: canonicalUrl(enUrlPath),
+        nlUrl: canonicalUrl(nlUrlPath),
+      });
       if (!meta.robots || !meta.robots.includes("noindex")) {
         sitemapEntries.push({ url, lastmod: meta.lastmod, ...priorityFor(url) });
       }
@@ -231,7 +263,11 @@ async function run() {
   const notFoundMeta = getCapturedMeta();
   if (notFoundMeta) {
     validatePageMeta(notFoundMeta);
-    notFoundPage = injectHead(notFoundPage, notFoundMeta, canonicalUrl(notFoundMeta.path));
+    notFoundPage = injectHead(notFoundPage, notFoundMeta, canonicalUrl(notFoundMeta.path), {
+      lang: "en",
+      enUrl: canonicalUrl(notFoundMeta.path),
+      nlUrl: canonicalUrl(notFoundMeta.path),
+    });
   }
   await fs.writeFile(path.join(distDir, "404.html"), notFoundPage);
   console.log("prerendered 404 -> 404.html");

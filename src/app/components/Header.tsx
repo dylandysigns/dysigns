@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useCursor } from "../hooks/useCursor";
 import { usePageTransition } from "../hooks/useTransition";
 import { siteContent } from "../data/content";
-import { useLanguage } from "../hooks/useLanguage";
+import { useLanguage, toLangPath } from "../hooks/useLanguage";
 import logoImg from "../../assets/dysigns_white.png";
 
 /* ─── SCROLL-AWARE HIDE/SHOW HOOK ─── */
@@ -308,6 +308,14 @@ function MobileLangToggle() {
         border: "1px solid rgba(var(--page-fg-rgb), .1)",
         background: "rgba(var(--page-fg-rgb), .03)",
       }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .25)";
+        (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .1)";
+        (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .03)";
+      }}
     >
       <span
         style={{
@@ -340,6 +348,7 @@ function MobileMenu({
   handleNav: (e: React.MouseEvent, path: string) => void;
   t: (key: string) => string;
 }) {
+  const { lang } = useLanguage();
   const menuRef = useRef<HTMLDivElement>(null);
   const headerRowRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -449,12 +458,20 @@ function MobileMenu({
         </div>
         <button
           type="button"
-          className="grid place-items-center w-10 h-10 rounded-full"
+          className="grid place-items-center w-10 h-10 rounded-full transition-colors"
           onClick={onClose}
           aria-label="Close menu"
           style={{
             border: "1px solid rgba(var(--page-fg-rgb), .1)",
             background: "rgba(var(--page-fg-rgb), .03)",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .25)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .1)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .03)";
           }}
         >
           <X
@@ -510,13 +527,23 @@ function MobileMenu({
         {links.map((l) => (
           <a
             key={l.key}
-            href={l.path}
+            href={toLangPath(l.path, lang)}
             onClick={(e) => handleNav(e, l.path)}
             style={{
               fontSize: "1.5rem",
               fontWeight: 600,
               color: isActive(l.path) ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .5)",
               transition: "color .3s",
+            }}
+            onMouseEnter={(e) => {
+              if (!isActive(l.path)) {
+                (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .8)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isActive(l.path)) {
+                (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .5)";
+              }
             }}
           >
             {t(l.key)}
@@ -536,6 +563,16 @@ function MobileMenu({
             background: "rgba(var(--page-fg-rgb), .03)",
             color: "rgba(var(--page-fg-rgb), .45)",
           }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .25)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+            (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .1)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .03)";
+            (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .45)";
+          }}
         >
           <Mail size={15} strokeWidth={1.5} />
         </a>
@@ -550,6 +587,16 @@ function MobileMenu({
             background: "rgba(var(--page-fg-rgb), .03)",
             color: "rgba(var(--page-fg-rgb), .45)",
           }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .25)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .08)";
+            (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .1)";
+            (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .03)";
+            (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .45)";
+          }}
         >
           <WhatsAppIcon size={15} />
         </a>
@@ -562,7 +609,7 @@ function MobileMenu({
 export function Header() {
   const cursor = useCursor();
   const { navigateTo } = usePageTransition();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const location = useLocation();
   const isCasePage = /^\/work\/[^/]+$/.test(location.pathname);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -680,8 +727,9 @@ export function Header() {
   };
 
   const isActive = (path: string) => {
-    if (path === "/") return location.pathname === "/";
-    return location.pathname.startsWith(path);
+    const resolved = toLangPath(path, lang);
+    if (resolved === "/" || resolved === "/nl") return location.pathname === resolved;
+    return location.pathname.startsWith(resolved);
   };
 
   return (
@@ -689,7 +737,7 @@ export function Header() {
       {/* ─── LEFT: DYSIGNS WORDMARK ─── */}
       <a
         ref={logoRef}
-        href="/"
+        href={toLangPath("/", lang)}
         onClick={(e) => handleNav(e, "/")}
         className="fixed flex items-center gap-2"
         style={{ top: 24, left: 24, zIndex: caseHeaderZIndex, willChange: "transform, opacity" }}
@@ -753,7 +801,7 @@ export function Header() {
           {links.map((l) => (
             <a
               key={l.key}
-              href={l.path}
+              href={toLangPath(l.path, lang)}
               onClick={(e) => handleNav(e, l.path)}
               className="relative rounded-full group"
               style={{

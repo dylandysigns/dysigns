@@ -211,12 +211,10 @@ const guide: GuideSection[] = [
       },
       {
         field: "Grid tile images (8 surrounding thumbnails)",
-        current: "8 Unsplash images in gridImages[]",
+        current: "Each project's own `thumbnail` field, picked by slug",
         howToChange:
-          "In projects.ts, find zoomToGridData.gridImages[].\nReplace individual URLs or all 8:\n\ngridImages: [\n  \"https://...\",  // top-left\n  \"https://...\",  // top-center\n  \"https://...\",  // top-right\n  \"https://...\",  // middle-left\n  \"https://...\",  // middle-right\n  \"https://...\",  // bottom-left\n  \"https://...\",  // bottom-center\n  \"https://...\",  // bottom-right\n],",
-        file: "/src/app/data/projects.ts  \u2192  line ~232",
-        important:
-          "Planned improvement: these should eventually use each project\u2019s own thumbnail automatically. For now, they are separate URLs.",
+          'The grid no longer has its own separate image list \u2014 each tile always shows the linked project\u2019s own `thumbnail`, so a tile can never show a different project\u2019s photo than the one it links to. To change which 9 projects appear in the grid (or their order), edit the ZOOM_GRID_SLUGS array at the top of ZoomToGrid.tsx. To change a tile\u2019s image, edit that project\u2019s `thumbnail` in projects.ts instead.',
+        file: "/src/app/components/home/ZoomToGrid.tsx (slug list) and /src/app/data/projects.ts (thumbnails)",
       },
       {
         field: 'Heading line 1 ("Selected projects")',

@@ -5,6 +5,10 @@ heading: "Studio75: a brand identity built through co-creation"
 slug: "studio75"
 client: "Studio75"
 services: "branding"
+image: "placeholder"
+imageAlt: "TODO_DYLAN: Studio75 brand identity — replace with real work once available"
+imageWidth: "960"
+imageHeight: "1200"
 answerBlock: |
   DYSIGNS developed the Studio75 identity through co-creation, based
   in the Netherlands and working directly with the client throughout.

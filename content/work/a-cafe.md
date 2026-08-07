@@ -5,6 +5,10 @@ heading: "A/Café: one ordering system from kiosk to kitchen"
 slug: "a-cafe"
 client: "A/Café"
 services: ""
+image: "placeholder"
+imageAlt: "TODO_DYLAN: A/Café self-ordering kiosk app — replace with a real screen once photography exists"
+imageWidth: "960"
+imageHeight: "1200"
 answerBlock: |
   DYSIGNS designed and built a self-ordering kiosk app for A/Café,
   carrying the POS and kitchen display through in the same visual

@@ -8,7 +8,7 @@ import { SplashIntro } from "./SplashIntro";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
-import { LanguageProvider } from "../hooks/useLanguage";
+import { LanguageProvider, pathIsDutch } from "../hooks/useLanguage";
 /* ─── BACK TO TOP BUTTON ─── */
 function BackToTop() {
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -271,7 +271,18 @@ export default function Layout() {
 
   /* ─── ROUTE TRANSITION HANDLER ─── */
   const navigateTo = useCallback(
-    (path: string) => {
+    (rawPath: string) => {
+      // Preserve the current language segment on internal navigation —
+      // a plain "/work" target from a page/component that doesn't know
+      // about /nl still lands on "/nl/work" while browsing Dutch.
+      const isNl = pathIsDutch(location.pathname);
+      const path =
+        isNl && !pathIsDutch(rawPath)
+          ? rawPath === "/"
+            ? "/nl"
+            : `/nl${rawPath}`
+          : rawPath;
+
       // If stuck from a prior transition, force-reset
       if (busy.current) {
         if (activeTl.current) {

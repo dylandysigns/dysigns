@@ -3,6 +3,7 @@ title: "Web Design & Development Agency | DYSIGNS"
 description: "Custom websites and Shopify stores from DYSIGNS. Fast, findable and built to keep performing, with design and development in one team."
 heading: "Web design and development"
 slug: "web-design"
+includes: "Shopify development, custom themes, migrations, performance, technical SEO"
 answerBlock: |
   DYSIGNS designs and builds custom websites and Shopify stores for
   founders, scale-ups and agencies worldwide, based in the
@@ -33,10 +34,6 @@ A site designed by one vendor and built by another loses something in the handov
 ## Who it is for
 
 For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer.
-
-## Cases
-
-TODO_DYLAN: link to at least two related cases.
 
 ## Frequently asked questions
 
