@@ -71,6 +71,12 @@ export function Hero() {
   const cursor = useCursor();
   const { t } = useLanguage();
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  // Starts true (optimistic) so nothing flashes black before we've had a
+  // chance to check — flips to false only once we've confirmed autoplay
+  // actually failed or stopped, e.g. iOS Low Power Mode / Android Data
+  // Saver silently blocking or pausing background video and surfacing
+  // their own large native play button on top of it instead.
+  const [videoPlaying, setVideoPlaying] = useState(true);
 
   useEffect(() => {
     if (!videoModalOpen) return;
@@ -80,6 +86,40 @@ export function Hero() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [videoModalOpen]);
+
+  /* ─── BACKGROUND VIDEO — confirm it's actually playing ───
+     video.play() returns a Promise specifically so autoplay failures
+     (blocked by power-saving mode, data-saver, etc.) can be detected
+     reliably — a rejected promise means the browser refused to play it
+     and is likely showing its own native play-button overlay instead.
+     onPlaying/onPause/onStalled catch it stopping again later, e.g. if
+     low-power mode engages mid-playback. */
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+    const video = bgVideoRef.current;
+    if (!video) return;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setVideoPlaying(true))
+        .catch(() => setVideoPlaying(false));
+    }
+
+    const handlePlaying = () => setVideoPlaying(true);
+    const handleStopped = () => setVideoPlaying(false);
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("pause", handleStopped);
+    video.addEventListener("stalled", handleStopped);
+    video.addEventListener("error", handleStopped);
+    return () => {
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("pause", handleStopped);
+      video.removeEventListener("stalled", handleStopped);
+      video.removeEventListener("error", handleStopped);
+    };
+  }, []);
   const splitHeadingChars = Array.from(t("sentence"));
   const chipLabels = {
     strategy: t("hero.chip.strategy").toUpperCase(),
@@ -591,6 +631,16 @@ export function Hero() {
                   "radial-gradient(circle at 50% 45%, rgba(0,0,0,.3) 0%, rgba(0,0,0,.62) 78%)",
               }}
             />
+            {/* Confirmed-not-playing fallback — opaque, sits above the
+                video (and therefore above the browser's own native
+                play-button overlay too), so a stalled/blocked video reads
+                as a plain dark background instead of a giant play icon. */}
+            {!videoPlaying && (
+              <div
+                className="absolute inset-0"
+                style={{ zIndex: 1, background: "var(--page-bg)" }}
+              />
+            )}
           </div>
         )}
 
