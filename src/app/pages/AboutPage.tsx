@@ -8,6 +8,7 @@ import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
 import { profilePageSchema } from "../seo/schema";
+import { getLocalizedContent } from "../content/loadContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +19,8 @@ export default function AboutPage() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const valuesRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const entry = getLocalizedContent("about.md", lang);
 
   /**
    * Track whether entrance animations have fired.
@@ -116,9 +118,10 @@ export default function AboutPage() {
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <Seo
-        title="Over ons | DYSIGNS"
-        description="DYSIGNS is een digital design bureau uit Almere, opgericht door Dylan Kho. Maak kennis met wie we zijn en waar we voor staan."
+        title={entry.frontmatter.title}
+        description={entry.frontmatter.description}
         path="/about"
+        lastmod={entry.frontmatter.lastUpdated}
         schema={[profilePageSchema({ path: "/about" })]}
       />
       <div

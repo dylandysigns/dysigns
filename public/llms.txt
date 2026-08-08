@@ -9,7 +9,7 @@ feedbackloops en heldere communicatie als uitgangspunt.
 
 ## Diensten
 
-- [Webdesign Almere](https://dylandysigns.com/webdesign-almere): Maatwerk websites, van ontwerp tot een werkende, snelle site — geen sjabloon-aanpak.
+- [Webdesign](https://dylandysigns.com/web-design): Maatwerk websites, van ontwerp tot een werkende, snelle site — geen sjabloon-aanpak.
 - [UX/UI Design](https://dylandysigns.com/ux-ui-design): Gebruikersonderzoek, wireframes en een compleet designsysteem voor apps, portals en webshops.
 - [Shopify development](https://dylandysigns.com/shopify-development): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets voor webshops die moeten blijven converteren.
 - [Branding](https://dylandysigns.com/branding): Merkstrategie, logo, huisstijl en een designsysteem dat doorwerkt in site, webshop en social kanalen.
@@ -17,8 +17,8 @@ feedbackloops en heldere communicatie als uitgangspunt.
 ## Belangrijkste pagina's
 
 - [Home](https://dylandysigns.com/): Overzicht van wie DYSIGNS is en wat we doen.
-- [Cases](https://dylandysigns.com/cases): Projecten van DYSIGNS voor klanten in Nederland en België.
-- [Over Dylan Kho](https://dylandysigns.com/over-dylan-kho): Achtergrond en werkwijze van de oprichter.
+- [Werk](https://dylandysigns.com/work): Projecten van DYSIGNS voor klanten in Nederland en België.
+- [Over Dylan Kho](https://dylandysigns.com/about): Achtergrond en werkwijze van de oprichter.
 - [Contact](https://dylandysigns.com/contact): Project bespreken, reactie binnen één werkdag.
 
 ## Locatie

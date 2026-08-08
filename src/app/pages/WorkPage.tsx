@@ -7,6 +7,7 @@ import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
+import { getLocalizedContent } from "../content/loadContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,8 +27,9 @@ export default function WorkPage() {
   const headRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const translatedProjects = useTranslatedProjects();
+  const entry = getLocalizedContent("work-overview.md", lang);
 
   const projectEntries = useMemo(
     () =>
@@ -106,9 +108,10 @@ export default function WorkPage() {
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <Seo
-        title="Werk | DYSIGNS"
-        description="Bekijk projecten van DYSIGNS, een digital agency uit Almere: webdesign, UX/UI, Shopify development en branding voor ondernemers en bureaus."
+        title={entry.frontmatter.title}
+        description={entry.frontmatter.description}
         path="/work"
+        lastmod={entry.frontmatter.lastUpdated}
       />
       <div className="max-w-[1320px] mx-auto">
         <div className="mb-12">
