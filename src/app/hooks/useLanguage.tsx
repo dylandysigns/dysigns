@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useCallback } from "react";
+import React, { createContext, useContext, useMemo, useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 export type Lang = "en" | "nl";
@@ -344,6 +344,16 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* ── Footer ── */
   "footer.rights": { en: "All rights reserved.", nl: "Alle rechten voorbehouden." },
+
+  /* ── 404 / Not Found ── */
+  "notFound.title": { en: "Page not found | DYSIGNS", nl: "Pagina niet gevonden | DYSIGNS" },
+  "notFound.description": {
+    en: "This page doesn't exist (anymore).",
+    nl: "Deze pagina bestaat niet (meer).",
+  },
+  "notFound.heading": { en: "Page not found", nl: "Pagina niet gevonden" },
+  "notFound.goHome": { en: "Go home", nl: "Ga naar home" },
+  "notFound.sections": { en: "Main sections", nl: "Hoofdsecties" },
 
   /* ── Language Toggle ── */
   "lang.switchTo": { en: "Switch to Dutch", nl: "Switch to English" },
@@ -697,6 +707,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const lang: Lang = pathIsDutch(location.pathname) ? "nl" : "en";
+
+  // Prerendered HTML sets the correct lang per route at build time (see
+  // scripts/prerender.mjs); this keeps it in sync on client-side
+  // navigation between the English and Dutch trees within a session.
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const setLang = useCallback(
     (l: Lang) => {

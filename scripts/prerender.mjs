@@ -95,6 +95,7 @@ function injectHead(html, meta, canonicalUrl, i18n) {
   const localeAlt = i18n.lang === "nl" ? "en_US" : "nl_NL";
 
   let out = html;
+  out = replaceTag(out, /<html lang="[^"]*">/, `<html lang="${i18n.lang}">`, '<html lang="...">');
   out = replaceTag(out, /<title>[^<]*<\/title>/, `<title>${title}</title>`, "<title>");
   out = replaceTag(out, /(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="description"');
   out = replaceTag(out, /(<meta\s+name="robots"\s+content=")[^"]*(")/, `$1${robots}$2`, 'meta name="robots"');

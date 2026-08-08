@@ -1,11 +1,26 @@
 import { Seo } from "../components/Seo";
+import { TransitionLink } from "../components/TransitionLink";
+import { useLanguage } from "../hooks/useLanguage";
+
+const LINKS = [
+  { key: "nav.work", path: "/work" },
+  { key: "hero.chip.web", path: "/web-design" },
+  { key: "hero.chip.ux", path: "/ux-ui-design" },
+  { key: "hero.chip.brand", path: "/branding" },
+  { key: "hero.chip.product", path: "/social-media-meta-ads" },
+  { key: "hero.chip.strategy", path: "/ai-implementation" },
+  { key: "nav.about", path: "/about" },
+  { key: "nav.contact", path: "/contact" },
+];
 
 export default function NotFoundPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <Seo
-        title="Pagina niet gevonden | DYSIGNS"
-        description="Deze pagina bestaat niet (meer)."
+        title={t("notFound.title")}
+        description={t("notFound.description")}
         path="/404"
         robots="noindex, nofollow"
       />
@@ -29,10 +44,10 @@ export default function NotFoundPage() {
             color: "rgba(var(--page-fg-rgb), .3)",
           }}
         >
-          Page not found
+          {t("notFound.heading")}
         </p>
-        <a
-          href="/"
+        <TransitionLink
+          to="/"
           className="inline-block mt-6 px-5 py-2 rounded-full transition-all duration-300"
           style={{
             fontSize: ".72rem",
@@ -51,10 +66,10 @@ export default function NotFoundPage() {
             (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .15)";
           }}
         >
-          Go home
-        </a>
+          {t("notFound.goHome")}
+        </TransitionLink>
 
-        <nav aria-label="Hoofdsecties" className="mt-10">
+        <nav aria-label={t("notFound.sections")} className="mt-10">
           <ul
             className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
             style={{
@@ -64,18 +79,10 @@ export default function NotFoundPage() {
               padding: 0,
             }}
           >
-            {[
-              { href: "/cases", label: "Cases" },
-              { href: "/webdesign-almere", label: "Webdesign Almere" },
-              { href: "/ux-ui-design", label: "UX/UI Design" },
-              { href: "/shopify-development", label: "Shopify development" },
-              { href: "/branding", label: "Branding" },
-              { href: "/over-dylan-kho", label: "Over Dylan Kho" },
-              { href: "/contact", label: "Contact" },
-            ].map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
+            {LINKS.map((link) => (
+              <li key={link.path}>
+                <TransitionLink
+                  to={link.path}
                   className="transition-colors duration-300"
                   style={{ color: "inherit" }}
                   onMouseEnter={(e) => {
@@ -85,8 +92,8 @@ export default function NotFoundPage() {
                     (e.currentTarget as HTMLElement).style.color = "inherit";
                   }}
                 >
-                  {link.label}
-                </a>
+                  {t(link.key)}
+                </TransitionLink>
               </li>
             ))}
           </ul>
