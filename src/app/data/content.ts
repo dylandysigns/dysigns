@@ -252,7 +252,7 @@ export const siteContent = {
 
   contact: {
     headline: "Let\u2019s build something together",
-    sub: "Got a idea in mind? We\u2019d love to make something unique with you.",
+    sub: "Got an idea in mind? We\u2019d love to make something unique with you.",
     email: "info@dylandysigns.com",
     whatsapp: "+31626814488",
   },

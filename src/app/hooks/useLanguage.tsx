@@ -248,7 +248,7 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "Laten we lekker babbelen, we zijn heel gezellig.",
   },
   "contact.sub": {
-    en: "Got a idea in mind? We’d love to make something unique with you.",
+    en: "Got an idea in mind? We’d love to make something unique with you.",
     nl: "Heb je een idee in gedachten? We houden van unieke dingen.",
   },
   "contact.emailUs": { en: "Email us", nl: "E-mail ons" },
