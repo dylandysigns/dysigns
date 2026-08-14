@@ -1,1 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+/* Google Fonts are loaded asynchronously via a preload link in index.html
+   (not here) so the stylesheet doesn't block first render — a plain
+   @import of an external URL forces the browser to fetch and parse it
+   before continuing to render the page. */

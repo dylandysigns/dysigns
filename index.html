@@ -203,6 +203,21 @@
       <!-- Establish early connections to Google Fonts to reduce font latency -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <!-- Load Google Fonts without blocking rendering: request it as a
+           "print" stylesheet (fetched, but not render-blocking for screen),
+           then swap it to "all" once it's actually loaded. -->
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+        media="print"
+        onload="this.media='all'"
+      />
+      <noscript>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+        />
+      </noscript>
       <!-- Preload the hero background image so LCP is fast -->
       <link rel="preload" as="image" href="/images/powermobile-hero.png" />
 
