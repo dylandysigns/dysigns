@@ -1,5 +1,5 @@
 ---
-title: "Design, Development & Growth Agency | DYSIGNS"
+title: "Webdesign, Branding & Development Bureau | DYSIGNS"
 description: "DYSIGNS ontwerpt, bouwt en laat digitale producten groeien. Webdesign, UX/UI, Shopify, branding, Meta Ads en AI-implementatie vanuit één team in Nederland."
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"

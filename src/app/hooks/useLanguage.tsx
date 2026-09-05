@@ -46,7 +46,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
-  "hero.available": { en: "Available for projects, Amsterdam", nl: "Beschikbaar voor projecten, Amsterdam" },
+  "hero.available": { en: "Available for projects, Almere", nl: "Beschikbaar voor projecten, Almere" },
+  "hero.locationCountry": { en: "the Netherlands", nl: "Nederland" },
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
   "hero.watchVideo": { en: "Watch video", nl: "Bekijk video" },
   "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
@@ -104,6 +105,7 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "Wanneer Shopify niet de juiste keuze is",
   },
   "breadcrumb.home": { en: "Home", nl: "Home" },
+  "nav.insights": { en: "Insights", nl: "Inzichten" },
   "services.title": { en: "Services", nl: "Diensten" },
   "services.0.title": { en: "Brand Identity", nl: "Merkidentiteit" },
   "services.0.desc": {
@@ -265,6 +267,12 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.form.submit": { en: "Send it over", nl: "Verstuur maar" },
   "contact.or": { en: "OR", nl: "OF" },
   "contact.sendWhatsapp": { en: "Send me a WhatsApp!", nl: "Stuur een WhatsApp!" },
+  "contact.nap.emailLabel": { en: "Email", nl: "E-mail" },
+  "contact.nap.phoneLabel": { en: "Phone / WhatsApp", nl: "Telefoon / WhatsApp" },
+  "contact.nap.location": {
+    en: "Almere & Amsterdam, Netherlands",
+    nl: "Almere & Amsterdam, Nederland",
+  },
 
   /* ── Thank You Page ── */
   "thankyou.label": { en: "Message sent", nl: "Bericht verstuurd" },

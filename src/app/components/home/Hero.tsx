@@ -744,11 +744,11 @@ export function Hero() {
                 }}
               >
                 <span style={{ color: "rgba(var(--page-fg-rgb), .8)", fontWeight: 600 }}>
-                  Amsterdam
+                  Almere
                 </span>
                 <span style={{ color: "rgba(var(--page-fg-rgb), .55)" }}>
                   {" "}
-                  · the Netherlands
+                  · {t("hero.locationCountry")}
                 </span>
               </span>
             </div>

@@ -1,5 +1,5 @@
 ---
-title: "Design, Development & Growth Agency | DYSIGNS"
+title: "Full-Service Design & Development Agency | DYSIGNS"
 description: "DYSIGNS designs, builds and grows digital products. Web design, UX/UI, Shopify, branding, Meta Ads and AI implementation from one team in the Netherlands."
 slug: "/"
 heading: "We design, build and grow digital products"

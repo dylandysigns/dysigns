@@ -1,5 +1,5 @@
 ---
-title: "Branding Agency | DYSIGNS"
+title: "Branding & Visual Identity Design Agency | DYSIGNS"
 description: "Branding and visual identity from DYSIGNS. A visual system that holds up across every channel, from strategy to logo and beyond."
 heading: "Branding"
 slug: "branding"

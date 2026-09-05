@@ -1,5 +1,5 @@
 ---
-title: "Over Dylan Kho, oprichter van DYSIGNS"
+title: "Over Dylan Kho — Oprichter en Designer bij DYSIGNS"
 description: "Dylan Kho is UX/UI-designer en oprichter van DYSIGNS, een full-service digital agency uit Nederland. Achtergrond en werkwijze."
 heading: "Over Dylan Kho"
 slug: "about"

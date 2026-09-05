@@ -1,5 +1,5 @@
 ---
-title: "Webdesign & Development Bureau | DYSIGNS"
+title: "Webdesign & Development Bureau in Nederland | DYSIGNS"
 description: "Maatwerk websites en Shopify webshops van DYSIGNS. Snel, vindbaar en gebouwd om te blijven presteren, met design en development in één team."
 heading: "Webdesign en development"
 slug: "web-design"

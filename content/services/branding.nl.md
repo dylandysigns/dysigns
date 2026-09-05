@@ -1,5 +1,5 @@
 ---
-title: "Branding Bureau | DYSIGNS"
+title: "Branding & Huisstijl Ontwerpbureau | DYSIGNS"
 description: "Branding en huisstijl van DYSIGNS. Een visueel systeem dat overeind blijft op elk kanaal, van strategie tot logo en verder."
 heading: "Branding"
 slug: "branding"

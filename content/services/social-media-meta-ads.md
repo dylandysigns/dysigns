@@ -1,5 +1,5 @@
 ---
-title: "Social Media & Meta Ads Agency | DYSIGNS"
+title: "Social Media Management & Meta Ads Agency | DYSIGNS"
 description: "Social media management and Meta Ads for founders and scale-ups. We build the landing page too, so the full funnel gets optimised, not just the click."
 heading: "Social media and Meta Ads"
 slug: "social-media-meta-ads"

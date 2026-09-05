@@ -5,12 +5,10 @@ import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { Seo } from "../components/Seo";
-import { getContent } from "../content/loadContent";
+import { getLocalizedContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const contactContent = getContent("contact.md");
 
 /* WhatsApp inline SVG icon — same as Header / Footer */
 function WhatsAppIcon({ size = 18, className = "" }: { size?: number; className?: string }) {
@@ -37,7 +35,8 @@ export default function ContactPage() {
   const headRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const contactContent = getLocalizedContent("contact.md", lang);
 
   const labelRef = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -463,6 +462,34 @@ export default function ContactPage() {
                 </a>
               ))}
             </div>
+          </div>
+
+          <div
+            className="pt-6 flex flex-col items-center gap-1.5"
+            style={{
+              fontSize: ".82rem",
+              color: "rgba(var(--page-fg-rgb), .5)",
+            }}
+          >
+            <span>
+              {t("contact.nap.emailLabel")}:{" "}
+              <a
+                href={`mailto:${c.email}`}
+                style={{ color: "rgba(var(--page-fg-rgb), .7)" }}
+              >
+                {c.email}
+              </a>
+            </span>
+            <span>
+              {t("contact.nap.phoneLabel")}:{" "}
+              <a
+                href={`tel:${c.whatsapp}`}
+                style={{ color: "rgba(var(--page-fg-rgb), .7)" }}
+              >
+                {c.whatsapp}
+              </a>
+            </span>
+            <span>{t("contact.nap.location")}</span>
           </div>
         </div>
       </div>

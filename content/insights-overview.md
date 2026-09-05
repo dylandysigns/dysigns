@@ -1,13 +1,13 @@
 ---
-title: "Insights: Design, Development & Growth | DYSIGNS"
+title: "Design, Development & Marketing Insights | DYSIGNS"
 description: "Articles from DYSIGNS on web design, UX/UI, Shopify, branding, AI implementation and marketing for founders and scale-ups."
 heading: "Insights"
 slug: "insights"
 answerBlock: |
-  TODO_DYLAN: answer block once the first articles exist. This
-  section is currently a placeholder route: the brief lists
-  /insights and /insights/[slug] but no article content was supplied.
-lastUpdated: "2026-08-02"
+  Practical guides on web design, Shopify, branding and the decisions
+  that come before hiring an agency, written by DYSIGNS for founders
+  and scale-ups in the Netherlands and beyond.
+lastUpdated: "2026-09-05"
 ---
 
-TODO_DYLAN: no articles exist yet. This page is scaffolded so the route works and is ready for real content; do not publish placeholder articles.
+New articles are added as real projects raise questions worth writing up properly, not on a fixed schedule.

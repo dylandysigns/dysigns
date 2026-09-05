@@ -1,5 +1,5 @@
 ---
-title: "About Dylan Kho, founder of DYSIGNS"
+title: "About Dylan Kho — UX/UI Designer & DYSIGNS Founder"
 description: "Dylan Kho is a UX/UI designer and the founder of DYSIGNS, a full-service digital agency based in the Netherlands. Background and how we work."
 heading: "About Dylan Kho"
 slug: "about"

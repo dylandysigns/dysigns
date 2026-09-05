@@ -131,7 +131,7 @@ export default function AboutPage() {
         <div ref={imgRef} className="absolute inset-[-10%]">
           <img
             src={aboutImage}
-            alt="Dylan Kho – DYSIGNS digital design agency Amsterdam Netherlands"
+            alt="Dylan Kho – DYSIGNS digital design agency Almere Netherlands"
             className="w-full h-full object-cover"
             style={{
               filter: "grayscale(.9) brightness(.45) contrast(1.1)",

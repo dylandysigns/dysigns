@@ -1,5 +1,5 @@
 ---
-title: "UX/UI Design Agency | DYSIGNS"
+title: "UX/UI Design Agency for Apps & Web Platforms | DYSIGNS"
 description: "UX and UI design for apps, portals and dashboards. DYSIGNS goes from user research to a complete design system, based in the Netherlands."
 heading: "UX/UI design"
 slug: "ux-ui-design"

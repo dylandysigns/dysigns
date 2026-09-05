@@ -1,5 +1,5 @@
 ---
-title: "Shopify Development Agency | DYSIGNS"
+title: "Shopify Development Agency in the Netherlands | DYSIGNS"
 description: "Custom Shopify themes, Liquid sections and Shopify Markets from DYSIGNS. Stores built to keep converting, not just to launch."
 heading: "Shopify development"
 slug: "shopify-development"

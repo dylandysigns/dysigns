@@ -1,5 +1,5 @@
 ---
-title: "UX/UI Design Bureau | DYSIGNS"
+title: "UX/UI Design Bureau voor Apps & Webplatforms | DYSIGNS"
 description: "UX- en UI-design voor apps, portalen en dashboards. DYSIGNS gaat van gebruikersonderzoek tot een compleet designsysteem, vanuit Nederland."
 heading: "UX/UI design"
 slug: "ux-ui-design"

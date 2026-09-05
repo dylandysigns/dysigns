@@ -646,7 +646,7 @@ export default function CaseDetailPage() {
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={img}
-                  alt={`${project.title} – case study design by Dylan Kho – DYSIGNS`}
+                  alt={`${project.title} – ${project.category} case study, image ${i + 1} – Dylan Kho, DYSIGNS`}
                   className="w-full h-full object-cover"
                   style={{
                     filter: "grayscale(.7) brightness(.6) contrast(1.05)",
@@ -681,48 +681,50 @@ export default function CaseDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-[800px] mx-auto px-6 md:px-12 pb-16 md:pb-24">
-        <div
-          ref={outcomesRef}
-          className="p-8 md:p-12 rounded-xl"
-          style={{
-            background: "rgba(var(--page-fg-rgb), .02)",
-            border: "1px solid rgba(var(--page-fg-rgb), .06)",
-            opacity: 0,
-          }}
-        >
-          <span
+      {project.outcomes.length > 0 && (
+        <div className="max-w-[800px] mx-auto px-6 md:px-12 pb-16 md:pb-24">
+          <div
+            ref={outcomesRef}
+            className="p-8 md:p-12 rounded-xl"
             style={{
-              fontSize: ".7rem",
-              fontWeight: 500,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .45)",
+              background: "rgba(var(--page-fg-rgb), .02)",
+              border: "1px solid rgba(var(--page-fg-rgb), .06)",
+              opacity: 0,
             }}
           >
-            {t("case.outcomes")}
-          </span>
-          <ul className="mt-6 space-y-4">
-            {project.outcomes.map((outcome, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span
-                  className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
-                  style={{ background: "rgba(var(--page-fg-rgb), .25)" }}
-                />
-                <span
-                  style={{
-                    fontSize: ".88rem",
-                    lineHeight: 1.6,
-                    color: "rgba(var(--page-fg-rgb), .6)",
-                  }}
-                >
-                  {outcome}
-                </span>
-              </li>
-            ))}
-          </ul>
+            <span
+              style={{
+                fontSize: ".7rem",
+                fontWeight: 500,
+                letterSpacing: ".16em",
+                textTransform: "uppercase",
+                color: "rgba(var(--page-fg-rgb), .45)",
+              }}
+            >
+              {t("case.outcomes")}
+            </span>
+            <ul className="mt-6 space-y-4">
+              {project.outcomes.map((outcome, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                    style={{ background: "rgba(var(--page-fg-rgb), .25)" }}
+                  />
+                  <span
+                    style={{
+                      fontSize: ".88rem",
+                      lineHeight: 1.6,
+                      color: "rgba(var(--page-fg-rgb), .6)",
+                    }}
+                  >
+                    {outcome}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
 
       <div
         className="border-t"

@@ -1,5 +1,5 @@
 ---
-title: "Shopify Development Bureau | DYSIGNS"
+title: "Shopify Development & Webshop Bureau NL | DYSIGNS"
 description: "Custom Shopify thema's, Liquid-secties en Shopify Markets van DYSIGNS. Webshops gebouwd om te blijven converteren, niet alleen om te lanceren."
 heading: "Shopify development"
 slug: "shopify-development"

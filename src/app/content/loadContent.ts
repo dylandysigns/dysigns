@@ -25,16 +25,25 @@ export interface ContentEntry {
 // and splits it into {question, answer} pairs on its "### " sub-headings.
 // Placeholder sections (a single TODO_DYLAN line, no "### " questions)
 // correctly yield an empty array — there's nothing to structure yet.
+const FAQ_HEADINGS = ["## Frequently asked questions", "## Veelgestelde vragen"];
+
 function extractFaqItems(markdownBody: string): FaqItem[] {
   // Split the whole body on every top-level "## " heading, then find the
   // chunk whose heading is "Frequently asked questions" — avoids the
   // multiline `$`-in-lookahead trap (it matches at every line end, not
   // just the section boundary, so a lazy capture up to it grabs nothing).
+  // Structural pages (services, home) keep this heading in English even
+  // in their .nl.md file, since they never render the raw heading text
+  // (it's replaced by a translated JSX label) — but pages that render
+  // their markdown body directly, like insights articles, need the
+  // heading to actually be in the reader's language, so both variants
+  // are accepted here.
   const sections = markdownBody.split(/\r?\n(?=## )/);
-  const faqSection = sections.find((s) => s.startsWith("## Frequently asked questions"));
-  if (!faqSection) return [];
+  const faqHeading = FAQ_HEADINGS.find((h) => sections.some((s) => s.startsWith(h)));
+  if (!faqHeading) return [];
+  const faqSection = sections.find((s) => s.startsWith(faqHeading))!;
 
-  const section = faqSection.replace(/^## Frequently asked questions\r?\n?/, "");
+  const section = faqSection.replace(new RegExp(`^${faqHeading}\\r?\\n?`), "");
   const items: FaqItem[] = [];
   const questionBlocks = section.split(/(?=^### )/m).filter((b) => b.trim());
 
@@ -217,18 +226,18 @@ export function getAllCases(): ContentEntry[] {
     .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
 }
 
-/** No real articles exist yet — this returns [] until content/insights/
- * has real .md files. The /insights and /insights/[slug] routes are
- * still wired up (per the route list) so the route structure is ready. */
+/** One slug per article, English filename only — a `.nl.md` translation
+ * of the same slug is picked up by getLocalizedContent at render time,
+ * not listed here as a second, separate article. */
 export function getInsightSlugs(): string[] {
   return Array.from(entriesByPath.keys())
-    .filter((path) => path.includes("/content/insights/"))
+    .filter((path) => path.includes("/content/insights/") && !path.endsWith(".nl.md"))
     .map((path) => path.split("/").pop()!.replace(/\.md$/, ""));
 }
 
-export function getAllInsights(): ContentEntry[] {
+export function getAllInsights(lang: "en" | "nl" = "en"): ContentEntry[] {
   return getInsightSlugs()
-    .map((slug) => getContent(`insights/${slug}.md`))
+    .map((slug) => getLocalizedContent(`insights/${slug}.md`, lang))
     .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
 }
 

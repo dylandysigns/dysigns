@@ -1,5 +1,5 @@
 ---
-title: "Work: Websites, Stores and Brands | DYSIGNS"
+title: "Our Work: Websites, Shopify Stores & Brands | DYSIGNS"
 description: "Projects by DYSIGNS: web design, Shopify development, branding and UX/UI for clients worldwide. See the approach and result per case."
 heading: "Work"
 slug: "work"

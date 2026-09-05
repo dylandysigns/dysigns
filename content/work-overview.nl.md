@@ -1,5 +1,5 @@
 ---
-title: "Werk: Websites, Webshops en Merken | DYSIGNS"
+title: "Ons Werk: Websites, Webshops en Merken | DYSIGNS"
 description: "Projecten van DYSIGNS: webdesign, Shopify development, branding en UX/UI voor klanten wereldwijd. Bekijk de aanpak en het resultaat per case."
 heading: "Werk"
 slug: "work"

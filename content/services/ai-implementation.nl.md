@@ -1,5 +1,5 @@
 ---
-title: "AI-implementatie Bureau | DYSIGNS"
+title: "AI-implementatie Bureau voor Groeiende Bedrijven | DYSIGNS"
 description: "AI-implementatie voor echte workflows, geen demo's. DYSIGNS brengt in kaart waar AI tijd bespaart in je product, site of team en bouwt het in."
 heading: "AI-implementatie"
 slug: "ai-implementation"

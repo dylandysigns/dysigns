@@ -69,6 +69,25 @@ export function profilePageSchema(opts: { path: string }) {
   };
 }
 
+export function articleSchema(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified?: string;
+}) {
+  return {
+    "@type": "BlogPosting",
+    headline: opts.headline,
+    description: opts.description,
+    url: canonicalUrl(opts.path),
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+  };
+}
+
 export interface FaqItem {
   question: string;
   answer: string;

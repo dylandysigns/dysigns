@@ -34,10 +34,14 @@ const projectsSource = await fs.readFile(
 );
 const CASE_SLUGS = [...projectsSource.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]);
 
-// No articles exist yet (content/insights/ is empty) — route is wired up
-// and ready, but there is nothing to prerender at /insights/[slug] until
-// real content exists.
-const INSIGHT_SLUGS = [];
+// One slug per article, English filename only — its .nl.md translation
+// (if any) is picked up by getLocalizedContent at render time, not
+// treated as a second, separate route (mirrors getInsightSlugs in
+// src/app/content/loadContent.ts).
+const insightFiles = await fs.readdir(path.join(root, "content/insights"));
+const INSIGHT_SLUGS = insightFiles
+  .filter((f) => f.endsWith(".md") && !f.endsWith(".nl.md"))
+  .map((f) => f.replace(/\.md$/, ""));
 
 // English routes — also mirrored under /nl below for the Dutch tree
 // (real, separately-crawlable URLs, not a client-side language toggle).

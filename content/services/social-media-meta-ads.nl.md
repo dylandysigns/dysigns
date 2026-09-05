@@ -1,5 +1,5 @@
 ---
-title: "Social Media & Meta Ads Bureau | DYSIGNS"
+title: "Social Media Beheer & Meta Ads Bureau NL | DYSIGNS"
 description: "Social media beheer en Meta Ads voor ondernemers en scale-ups. We bouwen ook de landingspagina, zodat de hele funnel wordt geoptimaliseerd, niet de klik."
 heading: "Social media en Meta Ads"
 slug: "social-media-meta-ads"

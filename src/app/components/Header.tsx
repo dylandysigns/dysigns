@@ -438,7 +438,7 @@ function MobileMenu({
         <div className="flex items-center gap-2">
           <img
             src={logoImg}
-            alt="DYSIGNS – digital design agency by Dylan Kho Amsterdam"
+            alt="DYSIGNS – digital design agency by Dylan Kho Almere"
             className="theme-logo"
             style={{ height: 18, width: "auto" }}
             onError={(e) => {
@@ -716,6 +716,7 @@ export function Header() {
 
   const links = [
     { key: "nav.work", path: "/work" },
+    { key: "nav.insights", path: "/insights" },
     { key: "nav.about", path: "/about" },
     { key: "nav.contact", path: "/contact" },
   ];

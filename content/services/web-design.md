@@ -1,5 +1,5 @@
 ---
-title: "Web Design & Development Agency | DYSIGNS"
+title: "Web Design & Development Agency in the Netherlands | DYSIGNS"
 description: "Custom websites and Shopify stores from DYSIGNS. Fast, findable and built to keep performing, with design and development in one team."
 heading: "Web design and development"
 slug: "web-design"
