@@ -59,6 +59,7 @@ const enRoutes = [
   ...INSIGHT_SLUGS.map((slug) => `/insights/${slug}`),
   "/about",
   "/contact",
+  "/privacy",
 ];
 
 const routesToPrerender = [

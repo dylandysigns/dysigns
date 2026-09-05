@@ -346,6 +346,27 @@ export default function AboutPage() {
           />
           {t("about.ctaButton")}
         </TransitionLink>
+        <div className="mt-6">
+          <TransitionLink
+            to="/insights"
+            style={{
+              fontSize: ".75rem",
+              color: "rgba(var(--page-fg-rgb), .4)",
+              textDecoration: "underline",
+              textUnderlineOffset: 3,
+            }}
+            onMouseEnter={(e) => {
+              cursor.set("link");
+              (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .65)";
+            }}
+            onMouseLeave={(e) => {
+              cursor.reset();
+              (e.currentTarget as HTMLElement).style.color = "rgba(var(--page-fg-rgb), .4)";
+            }}
+          >
+            {t("about.insightsLink")}
+          </TransitionLink>
+        </div>
       </div>
     </section>
   );

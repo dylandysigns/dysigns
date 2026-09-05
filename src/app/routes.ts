@@ -15,6 +15,7 @@ import InsightsOverviewPage from "./pages/InsightsOverviewPage";
 import InsightsDetailPage from "./pages/InsightsDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -51,6 +52,7 @@ const localizedChildren: RouteObject[] = [
   { path: "insights/:slug", Component: InsightsDetailPage },
   { path: "about", Component: AboutPage },
   { path: "contact", Component: ContactPage },
+  { path: "privacy", Component: PrivacyPage },
 ];
 
 export const routes: RouteObject[] = [

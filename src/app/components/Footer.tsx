@@ -217,6 +217,20 @@ export function Footer() {
           >
             KVK: 83710418 · BTW: NL003861601B85
           </p>
+          <TransitionLink
+            to="/privacy"
+            style={{
+              fontSize: ".62rem",
+              letterSpacing: ".04em",
+              color: "rgba(var(--page-fg-rgb), .28)",
+              textDecoration: "underline",
+              textUnderlineOffset: 2,
+            }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
+          >
+            {t("footer.privacyLink")}
+          </TransitionLink>
         </div>
 
         {instagram && (

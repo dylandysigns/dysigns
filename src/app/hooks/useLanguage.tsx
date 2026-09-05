@@ -106,6 +106,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "breadcrumb.home": { en: "Home", nl: "Home" },
   "nav.insights": { en: "Insights", nl: "Inzichten" },
+  "privacy.eyebrow": { en: "Privacy", nl: "Privacy" },
+  "footer.privacyLink": { en: "Privacy policy", nl: "Privacybeleid" },
   "services.title": { en: "Services", nl: "Diensten" },
   "services.0.title": { en: "Brand Identity", nl: "Merkidentiteit" },
   "services.0.desc": {
@@ -319,6 +321,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Interesse om samen te werken?",
   },
   "about.ctaButton": { en: "Get in touch", nl: "Neem contact op" },
+  "about.insightsLink": { en: "Or read our insights", nl: "Of lees onze inzichten" },
 
   /* ── Work Page ── */
   "work.label": { en: "Our work", nl: "Ons werk" },

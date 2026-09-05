@@ -716,7 +716,6 @@ export function Header() {
 
   const links = [
     { key: "nav.work", path: "/work" },
-    { key: "nav.insights", path: "/insights" },
     { key: "nav.about", path: "/about" },
     { key: "nav.contact", path: "/contact" },
   ];
