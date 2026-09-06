@@ -138,7 +138,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
             textTransform: "uppercase",
             color: isHero
               ? "rgba(var(--page-fg-rgb), 1)"
-              : "rgba(var(--page-fg-rgb), .45)",
+              : "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {t("partners.label")}

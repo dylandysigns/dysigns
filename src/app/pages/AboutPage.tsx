@@ -154,7 +154,7 @@ export default function AboutPage() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               {t("about.label")}
@@ -234,7 +234,7 @@ export default function AboutPage() {
               fontWeight: 600,
               letterSpacing: ".14em",
               textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .42)",
+              color: "rgba(var(--page-fg-rgb), .55)",
             }}
           >
             Dylan Kho, Founder
@@ -254,7 +254,7 @@ export default function AboutPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .45)",
+            color: "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {t("about.valuesLabel")}

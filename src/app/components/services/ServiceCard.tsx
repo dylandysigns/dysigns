@@ -28,8 +28,12 @@ export function ServiceCard({
   const rectCache = useRef<DOMRect | null>(null);
   const isTouch =
     typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+  const reducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const handleTilt = useCallback((e: React.MouseEvent) => {
+    if (reducedMotion) return;
     const el = cardRef.current;
     const rect = rectCache.current;
     if (!el || !rect) return;
@@ -93,7 +97,7 @@ export function ServiceCard({
             fontSize: "1.4rem",
             fontWeight: 700,
             letterSpacing: "-.02em",
-            color: "rgba(var(--page-fg-rgb), .35)",
+            color: "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {String(index + 1).padStart(2, "0")}

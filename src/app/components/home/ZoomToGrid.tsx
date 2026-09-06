@@ -87,7 +87,15 @@ export function ZoomToGrid() {
 
   // GSAP animation — re-runs on language change to retarget refs
   useEffect(() => {
-    if (reduced) return;
+    if (reduced) {
+      // Grid tiles and the subtitle start at opacity 0 in their inline
+      // styles, so jump them to visible instead of skipping the effect
+      // (which would otherwise leave them permanently hidden). The
+      // scroll-pinned zoom/scrub itself is correctly skipped.
+      const targets = [...gridCardsRef.current, headline2Ref.current].filter(Boolean);
+      gsap.set(targets, { opacity: 1, scale: 1, y: 0 });
+      return;
+    }
 
     const wrap = wrapRef.current;
     const hero = heroRef.current;

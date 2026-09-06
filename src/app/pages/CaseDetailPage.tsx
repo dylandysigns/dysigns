@@ -257,7 +257,14 @@ export default function CaseDetailPage() {
   useEffect(() => {
     if (!project) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (reduced) {
+      // Gallery items and the outcomes block start at opacity 0 in their
+      // inline styles, so jump them to visible instead of skipping the
+      // effect (which would otherwise leave them permanently hidden).
+      const targets = [...galleryRef.current, outcomesRef.current].filter(Boolean);
+      gsap.set(targets, { opacity: 1 });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       if (titleRef.current) {
@@ -519,7 +526,7 @@ export default function CaseDetailPage() {
           <p
             style={{
               fontSize: ".78rem",
-              color: "rgba(var(--page-fg-rgb), .42)",
+              color: "rgba(var(--page-fg-rgb), .55)",
               margin: 0,
             }}
           >
@@ -538,7 +545,7 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               {t("case.overview")}
@@ -567,7 +574,7 @@ export default function CaseDetailPage() {
                 style={{
                   fontSize: ".62rem",
                   letterSpacing: ".12em",
-                  color: "rgba(var(--page-fg-rgb), .35)",
+                  color: "rgba(var(--page-fg-rgb), .55)",
                   textTransform: "uppercase",
                 }}
               >
@@ -588,7 +595,7 @@ export default function CaseDetailPage() {
                 style={{
                   fontSize: ".62rem",
                   letterSpacing: ".12em",
-                  color: "rgba(var(--page-fg-rgb), .35)",
+                  color: "rgba(var(--page-fg-rgb), .55)",
                   textTransform: "uppercase",
                 }}
               >
@@ -609,7 +616,7 @@ export default function CaseDetailPage() {
                 style={{
                   fontSize: ".62rem",
                   letterSpacing: ".12em",
-                  color: "rgba(var(--page-fg-rgb), .35)",
+                  color: "rgba(var(--page-fg-rgb), .55)",
                   textTransform: "uppercase",
                 }}
               >
@@ -698,7 +705,7 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               {t("case.outcomes")}
@@ -744,7 +751,7 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".12em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               <ArrowLeft size={12} className="group-hover:-translate-x-1 transition-transform duration-300" />
@@ -777,7 +784,7 @@ export default function CaseDetailPage() {
                 fontWeight: 500,
                 letterSpacing: ".12em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               {t("case.next")}

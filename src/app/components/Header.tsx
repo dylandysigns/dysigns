@@ -323,7 +323,7 @@ function MobileLangToggle() {
           fontSize: ".6rem",
           fontWeight: 700,
           letterSpacing: ".06em",
-          color: "rgba(var(--page-fg-rgb), .45)",
+          color: "rgba(var(--page-fg-rgb), .55)",
         }}
       >
         {lang === "en" ? "NL" : "EN"}
@@ -359,6 +359,18 @@ function MobileMenu({
     if (!open) return;
     const menu = menuRef.current;
     if (!menu) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      const navItems = navLinksRef.current ? Array.from(navLinksRef.current.children) : [];
+      const footerItems = footerRef.current ? Array.from(footerRef.current.children) : [];
+      gsap.set(menu, { clipPath: "inset(0 0 0 0%)" });
+      gsap.set(
+        [headerRowRef.current, badgeRef.current, ...navItems, ...footerItems].filter(Boolean),
+        { opacity: 1, x: 0, y: 0, scale: 1 },
+      );
+      return;
+    }
 
     const tl = gsap.timeline();
 
@@ -634,7 +646,8 @@ export function Header() {
 
     if (!targets.length) return;
 
-    if (!isCasePage) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!isCasePage || reduced) {
       setCaseNavIntroDone(true);
       gsap.set(targets, { opacity: 1 });
       return;
@@ -666,12 +679,13 @@ export function Header() {
     if (menuOpen) return; // Don't hide while menu is open
     if (isCasePage && !caseNavIntroDone) return;
     const targets = [logoRef.current, navRef.current, utilRef.current, burgerRef.current].filter(Boolean);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     gsap.to(targets, {
       y: headerVisible ? 0 : -80,
       opacity: headerVisible ? 1 : 0,
-      duration: 0.35,
+      duration: reduced ? 0 : 0.35,
       ease: headerVisible ? "power3.out" : "power2.in",
-      stagger: headerVisible ? 0.03 : 0,
+      stagger: reduced ? 0 : headerVisible ? 0.03 : 0,
       overwrite: true,
     });
   }, [caseNavIntroDone, headerVisible, isCasePage, menuOpen]);

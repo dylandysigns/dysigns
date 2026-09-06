@@ -211,7 +211,7 @@ export function Footer() {
             style={{
               fontSize: ".62rem",
               letterSpacing: ".04em",
-              color: "rgba(var(--page-fg-rgb), .28)",
+              color: "rgba(var(--page-fg-rgb), .55)",
               fontVariantNumeric: "tabular-nums",
             }}
           >
@@ -222,7 +222,7 @@ export function Footer() {
             style={{
               fontSize: ".62rem",
               letterSpacing: ".04em",
-              color: "rgba(var(--page-fg-rgb), .28)",
+              color: "rgba(var(--page-fg-rgb), .55)",
               textDecoration: "underline",
               textUnderlineOffset: 2,
             }}

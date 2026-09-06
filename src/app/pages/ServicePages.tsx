@@ -79,6 +79,7 @@ function ServicePage({
   }, []);
 
   const handleIncludesMouseMove = (e: React.MouseEvent) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     floatingImageX.current?.(e.clientX);
     floatingImageY.current?.(e.clientY);
   };
@@ -155,7 +156,7 @@ function ServicePage({
                 fontSize: "clamp(1.6rem,4vw,2.6rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",
-                color: "rgba(var(--page-fg-rgb), .3)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               /{String(serviceDefinitions.length).padStart(2, "0")}
@@ -171,7 +172,7 @@ function ServicePage({
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .45)",
+            color: "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {t("services.eyebrow")}
@@ -267,7 +268,7 @@ function ServicePage({
                             letterSpacing: ".08em",
                             color: isActive
                               ? "var(--page-fg)"
-                              : "rgba(var(--page-fg-rgb), .35)",
+                              : "rgba(var(--page-fg-rgb), .55)",
                             transition: "color .3s",
                           }}
                         >
@@ -473,7 +474,7 @@ function ServicePage({
                 fontWeight: 500,
                 letterSpacing: ".16em",
                 textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .45)",
+                color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
               {t("services.alsoFrom")}

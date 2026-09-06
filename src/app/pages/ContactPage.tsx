@@ -47,8 +47,24 @@ export default function ContactPage() {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
     const ctx = gsap.context(() => {
+      // Reduced motion: jump straight to the settled state instead of
+      // skipping the effect, since these elements start at opacity 0 in
+      // their inline styles and would otherwise never become visible.
+      if (reduced) {
+        const cards = cardsRef.current.filter(Boolean);
+        const socialLinks = socialsRef.current
+          ? Array.from(socialsRef.current.querySelectorAll("a"))
+          : [];
+        gsap.set(
+          [labelRef.current, headRef.current, subRef.current, ...cards, ...socialLinks].filter(
+            Boolean,
+          ),
+          { opacity: 1, y: 0, scale: 1 },
+        );
+        return;
+      }
+
       const tl = gsap.timeline({ delay: 0.15 });
 
       // Label slides in
@@ -172,7 +188,7 @@ export default function ContactPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .45)",
+            color: "rgba(var(--page-fg-rgb), .55)",
             display: "inline-block",
           }}
         >
@@ -307,8 +323,9 @@ export default function ContactPage() {
                 type="email"
                 name="email"
                 required
+                aria-required="true"
                 placeholder={t("contact.form.emailPlaceholder")}
-                className="w-full bg-transparent outline-none"
+                className="w-full bg-transparent outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 style={{
                   fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
@@ -344,9 +361,10 @@ export default function ContactPage() {
                 id="contact-message"
                 name="message"
                 required
+                aria-required="true"
                 rows={4}
                 placeholder={t("contact.form.messagePlaceholder")}
-                className="w-full bg-transparent outline-none resize-none"
+                className="w-full bg-transparent outline-none resize-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 style={{
                   fontFamily: "'Inter',sans-serif",
                   fontSize: "1rem",
@@ -446,7 +464,7 @@ export default function ContactPage() {
                     fontWeight: 500,
                     letterSpacing: ".06em",
                     textTransform: "uppercase",
-                    color: "rgba(var(--page-fg-rgb), .45)",
+                    color: "rgba(var(--page-fg-rgb), .55)",
                   }}
                   onMouseEnter={(e) => {
                     cursor.set("link");
@@ -455,7 +473,7 @@ export default function ContactPage() {
                   onMouseLeave={(e) => {
                     cursor.reset();
                     (e.currentTarget as HTMLElement).style.color =
-                      "rgba(var(--page-fg-rgb), .45)";
+                      "rgba(var(--page-fg-rgb), .55)";
                   }}
                 >
                   {s.name}

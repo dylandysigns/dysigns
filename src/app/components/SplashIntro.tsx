@@ -190,7 +190,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           fontWeight: 500,
           letterSpacing: ".12em",
           textTransform: "uppercase",
-          color: "rgba(var(--page-fg-rgb), .25)",
+          color: "rgba(var(--page-fg-rgb), .55)",
         }}
         aria-label="Skip intro"
       >

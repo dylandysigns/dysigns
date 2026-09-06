@@ -30,7 +30,7 @@ export default function NotFoundPage() {
             fontFamily: "'Inter',sans-serif",
             fontSize: "clamp(3rem,8vw,6rem)",
             fontWeight: 800,
-            color: "rgba(var(--page-fg-rgb), .06)",
+            color: "var(--page-fg)",
             letterSpacing: "-.06em",
             lineHeight: 1,
           }}
@@ -41,7 +41,7 @@ export default function NotFoundPage() {
           className="mt-4"
           style={{
             fontSize: ".82rem",
-            color: "rgba(var(--page-fg-rgb), .3)",
+            color: "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {t("notFound.heading")}

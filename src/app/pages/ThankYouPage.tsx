@@ -31,7 +31,7 @@ export default function ThankYouPage() {
             fontWeight: 500,
             letterSpacing: ".16em",
             textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .45)",
+            color: "rgba(var(--page-fg-rgb), .55)",
           }}
         >
           {t("thankyou.label")}

@@ -121,7 +121,7 @@ export default function WorkPage() {
               fontWeight: 500,
               letterSpacing: ".16em",
               textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .45)",
+              color: "rgba(var(--page-fg-rgb), .55)",
             }}
           >
             {t("work.label")}
@@ -268,7 +268,7 @@ export default function WorkPage() {
                       </div>
 
                       <div className="relative z-20">
-                        <h3
+                        <h2
                           className="relative inline-block"
                           style={{
                             fontFamily: "'Inter',sans-serif",
@@ -283,7 +283,7 @@ export default function WorkPage() {
                             className="absolute bottom-0 left-0 w-full h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
                             style={{ background: "rgba(var(--page-fg-rgb), .3)" }}
                           />
-                        </h3>
+                        </h2>
                         <p
                           style={{
                             fontSize: isFeatured ? ".78rem" : ".64rem",
