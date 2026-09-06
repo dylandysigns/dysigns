@@ -8,7 +8,7 @@ answerBlock: |
   (your email address and message) and uses no analytics or
   advertising cookies. This page explains exactly what is collected,
   why, and how you can access, correct or delete it.
-lastUpdated: "2026-09-05"
+lastUpdated: "2026-09-06"
 ---
 
 ## Who is responsible for your data
@@ -22,11 +22,11 @@ This website is operated by DYSIGNS, a sole proprietorship registered in the Net
 
 ## What data we collect
 
-**Contact form.** When you submit the form on the [contact page](/contact), we collect the email address and message you provide. This is sent through Netlify Forms, our form-processing provider, and used only to reply to your enquiry. We do not add you to a mailing list or share this with third parties for marketing.
+**Contact form.** When you submit the form on the [contact page](/contact), we collect the email address and message you provide. This is processed by a third-party form-processing provider on our behalf and used only to reply to your enquiry. We do not add you to a mailing list or share this with third parties for marketing.
 
 **Email and WhatsApp.** If you contact us directly by email or WhatsApp, the data you share is handled under the same principle: used only to respond to you, not shared with third parties.
 
-**We do not collect:** payment information, account details, or any data through analytics, advertising, or social media tracking pixels — this site currently runs none of those.
+**We do not collect** payment information, account details, or any data through analytics, advertising, or social media tracking pixels. This site currently runs none of those.
 
 ## Cookies and local storage
 
@@ -34,12 +34,13 @@ This site does not use tracking, analytics, or advertising cookies. The only bro
 
 - **Session storage** for the intro animation and page-transition state. This is purely functional, contains no personal data, is never sent to a server, and disappears when you close the tab.
 
-Because there are no non-essential cookies, this site does not show a cookie banner — there is nothing optional to accept or reject. If that changes in the future (for example, if we add analytics), this page will be updated first, and a real consent choice will be shown before anything non-essential loads.
+Because there are no non-essential cookies, this site does not show a cookie banner. There is nothing optional to accept or reject. If that changes in the future, for example if we add analytics, this page will be updated first, and a real consent choice will be shown before anything non-essential loads.
 
 ## Third-party services
 
-- **Netlify** hosts this site and processes contact-form submissions on our behalf, under its own data processing terms.
-- **Google Fonts** are loaded from Google's servers (`fonts.googleapis.com` / `fonts.gstatic.com`) to display this site's typefaces. Loading a font this way sends your device's IP address to Google as part of that request, the same as loading any resource from an external server.
+Hosting and forms: this site is hosted by a third-party provider, which also processes contact-form submissions on our behalf under its own data processing terms.
+
+Fonts: we load web fonts from a third-party provider to display this site's typefaces. Loading a font this way sends your device's IP address to that provider as part of the request, the same as loading any resource from an external server.
 
 ## How long we keep data
 

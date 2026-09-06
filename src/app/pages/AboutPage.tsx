@@ -189,15 +189,11 @@ export default function AboutPage() {
             color: "rgba(var(--page-fg-rgb), .75)",
           }}
         >
-          DYSIGNS is a full-service digital agency founded by{" "}
+          {t("about.introPre")}{" "}
           <span style={{ color: "var(--page-fg)", fontWeight: 600 }}>
             Dylan Kho
           </span>
-          . We handle the whole journey: UX and brand identity, websites and
-          Shopify stores, AI implementation, and the social and paid
-          campaigns that bring in customers afterwards. One partner instead
-          of four vendors pointing at each other. Based in the Netherlands,
-          working with clients worldwide.
+          {t("about.introPost")}
         </p>
         <div
           className="mt-10"

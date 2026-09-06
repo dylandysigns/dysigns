@@ -6,10 +6,10 @@ heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
   DYSIGNS is een full-service digital agency, opgericht door Dylan Kho.
   Wij verzorgen het hele traject: UX en merkidentiteit, websites en
-  Shopify-webshops, AI-implementatie, en de social en betaalde
-  campagnes die daarna klanten binnenhalen. Eén partner in plaats van
-  vier leveranciers die naar elkaar wijzen. Gevestigd in Nederland,
-  werkend met klanten wereldwijd.
+  Shopify-webshops, AI-implementatie, en de social-media- en
+  advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
+  plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in
+  Nederland, met klanten over de hele wereld.
 lastUpdated: "2026-08-02"
 ---
 
