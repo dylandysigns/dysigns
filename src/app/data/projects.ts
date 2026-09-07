@@ -18,9 +18,16 @@ export interface Project {
   year: string;
   url?: string;
   thumbnail: string;
+  /** Optional cover video (mp4) — plays muted/looped in place of the
+   * thumbnail on the home grid card and the case detail hero. */
+  video?: string;
   overview: string;
   outcomes: string[];
   gallery: string[];
+  /** Optional before/after image pairs — rendered as their own labeled
+   * side-by-side row in the case detail gallery, always 2-up even on
+   * mobile, kept separate from the general `gallery` grid. */
+  beforeAfter?: { before: string; after: string; label?: string }[];
 }
 
 export const projects: Project[] = [
@@ -203,15 +210,27 @@ export const projects: Project[] = [
   },
   {
     slug: "a-cafe-app-design",
-    title: "A/Café App Design",
-    category: "App Design",
-    tags: ["App Design", "UX Design", "Email Marketing"],
+    title: "A/Café POS & Kiosk Design",
+    category: "Product Design",
+    tags: ["POS Design", "Kiosk Design", "UX Design", "Email Marketing"],
     year: "2026",
-    thumbnail: "/images/placeholder-case.svg",
+    thumbnail: "/images/a-cafe/kiosk-after.jpg",
+    video: "/videos/a-cafe-cover.mp4",
     overview:
-      "DYSIGNS designed and built a self-ordering kiosk app for A/Café, carrying the POS and kitchen display through in the same visual identity. Email marketing was set up end to end alongside it, so guest, staff and brand speak the same language across the whole ordering system.",
-    outcomes: [],
-    gallery: ["/images/placeholder-case.svg"],
+      "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across live A/Café store locations, with guests ordering, staff fulfilling and the brand showing through at every step.",
+    outcomes: [
+      "One visual system spans kiosk, POS and kitchen display end to end",
+      "Now running in test phase across live A/Café store locations",
+      "Built from an MVP concept through to a real in-store pilot",
+      "Guest, staff and brand all speak the same visual language",
+    ],
+    gallery: [
+      "/images/a-cafe/pos-order.jpg",
+      "/images/a-cafe/pos-payment-successful.jpg",
+    ],
+    beforeAfter: [
+      { before: "/images/a-cafe/kiosk-before.jpg", after: "/images/a-cafe/kiosk-after.jpg" },
+    ],
   },
   {
     slug: "studio75-branding",

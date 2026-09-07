@@ -218,13 +218,28 @@ export function ZoomToGrid() {
                 : "grayscale(.8) brightness(.55) contrast(1.05)",
             }}
           >
-            <img
-              src={isHero ? zoomToGridData.heroImage : project.thumbnail}
-              alt={`${project.title} – ${project.category} by Dylan Kho, DYSIGNS`}
-              className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
-              style={{ willChange: "transform" }}
-              loading="lazy"
-            />
+            {!isHero && project.video ? (
+              <video
+                src={project.video}
+                poster={project.thumbnail}
+                className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
+                style={{ willChange: "transform" }}
+                autoPlay
+                loop
+                muted
+                playsInline
+                disablePictureInPicture
+                preload="auto"
+              />
+            ) : (
+              <img
+                src={isHero ? zoomToGridData.heroImage : project.thumbnail}
+                alt={`${project.title} – ${project.category} by Dylan Kho, DYSIGNS`}
+                className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
+                style={{ willChange: "transform" }}
+                loading="lazy"
+              />
+            )}
           </div>
           {/* Title overlay — always visible on mobile, hover-reveal on desktop */}
           <div

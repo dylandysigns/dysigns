@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useLocation, useNavigate, useParams } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown, ExternalLink } from "lucide-react";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
@@ -124,6 +124,12 @@ export default function CaseDetailPage() {
     initialTransitionFrom?.imageUrl ?? null,
   );
 
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
   const { project, projects, currentIdx } = useTranslatedProject(slug);
   const nextProject = projects[(currentIdx + 1) % projects.length];
   const prevProject = projects[(currentIdx - 1 + projects.length) % projects.length];
@@ -172,6 +178,25 @@ export default function CaseDetailPage() {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [slug]);
+
+  // Nudges the visitor to keep scrolling right after they land on the case
+  // (most arrivals are the zoom-in transition from a project card) — waits
+  // for the zoom-cover overlay to finish fading before appearing, and hides
+  // for good the moment they actually scroll.
+  useEffect(() => {
+    if (!project || prefersReducedMotion || pageCoverImage) return;
+
+    const showTimer = window.setTimeout(() => setShowScrollHint(true), 400);
+    const onScroll = () => {
+      if (window.scrollY > 60) setShowScrollHint(false);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.clearTimeout(showTimer);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [project, pageCoverImage, prefersReducedMotion]);
 
   useEffect(() => {
     if (!project) return;
@@ -417,18 +442,58 @@ export default function CaseDetailPage() {
         style={{ position: "relative", width: "100%", height: "100vh", minHeight: "100vh", maxHeight: "none", overflow: "hidden", margin: 0, padding: 0 }}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div
-            className="absolute inset-0"
+          {project.video && !prefersReducedMotion ? (
+            <video
+              src={project.video}
+              poster={project.thumbnail}
+              className="absolute inset-0 w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              preload="auto"
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                width: "100%",
+                height: "100%",
+                backgroundImage: `url(${project.thumbnail})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                transform: "none",
+                willChange: "auto",
+              }}
+            />
+          )}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none transition-opacity duration-700 rounded-full"
+          style={{
+            zIndex: 5,
+            opacity: showScrollHint ? 1 : 0,
+            padding: "10px 16px",
+            background: "rgba(0,0,0,.4)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+          }}
+        >
+          <span
             style={{
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(${project.thumbnail})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              transform: "none",
-              willChange: "auto",
+              fontSize: ".62rem",
+              fontWeight: 600,
+              letterSpacing: ".16em",
+              textTransform: "uppercase",
+              color: "#fff",
             }}
-          />
+          >
+            {t("case.scroll")}
+          </span>
+          <ChevronDown size={16} className="animate-bounce" style={{ color: "#fff" }} />
         </div>
       </section>
 
@@ -635,6 +700,49 @@ export default function CaseDetailPage() {
           </div>
         </div>
       </section>
+
+      {project.beforeAfter && project.beforeAfter.length > 0 && (
+        <div className="max-w-[1500px] mx-auto px-6 md:px-12 pb-8 md:pb-12 flex flex-col gap-4 md:gap-6">
+          {project.beforeAfter.map((pair, i) => (
+            <div key={i} className="grid grid-cols-2 gap-3 md:gap-6">
+              {([
+                { src: pair.before, label: t("case.before") },
+                { src: pair.after, label: t("case.after") },
+              ] as const).map(({ src, label }) => (
+                <div
+                  key={label}
+                  className="relative overflow-hidden rounded-xl"
+                  style={{ border: "1px solid rgba(var(--page-fg-rgb), .06)" }}
+                >
+                  <span
+                    className="absolute top-4 left-4 z-10 rounded-full px-4 py-1.5"
+                    style={{
+                      fontSize: ".72rem",
+                      fontWeight: 600,
+                      letterSpacing: ".1em",
+                      textTransform: "uppercase",
+                      color: "#fff",
+                      background: "rgba(0,0,0,.55)",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >
+                    {label}
+                  </span>
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={src}
+                      alt={`${project.title} – ${label} – Dylan Kho, DYSIGNS`}
+                      className="w-full h-full object-cover"
+                      style={{ filter: "grayscale(.7) brightness(.6) contrast(1.05)" }}
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

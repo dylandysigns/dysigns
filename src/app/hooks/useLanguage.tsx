@@ -106,6 +106,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "breadcrumb.home": { en: "Home", nl: "Home" },
   "nav.insights": { en: "Insights", nl: "Inzichten" },
+  "insights.readMore": { en: "Read article", nl: "Lees artikel" },
   "privacy.eyebrow": { en: "Privacy", nl: "Privacy" },
   "footer.privacyLink": { en: "Privacy policy", nl: "Privacybeleid" },
   "services.title": { en: "Services", nl: "Diensten" },
@@ -360,6 +361,9 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "case.client": { en: "Client", nl: "Klant" },
   "case.services": { en: "Services", nl: "Diensten" },
   "case.year": { en: "Year", nl: "Jaar" },
+  "case.before": { en: "Before", nl: "Voor" },
+  "case.after": { en: "After", nl: "Na" },
+  "case.scroll": { en: "Scroll", nl: "Scroll" },
 
   /* ── Footer ── */
   "footer.rights": { en: "All rights reserved.", nl: "Alle rechten voorbehouden." },
@@ -420,10 +424,13 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Social media beheer",
   },
   "category.Web": { en: "Web", nl: "Web" },
+  "category.Product Design": { en: "Product Design", nl: "Productdesign" },
 
   /* ── Tag translations ── */
   "tag.Brand Identity": { en: "Brand Identity", nl: "Merkidentiteit" },
   "tag.App Design": { en: "App Design", nl: "App Design" },
+  "tag.POS Design": { en: "POS Design", nl: "Kassasysteem" },
+  "tag.Kiosk Design": { en: "Kiosk Design", nl: "Kiosk Design" },
   "tag.Email Marketing": { en: "Email Marketing", nl: "E-mailmarketing" },
   "tag.Co-Creation": { en: "Co-Creation", nl: "Co-creatie" },
   "tag.Web Design": { en: "Web Design", nl: "Webdesign" },
@@ -681,12 +688,28 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* \u2500\u2500 Project: A/Caf\u00e9 App Design \u2500\u2500 */
   "project.a-cafe-app-design.title": {
-    en: "A/Caf\u00e9 App Design",
-    nl: "A/Caf\u00e9 App Design",
+    en: "A/Caf\u00e9 POS & Kiosk Design",
+    nl: "A/Caf\u00e9 Kassa & Kiosk Design",
   },
   "project.a-cafe-app-design.overview": {
-    en: "DYSIGNS designed and built a self-ordering kiosk app for A/Caf\u00e9, carrying the POS and kitchen display through in the same visual identity. Email marketing was set up end to end alongside it, so guest, staff and brand speak the same language across the whole ordering system.",
-    nl: "DYSIGNS ontwierp en bouwde een self-order kiosk-app voor A/Caf\u00e9, met de kassa en het keukendisplay in dezelfde visuele identiteit doorgevoerd. E-mailmarketing werd end-to-end ingericht, zodat gast, personeel en merk dezelfde taal spreken door het hele bestelsysteem heen.",
+    en: "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across live A/Caf\u00e9 store locations, with guests ordering, staff fulfilling and the brand showing through at every step.",
+    nl: "Wat begon als een MVP voor \u00e9\u00e9n self-order kiosk, groeide uit tot een volledig bestelsysteem: DYSIGNS ontwierp de kiosk, de kassa en het keukendisplay als \u00e9\u00e9n samenhangend product, allemaal in dezelfde visuele taal. E-mailmarketing werd er end-to-end bij ingericht. Het systeem draait nu in testfase in live A/Caf\u00e9-vestigingen, waarbij gasten bestellen, personeel uitserveert en het merk in elke stap doorklinkt.",
+  },
+  "project.a-cafe-app-design.outcome.0": {
+    en: "One visual system spans kiosk, POS and kitchen display end to end",
+    nl: "\u00c9\u00e9n visueel systeem loopt door van kiosk tot kassa tot keukendisplay",
+  },
+  "project.a-cafe-app-design.outcome.1": {
+    en: "Now running in test phase across live A/Caf\u00e9 store locations",
+    nl: "Draait nu in testfase in live A/Caf\u00e9-vestigingen",
+  },
+  "project.a-cafe-app-design.outcome.2": {
+    en: "Built from an MVP concept through to a real in-store pilot",
+    nl: "Ontwikkeld van MVP-concept tot een echte pilot in de winkel",
+  },
+  "project.a-cafe-app-design.outcome.3": {
+    en: "Guest, staff and brand all speak the same visual language",
+    nl: "Gast, personeel en merk spreken allemaal dezelfde visuele taal",
   },
 
   /* \u2500\u2500 Project: Studio75 Branding \u2500\u2500 */

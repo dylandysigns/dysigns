@@ -30,6 +30,9 @@ export default function WorkPage() {
   const { t, lang } = useLanguage();
   const translatedProjects = useTranslatedProjects();
   const entry = getLocalizedContent("work-overview.md", lang);
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const projectEntries = useMemo(
     () =>
@@ -227,15 +230,32 @@ export default function WorkPage() {
                     </svg>
 
                     <div className={isFeatured ? "aspect-[16/10] overflow-hidden" : "aspect-[4/4.7] overflow-hidden"}>
-                      <img
-                        src={project.thumbnail}
-                        alt={`${project.title} – ${project.category} by Dylan Kho, DYSIGNS`}
-                        loading={flatIndex < 4 ? "eager" : "lazy"}
-                        className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
-                        style={{
-                          filter: "grayscale(.8) brightness(.65) contrast(1.05)",
-                        }}
-                      />
+                      {project.video && !prefersReducedMotion ? (
+                        <video
+                          src={project.video}
+                          poster={project.thumbnail}
+                          className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
+                          style={{
+                            filter: "grayscale(.8) brightness(.65) contrast(1.05)",
+                          }}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          disablePictureInPicture
+                          preload="auto"
+                        />
+                      ) : (
+                        <img
+                          src={project.thumbnail}
+                          alt={`${project.title} – ${project.category} by Dylan Kho, DYSIGNS`}
+                          loading={flatIndex < 4 ? "eager" : "lazy"}
+                          className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
+                          style={{
+                            filter: "grayscale(.8) brightness(.65) contrast(1.05)",
+                          }}
+                        />
+                      )}
                     </div>
 
                     <div

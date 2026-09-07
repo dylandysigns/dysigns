@@ -26,17 +26,17 @@ Die bandbreedtes zijn een startpunt voor een gesprek, geen offerte. Wat binnen d
 
 **Platformkeuze.** Een template-website, een aangepast Shopify-thema, een volledig custom front-end en een headless commerce build (Shopify Plus, Medusa) zitten op heel verschillende prijsniveaus, omdat ze een heel verschillende hoeveelheid maatwerk engineering vragen.
 
-**Content-gereedheid.** Een project waarbij de teksten, productdata en fotografie al klaarstaan, gaat sneller en kost minder dan een project waarbij het bureau dat ook nog moet aanleveren of schrijven. Contentwerk is echt werk, en dat zie je hoe dan ook terug in het budget — beter om dat vooraf te weten.
+**Content-gereedheid.** Een project waarbij de teksten, productdata en fotografie al klaarstaan, gaat sneller en kost minder dan een project waarbij het bureau dat ook nog moet aanleveren of schrijven. Contentwerk is echt werk, en dat zie je hoe dan ook terug in het budget. Beter om dat vooraf te weten.
 
-**Integraties.** Betaalproviders, ERP-systemen, CRM's, marketing automation, custom API's — elk systeem waar een site mee moet praten, kost extra ontwikkel- en testtijd die een "simpele website"-offerte niet meerekent.
+**Integraties.** Betaalproviders, ERP-systemen, CRM's, marketing automation, custom API's: elk systeem waar een site mee moet praten, kost extra ontwikkel- en testtijd die een "simpele website"-offerte niet meerekent.
 
 **Designvolwassenheid.** Een project dat start vanuit een bestaande merkidentiteit en designsysteem gaat sneller dan een project dat de visuele richting vanaf nul moet bepalen. Als branding en webdesign samen gebeuren, hoeft dat werk maar één keer gedaan te worden.
 
-**Doorlooptijd.** Een normaal traject van 8 tot 12 weken samenpersen tot drie weken vermindert het werk niet, het concentreert het — en dat betekent meestal een hoger tarief, een groter team, of allebei.
+**Doorlooptijd.** Een normaal traject van 8 tot 12 weken samenpersen tot drie weken vermindert het werk niet, het concentreert het, en dat betekent meestal een hoger tarief, een groter team, of allebei.
 
 ## Realistische bandbreedtes in de Nederlandse markt
 
-Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS — zie het als de bandbreedte waar een realistische offerte in zou moeten vallen, zodat je een offerte die onrealistisch laag of vaag is, herkent.
+Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS. Zie het als de bandbreedte waar een realistische offerte in zou moeten vallen, zodat je een offerte die onrealistisch laag of vaag is, herkent.
 
 - **Eenvoudige brochurewebsite** (5–10 pagina's, template-based of licht aangepast): ongeveer €2.500–€7.000.
 - **Custom-ontworpen bedrijfswebsite** (maatwerk design, CMS, gemiddelde functionaliteit): ongeveer €7.000–€20.000.
@@ -47,17 +47,17 @@ Alles wat ver onder deze bandbreedtes wordt geoffreerd, is meestal een template 
 
 ## Waarom wij niet vooraf een vaste prijs noemen
 
-Wij werken niet met een prijslijst, omdat een standaardprijs een verkeerd beeld geeft van jouw eigen project — of het schrikt je af bij iets eenvoudigs, of het onderschat iets dat juist echte engineering nodig heeft. In plaats daarvan beginnen we met een gratis, vrijblijvend gesprek over wat je wilt bereiken, en scopen we het werk daarna. Dat duurt langer dan een generiek PDF-prijsblad versturen, maar het betekent dat het bedrag dat je terugkrijgt ook echt over jouw project gaat. Wil je meteen dat gesprek? [Neem contact op](/contact) of lees meer over hoe wij [webdesign en development](/web-design) en [Shopify development](/shopify-development) aanpakken.
+Bij DYSIGNS werken we niet met een prijslijst, omdat een standaardprijs een verkeerd beeld geeft van jouw eigen project: of het schrikt je af bij iets eenvoudigs, of het onderschat iets dat juist echte engineering nodig heeft. In plaats daarvan beginnen we met een gratis, vrijblijvend gesprek over wat je wilt bereiken, en scopen we het werk daarna. Dat duurt langer dan een generiek PDF-prijsblad versturen, maar het betekent dat het bedrag dat je terugkrijgt ook echt over jouw project gaat. Wil je meteen dat gesprek? [Neem contact op](/contact) of lees meer over hoe wij [webdesign en development](/web-design) en [Shopify development](/shopify-development) aanpakken.
 
 ## Veelgestelde vragen
 
 ### Is een goedkopere website ooit de juiste keuze?
 
-Soms wel — als je écht een eenvoudige site met weinig verkeer nodig hebt en een goed gebouwd template volstaat, is een volledig maatwerk build weggegooid budget. De fout is kiezen voor goedkoop bij een project dat eigenlijk custom functionaliteit nodig heeft, en dan dubbel betalen: eerst voor de goedkope versie, en een jaar later opnieuw om het goed te laten bouwen.
+Soms wel: als je écht een eenvoudige site met weinig verkeer nodig hebt en een goed gebouwd template volstaat, is een volledig maatwerk build weggegooid budget. De fout is kiezen voor goedkoop bij een project dat eigenlijk custom functionaliteit nodig heeft, en dan dubbel betalen: eerst voor de goedkope versie, en een jaar later opnieuw om het goed te laten bouwen.
 
 ### Rankt een duurdere website beter op Google?
 
-Niet direct — niet de prijs rankt, de technische kwaliteit rankt. Maar goedkope, template-zware sites slaan vaker de technische SEO-basis over (paginasnelheid, schone markup, correcte metadata, mobiele prestaties) die wél invloed heeft op ranking, dus er is een reëel verband, ook al is prijs zelf niet de oorzaak.
+Niet direct. Niet de prijs rankt, de technische kwaliteit rankt. Maar goedkope, template-zware sites slaan vaker de technische SEO-basis over (paginasnelheid, schone markup, correcte metadata, mobiele prestaties) die wél invloed heeft op ranking, dus er is een reëel verband, ook al is prijs zelf niet de oorzaak.
 
 ### Moet ik apart budgetteren voor werk na de lancering?
 
@@ -65,4 +65,4 @@ Ja. Een lanceringsbudget dekt het live krijgen van de site; het dekt geen conten
 
 ### Hoe lang duurt het voordat ik een betrouwbare offerte heb?
 
-Voor de meeste projecten is één intakegesprek plus een korte scoping-uitwisseling genoeg om een echt bedrag terug te krijgen, meestal binnen een paar werkdagen — geen weken heen-en-weer met voorstellen.
+Voor de meeste projecten is één intakegesprek plus een korte scoping-uitwisseling genoeg om een echt bedrag terug te krijgen, meestal binnen een paar werkdagen, geen weken heen-en-weer met voorstellen.

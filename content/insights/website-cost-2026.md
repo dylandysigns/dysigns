@@ -26,17 +26,17 @@ Those ranges are a starting point for a conversation, not a quote. What actually
 
 **Platform choice.** A template-based site, a modified Shopify theme, a fully custom front end, and a headless commerce build (Shopify Plus, Medusa) sit at very different price points, because they require very different amounts of custom engineering.
 
-**Content readiness.** A project where the copy, product data, and photography already exist moves faster and costs less than one where the agency also has to source or write all of it. Content work is real work, and it shows up in the budget either way — better to know that going in.
+**Content readiness.** A project where the copy, product data, and photography already exist moves faster and costs less than one where the agency also has to source or write all of it. Content work is real work, and it shows up in the budget either way. Better to know that going in.
 
-**Integrations.** Payment providers, ERPs, CRMs, marketing automation, custom APIs — every system a site has to talk to adds development and testing time that a "simple website" quote does not include.
+**Integrations.** Payment providers, ERPs, CRMs, marketing automation, custom APIs: every system a site has to talk to adds development and testing time that a "simple website" quote does not include.
 
 **Design maturity.** A project starting from an existing brand identity and design system moves faster than one that has to define visual direction from scratch. If branding and web design happen together, that work only gets done once.
 
-**Timeline.** Compressing a normal 8–12 week project into three weeks does not reduce the work, it concentrates it — which usually means a higher rate, a larger team, or both.
+**Timeline.** Compressing a normal 8–12 week project into three weeks does not reduce the work, it concentrates it, which usually means a higher rate, a larger team, or both.
 
 ## Typical ranges in the Dutch market
 
-These are general market indications for the Netherlands in 2026, not a DYSIGNS price list — think of them as the range a realistic quote should fall inside, so you can spot one that is unrealistically low or vague.
+These are general market indications for the Netherlands in 2026, not a DYSIGNS price list. Think of them as the range a realistic quote should fall inside, so you can spot one that is unrealistically low or vague.
 
 - **Simple brochure site** (5–10 pages, template-based or lightly customised): roughly €2,500–€7,000.
 - **Custom-designed business website** (bespoke design, CMS, moderate functionality): roughly €7,000–€20,000.
@@ -47,17 +47,17 @@ Anything quoted well below these ranges is usually a template with your logo dro
 
 ## Why we don't quote a fixed price up front
 
-We don't work with a price list, because a standard price would give you the wrong picture of your own project — either scaring you off something simple or under-quoting something that actually needs real engineering. Instead, we start with a free, no-obligation conversation about what you're trying to achieve, then scope the work against that. It takes longer than sending a generic PDF price sheet, and it means the number you get back is actually about your project. If you want to skip straight to that conversation, [get in touch](/contact) or read more about how we approach [web design and development](/web-design) and [Shopify development](/shopify-development).
+At DYSIGNS, we don't work with a price list, because a standard price would give you the wrong picture of your own project: either scaring you off something simple or under-quoting something that actually needs real engineering. Instead, we start with a free, no-obligation conversation about what you're trying to achieve, then scope the work against that. It takes longer than sending a generic PDF price sheet, and it means the number you get back is actually about your project. If you want to skip straight to that conversation, [get in touch](/contact) or read more about how we approach [web design and development](/web-design) and [Shopify development](/shopify-development).
 
 ## Frequently asked questions
 
 ### Is a cheaper website ever the right choice?
 
-Sometimes, yes — if you genuinely need a simple, low-traffic site and a well-built template covers it, paying for a fully custom build is a waste of budget. The mistake is choosing cheap for a project that actually needs custom functionality, and then paying twice: once for the cheap version, and again to rebuild it properly a year later.
+Sometimes, yes: if you genuinely need a simple, low-traffic site and a well-built template covers it, paying for a fully custom build is a waste of budget. The mistake is choosing cheap for a project that actually needs custom functionality, and then paying twice: once for the cheap version, and again to rebuild it properly a year later.
 
 ### Does a more expensive website rank better on Google?
 
-Not directly — price doesn't rank, technical quality does. But cheap, template-heavy sites more often skip the technical SEO fundamentals (page speed, clean markup, proper metadata, mobile performance) that do affect ranking, so there's a real correlation even without price being the cause.
+Not directly. Price doesn't rank, technical quality does. But cheap, template-heavy sites more often skip the technical SEO fundamentals (page speed, clean markup, proper metadata, mobile performance) that do affect ranking, so there's a real correlation even without price being the cause.
 
 ### Should I budget separately for ongoing work after launch?
 
@@ -65,4 +65,4 @@ Yes. A launch budget covers getting the site live; it doesn't cover content upda
 
 ### How long does it take to get an accurate quote?
 
-For most projects, one intro call plus a short scoping exchange is enough to return a real number, usually within a few business days — not weeks of back-and-forth proposals.
+For most projects, one intro call plus a short scoping exchange is enough to return a real number, usually within a few business days, not weeks of back-and-forth proposals.
