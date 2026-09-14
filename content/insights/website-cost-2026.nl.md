@@ -16,9 +16,9 @@ lastUpdated: "2026-09-05"
 
 ## Het korte antwoord
 
-De bedragen hieronder zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS — zie ze als startpunt om op te budgetteren, niet als offerte.
+De bedragen hieronder zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS. Zie ze als startpunt om op te budgetteren, niet als offerte.
 
-In Nederland kost een eenvoudige, professioneel ontworpen brochurewebsite meestal tussen de €2.500 en €7.000. Een custom-ontworpen bedrijfswebsite met meer pagina's en functionaliteit ligt tussen €7.000 en €20.000. Een Shopify webshop begint rond €1.500 voor een aangepast thema en loopt ruim voorbij €25.000 voor een volledig maatwerk build met integraties. Een complex webplatform of web-app is feitelijk open-einde, want dat is eerder softwareontwikkeling dan websitedesign.
+In Nederland kost een eenvoudige, professioneel ontworpen brochurewebsite meestal tussen de €2.500 en €7.000. Een custom-ontworpen bedrijfswebsite met meer pagina's en functionaliteit ligt tussen €7.000 en €20.000. Een Shopify webshop begint rond €1.500 voor een aangepast thema met standaardfunctionaliteit, en loopt daarna op afhankelijk van hoeveel maatwerk, app-integraties en 2026-functies zoals headless commerce of AI-gedreven zoekfunctionaliteit een project daadwerkelijk nodig heeft. Een complex webplatform of web-app is feitelijk open-einde, want dat is eerder softwareontwikkeling dan websitedesign.
 
 Die bandbreedtes zijn een startpunt voor een gesprek, geen offerte. Wat binnen die marge echt bepaalt waar jouw project uitkomt, is een kort rijtje concrete factoren.
 
@@ -40,10 +40,20 @@ Die bandbreedtes zijn een startpunt voor een gesprek, geen offerte. Wat binnen d
 
 Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS. Zie het als de bandbreedte waar een realistische offerte in zou moeten vallen, zodat je een offerte die onrealistisch laag of vaag is, herkent.
 
-- **Eenvoudige brochurewebsite** (5–10 pagina's, template-based of licht aangepast): ongeveer €2.500–€7.000.
-- **Custom-ontworpen bedrijfswebsite** (maatwerk design, CMS, gemiddelde functionaliteit): ongeveer €7.000–€20.000.
-- **Shopify webshop** (aangepast thema tot volledig maatwerk): ongeveer €1.500–€25.000+, afhankelijk van custom secties, apps en Shopify Markets voor verkoop in meerdere landen.
+- **Eenvoudige brochurewebsite** (5 tot 10 pagina's, template-based of licht aangepast): ongeveer €2.500 tot €7.000.
+- **Custom-ontworpen bedrijfswebsite** (maatwerk design, CMS, gemiddelde functionaliteit): ongeveer €7.000 tot €20.000.
+- **Shopify webshop** (aangepast thema tot volledig maatwerk): begint rond €1.500. Zie de uitsplitsing hieronder, want Shopify-prijzen lopen verder uiteen dan elke andere categorie op deze lijst.
 - **Webplatform of web-app** (dashboards, portalen, ingelogde omgevingen): meestal €20.000 en hoger, gescoped als software in plaats van als website.
+
+### Wat een Shopify webshop in 2026 echt kost
+
+"Een Shopify webshop" kan een thema met vijf pagina's zijn, of een headless, AI-gedreven platform dat in zes landen verkoopt, dus één bedrag zegt niet zoveel. Denk liever in drie niveaus die logisch op elkaar voortbouwen:
+
+- **Instapniveau** (aangepast thema, standaardfunctionaliteit, één markt): vanaf €1.500.
+- **Middenklasse** (custom secties, meerdere app-integraties, een verder uitgewerkt designsysteem): ongeveer €4.000 tot €10.000.
+- **Geavanceerd** (headless of Shopify Plus builds, AI-gedreven zoekfunctionaliteit en productontdekking, Shopify Markets voor verkoop in meerdere landen, diepe maatwerk-integraties): ongeveer €10.000 tot €25.000 of meer, afhankelijk van de scope.
+
+Een extra app-integratie of een verder uitgewerkt designsysteem duwt een project richting de middenklasse; een headless front-end of AI-gedreven zoekfunctionaliteit duwt het richting geavanceerd. Bijna niemand begint bij €25.000: dat plafond geldt pas zodra een project echt enterprise-niveau complexiteit nodig heeft, niet bij een standaard shoplancering.
 
 Alles wat ver onder deze bandbreedtes wordt geoffreerd, is meestal een template met jouw logo erop, geen ontworpen en gebouwde site. Alles wat wordt geoffreerd zonder enig intakegesprek is een gok, geen scope.
 
