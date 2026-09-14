@@ -83,6 +83,10 @@ Yes. Alongside projects we run continuous engagements for content production, ca
 
 Parts of it, certainly, and we use those tools daily ourselves. We are not better than AI, nobody is. The difference is knowing what to do with it: which problem you are solving, what you hand to a model and what you should deliberately not automate.
 
+### Do you also handle SEO?
+
+Yes, and not as an afterthought bolted on after launch. Technical SEO, such as page speed, clean markup, structured data, and mobile performance, gets built in during design and development, because retrofitting it later is slower and less effective. On top of that we take a data-driven approach to content and organic growth, so visibility keeps scaling as the site or store grows instead of stalling after launch.
+
 ### What makes a full-service agency different from hiring specialists?
 
 With separate vendors you become the project manager between designer, developer and marketer. At DYSIGNS it sits in one track: whoever makes the ad knows the landing page, and whoever builds the store knows the brand. Less coordination, less lost in translation.

@@ -293,16 +293,16 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "DYSIGNS is een full-service digital agency",
   },
   "about.introPost": {
-    en: ". We handle the whole journey: UX and brand identity, websites and Shopify stores, AI implementation, and the social and paid campaigns that bring in customers afterwards. One partner instead of four vendors pointing at each other. Based in the Netherlands, working with clients worldwide.",
-    nl: ". Wij verzorgen het hele traject: UX en merkidentiteit, websites en Shopify-webshops, AI-implementatie, en de social-media- en advertentiecampagnes die daarna klanten binnenhalen. Eén partner in plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in Nederland, met klanten over de hele wereld.",
+    en: ". We handle the whole journey: UX and brand identity, websites and Shopify stores, data-driven SEO and technical optimization, AI implementation, and the social and paid campaigns that bring in customers afterwards. One partner instead of four vendors pointing at each other. Based in the Netherlands, working with clients worldwide.",
+    nl: ". Wij verzorgen het hele traject: UX en merkidentiteit, websites en Shopify-webshops, data-gedreven SEO en technische optimalisatie, AI-implementatie, en de social-media- en advertentiecampagnes die daarna klanten binnenhalen. Eén partner in plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in Nederland, met klanten over de hele wereld.",
   },
   "about.storyTitle": {
     en: "DYSIGNS create with intent, craft with care",
     nl: "DYSIGNS creëert met intentie, bouwen met zorg.",
   },
 "about.storyText": {
-en: "We started as UX and UI designers driven by curiosity and the ambition to grow across multiple design disciplines, which ultimately led to the creation of DYSIGNS.\n\n\nAlong this journey, we identified a recurring problem where clients had to wait too long for changes and lacked clarity in the process, causing lost momentum and missed opportunities, and that insight became the foundation of DYSIGNS.\n\n\nToday, our workflow is built around transparency, speed, and a true partner experience, with short feedback loops, clear communication, and a realistic yet fast pace so digital ideas move forward quickly while strong UX and UI remain at the core.",
-nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien en verschillende disciplines binnen design te verkennen, wat uiteindelijk leidde tot de oprichting van DYSIGNS.\n\n\nTijdens dit traject merkten we een terugkerend probleem waarbij klanten vaak te lang moesten wachten op aanpassingen en duidelijkheid ontbrak in het proces, waardoor momentum verloren ging en kansen bleven liggen, precies dat inzicht vormde de basis van DYSIGNS.\n\n\nDaarom bouwen wij onze werkwijze rond transparantie, snelheid en een echte partnerervaring, met korte feedbackloops, heldere communicatie en een realistisch maar hoog werktempo zodat digitale ideeën snel tot leven komen terwijl sterke UX en UI altijd de kern blijven."
+en: "We started as UX and UI designers driven by curiosity and the ambition to grow across multiple design disciplines, which ultimately led to the creation of DYSIGNS.\n\n\nAlong this journey, we identified a recurring problem where clients had to wait too long for changes and lacked clarity in the process, causing lost momentum and missed opportunities, and that insight became the foundation of DYSIGNS.\n\n\nToday, our workflow is built around transparency, speed, and a true partner experience, with short feedback loops, clear communication, and a realistic yet fast pace so digital ideas move forward quickly. Strong UX and UI stay at the core, backed by strategic, data-driven SEO and technical optimization, so visibility scales with the work instead of trailing behind it.",
+nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien en verschillende disciplines binnen design te verkennen, wat uiteindelijk leidde tot de oprichting van DYSIGNS.\n\n\nTijdens dit traject merkten we een terugkerend probleem waarbij klanten vaak te lang moesten wachten op aanpassingen en duidelijkheid ontbrak in het proces, waardoor momentum verloren ging en kansen bleven liggen, precies dat inzicht vormde de basis van DYSIGNS.\n\n\nDaarom bouwen wij onze werkwijze rond transparantie, snelheid en een echte partnerervaring, met korte feedbackloops, heldere communicatie en een realistisch maar hoog werktempo zodat digitale ideeën snel tot leven komen. Sterke UX en UI blijven de kern, ondersteund door strategische, data-gedreven SEO en technische optimalisatie, zodat vindbaarheid meegroeit met het werk in plaats van erachteraan te lopen."
 },
   "about.valuesLabel": { en: "What we believe", nl: "Waar we in geloven" },
   "about.value0.title": { en: "Craft over shortcuts", nl: "Vakmanschap boven shortcuts" },
@@ -312,8 +312,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   },
   "about.value1.title": { en: "Strategy first", nl: "Strategie eerst" },
   "about.value1.text": {
-    en: "Beautiful work means nothing without purpose. We start with \u2018why\u2019 before we ever touch a screen.",
-    nl: "Mooi werk betekent niets zonder doel. We beginnen met \u2018waarom\u2019 voordat we een scherm aanraken.",
+    en: "Beautiful work means nothing without purpose. We start with \u2018why\u2019 before we ever touch a screen, backed by data instead of guesswork, so organic visibility scales as the work does.",
+    nl: "Mooi werk betekent niets zonder doel. We beginnen met \u2018waarom\u2019 voordat we een scherm aanraken, onderbouwd met data in plaats van giswerk, zodat organische vindbaarheid meegroeit met het werk.",
   },
   "about.value2.title": { en: "Honest collaboration", nl: "Eerlijke samenwerking" },
   "about.value2.text": {

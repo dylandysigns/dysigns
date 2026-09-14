@@ -38,6 +38,7 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
     questions: [
       "Can you take over an existing website or store?",
       "Which platforms do you build on?",
+      "Do you also handle SEO?",
       "Do you also manage social media and ads on an ongoing basis?",
       "Cannot AI just do your job?",
     ],

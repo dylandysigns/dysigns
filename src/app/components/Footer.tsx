@@ -168,7 +168,7 @@ export function Footer() {
           >
             <img
               src={logoImg}
-              alt="DYSIGNS – digital design agency Almere"
+              alt="DYSIGNS, digital design agency Almere"
               className="theme-logo"
               style={{ height: 18, width: "auto" }}
               onError={(e) => {

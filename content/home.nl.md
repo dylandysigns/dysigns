@@ -83,6 +83,10 @@ Ja. Naast projecten verzorgen we doorlopende trajecten voor contentproductie, ca
 
 Delen ervan zeker, en we gebruiken die tools zelf ook dagelijks. We zijn niet beter dan AI, niemand is dat. Het verschil zit in weten wat je ermee doet: welk probleem je oplost, wat je aan een model overlaat en wat je bewust niet automatiseert.
 
+### Doen jullie ook aan SEO?
+
+Ja, en niet als bijzaak die er na livegang achteraan wordt geplakt. Technische SEO, zoals paginasnelheid, schone markup, structured data en mobiele prestaties, wordt tijdens design en development ingebouwd, want dat achteraf herstellen is trager en minder effectief. Daarnaast werken we data-gedreven aan content en organische groei, zodat vindbaarheid blijft meegroeien met de site of webshop in plaats van stil te vallen na livegang.
+
 ### Wat maakt een full-service bureau anders dan losse specialisten inhuren?
 
 Met losse leveranciers word je zelf projectmanager tussen designer, developer en marketeer. Bij DYSIGNS zit het in één lijn: wie de advertentie maakt kent de landingspagina, en wie de webshop bouwt kent het merk. Minder afstemming, minder verloren in vertaling.

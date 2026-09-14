@@ -248,7 +248,7 @@ export default function WorkPage() {
                       ) : (
                         <img
                           src={project.thumbnail}
-                          alt={`${project.title} – ${project.category} by DYSIGNS`}
+                          alt={`${project.title}, ${project.category} by DYSIGNS`}
                           loading={flatIndex < 4 ? "eager" : "lazy"}
                           className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                           style={{

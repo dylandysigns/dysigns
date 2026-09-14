@@ -67,6 +67,7 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   "What does the onboarding and project roadmap look like from start to launch?": Signpost,
   "Can you take over an existing website or store?": Handshake,
   "Which platforms do you build on?": Layer,
+  "Do you also handle SEO?": SearchNormal1,
   "Do you also manage social media and ads on an ongoing basis?": Mobile,
   "Cannot AI just do your job?": Convert,
   "How much does a website or online store cost?": Wallet,
