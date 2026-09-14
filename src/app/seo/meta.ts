@@ -20,9 +20,18 @@ export interface PageMeta {
   lastmod?: string;
 }
 
+// Netlify serves every prerendered route from its own directory
+// (scripts/prerender.mjs writes dist/<path>/index.html), which means the
+// no-trailing-slash form of every path below root 301-redirects here to
+// the trailing-slash form that actually returns 200. Declaring a
+// canonical/sitemap/hreflang URL that itself gets redirected elsewhere
+// is exactly what broke discoverability for tools that don't follow
+// redirects — trailing-slash URLs here match what the server actually
+// serves, so canonical, hreflang, sitemap.xml and JSON-LD `url` fields
+// all point straight at a 200.
 export function canonicalUrl(path: string): string {
   if (path === "/") return `${SITE_URL}/`;
-  return `${SITE_URL}${path}`;
+  return `${SITE_URL}${path}/`;
 }
 
 // `path` here is always the canonical ENGLISH path (what every page's

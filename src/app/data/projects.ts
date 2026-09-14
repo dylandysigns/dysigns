@@ -217,10 +217,10 @@ export const projects: Project[] = [
     thumbnail: "/images/a-cafe/kiosk-after.jpg",
     video: "/videos/a-cafe-cover.mp4",
     overview:
-      "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across live A/Café store locations, with guests ordering, staff fulfilling and the brand showing through at every step.",
+      "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across A/Café's physical stores worldwide, from Amsterdam and Paris to Dubai and Miami, with guests ordering, staff fulfilling and the brand showing through at every step.",
     outcomes: [
       "One visual system spans kiosk, POS and kitchen display end to end",
-      "Now running in test phase across live A/Café store locations",
+      "Now running in test phase across A/Café stores in Amsterdam, Paris, Dubai and Miami",
       "Built from an MVP concept through to a real in-store pilot",
       "Guest, staff and brand all speak the same visual language",
     ],

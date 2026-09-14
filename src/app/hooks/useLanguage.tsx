@@ -692,16 +692,16 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "A/Caf\u00e9 Kassa & Kiosk Design",
   },
   "project.a-cafe-app-design.overview": {
-    en: "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across live A/Caf\u00e9 store locations, with guests ordering, staff fulfilling and the brand showing through at every step.",
-    nl: "Wat begon als een MVP voor \u00e9\u00e9n self-order kiosk, groeide uit tot een volledig bestelsysteem: DYSIGNS ontwierp de kiosk, de kassa en het keukendisplay als \u00e9\u00e9n samenhangend product, allemaal in dezelfde visuele taal. E-mailmarketing werd er end-to-end bij ingericht. Het systeem draait nu in testfase in live A/Caf\u00e9-vestigingen, waarbij gasten bestellen, personeel uitserveert en het merk in elke stap doorklinkt.",
+    en: "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across A/Caf\u00e9's physical stores worldwide, from Amsterdam and Paris to Dubai and Miami, with guests ordering, staff fulfilling and the brand showing through at every step.",
+    nl: "Wat begon als een MVP voor \u00e9\u00e9n self-order kiosk, groeide uit tot een volledig bestelsysteem: DYSIGNS ontwierp de kiosk, de kassa en het keukendisplay als \u00e9\u00e9n samenhangend product, allemaal in dezelfde visuele taal. E-mailmarketing werd er end-to-end bij ingericht. Het systeem draait nu in testfase in A/Caf\u00e9's fysieke vestigingen wereldwijd, van Amsterdam en Parijs tot Dubai en Miami, waarbij gasten bestellen, personeel uitserveert en het merk in elke stap doorklinkt.",
   },
   "project.a-cafe-app-design.outcome.0": {
     en: "One visual system spans kiosk, POS and kitchen display end to end",
     nl: "\u00c9\u00e9n visueel systeem loopt door van kiosk tot kassa tot keukendisplay",
   },
   "project.a-cafe-app-design.outcome.1": {
-    en: "Now running in test phase across live A/Caf\u00e9 store locations",
-    nl: "Draait nu in testfase in live A/Caf\u00e9-vestigingen",
+    en: "Now running in test phase across A/Caf\u00e9 stores in Amsterdam, Paris, Dubai and Miami",
+    nl: "Draait nu in testfase in A/Caf\u00e9-vestigingen in Amsterdam, Parijs, Dubai en Miami",
   },
   "project.a-cafe-app-design.outcome.2": {
     en: "Built from an MVP concept through to a real in-store pilot",
