@@ -34,9 +34,9 @@ This isn't about replacing judgment. It's about removing the manager from decisi
 
 ## AI automation examples: from routine tasks to complex edge cases
 
-**The routine case: invoice-to-order matching.** A finance manager used to spend the first hour of every morning matching supplier invoices against purchase orders by hand, cross-checking three systems before anything could be approved. This is the kind of AI automation that pays for itself almost immediately: the system reads the invoice, matches it to the right purchase order, and only puts it in front of a person when the numbers genuinely don't line up. It's one of the most common business process automation projects there is, because the underlying rule is simple and the volume is high — the same pattern applies to status checks, order tracking, and routine document processing.
+**The routine case: invoice-to-order matching.** A finance manager used to spend the first hour of every morning matching supplier invoices against purchase orders by hand, cross-checking three systems before anything could be approved. This is the kind of AI automation that pays for itself almost immediately: the system reads the invoice, matches it to the right purchase order, and only puts it in front of a person when the numbers genuinely don't line up. It's one of the most common business process automation projects there is, because the underlying rule is simple and the volume is high, and the same pattern applies to status checks, order tracking, and routine document processing.
 
-**The complex case: pricing exceptions across markets.** Not every workflow is that clean, and this is where DYSIGNS goes further than most agencies. In one workflow, approval depended on the client's country, currency, contract type, and a history of one-off exceptions nobody had ever written down, spread across three separate systems. Rather than automate a shallow version and leave the real complexity for the manager to keep untangling by hand, we mapped every actual exception rule first — the ones people were genuinely applying, not the ones on paper — built the automation around what was truly repeatable across markets, and left only the genuine judgment calls with a person. Multi-system, exception-heavy workflows like this are exactly where AI automation earns its budget, not just the simple ones.
+**The complex case: pricing exceptions across markets.** Not every workflow is that clean, and this is where DYSIGNS goes further than most agencies. In one workflow, approval depended on the client's country, currency, contract type, and a history of one-off exceptions nobody had ever written down, spread across three separate systems. Rather than automate a shallow version and leave the real complexity for the manager to keep untangling by hand, we first mapped every actual exception rule, the ones people were genuinely applying, not the ones on paper, then built the automation around what was truly repeatable across markets, and left only the genuine judgment calls with a person. Multi-system, exception-heavy workflows like this are exactly where AI automation earns its budget, not just the simple ones.
 
 ## What doesn't get automated
 
@@ -45,6 +45,14 @@ Judgment calls that depend on relationship context, negotiation, or a decision w
 ## Where to actually start
 
 Don't start by automating the most complex process in the business. Start by mapping where things currently get stuck waiting on one person, and pick the one with the clearest, most repeatable rule underneath it. That's usually approvals or status checks, not anything customer-facing. Get that working, prove it holds up, then move to the next bottleneck. Trying to automate everything at once is how these projects stall.
+
+## Why this matters beyond today: future-proofing e-commerce operations
+
+The manager-dependency problem gets sharper as a store grows, not milder. More orders mean more status questions, more returns, more one-off pricing calls. Without a plan, the default answer is hiring another person to sit next to the bottleneck instead of removing it. E-commerce operations are usually where this shows up first, because volume is high and much of the work is genuinely repeatable.
+
+In practice, that means workflows like customer service triage, where incoming support messages get categorised and routed automatically through a tool like n8n, so only the genuine exceptions reach a person. It means product data and lead follow-up staying current on their own: enrichment that keeps descriptions and tags consistent across a growing catalogue, and lead nurturing in a platform like Klaviyo that responds to what a customer actually does instead of a fixed drip schedule nobody has revisited in a year. It also means stock and back-in-stock notifications firing the moment inventory changes, not the next time someone remembers to check.
+
+None of this replaces the manager's judgment on pricing exceptions or a difficult client conversation. What it does is decouple growth from headcount, so the business can take on more volume without every additional order routing through the same person. That decoupling, not the tools themselves, is what actually makes an operation future-proof.
 
 ## How we approach this
 

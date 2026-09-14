@@ -47,6 +47,10 @@ We do not work with a minimum or a maximum. Every project differs in scope and c
 
 Think of a webshop where someone spends an hour every morning matching incoming supplier invoices to purchase orders by hand, or a support inbox where the same five questions get answered over and over in slightly different words. Those are the projects that pay for themselves fastest: the invoice gets matched automatically and only flagged when the numbers genuinely disagree, the recurring questions get answered instantly and only the truly new ones reach a person. Nothing exotic, just time nobody should still be spending.
 
+### What AI automations do you build for e-commerce?
+
+Four patterns come up again and again. Customer service triage: incoming questions get read, categorised and routed automatically, so a person only sees the ones that genuinely need judgment, not the ten "where is my order" messages in between. Dynamic product enrichment: descriptions, tags and metadata get generated and kept consistent across hundreds of SKUs, instead of a spreadsheet nobody has time to update. Automated lead nurturing: a lead's behaviour triggers the right follow-up in a tool like Klaviyo, instead of someone manually building every segment by hand. Stock notifications: low-inventory and back-in-stock alerts fire automatically through a workflow tool like n8n, connected straight to the store and the team's channels. The return is the same across all four: hours back every week, fewer manual errors, and systems that actually talk to each other instead of three separate logins.
+
 ### Can AI just replace what your agency does?
 
 Parts of it, certainly, and we use those tools daily ourselves. We are not better than AI, nobody is. The difference is knowing what to do with it: which problem you are solving, what you hand to a model and what you should deliberately not automate.

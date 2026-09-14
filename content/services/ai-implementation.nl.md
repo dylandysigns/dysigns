@@ -47,6 +47,10 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang en co
 
 Denk aan een webshop waar iemand elke ochtend een uur kwijt is aan het handmatig matchen van binnenkomende leveranciersfacturen met inkooporders, of een supportinbox waarin dezelfde vijf vragen steeds in net iets andere woorden terugkomen. Dat zijn de projecten die zich het snelst terugverdienen: de factuur wordt automatisch gematcht en alleen gemarkeerd als de bedragen écht niet kloppen, de terugkerende vragen worden direct beantwoord en alleen de werkelijk nieuwe vragen komen bij een persoon terecht. Niets exotisch, gewoon tijd die niemand meer hoeft te besteden.
 
+### Welke AI-automatiseringen bouwen jullie voor e-commerce?
+
+Vier patronen komen steeds terug. Klantenservice-triage: binnenkomende vragen worden automatisch gelezen, gecategoriseerd en doorgestuurd, zodat een mens alleen de vragen ziet die echt beoordeling nodig hebben, niet de tien "waar is mijn bestelling"-berichten ertussen. Dynamic product enrichment: productomschrijvingen, tags en metadata worden gegenereerd en consistent gehouden over honderden SKU's, in plaats van een spreadsheet die niemand tijd heeft om bij te werken. Geautomatiseerde lead nurturing: het gedrag van een lead triggert de juiste follow-up in een tool als Klaviyo, in plaats van dat iemand elk segment handmatig bouwt. Voorraadmeldingen: meldingen bij lage voorraad en weer-op-voorraad gaan automatisch via een workflow-tool als n8n, rechtstreeks gekoppeld aan de winkel en de kanalen van het team. De opbrengst is bij alle vier hetzelfde: uren terug per week, minder handmatige fouten, en systemen die echt met elkaar praten in plaats van drie losse inlogschermen.
+
 ### Kan AI jullie werk niet gewoon overnemen?
 
 Delen ervan zeker, en we gebruiken die tools zelf ook dagelijks. We zijn niet beter dan AI, niemand is dat. Het verschil zit in weten wat je ermee doet: welk probleem je oplost, wat je aan een model overlaat en wat je bewust niet automatiseert.
