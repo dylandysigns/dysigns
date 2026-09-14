@@ -302,7 +302,7 @@ export function DesignTimeline() {
         >
           <img
             src={logoImg}
-            alt="DYSIGNS agency design portfolio, clean UI and user experience by Dylan Kho"
+            alt="DYSIGNS agency design portfolio, clean UI and user experience"
             style={{
               width: 20,
               height: "auto",

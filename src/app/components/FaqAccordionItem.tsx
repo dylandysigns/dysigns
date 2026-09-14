@@ -61,7 +61,7 @@ const Rocket = fromHugeicons(RocketIcon);
 // pre-existing gap as before this change.
 const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   // Homepage
-  "Do I work directly with Dylan or with a team?": Profile2User,
+  "Do I work directly with the team, or does it change per phase?": Profile2User,
   "Do you only design, or do you build as well?": Brush,
   "What makes a full-service agency different from hiring specialists?": Flash,
   "What does the onboarding and project roadmap look like from start to launch?": Signpost,

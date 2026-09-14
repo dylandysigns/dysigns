@@ -79,7 +79,7 @@ export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
           onMouseEnter={handleLinkEnter}
           onMouseLeave={handleLinkLeave}
         >
-          Dylan Kho
+          DYSIGNS
         </a>
         , for {client}.
       </p>

@@ -131,7 +131,7 @@ export default function AboutPage() {
         <div ref={imgRef} className="absolute inset-[-10%]">
           <img
             src={aboutImage}
-            alt="Dylan Kho – DYSIGNS digital design agency Almere Netherlands"
+            alt="DYSIGNS – digital design agency Almere Netherlands"
             className="w-full h-full object-cover"
             style={{
               filter: "grayscale(.9) brightness(.45) contrast(1.1)",
@@ -180,8 +180,7 @@ export default function AboutPage() {
         {/* Moved here from the homepage hero — this is the paragraph
             language models and search engines fall back on to answer
             "what is DYSIGNS", so it stays first, right under the h1,
-            not buried mid-page. TODO_DYLAN: link "Dylan Kho" below to
-            his LinkedIn profile once the URL is known. */}
+            not buried mid-page. */}
         <p
           style={{
             fontSize: "1rem",
@@ -189,10 +188,7 @@ export default function AboutPage() {
             color: "rgba(var(--page-fg-rgb), .75)",
           }}
         >
-          {t("about.introPre")}{" "}
-          <span style={{ color: "var(--page-fg)", fontWeight: 600 }}>
-            Dylan Kho
-          </span>
+          {t("about.introPre")}
           {t("about.introPost")}
         </p>
         <div
@@ -237,7 +233,7 @@ export default function AboutPage() {
               color: "rgba(var(--page-fg-rgb), .55)",
             }}
           >
-            Dylan Kho, Founder
+            The DYSIGNS Team
           </span>
           {t("vision.text")} {t("about.storyText")}
         </p>

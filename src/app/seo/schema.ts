@@ -2,13 +2,13 @@ import { SITE_URL, canonicalUrl } from "./meta";
 
 // Typed schema.org helper functions (fase 4) — every page-type schema is
 // built here, never as a hand-written JSON string on the page itself.
-// The site-wide @graph (Person #person, Organization/ProfessionalService
-// #organization, LocalBusiness, WebSite) already lives once in
-// index.html's <head> and is not duplicated per page — these helpers only
-// add page-type-specific nodes, which reference the existing #person /
-// #organization nodes by @id rather than repeating their data.
+// The site-wide @graph (Organization/ProfessionalService #organization,
+// LocalBusiness, WebSite) already lives once in index.html's <head> and
+// is not duplicated per page — these helpers only add page-type-specific
+// nodes, which reference the existing #organization node by @id rather
+// than repeating its data. Team-based site: no Person node, so authorship
+// and profile nodes attribute to the Organization, not an individual.
 
-const PERSON_ID = `${SITE_URL}/#person`;
 const ORG_ID = `${SITE_URL}/#organization`;
 
 export interface BreadcrumbItem {
@@ -54,7 +54,7 @@ export function creativeWorkSchema(opts: {
     "@type": "CreativeWork",
     name: opts.name,
     url: canonicalUrl(opts.path),
-    author: { "@id": PERSON_ID },
+    author: { "@id": ORG_ID },
     // schema.org's `about` expects a Thing, not plain text.
     about: { "@type": "Organization", name: opts.about },
     ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
@@ -65,7 +65,7 @@ export function profilePageSchema(opts: { path: string }) {
   return {
     "@type": "ProfilePage",
     url: canonicalUrl(opts.path),
-    mainEntity: { "@id": PERSON_ID },
+    mainEntity: { "@id": ORG_ID },
   };
 }
 
@@ -81,7 +81,7 @@ export function articleSchema(opts: {
     headline: opts.headline,
     description: opts.description,
     url: canonicalUrl(opts.path),
-    author: { "@id": PERSON_ID },
+    author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,

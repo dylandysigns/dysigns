@@ -27,7 +27,7 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
   {
     category: "Working together",
     questions: [
-      "Do I work directly with Dylan or with a team?",
+      "Do I work directly with the team, or does it change per phase?",
       "Do you only design, or do you build as well?",
       "What makes a full-service agency different from hiring specialists?",
       "What does the onboarding and project roadmap look like from start to launch?",

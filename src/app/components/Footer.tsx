@@ -168,7 +168,7 @@ export function Footer() {
           >
             <img
               src={logoImg}
-              alt="DYSIGNS – digital design agency by Dylan Kho Almere"
+              alt="DYSIGNS – digital design agency Almere"
               className="theme-logo"
               style={{ height: 18, width: "auto" }}
               onError={(e) => {
@@ -205,7 +205,7 @@ export function Footer() {
               border: 0,
             }}
           >
-            DYSIGNS is a full-service digital agency based in Almere, Netherlands, founded by Dylan Kho. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.
+            DYSIGNS is a full-service digital agency based in Almere, Netherlands. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.
           </p>
           <p
             style={{

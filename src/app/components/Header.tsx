@@ -450,7 +450,7 @@ function MobileMenu({
         <div className="flex items-center gap-2">
           <img
             src={logoImg}
-            alt="DYSIGNS – digital design agency by Dylan Kho Almere"
+            alt="DYSIGNS – digital design agency Almere"
             className="theme-logo"
             style={{ height: 18, width: "auto" }}
             onError={(e) => {
@@ -760,7 +760,7 @@ export function Header() {
       >
         <img
           src={logoImg}
-          alt="DYSIGNS – UX/UI and web design agency by Dylan Kho, Almere Netherlands"
+          alt="DYSIGNS – UX/UI and web design agency, Almere Netherlands"
           className="theme-logo"
           style={{
             height: 18,

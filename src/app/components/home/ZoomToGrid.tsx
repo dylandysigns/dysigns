@@ -234,7 +234,7 @@ export function ZoomToGrid() {
             ) : (
               <img
                 src={isHero ? zoomToGridData.heroImage : project.thumbnail}
-                alt={`${project.title} – ${project.category} by Dylan Kho, DYSIGNS`}
+                alt={`${project.title} – ${project.category} by DYSIGNS`}
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
                 style={{ willChange: "transform" }}
                 loading="lazy"
@@ -358,7 +358,7 @@ export function ZoomToGrid() {
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src={zoomToGridData.heroImage}
-                alt={`${tileProjects[4]?.title ?? ""} – ${tileProjects[4]?.category ?? ""} by Dylan Kho, DYSIGNS`}
+                alt={`${tileProjects[4]?.title ?? ""} – ${tileProjects[4]?.category ?? ""} by DYSIGNS`}
                 className="w-full h-auto object-cover"
                 style={{
                   aspectRatio: "16/9",
@@ -401,7 +401,7 @@ export function ZoomToGrid() {
                 <div className="overflow-hidden rounded-xl group">
                   <img
                     src={proj.thumbnail}
-                    alt={`${proj.title} – ${proj.category} by Dylan Kho, DYSIGNS`}
+                    alt={`${proj.title} – ${proj.category} by DYSIGNS`}
                     className="w-full h-auto object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                     style={{
                       aspectRatio: "4/3",

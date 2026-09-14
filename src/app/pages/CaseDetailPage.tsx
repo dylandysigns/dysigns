@@ -731,7 +731,7 @@ export default function CaseDetailPage() {
                   <div className="aspect-square overflow-hidden">
                     <img
                       src={src}
-                      alt={`${project.title} – ${label} – Dylan Kho, DYSIGNS`}
+                      alt={`${project.title} – ${label} – DYSIGNS`}
                       className="w-full h-full object-cover"
                       style={{ filter: "grayscale(.7) brightness(.6) contrast(1.05)" }}
                       loading="lazy"
@@ -761,7 +761,7 @@ export default function CaseDetailPage() {
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={img}
-                  alt={`${project.title} – ${project.category} case study, image ${i + 1} – Dylan Kho, DYSIGNS`}
+                  alt={`${project.title} – ${project.category} case study, image ${i + 1} – DYSIGNS`}
                   className="w-full h-full object-cover"
                   style={{
                     filter: "grayscale(.7) brightness(.6) contrast(1.05)",

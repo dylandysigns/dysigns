@@ -1,6 +1,6 @@
 # DYSIGNS
 
-> DYSIGNS is een full-service digital agency uit Almere, Netherlands, opgericht door Dylan Kho. We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces voor ondernemers, scale-ups en bureaus in Nederland en België.
+> DYSIGNS is een full-service digital agency uit Almere, Netherlands. We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces voor ondernemers, scale-ups en bureaus in Nederland en België.
 
 DYSIGNS begon als UX/UI-design en breidde uit naar webdesign, Shopify
 development, branding en social media marketing. Klanten werken met
@@ -18,7 +18,7 @@ feedbackloops en heldere communicatie als uitgangspunt.
 
 - [Home](https://dylandysigns.com/): Overzicht van wie DYSIGNS is en wat we doen.
 - [Werk](https://dylandysigns.com/work): Projecten van DYSIGNS voor klanten in Nederland en België.
-- [Over Dylan Kho](https://dylandysigns.com/about): Achtergrond en werkwijze van de oprichter.
+- [Over ons](https://dylandysigns.com/about): Achtergrond en werkwijze van het team.
 - [Contact](https://dylandysigns.com/contact): Project bespreken, reactie binnen één werkdag.
 
 ## Locatie

@@ -289,8 +289,8 @@ const dict: Record<string, Record<Lang, string>> = {
   /* ── About Page ── */
   "about.label": { en: "About us", nl: "Over ons" },
   "about.introPre": {
-    en: "DYSIGNS is a full-service digital agency founded by",
-    nl: "DYSIGNS is een full-service digital agency, opgericht door",
+    en: "DYSIGNS is a full-service digital agency",
+    nl: "DYSIGNS is een full-service digital agency",
   },
   "about.introPost": {
     en: ". We handle the whole journey: UX and brand identity, websites and Shopify stores, AI implementation, and the social and paid campaigns that bring in customers afterwards. One partner instead of four vendors pointing at each other. Based in the Netherlands, working with clients worldwide.",

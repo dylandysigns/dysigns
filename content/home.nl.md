@@ -4,7 +4,7 @@ description: "DYSIGNS ontwerpt, bouwt en laat digitale producten groeien. Webdes
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
-  DYSIGNS is een full-service digital agency, opgericht door Dylan Kho.
+  DYSIGNS is een full-service digital agency.
   Wij verzorgen het hele traject: UX en merkidentiteit, websites en
   Shopify-webshops, AI-implementatie, en de social-media- en
   advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
@@ -59,9 +59,9 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang, tech
 
 Ja. DYSIGNS werkt met founders, scale-ups en bureaus wereldwijd. De meeste samenwerkingen verlopen grotendeels op afstand, met korte lijnen en heldere communicatie in het Engels of Nederlands. Almere en Amsterdam zijn de thuisbasis van waaruit elk project wordt geleid.
 
-### Werk ik rechtstreeks met Dylan of met een team?
+### Werk ik rechtstreeks met het team, of wisselt dit per fase?
 
-Je krijgt één vast aanspreekpunt in plaats van een wisselend team per fase. Hoeveel mensen eraan werken hangt af van het project: soms is dat Dylan alleen, bij grotere trajecten sluiten specialisten aan voor design, development of advertising. Je legt het één keer uit, wij regelen de rest.
+Je krijgt één vast aanspreekpunt in plaats van een wisselend team per fase. Hoeveel mensen eraan werken hangt af van het project: kleinere projecten worden door een klein kernteam opgepakt, bij grotere trajecten sluiten specialisten aan voor design, development of advertising. Je legt het één keer uit, wij regelen de rest.
 
 ### Kunnen jullie een bestaande website of webshop overnemen?
 
