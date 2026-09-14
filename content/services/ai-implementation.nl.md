@@ -1,16 +1,17 @@
 ---
 title: "AI-implementatie Bureau voor Groeiende Bedrijven | DYSIGNS"
-description: "AI-implementatie voor echte workflows, geen demo's. DYSIGNS brengt in kaart waar AI tijd bespaart in je product, site of team en bouwt het in."
+description: "AI-implementatie voor echte workflows, geen demo's: orderverwerking, supporttriage, documentverwerking en ook de rommelige uitzonderingen."
 heading: "AI-implementatie"
 slug: "ai-implementation"
 includes: "Workflowanalyse, implementatie op maat, documentatie en overdracht"
 answerBlock: |
-  DYSIGNS implementeert AI waar het écht tijd bespaart, binnen
-  bestaande producten en workflows in plaats van als losstaande demo.
-  Vanuit Nederland, werkend met ondernemers, scale-ups en bureaus
-  wereldwijd. We zijn niet beter dan AI, niemand is dat. Het verschil
-  zit in weten wat je aan een model overlaat en wat je bewust niet
-  automatiseert.
+  DYSIGNS implementeert AI waar het écht tijd bespaart: facturen
+  matchen met inkooporders, een supportinbox trieert, een eerste
+  opzet van productteksten schrijven, precies die ene uitzondering
+  markeren die een mens moet zien. Vanuit Nederland, werkend met
+  ondernemers, scale-ups en bureaus wereldwijd. We zijn niet beter dan
+  AI, niemand is dat. Het verschil zit in weten wat je aan een model
+  overlaat en wat je bewust niet automatiseert.
 lastUpdated: "2026-08-05"
 ---
 
@@ -42,9 +43,17 @@ Voor ondernemers, scale-ups en bureaus die vermoeden dat AI ergens in hun produc
 
 We werken niet met een minimum of maximum. Elk project verschilt in omvang en complexiteit, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend.
 
+### Wat is een typische AI-automatisering die jullie bouwen?
+
+Denk aan een webshop waar iemand elke ochtend een uur kwijt is aan het handmatig matchen van binnenkomende leveranciersfacturen met inkooporders, of een supportinbox waarin dezelfde vijf vragen steeds in net iets andere woorden terugkomen. Dat zijn de projecten die zich het snelst terugverdienen: de factuur wordt automatisch gematcht en alleen gemarkeerd als de bedragen écht niet kloppen, de terugkerende vragen worden direct beantwoord en alleen de werkelijk nieuwe vragen komen bij een persoon terecht. Niets exotisch, gewoon tijd die niemand meer hoeft te besteden.
+
 ### Kan AI jullie werk niet gewoon overnemen?
 
 Delen ervan zeker, en we gebruiken die tools zelf ook dagelijks. We zijn niet beter dan AI, niemand is dat. Het verschil zit in weten wat je ermee doet: welk probleem je oplost, wat je aan een model overlaat en wat je bewust niet automatiseert.
+
+### Pakken jullie alleen de simpele gevallen op?
+
+Nee, vaak juist het tegenovergestelde. Bij een project liep het retourproces over twee magazijnen, drie talen en een lijst met handmatige uitzonderingen die nergens was vastgelegd; veel bureaus zouden de makkelijke 80% automatiseren en de rest stilzwijgend laten liggen. Wij brachten eerst de echte uitzonderingsregels in kaart, bouwden de automatisering rond wat werkelijk herhaalbaar was, en hielden een mens in de loop voor de gevallen die echt beoordeling nodig hadden. Rommelige, onvastgelegde processen zijn meestal waar automatisering de meeste tijd bespaart, niet de minste.
 
 ### Vertellen jullie het als AI niet de juiste oplossing is?
 

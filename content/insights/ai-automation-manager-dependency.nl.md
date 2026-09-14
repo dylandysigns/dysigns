@@ -1,6 +1,6 @@
 ---
 title: "AI-automatisering: Minder Afhankelijk van Manager | DYSIGNS"
-description: "Hoe AI-gedreven procesautomatisering bedrijven minder afhankelijk maakt van één manager of sleutelmedewerker, met praktische startpunten."
+description: "Hoe AI-automatisering bedrijven minder afhankelijk maakt van één manager, met concrete voorbeelden van routinetaken tot complexe uitzonderingen."
 heading: "Hoe AI-automatisering de afhankelijkheid van één manager verkleint"
 slug: "ai-automation-manager-dependency"
 answerBlock: |
@@ -31,6 +31,12 @@ Dit gaat niet over het vervangen van inzicht. Het gaat over het weghalen van de 
 **Documenten en gegevens verwerken.** Een factuur lezen, de bedragen eruit halen, matchen met een inkooporder, een mismatch signaleren: dit is precies het soort gestructureerde, herhalende taak die AI betrouwbaar aankan, waardoor de manager tijd overhoudt voor de paar gevallen die echt een menselijk oordeel nodig hebben.
 
 **Eerste triage.** Niet elk binnenkomend verzoek hoeft eerst bij de manager. AI kan verzoeken sorteren, prioriteren en doorsturen, zodat de manager alleen ziet wat écht hun specifieke inzicht nodig heeft, in de volgorde die er echt toe doet.
+
+## Voorbeelden van AI-automatisering: van routinetaken tot complexe uitzonderingen
+
+**Het routinegeval: facturen matchen met inkooporders.** Een finance manager was elke ochtend het eerste uur kwijt aan het handmatig matchen van leveranciersfacturen met inkooporders, met een controle in drie systemen voordat er iets goedgekeurd kon worden. Dit is precies het soort AI-automatisering dat zich vrijwel direct terugverdient: het systeem leest de factuur, matcht die met de juiste inkooporder, en legt hem alleen bij een persoon neer als de bedragen écht niet kloppen. Het is een van de meest voorkomende procesautomatisering-projecten die er zijn, omdat de onderliggende regel simpel is en het volume hoog — hetzelfde patroon geldt voor statuschecks, orderopvolging en routinematige documentverwerking.
+
+**Het complexe geval: prijsuitzonderingen over meerdere markten.** Niet elk proces is zo overzichtelijk, en dit is waar DYSIGNS verder gaat dan de meeste bureaus. Bij één workflow hing goedkeuring af van het land van de klant, de valuta, het contracttype en een geschiedenis van eenmalige uitzonderingen die nergens was vastgelegd, verspreid over drie losse systemen. In plaats van een oppervlakkige versie te automatiseren en de echte complexiteit bij de manager te laten liggen om handmatig te blijven ontwarren, brachten we eerst elke werkelijke uitzonderingsregel in kaart — de regels die mensen daadwerkelijk toepasten, niet die op papier — bouwden we de automatisering rond wat echt herhaalbaar was over markten heen, en lieten we alleen de echte beoordelingsgevallen bij een persoon. Complexe workflows met veel uitzonderingen en meerdere systemen zijn precies waar AI-automatisering zichzelf terugverdient, niet alleen de simpele gevallen.
 
 ## Wat niet wordt geautomatiseerd
 

@@ -1,6 +1,6 @@
 ---
 title: "AI Automation: Less Dependent on One Manager | DYSIGNS"
-description: "How AI-driven process automation reduces a business's dependency on one manager or key employee, with practical starting points."
+description: "How AI automation reduces a business's dependency on one manager or key employee, with real examples from routine tasks to complex edge cases."
 heading: "How AI automation reduces dependency on one manager"
 slug: "ai-automation-manager-dependency"
 answerBlock: |
@@ -31,6 +31,12 @@ This isn't about replacing judgment. It's about removing the manager from decisi
 **Document and data processing.** Reading an invoice, extracting the numbers, matching it to a purchase order, flagging a mismatch: this is exactly the kind of structured, repetitive task AI handles reliably, freeing the manager for the handful of cases that genuinely need a human call.
 
 **First-pass triage.** Not every incoming request needs the manager first. AI can sort, prioritise, and route requests so the manager only sees what actually needs their specific judgment, in the order it actually matters.
+
+## AI automation examples: from routine tasks to complex edge cases
+
+**The routine case: invoice-to-order matching.** A finance manager used to spend the first hour of every morning matching supplier invoices against purchase orders by hand, cross-checking three systems before anything could be approved. This is the kind of AI automation that pays for itself almost immediately: the system reads the invoice, matches it to the right purchase order, and only puts it in front of a person when the numbers genuinely don't line up. It's one of the most common business process automation projects there is, because the underlying rule is simple and the volume is high — the same pattern applies to status checks, order tracking, and routine document processing.
+
+**The complex case: pricing exceptions across markets.** Not every workflow is that clean, and this is where DYSIGNS goes further than most agencies. In one workflow, approval depended on the client's country, currency, contract type, and a history of one-off exceptions nobody had ever written down, spread across three separate systems. Rather than automate a shallow version and leave the real complexity for the manager to keep untangling by hand, we mapped every actual exception rule first — the ones people were genuinely applying, not the ones on paper — built the automation around what was truly repeatable across markets, and left only the genuine judgment calls with a person. Multi-system, exception-heavy workflows like this are exactly where AI automation earns its budget, not just the simple ones.
 
 ## What doesn't get automated
 
