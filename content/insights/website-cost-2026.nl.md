@@ -16,7 +16,9 @@ lastUpdated: "2026-09-05"
 
 ## Het korte antwoord
 
-In Nederland kost een eenvoudige, professioneel ontworpen brochurewebsite meestal tussen de €2.500 en €7.000. Een custom-ontworpen bedrijfswebsite met meer pagina's en functionaliteit ligt tussen €7.000 en €20.000. Een Shopify webshop begint rond €5.000 voor een aangepast thema en loopt ruim voorbij €25.000 voor een volledig maatwerk build met integraties. Een complex webplatform of web-app is feitelijk open-einde, want dat is eerder softwareontwikkeling dan websitedesign.
+De bedragen hieronder zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DYSIGNS — zie ze als startpunt om op te budgetteren, niet als offerte.
+
+In Nederland kost een eenvoudige, professioneel ontworpen brochurewebsite meestal tussen de €2.500 en €7.000. Een custom-ontworpen bedrijfswebsite met meer pagina's en functionaliteit ligt tussen €7.000 en €20.000. Een Shopify webshop begint rond €1.500 voor een aangepast thema en loopt ruim voorbij €25.000 voor een volledig maatwerk build met integraties. Een complex webplatform of web-app is feitelijk open-einde, want dat is eerder softwareontwikkeling dan websitedesign.
 
 Die bandbreedtes zijn een startpunt voor een gesprek, geen offerte. Wat binnen die marge echt bepaalt waar jouw project uitkomt, is een kort rijtje concrete factoren.
 
@@ -40,7 +42,7 @@ Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DY
 
 - **Eenvoudige brochurewebsite** (5–10 pagina's, template-based of licht aangepast): ongeveer €2.500–€7.000.
 - **Custom-ontworpen bedrijfswebsite** (maatwerk design, CMS, gemiddelde functionaliteit): ongeveer €7.000–€20.000.
-- **Shopify webshop** (aangepast thema tot volledig maatwerk): ongeveer €5.000–€25.000+, afhankelijk van custom secties, apps en Shopify Markets voor verkoop in meerdere landen.
+- **Shopify webshop** (aangepast thema tot volledig maatwerk): ongeveer €1.500–€25.000+, afhankelijk van custom secties, apps en Shopify Markets voor verkoop in meerdere landen.
 - **Webplatform of web-app** (dashboards, portalen, ingelogde omgevingen): meestal €20.000 en hoger, gescoped als software in plaats van als website.
 
 Alles wat ver onder deze bandbreedtes wordt geoffreerd, is meestal een template met jouw logo erop, geen ontworpen en gebouwde site. Alles wat wordt geoffreerd zonder enig intakegesprek is een gok, geen scope.

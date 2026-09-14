@@ -16,7 +16,9 @@ lastUpdated: "2026-09-05"
 
 ## The short answer
 
-In the Netherlands, a simple, professionally designed brochure website typically runs somewhere between €2,500 and €7,000. A custom-designed business website with more pages and functionality lands between €7,000 and €20,000. A Shopify webshop starts around €5,000 for a modified theme and runs well past €25,000 for a fully custom build with integrations. A complex web platform or web app is effectively open-ended, since it is closer to software development than website design.
+The figures below are general market indications for the Netherlands in 2026, not a DYSIGNS price list — treat them as a starting point for budgeting, not a quote.
+
+In the Netherlands, a simple, professionally designed brochure website typically runs somewhere between €2,500 and €7,000. A custom-designed business website with more pages and functionality lands between €7,000 and €20,000. A Shopify webshop starts around €1,500 for a modified theme and runs well past €25,000 for a fully custom build with integrations. A complex web platform or web app is effectively open-ended, since it is closer to software development than website design.
 
 Those ranges are a starting point for a conversation, not a quote. What actually determines where your project lands inside them is a short list of concrete factors.
 
@@ -40,7 +42,7 @@ These are general market indications for the Netherlands in 2026, not a DYSIGNS 
 
 - **Simple brochure site** (5–10 pages, template-based or lightly customised): roughly €2,500–€7,000.
 - **Custom-designed business website** (bespoke design, CMS, moderate functionality): roughly €7,000–€20,000.
-- **Shopify webshop** (modified theme to fully custom build): roughly €5,000–€25,000+, depending on custom sections, apps, and Shopify Markets setup for multi-country selling.
+- **Shopify webshop** (modified theme to fully custom build): roughly €1,500–€25,000+, depending on custom sections, apps, and Shopify Markets setup for multi-country selling.
 - **Web platform or web app** (dashboards, portals, logged-in experiences): usually €20,000 and up, scoped like software rather than a website.
 
 Anything quoted well below these ranges is usually a template with your logo dropped in, not a designed and built site. Anything quoted with no discovery conversation at all is a guess, not a scope.
