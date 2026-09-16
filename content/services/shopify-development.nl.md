@@ -1,14 +1,15 @@
 ---
-title: "Shopify Development & Webshop Bureau NL | DYSIGNS"
-description: "Custom Shopify thema's, Liquid-secties en Shopify Markets van DYSIGNS. Webshops gebouwd om te blijven converteren, niet alleen om te lanceren."
+title: "Shopify Partner Bureau in Nederland | DYSIGNS"
+description: "DYSIGNS is een officiële Shopify Partner: custom thema's, Liquid-secties en Shopify Markets, gebouwd om te blijven converteren, niet alleen te lanceren."
 heading: "Shopify development"
 slug: "shopify-development"
 answerBlock: |
-  DYSIGNS bouwt en verbetert Shopify webshops voor ondernemers en
-  bureaus wereldwijd, vanuit Nederland. Van custom thema's en
-  Liquid-secties tot Shopify Markets en Flow-automatisering, onderdeel
-  van ons bredere webdesign- en developmentaanbod, gebouwd om te
-  blijven converteren, niet alleen om goed te lanceren.
+  DYSIGNS is een officiële Shopify Partner en bouwt en verbetert
+  Shopify webshops voor ondernemers en bureaus wereldwijd, vanuit
+  Nederland. Van custom thema's en Liquid-secties tot Shopify Markets
+  en Flow-automatisering, onderdeel van ons bredere webdesign- en
+  developmentaanbod, gebouwd om te blijven converteren, niet alleen om
+  goed te lanceren.
 lastUpdated: "2026-08-05"
 ---
 
@@ -33,3 +34,21 @@ Shopify is sterk voor de meeste e-commerce toepassingen, maar niet altijd de bes
 ## Who it is for
 
 Voor ondernemers en bureaus met een Shopify webshop die verder moet dan een standaardthema, of die een bestaande webshop willen verbeteren in plaats van opnieuw laten bouwen.
+
+## Frequently asked questions
+
+### Zijn jullie een officiële Shopify Partner?
+
+Ja. DYSIGNS is een geregistreerde Shopify Partner, wat betekent dat we werken met Shopify's eigen tooling, apps en Markets-opzet zoals Shopify het bedoelt, niet eromheen, en dat we meebewegen zodra het platform verandert.
+
+### Kan een bestaande Shopify webshop verbeterd worden, of moet hij opnieuw gebouwd worden?
+
+Vaak kan een bestaande webshop verbeterd worden zonder alles opnieuw te bouwen, afhankelijk van de huidige technische staat van het thema en de apps die al in gebruik zijn.
+
+### Werken jullie met bestaande Shopify-apps en koppelingen?
+
+Ja, we bouwen voort op wat al werkt en voegen toe waar nodig, in plaats van standaard alles te vervangen.
+
+### Ondersteunen jullie meerdere talen of landen via Shopify Markets?
+
+Ja, Shopify Markets maken we onderdeel van de implementatie zodra een webshop internationaal moet verkopen.

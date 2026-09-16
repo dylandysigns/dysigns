@@ -45,7 +45,7 @@ If growth means selling into new countries, not just more volume in one, Shopify
 
 ## How we help
 
-At DYSIGNS, we build the integration layer between your Shopify store and the fulfillment setup that actually fits your volume and markets, not a generic "connect everything" approach, but the specific syncs and automations that remove your actual bottleneck. If stock, shipping, or order volume is starting to outgrow how your store currently runs, [get in touch](/contact) or read more about our [Shopify development](/shopify-development) work.
+At DYSIGNS, an official Shopify Partner, we build the integration layer between your Shopify store and the fulfillment setup that actually fits your volume and markets, not a generic "connect everything" approach, but the specific syncs and automations that remove your actual bottleneck. If stock, shipping, or order volume is starting to outgrow how your store currently runs, [get in touch](/contact) or read more about our [Shopify development](/shopify-development) work.
 
 ## Frequently asked questions
 

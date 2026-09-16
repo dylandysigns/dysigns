@@ -1,9 +1,9 @@
 ---
 title: "Webdesign & Development Bureau in Nederland | DYSIGNS"
-description: "Maatwerk websites en Shopify webshops van DYSIGNS. Snel, vindbaar en gebouwd om te blijven presteren, met design en development in één team."
+description: "Maatwerk websites en Shopify webshops van DYSIGNS, officieel Shopify Partner: snel, vindbaar en gebouwd om te blijven presteren."
 heading: "Webdesign en development"
 slug: "web-design"
-includes: "Shopify development, custom thema's, migraties, performance, technische SEO"
+includes: "Shopify Partner development, custom thema's, migraties, performance, technische SEO"
 answerBlock: |
   DYSIGNS ontwerpt en bouwt maatwerk websites en Shopify webshops voor
   ondernemers, scale-ups en bureaus wereldwijd, vanuit Nederland. Elke
@@ -25,7 +25,7 @@ Een snelle, werkende site gebouwd vanuit dat ontwerp, geen benadering ervan.
 
 ### Shopify stores
 
-Voor webshops specifiek bouwen we op [Shopify](/shopify-development), het platform dat we het meest gebruiken voor commerce.
+Voor webshops specifiek bouwen we op [Shopify](/shopify-development) als officiële Shopify Partner, het platform dat we het meest gebruiken voor commerce.
 
 ## Waarom dit bij design en development hoort
 
@@ -43,7 +43,7 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang, tech
 
 ### Bouwen jullie op een bestaand platform, of volledig custom?
 
-Dat hangt van het project af. Shopify is de meest gekozen oplossing voor webshops; voor grote of complexe commerce kijken we naar headless opties zoals Medusa; voor websites bouwen we custom front-end. We bepalen dit per project op basis van je schaal, je markten en wie het daarna onderhoudt.
+Dat hangt van het project af. Shopify, waar we bouwen als officiële Shopify Partner, is de meest gekozen oplossing voor webshops; voor grote of complexe commerce kijken we naar headless opties zoals Medusa; voor websites bouwen we custom front-end. We bepalen dit per project op basis van je schaal, je markten en wie het daarna onderhoudt.
 
 ### Kunnen jullie een bestaande website of webshop overnemen?
 

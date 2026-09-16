@@ -1,9 +1,9 @@
 ---
 title: "Web Design & Development Agency in the Netherlands | DYSIGNS"
-description: "Custom websites and Shopify stores from DYSIGNS. Fast, findable and built to keep performing, with design and development in one team."
+description: "Custom websites and Shopify stores from DYSIGNS, an official Shopify Partner: fast, findable, and built to keep performing."
 heading: "Web design and development"
 slug: "web-design"
-includes: "Shopify development, custom themes, migrations, performance, technical SEO"
+includes: "Shopify Partner development, custom themes, migrations, performance, technical SEO"
 answerBlock: |
   DYSIGNS designs and builds custom websites and Shopify stores for
   founders, scale-ups and agencies worldwide, based in the
@@ -25,7 +25,7 @@ A fast, working site built from that design, not an approximation of it.
 
 ### Shopify stores
 
-For online stores specifically, we build on [Shopify](/shopify-development), the platform we use most for commerce.
+For online stores specifically, we build on [Shopify](/shopify-development) as an official Shopify Partner, the platform we use most for commerce.
 
 ## Why this sits with design and development
 
@@ -43,7 +43,7 @@ We do not work with a minimum or a maximum. Every project differs in scope, tech
 
 ### Do you build on an existing platform, or fully custom?
 
-That depends on the project. Shopify is the most common choice for online stores; for large or complex commerce we look at headless options like Medusa; for websites we build custom front end. We decide per project based on your scale, your markets and who maintains it afterwards.
+That depends on the project. Shopify, where we build as an official Shopify Partner, is the most common choice for online stores; for large or complex commerce we look at headless options like Medusa; for websites we build custom front end. We decide per project based on your scale, your markets and who maintains it afterwards.
 
 ### Can you take over an existing website or store?
 

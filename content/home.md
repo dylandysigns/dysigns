@@ -1,15 +1,15 @@
 ---
 title: "Full-Service Design & Development Agency | DYSIGNS"
-description: "DYSIGNS designs, builds and grows digital products. Web design, UX/UI, Shopify, branding, Meta Ads and AI implementation from one team in the Netherlands."
+description: "DYSIGNS designs, builds and grows digital products: web design, UX/UI, Shopify Partner development, branding, Meta Ads and AI, from the Netherlands."
 slug: "/"
 heading: "We design, build and grow digital products"
 answerBlock: |
   DYSIGNS is a full-service digital agency. We
   handle the whole journey: UX and brand identity, websites and
-  Shopify stores, AI implementation, and the social and paid campaigns
-  that bring in customers afterwards. One partner instead of four
-  vendors pointing at each other. Based in the Netherlands, working
-  with clients worldwide.
+  Shopify stores as an official Shopify Partner, AI implementation, and
+  the social and paid campaigns that bring in customers afterwards. One
+  partner instead of four vendors pointing at each other. Based in the
+  Netherlands, working with clients worldwide.
 lastUpdated: "2026-08-02"
 ---
 
@@ -73,7 +73,7 @@ Both, and that is the point. Design and development sit with the same partner, s
 
 ### Which platforms do you build on?
 
-We decide per project, because the right choice depends on your scale, your markets and who maintains it afterwards. Shopify is the most common for online stores. For large or complex commerce we look at headless options like Medusa. For websites we build custom front end.
+We decide per project, because the right choice depends on your scale, your markets and who maintains it afterwards. Shopify, where we build as an official Shopify Partner, is the most common for online stores. For large or complex commerce we look at headless options like Medusa. For websites we build custom front end.
 
 ### Do you also manage social media and ads on an ongoing basis?
 

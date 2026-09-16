@@ -1,14 +1,15 @@
 ---
-title: "Shopify Development Agency in the Netherlands | DYSIGNS"
-description: "Custom Shopify themes, Liquid sections and Shopify Markets from DYSIGNS. Stores built to keep converting, not just to launch."
+title: "Shopify Partner Agency in the Netherlands | DYSIGNS"
+description: "DYSIGNS is an official Shopify Partner: custom themes, Liquid sections and Shopify Markets, built to keep converting, not just to launch."
 heading: "Shopify development"
 slug: "shopify-development"
 answerBlock: |
-  DYSIGNS builds and improves Shopify stores for founders and
-  agencies worldwide, based in the Netherlands. From custom themes and
-  Liquid sections to Shopify Markets and Flow automation, part of our
-  wider web design and development offering, built to keep
-  converting, not only to launch well.
+  DYSIGNS is an official Shopify Partner, building and improving
+  Shopify stores for founders and agencies worldwide, based in the
+  Netherlands. From custom themes and Liquid sections to Shopify
+  Markets and Flow automation, part of our wider web design and
+  development offering, built to keep converting, not only to launch
+  well.
 lastUpdated: "2026-08-02"
 ---
 
@@ -36,6 +37,10 @@ For founders and agencies with a Shopify store that needs to go beyond a standar
 
 
 ## Frequently asked questions
+
+### Are you an official Shopify Partner?
+
+Yes. DYSIGNS is a registered Shopify Partner, which means we work with Shopify's own tooling, apps, and Markets setup the way Shopify intends, not around it, and we stay current as the platform changes.
 
 ### Can an existing Shopify store be improved, or does it need a rebuild?
 

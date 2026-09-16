@@ -47,7 +47,7 @@ Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DY
 
 ### Wat een Shopify webshop in 2026 echt kost
 
-"Een Shopify webshop" kan een thema met vijf pagina's zijn, of een headless, AI-gedreven platform dat in zes landen verkoopt, dus één bedrag zegt niet zoveel. Denk liever in drie niveaus die logisch op elkaar voortbouwen:
+"Een Shopify webshop" kan een thema met vijf pagina's zijn, of een headless, AI-gedreven platform dat in zes landen verkoopt, dus één bedrag zegt niet zoveel. Als officiële Shopify Partner ziet DYSIGNS deze bandbreedte van dichtbij: denk liever in drie niveaus dan in één bedrag, die logisch op elkaar voortbouwen:
 
 - **Instapniveau** (aangepast thema, standaardfunctionaliteit, één markt): vanaf €1.500.
 - **Middenklasse** (custom secties, meerdere app-integraties, een verder uitgewerkt designsysteem): ongeveer €4.000 tot €10.000.

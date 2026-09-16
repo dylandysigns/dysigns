@@ -48,7 +48,7 @@ Een aangepast of custom Shopify-thema is goedkoper om te bouwen en goedkoper om 
 
 ## Hoe wij het per project bepalen
 
-Bij DYSIGNS kiezen we niet standaard voor Shopify omdat dat makkelijker is voor ons, en niet standaard voor maatwerk omdat dat indrukwekkender klinkt in een pitch. We kijken naar jouw product, prijsmodel, team en groeiplan, en bouwen op de fundering die daar echt bij past: Shopify voor de meeste winkels, headless opties zoals Medusa wanneer de eisen dat daadwerkelijk vragen. Wil je die inschatting voor jouw eigen winkel? [Neem contact op](/contact) of lees meer over ons werk in [Shopify development](/shopify-development).
+Bij DYSIGNS, officieel Shopify Partner, kiezen we niet standaard voor Shopify omdat dat makkelijker is voor ons, en niet standaard voor maatwerk omdat dat indrukwekkender klinkt in een pitch. We kijken naar jouw product, prijsmodel, team en groeiplan, en bouwen op de fundering die daar echt bij past: Shopify voor de meeste winkels, headless opties zoals Medusa wanneer de eisen dat daadwerkelijk vragen. Wil je die inschatting voor jouw eigen winkel? [Neem contact op](/contact) of lees meer over ons werk in [Shopify development](/shopify-development).
 
 ## Veelgestelde vragen
 

@@ -47,7 +47,7 @@ These are general market indications for the Netherlands in 2026, not a DYSIGNS 
 
 ### What a Shopify webshop actually costs in 2026
 
-"A Shopify store" can mean a five-page theme tweak or a headless, AI-powered platform selling into six countries, so one number does not tell you much. Think in three tiers instead, each building logically on the one before it:
+"A Shopify store" can mean a five-page theme tweak or a headless, AI-powered platform selling into six countries, so one number does not tell you much. As an official Shopify Partner, DYSIGNS sees this range up close: think in three tiers instead of one number, each building logically on the one before it:
 
 - **Starter** (modified theme, standard functionality, one market): from €1,500.
 - **Mid-tier** (custom sections, several app integrations, a more developed design system): roughly €4,000 to €10,000.

@@ -1,15 +1,16 @@
 ---
 title: "Webdesign, Branding & Development Bureau | DYSIGNS"
-description: "DYSIGNS ontwerpt, bouwt en laat digitale producten groeien. Webdesign, UX/UI, Shopify, branding, Meta Ads en AI-implementatie vanuit één team in Nederland."
+description: "DYSIGNS ontwerpt, bouwt en laat digitale producten groeien: webdesign, UX/UI, Shopify Partner development, branding, Meta Ads en AI, vanuit Nederland."
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
   DYSIGNS is een full-service digital agency.
   Wij verzorgen het hele traject: UX en merkidentiteit, websites en
-  Shopify-webshops, AI-implementatie, en de social-media- en
-  advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
-  plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in
-  Nederland, met klanten over de hele wereld.
+  Shopify-webshops als officiële Shopify Partner, AI-implementatie, en
+  de social-media- en advertentiecampagnes die daarna klanten
+  binnenhalen. Eén partner in plaats van vier leveranciers die naar
+  elkaar wijzen. Gevestigd in Nederland, met klanten over de hele
+  wereld.
 lastUpdated: "2026-08-02"
 ---
 
@@ -73,7 +74,7 @@ Beide, en dat is precies het punt. Design en development liggen bij dezelfde par
 
 ### Welke platforms gebruiken jullie?
 
-We bepalen dit per project, omdat de juiste keuze afhangt van je schaal, je markten en wie het daarna onderhoudt. Shopify is het meest gebruikt voor webshops. Voor grote of complexe e-commerce kijken we naar headless opties zoals Medusa. Voor websites bouwen we custom front-end.
+We bepalen dit per project, omdat de juiste keuze afhangt van je schaal, je markten en wie het daarna onderhoudt. Shopify, waar we bouwen als officiële Shopify Partner, is het meest gebruikt voor webshops. Voor grote of complexe e-commerce kijken we naar headless opties zoals Medusa. Voor websites bouwen we custom front-end.
 
 ### Beheren jullie ook doorlopend social media en advertenties?
 

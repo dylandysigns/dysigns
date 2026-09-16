@@ -45,7 +45,7 @@ Als groei betekent dat je naar nieuwe landen verkoopt, niet alleen meer volume i
 
 ## Hoe wij helpen
 
-Bij DYSIGNS bouwen we de integratielaag tussen jouw Shopify webshop en de fulfillment-setup die daadwerkelijk bij jouw volume en markten past, geen generieke "alles-koppelen"-aanpak, maar de specifieke synchronisaties en automatiseringen die jouw echte knelpunt wegnemen. Als voorraad, verzending of ordervolume je huidige manier van werken begint te ontgroeien, [neem contact op](/contact) of lees meer over ons werk in [Shopify development](/shopify-development).
+Bij DYSIGNS, officieel Shopify Partner, bouwen we de integratielaag tussen jouw Shopify webshop en de fulfillment-setup die daadwerkelijk bij jouw volume en markten past, geen generieke "alles-koppelen"-aanpak, maar de specifieke synchronisaties en automatiseringen die jouw echte knelpunt wegnemen. Als voorraad, verzending of ordervolume je huidige manier van werken begint te ontgroeien, [neem contact op](/contact) of lees meer over ons werk in [Shopify development](/shopify-development).
 
 ## Veelgestelde vragen
 

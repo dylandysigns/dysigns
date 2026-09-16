@@ -47,7 +47,7 @@ A modified or custom Shopify theme is cheaper to build and cheaper to run: Shopi
 
 ## How we decide, project by project
 
-At DYSIGNS, we don't default to Shopify because it's easier for us, and we don't default to custom because it sounds more impressive in a pitch. We look at your product, your pricing model, your team, and your growth plan, and build on whichever foundation actually fits: Shopify for the majority of stores, headless options like Medusa when the requirements genuinely call for it. If you want that assessment for your own store, [get in touch](/contact) or read more about our [Shopify development](/shopify-development) work.
+At DYSIGNS, an official Shopify Partner, we don't default to Shopify because it's easier for us, and we don't default to custom because it sounds more impressive in a pitch. We look at your product, your pricing model, your team, and your growth plan, and build on whichever foundation actually fits: Shopify for the majority of stores, headless options like Medusa when the requirements genuinely call for it. If you want that assessment for your own store, [get in touch](/contact) or read more about our [Shopify development](/shopify-development) work.
 
 ## Frequently asked questions
 
