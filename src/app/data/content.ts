@@ -96,7 +96,7 @@ export const siteContent = {
       category: "Social Media Management",
       tags: ["Brand Identity", "Branding", "Print", "Web"],
       year: "2026",
-      thumbnail: "/images/beckers-cover-laptop-v2.png",
+      thumbnail: "/images/beckers-cover-laptop-v2.avif",
       variant: "F" as const,
     },
   ],
@@ -188,7 +188,7 @@ export const siteContent = {
       role: "CEO",
       company: "Pure and Cure PR",
       avatar:
-"/images/marleenvanpuurpng.png"},
+"/images/marleenvanpuurpng.avif"},
     {
       id: "t3",
       quote:
@@ -197,7 +197,7 @@ export const siteContent = {
       role: "Founder",
       company: "Fijne Gasten",
       avatar:
-"/images/luuk-studio.png"},
+"/images/luuk-studio.avif"},
     // {
     //   id: "t4",
     //   quote:

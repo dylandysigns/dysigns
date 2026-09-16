@@ -126,7 +126,7 @@ export const projects: Project[] = [
     tags: ["Web Design", "UX Design", "Development"],
     year: "2026 January",
     url: "https://drinkstelz.com/",
-    thumbnail:"/images/mobilestelz.png",
+    thumbnail:"/images/mobilestelz.avif",
     overview:
       "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster collection discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
     outcomes: [
@@ -136,8 +136,8 @@ export const projects: Project[] = [
       "Won CSS Design Awards site of the month",
     ],
     gallery: [
-      "/images/old-new.png",
-      "/images/stelz-laptop.png"
+      "/images/old-new.avif",
+      "/images/stelz-laptop.avif"
 
     ],
   },
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     tags: ["Branding", "Print", "Web"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
-    thumbnail: "/images/beckers-cover-laptop-v2.png",
+    thumbnail: "/images/beckers-cover-laptop-v2.avif",
     overview:
       "For Verkeersschool Beckers, we developed a complete new brand identity to modernize and professionalize their presence in the Dutch market. The project included a full logo redesign, visual identity system, and consistent brand application across all touchpoints.\n\nWe translated the new identity into social media assets, vehicle branding, and a fully redesigned website. The result is a cohesive and recognizable brand that builds trust and stands out both online and on the road.",
     outcomes: [
@@ -158,9 +158,9 @@ export const projects: Project[] = [
       "A consistent identity ready for long-term growth",
     ],
     gallery: [
-      "/images/beckers-cover-laptop-v2.png",
-      "/images/beckers-car-branding.png",
-      "/images/beckers-phone-mockup.png",
+      "/images/beckers-cover-laptop-v2.avif",
+      "/images/beckers-car-branding.avif",
+      "/images/beckers-phone-mockup.avif",
       "/images/beckers-brand-board.png",
       "/images/beckers-logo-lockup.png",
     ],
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     category: "Digital",
     tags: ["UX Design", "Development", "Mobile App", "Dashboard", "SaaS"],
     year: "2026",
-    thumbnail: "/images/powermobile-hero.png",
+    thumbnail: "/images/powermobile-hero.avif",
     overview:
       "The Challenge\n\nFor enforcement officers and other field workers in the VTH sector (Vergunning, Toezicht en Handhaving), the real work happens on the street. Yet these government professionals were using an outdated app that made case management in the field unnecessarily slow and cumbersome. There was an urgent need for a fast, reliable system that supported their work rather than slowing it down.\n\nThe Solution\n\nTo tackle this, I designed and developed PowerMobile entirely from scratch. As lead for both design and technical development, I built a modern, case-oriented system that makes permit and case management directly accessible in the field. The app features an intuitive interface for managing cases, consulting interactive maps, and tracking workflows\u2014fully responsive across all devices.\n\nThe Result\n\nEvery part of PowerMobile was shaped around the day-to-day realities of government professionals. The impact was immediate: user satisfaction rose from 15% with the old system to over 40% with the new app.",
     outcomes: [
@@ -181,9 +181,9 @@ export const projects: Project[] = [
       "Adopted across multiple government institutions in the VTH sector",
     ],
     gallery: [
-      "/images/powermobile-overview.png",
-      "/images/powermobile-devices.png",
-      "/images/powermobile-maps.png",
+      "/images/powermobile-overview.avif",
+      "/images/powermobile-devices.avif",
+      "/images/powermobile-maps.avif",
     ],
   },
   {
@@ -272,7 +272,7 @@ export const projects: Project[] = [
  * `thumbnail` directly instead of a separately curated image list, so a
  * tile can never show a different project's photo than the one it links to. */
 export const zoomToGridData = {
-  heroImage: "/images/mobilestelz.png",
+  heroImage: "/images/mobilestelz.avif",
 };
 
 export const aboutImage =

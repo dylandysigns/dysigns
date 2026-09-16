@@ -27,9 +27,9 @@ export const serviceDefinitions: ServiceDefinition[] = [
 // work that wasn't done. Services without a matching case (AI
 // implementation) fall back to no image rather than a misleading one.
 export const serviceHeroImages: Partial<Record<string, string>> = {
-  "web-design": "/images/stelz-laptop.png",
-  "shopify-development": "/images/stelz-laptop.png",
-  "ux-ui-design": "/images/powermobile-overview.png",
+  "web-design": "/images/stelz-laptop.avif",
+  "shopify-development": "/images/stelz-laptop.avif",
+  "ux-ui-design": "/images/powermobile-overview.avif",
   branding: "/images/beckers-brand-board.png",
-  "social-media-meta-ads": "/images/beckers-phone-mockup.png",
+  "social-media-meta-ads": "/images/beckers-phone-mockup.avif",
 };
