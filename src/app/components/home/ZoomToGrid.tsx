@@ -238,7 +238,8 @@ export function ZoomToGrid() {
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
                 style={{ willChange: "transform" }}
                 loading={isHero ? "eager" : "lazy"}
-                fetchPriority={isHero ? "high" : undefined}
+                // eslint-disable-next-line react/no-unknown-property -- React 18 doesn't recognize fetchPriority; lowercase passes through as a plain attribute
+                fetchpriority={isHero ? "high" : undefined}
               />
             )}
           </div>
