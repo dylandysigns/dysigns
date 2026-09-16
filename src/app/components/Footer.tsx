@@ -171,6 +171,7 @@ export function Footer() {
               alt="DYSIGNS, digital design agency Almere"
               className="theme-logo"
               style={{ height: 18, width: "auto" }}
+              loading="lazy"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = "none";
               }}

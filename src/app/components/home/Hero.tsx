@@ -618,7 +618,7 @@ export function Hero() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               style={{
                 opacity: 0.65,
                 filter: "brightness(.75) contrast(1.05) grayscale(.3)",

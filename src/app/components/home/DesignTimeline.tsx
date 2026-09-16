@@ -309,6 +309,7 @@ export function DesignTimeline() {
               objectFit: "contain",
               opacity: 0.7,
             }}
+            loading="lazy"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
               const parent = (e.target as HTMLImageElement).parentElement;

@@ -229,7 +229,7 @@ export function ZoomToGrid() {
                 muted
                 playsInline
                 disablePictureInPicture
-                preload="auto"
+                preload="metadata"
               />
             ) : (
               <img
@@ -237,7 +237,8 @@ export function ZoomToGrid() {
                 alt={`${project.title}, ${project.category} by DYSIGNS`}
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
                 style={{ willChange: "transform" }}
-                loading="lazy"
+                loading={isHero ? "eager" : "lazy"}
+                fetchPriority={isHero ? "high" : undefined}
               />
             )}
           </div>
@@ -364,6 +365,7 @@ export function ZoomToGrid() {
                   aspectRatio: "16/9",
                   filter: "grayscale(.85) brightness(.55) contrast(1.1)",
                 }}
+                loading="eager"
               />
             </div>
           </ProjectZoomLink>

@@ -117,6 +117,7 @@ function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
             style={{ opacity: 0.5 }}
+            loading="lazy"
           />
           <div
             className="absolute inset-0"

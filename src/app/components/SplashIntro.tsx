@@ -39,27 +39,31 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       return;
     }
 
+    // Compressed from an earlier ~3.1s cut: this overlay sits in front of
+    // every first-time page load (including every Lighthouse/CrUX/PSI run,
+    // which never has the sessionStorage flag set), so its duration was
+    // adding directly to LCP. Same choreography, ~0.7s total instead.
     const tl = gsap.timeline({ onComplete: finish });
 
     tl.fromTo(
       logoRef.current,
       { scale: 0.6, opacity: 0, filter: "blur(30px)" },
-      { scale: 1, opacity: 1, filter: "blur(0px)", duration: 1, ease: "power3.out" },
+      { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" },
       0,
     );
 
     tl.fromTo(
       ringRef.current,
       { scale: 0, opacity: 0.6 },
-      { scale: 3, opacity: 0, duration: 1.2, ease: "power2.out" },
-      0.2,
+      { scale: 3, opacity: 0, duration: 0.3, ease: "power2.out" },
+      0.05,
     );
 
     tl.fromTo(
       scanRef.current,
       { y: "-100%", opacity: 0 },
-      { y: "100vh", opacity: 0.5, duration: 0.7, ease: "power1.in" },
-      0.4,
+      { y: "100vh", opacity: 0.5, duration: 0.18, ease: "power1.in" },
+      0.08,
     );
 
     tl.fromTo(
@@ -68,13 +72,13 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       {
         clipPath: "inset(0 0% 0 0)",
         opacity: 1,
-        duration: 0.6,
+        duration: 0.15,
         ease: "power2.inOut",
       },
-      0.7,
+      0.15,
     );
 
-    tl.to({}, { duration: 1 });
+    tl.to({}, { duration: 0.15 });
 
     tl.to(
       logoRef.current,
@@ -82,22 +86,22 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         scale: 1.3,
         opacity: 0,
         filter: "blur(8px)",
-        duration: 0.55,
+        duration: 0.15,
         ease: "power2.in",
       },
-      "-=0.1",
+      "-=0.03",
     );
     tl.to(
       lineRef.current,
       {
         opacity: 0,
         y: -10,
-        duration: 0.35,
+        duration: 0.1,
         ease: "power2.in",
       },
       "<",
     );
-    tl.to(el, { opacity: 0, duration: 0.4, ease: "power2.inOut" });
+    tl.to(el, { opacity: 0, duration: 0.15, ease: "power2.inOut" });
 
     return () => {
       tl.kill();

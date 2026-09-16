@@ -452,7 +452,7 @@ export default function CaseDetailPage() {
               muted
               playsInline
               disablePictureInPicture
-              preload="auto"
+              preload="metadata"
             />
           ) : (
             <div
