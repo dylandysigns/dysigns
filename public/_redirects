@@ -1,18 +1,10 @@
-# Fase 7 — canonieke host, https.
-# Canoniek: https://dylandysigns.com (geen www) — consistent met elke
-# canonical/og:url/JSON-LD @id die in deze site staat. Rules worden
-# top-naar-onder verwerkt, eerste match wint, dus de volgorde hieronder
-# is belangrijk. Controleer na elke wijziging hier expliciet: http://,
-# https://www., en een gewoon pad (bijv. /assets/*, /work) horen niet in
-# een redirect-loop terecht te komen.
+# Fase 7 — SPA-fallback. Canonieke host (https://dylandysigns.com, geen www)
+# wordt NIET hier afgedwongen: Cloudflare Pages ondersteunt geen host-based
+# redirects in dit bestand. Zie de Redirect Rule in het Cloudflare-dashboard
+# (www -> apex, 301, pad + query behouden). Voor Netlify staan dezelfde
+# regels in netlify.toml.
 
 / /index.html 200
-
-# www -> non-www, altijd https (force-flag ! zorgt dat dit ook vuurt als
-# er toevallig een bestand op dat pad matcht).
-http://www.dylandysigns.com/* https://dylandysigns.com/:splat 301!
-https://www.dylandysigns.com/* https://dylandysigns.com/:splat 301!
-http://dylandysigns.com/* https://dylandysigns.com/:splat 301!
 
 # LET OP: de trailing-slash-strip-regel die hier ooit stond
 # (`/*/  /:splat  301!`) is verwijderd — die matchte in de praktijk vrijwel

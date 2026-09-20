@@ -287,9 +287,7 @@ export default function ContactPage() {
             ref={(el) => { cardsRef.current[1] = el; }}
             name="contact"
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            action="/thank-you"
+            action="/api/contact"
             className="text-left p-6 sm:p-8 rounded-2xl"
             style={{
               border: "1px solid rgba(var(--page-fg-rgb), .08)",
@@ -298,7 +296,6 @@ export default function ContactPage() {
               transform: "rotate(-0.4deg)",
             }}
           >
-            <input type="hidden" name="form-name" value="contact" />
             <p className="hidden">
               <label>
                 Don't fill this out: <input name="bot-field" />

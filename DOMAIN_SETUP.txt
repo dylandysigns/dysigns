@@ -158,3 +158,16 @@ SPA routing works:
   3. Navigate directly to https://example.com/about — same result.
 
 All done. Your DYSIGNS site is live.
+
+
+DEPLOY OPTION C — CLOUDFLARE PAGES (current host)
+--------------------------------------------------
+Build command:     npm run build
+Output directory:  dist
+Secrets:           RESEND_API_KEY (Settings > Variables and Secrets, Production)
+Functions:         functions/api/contact.js handles the contact form (POST /api/contact)
+Headers/rewrites:  public/_headers and public/_redirects work as-is
+www -> apex:       NOT in _redirects. Add a Redirect Rule in the Cloudflare
+                   dashboard: hostname equals www.dylandysigns.com ->
+                   Dynamic redirect to concat("https://dylandysigns.com", http.request.uri.path),
+                   301, preserve query string.

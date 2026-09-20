@@ -2,3 +2,24 @@
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
+
+# Canonical host + https. Kept here (not in public/_redirects) because
+# Cloudflare Pages rejects host-based rules in _redirects; on Cloudflare this
+# is a Redirect Rule in the dashboard instead. Only used if hosting on Netlify.
+[[redirects]]
+  from = "http://www.dylandysigns.com/*"
+  to = "https://dylandysigns.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.dylandysigns.com/*"
+  to = "https://dylandysigns.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://dylandysigns.com/*"
+  to = "https://dylandysigns.com/:splat"
+  status = 301
+  force = true
