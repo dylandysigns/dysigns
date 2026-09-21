@@ -7,6 +7,7 @@ import { MagneticFillButton } from "../MagneticFillButton";
 import { useCursor } from "../../hooks/useCursor";
 import { isLowPower } from "../Layout";
 import { useLanguage } from "../../hooks/useLanguage";
+import { useVisitorCity } from "../../hooks/useVisitorCity";
 import { Partners } from "./Partners";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,6 +71,7 @@ export function Hero() {
 
   const cursor = useCursor();
   const { t } = useLanguage();
+  const visitorCity = useVisitorCity();
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   // Starts true (optimistic) so nothing flashes black before we've had a
   // chance to check — flips to false only once we've confirmed autoplay
@@ -649,44 +651,16 @@ export function Hero() {
             type="button"
             onClick={() => setVideoModalOpen(true)}
             aria-label={t("hero.watchVideo")}
-            className="absolute bottom-5 right-5 md:bottom-8 md:right-8 flex items-center gap-2 rounded-full transition-all duration-300"
-            style={{
-              zIndex: 25,
-              padding: "9px 16px 9px 12px",
-              border: "1px solid rgba(var(--page-fg-rgb), .22)",
-              background: "rgba(var(--page-fg-rgb), .1)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              color: "var(--page-fg)",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .4)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .18)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .22)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .1)";
-            }}
+            className="hero-watch-cta absolute bottom-5 right-5 md:bottom-8 md:right-8"
+            style={{ zIndex: 25 }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
           >
-            <span
-              className="grid flex-shrink-0 place-items-center rounded-full"
-              style={{ width: 20, height: 20, background: "var(--page-fg)" }}
-            >
-              <Play size={9} fill="var(--page-bg)" color="var(--page-bg)" style={{ marginLeft: 1 }} />
+            <span className="hero-watch-cta__icon">
+              <span className="hero-watch-cta__pulse" aria-hidden="true" />
+              <Play size={14} fill="currentColor" color="currentColor" style={{ marginLeft: 2 }} />
             </span>
-            <span
-              style={{
-                fontSize: ".72rem",
-                fontWeight: 600,
-                letterSpacing: ".04em",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {t("hero.watchVideo")}
-            </span>
+            <span className="hero-watch-cta__label">{t("hero.watchVideo")}</span>
           </button>
         )}
 
@@ -743,12 +717,11 @@ export function Hero() {
                   fontFamily: "'Inter',sans-serif",
                 }}
               >
-                <span style={{ color: "rgba(var(--page-fg-rgb), .8)", fontWeight: 600 }}>
-                  Almere
-                </span>
                 <span style={{ color: "rgba(var(--page-fg-rgb), .55)" }}>
-                  {" "}
-                  · {t("hero.locationCountry")}
+                  {t("hero.availableIn")}{" "}
+                </span>
+                <span style={{ color: "rgba(var(--page-fg-rgb), .8)", fontWeight: 600 }}>
+                  {visitorCity ?? t("hero.fallbackLocation")}
                 </span>
               </span>
             </div>
@@ -825,6 +798,7 @@ export function Hero() {
                 >
                   <svg
                     ref={wordmarkSvgRef}
+                    data-hero-wordmark-svg
                     viewBox={`0 0 ${WORDMARK_VIEWBOX.width} ${WORDMARK_VIEWBOX.height}`}
                     className="block h-auto w-full overflow-visible"
                     aria-hidden="true"
@@ -1220,6 +1194,85 @@ export function Hero() {
         @keyframes uxPillPulse {
           0%, 100% { opacity: 0.72; transform: scale(1); }
           50%       { opacity: 1;    transform: scale(1.018); }
+        }
+
+        /* ─── WATCH VIDEO CTA ─── */
+        .hero-watch-cta {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 7px 24px 7px 7px;
+          border-radius: 999px;
+          border: 1px solid rgba(var(--page-fg-rgb), .3);
+          background: rgba(var(--page-fg-rgb), .12);
+          backdrop-filter: blur(18px) saturate(150%);
+          -webkit-backdrop-filter: blur(18px) saturate(150%);
+          color: var(--page-fg);
+          box-shadow: 0 10px 36px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(var(--page-fg-rgb), .2);
+          cursor: pointer;
+          animation: watchCtaIn .9s cubic-bezier(.22, 1, .36, 1) 1.4s both;
+          transition: transform .45s cubic-bezier(.22, 1, .36, 1), background .35s ease,
+            color .35s ease, border-color .35s ease, box-shadow .45s ease;
+        }
+        .hero-watch-cta__icon {
+          position: relative;
+          display: grid;
+          place-items: center;
+          flex-shrink: 0;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: var(--page-fg);
+          color: var(--page-bg);
+          transition: transform .45s cubic-bezier(.22, 1, .36, 1), background .35s ease, color .35s ease;
+        }
+        .hero-watch-cta__pulse {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 1px solid rgba(var(--page-fg-rgb), .6);
+          animation: watchCtaPulse 2.6s ease-out 2.4s infinite;
+          pointer-events: none;
+        }
+        .hero-watch-cta__label {
+          font-size: .78rem;
+          font-weight: 600;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+        .hero-watch-cta:hover,
+        .hero-watch-cta:focus-visible {
+          background: var(--page-fg);
+          color: var(--page-bg);
+          border-color: var(--page-fg);
+          transform: translateY(-3px) scale(1.04);
+          box-shadow: 0 18px 48px rgba(0, 0, 0, .4);
+        }
+        .hero-watch-cta:hover .hero-watch-cta__icon,
+        .hero-watch-cta:focus-visible .hero-watch-cta__icon {
+          background: var(--page-bg);
+          color: var(--page-fg);
+          transform: scale(1.1);
+        }
+        .hero-watch-cta:active { transform: translateY(0) scale(.98); }
+        @keyframes watchCtaIn {
+          from { opacity: 0; transform: translateY(16px) scale(.94); }
+          to   { opacity: 1; transform: none; }
+        }
+        @keyframes watchCtaPulse {
+          0%   { transform: scale(1);   opacity: .7; }
+          70%  { transform: scale(1.7); opacity: 0; }
+          100% { transform: scale(1.7); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-watch-cta { animation: none; }
+          .hero-watch-cta__pulse { animation: none; opacity: 0; }
+        }
+        @media (max-width: 767px) {
+          .hero-watch-cta { padding: 6px 18px 6px 6px; gap: 10px; }
+          .hero-watch-cta__icon { width: 36px; height: 36px; }
+          .hero-watch-cta__label { font-size: .7rem; }
         }
 
         /* ─── MOBILE HERO (below md = 768px) ─── */
