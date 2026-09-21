@@ -462,6 +462,12 @@ export function Hero() {
 
     if (!maskTextRef.current) return;
 
+    // Lay the wordmark text out at scale 1 *before* the intro scales its
+    // container to 1.2. Chrome bakes the on-screen scale into SVG text
+    // metrics at layout time and doesn't redo it when only a transform
+    // changes, so a first layout at 1.2 left the wordmark 1/1.2 too small.
+    wordmarkSvgRef.current?.getBoundingClientRect();
+
     setIsHeroIntroReady(false);
 
     /* Iris/aperture reveal — a punched-hole mask (radial-gradient, not
@@ -830,6 +836,7 @@ export function Hero() {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         fontFamily="var(--font-brand)"
+                        textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
                         letterSpacing="-14"
@@ -846,6 +853,7 @@ export function Hero() {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         fontFamily="var(--font-brand)"
+                        textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
                         letterSpacing="-14"
@@ -863,6 +871,7 @@ export function Hero() {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         fontFamily="var(--font-brand)"
+                        textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
                         letterSpacing="-14"
@@ -879,6 +888,7 @@ export function Hero() {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         fontFamily="var(--font-brand)"
+                        textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
                         letterSpacing="-14"

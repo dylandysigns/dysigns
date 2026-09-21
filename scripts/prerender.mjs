@@ -25,6 +25,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 
+// The SSR pass loads the app through Vite's dev server, so imported assets
+// (e.g. the header/footer logo) resolve to dev paths like /src/assets/x.png,
+// which don't exist in production and 404. Copy each referenced file into
+// dist/assets and point the static HTML at it.
+async function rewriteSrcAssets(html) {
+  const found = new Set(html.match(/\/src\/assets\/[A-Za-z0-9._-]+/g) ?? []);
+  for (const ref of found) {
+    const name = ref.slice("/src/assets/".length);
+    await fs.mkdir(path.join(distDir, "assets"), { recursive: true });
+    await fs.copyFile(path.join(root, "src", "assets", name), path.join(distDir, "assets", name));
+    html = html.split(ref).join(`/assets/${name}`);
+  }
+  return html;
+}
+
 // /work and /about reverted to the original projects.ts-backed pages —
 // slugs read directly from src/app/data/projects.ts so this list can't
 // silently drift out of sync with the actual project data.
@@ -245,6 +260,8 @@ async function run() {
       url === "/"
         ? path.join(distDir, "index.html")
         : path.join(distDir, url.slice(1), "index.html");
+
+    html = await rewriteSrcAssets(html);
 
     await fs.mkdir(path.dirname(outPath), { recursive: true });
     await fs.writeFile(outPath, html);
