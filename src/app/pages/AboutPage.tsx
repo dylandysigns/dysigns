@@ -162,7 +162,7 @@ export default function AboutPage() {
             <h1
               className="mt-3"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(2rem,5vw,3.5rem)",
                 fontWeight: 700,
                 letterSpacing: "-.04em",
@@ -199,7 +199,7 @@ export default function AboutPage() {
           ref={headRef}
           className="mt-10"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(1.3rem,2.5vw,1.8rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",
@@ -224,7 +224,7 @@ export default function AboutPage() {
             style={{
               display: "block",
               marginBottom: "1rem",
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: ".68rem",
               fontStyle: "normal",
               fontWeight: 600,
@@ -275,7 +275,7 @@ export default function AboutPage() {
             >
               <h3
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1rem",
                   fontWeight: 700,
                   color: "var(--page-fg)",
@@ -305,7 +305,7 @@ export default function AboutPage() {
       >
         <h2
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(1.5rem,3vw,2.2rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",

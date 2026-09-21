@@ -164,7 +164,7 @@ export function DesignTimeline() {
             >
               <span
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: ".55rem",
                   fontWeight: 600,
                   letterSpacing: ".16em",
@@ -177,7 +177,7 @@ export function DesignTimeline() {
               <h3
                 className="mt-3"
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1.2rem",
                   fontWeight: 700,
                   letterSpacing: "-.03em",
@@ -317,7 +317,7 @@ export function DesignTimeline() {
                 const s = document.createElement("span");
                 s.textContent = "D";
                 s.style.cssText =
-                  "font-family:'Inter',sans-serif;font-size:.5rem;font-weight:800;color:rgba(var(--page-fg-rgb), .55)";
+                  "font-family:var(--font-brand);font-size:.5rem;font-weight:800;color:rgba(var(--page-fg-rgb), .55)";
                 parent.appendChild(s);
               }
             }}
@@ -351,7 +351,7 @@ export function DesignTimeline() {
             <div className="max-w-lg px-8 text-center">
               <span
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: ".65rem",
                   fontWeight: 600,
                   letterSpacing: ".16em",
@@ -364,7 +364,7 @@ export function DesignTimeline() {
               <h3
                 className="mt-3"
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1.3rem",
                   fontWeight: 700,
                   letterSpacing: "-.03em",

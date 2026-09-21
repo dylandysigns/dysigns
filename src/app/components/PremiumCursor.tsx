@@ -380,7 +380,7 @@ function GlassCursor({
           {isActive && displayLabel && (
             <span
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: ".55rem",
                 fontWeight: 600,
                 letterSpacing: ".12em",

@@ -110,6 +110,43 @@ function redirect(path) {
   return new Response(null, { status: 303, headers: { Location: path } });
 }
 
+// Spam defence, cheapest check first:
+//  1. honeypot field (bots fill every input)
+//  2. time trap: the page stamps `ts` on load; humans need a few seconds to
+//     type, bots that POST straight to this endpoint send no stamp at all
+//  3. link limit: spam is nearly always links
+//  4. Cloudflare Turnstile token (needs TURNSTILE_SECRET_KEY, see DOMAIN_SETUP)
+// Checks 1-3 answer with a fake "thank you" so bots get no signal to adapt to.
+const MIN_FILL_MS = 3000;
+const MAX_FILL_MS = 7 * 24 * 60 * 60 * 1000;
+const MAX_LINKS = 2;
+const TURNSTILE_VERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+function looksAutomated(form, message) {
+  const elapsed = Date.now() - Number(form.get("ts"));
+  if (!Number.isFinite(elapsed) || elapsed < MIN_FILL_MS || elapsed > MAX_FILL_MS) {
+    return true;
+  }
+  const links = message.match(/https?:\/\/|www\./gi) ?? [];
+  return links.length > MAX_LINKS;
+}
+
+async function passesTurnstile(secret, token, ip) {
+  if (!token) return false;
+  try {
+    const res = await fetch(TURNSTILE_VERIFY, {
+      method: "POST",
+      body: new URLSearchParams({ secret, response: token, ...(ip ? { remoteip: ip } : {}) }),
+      signal: AbortSignal.timeout(5000),
+    });
+    const data = await res.json();
+    return data.success === true;
+  } catch (err) {
+    console.error("Turnstile verification failed:", err);
+    return false;
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   const apiKey = env.RESEND_API_KEY;
   if (!apiKey) {
@@ -127,6 +164,24 @@ export async function onRequestPost({ request, env }) {
 
   const email = String(form.get("email") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
+
+  if (looksAutomated(form, message)) {
+    return redirect("/thank-you");
+  }
+
+  if (env.TURNSTILE_SECRET_KEY) {
+    const ok = await passesTurnstile(
+      env.TURNSTILE_SECRET_KEY,
+      form.get("cf-turnstile-response"),
+      request.headers.get("CF-Connecting-IP"),
+    );
+    // A real person can fail this (blocked script, expired token): send them
+    // back with a message instead of a fake success.
+    if (!ok) return redirect("/contact?error=verify");
+  } else {
+    console.warn("TURNSTILE_SECRET_KEY is not set: contact form has no CAPTCHA");
+  }
+
   if (
     !EMAIL_RE.test(email) ||
     email.length > MAX_EMAIL ||

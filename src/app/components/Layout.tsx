@@ -384,7 +384,7 @@ export default function Layout() {
           data-cursor-content
           className="min-h-screen relative"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             background: "#000",
             color: "#fff",
             ...(splashDone ? {} : { overflow: "hidden", height: "100vh" }),

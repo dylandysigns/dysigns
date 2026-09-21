@@ -85,7 +85,7 @@ export function ContentPage({
         <h1
           className="mt-3"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(2rem,5vw,3.5rem)",
             fontWeight: 700,
             letterSpacing: "-.04em",

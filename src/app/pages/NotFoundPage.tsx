@@ -27,7 +27,7 @@ export default function NotFoundPage() {
       <div className="text-center">
         <h1
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(3rem,8vw,6rem)",
             fontWeight: 800,
             color: "var(--page-fg)",

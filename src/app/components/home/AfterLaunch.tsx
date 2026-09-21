@@ -202,7 +202,7 @@ export function AfterLaunch() {
         <h2
           ref={headRef}
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(1.7rem,4vw,2.8rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",

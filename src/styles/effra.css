@@ -1,0 +1,29 @@
+/* Effra, self-hosted from /fonts (public/fonts, kept out of git: the repo is
+   public and the font files are licensed, so they ship with the local build).
+   If a file is missing the site falls back to Inter (see --font-brand).
+
+   Only three weights are used, so every requested weight maps to one:
+     100-500 (body text)          -> SemiBold
+     501-699 (subheads, buttons)  -> Bold
+     700-900 (headings, hero)     -> Black */
+@font-face {
+  font-family: "Effra";
+  src: url("/fonts/effra-semibold.ttf") format("truetype");
+  font-weight: 100 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Effra";
+  src: url("/fonts/effra-bold.ttf") format("truetype");
+  font-weight: 501 699;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Effra";
+  src: url("/fonts/effra-black.ttf") format("truetype");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}

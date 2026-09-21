@@ -714,7 +714,7 @@ export function Hero() {
                   letterSpacing: ".08em",
                   color: "rgba(255,255,255,.55)",
                   whiteSpace: "nowrap",
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                 }}
               >
                 <span style={{ color: "rgba(var(--page-fg-rgb), .55)" }}>
@@ -751,7 +751,7 @@ export function Hero() {
                     className="w-full text-center"
                     style={{
                       opacity: 0,
-                      fontFamily: "'Inter',sans-serif",
+                      fontFamily: "var(--font-brand)",
                       fontSize: "clamp(2.1rem, 9.4vw, 5.5rem)",
                       fontWeight: 800,
                       letterSpacing: "-.04em",
@@ -829,10 +829,10 @@ export function Hero() {
                         y="57%"
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
+                        fontFamily="var(--font-brand)"
+                        fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-34"
+                        letterSpacing="-14"
                         fill="transparent"
                         stroke="rgba(var(--page-fg-rgb), .38)"
                         strokeWidth="1.45"
@@ -845,10 +845,10 @@ export function Hero() {
                         y="57%"
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
+                        fontFamily="var(--font-brand)"
+                        fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-34"
+                        letterSpacing="-14"
                         fill="var(--page-fg)"
                       >
                         DYSIGNS
@@ -862,10 +862,10 @@ export function Hero() {
                         y="57%"
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
+                        fontFamily="var(--font-brand)"
+                        fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-34"
+                        letterSpacing="-14"
                         fill="transparent"
                         stroke="rgba(var(--page-fg-rgb), .38)"
                         strokeWidth="1.45"
@@ -878,10 +878,10 @@ export function Hero() {
                         y="57%"
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        fontFamily="Inter, sans-serif"
-                        fontSize="402"
+                        fontFamily="var(--font-brand)"
+                        fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-34"
+                        letterSpacing="-14"
                         fill="var(--page-fg)"
                       >
                         DYSIGNS
@@ -926,7 +926,7 @@ export function Hero() {
               >
                 <span
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: ".65rem",
                     fontWeight: 600,
                     letterSpacing: ".08em",
@@ -1115,7 +1115,7 @@ export function Hero() {
                 >
                   <span
                     style={{
-                      fontFamily: "'Inter',sans-serif",
+                      fontFamily: "var(--font-brand)",
                       fontSize: chip.featured ? ".66rem" : ".64rem",
                       fontWeight: chip.featured ? 600 : 500,
                       letterSpacing: ".08em",
@@ -1138,7 +1138,7 @@ export function Hero() {
                 <h1
                   ref={headRef}
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "clamp(.78rem,1.85vw,1.1rem)",
                     fontWeight: 600,
                     lineHeight: 1.32,

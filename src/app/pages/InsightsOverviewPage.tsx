@@ -32,7 +32,7 @@ export default function InsightsOverviewPage() {
                 <div className="flex items-baseline gap-4">
                   <span
                     style={{
-                      fontFamily: "'Inter',sans-serif",
+                      fontFamily: "var(--font-brand)",
                       fontSize: ".72rem",
                       fontWeight: 600,
                       letterSpacing: ".08em",
@@ -44,7 +44,7 @@ export default function InsightsOverviewPage() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'Inter',sans-serif",
+                      fontFamily: "var(--font-brand)",
                       fontSize: "1.25rem",
                       fontWeight: 700,
                       letterSpacing: "-.01em",

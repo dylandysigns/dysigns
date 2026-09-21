@@ -375,7 +375,7 @@ export default function CaseDetailPage() {
         <div className="text-center">
           <h1
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "2rem",
               fontWeight: 700,
               color: "var(--page-fg)",
@@ -541,7 +541,7 @@ export default function CaseDetailPage() {
           <h1
             ref={titleRef}
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(2rem,6vw,4.5rem)",
               fontWeight: 700,
               letterSpacing: "-.05em",
@@ -564,7 +564,7 @@ export default function CaseDetailPage() {
                 border: "1px solid rgba(var(--page-fg-rgb), .2)",
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: ".8rem",
                 fontWeight: 500,
                 letterSpacing: ".06em",
@@ -868,7 +868,7 @@ export default function CaseDetailPage() {
             <span
               className="transition-colors duration-300"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(.9rem,1.5vw,1.1rem)",
                 fontWeight: 600,
                 color: "rgba(var(--page-fg-rgb), .5)",
@@ -901,7 +901,7 @@ export default function CaseDetailPage() {
             <span
               className="transition-colors duration-300"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(.9rem,1.5vw,1.1rem)",
                 fontWeight: 600,
                 color: "rgba(var(--page-fg-rgb), .5)",

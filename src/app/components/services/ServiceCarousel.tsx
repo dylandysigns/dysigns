@@ -146,7 +146,7 @@ function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
         <h2
           style={{
             margin: "0 0 12px",
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(1.3rem,2.6vw,1.9rem)",
             fontWeight: 700,
             lineHeight: 1.15,

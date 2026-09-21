@@ -93,7 +93,7 @@ export function ServiceCard({
       <div className="relative z-10 flex h-full flex-col p-6 md:p-7">
         <span
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "1.4rem",
             fontWeight: 700,
             letterSpacing: "-.02em",
@@ -106,7 +106,7 @@ export function ServiceCard({
         <h3
           className="mt-5"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "1rem",
             fontWeight: 700,
             color: "var(--page-fg)",

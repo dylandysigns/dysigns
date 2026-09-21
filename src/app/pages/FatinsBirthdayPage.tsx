@@ -230,7 +230,7 @@ export default function FatinsBirthdayPage() {
         color: "var(--page-fg)",
         display: "flex",
         flexDirection: "column",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "var(--font-brand)",
         cursor: "auto",
         WebkitTapHighlightColor: "transparent",
         overflowX: "hidden",
@@ -282,7 +282,7 @@ export default function FatinsBirthdayPage() {
               padding: "8px 14px",
               color: "rgba(255,255,255,0.5)",
               fontSize: 13,
-              fontFamily: "Inter, sans-serif",
+              fontFamily: "var(--font-brand)",
               fontWeight: 500,
               cursor: "pointer",
               backdropFilter: "blur(12px)",
@@ -318,7 +318,7 @@ export default function FatinsBirthdayPage() {
             zIndex: 101,
             fontSize: 12,
             color: "rgba(255,255,255,0.3)",
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             fontWeight: 500,
             letterSpacing: "0.05em",
           }}
@@ -384,7 +384,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           textTransform: "uppercase",
           color: "rgba(255,255,255,0.35)",
           marginBottom: 24,
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
         }}
       >
         Vanavond
@@ -400,7 +400,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
           letterSpacing: "-0.02em",
         }}
       >
@@ -415,7 +415,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           color: "rgba(255,255,255,0.45)",
           lineHeight: 1.65,
           marginBottom: 48,
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
           fontWeight: 400,
           maxWidth: 320,
           margin: "0 auto 48px",
@@ -435,7 +435,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           fontSize: 12,
           color: "rgba(255,255,255,0.2)",
           marginTop: 20,
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
         }}
       >
         4 restaurants · Roermond
@@ -464,7 +464,7 @@ function QuestionScreen({
           fontWeight: 500,
           lineHeight: 1.25,
           marginBottom: 32,
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
           letterSpacing: "-0.015em",
           textAlign: "center",
           color: "var(--page-fg)",
@@ -547,7 +547,7 @@ function OptionButton({
           ? "rgba(255,255,255,0.04)"
           : "rgba(255,255,255,0.025)",
         color: selected ? "var(--page-fg)" : "rgba(255,255,255,0.65)",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "var(--font-brand)",
         fontSize: 15,
         fontWeight: selected ? 500 : 400,
         lineHeight: 1.4,
@@ -606,7 +606,7 @@ function ResultScreen({
           fontWeight: 400,
           color: "rgba(255,255,255,0.4)",
           marginBottom: 16,
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
           letterSpacing: "0.01em",
         }}
       >
@@ -647,7 +647,7 @@ function ResultScreen({
             letterSpacing: "-0.025em",
             lineHeight: 1.1,
             marginBottom: 10,
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             background: "var(--hero-headline-gradient)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -667,7 +667,7 @@ function ResultScreen({
             padding: "5px 12px",
             fontSize: 13,
             color: "rgba(255,255,255,0.55)",
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             fontWeight: 500,
             marginBottom: 20,
             letterSpacing: "0.02em",
@@ -684,7 +684,7 @@ function ResultScreen({
             fontSize: 15,
             lineHeight: 1.65,
             color: "rgba(255,255,255,0.55)",
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             fontWeight: 400,
             marginBottom: 14,
           }}
@@ -697,7 +697,7 @@ function ResultScreen({
             fontSize: 13,
             lineHeight: 1.6,
             color: "rgba(255,255,255,0.35)",
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             fontStyle: "italic",
           }}
         >
@@ -724,7 +724,7 @@ function ResultScreen({
             style={{
               fontSize: 11,
               color: "rgba(255,255,255,0.25)",
-              fontFamily: "Inter, sans-serif",
+              fontFamily: "var(--font-brand)",
               fontWeight: 500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -737,7 +737,7 @@ function ResultScreen({
             style={{
               fontSize: 14,
               color: "rgba(255,255,255,0.45)",
-              fontFamily: "Inter, sans-serif",
+              fontFamily: "var(--font-brand)",
               fontWeight: 500,
             }}
           >
@@ -748,7 +748,7 @@ function ResultScreen({
           style={{
             fontSize: 13,
             color: "rgba(255,255,255,0.25)",
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             flexShrink: 0,
           }}
         >
@@ -795,7 +795,7 @@ function QuizButton({
         border: primary ? "none" : "1px solid rgba(255,255,255,0.12)",
         background: primary ? "var(--page-fg)" : "transparent",
         color: primary ? "var(--page-bg)" : "rgba(255,255,255,0.55)",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "var(--font-brand)",
         fontSize: 15,
         fontWeight: 500,
         cursor: "pointer",

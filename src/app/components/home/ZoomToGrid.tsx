@@ -254,7 +254,7 @@ export function ZoomToGrid() {
           >
             <span
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: ".65rem",
                 fontWeight: 600,
                 color: "rgba(var(--page-fg-rgb), .7)",
@@ -299,7 +299,7 @@ export function ZoomToGrid() {
                 <h2
                   ref={headlineRef}
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "clamp(1rem,2.5vw,1.6rem)",
                     fontWeight: 700,
                     letterSpacing: "-.03em",
@@ -373,7 +373,7 @@ export function ZoomToGrid() {
           <h2
             className="mt-8 text-center"
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(1.6rem,4vw,2.8rem)",
               fontWeight: 700,
               letterSpacing: "-.04em",

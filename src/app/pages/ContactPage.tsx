@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { Seo } from "../components/Seo";
+import { TurnstileWidget } from "../components/TurnstileWidget";
 import { getLocalizedContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
 
@@ -44,6 +45,15 @@ export default function ContactPage() {
   const socialsRef = useRef<HTMLDivElement>(null);
   const submitFillRef = useRef<HTMLSpanElement>(null);
   const submitRectRef = useRef<DOMRect | null>(null);
+  // Stamped on mount so the server can tell a human (who takes a few seconds
+  // to type) from a bot posting straight to /api/contact.
+  const tsRef = useRef<HTMLInputElement>(null);
+  const [verifyFailed, setVerifyFailed] = useState(false);
+
+  useEffect(() => {
+    if (tsRef.current) tsRef.current.value = String(Date.now());
+    setVerifyFailed(new URLSearchParams(window.location.search).get("error") === "verify");
+  }, []);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -198,7 +208,7 @@ export default function ContactPage() {
           ref={headRef}
           className="mt-4"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(2rem,5vw,3.5rem)",
             fontWeight: 700,
             letterSpacing: "-.04em",
@@ -301,6 +311,7 @@ export default function ContactPage() {
                 Don't fill this out: <input name="bot-field" />
               </label>
             </p>
+            <input type="hidden" name="ts" ref={tsRef} />
 
             <div>
               <label
@@ -324,7 +335,7 @@ export default function ContactPage() {
                 placeholder={t("contact.form.emailPlaceholder")}
                 className="w-full bg-transparent outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1rem",
                   color: "var(--page-fg)",
                   padding: "12px 4px",
@@ -363,7 +374,7 @@ export default function ContactPage() {
                 placeholder={t("contact.form.messagePlaceholder")}
                 className="w-full bg-transparent outline-none resize-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1rem",
                   color: "var(--page-fg)",
                   padding: "12px 4px",
@@ -379,6 +390,18 @@ export default function ContactPage() {
                 }}
               />
             </div>
+
+            <TurnstileWidget />
+
+            {verifyFailed && (
+              <p
+                role="alert"
+                className="mt-4"
+                style={{ fontFamily: "var(--font-brand)", fontSize: ".85rem", color: "#ff8a80" }}
+              >
+                {t("contact.form.verifyError")}
+              </p>
+            )}
 
             <button
               type="submit"
@@ -427,7 +450,7 @@ export default function ContactPage() {
                   position: "relative",
                   color: "var(--page-fg)",
                   mixBlendMode: "difference",
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: ".9rem",
                   fontWeight: 600,
                   letterSpacing: "-.01em",

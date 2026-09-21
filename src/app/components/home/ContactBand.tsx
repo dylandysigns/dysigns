@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { siteContent } from "../../data/content";
 import { useCursor } from "../../hooks/useCursor";
 import { useLanguage } from "../../hooks/useLanguage";
+import { TransitionLink } from "../TransitionLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,7 +104,7 @@ export function ContactBand() {
       <h2
         ref={headRef}
         style={{
-          fontFamily: "'Inter',sans-serif",
+          fontFamily: "var(--font-brand)",
           fontSize: "clamp(1.8rem,5vw,3.5rem)",
           fontWeight: 700,
           letterSpacing: "-.04em",
@@ -130,8 +131,8 @@ export function ContactBand() {
         ref={ctaRef}
         className="mt-10 flex flex-wrap items-center justify-center gap-4"
       >
-        <a
-          href={`mailto:${c.email}`}
+        <TransitionLink
+          to="/contact"
           className="group relative overflow-hidden inline-flex items-center gap-2.5 px-7 py-3 rounded-full transition-all duration-300"
           style={{
             fontSize: ".78rem",
@@ -161,9 +162,9 @@ export function ContactBand() {
               transition: "transform .7s ease-out",
             }}
           />
-          <Mail size={16} strokeWidth={1.75} />
-          {t("contact.emailUs")}
-        </a>
+          <ArrowRight size={16} strokeWidth={1.75} />
+          {t("contact.contactUs")}
+        </TransitionLink>
 
         <a
           href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}

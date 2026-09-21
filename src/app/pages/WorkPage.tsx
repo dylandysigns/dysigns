@@ -133,7 +133,7 @@ export default function WorkPage() {
             ref={headRef}
             className="mt-3"
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(2rem,5vw,3.5rem)",
               fontWeight: 700,
               letterSpacing: "-.04em",
@@ -291,7 +291,7 @@ export default function WorkPage() {
                         <h2
                           className="relative inline-block"
                           style={{
-                            fontFamily: "'Inter',sans-serif",
+                            fontFamily: "var(--font-brand)",
                             fontSize: isFeatured ? "clamp(1.1rem,2.2vw,1.6rem)" : "clamp(.76rem,1.05vw,.9rem)",
                             fontWeight: 700,
                             color: "var(--page-fg)",

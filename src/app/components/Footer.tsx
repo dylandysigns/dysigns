@@ -178,7 +178,7 @@ export function Footer() {
             />
             <span
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "1rem",
                 fontWeight: 800,
                 letterSpacing: "-.02em",

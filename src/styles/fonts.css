@@ -2,3 +2,13 @@
    (not here) so the stylesheet doesn't block first render — a plain
    @import of an external URL forces the browser to fetch and parse it
    before continuing to render the page. */
+
+/* One place to change the site font. Effra is defined in effra.css; if its
+   files are missing the site falls back to Inter (loaded from Google Fonts). */
+:root {
+  --font-brand: "Effra", "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-brand);
+}

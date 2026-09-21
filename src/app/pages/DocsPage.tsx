@@ -722,7 +722,7 @@ function SideNavItem({
         background: active ? "rgba(255,255,255,.07)" : "transparent",
         border: "none",
         cursor: "pointer",
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "var(--font-brand)",
       }}
     >
       {label}
@@ -813,7 +813,7 @@ export default function DocsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(1.6rem, 4vw, 2.8rem)",
               fontWeight: 700,
               letterSpacing: "-.04em",
@@ -852,7 +852,7 @@ export default function DocsPage() {
               fontSize: ".82rem",
               fontWeight: 700,
               marginBottom: 10,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--font-brand)",
             }}
           >
             The 3 Files You Need
@@ -981,7 +981,7 @@ export default function DocsPage() {
                 >
                   <h2
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "var(--font-brand)",
                       fontSize: "1.15rem",
                       fontWeight: 700,
                       letterSpacing: "-.02em",
@@ -1135,7 +1135,7 @@ export default function DocsPage() {
                   fontSize: "1.1rem",
                   fontWeight: 700,
                   marginBottom: 14,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "var(--font-brand)",
                 }}
               >
                 Voice & Style Rules
@@ -1195,7 +1195,7 @@ export default function DocsPage() {
                   fontSize: "1.1rem",
                   fontWeight: 700,
                   marginBottom: 12,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "var(--font-brand)",
                 }}
               >
                 After Every Edit \u2014 Checklist
@@ -1245,7 +1245,7 @@ export default function DocsPage() {
                   fontSize: "1.1rem",
                   fontWeight: 700,
                   marginBottom: 12,
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "var(--font-brand)",
                 }}
               >
                 Before Going Live \u2014 Replace These Placeholders

@@ -29,7 +29,7 @@ export function PlaceholderThumb({ width, height }: { width: number; height: num
         textAnchor="middle"
         dominantBaseline="middle"
         fill="rgba(255,255,255,.28)"
-        fontFamily="Inter, sans-serif"
+        fontFamily="var(--font-brand)"
         fontSize={Math.round(width * 0.045)}
         fontWeight={500}
         letterSpacing="0.08em"

@@ -3,7 +3,7 @@ import { getCaseServiceSlugs } from "../content/loadContent";
 import { SERVICES } from "../content/services";
 
 const h2Style = {
-  fontFamily: "'Inter',sans-serif",
+  fontFamily: "var(--font-brand)",
   fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)",
   fontWeight: 700,
   letterSpacing: "-.03em",

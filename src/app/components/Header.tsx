@@ -256,7 +256,7 @@ function LangToggle() {
         >
           <span
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: ".6rem",
               fontWeight: 700,
               letterSpacing: ".06em",
@@ -273,7 +273,7 @@ function LangToggle() {
           </span>
           <span
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: ".6rem",
               fontWeight: 700,
               letterSpacing: ".06em",
@@ -319,7 +319,7 @@ function MobileLangToggle() {
     >
       <span
         style={{
-          fontFamily: "'Inter',sans-serif",
+          fontFamily: "var(--font-brand)",
           fontSize: ".6rem",
           fontWeight: 700,
           letterSpacing: ".06em",
@@ -459,7 +459,7 @@ function MobileMenu({
           />
           <span
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "1rem",
               fontWeight: 800,
               color: "var(--page-fg)",
@@ -524,7 +524,7 @@ function MobileMenu({
               letterSpacing: ".1em",
               textTransform: "uppercase",
               color: "rgba(var(--page-fg-rgb), .55)",
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
             }}
           >
             {t("hero.available")}
@@ -774,7 +774,7 @@ export function Header() {
         <span
           className="hidden md:inline"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: ".8rem",
             fontWeight: 800,
             letterSpacing: "-.02em",

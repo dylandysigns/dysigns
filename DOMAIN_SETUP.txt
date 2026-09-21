@@ -171,3 +171,20 @@ www -> apex:       NOT in _redirects. Add a Redirect Rule in the Cloudflare
                    dashboard: hostname equals www.dylandysigns.com ->
                    Dynamic redirect to concat("https://dylandysigns.com", http.request.uri.path),
                    301, preserve query string.
+
+Contact form spam protection
+  functions/api/contact.js rejects bots in layers: honeypot field, a time trap
+  (the page stamps `ts`; submissions under 3s or without it are dropped), a
+  limit of 2 links per message, and Cloudflare Turnstile.
+  Turnstile setup (free):
+    1. Cloudflare dashboard > Turnstile > Add widget. Domains: dylandysigns.com,
+       dysigns.pages.dev. Mode: Managed. Copy the site key and secret key.
+    2. Pages project > Settings > Variables and Secrets (Production): add secret
+       TURNSTILE_SECRET_KEY = <secret key>.
+    3. Put the site key in a local .env file (not committed) as
+       VITE_TURNSTILE_SITE_KEY=<site key>, then run `npm run build` and deploy.
+       (Vite inlines it at build time, so it must be set when you build.)
+  Without TURNSTILE_SECRET_KEY the function logs a warning and skips the CAPTCHA
+  check; the honeypot, time trap and link limit still apply.
+  Optional: Security > WAF > Rate limiting rules: path equals /api/contact,
+  method POST, 3 requests per 10 minutes per IP -> Block.

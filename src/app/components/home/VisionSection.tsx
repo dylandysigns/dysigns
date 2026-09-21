@@ -137,7 +137,7 @@ export function VisionSection() {
             ref={headRef}
             className="mt-4"
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(1.5rem,3vw,2.4rem)",
               fontWeight: 700,
               letterSpacing: "-.03em",

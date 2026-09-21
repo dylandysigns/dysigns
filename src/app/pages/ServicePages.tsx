@@ -141,7 +141,7 @@ function ServicePage({
           >
             <span
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.6rem,4vw,2.6rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",
@@ -152,7 +152,7 @@ function ServicePage({
             </span>
             <span
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.6rem,4vw,2.6rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",
@@ -180,7 +180,7 @@ function ServicePage({
         <h1
           className="mt-3"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(2.3rem,6vw,4.2rem)",
             fontWeight: 700,
             letterSpacing: "-.045em",
@@ -219,7 +219,7 @@ function ServicePage({
             <h2
               className="mb-8 md:mb-10"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.15rem,2vw,1.5rem)",
                 fontWeight: 700,
                 letterSpacing: "-.02em",
@@ -262,7 +262,7 @@ function ServicePage({
                       <div className="flex items-baseline gap-4">
                         <span
                           style={{
-                            fontFamily: "'Inter',sans-serif",
+                            fontFamily: "var(--font-brand)",
                             fontSize: ".72rem",
                             fontWeight: 600,
                             letterSpacing: ".08em",
@@ -276,7 +276,7 @@ function ServicePage({
                         </span>
                         <h3
                           style={{
-                            fontFamily: "'Inter',sans-serif",
+                            fontFamily: "var(--font-brand)",
                             fontSize: "1.05rem",
                             fontWeight: 700,
                             letterSpacing: "-.02em",
@@ -365,7 +365,7 @@ function ServicePage({
               >
                 <h2
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "1.15rem",
                     fontWeight: 700,
                     letterSpacing: "-.02em",
@@ -396,7 +396,7 @@ function ServicePage({
               >
                 <h2
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "1.15rem",
                     fontWeight: 700,
                     letterSpacing: "-.02em",
@@ -431,7 +431,7 @@ function ServicePage({
             <h2
               className="mb-8"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.3rem,2.5vw,1.8rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",

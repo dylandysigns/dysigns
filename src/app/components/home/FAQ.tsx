@@ -91,7 +91,7 @@ export function FAQ() {
         <h2
           className="mb-10"
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(1.5rem,3.5vw,2.2rem)",
             fontWeight: 700,
             letterSpacing: "-.03em",
@@ -113,7 +113,7 @@ export function FAQ() {
                 <h3
                   className="mb-3"
                   style={{
-                    fontFamily: "'Inter',sans-serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: ".72rem",
                     fontWeight: 600,
                     letterSpacing: ".1em",

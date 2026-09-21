@@ -5,7 +5,10 @@
 // { city: null } when Cloudflare can't determine it.
 
 export function onRequestGet({ request }) {
-  const city = typeof request.cf?.city === "string" ? request.cf.city : null;
+  const raw = typeof request.cf?.city === "string" ? request.cf.city : null;
+  // The geo database names some Dutch cities after their centre ("Almere
+  // Stad"); visitors expect the plain city name.
+  const city = raw ? raw.replace(/ Stad$/, "") : null;
   return new Response(JSON.stringify({ city }), {
     headers: {
       "Content-Type": "application/json",

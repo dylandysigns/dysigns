@@ -1,2 +1,11 @@
 
 .gstack/
+
+# local env (Turnstile site key etc.) and wrangler cache
+.env
+.env.*
+.wrangler/
+
+# Effra font files: licensed, and this repo is public. They ship with the local
+# build (public/fonts) but must never be committed.
+public/fonts/effra-*

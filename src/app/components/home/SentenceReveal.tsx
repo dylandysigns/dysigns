@@ -125,7 +125,7 @@ export function SentenceReveal() {
       >
         <p
           style={{
-            fontFamily: "'Inter',sans-serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(2rem,7vw,5.5rem)",
             fontWeight: 800,
             letterSpacing: "-.04em",
@@ -161,7 +161,7 @@ export function SentenceReveal() {
             data-sentence-text
             aria-label={sentence}
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(2rem,7vw,5.5rem)",
               fontWeight: 800,
               letterSpacing: "-.04em",

@@ -90,7 +90,7 @@ export function Services() {
             ref={headRef}
             className="mt-3"
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(1.5rem,3.5vw,2.6rem)",
               fontWeight: 700,
               letterSpacing: "-.03em",

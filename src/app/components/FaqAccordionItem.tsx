@@ -185,7 +185,7 @@ export function FaqAccordionItem({ item, defaultOpen }: { item: FaqItem; default
           <span
             className="flex-1"
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: ".92rem",
               fontWeight: 600,
               color: "var(--page-fg)",

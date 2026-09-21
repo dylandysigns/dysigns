@@ -123,7 +123,7 @@ export default function GiftFatinsBirthdayPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "var(--font-brand)",
         cursor: "auto",
         padding: "48px 24px 56px",
         boxSizing: "border-box",
@@ -233,7 +233,7 @@ export default function GiftFatinsBirthdayPage() {
             color: "rgba(255,255,255,0.38)",
             lineHeight: 1.65,
             marginBottom: 44,
-            fontFamily: "Inter, sans-serif",
+            fontFamily: "var(--font-brand)",
             animation: "giftSlideUp 0.9s ease 0.5s both",
             transition: "opacity 0.5s ease",
             opacity: phase === "revealed" ? 0.55 : 1,
@@ -259,7 +259,7 @@ export default function GiftFatinsBirthdayPage() {
               background: "#fff",
               color: "#000",
               border: "none",
-              fontFamily: "Inter, sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: 15,
               fontWeight: 500,
               cursor: "pointer",
@@ -397,7 +397,7 @@ function GiftCard({ visible }: { visible: boolean }) {
         style={{
           fontSize: 13,
           color: "rgba(255,255,255,0.22)",
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "var(--font-brand)",
           letterSpacing: "0.02em",
         }}
       >

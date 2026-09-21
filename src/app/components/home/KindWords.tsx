@@ -239,7 +239,7 @@ export function KindWords() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          fontFamily: "'Inter',sans-serif",
+          fontFamily: "var(--font-brand)",
           fontSize: "clamp(8rem,22vw,20rem)",
           fontWeight: 900,
           letterSpacing: "-.05em",
@@ -279,7 +279,7 @@ export function KindWords() {
             <h2
               className="mt-3"
               style={{
-                fontFamily: "'Inter',sans-serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.5rem,3.5vw,2.8rem)",
                 fontWeight: 700,
                 letterSpacing: "-.03em",
@@ -329,7 +329,7 @@ export function KindWords() {
               <span
                 className="ml-3"
                 style={{
-                  fontFamily: "'Inter',sans-serif",
+                  fontFamily: "var(--font-brand)",
                   fontSize: ".8rem",
                   fontVariantNumeric: "tabular-nums",
                   color: "rgba(var(--page-fg-rgb), .4)",
@@ -597,7 +597,7 @@ export function KindWords() {
           />
           <span
             style={{
-              fontFamily: "'Inter',sans-serif",
+              fontFamily: "var(--font-brand)",
               fontSize: ".8rem",
               fontVariantNumeric: "tabular-nums",
               color: "rgba(var(--page-fg-rgb), .4)",
