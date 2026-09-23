@@ -13,7 +13,7 @@ lastUpdated: "2026-09-06"
 
 ## Who is responsible for your data
 
-This website is operated by DYSIGNS, a sole proprietorship registered in the Netherlands under Dylan Kho.
+This website is operated by DYSIGNS, a sole proprietorship registered in the Netherlands.
 
 - Chamber of Commerce (KVK): 83710418
 - VAT (BTW): NL003861601B85

@@ -14,7 +14,7 @@ lastUpdated: "2026-09-06"
 
 ## Wie verantwoordelijk is voor je gegevens
 
-Deze website wordt beheerd door DYSIGNS, een eenmanszaak geregistreerd in Nederland op naam van Dylan Kho.
+Deze website wordt beheerd door DYSIGNS, een eenmanszaak geregistreerd in Nederland.
 
 - Kamer van Koophandel (KVK): 83710418
 - BTW-nummer: NL003861601B85
