@@ -839,7 +839,7 @@ export function Hero() {
                         textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-14"
+                        letterSpacing="-20"
                         fill="transparent"
                         stroke="rgba(var(--page-fg-rgb), .38)"
                         strokeWidth="1.45"
@@ -856,7 +856,7 @@ export function Hero() {
                         textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-14"
+                        letterSpacing="-20"
                         fill="var(--page-fg)"
                       >
                         DYSIGNS
@@ -874,7 +874,7 @@ export function Hero() {
                         textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-14"
+                        letterSpacing="-20"
                         fill="transparent"
                         stroke="rgba(var(--page-fg-rgb), .38)"
                         strokeWidth="1.45"
@@ -891,7 +891,7 @@ export function Hero() {
                         textRendering="geometricPrecision"
                         fontSize="350"
                         fontWeight="900"
-                        letterSpacing="-14"
+                        letterSpacing="-20"
                         fill="var(--page-fg)"
                       >
                         DYSIGNS
