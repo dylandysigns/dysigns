@@ -18,7 +18,7 @@ lastUpdated: "2026-09-05"
 
 The figures below are general market indications for the Netherlands in 2026, not a DYSIGNS price list. Treat them as a starting point for budgeting, not a quote.
 
-In the Netherlands, a simple, professionally designed brochure website typically runs somewhere between €2,500 and €7,000. A custom-designed business website with more pages and functionality lands between €7,000 and €20,000. A Shopify webshop starts around €1,500 for a modified theme with standard functionality, and scales up from there depending on how much custom work, app integrations, and 2026-era features like headless commerce or AI-powered search a project actually needs. A complex web platform or web app is effectively open-ended, since it is closer to software development than website design.
+In the Netherlands, a simple, professionally designed brochure website typically runs somewhere between €2,500 and €7,000. A custom-designed business website with more pages and functionality lands between €7,000 and €20,000. A professionally designed Shopify webshop typically starts around €6,000 to €8,000. A custom project with its own UX/UI, conversion optimisation, migration and integrations often lands between €10,000 and €30,000 or more, depending on scope and technical complexity. A complex web platform or web app is effectively open-ended, since it is closer to software development than website design.
 
 Those ranges are a starting point for a conversation, not a quote. What actually determines where your project lands inside them is a short list of concrete factors.
 
@@ -42,18 +42,17 @@ These are general market indications for the Netherlands in 2026, not a DYSIGNS 
 
 - **Simple brochure site** (5 to 10 pages, template-based or lightly customised): roughly €2,500 to €7,000.
 - **Custom-designed business website** (bespoke design, CMS, moderate functionality): roughly €7,000 to €20,000.
-- **Shopify webshop** (modified theme to fully custom build): starts around €1,500. See the breakdown below, since Shopify pricing spreads wider than any other category on this list.
+- **Shopify webshop** (professionally designed store to fully custom build): typically starts around €6,000 to €8,000, and often runs between €10,000 and €30,000 or more for a custom project. See the breakdown below.
 - **Web platform or web app** (dashboards, portals, logged-in experiences): usually €20,000 and up, scoped like software rather than a website.
 
 ### What a Shopify webshop actually costs in 2026
 
-"A Shopify store" can mean a five-page theme tweak or a headless, AI-powered platform selling into six countries, so one number does not tell you much. As an official Shopify Partner, DYSIGNS sees this range up close: think in three tiers instead of one number, each building logically on the one before it:
+"A Shopify store" can mean a well-executed store on a modified theme or a headless, AI-powered platform selling into six countries, so one number does not tell you much. As an official Shopify Partner, DYSIGNS sees this range up close. Think in two levels:
 
-- **Starter** (modified theme, standard functionality, one market): from €1,500.
-- **Mid-tier** (custom sections, several app integrations, a more developed design system): roughly €4,000 to €10,000.
-- **Advanced** (headless or Shopify Plus builds, AI-powered search and product discovery, Shopify Markets for multi-country selling, deep custom integrations): roughly €10,000 to €25,000 or more, depending on scope.
+- **Professionally designed store** (modified theme, professional design, standard functionality, one market): typically around €6,000 to €8,000.
+- **Custom project** (own UX/UI, conversion optimisation, migration, integrations, and where needed headless or Shopify Plus, AI-powered search and Shopify Markets for multi-country selling): often between €10,000 and €30,000 or more.
 
-An extra app integration or a more developed design system moves a project toward the mid-tier; a headless front end or AI-driven search moves it toward advanced. Almost nobody starts at €25,000: that ceiling only applies once a project genuinely needs enterprise-level complexity, not to a standard store launch.
+The final price depends on scope and technical complexity: every extra app integration, migration or custom feature moves a project from the first level toward the second.
 
 Anything quoted well below these ranges is usually a template with your logo dropped in, not a designed and built site. Anything quoted with no discovery conversation at all is a guess, not a scope.
 
