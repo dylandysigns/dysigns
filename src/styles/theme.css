@@ -114,6 +114,11 @@
     font-size: var(--font-size);
     -webkit-text-size-adjust: 100%;
     background-color: var(--page-bg);
+    /* overflow-x: clip on <html> too. Body's clip alone propagates to the
+       viewport, which still lets the oversized hero wordmark (134vw) widen
+       the document to ~437px on a 375px phone. Clip, not hidden, so no
+       scroll container is created (see body note below). */
+    overflow-x: clip;
     /* scroll-behavior: smooth is intentionally NOT set globally.
        On iOS Safari it causes window.scrollTo(0,0) calls (route changes,
        ScrollTrigger refresh) to animate instead of jumping instantly,
