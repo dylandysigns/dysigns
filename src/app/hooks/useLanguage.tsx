@@ -640,32 +640,6 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "In gebruik bij meerdere overheidsinstellingen in de VTH-sector",
   },
 
-  /* ── Project: Orbit SaaS Platform ── */
-  "project.orbit-saas-platform.title": {
-    en: "Orbit SaaS Platform",
-    nl: "Orbit SaaS Platform",
-  },
-  "project.orbit-saas-platform.overview": {
-    en: "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire platform experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
-    nl: "Orbit moest evolueren van een ontwikkelaarstool naar een platform dat teams echt graag gebruiken. We herontwierpen de complete platformervaring\u2014dashboard, instellingen, workflows\u2014en bouwden een design system dat meeschaalt met hun engineering-snelheid.",
-  },
-  "project.orbit-saas-platform.outcome.0": {
-    en: "User activation rate improved 67%",
-    nl: "Gebruikersactivatiepercentage verbeterd met 67%",
-  },
-  "project.orbit-saas-platform.outcome.1": {
-    en: "Support tickets reduced by 40%",
-    nl: "Supporttickets verminderd met 40%",
-  },
-  "project.orbit-saas-platform.outcome.2": {
-    en: "Design system covers 95% of UI patterns",
-    nl: "Design system dekt 95% van alle UI-patronen",
-  },
-  "project.orbit-saas-platform.outcome.3": {
-    en: "Raised Series B shortly after redesign launch",
-    nl: "Series B-ronde opgehaald kort na lancering herontwerp",
-  },
-
   /* ── Project: Flux Motion Identity ── */
   "project.flux-motion-identity.title": {
     en: "Flux Motion Identity",
@@ -746,6 +720,43 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "project.studio75-branding.alt.3": {
     en: "Studio75 business cards in black and white with an orange edge, showing the asterisk logo and contact details on a dark background",
     nl: "Studio75-visitekaartjes in zwart en wit met oranje rand, met het sterretjeslogo en contactgegevens op een donkere achtergrond",
+  },
+  /* \u2500\u2500 Project: Merely Made Webshop \u2500\u2500 */
+  "project.merely-made-webshop.title": {
+    en: "Merely Made Webshop",
+    nl: "Merely Made Webshop",
+  },
+  "project.merely-made-webshop.overview": {
+    en: "We designed, developed and built the webshop for Merely Made, the Seoul-based Korean fashion brand sold in 32 stores from Paris to Tokyo. Founded in Seoul in 2018, Merely Made makes thoughtfully crafted garments designed to last, and the brand now travels far beyond Korea, with stockists across Europe, Asia, North America, the Middle East and Oceania, from London, Rotterdam and Istanbul to Kyoto, Busan, Shanghai and Hong Kong. A brand with that reach needs a store that feels as considered as the clothes, so we built it from scratch: a home page that opens on the collection, a lookbook you step into, a calm shop with filters for outerwear, knitwear, tops and bottoms, a product page where size, colour and add to cart are one glance away, and a stockist page that shows where to find the brand worldwide. Everything was designed and built for desktop and mobile together, so shopping stays effortless on any screen, in any city. The photography does the talking; the interface simply gets out of its way.",
+    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio. Merely Made is in 2018 opgericht in Seoul en maakt zorgvuldig vervaardigde kleding die bedoeld is om lang mee te gaan. Inmiddels reist het merk ver buiten Korea, met verkooppunten in Europa, Azië, Noord-Amerika, het Midden-Oosten en Oceanië, van Londen, Rotterdam en Istanbul tot Kyoto, Busan, Shanghai en Hongkong. Een merk met dat bereik verdient een webshop die net zo doordacht aanvoelt als de kleding, dus bouwden we hem helemaal vanaf nul: een homepage die opent op de collectie, een lookbook waar je in stapt, een rustige shop met filters voor outerwear, knitwear, tops en bottoms, een productpagina waar maat, kleur en in winkelmand binnen één blik staan, en een stockistpagina die laat zien waar je het merk wereldwijd vindt. Alles is tegelijk voor desktop en mobiel ontworpen en gebouwd, zodat winkelen op elk scherm en in elke stad moeiteloos blijft. De fotografie doet het woord; de interface blijft er netjes uit de weg.",
+  },
+  "project.merely-made-webshop.alt.cover": {
+    en: "Merely Made lookbook photograph: a model in relaxed, layered clothing sits in soft, natural daylight",
+    nl: "Lookbookfoto van Merely Made: een model in relaxte, gelaagde kleding zit in zacht daglicht",
+  },
+  "project.merely-made-webshop.alt.0": {
+    en: "Merely Made home page hero: close-up of a grey wool jacket with a zip collar and the collection introduction text over the photo",
+    nl: "Hero van de Merely Made-homepage: close-up van een grijze wollen jas met ritskraag en de collectie-intro over de foto",
+  },
+  "project.merely-made-webshop.alt.1": {
+    en: "Merely Made shop page with a category filter for outerwear, knitwear, tops and bottoms next to a two-column grid of product photos",
+    nl: "Merely Made shoppagina met een categoriefilter voor outerwear, knitwear, tops en bottoms naast een raster van twee kolommen productfoto's",
+  },
+  "project.merely-made-webshop.alt.2": {
+    en: "Merely Made lookbook page: a four-column grid of editorial photos of models wearing layered outerwear and knitwear",
+    nl: "Merely Made lookbookpagina: een raster van vier kolommen met redactionele foto's van modellen in gelaagde outerwear en knitwear",
+  },
+  "project.merely-made-webshop.alt.3": {
+    en: "Merely Made product page with size and colour options, an add to cart button and two product photos of a beige cropped jacket",
+    nl: "Merely Made productpagina met maat- en kleuropties, een knop voor in winkelmand en twee productfoto's van een beige cropped jack",
+  },
+  "project.merely-made-webshop.alt.4": {
+    en: "Merely Made new arrivals row with three product cards showing price, size selector and an add to cart button on hover",
+    nl: "Merely Made nieuwe-collectierij met drie productkaarten met prijs, maatkeuze en een knop voor in winkelmand bij hover",
+  },
+  "project.merely-made-webshop.alt.5": {
+    en: "Merely Made webshop on mobile: the home page, shop page and product page shown as three phone screens side by side",
+    nl: "Merely Made-webshop op mobiel: de homepage, shoppagina en productpagina als drie telefoonschermen naast elkaar",
   },
 };
 

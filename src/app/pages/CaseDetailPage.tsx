@@ -15,6 +15,10 @@ import { Seo } from "../components/Seo";
 function truncateForDescription(text: string, max = 155): string {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
+  // Prefer a clean sentence ending over a mid-sentence cut when the first
+  // sentence is already a substantial, self-contained description.
+  const firstSentence = clean.match(/^.{90,}?[.!?](?=\s|$)/)?.[0];
+  if (firstSentence && firstSentence.length <= max) return firstSentence;
   return clean.slice(0, clean.lastIndexOf(" ", max - 1)) + "…";
 }
 import {
@@ -456,26 +460,30 @@ export default function CaseDetailPage() {
             />
           ) : (
             <>
-              {project.logoSafeCover && (
-                // Desktop: image width = cover size, capped at 1.35x viewport width so
-                // the centred logo never clips; edge colours fill any leftover space.
-                // Small screens use the portrait cover when one is provided.
+              {(project.logoSafeCover || project.thumbnailMobile) && (
+                // logoSafeCover: image width = cover size, capped at 1.35x viewport
+                // width so a centred logo never clips; edge colours fill leftover space.
+                // thumbnailMobile: portrait cover swapped in below 768px.
                 <style>{`
-                  .case-hero-bg{background-image:url(${project.thumbnail}),linear-gradient(#370e08,#1a1009);background-size:min(max(100vw,160vh),135vw) auto,100% 100%;background-repeat:no-repeat}
+                  .case-hero-bg{${
+                    project.logoSafeCover
+                      ? `background-image:url(${project.thumbnail}),linear-gradient(#370e08,#1a1009);background-size:min(max(100vw,160vh),135vw) auto,100% 100%;background-repeat:no-repeat;background-position:center center`
+                      : `background-image:url(${project.thumbnail});background-size:cover;background-position:center 20%`
+                  }}
                   ${project.thumbnailMobile ? `@media (max-width:767px){.case-hero-bg{background-image:url(${project.thumbnailMobile});background-size:cover;background-position:center}}` : ""}
                 `}</style>
               )}
               <div
-                className={`absolute inset-0${project.logoSafeCover ? " case-hero-bg" : ""}`}
+                className={`absolute inset-0${project.logoSafeCover || project.thumbnailMobile ? " case-hero-bg" : ""}`}
                 {...(project.thumbnailAlt && { role: "img", "aria-label": project.thumbnailAlt })}
                 style={{
                   width: "100%",
                   height: "100%",
-                  ...(!project.logoSafeCover && {
+                  ...(!(project.logoSafeCover || project.thumbnailMobile) && {
                     backgroundImage: `url(${project.thumbnail})`,
                     backgroundSize: "cover",
                   }),
-                  backgroundPosition: "center center",
+                  ...(!(project.logoSafeCover || project.thumbnailMobile) && { backgroundPosition: "center center" }),
                   transform: "none",
                   willChange: "auto",
                 }}
@@ -781,7 +789,7 @@ export default function CaseDetailPage() {
                   decoding="async"
                   className="w-full h-full object-cover"
                   style={{
-                    filter: "grayscale(.7) brightness(.6) contrast(1.05)",
+                    filter: project.cleanGallery ? "none" : "grayscale(.7) brightness(.6) contrast(1.05)",
                   }}
                   loading="lazy"
                 />

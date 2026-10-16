@@ -38,7 +38,7 @@ const ZOOM_GRID_SLUGS = [
   "verkeersschool-beckers-branding",
   "stelz-web-design", // hero / center tile
   "powermobile",
-  "orbit-saas-platform",
+  "merely-made-webshop",
   "a-cafe-app-design",
   "studio75-branding",
 ];
@@ -192,7 +192,11 @@ export function ZoomToGrid() {
       <ProjectZoomLink
         to={`/work/${project.slug}`}
         projectSlug={project.slug}
-        imageSrc={project.thumbnail}
+        imageSrc={
+          project.thumbnailMobile && typeof window !== "undefined" && window.innerWidth < 768
+            ? project.thumbnailMobile
+            : project.thumbnail
+        }
         transitionId={`${isHero ? "zoom-hero" : "zoom-grid"}-${project.slug}`}
         className="block"
         onMouseEnter={() => cursor.set("view", tRef.current("cursor.viewProject"))}
@@ -232,15 +236,21 @@ export function ZoomToGrid() {
                 preload="metadata"
               />
             ) : (
-              <img
-                src={isHero ? zoomToGridData.heroImage : project.thumbnail}
-                alt={`${project.title}, ${project.category} by DYSIGNS`}
-                className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
-                style={{ willChange: "transform" }}
-                loading={isHero ? "eager" : "lazy"}
-                // eslint-disable-next-line react/no-unknown-property -- React 18 doesn't recognize fetchPriority; lowercase passes through as a plain attribute
-                fetchpriority={isHero ? "high" : undefined}
-              />
+              <picture>
+                {!isHero && project.thumbnailMobile && (
+                  // Portrait tile (aspect-[3/4]) below the sm breakpoint
+                  <source media="(max-width: 639px)" srcSet={project.thumbnailMobile} />
+                )}
+                <img
+                  src={isHero ? zoomToGridData.heroImage : project.thumbnail}
+                  alt={`${project.title}, ${project.category} by DYSIGNS`}
+                  className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
+                  style={{ willChange: "transform" }}
+                  loading={isHero ? "eager" : "lazy"}
+                  // eslint-disable-next-line react/no-unknown-property -- React 18 doesn't recognize fetchPriority; lowercase passes through as a plain attribute
+                  fetchpriority={isHero ? "high" : undefined}
+                />
+              </picture>
             )}
           </div>
           {/* Title overlay — always visible on mobile, hover-reveal on desktop */}
@@ -395,23 +405,32 @@ export function ZoomToGrid() {
                 key={proj.slug}
                 to={`/work/${proj.slug}`}
                 projectSlug={proj.slug}
-                imageSrc={proj.thumbnail}
+                imageSrc={
+                  proj.thumbnailMobile && typeof window !== "undefined" && window.innerWidth < 768
+                    ? proj.thumbnailMobile
+                    : proj.thumbnail
+                }
                 transitionId={`zoom-grid-${proj.slug}`}
                 className="block"
                 onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
                 onMouseLeave={() => cursor.reset()}
               >
                 <div className="overflow-hidden rounded-xl group">
-                  <img
-                    src={proj.thumbnail}
-                    alt={`${proj.title}, ${proj.category} by DYSIGNS`}
-                    className="w-full h-auto object-cover project-thumb group-hover:scale-105 transition-all duration-700"
-                    style={{
-                      aspectRatio: "4/3",
-                      filter: "grayscale(.8) brightness(.55) contrast(1.05)",
-                    }}
-                    loading="lazy"
-                  />
+                  <picture>
+                    {proj.thumbnailMobile && (
+                      <source media="(max-width: 767px)" srcSet={proj.thumbnailMobile} />
+                    )}
+                    <img
+                      src={proj.thumbnail}
+                      alt={`${proj.title}, ${proj.category} by DYSIGNS`}
+                      className="w-full h-auto object-cover project-thumb group-hover:scale-105 transition-all duration-700"
+                      style={{
+                        aspectRatio: "4/3",
+                        filter: "grayscale(.8) brightness(.55) contrast(1.05)",
+                      }}
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
               </ProjectZoomLink>
             ))}

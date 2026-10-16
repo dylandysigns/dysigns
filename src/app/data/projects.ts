@@ -27,6 +27,9 @@ export interface Project {
   /** When true, the cover and each gallery image get hand-written alt text
    * from the `project.<slug>.alt.cover` / `.alt.<index>` translation keys. */
   customAlt?: boolean;
+  /** Gallery images show in full colour (no grayscale/dim treatment) — for
+   * photography-led cases where the muted look would flatten the work. */
+  cleanGallery?: boolean;
   /** Cover has a centred logo that must never be cropped: the hero image is
    * sized so the logo always fits the viewport, with matching edge colours
    * filling any leftover space. */
@@ -199,28 +202,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "orbit-saas-platform",
-    title: "Orbit SaaS Platform",
-    category: "Digital",
-    tags: ["SaaS", "Dashboard", "Design System"],
-    year: "2023",
-    thumbnail:
-      "https://images.unsplash.com/photo-1764437180200-f0fd57fa15d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwbW90aW9uJTIwZ3JhcGhpY3MlMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE1MDg1MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    overview:
-      "Orbit needed to evolve from a developer tool into a platform teams actually enjoy using. We redesigned the entire platform experience\u2014dashboard, settings, workflows\u2014and built a design system that scales with their engineering velocity.",
-    outcomes: [
-      "User activation rate improved 67%",
-      "Support tickets reduced by 40%",
-      "Design system covers 95% of UI patterns",
-      "Raised Series B shortly after redesign launch",
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1685463894505-d33387aa8430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aXJlZnJhbWUlMjBkZXNpZ24lMjBwcm9jZXNzJTIwc2tldGNoaW5nfGVufDF8fHx8MTc3MTUwODUxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1706700392626-5279fb90ae73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwc2hvd2Nhc2UlMjBsYXB0b3AlMjBtb2NrdXB8ZW58MXx8fHwxNzcxNTA4NTE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1764437180200-f0fd57fa15d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwbW90aW9uJTIwZ3JhcGhpY3MlMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE1MDg1MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    ],
-  },
-  {
     slug: "a-cafe-app-design",
     title: "A/Café POS & Kiosk Design",
     category: "Product Design",
@@ -262,6 +243,28 @@ export const projects: Project[] = [
       "/images/studio75-logo-variants.avif",
       "/images/studio75-typography.avif",
       "/images/studio75-business-card.avif",
+    ],
+  },
+  {
+    slug: "merely-made-webshop",
+    title: "Merely Made Webshop",
+    category: "Web",
+    tags: ["Web Design", "Development", "E-Commerce"],
+    year: "2026",
+    thumbnail: "/images/merelymade-cover.avif",
+    thumbnailMobile: "/images/merelymade-cover-mobile.avif",
+    overview:
+      "We designed, developed and built the webshop for Merely Made, the Seoul-based Korean fashion brand sold in 32 stores from Paris to Tokyo. Founded in Seoul in 2018, Merely Made makes thoughtfully crafted garments designed to last, and the brand now travels far beyond Korea, with stockists across Europe, Asia, North America, the Middle East and Oceania, from London, Rotterdam and Istanbul to Kyoto, Busan, Shanghai and Hong Kong. A brand with that reach needs a store that feels as considered as the clothes, so we built it from scratch: a home page that opens on the collection, a lookbook you step into, a calm shop with filters for outerwear, knitwear, tops and bottoms, a product page where size, colour and add to cart are one glance away, and a stockist page that shows where to find the brand worldwide. Everything was designed and built for desktop and mobile together, so shopping stays effortless on any screen, in any city. The photography does the talking; the interface simply gets out of its way.",
+    outcomes: [],
+    customAlt: true,
+    cleanGallery: true,
+    gallery: [
+      "/images/merelymade-web-hero.avif",
+      "/images/merelymade-shop.avif",
+      "/images/merelymade-lookbook.avif",
+      "/images/merelymade-product.avif",
+      "/images/merelymade-new-arrivals.avif",
+      "/images/merelymade-mobile.avif",
     ],
   },
   {

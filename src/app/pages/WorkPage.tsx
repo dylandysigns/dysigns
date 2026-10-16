@@ -20,7 +20,7 @@ function getProjectYear(value: string): number {
 // sequence, regardless of year. Everything else follows, most recent
 // year first (a real 2026 case not on this list, e.g. Beckers, still
 // lands ahead of older placeholder cases).
-const FEATURED_ORDER = ["stelz-web-design", "a-cafe-app-design", "powermobile", "studio75-branding"];
+const FEATURED_ORDER = ["stelz-web-design", "a-cafe-app-design", "powermobile", "studio75-branding", "merely-made-webshop"];
 
 export default function WorkPage() {
   const sectionRef = useRef<HTMLElement>(null);
