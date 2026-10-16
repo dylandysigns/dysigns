@@ -24,6 +24,18 @@ export interface Project {
   overview: string;
   outcomes: string[];
   gallery: string[];
+  /** When true, the cover and each gallery image get hand-written alt text
+   * from the `project.<slug>.alt.cover` / `.alt.<index>` translation keys. */
+  customAlt?: boolean;
+  /** Cover has a centred logo that must never be cropped: the hero image is
+   * sized so the logo always fits the viewport, with matching edge colours
+   * filling any leftover space. */
+  logoSafeCover?: boolean;
+  /** Portrait cover used on small screens (<768px) instead of `thumbnail`. */
+  thumbnailMobile?: string;
+  /** Resolved alt texts (filled in by useTranslatedProjects). */
+  thumbnailAlt?: string;
+  galleryAlt?: string[];
   /** Optional before/after image pairs — rendered as their own labeled
    * side-by-side row in the case detail gallery, always 2-up even on
    * mobile, kept separate from the general `gallery` grid. */
@@ -236,13 +248,21 @@ export const projects: Project[] = [
     slug: "studio75-branding",
     title: "Studio75 Branding",
     category: "Branding",
-    tags: ["Brand Identity", "Co-Creation"],
+    tags: ["Brand Identity", "Logo Design", "Print"],
     year: "2026",
-    thumbnail: "/images/placeholder-case.svg",
+    thumbnail: "/images/studio75-cover.avif",
     overview:
-      "DYSIGNS developed the Studio75 identity through co-creation, based in the Netherlands and working directly with the client throughout. From ideation and moodboards to a fully developed identity, built together rather than handed over, and translated directly into practice instead of staying a standalone style guide.",
+      "Studio75 wanted a brand identity that feels truly theirs. So we started with a moodboard, not a logo: posters, texture, nightlife and movement, collected until a direction took shape. Together with the client we then refined it step by step until we found their own taste. From there we designed the whole package: a logo built around a bold asterisk symbol, the colours, the typography and the first assets, like the business cards. At DYSIGNS we bring your idea and your passion to life, because once the foundation of your brand is right, everything else can grow from it.",
     outcomes: [],
-    gallery: ["/images/placeholder-case.svg"],
+    customAlt: true,
+    logoSafeCover: true,
+    thumbnailMobile: "/images/studio75-cover-mobile.avif",
+    gallery: [
+      "/images/studio75-moodboard.avif",
+      "/images/studio75-logo-variants.avif",
+      "/images/studio75-typography.avif",
+      "/images/studio75-business-card.avif",
+    ],
   },
   {
     slug: "flux-motion-identity",

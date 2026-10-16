@@ -437,6 +437,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "tag.POS Design": { en: "POS Design", nl: "Kassasysteem" },
   "tag.Kiosk Design": { en: "Kiosk Design", nl: "Kiosk Design" },
   "tag.Email Marketing": { en: "Email Marketing", nl: "E-mailmarketing" },
+  "tag.Logo Design": { en: "Logo Design", nl: "Logo-ontwerp" },
   "tag.Co-Creation": { en: "Co-Creation", nl: "Co-creatie" },
   "tag.Web Design": { en: "Web Design", nl: "Webdesign" },
   "tag.Design System": { en: "Design System", nl: "Design System" },
@@ -723,8 +724,28 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Studio75 Branding",
   },
   "project.studio75-branding.overview": {
-    en: "DYSIGNS developed the Studio75 identity through co-creation, based in the Netherlands and working directly with the client throughout. From ideation and moodboards to a fully developed identity, built together rather than handed over, and translated directly into practice instead of staying a standalone style guide.",
-    nl: "DYSIGNS ontwikkelde de identiteit van Studio75 via co-creatie, vanuit Nederland en steeds in direct contact met de klant. Van ideevorming en moodboards tot een volledig uitgewerkte identiteit, samen gebouwd in plaats van opgeleverd, en direct vertaald naar de praktijk in plaats van een losstaande stijlgids.",
+    en: "Studio75 wanted a brand identity that feels truly theirs. So we started with a moodboard, not a logo: posters, texture, nightlife and movement, collected until a direction took shape. Together with the client we then refined it step by step until we found their own taste. From there we designed the whole package: a logo built around a bold asterisk symbol, the colours, the typography and the first assets, like the business cards. At DYSIGNS we bring your idea and your passion to life, because once the foundation of your brand is right, everything else can grow from it.",
+    nl: "Studio75 wilde een merkidentiteit die echt van henzelf voelt. Wij begonnen daarom niet bij een logo, maar bij een moodboard: posters, texturen, nachtleven en beweging, bij elkaar gezocht tot er een richting zichtbaar werd. Samen met de opdrachtgever schaafden we stap voor stap door, tot we de smaak vonden die echt bij Studio75 past. Van daaruit bedachten we het hele jasje: een logo rond een eigenzinnig sterretjessymbool, de kleuren, het lettertype en de eerste assets, zoals de visitekaartjes. Bij DYSIGNS brengen we jouw idee en jouw passie tot leven, want als de basis van je merk staat, kan de rest daar vanzelf op doorgroeien.",
+  },
+  "project.studio75-branding.alt.cover": {
+    en: "Studio75 logo in bold white lettering with a registered mark, over a dark, red-lit silhouette of a person",
+    nl: "Studio75-logo in vette witte letters met ®-teken, over een donker, rood verlicht silhouet van een persoon",
+  },
+  "project.studio75-branding.alt.0": {
+    en: "Studio75 moodboard collage of posters, portraits, interfaces and photography, with taped labels such as crowd energy, movement, texture and typographic posters",
+    nl: "Studio75-moodboard: een collage van posters, portretten, interfaces en fotografie met labels als crowd energy, movement, texture en typographic posters",
+  },
+  "project.studio75-branding.alt.1": {
+    en: "Studio75 logo variants: three versions of the asterisk symbol and bold wordmark, from expressive and handmade to clean and textured, with notes on the design process",
+    nl: "Studio75-logovarianten: drie versies van het sterretjessymbool met vet woordmerk, van expressief en handgemaakt tot strak en getextureerd, met uitleg over het ontwerpproces",
+  },
+  "project.studio75-branding.alt.2": {
+    en: "Studio75 typography page showing the Futura PT typeface in Book, Medium, Bold and Extra Bold with the full alphabet and numerals",
+    nl: "Typografiepagina van Studio75 met het lettertype Futura PT in Book, Medium, Bold en Extra Bold, met alfabet en cijfers",
+  },
+  "project.studio75-branding.alt.3": {
+    en: "Studio75 business cards in black and white with an orange edge, showing the asterisk logo and contact details on a dark background",
+    nl: "Studio75-visitekaartjes in zwart en wit met oranje rand, met het sterretjeslogo en contactgegevens op een donkere achtergrond",
   },
 };
 

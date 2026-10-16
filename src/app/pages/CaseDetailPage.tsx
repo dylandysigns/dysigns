@@ -455,18 +455,32 @@ export default function CaseDetailPage() {
               preload="metadata"
             />
           ) : (
-            <div
-              className="absolute inset-0"
-              style={{
-                width: "100%",
-                height: "100%",
-                backgroundImage: `url(${project.thumbnail})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-                transform: "none",
-                willChange: "auto",
-              }}
-            />
+            <>
+              {project.logoSafeCover && (
+                // Desktop: image width = cover size, capped at 1.35x viewport width so
+                // the centred logo never clips; edge colours fill any leftover space.
+                // Small screens use the portrait cover when one is provided.
+                <style>{`
+                  .case-hero-bg{background-image:url(${project.thumbnail}),linear-gradient(#370e08,#1a1009);background-size:min(max(100vw,160vh),135vw) auto,100% 100%;background-repeat:no-repeat}
+                  ${project.thumbnailMobile ? `@media (max-width:767px){.case-hero-bg{background-image:url(${project.thumbnailMobile});background-size:cover;background-position:center}}` : ""}
+                `}</style>
+              )}
+              <div
+                className={`absolute inset-0${project.logoSafeCover ? " case-hero-bg" : ""}`}
+                {...(project.thumbnailAlt && { role: "img", "aria-label": project.thumbnailAlt })}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  ...(!project.logoSafeCover && {
+                    backgroundImage: `url(${project.thumbnail})`,
+                    backgroundSize: "cover",
+                  }),
+                  backgroundPosition: "center center",
+                  transform: "none",
+                  willChange: "auto",
+                }}
+              />
+            </>
           )}
         </div>
 
@@ -761,7 +775,10 @@ export default function CaseDetailPage() {
               <div className="aspect-[16/10] overflow-hidden">
                 <img
                   src={img}
-                  alt={`${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
+                  alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
+                  width={1400}
+                  height={875}
+                  decoding="async"
                   className="w-full h-full object-cover"
                   style={{
                     filter: "grayscale(.7) brightness(.6) contrast(1.05)",
