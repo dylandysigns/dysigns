@@ -1,6 +1,6 @@
 ---
 title: "Shopify Partner Agency in the Netherlands | DYSIGNS"
-description: "DYSIGNS is an official Shopify Partner: custom themes, Liquid sections and Shopify Markets, built to keep converting, not just to launch."
+description: "DYSIGNS is an official Shopify Partner in the Netherlands: custom themes, Liquid sections and Shopify Markets, built to keep converting."
 heading: "Shopify development"
 slug: "shopify-development"
 answerBlock: |

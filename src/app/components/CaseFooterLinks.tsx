@@ -1,6 +1,7 @@
 import type { ContentEntry } from "../content/loadContent";
 import { getCaseServiceSlugs } from "../content/loadContent";
 import { SERVICES } from "../content/services";
+import { crawlHref } from "../seo/href";
 
 const h2Style = {
   fontFamily: "var(--font-brand)",
@@ -54,7 +55,7 @@ export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
         {servicesToShow.map((s) => (
           <li key={s.slug}>
             <a
-              href={`/${s.slug}`}
+              href={crawlHref(`/${s.slug}`)}
               style={linkStyle}
               onMouseEnter={handleLinkEnter}
               onMouseLeave={handleLinkLeave}

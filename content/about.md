@@ -4,10 +4,10 @@ description: "DYSIGNS is a team of specialists based in the Netherlands. Meet th
 heading: "About DYSIGNS"
 slug: "about"
 answerBlock: |
-  DYSIGNS is a full-service digital agency based in the Netherlands,
-  built as a team of specialists rather than one generalist. We
-  started as UX/UI designers and expanded that foundation into web
-  design, Shopify development, branding, data-driven SEO and technical
+  DYSIGNS is a creative partner based in the Netherlands, a small team
+  built around specialists rather than one generalist. We started as
+  UX/UI designers and expanded that foundation into web design,
+  Shopify development, branding, data-driven SEO and technical
   optimization, AI implementation, and social media and paid campaigns
   for clients worldwide.
 lastUpdated: "2026-08-02"

@@ -49,12 +49,19 @@ export function creativeWorkSchema(opts: {
   about: string; // client name
   path: string;
   datePublished?: string;
+  description?: string;
+  keywords?: string[];
+  /** Absolute image URLs for the work (cover first). */
+  images?: string[];
 }) {
   return {
     "@type": "CreativeWork",
     name: opts.name,
     url: canonicalUrl(opts.path),
     author: { "@id": ORG_ID },
+    ...(opts.description ? { description: opts.description } : {}),
+    ...(opts.keywords?.length ? { keywords: opts.keywords.join(", ") } : {}),
+    ...(opts.images?.length ? { image: opts.images, thumbnailUrl: opts.images[0] } : {}),
     // schema.org's `about` expects a Thing, not plain text.
     about: { "@type": "Organization", name: opts.about },
     ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),

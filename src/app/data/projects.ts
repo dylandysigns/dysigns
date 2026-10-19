@@ -27,6 +27,13 @@ export interface Project {
   /** When true, the cover and each gallery image get hand-written alt text
    * from the `project.<slug>.alt.cover` / `.alt.<index>` translation keys. */
   customAlt?: boolean;
+  /** Hand-written SEO title/description from the `project.<slug>.seoTitle` /
+   * `.seoDescription` translation keys, plus a 1200x630 JPG for social
+   * sharing (AVIF is not read by social crawlers). */
+  customSeo?: boolean;
+  ogImage?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   /** Gallery images show in full colour (no grayscale/dim treatment) — for
    * photography-led cases where the muted look would flatten the work. */
   cleanGallery?: boolean;
@@ -233,16 +240,19 @@ export const projects: Project[] = [
     year: "2026",
     thumbnail: "/images/studio75-cover.avif",
     overview:
-      "Studio75 wanted a brand identity that feels truly theirs. So we started with a moodboard, not a logo: posters, texture, nightlife and movement, collected until a direction took shape. Together with the client we then refined it step by step until we found their own taste. From there we designed the whole package: a logo built around a bold asterisk symbol, the colours, the typography and the first assets, like the business cards. At DYSIGNS we bring your idea and your passion to life, because once the foundation of your brand is right, everything else can grow from it.",
+      "We created the brand identity for Studio75, from the first moodboard to the logo, colours, typography and business cards. Every identity we make starts the same way: by listening. Together with the founder we collected references, from nightlife and movement to typographic posters and texture, until a taste emerged that was unmistakably Studio75. From there our team worked fast and with focus, exploring three logo directions around a bold asterisk symbol, from expressive and handmade to clean and textured, and turning the chosen one into a complete system: palette, type and print assets, all documented in a brandbook. The result is a premium foundation that feels as sharp on a business card as it does on a screen. At DYSIGNS we bring your idea and your passion to life, and because the base is right from day one, everything built on top of it holds together.",
     outcomes: [],
     customAlt: true,
+    customSeo: true,
+    ogImage: "/images/og-studio75.jpg",
+    cleanGallery: true,
     logoSafeCover: true,
     thumbnailMobile: "/images/studio75-cover-mobile.avif",
     gallery: [
       "/images/studio75-moodboard.avif",
       "/images/studio75-logo-variants.avif",
+      "/images/studio75-business-cards.avif",
       "/images/studio75-typography.avif",
-      "/images/studio75-business-card.avif",
     ],
   },
   {
@@ -257,6 +267,8 @@ export const projects: Project[] = [
       "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
     outcomes: [],
     customAlt: true,
+    customSeo: true,
+    ogImage: "/images/og-merely-made.jpg",
     cleanGallery: true,
     gallery: [
       "/images/merelymade-web-hero.avif",

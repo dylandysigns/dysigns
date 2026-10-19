@@ -10,6 +10,10 @@ export interface PageMeta {
   path: string;
   ogType?: "website" | "article";
   robots?: string;
+  /** Per-page social image (absolute URL, 1200x630 JPG/PNG: social
+   * crawlers do not read AVIF). Falls back to the site-wide OG_IMAGE. */
+  image?: string;
+  imageAlt?: string;
   /** Page-type JSON-LD nodes (fase 4) — built via src/app/seo/schema.ts
    * helpers, e.g. [breadcrumbListSchema(...), serviceSchema(...)]. */
   schema?: object[];

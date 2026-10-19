@@ -1,16 +1,16 @@
 ---
-title: "Webdesign, Branding & Development Bureau | DYSIGNS"
-description: "DYSIGNS ontwerpt, bouwt en laat digitale producten groeien: webdesign, UX/UI, Shopify Partner development, branding, Meta Ads en AI, vanuit Nederland."
+title: "Webdesign Bureau & Shopify Partner Nederland | DYSIGNS"
+description: "Creative partner en klein team voor webdesign, branding en Shopify. Officiële Shopify Partner in Nederland, met klanten wereldwijd."
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
-  DYSIGNS is een full-service digital agency.
-  Wij verzorgen het hele traject: UX en merkidentiteit, websites en
-  Shopify-webshops als officiële Shopify Partner, AI-implementatie, en
-  de social-media- en advertentiecampagnes die daarna klanten
-  binnenhalen. Eén partner in plaats van vier leveranciers die naar
-  elkaar wijzen. Gevestigd in Nederland, met klanten over de hele
-  wereld.
+  DYSIGNS is jouw creative partner: een klein team dat met je ontwerpt
+  en bouwt, dichtbij en snel. Wij verzorgen het hele traject: UX en
+  merkidentiteit, websites en Shopify-webshops als officiële Shopify
+  Partner in Nederland, AI-implementatie, en de social-media- en
+  advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
+  plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in
+  Nederland, met klanten over de hele wereld.
 lastUpdated: "2026-08-02"
 ---
 
@@ -88,7 +88,7 @@ Delen ervan zeker, en we gebruiken die tools zelf ook dagelijks. We zijn niet be
 
 Ja, en niet als bijzaak die er na livegang achteraan wordt geplakt. Technische SEO, zoals paginasnelheid, schone markup, structured data en mobiele prestaties, wordt tijdens design en development ingebouwd, want dat achteraf herstellen is trager en minder effectief. Daarnaast werken we data-gedreven aan content en organische groei, zodat vindbaarheid blijft meegroeien met de site of webshop in plaats van stil te vallen na livegang.
 
-### Wat maakt een full-service bureau anders dan losse specialisten inhuren?
+### Wat maakt een creative partner anders dan losse specialisten inhuren?
 
 Met losse leveranciers word je zelf projectmanager tussen designer, developer en marketeer. Bij DYSIGNS zit het in één lijn: wie de advertentie maakt kent de landingspagina, en wie de webshop bouwt kent het merk. Minder afstemming, minder verloren in vertaling.
 

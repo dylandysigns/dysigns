@@ -27,6 +27,10 @@ export function useTranslatedProjects(): Project[] {
         tags: p.tags.map((tag) => t(`tag.${tag}`)),
         overview: t(`project.${p.slug}.overview`),
         outcomes: p.outcomes.map((_, i) => t(`project.${p.slug}.outcome.${i}`)),
+        ...(p.customSeo && {
+          seoTitle: t(`project.${p.slug}.seoTitle`),
+          seoDescription: t(`project.${p.slug}.seoDescription`),
+        }),
         ...(p.customAlt && {
           thumbnailAlt: t(`project.${p.slug}.alt.cover`),
           galleryAlt: p.gallery.map((_, i) => t(`project.${p.slug}.alt.${i}`)),

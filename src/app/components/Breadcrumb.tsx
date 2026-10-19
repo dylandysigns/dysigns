@@ -1,3 +1,4 @@
+import { crawlHref } from "../seo/href";
 export interface BreadcrumbItem {
   label: string;
   href?: string; // omit on the last item (current page)
@@ -28,7 +29,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             <li key={`${item.label}-${i}`} className="flex items-center gap-2">
               {item.href && !isLast ? (
                 <a
-                  href={item.href}
+                  href={crawlHref(item.href)}
                   style={{ color: "rgba(var(--page-fg-rgb), .4)" }}
                   className="hover:opacity-80 transition-opacity"
                 >

@@ -5,6 +5,7 @@ import { serviceDefinitions } from "../../data/serviceTaxonomy";
 import { ServiceCard } from "../services/ServiceCard";
 import { getLocalizedContent } from "../../content/loadContent";
 import { useLanguage } from "../../hooks/useLanguage";
+import { crawlHref } from "../../seo/href";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,7 +129,7 @@ export function Services() {
               <ServiceCard
                 title={s.title}
                 description={s.description}
-                href={`/${s.slug}`}
+                href={crawlHref(`/${s.slug}`)}
                 slug={s.slug}
                 index={i}
                 linkLabel={`${t("services.explorePrefix")} ${s.title.toLowerCase()}`}

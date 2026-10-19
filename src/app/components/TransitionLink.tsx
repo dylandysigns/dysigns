@@ -2,6 +2,7 @@ import React, { useCallback, forwardRef } from "react";
 import { useLocation } from "react-router";
 import { usePageTransition } from "../hooks/useTransition";
 import { pathIsDutch } from "../hooks/useLanguage";
+import { crawlHref } from "../seo/href";
 
 interface TransitionLinkProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
@@ -46,7 +47,7 @@ export const TransitionLink = forwardRef<HTMLAnchorElement, TransitionLinkProps>
     );
 
     return (
-      <a ref={ref} href={resolvedTo} onClick={handleClick} {...rest}>
+      <a ref={ref} href={crawlHref(resolvedTo)} onClick={handleClick} {...rest}>
         {children}
       </a>
     );

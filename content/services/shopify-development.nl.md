@@ -1,6 +1,6 @@
 ---
-title: "Shopify Partner Bureau in Nederland | DYSIGNS"
-description: "DYSIGNS is een officiële Shopify Partner: custom thema's, Liquid-secties en Shopify Markets, gebouwd om te blijven converteren, niet alleen te lanceren."
+title: "Shopify Partner Nederland: Bureau & Development | DYSIGNS"
+description: "DYSIGNS is een officiële Shopify Partner in Nederland: custom thema's, Liquid-secties en Shopify Markets, gebouwd om te blijven converteren."
 heading: "Shopify development"
 slug: "shopify-development"
 answerBlock: |

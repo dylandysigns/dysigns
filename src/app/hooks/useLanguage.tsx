@@ -41,8 +41,8 @@ const dict: Record<string, Record<Lang, string>> = {
 
   /* ── Hero ── */
   "hero.headline.A": {
-    en: "DYSIGNS is a full-service digital agency creating brands, websites, and social campaigns that transform company values into meaningful business value.",
-    nl: "DYSIGNS is een full-service digital agency die bedrijfswaarden vertaalt naar sterke merken, websites en socialmediacampagnes die impact maken.",
+    en: "DYSIGNS is your creative partner: a small team creating brands, websites, and social campaigns that transform company values into meaningful business value.",
+    nl: "DYSIGNS is jouw creative partner: een klein team dat bedrijfswaarden vertaalt naar sterke merken, websites en socialmediacampagnes die impact maken.",
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },
@@ -80,8 +80,8 @@ const dict: Record<string, Record<Lang, string>> = {
     nl: "Design, development en marketing, in één team",
   },
   "services.introText": {
-    en: "A full-service digital agency in the Netherlands, working with clients worldwide. UX, brand, websites, Shopify, AI implementation, and the campaigns that bring customers in afterwards. One partner instead of four vendors pointing at each other.",
-    nl: "Een full-service digital agency in Nederland, met klanten wereldwijd. UX, branding, websites, Shopify, AI-implementatie en de campagnes die daarna klanten binnenhalen. Eén partner in plaats van vier partijen die naar elkaar wijzen.",
+    en: "A creative partner and small team in the Netherlands, working with clients worldwide. UX, brand, websites, Shopify, AI implementation, and the campaigns that bring customers in afterwards. One partner instead of four vendors pointing at each other.",
+    nl: "Een creative partner en klein team in Nederland, met klanten wereldwijd. UX, branding, websites, Shopify, AI-implementatie en de campagnes die daarna klanten binnenhalen. Eén partner in plaats van vier partijen die naar elkaar wijzen.",
   },
   "services.eyebrow": { en: "Service", nl: "Dienst" },
   "services.explorePrefix": { en: "Explore", nl: "Bekijk" },
@@ -294,8 +294,8 @@ const dict: Record<string, Record<Lang, string>> = {
   /* ── About Page ── */
   "about.label": { en: "About us", nl: "Over ons" },
   "about.introPre": {
-    en: "DYSIGNS is a full-service digital agency",
-    nl: "DYSIGNS is een full-service digital agency",
+    en: "DYSIGNS is a creative partner: a small team",
+    nl: "DYSIGNS is een creative partner: een klein team",
   },
   "about.introPost": {
     en: ". We handle the whole journey: UX and brand identity, websites and Shopify stores, data-driven SEO and technical optimization, AI implementation, and the social and paid campaigns that bring in customers afterwards. One partner instead of four vendors pointing at each other. Based in the Netherlands, working with clients worldwide.",
@@ -697,66 +697,82 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "Studio75 Branding",
     nl: "Studio75 Branding",
   },
+  "project.studio75-branding.seoTitle": {
+    en: "Studio75 Brand Identity & Logo Design | DYSIGNS",
+    nl: "Studio75 merkidentiteit & logo-ontwerp | DYSIGNS",
+  },
+  "project.studio75-branding.seoDescription": {
+    en: "We created the brand identity for Studio75: moodboard, logo, colours, typography and business cards. Branding by DYSIGNS, creative partner in NL.",
+    nl: "Wij creëerden de merkidentiteit van Studio75: moodboard, logo, kleuren, typografie en visitekaartjes. Branding door DYSIGNS, creative partner.",
+  },
   "project.studio75-branding.overview": {
-    en: "Studio75 wanted a brand identity that feels truly theirs. So we started with a moodboard, not a logo: posters, texture, nightlife and movement, collected until a direction took shape. Together with the client we then refined it step by step until we found their own taste. From there we designed the whole package: a logo built around a bold asterisk symbol, the colours, the typography and the first assets, like the business cards. At DYSIGNS we bring your idea and your passion to life, because once the foundation of your brand is right, everything else can grow from it.",
-    nl: "Studio75 wilde een merkidentiteit die echt van henzelf voelt. Wij begonnen daarom niet bij een logo, maar bij een moodboard: posters, texturen, nachtleven en beweging, bij elkaar gezocht tot er een richting zichtbaar werd. Samen met de opdrachtgever schaafden we stap voor stap door, tot we de smaak vonden die echt bij Studio75 past. Van daaruit bedachten we het hele jasje: een logo rond een eigenzinnig sterretjessymbool, de kleuren, het lettertype en de eerste assets, zoals de visitekaartjes. Bij DYSIGNS brengen we jouw idee en jouw passie tot leven, want als de basis van je merk staat, kan de rest daar vanzelf op doorgroeien.",
+    en: "We created the brand identity for Studio75, from the first moodboard to the logo, colours, typography and business cards. Every identity we make starts the same way: by listening. Together with the founder we collected references, from nightlife and movement to typographic posters and texture, until a taste emerged that was unmistakably Studio75. From there our team worked fast and with focus, exploring three logo directions around a bold asterisk symbol, from expressive and handmade to clean and textured, and turning the chosen one into a complete system: palette, type and print assets, all documented in a brandbook. The result is a premium foundation that feels as sharp on a business card as it does on a screen. At DYSIGNS we bring your idea and your passion to life, and because the base is right from day one, everything built on top of it holds together.",
+    nl: "Wij creëerden de merkidentiteit van Studio75, van het eerste moodboard tot het logo, de kleuren, de typografie en de visitekaartjes. Elke identiteit begint bij ons hetzelfde: met luisteren. Samen met de oprichter verzamelden we referenties, van nachtleven en beweging tot typografische posters en textuur, tot er een smaak ontstond die onmiskenbaar Studio75 was. Vanaf daar werkte ons team snel en gefocust: we verkenden drie logorichtingen rond een gedurfd sterretjessymbool, van expressief en handgemaakt tot strak en getextureerd, en werkten de gekozen richting uit tot een compleet systeem van kleurpalet, typografie en drukwerk, vastgelegd in een brandbook. Het resultaat is een luxe, stevige basis die op een visitekaartje net zo scherp oogt als op een scherm. Bij DYSIGNS brengen we jouw idee en jouw passie tot leven, en doordat de basis vanaf dag één klopt, houdt alles wat erop gebouwd wordt samen.",
   },
   "project.studio75-branding.alt.cover": {
     en: "Studio75 logo in bold white lettering with a registered mark, over a dark, red-lit silhouette of a person",
     nl: "Studio75-logo in vette witte letters met ®-teken, over een donker, rood verlicht silhouet van een persoon",
   },
   "project.studio75-branding.alt.0": {
-    en: "Studio75 moodboard collage of posters, portraits, interfaces and photography, with taped labels such as crowd energy, movement, texture and typographic posters",
-    nl: "Studio75-moodboard: een collage van posters, portretten, interfaces en fotografie met labels als crowd energy, movement, texture en typographic posters",
+    en: "Studio75 brand identity moodboard: a dense collage of posters, portraits and photography in orange, black and blue, with taped labels such as crowd energy, movement, texture and typographic posters",
+    nl: "Studio75 merkidentiteit, moodboard: een dichte collage van posters, portretten en fotografie in oranje, zwart en blauw, met labels als crowd energy, movement, texture en typographic posters",
   },
   "project.studio75-branding.alt.1": {
-    en: "Studio75 logo variants: three versions of the asterisk symbol and bold wordmark, from expressive and handmade to clean and textured, with notes on the design process",
-    nl: "Studio75-logovarianten: drie versies van het sterretjessymbool met vet woordmerk, van expressief en handgemaakt tot strak en getextureerd, met uitleg over het ontwerpproces",
+    en: "Studio75 logo design, three variants: three versions of the asterisk symbol with a bold wordmark in black on an off-white background",
+    nl: "Studio75 logo-ontwerp, drie varianten: drie versies van het sterretjessymbool met vet woordmerk in zwart op een gebroken witte achtergrond",
   },
   "project.studio75-branding.alt.2": {
-    en: "Studio75 typography page showing the Futura PT typeface in Book, Medium, Bold and Extra Bold with the full alphabet and numerals",
-    nl: "Typografiepagina van Studio75 met het lettertype Futura PT in Book, Medium, Bold en Extra Bold, met alfabet en cijfers",
+    en: "Studio75 brand identity on print, business cards with a black front and an off-white back with orange edges, showing the asterisk logo, contact details and the line More impact, less friction",
+    nl: "Studio75 huisstijl op drukwerk, visitekaartjes met een zwarte voorkant en een gebroken witte achterkant met oranje randen, met het sterretjeslogo, contactgegevens en de tekst More impact, less friction",
   },
   "project.studio75-branding.alt.3": {
-    en: "Studio75 business cards in black and white with an orange edge, showing the asterisk logo and contact details on a dark background",
-    nl: "Studio75-visitekaartjes in zwart en wit met oranje rand, met het sterretjeslogo en contactgegevens op een donkere achtergrond",
+    en: "Studio75 brand typography page showing the typeface in Book, Medium, Bold and Extra Bold with the alphabet and numerals in white and orange on dark grey",
+    nl: "Typografiepagina van de Studio75-huisstijl met het lettertype in Book, Medium, Bold en Extra Bold, met alfabet en cijfers in wit en oranje op donkergrijs",
   },
   /* \u2500\u2500 Project: Merely Made Webshop \u2500\u2500 */
   "project.merely-made-webshop.title": {
     en: "Merely Made Webshop",
     nl: "Merely Made Webshop",
   },
+  "project.merely-made-webshop.seoTitle": {
+    en: "Merely Made Webshop: Fashion E-commerce Design | DYSIGNS",
+    nl: "Merely Made webshop: mode e-commerce design | DYSIGNS",
+  },
+  "project.merely-made-webshop.seoDescription": {
+    en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo.",
+    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.",
+  },
   "project.merely-made-webshop.overview": {
     en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
     nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio. Het merk had al een sterke identiteit, dus begonnen we met begrijpen wat er al stond: de rustige toon, het zelfverzekerde understatement en de ruimte rondom elk kledingstuk. Die identiteit vertaalden we naar webdesign, met negatieve ruimte als belangrijkste ontwerpmiddel, zodat de kleding en fotografie kunnen ademen en de interface op de achtergrond blijft. Met een snel en gefocust team bouwden we de webshop helemaal vanaf nul, van homepage en lookbook tot shop, productpagina’s en verkooppunten, ontworpen en gebouwd voor desktop en mobiel tegelijk. Design en development onder één dak betekent geen overdrachtsvertraging, maar een webshop die snel live staat en past bij een merk dat wereldwijd verkoopt.",
   },
   "project.merely-made-webshop.alt.cover": {
-    en: "Merely Made lookbook photograph: a model in relaxed, layered clothing sits in soft, natural daylight",
-    nl: "Lookbookfoto van Merely Made: een model in relaxte, gelaagde kleding zit in zacht daglicht",
+    en: "Merely Made fashion webshop, lookbook photograph: a model in relaxed, layered clothing sits in soft, natural daylight",
+    nl: "Merely Made modewebshop, lookbookfoto: een model in relaxte, gelaagde kleding zit in zacht daglicht",
   },
   "project.merely-made-webshop.alt.0": {
-    en: "Merely Made home page hero: close-up of a grey wool jacket with a zip collar and the collection introduction text over the photo",
-    nl: "Hero van de Merely Made-homepage: close-up van een grijze wollen jas met ritskraag en de collectie-intro over de foto",
+    en: "Merely Made webshop design, home page hero: close-up of a grey wool jacket with a zip collar and the collection introduction text over the photo",
+    nl: "Merely Made webshop-ontwerp, hero van de homepage: close-up van een grijze wollen jas met ritskraag en de collectie-intro over de foto",
   },
   "project.merely-made-webshop.alt.1": {
-    en: "Merely Made shop page with a category filter for outerwear, knitwear, tops and bottoms next to a two-column grid of product photos",
-    nl: "Merely Made shoppagina met een categoriefilter voor outerwear, knitwear, tops en bottoms naast een raster van twee kolommen productfoto's",
+    en: "Merely Made webshop design, shop page with a category filter for outerwear, knitwear, tops and bottoms next to a two-column grid of product photos",
+    nl: "Merely Made webshop-ontwerp, shoppagina met een categoriefilter voor outerwear, knitwear, tops en bottoms naast een raster van twee kolommen productfoto's",
   },
   "project.merely-made-webshop.alt.2": {
-    en: "Merely Made lookbook page: a four-column grid of editorial photos of models wearing layered outerwear and knitwear",
-    nl: "Merely Made lookbookpagina: een raster van vier kolommen met redactionele foto's van modellen in gelaagde outerwear en knitwear",
+    en: "Merely Made webshop design, lookbook page: a four-column grid of editorial photos of models wearing layered outerwear and knitwear",
+    nl: "Merely Made webshop-ontwerp, lookbookpagina: een raster van vier kolommen met redactionele foto's van modellen in gelaagde outerwear en knitwear",
   },
   "project.merely-made-webshop.alt.3": {
-    en: "Merely Made product page with size and colour options, an add to cart button and two product photos of a beige cropped jacket",
-    nl: "Merely Made productpagina met maat- en kleuropties, een knop voor in winkelmand en twee productfoto's van een beige cropped jack",
+    en: "Merely Made webshop design, product page with size and colour options, an add to cart button and two product photos of a beige cropped jacket",
+    nl: "Merely Made webshop-ontwerp, productpagina met maat- en kleuropties, een knop voor in winkelmand en twee productfoto's van een beige cropped jack",
   },
   "project.merely-made-webshop.alt.4": {
-    en: "Merely Made new arrivals row with three product cards showing price, size selector and an add to cart button on hover",
-    nl: "Merely Made nieuwe-collectierij met drie productkaarten met prijs, maatkeuze en een knop voor in winkelmand bij hover",
+    en: "Merely Made webshop design, new arrivals row with three product cards showing price, size selector and an add to cart button on hover",
+    nl: "Merely Made webshop-ontwerp, nieuwe-collectierij met drie productkaarten met prijs, maatkeuze en een knop voor in winkelmand bij hover",
   },
   "project.merely-made-webshop.alt.5": {
-    en: "Merely Made webshop on mobile: the home page, shop page and product page shown as three phone screens side by side",
-    nl: "Merely Made-webshop op mobiel: de homepage, shoppagina en productpagina als drie telefoonschermen naast elkaar",
+    en: "Merely Made mobile webshop design: the home page, shop page and product page shown as three phone screens side by side",
+    nl: "Merely Made mobiele webshop-ontwerp: de homepage, shoppagina en productpagina als drie telefoonschermen naast elkaar",
   },
 };
 

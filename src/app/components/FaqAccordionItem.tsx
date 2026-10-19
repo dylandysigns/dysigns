@@ -63,7 +63,7 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   // Homepage
   "Do I work directly with the team, or does it change per phase?": Profile2User,
   "Do you only design, or do you build as well?": Brush,
-  "What makes a full-service agency different from hiring specialists?": Flash,
+  "What makes a creative partner different from hiring specialists?": Flash,
   "What does the onboarding and project roadmap look like from start to launch?": Signpost,
   "Can you take over an existing website or store?": Handshake,
   "Which platforms do you build on?": Layer,
@@ -76,7 +76,7 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
 
   // AI implementation
   "How much does an AI implementation cost?": DollarCircle,
-  "Can AI just replace what your agency does?": MagicStar,
+  "Can AI just replace what a creative partner like you does?": MagicStar,
   "Will you tell me if AI is not the right fit?": InfoCircle,
   "Do I need existing AI infrastructure before we start?": Setting2,
   "Do you maintain the implementation after launch?": Rocket,

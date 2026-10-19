@@ -106,19 +106,23 @@ export function Seo(meta: PageMeta) {
     setMetaByProperty("og:description", meta.description);
     setMetaByProperty("og:url", canonicalUrl(effectivePath));
     setMetaByProperty("og:type", meta.ogType ?? "website");
-    setMetaByProperty("og:image", OG_IMAGE);
+    setMetaByProperty("og:image", meta.image ?? OG_IMAGE);
     setMetaByProperty("og:locale", lang === "nl" ? "nl_NL" : "en_US");
     setMetaByProperty("og:locale:alternate", lang === "nl" ? "en_US" : "nl_NL");
     setMetaByName("twitter:card", "summary_large_image");
     setMetaByName("twitter:title", meta.title);
     setMetaByName("twitter:description", meta.description);
-    setMetaByName("twitter:image", OG_IMAGE);
+    setMetaByName("twitter:image", meta.image ?? OG_IMAGE);
+    if (meta.imageAlt) {
+      setMetaByProperty("og:image:alt", meta.imageAlt);
+      setMetaByName("twitter:image:alt", meta.imageAlt);
+    }
     setPageSchema(meta.schema);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- schema is a
     // freshly-built array of object literals on every render; comparing
     // its JSON string (not the reference) avoids re-running this effect
     // on every render while still reacting to actual content changes.
-  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots, lang, JSON.stringify(meta.schema)]);
+  }, [meta.title, meta.description, meta.path, meta.ogType, meta.robots, meta.image, meta.imageAlt, lang, JSON.stringify(meta.schema)]);
 
   return null;
 }

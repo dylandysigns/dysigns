@@ -4,8 +4,8 @@ description: "DYSIGNS is een team van specialisten uit Nederland. Maak kennis me
 heading: "Over DYSIGNS"
 slug: "about"
 answerBlock: |
-  DYSIGNS is een full-service digital agency uit Nederland, opgebouwd
-  als team van specialisten in plaats van één generalist. Wij zijn
+  DYSIGNS is een creative partner uit Nederland, een klein team
+  opgebouwd rond specialisten in plaats van één generalist. Wij zijn
   gestart als UX/UI-designers en breidden dat fundament uit met
   webdesign, Shopify development, branding, data-gedreven SEO en
   technische optimalisatie, AI-implementatie en social media en

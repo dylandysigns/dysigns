@@ -5,6 +5,7 @@ import {
   resolveCaseTransitionSource,
   prepareForCaseNavigation,
 } from "../utils/caseZoomTransition";
+import { crawlHref } from "../seo/href";
 
 interface ProjectZoomLinkProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
@@ -84,7 +85,7 @@ export const ProjectZoomLink = forwardRef<HTMLAnchorElement, ProjectZoomLinkProp
     );
 
     return (
-      <a ref={ref} href={targetPath} onClick={handleClick} {...rest}>
+      <a ref={ref} href={crawlHref(targetPath)} onClick={handleClick} {...rest}>
         {children}
       </a>
     );

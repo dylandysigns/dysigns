@@ -8,6 +8,8 @@ import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
+import { SITE_URL } from "../seo/meta";
+import { breadcrumbListSchema, creativeWorkSchema } from "../seo/schema";
 
 // Meta description max is 155 chars (fase 3 validation) — project.overview
 // is longer prose, so truncate at a word boundary rather than fabricate
@@ -27,6 +29,7 @@ import {
   readTransitionFrom,
   unlockTransitionScroll,
 } from "../utils/caseZoomTransition";
+import { crawlHref } from "../seo/href";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,7 +125,7 @@ export default function CaseDetailPage() {
   const galleryRef = useRef<(HTMLDivElement | null)[]>([]);
   const outcomesRef = useRef<HTMLDivElement>(null);
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const initialTransitionFrom = useMemo(() => readTransitionFrom(), []);
   const [pageCoverImage, setPageCoverImage] = useState<string | null>(
     initialTransitionFrom?.imageUrl ?? null,
@@ -415,10 +418,28 @@ export default function CaseDetailPage() {
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <Seo
-        title={`${project.title} | DYSIGNS`}
-        description={truncateForDescription(project.overview)}
+        title={project.seoTitle ?? `${project.title} | DYSIGNS`}
+        description={project.seoDescription ?? truncateForDescription(project.overview)}
         path={`/work/${slug ?? ""}`}
         ogType="article"
+        image={project.ogImage ? `${SITE_URL}${project.ogImage}` : undefined}
+        imageAlt={project.thumbnailAlt}
+        schema={[
+          breadcrumbListSchema([
+            { name: "DYSIGNS", path: "/" },
+            { name: lang === "nl" ? "Werk" : "Work", path: "/work" },
+            { name: project.title, path: `/work/${slug ?? ""}` },
+          ]),
+          creativeWorkSchema({
+            name: project.title,
+            about: project.title,
+            path: `/work/${slug ?? ""}`,
+            datePublished: project.year,
+            description: project.overview,
+            keywords: project.tags,
+            images: [project.thumbnail, ...project.gallery].map((src) => `${SITE_URL}${src}`),
+          }),
+        ]}
       />
       {pageCoverImage ? (
         <div
@@ -522,7 +543,7 @@ export default function CaseDetailPage() {
       <section style={{ padding: "40px 6vw 24px", maxWidth: 900 }}>
         <div className="mx-auto flex max-w-[900px] flex-col gap-4">
           <a
-            href={backTarget}
+            href={crawlHref(backTarget)}
             className="inline-flex w-fit items-center gap-2 group"
             style={{
               fontSize: ".68rem",

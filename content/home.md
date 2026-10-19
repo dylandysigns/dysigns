@@ -1,15 +1,16 @@
 ---
-title: "Full-Service Design & Development Agency | DYSIGNS"
-description: "DYSIGNS designs, builds and grows digital products: web design, UX/UI, Shopify Partner development, branding, Meta Ads and AI, from the Netherlands."
+title: "Web Design Agency & Shopify Partner Netherlands | DYSIGNS"
+description: "Creative partner and small team for web design, branding and Shopify development. Official Shopify Partner in the Netherlands, working worldwide."
 slug: "/"
 heading: "We design, build and grow digital products"
 answerBlock: |
-  DYSIGNS is a full-service digital agency. We
-  handle the whole journey: UX and brand identity, websites and
-  Shopify stores as an official Shopify Partner, AI implementation, and
-  the social and paid campaigns that bring in customers afterwards. One
-  partner instead of four vendors pointing at each other. Based in the
-  Netherlands, working with clients worldwide.
+  DYSIGNS is a creative partner: a small team that designs and builds
+  with you, close and fast. We handle the whole journey: UX and brand
+  identity, websites and Shopify stores as an official Shopify Partner
+  in the Netherlands, AI implementation, and the social and paid
+  campaigns that bring in customers afterwards. One partner instead of
+  four vendors pointing at each other. Based in the Netherlands,
+  working with clients worldwide.
 lastUpdated: "2026-08-02"
 ---
 
@@ -87,7 +88,7 @@ Parts of it, certainly, and we use those tools daily ourselves. We are not bette
 
 Yes, and not as an afterthought bolted on after launch. Technical SEO, such as page speed, clean markup, structured data, and mobile performance, gets built in during design and development, because retrofitting it later is slower and less effective. On top of that we take a data-driven approach to content and organic growth, so visibility keeps scaling as the site or store grows instead of stalling after launch.
 
-### What makes a full-service agency different from hiring specialists?
+### What makes a creative partner different from hiring specialists?
 
 With separate vendors you become the project manager between designer, developer and marketer. At DYSIGNS it sits in one track: whoever makes the ad knows the landing page, and whoever builds the store knows the brand. Less coordination, less lost in translation.
 

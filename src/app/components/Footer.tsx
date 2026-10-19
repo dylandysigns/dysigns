@@ -6,7 +6,9 @@ import { siteContent } from "../data/content";
 import { TransitionLink } from "./TransitionLink";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
+import { useLocation } from "react-router";
 import logoImg from "../../assets/dysigns_white.png";
+import { crawlHref } from "../seo/href";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,7 +115,12 @@ function ContactPill({
 export function Footer() {
   const c = siteContent.contact;
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang, toggleLang } = useLanguage();
+  const { pathname } = useLocation();
+  // Real, crawlable link to the same page in the other language (the header
+  // toggle is a button, which search engines cannot follow).
+  const bare = pathname.replace(/^\/nl(?=\/|$)/, "") || "/";
+  const otherLangHref = lang === "en" ? (bare === "/" ? "/nl/" : `/nl${bare}`) : bare;
   const footerRef = useRef<HTMLElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
@@ -232,6 +239,24 @@ export function Footer() {
           >
             {t("footer.privacyLink")}
           </TransitionLink>
+          <a
+            href={crawlHref(otherLangHref)}
+            hrefLang={lang === "en" ? "nl" : "en"}
+            lang={lang === "en" ? "nl" : "en"}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleLang();
+            }}
+            style={{
+              fontSize: ".62rem",
+              letterSpacing: ".04em",
+              color: "rgba(var(--page-fg-rgb), .55)",
+              textDecoration: "underline",
+              textUnderlineOffset: 2,
+            }}
+          >
+            {lang === "en" ? "Nederlands" : "English"}
+          </a>
         </div>
 
         {instagram && (

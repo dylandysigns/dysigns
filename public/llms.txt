@@ -1,6 +1,6 @@
 # DYSIGNS
 
-> DYSIGNS is een full-service digital agency uit Almere, Netherlands. We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces voor ondernemers, scale-ups en bureaus in Nederland en België.
+> DYSIGNS is een creative partner en full-service digital agency uit Almere, Netherlands: een klein team en officiële Shopify Partner in Nederland. We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces voor ondernemers, scale-ups en bureaus in Nederland en België.
 
 DYSIGNS begon als UX/UI-design en breidde uit naar webdesign, Shopify
 development, branding en social media marketing. Klanten werken met
@@ -9,17 +9,17 @@ feedbackloops en heldere communicatie als uitgangspunt.
 
 ## Diensten
 
-- [Webdesign](https://dylandysigns.com/web-design): Maatwerk websites, van ontwerp tot een werkende, snelle site, geen sjabloon-aanpak. Technische SEO en data-gedreven optimalisatie zitten er standaard in.
-- [UX/UI Design](https://dylandysigns.com/ux-ui-design): Gebruikersonderzoek, wireframes en een compleet designsysteem voor apps, portals en webshops.
-- [Shopify development](https://dylandysigns.com/shopify-development): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets voor webshops die moeten blijven converteren.
-- [Branding](https://dylandysigns.com/branding): Merkstrategie, logo, huisstijl en een designsysteem dat doorwerkt in site, webshop en social kanalen.
+- [Webdesign](https://dylandysigns.com/web-design/): Maatwerk websites, van ontwerp tot een werkende, snelle site, geen sjabloon-aanpak. Technische SEO en data-gedreven optimalisatie zitten er standaard in.
+- [UX/UI Design](https://dylandysigns.com/ux-ui-design/): Gebruikersonderzoek, wireframes en een compleet designsysteem voor apps, portals en webshops.
+- [Shopify development](https://dylandysigns.com/shopify-development/): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets voor webshops die moeten blijven converteren.
+- [Branding](https://dylandysigns.com/branding/): Merkstrategie, logo, huisstijl en een designsysteem dat doorwerkt in site, webshop en social kanalen.
 
 ## Belangrijkste pagina's
 
 - [Home](https://dylandysigns.com/): Overzicht van wie DYSIGNS is en wat we doen.
-- [Werk](https://dylandysigns.com/work): Projecten van DYSIGNS voor klanten in Nederland en België.
-- [Over ons](https://dylandysigns.com/about): Achtergrond en werkwijze van het team.
-- [Contact](https://dylandysigns.com/contact): Project bespreken, reactie binnen één werkdag.
+- [Werk](https://dylandysigns.com/work/): Projecten van DYSIGNS voor klanten in Nederland en België.
+- [Over ons](https://dylandysigns.com/about/): Achtergrond en werkwijze van het team.
+- [Contact](https://dylandysigns.com/contact/): Project bespreken, reactie binnen één werkdag.
 
 ## Locatie
 

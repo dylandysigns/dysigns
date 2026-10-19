@@ -1,6 +1,6 @@
 ---
 title: "Webdesign & Development Bureau in Nederland | DYSIGNS"
-description: "Maatwerk websites en Shopify webshops van DYSIGNS, officieel Shopify Partner: snel, vindbaar en gebouwd om te blijven presteren."
+description: "Maatwerk websites en Shopify webshops van DYSIGNS, officieel Shopify Partner in Nederland: snel, vindbaar en gebouwd om te blijven presteren."
 heading: "Webdesign en development"
 slug: "web-design"
 includes: "Shopify Partner development, custom thema's, migraties, performance, technische SEO"

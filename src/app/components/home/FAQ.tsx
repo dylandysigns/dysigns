@@ -29,7 +29,7 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
     questions: [
       "Do I work directly with the team, or does it change per phase?",
       "Do you only design, or do you build as well?",
-      "What makes a full-service agency different from hiring specialists?",
+      "What makes a creative partner different from hiring specialists?",
       "What does the onboarding and project roadmap look like from start to launch?",
     ],
   },

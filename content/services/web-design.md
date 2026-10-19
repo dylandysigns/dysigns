@@ -1,6 +1,6 @@
 ---
 title: "Web Design & Development Agency in the Netherlands | DYSIGNS"
-description: "Custom websites and Shopify stores from DYSIGNS, an official Shopify Partner: fast, findable, and built to keep performing."
+description: "Custom websites and Shopify stores from DYSIGNS, an official Shopify Partner in the Netherlands: fast, findable, and built to keep performing."
 heading: "Web design and development"
 slug: "web-design"
 includes: "Shopify Partner development, custom themes, migrations, performance, technical SEO"

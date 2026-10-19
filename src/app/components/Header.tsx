@@ -7,6 +7,7 @@ import { usePageTransition } from "../hooks/useTransition";
 import { siteContent } from "../data/content";
 import { useLanguage, toLangPath } from "../hooks/useLanguage";
 import logoImg from "../../assets/dysigns_white.png";
+import { crawlHref } from "../seo/href";
 
 /* ─── SCROLL-AWARE HIDE/SHOW HOOK ─── */
 function useHeaderVisibility() {
@@ -539,7 +540,7 @@ function MobileMenu({
         {links.map((l) => (
           <a
             key={l.key}
-            href={toLangPath(l.path, lang)}
+            href={crawlHref(toLangPath(l.path, lang))}
             onClick={(e) => handleNav(e, l.path)}
             style={{
               fontSize: "1.5rem",
@@ -751,7 +752,7 @@ export function Header() {
       {/* ─── LEFT: DYSIGNS WORDMARK ─── */}
       <a
         ref={logoRef}
-        href={toLangPath("/", lang)}
+        href={crawlHref(toLangPath("/", lang))}
         onClick={(e) => handleNav(e, "/")}
         className="fixed flex items-center gap-2"
         style={{ top: 24, left: 24, zIndex: caseHeaderZIndex, willChange: "transform, opacity" }}
@@ -815,7 +816,7 @@ export function Header() {
           {links.map((l) => (
             <a
               key={l.key}
-              href={toLangPath(l.path, lang)}
+              href={crawlHref(toLangPath(l.path, lang))}
               onClick={(e) => handleNav(e, l.path)}
               className="relative rounded-full group"
               style={{
