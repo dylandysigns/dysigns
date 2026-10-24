@@ -472,12 +472,12 @@ export default function CaseDetailPage() {
             // frame so it continues straight on from the zoom-in transition image
             <video
               src={
-                project.coverVideoMobile && window.matchMedia("(max-width: 767px)").matches
+                project.coverVideoMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
                   ? project.coverVideoMobile
                   : project.coverVideo
               }
               poster={
-                project.coverVideoPosterMobile && window.matchMedia("(max-width: 767px)").matches
+                project.coverVideoPosterMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
                   ? project.coverVideoPosterMobile
                   : (project.coverVideoPoster ?? project.thumbnail)
               }
