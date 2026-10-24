@@ -43,6 +43,18 @@ export interface Project {
   logoSafeCover?: boolean;
   /** Portrait cover used on small screens (<768px) instead of `thumbnail`. */
   thumbnailMobile?: string;
+  /** Cover video (mp4) for the home grid card and the case hero — muted and
+   * looped. The work page keeps the image. */
+  coverVideo?: string;
+  /** Portrait cover video used on small screens instead of `coverVideo`. */
+  coverVideoMobile?: string;
+  /** Still from the cover video: its poster, and the image the zoom-in
+   * transition grows into so the case hero picks up where it left off. */
+  coverVideoPoster?: string;
+  coverVideoPosterMobile?: string;
+  /** Second of the cover video the poster was taken from; the case hero
+   * starts playing there so it continues seamlessly from the transition. */
+  coverVideoPosterTime?: number;
   /** Resolved alt texts (filled in by useTranslatedProjects). */
   thumbnailAlt?: string;
   galleryAlt?: string[];
@@ -263,6 +275,11 @@ export const projects: Project[] = [
     year: "2026",
     thumbnail: "/images/merelymade-cover.avif",
     thumbnailMobile: "/images/merelymade-cover-mobile.avif",
+    coverVideo: "/videos/merelymade-cover.mp4",
+    coverVideoMobile: "/videos/merelymade-cover-mobile.mp4",
+    coverVideoPoster: "/images/merelymade-cover-poster.jpg",
+    coverVideoPosterMobile: "/images/merelymade-cover-poster-mobile.jpg",
+    coverVideoPosterTime: 1.25,
     overview:
       "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
     outcomes: [],

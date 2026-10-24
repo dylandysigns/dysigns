@@ -193,9 +193,13 @@ export function ZoomToGrid() {
         to={`/work/${project.slug}`}
         projectSlug={project.slug}
         imageSrc={
-          project.thumbnailMobile && typeof window !== "undefined" && window.innerWidth < 768
-            ? project.thumbnailMobile
-            : project.thumbnail
+          !isHero && project.coverVideoPoster
+            ? project.coverVideoPosterMobile && typeof window !== "undefined" && window.innerWidth < 768
+              ? project.coverVideoPosterMobile
+              : project.coverVideoPoster
+            : project.thumbnailMobile && typeof window !== "undefined" && window.innerWidth < 768
+              ? project.thumbnailMobile
+              : project.thumbnail
         }
         transitionId={`${isHero ? "zoom-hero" : "zoom-grid"}-${project.slug}`}
         className="block"
@@ -222,7 +226,29 @@ export function ZoomToGrid() {
                 : "grayscale(.8) brightness(.55) contrast(1.05)",
             }}
           >
-            {!isHero && project.video ? (
+            {!isHero && project.coverVideo ? (
+              // Portrait cut below sm, matching the aspect-[3/4] tile
+              <video
+                src={
+                  project.coverVideoMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
+                    ? project.coverVideoMobile
+                    : project.coverVideo
+                }
+                poster={
+                  project.coverVideoPosterMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
+                    ? project.coverVideoPosterMobile
+                    : (project.coverVideoPoster ?? project.thumbnail)
+                }
+                className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
+                style={{ willChange: "transform" }}
+                autoPlay
+                loop
+                muted
+                playsInline
+                disablePictureInPicture
+                preload="metadata"
+              />
+            ) : !isHero && project.video ? (
               <video
                 src={project.video}
                 poster={project.thumbnail}

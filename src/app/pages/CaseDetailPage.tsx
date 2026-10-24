@@ -274,7 +274,7 @@ export default function CaseDetailPage() {
       updateHeaderTheme();
     };
 
-    img.src = project.thumbnail;
+    img.src = project.coverVideo && !prefersReducedMotion ? (project.coverVideoPoster ?? project.thumbnail) : project.thumbnail;
     window.addEventListener("scroll", updateHeaderTheme, { passive: true });
     window.addEventListener("resize", updateHeaderTheme);
     updateHeaderTheme();
@@ -467,7 +467,33 @@ export default function CaseDetailPage() {
         style={{ position: "relative", width: "100%", height: "100vh", minHeight: "100vh", maxHeight: "none", overflow: "hidden", margin: 0, padding: 0 }}
       >
         <div className="absolute inset-0 overflow-hidden">
-          {project.video && !prefersReducedMotion ? (
+          {project.coverVideo && !prefersReducedMotion ? (
+            // Portrait cut below 768px, like thumbnailMobile; starts at the poster
+            // frame so it continues straight on from the zoom-in transition image
+            <video
+              src={
+                project.coverVideoMobile && window.matchMedia("(max-width: 767px)").matches
+                  ? project.coverVideoMobile
+                  : project.coverVideo
+              }
+              poster={
+                project.coverVideoPosterMobile && window.matchMedia("(max-width: 767px)").matches
+                  ? project.coverVideoPosterMobile
+                  : (project.coverVideoPoster ?? project.thumbnail)
+              }
+              {...(project.thumbnailAlt && { "aria-label": project.thumbnailAlt })}
+              className="absolute inset-0 w-full h-full object-cover"
+              onLoadedMetadata={(e) => {
+                if (project.coverVideoPosterTime) e.currentTarget.currentTime = project.coverVideoPosterTime;
+              }}
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              preload="auto"
+            />
+          ) : project.video && !prefersReducedMotion ? (
             <video
               src={project.video}
               poster={project.thumbnail}
