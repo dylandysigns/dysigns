@@ -363,6 +363,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "case.next": { en: "Next", nl: "Volgende" },
   "case.notFound": { en: "Project not found", nl: "Project niet gevonden" },
   "case.visit": { en: "VISIT", nl: "BEZOEK" },
+  "case.download": { en: "DOWNLOAD", nl: "DOWNLOAD" },
   "case.client": { en: "Client", nl: "Klant" },
   "case.services": { en: "Services", nl: "Diensten" },
   "case.year": { en: "Year", nl: "Jaar" },
@@ -509,30 +510,54 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Toegankelijkheid AA-compliance behaald",
   },
 
-  /* ── Project: Arco E-Commerce ── */
-  "project.arco-ecommerce.title": {
-    en: "Arco E-Commerce",
-    nl: "Arco E-Commerce",
+  /* ── Project: STËLZ App ── */
+  "project.stelz-app.title": {
+    en: "STËLZ App",
+    nl: "STËLZ App",
   },
-  "project.arco-ecommerce.overview": {
-    en: "Arco Living is a premium furniture brand that needed an online presence matching the quality of their craft. We designed and built a bespoke e-commerce experience emphasizing materiality, detail photography, and a frictionless purchase journey.",
-    nl: "Arco Living is een premium meubelmerk dat een online aanwezigheid nodig had die past bij de kwaliteit van hun vakmanschap. We ontwierpen en bouwden een op maat gemaakte e-commerce-ervaring met nadruk op materialiteit, detailfotografie en een soepele aankoopervaring.",
+  "project.stelz-app.seoTitle": {
+    en: "STËLZ App: iOS & Android App Design & Build | DYSIGNS",
+    nl: "STËLZ app: iOS- en Android-app design | DYSIGNS",
   },
-  "project.arco-ecommerce.outcome.0": {
-    en: "Conversion rate up 38% vs. previous platform",
-    nl: "Conversieratio 38% hoger dan vorig platform",
+  "project.stelz-app.seoDescription": {
+    en: "We designed and built the STËLZ app for iOS and Android, from first sketch to the App Store and Google Play, starting with a nationwide flavour vote.",
+    nl: "Wij ontwierpen en bouwden de STËLZ app voor iOS en Android, van eerste schets tot App Store en Google Play, met als start een landelijke smaakverkiezing.",
   },
-  "project.arco-ecommerce.outcome.1": {
-    en: "Average session duration increased by 2.4\u00d7",
-    nl: "Gemiddelde sessieduur gestegen met 2,4\u00d7",
+  "project.stelz-app.overview": {
+    en: "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing.",
+    nl: "STËLZ vroeg ons om hun eigen app te bouwen, en wij ontwierpen en ontwikkelden die van de eerste schets tot in de App Store en Google Play. De eerste campagne in de app is Strijd voor je smaak 2026: fans kiezen hun favoriet uit zes smaken, en de maker van de winnende smaak wint \u20ac50.000. Elke stem moet precies één keer tellen, dus wordt iedere stem bevestigd met een e-mailcode en op de server gecontroleerd voordat hij wordt opgeslagen, terwijl de uitslag verborgen blijft tot de campagne sluit. Stemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Met pushmeldingen blijven fans op de hoogte van nieuwe smaken, events en acties. Eén codebase draait op zowel iOS als Android, gebouwd om met STËLZ mee te groeien van campagne-app naar volwaardige merkapp. Design, development en motion onder één dak, van het eerste scherm tot de store-vermelding.",
   },
-  "project.arco-ecommerce.outcome.2": {
-    en: "Bounce rate dropped 22%",
-    nl: "Bouncepercentage gedaald met 22%",
+  "project.stelz-app.alt.cover": {
+    en: "STËLZ app on an iPhone and an Android phone side by side, showing the screen that asks to turn on notifications with three STËLZ notification previews",
+    nl: "De STËLZ app op een iPhone en een Android-telefoon naast elkaar, met het scherm om notificaties aan te zetten en drie voorbeeldmeldingen van STËLZ",
   },
-  "project.arco-ecommerce.outcome.3": {
-    en: "Shortlisted for FWA of the Day",
-    nl: "Genomineerd voor FWA van de Dag",
+  "project.stelz-app.alt.0": {
+    en: "STËLZ app flavour picker designs: six screens for Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower and Spicy Pineapple, each with its own colour, can and fruit",
+    nl: "Ontwerpen van de smaakkeuze in de STËLZ app: zes schermen voor Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower en Spicy Pineapple, elk met eigen kleur, blik en fruit",
+  },
+  "project.stelz-app.alt.1": {
+    en: "STËLZ app onboarding designs: the welcome screen with age check and two Strijd voor je smaak campaign screens, one announcing the €50,000 prize",
+    nl: "Ontwerpen van de onboarding in de STËLZ app: het welkomstscherm met leeftijdscheck en twee campagneschermen van Strijd voor je smaak, één met de prijs van €50.000",
+  },
+  "project.stelz-app.alt.2": {
+    en: "STËLZ app voting flow designs: choosing Rum Cola, confirming the single vote with a slider and entering your details to verify it",
+    nl: "Ontwerpen van de stemflow in de STËLZ app: Rum Cola kiezen, de ene stem bevestigen met een schuifknop en je gegevens invullen om de stem te verifiëren",
+  },
+  "project.stelz-app.alt.3": {
+    en: "STËLZ app designs after voting: six Jij zit in team screens with two floating cans in the colours of each flavour",
+    nl: "Ontwerpen in de STËLZ app na het stemmen: zes Jij zit in team-schermen met twee zwevende blikjes in de kleuren van elke smaak",
+  },
+  "project.stelz-app.alt.4": {
+    en: "STËLZ app result designs: the winner reveal video, the screen telling you your flavour won and the full result with percentages per flavour",
+    nl: "Ontwerpen van de uitslag in de STËLZ app: de video met de winnaar, het scherm dat jouw smaak heeft gewonnen en de volledige uitslag met percentages per smaak",
+  },
+  "project.stelz-app.alt.5": {
+    en: "STËLZ app community designs: turning on notifications, choosing your interests and the thank-you screen for your vote",
+    nl: "Ontwerpen voor de community in de STËLZ app: notificaties aanzetten, je interesses kiezen en het bedankscherm voor je stem",
+  },
+  "project.stelz-app.alt.6": {
+    en: "The STËLZ app design flow in Figma: every screen from splash to the end of the campaign, connected with arrows on a dark blue board",
+    nl: "De designflow van de STËLZ app in Figma: alle schermen van splash tot het einde van de campagne, verbonden met pijlen op een donkerblauw bord",
   },
 
   /* ── Project: Pulse Analytics ── */

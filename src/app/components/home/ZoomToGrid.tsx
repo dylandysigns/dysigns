@@ -34,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ZOOM_GRID_SLUGS = [
   "nova-brand-platform",
   "meridian-app-redesign",
-  "arco-ecommerce",
+  "stelz-app",
   "verkeersschool-beckers-branding",
   "stelz-web-design", // hero / center tile
   "powermobile",

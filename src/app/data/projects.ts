@@ -37,6 +37,9 @@ export interface Project {
   /** Gallery images show in full colour (no grayscale/dim treatment) — for
    * photography-led cases where the muted look would flatten the work. */
   cleanGallery?: boolean;
+  /** Gallery indexes that span the full width (2:1) instead of one 16:10
+   * column — for wide compositions such as a row of app screens. */
+  galleryWide?: number[];
   /** Cover has a centred logo that must never be cropped: the hero image is
    * sized so the logo always fits the viewport, with matching edge colours
    * filling any leftover space. */
@@ -62,6 +65,8 @@ export interface Project {
    * side-by-side row in the case detail gallery, always 2-up even on
    * mobile, kept separate from the general `gallery` grid. */
   beforeAfter?: { before: string; after: string; label?: string }[];
+  /** App store listings, shown as download buttons next to the visit link. */
+  storeLinks?: { appStore?: string; googlePlay?: string };
 }
 
 export const projects: Project[] = [
@@ -110,25 +115,37 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "arco-ecommerce",
-    title: "Arco E-Commerce",
-    category: "Web",
-    tags: ["E-Commerce", "Development"],
-    year: "2024",
-    thumbnail:
-      "https://images.unsplash.com/photo-1760804876166-aae5861ec7c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjB3ZWJzaXRlJTIwbHV4dXJ5JTIwcHJvZHVjdHxlbnwxfHx8fDE3NzE0NTU0Njd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    slug: "stelz-app",
+    title: "STËLZ App",
+    category: "Digital",
+    tags: ["Mobile App", "UX Design", "Development", "Motion Design"],
+    year: "2026",
+    thumbnail: "/images/stelz-app-cover-poster.jpg",
+    thumbnailMobile: "/images/stelz-app-cover-poster-mobile.jpg",
+    coverVideo: "/videos/stelz-app-cover.mp4",
+    coverVideoMobile: "/videos/stelz-app-cover-mobile.mp4",
+    coverVideoPoster: "/images/stelz-app-cover-poster.jpg",
+    coverVideoPosterMobile: "/images/stelz-app-cover-poster-mobile.jpg",
+    storeLinks: {
+      appStore: "https://apps.apple.com/nl/app/st%C3%ABlz/id6773376256",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.stelz.app",
+    },
     overview:
-      "Arco Living is a premium furniture brand that needed an online presence matching the quality of their craft. We designed and built a bespoke e-commerce experience emphasizing materiality, detail photography, and a frictionless purchase journey.",
-    outcomes: [
-      "Conversion rate up 38% vs. previous platform",
-      "Average session duration increased by 2.4\u00d7",
-      "Bounce rate dropped 22%",
-      "Shortlisted for FWA of the Day",
-    ],
+      "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing.",
+    outcomes: [],
+    customAlt: true,
+    customSeo: true,
+    ogImage: "/images/og-stelz-app.jpg",
+    cleanGallery: true,
+    galleryWide: [0, 3, 6],
     gallery: [
-      "https://images.unsplash.com/photo-1706700392626-5279fb90ae73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwc2hvd2Nhc2UlMjBsYXB0b3AlMjBtb2NrdXB8ZW58MXx8fHwxNzcxNTA4NTE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1606741965509-717b9fdd6549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwZGVzaWduJTIwcHJvdG90eXBlJTIwbWluaW1hbHxlbnwxfHx8fDE3NzE1MDg1MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1658863025658-4a259cc68fc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMHN0YXRpb25lcnklMjBtb2NrdXAlMjBlbGVnYW50fGVufDF8fHx8MTc3MTUwODUxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "/images/stelz-app-flavours.avif",
+      "/images/stelz-app-onboarding.avif",
+      "/images/stelz-app-vote.avif",
+      "/images/stelz-app-team.avif",
+      "/images/stelz-app-result.avif",
+      "/images/stelz-app-community.avif",
+      "/images/stelz-app-flow.avif",
     ],
   },
   {
@@ -273,6 +290,7 @@ export const projects: Project[] = [
     category: "Web",
     tags: ["Web Design", "Development", "E-Commerce"],
     year: "2026",
+    url: "https://merelymade.com/",
     thumbnail: "/images/merelymade-cover.avif",
     thumbnailMobile: "/images/merelymade-cover-mobile.avif",
     coverVideo: "/videos/merelymade-cover-v2.mp4",

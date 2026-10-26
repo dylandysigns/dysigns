@@ -17,5 +17,9 @@
 # risico niet waard — de canonical tag in <head> regelt dat al netjes
 # per pagina.
 
+# Arco E-Commerce was een placeholder-case, vervangen door de STËLZ app.
+/work/arco-ecommerce /work/stelz-app 301
+/nl/work/arco-ecommerce /nl/work/stelz-app 301
+
 # SPA-fallback — moet als laatste, na alle redirects hierboven.
 /* /index.html 200

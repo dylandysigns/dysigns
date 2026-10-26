@@ -621,40 +621,51 @@ export default function CaseDetailPage() {
             {project.title}
           </h1>
 
-          {project.url && (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit items-center gap-2 rounded-full transition-colors duration-300"
-              style={{
-                padding: "12px 24px",
-                background: "rgba(var(--page-fg-rgb), .07)",
-                border: "1px solid rgba(var(--page-fg-rgb), .2)",
-                backdropFilter: "blur(8px)",
-                WebkitBackdropFilter: "blur(8px)",
-                fontFamily: "var(--font-brand)",
-                fontSize: ".8rem",
-                fontWeight: 500,
-                letterSpacing: ".06em",
-                color: "var(--page-fg)",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .15)";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .35)";
-                cursor.set("link", t("case.visit"));
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .2)";
-                cursor.reset();
-              }}
-            >
-              <span style={{ textTransform: "uppercase" }}>{t("case.visit")}</span>
-              <span style={{ textTransform: "none" }}>{getDisplayUrl(project.url)}</span>
-              <ExternalLink size={14} style={{ opacity: 0.7 }} />
-            </a>
+          {(project.url || project.storeLinks) && (
+            <div className="flex flex-wrap gap-3">
+              {[
+                project.url && { href: project.url, label: t("case.visit"), target: getDisplayUrl(project.url) },
+                project.storeLinks?.appStore && { href: project.storeLinks.appStore, label: t("case.download"), target: "App Store" },
+                project.storeLinks?.googlePlay && { href: project.storeLinks.googlePlay, label: t("case.download"), target: "Google Play" },
+              ]
+                .filter((link): link is { href: string; label: string; target: string } => Boolean(link))
+                .map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit items-center gap-2 rounded-full transition-colors duration-300"
+                    style={{
+                      padding: "12px 24px",
+                      background: "rgba(var(--page-fg-rgb), .07)",
+                      border: "1px solid rgba(var(--page-fg-rgb), .2)",
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                      fontFamily: "var(--font-brand)",
+                      fontSize: ".8rem",
+                      fontWeight: 500,
+                      letterSpacing: ".06em",
+                      color: "var(--page-fg)",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .15)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .35)";
+                      cursor.set("link", link.label);
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .07)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .2)";
+                      cursor.reset();
+                    }}
+                  >
+                    <span style={{ textTransform: "uppercase" }}>{link.label}</span>
+                    <span style={{ textTransform: "none" }}>{link.target}</span>
+                    <ExternalLink size={14} style={{ opacity: 0.7 }} />
+                  </a>
+                ))}
+            </div>
           )}
 
           <p
@@ -821,13 +832,13 @@ export default function CaseDetailPage() {
               ref={(el) => {
                 galleryRef.current[i] = el;
               }}
-              className="relative overflow-hidden rounded-xl"
+              className={`relative overflow-hidden rounded-xl${project.galleryWide?.includes(i) ? " md:col-span-2" : ""}`}
               style={{
                 opacity: 0,
                 border: "1px solid rgba(var(--page-fg-rgb), .06)",
               }}
             >
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className={`${project.galleryWide?.includes(i) ? "aspect-[2/1]" : "aspect-[16/10]"} overflow-hidden`}>
                 <img
                   src={img}
                   alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
