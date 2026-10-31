@@ -197,7 +197,7 @@ export const siteContent = {
       role: "Founder",
       company: "Fijne Gasten",
       avatar:
-"/images/luuk-studio.avif"},
+"/images/luuk-studio-v2.avif"},
     // {
     //   id: "t4",
     //   quote:
