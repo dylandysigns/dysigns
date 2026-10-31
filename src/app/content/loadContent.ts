@@ -6,6 +6,15 @@
 import { marked } from "marked";
 import { parseFrontmatter, type Frontmatter } from "./frontmatter";
 import type { FaqItem } from "../seo/schema";
+import { crawlHref } from "../seo/href";
+
+// Internal links written in markdown get the same crawlable href as
+// TransitionLink, so they don't point at a URL that answers with a 308.
+marked.use({
+  walkTokens(token) {
+    if (token.type === "link") token.href = crawlHref(token.href);
+  },
+});
 
 export interface ContentEntry {
   frontmatter: Frontmatter;
