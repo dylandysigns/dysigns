@@ -120,12 +120,7 @@ export const projects: Project[] = [
     category: "Digital",
     tags: ["Mobile App", "UX Design", "Development", "Motion Design"],
     year: "2026",
-    thumbnail: "/images/stelz-app-cover-poster.jpg",
-    thumbnailMobile: "/images/stelz-app-cover-poster-mobile.jpg",
-    coverVideo: "/videos/stelz-app-cover.mp4",
-    coverVideoMobile: "/videos/stelz-app-cover-mobile.mp4",
-    coverVideoPoster: "/images/stelz-app-cover-poster.jpg",
-    coverVideoPosterMobile: "/images/stelz-app-cover-poster-mobile.jpg",
+    thumbnail: "/images/stelz-app-cover-empty.png",
     storeLinks: {
       appStore: "https://apps.apple.com/nl/app/st%C3%ABlz/id6773376256",
       googlePlay: "https://play.google.com/store/apps/details?id=com.stelz.app",

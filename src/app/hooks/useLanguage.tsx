@@ -528,8 +528,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "STËLZ vroeg ons om hun eigen app te bouwen, en wij ontwierpen en ontwikkelden die van de eerste schets tot in de App Store en Google Play. De eerste campagne in de app is Strijd voor je smaak 2026: fans kiezen hun favoriet uit zes smaken, en de maker van de winnende smaak wint \u20ac50.000. Elke stem moet precies één keer tellen, dus wordt iedere stem bevestigd met een e-mailcode en op de server gecontroleerd voordat hij wordt opgeslagen, terwijl de uitslag verborgen blijft tot de campagne sluit. Stemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Met pushmeldingen blijven fans op de hoogte van nieuwe smaken, events en acties. Eén codebase draait op zowel iOS als Android, gebouwd om met STËLZ mee te groeien van campagne-app naar volwaardige merkapp. Design, development en motion onder één dak, van het eerste scherm tot de store-vermelding.",
   },
   "project.stelz-app.alt.cover": {
-    en: "STËLZ app on an iPhone and an Android phone side by side, showing the screen that asks to turn on notifications with three STËLZ notification previews",
-    nl: "De STËLZ app op een iPhone en een Android-telefoon naast elkaar, met het scherm om notificaties aan te zetten en drie voorbeeldmeldingen van STËLZ",
+    en: "STËLZ app case by DYSIGNS",
+    nl: "STËLZ app case door DYSIGNS",
   },
   "project.stelz-app.alt.0": {
     en: "STËLZ app flavour picker designs: six screens for Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower and Spicy Pineapple, each with its own colour, can and fruit",
