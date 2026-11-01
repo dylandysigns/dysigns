@@ -3,29 +3,34 @@ Allow: /
 Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
+Disallow: /cdn-cgi/
 
 User-agent: GPTBot
 Allow: /
 Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
+Disallow: /cdn-cgi/
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
+Disallow: /cdn-cgi/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
+Disallow: /cdn-cgi/
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /docs
 Disallow: /fatins-birthday
 Disallow: /gift-fatins-birthday
+Disallow: /cdn-cgi/
 
 Sitemap: https://dylandysigns.com/sitemap.xml

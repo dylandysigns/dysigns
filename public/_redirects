@@ -18,8 +18,22 @@
 # per pagina.
 
 # Arco E-Commerce was een placeholder-case, vervangen door de STËLZ app.
-/work/arco-ecommerce /work/stelz-app 301
-/nl/work/arco-ecommerce /nl/work/stelz-app 301
+/work/arco-ecommerce /work/stelz-app/ 301
+/nl/work/arco-ecommerce /nl/work/stelz-app/ 301
+
+# Verwijderde pagina's die Google nog kent (404 in Search Console).
+/work/orbit-saas-platform /work/ 301
+/nl/work/orbit-saas-platform /nl/work/ 301
+/services/brand-identity /branding/ 301
+/nl/services/brand-identity /nl/branding/ 301
+/services/creative-thinking /branding/ 301
+/nl/services/creative-thinking /nl/branding/ 301
+/services/ux-ui-web-design /ux-ui-design/ 301
+/nl/services/ux-ui-web-design /nl/ux-ui-design/ 301
+/services/product-design /ux-ui-design/ 301
+/nl/services/product-design /nl/ux-ui-design/ 301
+/services / 301
+/nl/services /nl/ 301
 
 # SPA-fallback — moet als laatste, na alle redirects hierboven.
 /* /index.html 200
