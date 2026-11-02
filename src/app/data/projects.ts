@@ -1,5 +1,5 @@
 /* ─── DYSIGNS — Project Data ─────────────────────────────────────────────
- *  9 placeholder projects with slug, thumbnail, gallery, overview,
+ *  Projects with slug, thumbnail, gallery, overview,
  *  outcomes, and tags.
  *
  *  HOW TO ADD A NEW CASE:
@@ -71,47 +71,34 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "nova-brand-platform",
-    title: "Nova Brand Platform",
-    category: "Branding",
-    tags: ["Brand Identity", "Web Design", "Design System"],
-    year: "2025",
-    thumbnail:
-      "https://images.unsplash.com/photo-1604074131228-9d48b811bd80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWJzaXRlJTIwZGVzaWduJTIwZGVza3RvcHxlbnwxfHx8fDE3NzE0NTU0NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    slug: "sfumato-agency",
+    title: "Sfumato Agency",
+    category: "Web",
+    tags: ["Web Design", "Creative Direction", "Photography", "Brand Identity"],
+    year: "2026",
+    thumbnail: "/images/sfumato-cover.avif",
+    thumbnailMobile: "/images/sfumato-cover-mobile.avif",
+    coverVideo: "/videos/sfumato-cover.mp4",
+    coverVideoMobile: "/videos/sfumato-cover-mobile.mp4",
+    coverVideoPoster: "/images/sfumato-cover-poster.jpg",
+    coverVideoPosterMobile: "/images/sfumato-cover-poster-mobile.jpg",
+    coverVideoPosterTime: 2,
     overview:
-      "We partnered with Nova Finance to reimagine their entire brand ecosystem\u2014from visual identity through to a comprehensive design system spanning web, mobile, and print. The result is a cohesive platform that communicates trust, innovation, and accessibility across every touchpoint.",
-    outcomes: [
-      "42% increase in brand recall within 6 months",
-      "Design system adopted across 3 internal teams",
-      "Reduced design-to-dev handoff time by 60%",
-      "Featured in Awwwards SOTD collection",
-    ],
+      "Together with Sfumato Agency we defined their content vision for video and photography, and turned their own Italian style, inspired by Leonardo da Vinci, into a web design. Sfumato comes from the Italian fumo, smoke: Leonardo's way of letting tones melt into one another without a hard line. That idea became the rulebook for everything they make, from light graded towards amber to slow reveals, long takes and frames with room to breathe. We captured it in a moodboard with its own palette, from pergamena to inchiostro, a type system of Bodoni and handwriting, and three principles: no hard lines, golden light and con calma. The website follows the same rules. Their work lies on parchment like sepia prints with a cream edge, every case opens on the film or photo first, and small details from Leonardo's notebooks, such as mirror writing and hand-drawn rulers, give it a signature without getting in the way. The result is a portfolio that feels like Sfumato's own work: calm, warm and a little mysterious.",
+    outcomes: [],
+    customAlt: true,
+    customSeo: true,
+    ogImage: "/images/og-sfumato.jpg",
+    cleanGallery: true,
+    galleryWide: [0, 3, 6],
     gallery: [
-      "https://images.unsplash.com/photo-1706700392626-5279fb90ae73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwc2hvd2Nhc2UlMjBsYXB0b3AlMjBtb2NrdXB8ZW58MXx8fHwxNzcxNTA4NTE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1685463894505-d33387aa8430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aXJlZnJhbWUlMjBkZXNpZ24lMjBwcm9jZXNzJTIwc2tldGNoaW5nfGVufDF8fHx8MTc3MTUwODUxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGlkZW50aXR5JTIwZGVzaWduJTIwYm9vayUyMGVsZWdhbnR8ZW58MXx8fHwxNzcxNTA4NTIwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    ],
-  },
-  {
-    slug: "meridian-app-redesign",
-    title: "Meridian App Redesign",
-    category: "Digital",
-    tags: ["Mobile App", "UX Design"],
-    year: "2025",
-    thumbnail:
-      "https://images.unsplash.com/photo-1663153203126-08bbadc178ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ24lMjBpbnRlcmZhY2UlMjBkYXJrfGVufDF8fHx8MTc3MTM5MDcxOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    overview:
-      "Meridian Health needed a mobile experience that made complex health data feel simple and empowering. We redesigned every screen with a focus on clarity, emotional reassurance, and accessibility\u2014resulting in an app people actually want to open every day.",
-    outcomes: [
-      "4.8-star App Store rating post-launch",
-      "Daily active users up 128%",
-      "Onboarding completion rate improved by 45%",
-      "Accessibility AA compliance achieved",
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1632156752251-e3759ed58466?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2UlMjBkYXJrJTIwdGhlbWV8ZW58MXx8fHwxNzcxNDg1ODQ4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1685463894505-d33387aa8430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aXJlZnJhbWUlMjBkZXNpZ24lMjBwcm9jZXNzJTIwc2tldGNoaW5nfGVufDF8fHx8MTc3MTUwODUxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1764437180200-f0fd57fa15d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwbW90aW9uJTIwZ3JhcGhpY3MlMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE1MDg1MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "/images/sfumato-moodboard.avif",
+      "/images/sfumato-prints.avif",
+      "/images/sfumato-principles.avif",
+      "/images/sfumato-website.avif",
+      "/images/sfumato-work.avif",
+      "/images/sfumato-case.avif",
+      "/images/sfumato-mobile.avif",
     ],
   },
   {
@@ -141,28 +128,6 @@ export const projects: Project[] = [
       "/images/stelz-app-result.avif",
       "/images/stelz-app-community.avif",
       "/images/stelz-app-flow.avif",
-    ],
-  },
-  {
-    slug: "pulse-analytics",
-    title: "Pulse Analytics",
-    category: "Digital",
-    tags: ["Dashboard", "SaaS", "Data Viz"],
-    year: "2024",
-    thumbnail:
-      "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTYWFTJTIwZGFzaGJvYXJkJTIwYW5hbHl0aWNzJTIwZGVzaWdufGVufDF8fHx8MTc3MTQ1NTQ2OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    overview:
-      "Pulse needed to transform dense analytical data into actionable insights for non-technical stakeholders. We created a dashboard experience that balances power with simplicity\u2014making complex data accessible at a glance.",
-    outcomes: [
-      "User task completion time reduced by 55%",
-      "NPS score jumped from 32 to 71",
-      "Enterprise plan adoption up 40%",
-      "Zero-training onboarding achieved",
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1764437180200-f0fd57fa15d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYXJ0JTIwbW90aW9uJTIwZ3JhcGhpY3MlMjBhYnN0cmFjdHxlbnwxfHx8fDE3NzE1MDg1MTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1685463894505-d33387aa8430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aXJlZnJhbWUlMjBkZXNpZ24lMjBwcm9jZXNzJTIwc2tldGNoaW5nfGVufDF8fHx8MTc3MTUwODUxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1706700392626-5279fb90ae73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwc2hvd2Nhc2UlMjBsYXB0b3AlMjBtb2NrdXB8ZW58MXx8fHwxNzcxNTA4NTE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     ],
   },
   {
@@ -307,28 +272,6 @@ export const projects: Project[] = [
       "/images/merelymade-product.avif",
       "/images/merelymade-new-arrivals.avif",
       "/images/merelymade-mobile.avif",
-    ],
-  },
-  {
-    slug: "flux-motion-identity",
-    title: "Flux Motion Identity",
-    category: "Branding",
-    tags: ["Motion Design", "Brand Identity", "Creative Direction"],
-    year: "2023",
-    thumbnail:
-      "https://images.unsplash.com/photo-1615458509633-f15b61bdacb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3Rpb24lMjBncmFwaGljcyUyMHZpc3VhbCUyMGlkZW50aXR5JTIwc3R1ZGlvfGVufDF8fHx8MTc3MTU4ODQ5Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    overview:
-      "Flux is a motion design collective that needed an identity system as dynamic as their work. We created a living brand that shifts and evolves\u2014from generative logo animations to a custom type system and a portfolio site that feels like a reel in itself.",
-    outcomes: [
-      "Brand launch generated 50K+ social impressions in 48 hours",
-      "Inbound project inquiries tripled within the first quarter",
-      "Identity system adaptable across 12 different media formats",
-      "Featured on It\u2019s Nice That and Brand New",
-    ],
-    gallery: [
-      "https://images.unsplash.com/photo-1647522648980-f69c487fabda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMHBvcnRmb2xpbyUyMGRhcmslMjBtaW5pbWFsfGVufDF8fHx8MTc3MTU4ODQ5NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1688141585146-1fb4a1358c87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGRlc2lnbiUyMGRhcmslMjBtb29keXxlbnwxfHx8fDE3NzE1ODg0OTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "https://images.unsplash.com/photo-1615458509633-f15b61bdacb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3Rpb24lMjBncmFwaGljcyUyMHZpc3VhbCUyMGlkZW50aXR5JTIwc3R1ZGlvfGVufDF8fHx8MTc3MTU4ODQ5Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     ],
   },
 ];

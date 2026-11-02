@@ -24,24 +24,22 @@ gsap.registerPlugin(ScrollTrigger);
  *
  * NOTE: resize + font-load ScrollTrigger.refresh is handled globally in Layout.tsx
  *
- * Explicit slug list (not the raw first-9-in-array) so this grid can
- * be curated independently of projects.ts's own order. STELZ stays the
- * hero/center tile (index 4). Pulse Analytics and Flux Motion Identity
- * were dropped from this grid in favour of the two real, current cases
- * (A/Café, Studio75) — they're still listed on /work itself, just not
- * featured here.
+ * Explicit slug list (not the raw array order) so this grid can be
+ * curated independently of projects.ts's own order. STELZ stays the
+ * hero/center tile. There are fewer real cases than grid cells, so the
+ * last corner holds a link tile instead of a project (see LinkTile).
  */
 const ZOOM_GRID_SLUGS = [
-  "nova-brand-platform",
-  "meridian-app-redesign",
-  "stelz-app",
+  "sfumato-agency",
+  "merely-made-webshop",
+  "a-cafe-app-design",
   "verkeersschool-beckers-branding",
   "stelz-web-design", // hero / center tile
   "powermobile",
-  "merely-made-webshop",
-  "a-cafe-app-design",
   "studio75-branding",
+  "stelz-app",
 ];
+const HERO_INDEX = 4;
 
 export function ZoomToGrid() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -172,6 +170,33 @@ export function ZoomToGrid() {
       ctx.revert();
     };
   }, [reduced, lang]);
+
+  /** Text tile for a grid cell without a project, same shape as Tile. */
+  const LinkTile = useCallback(
+    ({ to, label }: { to: string; label: string }) => (
+    <TransitionLink
+      to={to}
+      className="block"
+      onMouseEnter={() => cursor.set("link")}
+      onMouseLeave={() => cursor.reset()}
+    >
+      <div
+        className="aspect-[3/4] sm:aspect-[4/3] rounded-xl flex items-center justify-center p-3 text-center"
+        style={{
+          border: "1px solid rgba(var(--page-fg-rgb), .14)",
+          fontFamily: "var(--font-brand)",
+          fontSize: "clamp(.75rem,1.6vw,1.1rem)",
+          fontWeight: 600,
+          letterSpacing: "-.02em",
+          color: "var(--page-fg)",
+        }}
+      >
+        {label}
+      </div>
+    </TransitionLink>
+    ),
+    [cursor],
+  );
 
   /** Shared tile component — uses tRef so identity is stable across lang switches.
    * Always shows the linked project's own thumbnail (or the dedicated hero
@@ -387,16 +412,16 @@ export function ZoomToGrid() {
       >
         <div className="max-w-[900px] mx-auto mb-12">
           <ProjectZoomLink
-            to={`/work/${tileProjects[4]?.slug}`}
-            projectSlug={tileProjects[4]?.slug ?? ""}
-            imageSrc={tileProjects[4]?.thumbnail ?? zoomToGridData.heroImage}
-            transitionId={`zoom-hero-${tileProjects[4]?.slug ?? "hero"}`}
+            to={`/work/${tileProjects[HERO_INDEX]?.slug}`}
+            projectSlug={tileProjects[HERO_INDEX]?.slug ?? ""}
+            imageSrc={tileProjects[HERO_INDEX]?.thumbnail ?? zoomToGridData.heroImage}
+            transitionId={`zoom-hero-${tileProjects[HERO_INDEX]?.slug ?? "hero"}`}
             className="block"
           >
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src={zoomToGridData.heroImage}
-                alt={`${tileProjects[4]?.title ?? ""}, ${tileProjects[4]?.category ?? ""} by DYSIGNS`}
+                alt={`${tileProjects[HERO_INDEX]?.title ?? ""}, ${tileProjects[HERO_INDEX]?.category ?? ""} by DYSIGNS`}
                 className="w-full h-auto object-cover"
                 style={{
                   aspectRatio: "16/9",
@@ -425,7 +450,7 @@ export function ZoomToGrid() {
         </div>
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-3">
           {tileProjects
-            .filter((_, i) => i !== 4) // hero tile shown separately above
+            .filter((_, i) => i !== HERO_INDEX) // hero tile shown separately above
             .map((proj) => (
               <ProjectZoomLink
                 key={proj.slug}
@@ -539,7 +564,7 @@ export function ZoomToGrid() {
 
             {/* Hero tile (center) */}
             <Tile
-              project={tileProjects[4]}
+              project={tileProjects[HERO_INDEX]}
               refCb={(el) => {
                 heroRef.current = el;
               }}
@@ -578,7 +603,7 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile project={tileProjects[8]} />
+              <LinkTile to="/contact" label={t("hero.cta2")} />
             </div>
           </div>
         </div>

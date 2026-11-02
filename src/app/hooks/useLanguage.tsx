@@ -179,22 +179,6 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "A full identity system rolled out across social media, web, print, and the road.",
     nl: "Een complete identiteit doorvertaald naar social media, web, print en de weg.",
   },
-  "serviceShowcase.nova-brand-platform.label": {
-    en: "Brand Platform",
-    nl: "Brand Platform",
-  },
-  "serviceShowcase.nova-brand-platform.subtitle": {
-    en: "A cohesive brand ecosystem built to scale across every touchpoint.",
-    nl: "Een samenhangend merkecosysteem gebouwd om op elk touchpoint te schalen.",
-  },
-  "serviceShowcase.flux-motion-identity.label": {
-    en: "Motion Identity",
-    nl: "Motion Identity",
-  },
-  "serviceShowcase.flux-motion-identity.subtitle": {
-    en: "A cinematic visual identity system shaped for motion-led storytelling.",
-    nl: "Een filmisch identity-systeem gevormd voor motion-led storytelling.",
-  },
 
   /* ── Design Timeline ── */
   "timeline.label": { en: "DYSIGNS way", nl: "De DYSIGNS manier" },
@@ -458,56 +442,58 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "tag.Photography": { en: "Photography", nl: "Fotografie" },
   "tag.Motion Design": { en: "Motion Design", nl: "Motion Design" },
 
-  /* ── Project: Nova Brand Platform ── */
-  "project.nova-brand-platform.title": {
-    en: "Nova Brand Platform",
-    nl: "Nova Brand Platform",
-  },
-  "project.nova-brand-platform.overview": {
-    en: "We partnered with Nova Finance to reimagine their entire brand ecosystem\u2014from visual identity through to a comprehensive design system spanning web, mobile, and print. The result is a cohesive platform that communicates trust, innovation, and accessibility across every touchpoint.",
-    nl: "We werkten samen met Nova Finance om hun complete merkecosysteem opnieuw vorm te geven\u2014van visuele identiteit tot een uitgebreid design system voor web, mobiel en print. Het resultaat is een samenhangend platform dat vertrouwen, innovatie en toegankelijkheid uitstraalt op elk contactpunt.",
-  },
-  "project.nova-brand-platform.outcome.0": {
-    en: "42% increase in brand recall within 6 months",
-    nl: "42% stijging in merkherkenning binnen 6 maanden",
-  },
-  "project.nova-brand-platform.outcome.1": {
-    en: "Design system adopted across 3 internal teams",
-    nl: "Design system overgenomen door 3 interne teams",
-  },
-  "project.nova-brand-platform.outcome.2": {
-    en: "Reduced design-to-dev handoff time by 60%",
-    nl: "Design-naar-dev overdrachtstijd met 60% verkort",
-  },
-  "project.nova-brand-platform.outcome.3": {
-    en: "Featured in Awwwards SOTD collection",
-    nl: "Opgenomen in de Awwwards SOTD-collectie",
-  },
 
-  /* ── Project: Meridian App Redesign ── */
-  "project.meridian-app-redesign.title": {
-    en: "Meridian App Redesign",
-    nl: "Meridian App Herontwerp",
+
+
+
+  /* ── Project: Sfumato Agency ── */
+  "project.sfumato-agency.title": {
+    en: "Sfumato Agency",
+    nl: "Sfumato Agency",
   },
-  "project.meridian-app-redesign.overview": {
-    en: "Meridian Health needed a mobile experience that made complex health data feel simple and empowering. We redesigned every screen with a focus on clarity, emotional reassurance, and accessibility\u2014resulting in an app people actually want to open every day.",
-    nl: "Meridian Health had een mobiele ervaring nodig die complexe gezondheidsdata eenvoudig en empowerend liet voelen. We herontwierpen elk scherm met focus op helderheid, emotionele geruststelling en toegankelijkheid\u2014met als resultaat een app die mensen echt dagelijks willen openen.",
+  "project.sfumato-agency.seoTitle": {
+    en: "Sfumato Agency: Content Vision & Web Design | DYSIGNS",
+    nl: "Sfumato Agency: contentvisie en webdesign | DYSIGNS",
   },
-  "project.meridian-app-redesign.outcome.0": {
-    en: "4.8-star App Store rating post-launch",
-    nl: "4,8-sterren App Store-beoordeling na lancering",
+  "project.sfumato-agency.seoDescription": {
+    en: "Together with Sfumato Agency we defined their content vision for video and photography and turned their Leonardo-inspired style into a web design.",
+    nl: "Samen met Sfumato Agency bepaalden we hun contentvisie voor video en fotografie en maakten we van hun Leonardo-stijl een webdesign.",
   },
-  "project.meridian-app-redesign.outcome.1": {
-    en: "Daily active users up 128%",
-    nl: "Dagelijks actieve gebruikers gestegen met 128%",
+  "project.sfumato-agency.overview": {
+    en: "Together with Sfumato Agency we defined their content vision for video and photography, and turned their own Italian style, inspired by Leonardo da Vinci, into a web design. Sfumato comes from the Italian fumo, smoke: Leonardo's way of letting tones melt into one another without a hard line. That idea became the rulebook for everything they make, from light graded towards amber to slow reveals, long takes and frames with room to breathe. We captured it in a moodboard with its own palette, from pergamena to inchiostro, a type system of Bodoni and handwriting, and three principles: no hard lines, golden light and con calma. The website follows the same rules. Their work lies on parchment like sepia prints with a cream edge, every case opens on the film or photo first, and small details from Leonardo's notebooks, such as mirror writing and hand-drawn rulers, give it a signature without getting in the way. The result is a portfolio that feels like Sfumato's own work: calm, warm and a little mysterious.",
+    nl: "Samen met Sfumato Agency bepaalden we hun contentvisie voor video en fotografie, en vertaalden we hun eigen Italiaanse stijl, geïnspireerd op Leonardo da Vinci, naar een webdesign. Sfumato komt van het Italiaanse fumo, rook: Leonardo's manier om tonen in elkaar te laten overlopen zonder harde lijn. Dat idee werd het uitgangspunt voor alles wat ze maken, van licht dat naar amber is gegradeerd tot rustige onthullingen, lange shots en beelden met ruimte om te ademen. We legden het vast in een moodboard met een eigen kleurenpalet, van pergamena tot inchiostro, een typografisch systeem met Bodoni en handschrift, en drie principes: geen harde lijnen, gouden licht en con calma. De website volgt dezelfde regels. Hun werk ligt op perkament als sepia afdrukken met een crème rand, elke case opent eerst op de film of foto, en kleine details uit Leonardo's notitieboeken, zoals spiegelschrift en getekende meetlatten, geven het een signatuur zonder in de weg te zitten. Het resultaat is een portfolio dat voelt als het werk van Sfumato zelf: rustig, warm en een tikje mysterieus.",
   },
-  "project.meridian-app-redesign.outcome.2": {
-    en: "Onboarding completion rate improved by 45%",
-    nl: "Onboarding-voltooiingspercentage verbeterd met 45%",
+  "project.sfumato-agency.alt.cover": {
+    en: "Sfumato Agency website home page: SFUMATO AGENCY in Bodoni with a handwritten tagline, surrounded by sepia photo prints on parchment",
+    nl: "Homepage van de Sfumato Agency-website: SFUMATO AGENCY in Bodoni met een handgeschreven tagline, omringd door sepia fotoafdrukken op perkament",
   },
-  "project.meridian-app-redesign.outcome.3": {
-    en: "Accessibility AA compliance achieved",
-    nl: "Toegankelijkheid AA-compliance behaald",
+  "project.sfumato-agency.alt.0": {
+    en: "Sfumato Agency moodboard Leonardo and the soft edge, with the colour palette from pergamena to inchiostro, the type system and a Leonardo quote, laid out as sheets on a dark desk",
+    nl: "Moodboard van Sfumato Agency, Leonardo and the soft edge, met het kleurenpalet van pergamena tot inchiostro, het typografisch systeem en een citaat van Leonardo, als vellen op een donkere tafel",
+  },
+  "project.sfumato-agency.alt.1": {
+    en: "Sfumato Agency moodboard section Atmosfera with photo prints from their shoots next to Leonardo studies of the Vitruvian man, smoke and golden proportion",
+    nl: "Moodboardsectie Atmosfera van Sfumato Agency met fotoafdrukken van hun shoots naast Leonardo-studies van de Vitruviusman, rook en de gulden snede",
+  },
+  "project.sfumato-agency.alt.2": {
+    en: "Sfumato Agency principles no hard lines, golden light and con calma, above the website menu with the agency introduction",
+    nl: "De principes van Sfumato Agency, geen harde lijnen, gouden licht en con calma, boven het websitemenu met de introductie van het bureau",
+  },
+  "project.sfumato-agency.alt.3": {
+    en: "Sfumato Agency web design on two desktop screens: the home page with scattered prints and a case page opening on a photo",
+    nl: "Webdesign van Sfumato Agency op twee desktopschermen: de homepage met verspreide afdrukken en een casepagina die opent op een foto",
+  },
+  "project.sfumato-agency.alt.4": {
+    en: "Sfumato Agency Selected work page with six cases shown as numbered sepia prints in Roman numerals",
+    nl: "De pagina Selected work van Sfumato Agency met zes cases als genummerde sepia afdrukken met Romeinse cijfers",
+  },
+  "project.sfumato-agency.alt.5": {
+    en: "Sfumato Agency case page with title, client details and a large photo, next to a Cartier print",
+    nl: "Casepagina van Sfumato Agency met titel, klantgegevens en een grote foto, naast een Cartier-afdruk",
+  },
+  "project.sfumato-agency.alt.6": {
+    en: "Sfumato Agency website on three phones: the menu, the home page with prints and a case page with mirror writing",
+    nl: "De Sfumato Agency-website op drie telefoons: het menu, de homepage met afdrukken en een casepagina met spiegelschrift",
   },
 
   /* ── Project: STËLZ App ── */
@@ -560,31 +546,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "De designflow van de STËLZ app in Figma: alle schermen van splash tot het einde van de campagne, verbonden met pijlen op een donkerblauw bord",
   },
 
-  /* ── Project: Pulse Analytics ── */
-  "project.pulse-analytics.title": {
-    en: "Pulse Analytics",
-    nl: "Pulse Analytics",
-  },
-  "project.pulse-analytics.overview": {
-    en: "Pulse needed to transform dense analytical data into actionable insights for non-technical stakeholders. We created a dashboard experience that balances power with simplicity\u2014making complex data accessible at a glance.",
-    nl: "Pulse moest dichte analytische data omzetten in bruikbare inzichten voor niet-technische stakeholders. We cre\u00eberden een dashboard-ervaring die kracht en eenvoud in balans brengt\u2014complexe data toegankelijk in \u00e9\u00e9n oogopslag.",
-  },
-  "project.pulse-analytics.outcome.0": {
-    en: "User task completion time reduced by 55%",
-    nl: "Taakvoltooiingstijd gebruikers verminderd met 55%",
-  },
-  "project.pulse-analytics.outcome.1": {
-    en: "NPS score jumped from 32 to 71",
-    nl: "NPS-score gestegen van 32 naar 71",
-  },
-  "project.pulse-analytics.outcome.2": {
-    en: "Enterprise plan adoption up 40%",
-    nl: "Enterprise-plan adoptie gestegen met 40%",
-  },
-  "project.pulse-analytics.outcome.3": {
-    en: "Zero-training onboarding achieved",
-    nl: "Onboarding zonder training gerealiseerd",
-  },
+
 
   /* ── Project: STËLZ Web Design ── */
   "project.stelz-web-design.title": {
@@ -665,31 +627,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "In gebruik bij meerdere overheidsinstellingen in de VTH-sector",
   },
 
-  /* ── Project: Flux Motion Identity ── */
-  "project.flux-motion-identity.title": {
-    en: "Flux Motion Identity",
-    nl: "Flux Motion Identiteit",
-  },
-  "project.flux-motion-identity.overview": {
-    en: "Flux is a motion design collective that needed an identity system as dynamic as their work. We created a living brand that shifts and evolves\u2014from generative logo animations to a custom type system and a portfolio site that feels like a reel in itself.",
-    nl: "Flux is een motion design-collectief dat een identiteitssysteem nodig had dat net zo dynamisch is als hun werk. We cre\u00eberden een levend merk dat verschuift en evolueert\u2014van generatieve logo-animaties tot een op maat gemaakt typesysteem en een portfoliosite die zelf als reel aanvoelt.",
-  },
-  "project.flux-motion-identity.outcome.0": {
-    en: "Brand launch generated 50K+ social impressions in 48 hours",
-    nl: "Merklancering genereerde 50K+ sociale impressies in 48 uur",
-  },
-  "project.flux-motion-identity.outcome.1": {
-    en: "Inbound project inquiries tripled within the first quarter",
-    nl: "Inkomende projectaanvragen verdrievoudigd in het eerste kwartaal",
-  },
-  "project.flux-motion-identity.outcome.2": {
-    en: "Identity system adaptable across 12 different media formats",
-    nl: "Identiteitssysteem aanpasbaar over 12 verschillende mediaformaten",
-  },
-  "project.flux-motion-identity.outcome.3": {
-    en: "Featured on It\u2019s Nice That and Brand New",
-    nl: "Verschenen op It\u2019s Nice That en Brand New",
-  },
+
 
   /* \u2500\u2500 Project: A/Caf\u00e9 App Design \u2500\u2500 */
   "project.a-cafe-app-design.title": {

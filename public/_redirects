@@ -22,6 +22,14 @@
 /nl/work/arco-ecommerce /nl/work/stelz-app/ 301
 
 # Verwijderde pagina's die Google nog kent (404 in Search Console).
+/work/nova-brand-platform /work/ 301
+/nl/work/nova-brand-platform /nl/work/ 301
+/work/meridian-app-redesign /work/ 301
+/nl/work/meridian-app-redesign /nl/work/ 301
+/work/pulse-analytics /work/ 301
+/nl/work/pulse-analytics /nl/work/ 301
+/work/flux-motion-identity /work/ 301
+/nl/work/flux-motion-identity /nl/work/ 301
 /work/orbit-saas-platform /work/ 301
 /nl/work/orbit-saas-platform /nl/work/ 301
 /services/brand-identity /branding/ 301
