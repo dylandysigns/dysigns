@@ -80,8 +80,8 @@ export const projects: Project[] = [
     thumbnailMobile: "/images/sfumato-cover-mobile.avif",
     coverVideo: "/videos/sfumato-cover-v2.mp4",
     coverVideoMobile: "/videos/sfumato-cover-mobile-v2.mp4",
-    coverVideoPoster: "/images/sfumato-cover-poster-v2.jpg",
-    coverVideoPosterMobile: "/images/sfumato-cover-poster-mobile-v2.jpg",
+    coverVideoPoster: "/images/sfumato-cover-poster-v2.avif",
+    coverVideoPosterMobile: "/images/sfumato-cover-poster-mobile-v2.avif",
     coverVideoPosterTime: 2.6,
     overview:
       "Together with Sfumato Agency we defined their content vision for video and photography, and turned their own Italian style, inspired by Leonardo da Vinci, into a web design. Sfumato comes from the Italian fumo, smoke: Leonardo's way of letting tones melt into one another without a hard line. That idea became the rulebook for everything they make, from light graded towards amber to slow reveals, long takes and frames with room to breathe. We captured it in a moodboard with its own palette, from pergamena to inchiostro, a type system of Bodoni and handwriting, and three principles: no hard lines, golden light and con calma. The website follows the same rules. Their work lies on parchment like sepia prints with a cream edge, every case opens on the film or photo first, and small details from Leonardo's notebooks, such as mirror writing and hand-drawn rulers, give it a signature without getting in the way. The result is a portfolio that feels like Sfumato's own work: calm, warm and a little mysterious.",
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     category: "Product Design",
     tags: ["POS Design", "Kiosk Design", "UX Design", "Email Marketing"],
     year: "2026",
-    thumbnail: "/images/a-cafe/kiosk-after.jpg",
+    thumbnail: "/images/a-cafe/kiosk-after.avif",
     video: "/videos/a-cafe-cover.mp4",
     overview:
       "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across A/Café's physical stores worldwide, from Amsterdam and Paris to Dubai and Miami, with guests ordering, staff fulfilling and the brand showing through at every step.",
@@ -214,11 +214,11 @@ export const projects: Project[] = [
       "Guest, staff and brand all speak the same visual language",
     ],
     gallery: [
-      "/images/a-cafe/pos-order.jpg",
-      "/images/a-cafe/pos-payment-successful.jpg",
+      "/images/a-cafe/pos-order.avif",
+      "/images/a-cafe/pos-payment-successful.avif",
     ],
     beforeAfter: [
-      { before: "/images/a-cafe/kiosk-before.jpg", after: "/images/a-cafe/kiosk-after.jpg" },
+      { before: "/images/a-cafe/kiosk-before.avif", after: "/images/a-cafe/kiosk-after.avif" },
     ],
   },
   {
@@ -255,8 +255,8 @@ export const projects: Project[] = [
     thumbnailMobile: "/images/merelymade-cover-mobile.avif",
     coverVideo: "/videos/merelymade-cover-v2.mp4",
     coverVideoMobile: "/videos/merelymade-cover-mobile-v2.mp4",
-    coverVideoPoster: "/images/merelymade-cover-poster.jpg",
-    coverVideoPosterMobile: "/images/merelymade-cover-poster-mobile.jpg",
+    coverVideoPoster: "/images/merelymade-cover-poster.avif",
+    coverVideoPosterMobile: "/images/merelymade-cover-poster-mobile.avif",
     coverVideoPosterTime: 1.25,
     overview:
       "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
