@@ -22,8 +22,8 @@ import {
   Convert,
   InfoCircle,
   TrendUp,
-  type Icon as IconsaxIcon,
-} from "iconsax-react";
+  type FaqIcon as IconsaxIcon,
+} from "./faqIcons";
 import { HugeiconsIcon, type HugeiconsIconProps } from "@hugeicons/react";
 import {
   GlobalRefreshIcon,
