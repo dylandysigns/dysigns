@@ -60,8 +60,14 @@ const localizedChildren: RouteObject[] = [
 
 export const routes: RouteObject[] = [
   // Hidden, unlinked pages — no Header/Footer, no sitemap entry, noindex injected at runtime
-  { path: "/fatins-birthday", lazy: lazyPage(() => import("./pages/FatinsBirthdayPage")) },
-  { path: "/gift-fatins-birthday", lazy: lazyPage(() => import("./pages/GiftFatinsBirthdayPage")) },
+  // Private pages: only exist in `npm run dev`. Production builds drop
+  // these entries (and their chunks), so the URLs show the 404 page.
+  ...(import.meta.env.DEV
+    ? [
+        { path: "/fatins-birthday", lazy: lazyPage(() => import("./pages/FatinsBirthdayPage")) },
+        { path: "/gift-fatins-birthday", lazy: lazyPage(() => import("./pages/GiftFatinsBirthdayPage")) },
+      ]
+    : []),
   {
     path: "/",
     Component: Layout,
