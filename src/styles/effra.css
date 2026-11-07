@@ -7,21 +7,21 @@
      700-900 (headings, hero)     -> Black */
 @font-face {
   font-family: "Effra";
-  src: url("/fonts/effra-semibold.ttf") format("truetype");
+  src: url("/fonts/effra-semibold.woff2") format("woff2"), url("/fonts/effra-semibold.ttf") format("truetype");
   font-weight: 100 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Effra";
-  src: url("/fonts/effra-bold.ttf") format("truetype");
+  src: url("/fonts/effra-bold.woff2") format("woff2"), url("/fonts/effra-bold.ttf") format("truetype");
   font-weight: 501 699;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Effra";
-  src: url("/fonts/effra-black.ttf") format("truetype");
+  src: url("/fonts/effra-black.woff2") format("woff2"), url("/fonts/effra-black.ttf") format("truetype");
   font-weight: 700 900;
   font-style: normal;
   font-display: swap;

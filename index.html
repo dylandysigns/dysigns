@@ -178,6 +178,10 @@
       </script>
 
       <!-- ─── PERFORMANCE: PRECONNECT & PRELOAD ─── -->
+      <!-- Self-hosted Effra: body weight + hero weight, fetched before the CSS
+           that references them is parsed. -->
+      <link rel="preload" href="/fonts/effra-semibold.woff2" as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href="/fonts/effra-black.woff2" as="font" type="font/woff2" crossorigin />
       <!-- Establish early connections to Google Fonts to reduce font latency -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
