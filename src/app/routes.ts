@@ -1,4 +1,5 @@
 import { createBrowserRouter, type RouteObject } from "react-router";
+import type { ComponentType } from "react";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import {
@@ -17,10 +18,12 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import ThankYouPage from "./pages/ThankYouPage";
-import DocsPage from "./pages/DocsPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import FatinsBirthdayPage from "./pages/FatinsBirthdayPage";
-import GiftFatinsBirthdayPage from "./pages/GiftFatinsBirthdayPage";
+
+// Hidden, unlinked pages aren't prerendered and almost nobody opens them,
+// so they load as their own chunk instead of riding in the main bundle.
+const lazyPage = (load: () => Promise<{ default: ComponentType }>) => () =>
+  load().then((m) => ({ Component: m.default }));
 
 // Shared route definitions — consumed by createBrowserRouter (client) and by
 // scripts/prerender.mjs (createMemoryRouter, build-time HTML generation) so
@@ -57,8 +60,8 @@ const localizedChildren: RouteObject[] = [
 
 export const routes: RouteObject[] = [
   // Hidden, unlinked pages — no Header/Footer, no sitemap entry, noindex injected at runtime
-  { path: "/fatins-birthday", Component: FatinsBirthdayPage },
-  { path: "/gift-fatins-birthday", Component: GiftFatinsBirthdayPage },
+  { path: "/fatins-birthday", lazy: lazyPage(() => import("./pages/FatinsBirthdayPage")) },
+  { path: "/gift-fatins-birthday", lazy: lazyPage(() => import("./pages/GiftFatinsBirthdayPage")) },
   {
     path: "/",
     Component: Layout,
@@ -70,7 +73,7 @@ export const routes: RouteObject[] = [
       // itself has a single static action for Netlify's build-time form
       // detection to find.
       { path: "thank-you", Component: ThankYouPage },
-      { path: "docs", Component: DocsPage },
+      { path: "docs", lazy: lazyPage(() => import("./pages/DocsPage")) },
       { path: "*", Component: NotFoundPage },
     ],
   },
