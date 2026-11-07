@@ -96,7 +96,7 @@ export const siteContent = {
       category: "Social Media Management",
       tags: ["Brand Identity", "Branding", "Print", "Web"],
       year: "2026",
-      thumbnail: "/images/beckers-cover-laptop-v2.avif",
+      thumbnail: "/images/beckers-cover-laptop-v3.avif",
       variant: "F" as const,
     },
   ],
@@ -188,7 +188,7 @@ export const siteContent = {
       role: "CEO",
       company: "Pure and Cure PR",
       avatar:
-"/images/marleenvanpuurpng.avif"},
+"/images/marleenvanpuur-v2.avif"},
     {
       id: "t3",
       quote:

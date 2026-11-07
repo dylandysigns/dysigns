@@ -1352,7 +1352,7 @@ export function Hero() {
             <X size={18} />
           </button>
           <video
-            src="/videos/dysigns-intro.mp4"
+            src="/videos/dysigns-intro-v2.mp4"
             controls
             autoPlay
             playsInline

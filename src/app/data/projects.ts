@@ -78,8 +78,8 @@ export const projects: Project[] = [
     year: "2026",
     thumbnail: "/images/sfumato-cover.avif",
     thumbnailMobile: "/images/sfumato-cover-mobile.avif",
-    coverVideo: "/videos/sfumato-cover-v2.mp4",
-    coverVideoMobile: "/videos/sfumato-cover-mobile-v2.mp4",
+    coverVideo: "/videos/sfumato-cover-v3.mp4",
+    coverVideoMobile: "/videos/sfumato-cover-mobile-v3.mp4",
     coverVideoPoster: "/images/sfumato-cover-poster-v2.avif",
     coverVideoPosterMobile: "/images/sfumato-cover-poster-mobile-v2.avif",
     coverVideoPosterTime: 2.6,
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     tags: ["Branding", "Print", "Web"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
-    thumbnail: "/images/beckers-cover-laptop-v2.avif",
+    thumbnail: "/images/beckers-cover-laptop-v3.avif",
     overview:
       "For Verkeersschool Beckers, we developed a complete new brand identity to modernize and professionalize their presence in the Dutch market. The project included a full logo redesign, visual identity system, and consistent brand application across all touchpoints.\n\nWe translated the new identity into social media assets, vehicle branding, and a fully redesigned website. The result is a cohesive and recognizable brand that builds trust and stands out both online and on the road.",
     outcomes: [
@@ -169,7 +169,7 @@ export const projects: Project[] = [
       "A consistent identity ready for long-term growth",
     ],
     gallery: [
-      "/images/beckers-cover-laptop-v2.avif",
+      "/images/beckers-cover-laptop-v3.avif",
       "/images/beckers-car-branding.avif",
       "/images/beckers-phone-mockup.avif",
       "/images/beckers-brand-board.png",
@@ -204,7 +204,7 @@ export const projects: Project[] = [
     tags: ["POS Design", "Kiosk Design", "UX Design", "Email Marketing"],
     year: "2026",
     thumbnail: "/images/a-cafe/kiosk-after.avif",
-    video: "/videos/a-cafe-cover.mp4",
+    video: "/videos/a-cafe-cover-v2.mp4",
     overview:
       "What began as an MVP for a single self-ordering kiosk grew into a full ordering system: DYSIGNS designed the kiosk, the POS and the kitchen display as one connected product, all speaking the same visual language. Email marketing was set up end to end alongside it. The system is now running in test phase across A/Café's physical stores worldwide, from Amsterdam and Paris to Dubai and Miami, with guests ordering, staff fulfilling and the brand showing through at every step.",
     outcomes: [
@@ -253,8 +253,8 @@ export const projects: Project[] = [
     url: "https://merelymade.com/",
     thumbnail: "/images/merelymade-cover.avif",
     thumbnailMobile: "/images/merelymade-cover-mobile.avif",
-    coverVideo: "/videos/merelymade-cover-v2.mp4",
-    coverVideoMobile: "/videos/merelymade-cover-mobile-v2.mp4",
+    coverVideo: "/videos/merelymade-cover-v3.mp4",
+    coverVideoMobile: "/videos/merelymade-cover-mobile-v3.mp4",
     coverVideoPoster: "/images/merelymade-cover-poster.avif",
     coverVideoPosterMobile: "/images/merelymade-cover-poster-mobile.avif",
     coverVideoPosterTime: 1.25,
