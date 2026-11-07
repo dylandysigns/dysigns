@@ -1,7 +1,17 @@
 import { useEffect, useRef } from "react";
 
-const SITE_KEY = (import.meta as unknown as { env: Record<string, string | undefined> }).env
-  .VITE_TURNSTILE_SITE_KEY;
+// Turnstile site keys are public by design (they ship in every visitor's
+// HTML), so the production key lives here as the default. It used to come
+// only from VITE_TURNSTILE_SITE_KEY in a git-ignored .env, which the
+// Cloudflare Pages build never had: the widget silently rendered nothing,
+// no token was sent, and functions/api/contact.js rejected every message
+// with ?error=verify. An env var, if set, still wins.
+const PUBLIC_SITE_KEY = "0x4AAAAAAE_FCpk1Lsjkolhx";
+const SITE_KEY =
+  (import.meta as unknown as { env: Record<string, string | undefined> }).env
+    .VITE_TURNSTILE_SITE_KEY || PUBLIC_SITE_KEY;
+
+export const TURNSTILE_ENABLED = Boolean(SITE_KEY);
 const SCRIPT_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
 interface TurnstileApi {

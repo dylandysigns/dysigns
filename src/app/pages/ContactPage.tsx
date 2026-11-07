@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { Seo } from "../components/Seo";
-import { TurnstileWidget } from "../components/TurnstileWidget";
+import { TurnstileWidget, TURNSTILE_ENABLED } from "../components/TurnstileWidget";
 import { getLocalizedContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
 
@@ -54,6 +54,28 @@ export default function ContactPage() {
     if (tsRef.current) tsRef.current.value = String(Date.now());
     setVerifyFailed(new URLSearchParams(window.location.search).get("error") === "verify");
   }, []);
+
+  // Turnstile fills a hidden cf-turnstile-response input a moment after the
+  // page loads. A quick submit could go out with it still empty and bounce
+  // with ?error=verify, so hold the submit until the token is there (max
+  // ~5 s, then send anyway and let the server decide).
+  const waitingForToken = useRef(false);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    if (!TURNSTILE_ENABLED || waitingForToken.current) return;
+    const form = e.currentTarget;
+    const hasToken = () =>
+      Boolean((form.elements.namedItem("cf-turnstile-response") as HTMLInputElement | null)?.value);
+    if (hasToken()) return;
+    e.preventDefault();
+    waitingForToken.current = true;
+    const started = Date.now();
+    const timer = window.setInterval(() => {
+      if (hasToken() || Date.now() - started > 5000) {
+        window.clearInterval(timer);
+        form.submit();
+      }
+    }, 150);
+  };
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -298,6 +320,7 @@ export default function ContactPage() {
             name="contact"
             method="POST"
             action="/api/contact"
+            onSubmit={handleSubmit}
             className="text-left p-6 sm:p-8 rounded-2xl"
             style={{
               border: "1px solid rgba(var(--page-fg-rgb), .08)",
