@@ -1,27 +1,20 @@
-// Loads content/**/*.md at build time via Vite's native `?raw` import
-// (no bundler plugin needed) and parses frontmatter + markdown body once.
-// Works identically in the browser bundle and under Node during
-// scripts/prerender.mjs, since both go through Vite's module graph.
+// Content entries for content/**/*.md. Frontmatter, HTML and FAQ items are
+// produced at build time by the `dysigns-content` Vite plugin (see
+// vite.config.ts and ./parse.ts) and arrive here as plain data through
+// `virtual:content`, the same way in the browser bundle and under
+// scripts/prerender.mjs. No markdown is parsed at runtime.
 
-import { marked } from "marked";
-import { parseFrontmatter, type Frontmatter } from "./frontmatter";
+import contentEntries from "virtual:content";
+import type { Frontmatter } from "./frontmatter";
 import type { FaqItem } from "../seo/schema";
-import { crawlHref } from "../seo/href";
-
-// Internal links written in markdown get the same crawlable href as
-// TransitionLink, so they don't point at a URL that answers with a 308.
-marked.use({
-  walkTokens(token) {
-    if (token.type === "link") token.href = crawlHref(token.href);
-  },
-});
 
 export interface ContentEntry {
   frontmatter: Frontmatter;
   bodyHtml: string;
   /** Raw markdown body (pre-HTML), for components that need to parse out
    * a specific section themselves (getProcessSteps, getAfterLaunchContent)
-   * rather than rendering the whole body as one prose blob. */
+   * rather than rendering the whole body as one prose blob. Only present
+   * for files matched by RAW_BODY_FILES in ./parse.ts; "" otherwise. */
   rawBody: string;
   /** Real question/answer pairs found under "## Veelgestelde vragen",
    * extracted from the raw markdown (fase 5) — empty until a page has
@@ -30,47 +23,9 @@ export interface ContentEntry {
   faqItems: FaqItem[];
 }
 
-// Pulls the "## Veelgestelde vragen" section out of the raw markdown body
-// and splits it into {question, answer} pairs on its "### " sub-headings.
-// Placeholder sections (a single TODO_DYLAN line, no "### " questions)
-// correctly yield an empty array — there's nothing to structure yet.
-const FAQ_HEADINGS = ["## Frequently asked questions", "## Veelgestelde vragen"];
-
-function extractFaqItems(markdownBody: string): FaqItem[] {
-  // Split the whole body on every top-level "## " heading, then find the
-  // chunk whose heading is "Frequently asked questions" — avoids the
-  // multiline `$`-in-lookahead trap (it matches at every line end, not
-  // just the section boundary, so a lazy capture up to it grabs nothing).
-  // Structural pages (services, home) keep this heading in English even
-  // in their .nl.md file, since they never render the raw heading text
-  // (it's replaced by a translated JSX label) — but pages that render
-  // their markdown body directly, like insights articles, need the
-  // heading to actually be in the reader's language, so both variants
-  // are accepted here.
-  const sections = markdownBody.split(/\r?\n(?=## )/);
-  const faqHeading = FAQ_HEADINGS.find((h) => sections.some((s) => s.startsWith(h)));
-  if (!faqHeading) return [];
-  const faqSection = sections.find((s) => s.startsWith(faqHeading))!;
-
-  const section = faqSection.replace(new RegExp(`^${faqHeading}\\r?\\n?`), "");
-  const items: FaqItem[] = [];
-  const questionBlocks = section.split(/(?=^### )/m).filter((b) => b.trim());
-
-  for (const block of questionBlocks) {
-    const qMatch = block.match(/^### (.+)\r?\n([\s\S]*)$/);
-    if (!qMatch) continue;
-    const question = qMatch[1].trim();
-    const answer = qMatch[2].trim().replace(/\s+/g, " ");
-    if (question && answer && !answer.includes("TODO_DYLAN")) {
-      items.push({ question, answer });
-    }
-  }
-  return items;
-}
-
 // Generic "## Heading" section extractor, same split-on-every-"## "
-// approach as extractFaqItems (avoids the multiline `$`-in-lookahead
-// trap noted above). Returns the raw markdown body of that section, or
+// approach as extractFaqItems in ./parse.ts (avoids the multiline `$`-in-lookahead
+// trap noted there). Returns the raw markdown body of that section, or
 // null if the heading doesn't exist.
 function extractSection(markdownBody: string, heading: string): string | null {
   const sections = markdownBody.split(/\r?\n(?=## )/);
@@ -176,23 +131,9 @@ export function getSectionParagraph(markdownBody: string, heading: string): stri
   return section.trim().replace(/\s+/g, " ");
 }
 
-const rawModules = import.meta.glob("/content/**/*.md", {
-  query: "?raw",
-  import: "default",
-  eager: true,
-}) as Record<string, string>;
-
-const entriesByPath = new Map<string, ContentEntry>();
-
-for (const [path, raw] of Object.entries(rawModules)) {
-  const { frontmatter, body } = parseFrontmatter(raw);
-  entriesByPath.set(path, {
-    frontmatter,
-    bodyHtml: marked.parse(body, { async: false }) as string,
-    rawBody: body,
-    faqItems: extractFaqItems(body),
-  });
-}
+const entriesByPath = new Map<string, ContentEntry>(
+  Object.entries(contentEntries as Record<string, ContentEntry>),
+);
 
 function findByPathSuffix(suffix: string): ContentEntry | undefined {
   for (const [path, entry] of entriesByPath) {
