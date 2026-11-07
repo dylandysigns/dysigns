@@ -115,7 +115,19 @@ export function Hero() {
     video.addEventListener("pause", handleStopped);
     video.addEventListener("stalled", handleStopped);
     video.addEventListener("error", handleStopped);
+
+    // Stop decoding the b-roll while the hero is scrolled out of view
+    // (saves CPU/battery on phones); resume when it comes back.
+    const io =
+      typeof IntersectionObserver !== "undefined"
+        ? new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) video.play().catch(() => {});
+            else if (!video.paused) video.pause();
+          })
+        : null;
+    io?.observe(video);
     return () => {
+      io?.disconnect();
       video.removeEventListener("playing", handlePlaying);
       video.removeEventListener("pause", handleStopped);
       video.removeEventListener("stalled", handleStopped);
