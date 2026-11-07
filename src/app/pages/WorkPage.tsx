@@ -7,6 +7,7 @@ import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
+import { LazyVideo } from "../components/LazyVideo";
 import { getLocalizedContent } from "../content/loadContent";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -231,19 +232,13 @@ export default function WorkPage() {
 
                     <div className={isFeatured ? "aspect-[16/10] overflow-hidden" : "aspect-[4/4.7] overflow-hidden"}>
                       {project.video && !prefersReducedMotion ? (
-                        <video
+                        <LazyVideo
                           src={project.video}
                           poster={project.thumbnail}
                           className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
                           style={{
                             filter: "grayscale(.8) brightness(.65) contrast(1.05)",
                           }}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          disablePictureInPicture
-                          preload="auto"
                         />
                       ) : (
                         <img

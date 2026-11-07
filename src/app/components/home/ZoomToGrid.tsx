@@ -6,6 +6,7 @@ import type { Project } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
 import { ProjectZoomLink } from "../ProjectZoomLink";
 import { TransitionLink } from "../TransitionLink";
+import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
@@ -253,38 +254,20 @@ export function ZoomToGrid() {
           >
             {!isHero && project.coverVideo ? (
               // Portrait cut below sm, matching the aspect-[3/4] tile
-              <video
-                src={
-                  project.coverVideoMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
-                    ? project.coverVideoMobile
-                    : project.coverVideo
-                }
-                poster={
-                  project.coverVideoPosterMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches
-                    ? project.coverVideoPosterMobile
-                    : (project.coverVideoPoster ?? project.thumbnail)
-                }
+              <LazyVideo
+                src={project.coverVideo}
+                mobileSrc={project.coverVideoMobile}
+                poster={project.coverVideoPoster ?? project.thumbnail}
+                mobilePoster={project.coverVideoPosterMobile}
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
                 style={{ willChange: "transform" }}
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                preload="metadata"
               />
             ) : !isHero && project.video ? (
-              <video
+              <LazyVideo
                 src={project.video}
                 poster={project.thumbnail}
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
                 style={{ willChange: "transform" }}
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                preload="metadata"
               />
             ) : (
               <picture>
