@@ -535,7 +535,9 @@ export function Hero() {
       );
     }
 
-    /* Hero content */
+    /* Hero content — starts while the wordmark is still settling and runs
+       the words in quickly, so the 22-word headline is readable ~1.5 s
+       after load instead of ~2.9 s (and the chips ~2 s instead of ~4.3 s). */
     if (headRef.current) {
       const words = splitWords(headRef.current);
       tl.to(
@@ -543,25 +545,29 @@ export function Hero() {
         {
           y: 0,
           opacity: 1,
-          duration: 0.7,
-          stagger: 0.06,
+          duration: 0.55,
+          stagger: 0.025,
           ease: "power3.out",
         },
-        1.0,
+        0.35,
       );
     }
+
+    // Release the desktop scroll lock as soon as the headline is in; the
+    // wordmark and chips keep settling while the visitor scrolls.
+    tl.call(() => setIsHeroIntroReady(true), [], 1.45);
 
     tl.fromTo(
       ctaRef.current,
       { y: 16, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
-      "-=.3",
+      { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+      "-=.35",
     );
     tl.fromTo(
       trustedRef.current,
       { y: 18, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
-      "-=.15",
+      { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+      "-=.3",
     );
 
     if (chipsRef.current) {
@@ -569,8 +575,8 @@ export function Hero() {
       tl.fromTo(
         chipEls,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
-        "-=.4",
+        { y: 0, opacity: 1, duration: 0.45, stagger: 0.05, ease: "power3.out" },
+        "-=.35",
       );
     }
 
