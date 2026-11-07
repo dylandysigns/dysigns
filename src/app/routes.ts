@@ -73,7 +73,12 @@ export const routes: RouteObject[] = [
       // itself has a single static action for Netlify's build-time form
       // detection to find.
       { path: "thank-you", Component: ThankYouPage },
-      { path: "docs", lazy: lazyPage(() => import("./pages/DocsPage")) },
+      // Internal content-editing guide: only exists in `npm run dev`. In a
+      // production build this entry (and the DocsPage chunk) is dropped, so
+      // /docs falls through to the 404 page.
+      ...(import.meta.env.DEV
+        ? [{ path: "docs", lazy: lazyPage(() => import("./pages/DocsPage")) }]
+        : []),
       { path: "*", Component: NotFoundPage },
     ],
   },
