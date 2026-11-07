@@ -4,9 +4,9 @@
    before continuing to render the page. */
 
 /* One place to change the site font. Effra is defined in effra.css; if its
-   files are missing the site falls back to Inter (loaded from Google Fonts). */
+   files are missing the site falls back to the system sans-serif. */
 :root {
-  --font-brand: "Effra", "Inter", sans-serif;
+  --font-brand: "Effra", system-ui, sans-serif;
 }
 
 body {
