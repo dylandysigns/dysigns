@@ -8,6 +8,7 @@ import { TransitionLink } from "../components/TransitionLink";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
+import { LazyVideo } from "../components/LazyVideo";
 import { SITE_URL } from "../seo/meta";
 import { breadcrumbListSchema, creativeWorkSchema } from "../seo/schema";
 
@@ -470,40 +471,23 @@ export default function CaseDetailPage() {
           {project.coverVideo && !prefersReducedMotion ? (
             // Portrait cut below 768px, like thumbnailMobile; starts at the poster
             // frame so it continues straight on from the zoom-in transition image
-            <video
-              src={
-                project.coverVideoMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
-                  ? project.coverVideoMobile
-                  : project.coverVideo
-              }
-              poster={
-                project.coverVideoPosterMobile && typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
-                  ? project.coverVideoPosterMobile
-                  : (project.coverVideoPoster ?? project.thumbnail)
-              }
+            <LazyVideo
+              src={project.coverVideo}
+              mobileSrc={project.coverVideoMobile}
+              poster={project.coverVideoPoster ?? project.thumbnail}
+              mobilePoster={project.coverVideoPosterMobile}
+              mobileQuery="(max-width: 767px)"
               {...(project.thumbnailAlt && { "aria-label": project.thumbnailAlt })}
               className="absolute inset-0 w-full h-full object-cover"
               onLoadedMetadata={(e) => {
                 if (project.coverVideoPosterTime) e.currentTarget.currentTime = project.coverVideoPosterTime;
               }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              preload="auto"
             />
           ) : project.video && !prefersReducedMotion ? (
-            <video
+            <LazyVideo
               src={project.video}
               poster={project.thumbnail}
               className="absolute inset-0 w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              preload="metadata"
             />
           ) : (
             <>
