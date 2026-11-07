@@ -177,29 +177,13 @@
       }
       </script>
 
-      <!-- ─── PERFORMANCE: PRECONNECT & PRELOAD ─── -->
+      <!-- ─── PERFORMANCE: PRELOAD ─── -->
+      <!-- All fonts are self-hosted (public/fonts), so no third-party font
+           origins to connect to. -->
       <!-- Self-hosted Effra: body weight + hero weight, fetched before the CSS
            that references them is parsed. -->
       <link rel="preload" href="/fonts/effra-semibold.woff2" as="font" type="font/woff2" crossorigin />
       <link rel="preload" href="/fonts/effra-black.woff2" as="font" type="font/woff2" crossorigin />
-      <!-- Establish early connections to Google Fonts to reduce font latency -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <!-- Load Google Fonts without blocking rendering: request it as a
-           "print" stylesheet (fetched, but not render-blocking for screen),
-           then swap it to "all" once it's actually loaded. -->
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
-        media="print"
-        onload="this.media='all'"
-      />
-      <noscript>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
-        />
-      </noscript>
       <link rel="icon" type="image/png" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/favicon.png" />
     </head>
