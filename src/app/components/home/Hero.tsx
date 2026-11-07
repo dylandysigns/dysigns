@@ -621,7 +621,7 @@ export function Hero() {
             <video
               ref={bgVideoRef}
               className="absolute inset-0 h-full w-full object-cover"
-              src="/videos/dysigns-intro.mp4"
+              src="/videos/dysigns-intro-bg.mp4"
               autoPlay
               muted
               loop
