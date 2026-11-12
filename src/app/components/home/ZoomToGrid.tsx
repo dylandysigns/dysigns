@@ -218,7 +218,10 @@ export function ZoomToGrid() {
         to={`/work/${project.slug}`}
         projectSlug={project.slug}
         imageSrc={
-          !isHero && project.coverVideoPoster
+          !isHero && !project.coverVideo && project.coverVideoPosterMobile &&
+          typeof window !== "undefined" && window.innerWidth < 640
+            ? project.coverVideoPosterMobile
+            : !isHero && project.coverVideoPoster
             ? project.coverVideoPosterMobile && typeof window !== "undefined" && window.innerWidth < 768
               ? project.coverVideoPosterMobile
               : project.coverVideoPoster
@@ -284,6 +287,15 @@ export function ZoomToGrid() {
                   fetchpriority={isHero ? "high" : undefined}
                 />
               </picture>
+            )}
+            {!isHero && !project.coverVideo && project.coverVideoMobile && (
+              // Mobile-only cover video over the still, on the portrait
+              // tile below sm; display:none above keeps it from loading.
+              <LazyVideo
+                src={project.coverVideoMobile}
+                poster={project.coverVideoPosterMobile ?? project.thumbnail}
+                className="absolute inset-0 w-full h-full object-cover project-thumb sm:hidden"
+              />
             )}
           </div>
           {/* Title overlay — always visible on mobile, hover-reveal on desktop */}

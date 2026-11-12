@@ -523,6 +523,21 @@ export default function CaseDetailPage() {
                   willChange: "auto",
                 }}
               />
+              {project.coverVideoMobile && !prefersReducedMotion && (
+                // Mobile-only cover video (no desktop cut yet): hidden from
+                // 768px up, where display:none also keeps it from loading.
+                <div className="absolute inset-0 md:hidden">
+                  <LazyVideo
+                    src={project.coverVideoMobile}
+                    poster={project.coverVideoPosterMobile ?? project.thumbnail}
+                    {...(project.thumbnailAlt && { "aria-label": project.thumbnailAlt })}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onLoadedMetadata={(e) => {
+                      if (project.coverVideoPosterTime) e.currentTarget.currentTime = project.coverVideoPosterTime;
+                    }}
+                  />
+                </div>
+              )}
             </>
           )}
         </div>
@@ -692,6 +707,9 @@ export default function CaseDetailPage() {
                 lineHeight: 1.75,
                 color: "rgba(var(--page-fg-rgb), .72)",
                 marginBottom: 64,
+                // "\n\n" in an overview becomes a paragraph break, so long
+                // stories don't read as one wall of text on a phone.
+                whiteSpace: "pre-line",
               }}
             >
               {project.overview}

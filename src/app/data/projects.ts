@@ -49,7 +49,9 @@ export interface Project {
   /** Cover video (mp4) for the home grid card and the case hero — muted and
    * looped. The work page keeps the image. */
   coverVideo?: string;
-  /** Portrait cover video used on small screens instead of `coverVideo`. */
+  /** Portrait cover video used on small screens instead of `coverVideo`.
+   * Without a `coverVideo` it plays on small screens only, and larger
+   * screens keep `thumbnail`. */
   coverVideoMobile?: string;
   /** Still from the cover video: its poster, and the image the zoom-in
    * transition grows into so the case hero picks up where it left off. */
@@ -113,6 +115,11 @@ export const projects: Project[] = [
     tags: ["Mobile App", "UX Design", "Development", "Motion Design"],
     year: "2026",
     thumbnail: "/images/stelz-app-cover-empty.png",
+    // Mobile-only motion for now; desktop keeps the still until a 16:9 cut
+    // exists (then add `coverVideo` + `coverVideoPoster`).
+    coverVideoMobile: "/videos/stelz-app-cover-mobile-v17.mp4",
+    coverVideoPosterMobile: "/images/stelz-app-cover-mobile-poster.jpg",
+    coverVideoPosterTime: 3,
     storeLinks: {
       appStore: "https://apps.apple.com/nl/app/st%C3%ABlz/id6773376256",
       googlePlay: "https://play.google.com/store/apps/details?id=com.stelz.app",
@@ -289,8 +296,11 @@ export const projects: Project[] = [
     year: "2022",
     url: "https://www.biyu.world/",
     thumbnail: "/images/biyu-cover.avif",
+    // Portrait cut of the app-in-hand photo; the landscape tablet cover
+    // crops to an unreadable sliver on phones.
+    thumbnailMobile: "/images/biyu-cover-mobile.jpg",
     overview:
-      "In 2022 BIYU had an office on the Overtoom in Amsterdam, and that's where you'd find me most days. The idea was refreshingly down to earth: why buy a drill you use twice a year? At BIYU you just rented one, along with carpet cleaners, DJ sets or a poffertjes maker, often delivered to your door the same day. Do more. Own less. I mostly worked on the digital side. On the app, where you find a product, pick your rental period and see when it arrives. On the website, with every category from DIY to kitchen. And on the dashboard behind the scenes, where the team kept track of orders, stock and deliveries. The partner portal, where other businesses could rent out their own gear through BIYU, got the same purple and hexagons as the rest of the brand. A rental company in the city leaves little room for hassle: if someone booked a pressure washer for Saturday, it had better be there. That's what the screens were for. And look where they are now. After five years of running their own rentals, with their own warehouses and delivery, BIYU now builds the software other brands use to run rental, subscriptions and resale. Homie and Reflower are among those running on it. From an office on the Overtoom to the engine behind other brands. Nice to see.",
+      "In 2022 BIYU had an office on the Overtoom in Amsterdam, and that's where you'd find me most days. The idea was refreshingly down to earth: why buy a drill you use twice a year? At BIYU you just rented one, along with carpet cleaners, DJ sets or a poffertjes maker, often delivered to your door the same day. Do more. Own less.\n\nI mostly worked on the digital side. On the app, where you find a product, pick your rental period and see when it arrives. On the website, with every category from DIY to kitchen. And on the dashboard behind the scenes, where the team kept track of orders, stock and deliveries. The partner portal, where other businesses could rent out their own gear through BIYU, got the same purple and hexagons as the rest of the brand.\n\nA rental company in the city leaves little room for hassle: if someone booked a pressure washer for Saturday, it had better be there. That's what the screens were for.\n\nAnd look where they are now. After five years of running their own rentals, with their own warehouses and delivery, BIYU now builds the software other brands use to run rental, subscriptions and resale. Homie and Reflower are among those running on it. From an office on the Overtoom to the engine behind other brands. Nice to see.",
     outcomes: [],
     customAlt: true,
     customSeo: true,
