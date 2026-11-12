@@ -67,6 +67,11 @@ export interface Project {
   beforeAfter?: { before: string; after: string; label?: string }[];
   /** App store listings, shown as download buttons next to the visit link. */
   storeLinks?: { appStore?: string; googlePlay?: string };
+  /** Left off the /work list and the case-to-case prev/next links, but the
+   * case page itself still renders, is prerendered and stays in the sitemap
+   * (scripts/prerender.mjs reads every slug in this file), so it remains
+   * findable through search. */
+  hidden?: boolean;
 }
 
 export const projects: Project[] = [
@@ -159,6 +164,8 @@ export const projects: Project[] = [
     tags: ["Branding", "Print", "Web"],
     year: "2026",
     url: "https://verkeersschoolbeckers.nl/",
+    // Not a startup or scale-up, so it stays off the site; kept for SEO.
+    hidden: true,
     thumbnail: "/images/beckers-cover-laptop-v3.avif",
     overview:
       "For Verkeersschool Beckers, we developed a complete new brand identity to modernize and professionalize their presence in the Dutch market. The project included a full logo redesign, visual identity system, and consistent brand application across all touchpoints.\n\nWe translated the new identity into social media assets, vehicle branding, and a fully redesigned website. The result is a cohesive and recognizable brand that builds trust and stands out both online and on the road.",

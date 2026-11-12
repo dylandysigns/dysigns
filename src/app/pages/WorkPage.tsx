@@ -17,11 +17,18 @@ function getProjectYear(value: string): number {
   return match ? Number(match[1]) : 0;
 }
 
-// Fixed lead order — these four always appear first, in this exact
-// sequence, regardless of year. Everything else follows, most recent
-// year first (a real 2026 case not on this list, e.g. Beckers, still
-// lands ahead of older placeholder cases).
-const FEATURED_ORDER = ["stelz-web-design", "a-cafe-app-design", "powermobile", "studio75-branding", "merely-made-webshop"];
+// Fixed lead order — these always appear first, in this exact sequence,
+// regardless of year. STËLZ is the lead case, so both STËLZ projects open
+// the page. Everything else follows, most recent year first. Projects
+// marked `hidden` in projects.ts are left off entirely.
+const FEATURED_ORDER = [
+  "stelz-web-design",
+  "stelz-app",
+  "a-cafe-app-design",
+  "powermobile",
+  "studio75-branding",
+  "merely-made-webshop",
+];
 
 export default function WorkPage() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,6 +50,7 @@ export default function WorkPage() {
           rawTags: rawProjects[index].tags,
           year: getProjectYear(rawProjects[index].year),
         }))
+        .filter(({ project }) => !project.hidden)
         .sort((a, b) => {
           const aFeatured = FEATURED_ORDER.indexOf(a.project.slug);
           const bFeatured = FEATURED_ORDER.indexOf(b.project.slug);

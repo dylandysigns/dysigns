@@ -40,9 +40,13 @@ const dict: Record<string, Record<Lang, string>> = {
   "cursor.next": { en: "NEXT", nl: "VOLGENDE" },
 
   /* ── Hero ── */
+  "hero.title": {
+    en: "Designed to grow.",
+    nl: "Ontworpen om te groeien.",
+  },
   "hero.headline.A": {
-    en: "DYSIGNS is your creative partner: a small team creating brands, websites, and social campaigns that transform company values into meaningful business value.",
-    nl: "DYSIGNS is jouw creative partner: een klein team dat bedrijfswaarden vertaalt naar sterke merken, websites en socialmediacampagnes die impact maken.",
+    en: "DYSIGNS is your creative partner for scaling brands and digital products, from startup to scale-up.",
+    nl: "DYSIGNS is jouw creatieve partner voor merken en digitale producten die willen opschalen, van startup tot scale-up.",
   },
   "hero.cta1": { en: "View work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Free chat, why not?", nl: "Even kletsen, waarom niet?" },

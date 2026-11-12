@@ -138,9 +138,13 @@ export default function CaseDetailPage() {
 
   const [showScrollHint, setShowScrollHint] = useState(false);
 
-  const { project, projects, currentIdx } = useTranslatedProject(slug);
-  const nextProject = projects[(currentIdx + 1) % projects.length];
-  const prevProject = projects[(currentIdx - 1 + projects.length) % projects.length];
+  const { project, projects: allProjects } = useTranslatedProject(slug);
+  // Prev/next cycle through visible cases only. A hidden case's own page
+  // still renders (reached from search) and links on into the visible set.
+  const projects = allProjects.filter((p) => !p.hidden || p.slug === slug);
+  const visibleIdx = projects.findIndex((p) => p.slug === slug);
+  const nextProject = projects[(visibleIdx + 1) % projects.length];
+  const prevProject = projects[(visibleIdx - 1 + projects.length) % projects.length];
   const backTarget =
     (location.state as { fromPath?: string } | null)?.fromPath ?? "/work";
 

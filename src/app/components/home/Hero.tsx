@@ -52,6 +52,8 @@ export function Hero() {
   const [isHeroIntroReady, setIsHeroIntroReady] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
+  const headTitleRef = useRef<HTMLSpanElement>(null);
+  const headSubRef = useRef<HTMLSpanElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
@@ -536,10 +538,11 @@ export function Hero() {
     }
 
     /* Hero content — starts while the wordmark is still settling and runs
-       the words in quickly, so the 22-word headline is readable ~1.5 s
-       after load instead of ~2.9 s (and the chips ~2 s instead of ~4.3 s). */
-    if (headRef.current) {
-      const words = splitWords(headRef.current);
+       the words in quickly, so the headline is readable ~1.5 s after load
+       (and the chips ~2 s). Title and subline are split separately so each
+       keeps its own line. */
+    if (headTitleRef.current && headSubRef.current) {
+      const words = [...splitWords(headTitleRef.current), ...splitWords(headSubRef.current)];
       tl.to(
         words,
         {
@@ -1174,7 +1177,22 @@ export function Hero() {
                     color: "var(--page-fg)",
                   }}
                 >
-                  {t("hero.headline.A")}
+                  <span
+                    ref={headTitleRef}
+                    className="block"
+                    style={{
+                      fontSize: "clamp(1.5rem,3.6vw,2.6rem)",
+                      fontWeight: 700,
+                      lineHeight: 1.05,
+                      letterSpacing: "-.035em",
+                      marginBottom: ".45em",
+                    }}
+                  >
+                    {t("hero.title")}
+                  </span>
+                  <span ref={headSubRef} className="block">
+                    {t("hero.headline.A")}
+                  </span>
                 </h1>
                 {/* Single primary action, per the brief: "Onder de hero één
                     primaire actie naar /contact. Eén, niet drie." */}
