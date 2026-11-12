@@ -677,8 +677,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Wij creëerden de merkidentiteit van Studio75, van het eerste moodboard tot het logo, de kleuren, de typografie en de visitekaartjes. Elke identiteit begint bij ons hetzelfde: met luisteren. Samen met de oprichter verzamelden we referenties, van nachtleven en beweging tot typografische posters en textuur, tot er een smaak ontstond die onmiskenbaar Studio75 was. Vanaf daar werkte ons team snel en gefocust: we verkenden drie logorichtingen rond een gedurfd sterretjessymbool, van expressief en handgemaakt tot strak en getextureerd, en werkten de gekozen richting uit tot een compleet systeem van kleurpalet, typografie en drukwerk, vastgelegd in een brandbook. Het resultaat is een luxe, stevige basis die op een visitekaartje net zo scherp oogt als op een scherm. Bij DYSIGNS brengen we jouw idee en jouw passie tot leven, en doordat de basis vanaf dag één klopt, houdt alles wat erop gebouwd wordt samen.",
   },
   "project.studio75-branding.alt.cover": {
-    en: "Studio75 logo in bold white lettering with a registered mark, over a dark, red-lit silhouette of a person",
-    nl: "Studio75-logo in vette witte letters met ®-teken, over een donker, rood verlicht silhouet van een persoon",
+    en: "Studio75 poster: the white asterisk logo and wordmark over streaks of orange liquid glass and blue light flowing from a woman's profile, between the lines More impact, and Less friction.",
+    nl: "Studio75-poster: het witte sterretjeslogo en woordmerk over strepen oranje vloeibaar glas en blauw licht die uit het profiel van een vrouw stromen, tussen de regels More impact, en Less friction.",
   },
   "project.studio75-branding.alt.0": {
     en: "Studio75 brand identity moodboard: a dense collage of posters, portraits and photography in orange, black and blue, with taped labels such as crowd energy, movement, texture and typographic posters",
@@ -689,10 +689,14 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Studio75 logo-ontwerp, drie varianten: drie versies van het sterretjessymbool met vet woordmerk in zwart op een gebroken witte achtergrond",
   },
   "project.studio75-branding.alt.2": {
+    en: "Studio75 logo in white behind fluted glass, with a blurred figure in soft grey and warm orange light",
+    nl: "Studio75-logo in wit achter geribbeld glas, met een wazige figuur in zacht grijs en warm oranje licht",
+  },
+  "project.studio75-branding.alt.3": {
     en: "Studio75 brand identity on print, business cards with a black front and an off-white back with orange edges, showing the asterisk logo, contact details and the line More impact, less friction",
     nl: "Studio75 huisstijl op drukwerk, visitekaartjes met een zwarte voorkant en een gebroken witte achterkant met oranje randen, met het sterretjeslogo, contactgegevens en de tekst More impact, less friction",
   },
-  "project.studio75-branding.alt.3": {
+  "project.studio75-branding.alt.4": {
     en: "Studio75 brand typography page showing the typeface in Book, Medium, Bold and Extra Bold with the alphabet and numerals in white and orange on dark grey",
     nl: "Typografiepagina van de Studio75-huisstijl met het lettertype in Book, Medium, Bold en Extra Bold, met alfabet en cijfers in wit en oranje op donkergrijs",
   },
