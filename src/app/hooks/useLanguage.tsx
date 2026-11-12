@@ -737,6 +737,39 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "Merely Made mobile webshop design: the home page, shop page and product page shown as three phone screens side by side",
     nl: "Merely Made mobiele webshop-ontwerp: de homepage, shoppagina en productpagina als drie telefoonschermen naast elkaar",
   },
+  /* ── Project: BIYU ── */
+  "project.biyu.title": {
+    en: "BIYU",
+    nl: "BIYU",
+  },
+  "project.biyu.seoTitle": {
+    en: "BIYU Rental Platform: App, Website & Dashboard | DYSIGNS",
+    nl: "BIYU verhuurplatform: app, website & dashboard | DYSIGNS",
+  },
+  "project.biyu.seoDescription": {
+    en: "How I helped build the app, website and dashboard for BIYU, the Amsterdam rental platform where you rent a drill instead of buying one.",
+    nl: "Hoe ik bij BIYU in Amsterdam meebouwde aan de app, website en het dashboard van een verhuurplatform: een boormachine huren in plaats van kopen.",
+  },
+  "project.biyu.overview": {
+    en: "In 2022 BIYU had an office on the Overtoom in Amsterdam, and that's where you'd find me most days. The idea was refreshingly down to earth: why buy a drill you use twice a year? At BIYU you just rented one, along with carpet cleaners, DJ sets or a poffertjes maker, often delivered to your door the same day. Do more. Own less. I mostly worked on the digital side. On the app, where you find a product, pick your rental period and see when it arrives. On the website, with every category from DIY to kitchen. And on the dashboard behind the scenes, where the team kept track of orders, stock and deliveries. The partner portal, where other businesses could rent out their own gear through BIYU, got the same purple and hexagons as the rest of the brand. A rental company in the city leaves little room for hassle: if someone booked a pressure washer for Saturday, it had better be there. That's what the screens were for. And look where they are now. After five years of running their own rentals, with their own warehouses and delivery, BIYU now builds the software other brands use to run rental, subscriptions and resale. Homie and Reflower are among those running on it. From an office on the Overtoom to the engine behind other brands. Nice to see.",
+    nl: "In 2022 had BIYU een kantoor aan de Overtoom in Amsterdam, en daar zat ik de meeste dagen. Het idee was lekker nuchter: waarom koop je een boormachine die je twee keer per jaar gebruikt? Bij BIYU huurde je ’m gewoon, net als een tapijtreiniger, een DJ-set of een poffertjesmachine, en vaak stond hij dezelfde dag nog bij je voor de deur. Do more. Own less. Ik hielp vooral aan de digitale kant. Aan de app, waarin je een product vindt, je huurperiode kiest en ziet wanneer het komt. Aan de website, met alle categorieën van doe-het-zelf tot keuken. En aan het dashboard achter de schermen, waar het team bestellingen, voorraad en bezorgingen bijhield. Ook de partnerportal, waar andere bedrijven hun eigen spullen via BIYU konden verhuren, kreeg het paars en de zeshoeken van het merk. Een verhuurbedrijf in de stad laat weinig ruimte voor gedoe: als iemand voor zaterdag een hogedrukreiniger heeft geboekt, moet die er ook echt zijn. Daar waren de schermen voor. En kijk waar ze nu staan. Na vijf jaar zelf verhuren, met eigen magazijnen en bezorging, maakt BIYU nu de software waarmee andere merken verhuur, abonnementen en tweedehands regelen. Onder meer Homie en Reflower draaien erop. Van een kantoor aan de Overtoom naar het systeem achter andere merken. Mooi om te zien.",
+  },
+  "project.biyu.alt.cover": {
+    en: "BIYU rental website on an iPad: the home page with the headline Rent the best products from the best brands, a search bar and categories such as drills, DJ sets and kitchen machines on a purple background",
+    nl: "BIYU-verhuurwebsite op een iPad: de homepage met de kop Huur de beste producten van de beste merken, een zoekbalk en categorieën als boormachines, DJ-sets en keukenmachines op een paarse achtergrond",
+  },
+  "project.biyu.alt.0": {
+    en: "BIYU rental app on an iPhone: product page for a Festool cordless plunge saw with rental prices per day, three days and a week, and a note that delivery is possible today",
+    nl: "BIYU-verhuurapp op een iPhone: productpagina van een Festool accu-invalcirkelzaag met huurprijzen per dag, drie dagen en een week, en de melding dat bezorging vandaag mogelijk is",
+  },
+  "project.biyu.alt.1": {
+    en: "BIYU partner portal welcome screen with register and log in buttons, surrounded by hexagons holding tools such as a pressure washer, a vacuum cleaner and a drill",
+    nl: "Welkomstscherm van de BIYU-partnerportal met knoppen om te registreren en in te loggen, omringd door zeshoeken met gereedschap zoals een hogedrukreiniger, een stofzuiger en een boormachine",
+  },
+  "project.biyu.alt.2": {
+    en: "BIYU campaign poster in an Amsterdam bus shelter, Jouw balkon borrelklaar, with a woman holding a pressure washer that rents for 9 euros",
+    nl: "BIYU-campagneposter in een Amsterdamse abri, Jouw balkon borrelklaar, met een vrouw die een hogedrukreiniger vasthoudt die je voor 9 euro huurt",
+  },
 };
 
 // A page's language is a property of its URL, not a remembered client

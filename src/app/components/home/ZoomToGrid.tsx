@@ -27,14 +27,14 @@ gsap.registerPlugin(ScrollTrigger);
  *
  * Explicit slug list (not the raw array order) so this grid can be
  * curated independently of projects.ts's own order. STELZ stays the
- * hero/center tile. There are fewer real cases than grid cells, so the
- * last corner holds a link tile instead of a project (see LinkTile).
+ * hero/center tile. A `null` slot holds a "view all work" link tile,
+ * and the last corner is always a contact link tile (see LinkTile).
  */
-const ZOOM_GRID_SLUGS = [
+const ZOOM_GRID_SLUGS: (string | null)[] = [
   "sfumato-agency",
   "merely-made-webshop",
   "a-cafe-app-design",
-  "verkeersschool-beckers-branding",
+  "biyu",
   "stelz-web-design", // hero / center tile
   "powermobile",
   "studio75-branding",
@@ -58,12 +58,11 @@ export function ZoomToGrid() {
   tRef.current = t;
 
   /* Map each grid position (row-major, including hero center) to a translated project,
-     by explicit slug rather than raw array order. */
+     by explicit slug rather than raw array order. Positions stay fixed:
+     a `null` slot (or a missing slug) stays `undefined` so the cells
+     after it don't shift. */
   const tileProjects = useMemo(
-    () =>
-      ZOOM_GRID_SLUGS.map((slug) => translatedProjects.find((p) => p.slug === slug)).filter(
-        (p): p is (typeof translatedProjects)[number] => Boolean(p),
-      ),
+    () => ZOOM_GRID_SLUGS.map((slug) => (slug ? translatedProjects.find((p) => p.slug === slug) : undefined)),
     [translatedProjects],
   );
 
@@ -77,7 +76,7 @@ export function ZoomToGrid() {
 
   // Preload images into browser cache (fire-and-forget, does NOT gate animation)
   useEffect(() => {
-    const urls = [zoomToGridData.heroImage, ...tileProjects.map((p) => p.thumbnail)];
+    const urls = [zoomToGridData.heroImage, ...tileProjects.flatMap((p) => (p ? [p.thumbnail] : []))];
     urls.forEach((url) => {
       const img = new Image();
       img.src = url;
@@ -433,7 +432,7 @@ export function ZoomToGrid() {
         </div>
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-3">
           {tileProjects
-            .filter((_, i) => i !== HERO_INDEX) // hero tile shown separately above
+            .filter((p, i): p is NonNullable<typeof p> => Boolean(p) && i !== HERO_INDEX) // hero tile shown separately above
             .map((proj) => (
               <ProjectZoomLink
                 key={proj.slug}
@@ -542,7 +541,11 @@ export function ZoomToGrid() {
               }}
               style={{ opacity: 0, willChange: "transform, opacity" }}
             >
-              <Tile project={tileProjects[3]} />
+              {tileProjects[3] ? (
+                <Tile project={tileProjects[3]} />
+              ) : (
+                <LinkTile to="/work" label={t("work.viewAll")} />
+              )}
             </div>
 
             {/* Hero tile (center) */}

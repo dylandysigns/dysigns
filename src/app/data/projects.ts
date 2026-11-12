@@ -274,6 +274,28 @@ export const projects: Project[] = [
       "/images/merelymade-mobile.avif",
     ],
   },
+  {
+    slug: "biyu",
+    title: "BIYU",
+    category: "Digital",
+    tags: ["UX Design", "Mobile App", "Web Design", "Dashboard"],
+    year: "2022",
+    url: "https://www.biyu.world/",
+    thumbnail: "/images/biyu-cover.avif",
+    overview:
+      "In 2022 BIYU had an office on the Overtoom in Amsterdam, and that's where you'd find me most days. The idea was refreshingly down to earth: why buy a drill you use twice a year? At BIYU you just rented one, along with carpet cleaners, DJ sets or a poffertjes maker, often delivered to your door the same day. Do more. Own less. I mostly worked on the digital side. On the app, where you find a product, pick your rental period and see when it arrives. On the website, with every category from DIY to kitchen. And on the dashboard behind the scenes, where the team kept track of orders, stock and deliveries. The partner portal, where other businesses could rent out their own gear through BIYU, got the same purple and hexagons as the rest of the brand. A rental company in the city leaves little room for hassle: if someone booked a pressure washer for Saturday, it had better be there. That's what the screens were for. And look where they are now. After five years of running their own rentals, with their own warehouses and delivery, BIYU now builds the software other brands use to run rental, subscriptions and resale. Homie and Reflower are among those running on it. From an office on the Overtoom to the engine behind other brands. Nice to see.",
+    outcomes: [],
+    customAlt: true,
+    customSeo: true,
+    ogImage: "/images/og-biyu.jpg",
+    cleanGallery: true,
+    galleryWide: [2],
+    gallery: [
+      "/images/biyu-app.avif",
+      "/images/biyu-partner-portal.avif",
+      "/images/biyu-campaign.avif",
+    ],
+  },
 ];
 
 /** Zoom-to-grid section hero image — grid tiles now use each project's own
