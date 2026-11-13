@@ -68,6 +68,7 @@ const enRoutes = [
   "/branding",
   "/ai-implementation",
   "/shopify-development", // subpage under web design, not in navigation
+  "/web-design-almere", // local landing page under web design
   "/work",
   ...CASE_SLUGS.map((slug) => `/work/${slug}`),
   "/insights",
@@ -135,6 +136,13 @@ function injectHead(html, meta, canonicalUrl, i18n) {
   out = replaceTag(out, /(<meta\s+property="og:locale:alternate"\s+content=")[^"]*(")/, `$1${localeAlt}$2`, 'meta property="og:locale:alternate"');
   out = replaceTag(out, /(<meta\s+name="twitter:title"\s+content=")[^"]*(")/, `$1${title}$2`, 'meta name="twitter:title"');
   out = replaceTag(out, /(<meta\s+name="twitter:description"\s+content=")[^"]*(")/, `$1${description}$2`, 'meta name="twitter:description"');
+
+  // Dutch pages: the default image alt in index.html is English.
+  if (i18n.lang === "nl" && !(meta.image && meta.imageAlt)) {
+    const nlAlt = "DYSIGNS: Webdesign Bureau & Shopify Partner Nederland";
+    out = replaceTag(out, /(<meta\s+property="og:image:alt"\s+content=")[^"]*(")/, `$1${nlAlt}$2`, 'meta property="og:image:alt"');
+    out = replaceTag(out, /(<meta\s+name="twitter:image:alt"\s+content=")[^"]*(")/, `$1${nlAlt}$2`, 'meta name="twitter:image:alt"');
+  }
 
   // Per-page social image (e.g. a case's own cover) — only swapped when the
   // page registered one; every other page keeps the site-wide og-cover.

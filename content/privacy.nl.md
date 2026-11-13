@@ -23,7 +23,7 @@ Deze website wordt beheerd door DYSIGNS, een eenmanszaak geregistreerd in Nederl
 
 ## Welke gegevens we verzamelen
 
-**Contactformulier.** Wanneer je het formulier op de [contactpagina](/contact) invult, verzamelen we het e-mailadres en bericht dat je opgeeft. Dit wordt namens ons verwerkt door een externe formulierverwerker en alleen gebruikt om te reageren op je aanvraag. We voegen je niet toe aan een mailinglijst en delen dit niet met derden voor marketingdoeleinden.
+**Contactformulier.** Wanneer je het formulier op de [contactpagina](/nl/contact) invult, verzamelen we het e-mailadres en bericht dat je opgeeft. Dit wordt namens ons verwerkt door een externe formulierverwerker en alleen gebruikt om te reageren op je aanvraag. We voegen je niet toe aan een mailinglijst en delen dit niet met derden voor marketingdoeleinden.
 
 **E-mail en WhatsApp.** Als je ons rechtstreeks benadert via e-mail of WhatsApp, geldt hetzelfde principe: de gegevens die je deelt worden alleen gebruikt om te reageren, niet gedeeld met derden.
 

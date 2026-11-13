@@ -502,7 +502,7 @@ export default function CaseDetailPage() {
                 <style>{`
                   .case-hero-bg{${
                     project.logoSafeCover
-                      ? `background-image:url(${project.thumbnail}),linear-gradient(#370e08,#1a1009);background-size:min(max(100vw,160vh),135vw) auto,100% 100%;background-repeat:no-repeat;background-position:center center`
+                      ? `background-image:url(${project.thumbnail}),linear-gradient(#010304,#010304);background-size:min(max(100vw,160vh),135vw) auto,100% 100%;background-repeat:no-repeat;background-position:center center`
                       : `background-image:url(${project.thumbnail});background-size:cover;background-position:center 20%`
                   }}
                   ${project.thumbnailMobile ? `@media (max-width:767px){.case-hero-bg{background-image:url(${project.thumbnailMobile});background-size:cover;background-position:center}}` : ""}

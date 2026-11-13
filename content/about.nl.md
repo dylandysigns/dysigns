@@ -1,5 +1,5 @@
 ---
-title: "Over DYSIGNS: Full-Service Digital Agency"
+title: "Over DYSIGNS: Digitaal Bureau uit Almere"
 description: "DYSIGNS is een team van specialisten uit Nederland. Maak kennis met het team, onze werkwijze en onze aanpak voor SEO en technische optimalisatie."
 heading: "Over DYSIGNS"
 slug: "about"

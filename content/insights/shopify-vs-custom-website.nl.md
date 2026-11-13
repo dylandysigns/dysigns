@@ -44,11 +44,11 @@ Als niets hiervan van toepassing is, is "we hebben iets volledig custom nodig" m
 
 ## Het verschil in kosten en onderhoud
 
-Een aangepast of custom Shopify-thema is goedkoper om te bouwen en goedkoper om te draaien: Shopify neemt hosting, beveiligingsupdates en PCI-compliance voor zijn rekening, dus je doorlopende kosten zitten vooral in apps, thema-updates en content. Een custom of headless build legt die verantwoordelijkheid bij jou neer: iemand moet hosting, beveiligingsupdates en infrastructuurmonitoring blijvend beheren, en dat is een reële, terugkerende kostenpost die de meeste teams in de pitchfase onderschatten. Dat is geen reden om maatwerk te vermijden als het écht nodig is; het is een reden om ook jaar twee en drie mee te begroten, niet alleen de lancering.
+Een aangepast of custom Shopify-thema is goedkoper om te bouwen en goedkoper om te draaien: Shopify neemt hosting, beveiligingsupdates en PCI-compliance voor zijn rekening, dus je doorlopende kosten zitten vooral in apps, thema-updates en content. Een custom of headless build legt die verantwoordelijkheid bij jou neer: iemand moet hosting, beveiligingsupdates en infrastructuurmonitoring blijvend beheren, en dat is een reële, terugkerende kostenpost die de meeste teams in de pitchfase onderschatten. Dat is geen reden om maatwerk te vermijden als het écht nodig is; het is een reden om ook jaar twee en drie mee te begroten, niet alleen de lancering. Voor concrete bandbreedtes, zie [wat een website of webshop laten maken kost](/nl/insights/website-cost).
 
 ## Hoe wij het per project bepalen
 
-Bij DYSIGNS, officieel Shopify Partner, kiezen we niet standaard voor Shopify omdat dat makkelijker is voor ons, en niet standaard voor maatwerk omdat dat indrukwekkender klinkt in een pitch. We kijken naar jouw product, prijsmodel, team en groeiplan, en bouwen op de fundering die daar echt bij past: Shopify voor de meeste winkels, headless opties zoals Medusa wanneer de eisen dat daadwerkelijk vragen. Wil je die inschatting voor jouw eigen winkel? [Neem contact op](/contact) of lees meer over ons werk in [Shopify development](/shopify-development).
+Bij DYSIGNS, officieel Shopify Partner, kiezen we niet standaard voor Shopify omdat dat makkelijker is voor ons, en niet standaard voor maatwerk omdat dat indrukwekkender klinkt in een pitch. We kijken naar jouw product, prijsmodel, team en groeiplan, en bouwen op de fundering die daar echt bij past: Shopify voor de meeste winkels, headless opties zoals Medusa wanneer de eisen dat daadwerkelijk vragen. Wil je die inschatting voor jouw eigen winkel? [Neem contact op](/nl/contact) of lees meer over ons werk in [Shopify development](/nl/shopify-development).
 
 ## Veelgestelde vragen
 

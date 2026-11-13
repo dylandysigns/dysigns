@@ -1,8 +1,8 @@
 ---
 title: "Website Cost in the Netherlands in 2026 | DYSIGNS"
-description: "What a website or Shopify store really costs in the Netherlands in 2026, what drives the price, and how to budget before you talk to an agency."
+description: "What a website or Shopify store costs in the Netherlands in 2026: average price, realistic ranges, monthly running costs and what changes in 2027."
 heading: "What does a website actually cost in 2026?"
-slug: "website-cost-2026"
+slug: "website-cost"
 answerBlock: |
   There is no single number, because a website's price is driven by
   scope, not a price list. A simple brochure site for a local business
@@ -11,10 +11,12 @@ answerBlock: |
   down what actually moves the price, with realistic ranges for the
   Dutch market, so you can budget before your first call with an
   agency.
-lastUpdated: "2026-09-05"
+lastUpdated: "2026-11-13"
 ---
 
-## The short answer
+## The average price of a website
+
+**The average price of a professionally built business website in the Netherlands sits roughly between €2,500 and €7,000.** A webshop or custom project usually costs more. The sections below explain where that difference comes from, what you pay per month after launch, and what changes in 2027.
 
 The figures below are general market indications for the Netherlands in 2026, not a DYSIGNS price list. Treat them as a starting point for budgeting, not a quote.
 
@@ -26,7 +28,7 @@ Those ranges are a starting point for a conversation, not a quote. What actually
 
 **Scope, not page count.** Ten pages of static text cost far less to design and build than three pages with a custom configurator, a booking flow, or a multi-step checkout. Agencies that quote by page count are usually hiding the real driver of cost.
 
-**Platform choice.** A template-based site, a modified Shopify theme, a fully custom front end, and a headless commerce build (Shopify Plus, Medusa) sit at very different price points, because they require very different amounts of custom engineering.
+**Platform choice.** A template-based site, a modified Shopify theme, a fully custom front end, and a headless commerce build (Shopify Plus, Medusa) sit at very different price points, because they require very different amounts of custom engineering. Torn between the two? Read [Shopify vs. a custom-built site](/insights/shopify-vs-custom-website).
 
 **Content readiness.** A project where the copy, product data, and photography already exist moves faster and costs less than one where the agency also has to source or write all of it. Content work is real work, and it shows up in the budget either way. Better to know that going in.
 
@@ -45,9 +47,9 @@ These are general market indications for the Netherlands in 2026, not a DYSIGNS 
 - **Shopify webshop** (professionally designed store to fully custom build): typically starts around €6,000 to €8,000, and often runs between €10,000 and €30,000 or more for a custom project. See the breakdown below.
 - **Web platform or web app** (dashboards, portals, logged-in experiences): usually €20,000 and up, scoped like software rather than a website.
 
-### What a Shopify webshop actually costs in 2026
+### What does a webshop cost in 2026?
 
-"A Shopify store" can mean a well-executed store on a modified theme or a headless, AI-powered platform selling into six countries, so one number does not tell you much. As an official Shopify Partner, DYSIGNS sees this range up close. Think in two levels:
+"A webshop", and especially "a Shopify store", can mean a well-executed store on a modified theme or a headless, AI-powered platform selling into six countries, so one number does not tell you much. As an official Shopify Partner, DYSIGNS sees this range up close. Think in two levels:
 
 - **Professionally designed store** (modified theme, professional design, standard functionality, one market): typically around €6,000 to €8,000.
 - **Custom project** (own UX/UI, conversion optimisation, migration, integrations, and where needed headless or Shopify Plus, AI-powered search and Shopify Markets for multi-country selling): often between €10,000 and €30,000 or more.
@@ -56,15 +58,54 @@ The final price depends on scope and technical complexity: every extra app integ
 
 Anything quoted well below these ranges is usually a template with your logo dropped in, not a designed and built site. Anything quoted with no discovery conversation at all is a guess, not a scope.
 
+## Extra costs: what does a website cost per month?
+
+The price of design and development is not the whole picture. Plan for recurring costs too. These are general market indications, not DYSIGNS rates:
+
+- **Domain name:** roughly €5 to €20 per year for a .nl domain, depending on the registrar.
+- **Hosting:** roughly €10 to €50 per month, depending on speed and management.
+- **Maintenance and updates:** roughly €50 to €200 per month when outsourced.
+- **Content and marketing:** new pages, copy and campaigns after launch, see the question about post-launch budget below.
+
+On Shopify, hosting and security are part of the platform subscription, but you pay for the subscription and for apps.
+
+## What changes in 2027?
+
+If you are budgeting for next year, use the ranges above as your starting point. That is not a forecast: what changes in 2027 is less the headline number and more what that number has to cover.
+
+**AI tooling speeds up routine work, not the hard parts.** Drafting layouts, boilerplate code and first-pass copy is faster than it was. Strategy, design decisions, integrations and getting a checkout to convert still take the same thinking, so a good project does not simply become much cheaper.
+
+**The cheap end gets cheaper, the gap widens.** AI website builders make a very simple site almost free. That makes the difference with a custom build clearer: control over speed, custom functionality and how well you can be found.
+
+**Accessibility is a requirement, not an extra.** The European Accessibility Act has applied since 28 June 2025 and covers, among others, webshops and e-commerce services. Micro-enterprises can fall outside it, so check whether it applies to you. Accessibility is cheapest when it is built in from the design phase rather than retrofitted.
+
+**Being found now includes AI search.** Clean markup, structured data, fast pages and clearly written content matter for Google, and increasingly for AI assistants that summarise sources. That groundwork costs less during the build than after it.
+
 ## Why we don't quote a fixed price up front
 
-At DYSIGNS, we don't work with a price list, because a standard price would give you the wrong picture of your own project: either scaring you off something simple or under-quoting something that actually needs real engineering. Instead, we start with a free, no-obligation conversation about what you're trying to achieve, then scope the work against that. It takes longer than sending a generic PDF price sheet, and it means the number you get back is actually about your project. If you want to skip straight to that conversation, [get in touch](/contact) or read more about how we approach [web design and development](/web-design) and [Shopify development](/shopify-development).
+At DYSIGNS, we don't work with a price list, because a standard price would give you the wrong picture of your own project: either scaring you off something simple or under-quoting something that actually needs real engineering. Instead, we start with a free, no-obligation conversation about what you're trying to achieve, then scope the work against that. It takes longer than sending a generic PDF price sheet, and it means the number you get back is actually about your project. If you want to skip straight to that conversation, [get in touch](/contact) or read more about how we approach [web design and development](/web-design) and [Shopify development](/shopify-development). Looking for a studio nearby? DYSIGNS is based in Almere, read more about [web design in Almere](/web-design-almere).
 
 ## Frequently asked questions
 
 ### Is a cheaper website ever the right choice?
 
 Sometimes, yes: if you genuinely need a simple, low-traffic site and a well-built template covers it, paying for a fully custom build is a waste of budget. The mistake is choosing cheap for a project that actually needs custom functionality, and then paying twice: once for the cheap version, and again to rebuild it properly a year later.
+
+### Can I get a website made cheaply?
+
+Yes. Some providers sell a site for a few hundred euros or a low monthly fee, and AI website builders cost roughly €5 to €50 per month. That can work for a very small, simple or temporary site. Look closely at what you get, though: usually a template with your logo, little room for custom functionality, and limited control over speed and findability. Once the site has to bring in customers, rebuilding later often costs more than doing it properly the first time.
+
+### What does a website cost per month?
+
+On top of the one-off build, you typically pay roughly €10 to €50 per month for hosting and €50 to €200 per month for maintenance when outsourced, plus a small yearly amount for your domain. On Shopify, a platform subscription and any apps replace the hosting cost. These are market indications, not DYSIGNS rates.
+
+### Will websites be cheaper in 2027?
+
+Simple sites will keep getting cheaper because of templates and AI builders. A custom, professionally designed site is unlikely to drop much, since the costs are in strategy, design, integrations and testing rather than typing code.
+
+### Does my webshop need to be accessible?
+
+The European Accessibility Act has applied since 28 June 2025 to many webshops and online services in the EU. Micro-enterprises may be exempt, so check your own situation. Either way, an accessible site is easier to use for everyone, and it is cheapest to plan for from the start.
 
 ### Does a more expensive website rank better on Google?
 

@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { ContentPage } from "../components/ContentPage";
 import { getLocalizedContent, getInsightSlugs } from "../content/loadContent";
-import { useLanguage } from "../hooks/useLanguage";
+import { toLangPath, useLanguage } from "../hooks/useLanguage";
 import { articleSchema, faqPageSchema } from "../seo/schema";
 import NotFoundPage from "./NotFoundPage";
 
@@ -32,7 +32,7 @@ export default function InsightsDetailPage() {
         articleSchema({
           headline: heading,
           description: entry.frontmatter.description,
-          path,
+          path: toLangPath(path, lang),
           datePublished: entry.frontmatter.lastUpdated,
         }),
         ...(entry.faqItems.length > 0 ? [faqPageSchema(entry.faqItems)] : []),

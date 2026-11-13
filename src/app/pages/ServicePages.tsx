@@ -108,6 +108,7 @@ function ServicePage({
 
   const breadcrumbSchema = breadcrumbListSchema(
     breadcrumb.map((item) => ({ name: item.label, path: item.href ?? path })),
+    lang,
   );
 
   return (
@@ -507,6 +508,19 @@ export function BrandingPage() {
 
 export function AiImplementationPage() {
   return <ServicePage slug="ai-implementation" />;
+}
+
+export function WebDesignAlmerePage() {
+  return (
+    <ServicePage
+      slug="web-design-almere"
+      breadcrumbParentSlug="web-design"
+      customWhyHeading={{
+        en: "Why a team from Almere",
+        nl: "Waarom een team uit Almere",
+      }}
+    />
+  );
 }
 
 export function ShopifyDevelopmentPage() {

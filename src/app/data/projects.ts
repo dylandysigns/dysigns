@@ -241,7 +241,7 @@ export const projects: Project[] = [
     category: "Branding",
     tags: ["Brand Identity", "Logo Design", "Print"],
     year: "2026",
-    thumbnail: "/images/studio75-cover.avif",
+    thumbnail: "/images/studio75-cover-v2.avif",
     overview:
       "We created the brand identity for Studio75, from the first moodboard to the logo, colours, typography and business cards. Every identity we make starts the same way: by listening. Together with the founder we collected references, from nightlife and movement to typographic posters and texture, until a taste emerged that was unmistakably Studio75. From there our team worked fast and with focus, exploring three logo directions around a bold asterisk symbol, from expressive and handmade to clean and textured, and turning the chosen one into a complete system: palette, type and print assets, all documented in a brandbook. The result is a premium foundation that feels as sharp on a business card as it does on a screen. At DYSIGNS we bring your idea and your passion to life, and because the base is right from day one, everything built on top of it holds together.",
     outcomes: [],
@@ -249,11 +249,13 @@ export const projects: Project[] = [
     customSeo: true,
     ogImage: "/images/og-studio75.jpg",
     cleanGallery: true,
+    galleryWide: [2],
     logoSafeCover: true,
-    thumbnailMobile: "/images/studio75-cover-mobile.avif",
+    thumbnailMobile: "/images/studio75-cover-mobile-v2.avif",
     gallery: [
       "/images/studio75-moodboard.avif",
       "/images/studio75-logo-variants.avif",
+      "/images/studio75-glass.avif",
       "/images/studio75-business-cards.avif",
       "/images/studio75-typography.avif",
     ],

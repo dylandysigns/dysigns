@@ -49,7 +49,7 @@ Geen van deze wordt opgelost door meer te posten. Ze worden opgelost door conten
 
 ## Hoe wij dit aanpakken
 
-Bij DYSIGNS runnen we social media content en Meta Ads als één samenhangende motor, niet als twee losse trajecten die toevallig hetzelfde logo gebruiken. Hetzelfde team dat de content schrijft, bouwt ook de landingspagina waar die naartoe wijst, zodat er niets verloren gaat tussen de advertentie en de pagina waar mensen op uitkomen. Als content bij jou alleen gebeurt wanneer iemand er toevallig tijd voor vindt, [neem contact op](/contact) of lees meer over ons werk in [social media en Meta Ads](/social-media-meta-ads).
+Bij DYSIGNS runnen we social media content en Meta Ads als één samenhangende motor, niet als twee losse trajecten die toevallig hetzelfde logo gebruiken. Hetzelfde team dat de content schrijft, bouwt ook de landingspagina waar die naartoe wijst, zodat er niets verloren gaat tussen de advertentie en de pagina waar mensen op uitkomen. Als content bij jou alleen gebeurt wanneer iemand er toevallig tijd voor vindt, [neem contact op](/nl/contact) of lees meer over ons werk in [social media en Meta Ads](/nl/social-media-meta-ads).
 
 ## Veelgestelde vragen
 

@@ -31,3 +31,5 @@ and links to `/work/stelz` etc. The restored `/work` overview instead
 lists the 9 projects in `data/projects.ts`, whose STËLZ entry lives at
 `/work/stelz-web-design`. The two case sets no longer match each other —
 not fixed as part of this revert since it wasn't asked for.
+
+- `insights-drafts/` — `website-cost-2027` (EN/NL), nooit gepubliceerd. De inhoud (wat verandert er in 2027) is samengevoegd in `content/insights/website-cost*.md`, zodat er één kostenpagina is in plaats van twee die met elkaar concurreren.

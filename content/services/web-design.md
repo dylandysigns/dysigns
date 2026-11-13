@@ -33,13 +33,13 @@ A site designed by one vendor and built by another loses something in the handov
 
 ## Who it is for
 
-For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer.
+For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer. Based in Almere? See [web design in Almere](/web-design-almere).
 
 ## Frequently asked questions
 
 ### How much does a website or online store cost?
 
-We do not work with a minimum or a maximum. Every project differs in scope, technology and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation.
+We do not work with a minimum or a maximum. Every project differs in scope, technology and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation. Want a sense of the ranges first? Read [what a website costs](/insights/website-cost).
 
 ### Do you build on an existing platform, or fully custom?
 

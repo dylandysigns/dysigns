@@ -46,15 +46,15 @@ Je site, webshop of merk gaat live. Vanaf dat moment monitoren en optimaliseren 
 
 De meeste bureaus geven de sleutel af en verdwijnen. Wij blijven: campagnes, content, conversietracking en itereren op wat de data laat zien. Omdat wij het hebben ontworpen en gebouwd, weten we precies aan welke knop we moeten draaien zodra de cijfers bewegen.
 
-- [Betaalde social](/social-media-meta-ads)
-- [Content](/social-media-meta-ads)
-- [Conversieoptimalisatie](/social-media-meta-ads)
+- [Betaalde social](/nl/social-media-meta-ads)
+- [Content](/nl/social-media-meta-ads)
+- [Conversieoptimalisatie](/nl/social-media-meta-ads)
 
 ## Frequently asked questions
 
 ### Hoeveel kost een website of webshop?
 
-We werken niet met een minimum of maximum. Elk project verschilt in omvang, technologie en ambitie, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend. [Boek een gratis intro-call](/contact)
+We werken niet met een minimum of maximum. Elk project verschilt in omvang, technologie en ambitie, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend. Realistische bandbreedtes voor de Nederlandse markt lees je in [wat een website laten maken kost](/nl/insights/website-cost). [Boek een gratis intro-call](/nl/contact)
 
 ### Werken jullie met klanten buiten Nederland?
 
@@ -106,6 +106,6 @@ Heb je een project in gedachten? Vertel kort wat je wilt bereiken en hoe je dead
 
 Email: [info@dylandysigns.com](mailto:info@dylandysigns.com)
 Telefoon en WhatsApp: [+31 6 26814488](tel:+31626814488)
-Boek een intro-call: [ga naar het contactformulier](/contact)
+Boek een intro-call: [ga naar het contactformulier](/nl/contact)
 
 Almere en Amsterdam, Nederland. KVK- en btw-nummers staan in de footer.
