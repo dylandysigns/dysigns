@@ -43,7 +43,7 @@ If none of those apply, "we need something fully custom" is usually a design amb
 
 ## The cost and maintenance difference
 
-A modified or custom Shopify theme is cheaper to build and cheaper to run: Shopify absorbs hosting, security patching, and PCI compliance, so your ongoing cost is mostly apps, theme updates, and content. A custom or headless build shifts that responsibility onto you: someone has to own hosting, security updates, and infrastructure monitoring indefinitely, which is a real, recurring cost most teams underestimate at the pitch stage. That's not a reason to avoid custom builds when they're genuinely warranted; it's a reason to budget for year two and three, not just launch.
+A modified or custom Shopify theme is cheaper to build and cheaper to run: Shopify absorbs hosting, security patching, and PCI compliance, so your ongoing cost is mostly apps, theme updates, and content. A custom or headless build shifts that responsibility onto you: someone has to own hosting, security updates, and infrastructure monitoring indefinitely, which is a real, recurring cost most teams underestimate at the pitch stage. That's not a reason to avoid custom builds when they're genuinely warranted; it's a reason to budget for year two and three, not just launch. For concrete ranges, see [what a website or webshop costs](/insights/website-cost).
 
 ## How we decide, project by project
 

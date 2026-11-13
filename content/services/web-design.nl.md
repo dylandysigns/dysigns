@@ -1,6 +1,6 @@
 ---
-title: "Webdesign & Development Bureau in Nederland | DYSIGNS"
-description: "Maatwerk websites en Shopify webshops van DYSIGNS, officieel Shopify Partner in Nederland: snel, vindbaar en gebouwd om te blijven presteren."
+title: "Website Laten Maken | Webdesign Bureau | DYSIGNS"
+description: "Website of webshop laten maken? DYSIGNS ontwerpt en bouwt maatwerk websites en Shopify webshops, officieel Shopify Partner in Nederland."
 heading: "Webdesign en development"
 slug: "web-design"
 includes: "Shopify Partner development, custom thema's, migraties, performance, technische SEO"
@@ -25,7 +25,7 @@ Een snelle, werkende site gebouwd vanuit dat ontwerp, geen benadering ervan.
 
 ### Shopify stores
 
-Voor webshops specifiek bouwen we op [Shopify](/shopify-development) als officiële Shopify Partner, het platform dat we het meest gebruiken voor commerce.
+Voor webshops specifiek bouwen we op [Shopify](/nl/shopify-development) als officiële Shopify Partner, het platform dat we het meest gebruiken voor commerce.
 
 ## Waarom dit bij design en development hoort
 
@@ -33,13 +33,13 @@ Een site die door de ene partij wordt ontworpen en door de andere gebouwd, verli
 
 ## Who it is for
 
-Voor ondernemers, scale-ups en bureaus die een website of webshop willen die verder gaat dan een template, en die liever met één team werken dan schakelen tussen een designer en een aparte developer.
+Voor ondernemers, scale-ups en bureaus die een website of webshop willen die verder gaat dan een template, en die liever met één team werken dan schakelen tussen een designer en een aparte developer. Zit je in Almere? Bekijk [webdesign in Almere](/nl/web-design-almere).
 
 ## Frequently asked questions
 
 ### Wat kost een website of webshop?
 
-We werken niet met een minimum of maximum. Elk project verschilt in omvang, techniek en ambitie, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend.
+We werken niet met een minimum of maximum. Elk project verschilt in omvang, techniek en ambitie, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend. Wil je alvast een idee van de bandbreedtes? Lees [wat een website laten maken kost](/nl/insights/website-cost).
 
 ### Bouwen jullie op een bestaand platform, of volledig custom?
 

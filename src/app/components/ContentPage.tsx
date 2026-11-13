@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Breadcrumb, type BreadcrumbItem } from "./Breadcrumb";
 import { Seo } from "./Seo";
 import { breadcrumbListSchema } from "../seo/schema";
+import { useLanguage } from "../hooks/useLanguage";
 import type { ContentEntry } from "../content/loadContent";
 
 /**
@@ -40,6 +41,7 @@ export function ContentPage({
    * markdown because they depend on other content entries. */
   children?: ReactNode;
 }) {
+  const { lang } = useLanguage();
   const heading = entry.frontmatter.heading || entry.frontmatter.title;
   const path =
     pathOverride ?? (entry.frontmatter.slug === "/" ? "/" : `/${entry.frontmatter.slug}`);
@@ -49,6 +51,7 @@ export function ContentPage({
       name: item.label,
       path: item.href ?? path, // current page has no href — it's its own URL
     })),
+    lang,
   );
 
   return (

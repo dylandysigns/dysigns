@@ -55,4 +55,4 @@ Ja, een designsysteem dat doorloopt in je social kanalen is onderdeel van een br
 
 ### Bouwen jullie ook de site of winkel waar de identiteit op komt?
 
-Ja, zie [webdesign en development](/web-design) als de identiteit ook moet doorlopen naar een nieuwe site of winkel.
+Ja, zie [webdesign en development](/nl/web-design) als de identiteit ook moet doorlopen naar een nieuwe site of winkel.

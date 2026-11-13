@@ -1,6 +1,6 @@
 ---
-title: "Shopify Partner Nederland: Bureau & Development | DYSIGNS"
-description: "DYSIGNS is een officiële Shopify Partner in Nederland: custom thema's, Liquid-secties en Shopify Markets, gebouwd om te blijven converteren."
+title: "Shopify Webshop Laten Bouwen | Shopify Partner | DYSIGNS"
+description: "Shopify webshop laten bouwen door een officiële Shopify Partner in Nederland: custom thema's, Liquid-secties en Shopify Markets."
 heading: "Shopify development"
 slug: "shopify-development"
 answerBlock: |
@@ -44,6 +44,10 @@ Ja. DYSIGNS is een geregistreerde Shopify Partner, wat betekent dat we werken me
 ### Kan een bestaande Shopify webshop verbeterd worden, of moet hij opnieuw gebouwd worden?
 
 Vaak kan een bestaande webshop verbeterd worden zonder alles opnieuw te bouwen, afhankelijk van de huidige technische staat van het thema en de apps die al in gebruik zijn.
+
+### Wat kost een Shopify webshop laten maken?
+
+Dat hangt af van scope en koppelingen. Als algemene marktindicatie begint een professioneel ontworpen Shopify webshop doorgaans rond €6.000 tot €8.000, en ligt een maatwerktraject vaak tussen €10.000 en €30.000 of hoger, plus het platformabonnement en apps. De volledige uitsplitsing staat in [wat een website of webshop laten maken kost](/nl/insights/website-cost).
 
 ### Werken jullie met bestaande Shopify-apps en koppelingen?
 

@@ -54,7 +54,7 @@ Most agencies hand over the keys and disappear. We stay: campaigns, content, con
 
 ### How much does a website or online store cost?
 
-We do not work with a minimum or a maximum. Every project differs in scope, technology and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation. [Book a free intro call](/contact)
+We do not work with a minimum or a maximum. Every project differs in scope, technology and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation. For realistic ranges in the Dutch market, read [what a website costs](/insights/website-cost). [Book a free intro call](/contact)
 
 ### Do you work with clients outside the Netherlands?
 

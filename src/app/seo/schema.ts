@@ -1,4 +1,4 @@
-import { SITE_URL, canonicalUrl } from "./meta";
+import { SITE_URL, alternateUrl, canonicalUrl } from "./meta";
 
 // Typed schema.org helper functions (fase 4) — every page-type schema is
 // built here, never as a hand-written JSON string on the page itself.
@@ -16,14 +16,16 @@ export interface BreadcrumbItem {
   path: string; // route path, e.g. "/" or "/cases/stelz"
 }
 
-export function breadcrumbListSchema(items: BreadcrumbItem[]) {
+// `path` is the canonical English path; `lang` picks the URL of the
+// language actually being rendered, so /nl pages list /nl URLs.
+export function breadcrumbListSchema(items: BreadcrumbItem[], lang: "en" | "nl" = "en") {
   return {
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: canonicalUrl(item.path),
+      item: alternateUrl(item.path, lang),
     })),
   };
 }

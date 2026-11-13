@@ -46,6 +46,10 @@ Yes. DYSIGNS is a registered Shopify Partner, which means we work with Shopify's
 
 Often an existing store can be improved without rebuilding everything, depending on the current technical state of the theme and the apps already in use.
 
+### How much does a Shopify store cost?
+
+It depends on scope and integrations. As a general market indication, a professionally designed Shopify store typically starts around €6,000 to €8,000, and a custom project often runs between €10,000 and €30,000 or more, plus the platform subscription and apps. The full breakdown is in [what a website or webshop costs](/insights/website-cost).
+
 ### Do you work with existing Shopify apps and integrations?
 
 Yes, we build on what already works and add where needed, instead of replacing everything by default.

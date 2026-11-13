@@ -1,4 +1,5 @@
 import { crawlHref } from "../seo/href";
+import { toLangPath, useLanguage } from "../hooks/useLanguage";
 export interface BreadcrumbItem {
   label: string;
   href?: string; // omit on the last item (current page)
@@ -11,6 +12,9 @@ export interface BreadcrumbItem {
  * added separately in fase 4, this component only handles markup + UX.
  */
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
+  // Items carry the canonical English path; on /nl pages the links must
+  // point at the Dutch mirror, not hop back to the English tree.
+  const { lang } = useLanguage();
   return (
     <nav aria-label="Breadcrumb" className="w-full">
       <ol
@@ -29,7 +33,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             <li key={`${item.label}-${i}`} className="flex items-center gap-2">
               {item.href && !isLast ? (
                 <a
-                  href={crawlHref(item.href)}
+                  href={crawlHref(toLangPath(item.href, lang))}
                   style={{ color: "rgba(var(--page-fg-rgb), .4)" }}
                   className="hover:opacity-80 transition-opacity"
                 >

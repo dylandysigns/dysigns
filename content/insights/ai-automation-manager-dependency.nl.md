@@ -56,7 +56,7 @@ Niets hiervan vervangt het oordeel van de manager bij prijsuitzonderingen of een
 
 ## Hoe wij dit aanpakken
 
-Bij DYSIGNS verkopen we AI niet als vervanging van mensen, want dat is het niet: wij zijn niet beter dan AI in de herhaalbare delen van een baan, en niemand is dat. Waar wij goed in zijn, is uitzoeken welke delen van jouw proces écht herhaalbaar zijn en welke dat alleen lijken, en de automatisering bouwen rond het echte antwoord. Als een knelpunt in jouw bedrijf wordt begrensd door de agenda van één persoon, [neem contact op](/contact) of lees meer over ons werk in [AI-implementatie](/ai-implementation).
+Bij DYSIGNS verkopen we AI niet als vervanging van mensen, want dat is het niet: wij zijn niet beter dan AI in de herhaalbare delen van een baan, en niemand is dat. Waar wij goed in zijn, is uitzoeken welke delen van jouw proces écht herhaalbaar zijn en welke dat alleen lijken, en de automatisering bouwen rond het echte antwoord. Als een knelpunt in jouw bedrijf wordt begrensd door de agenda van één persoon, [neem contact op](/nl/contact) of lees meer over ons werk in [AI-implementatie](/nl/ai-implementation).
 
 ## Veelgestelde vragen
 

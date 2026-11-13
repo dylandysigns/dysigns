@@ -65,5 +65,12 @@
 /nl/services /nl/ 301
 /nl/services/ /nl/ 301
 
+# Kostenartikel naar een vaste URL zonder jaartal, zodat het elk jaar
+# bijgewerkt kan worden in plaats van een nieuwe pagina per jaar.
+/insights/website-cost-2026 /insights/website-cost/ 301
+/insights/website-cost-2026/ /insights/website-cost/ 301
+/nl/insights/website-cost-2026 /nl/insights/website-cost/ 301
+/nl/insights/website-cost-2026/ /nl/insights/website-cost/ 301
+
 # SPA-fallback — moet als laatste, na alle redirects hierboven.
 /* /index.html 200
