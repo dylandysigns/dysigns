@@ -40,6 +40,12 @@ export interface Project {
   /** Gallery indexes that span the full width (2:1) instead of one 16:10
    * column — for wide compositions such as a row of app screens. */
   galleryWide?: number[];
+  /** Gallery indexes that link out when clicked (opens in a new tab), e.g. a
+   * store image that goes to the client's app download redirect. */
+  galleryLinks?: Record<number, string>;
+  /** Gallery indexes rendered as an interactive piece instead of the still
+   * (the still stays in `gallery` for crawlers and social sharing). */
+  galleryEmbeds?: Record<number, "stelz-can-360">;
   /** Cover has a centred logo that must never be cropped: the hero image is
    * sized so the logo always fits the viewport, with matching edge colours
    * filling any leftover space. */
@@ -115,8 +121,8 @@ export const projects: Project[] = [
     tags: ["Mobile App", "UX Design", "Development", "Motion Design"],
     year: "2026",
     thumbnail: "/images/stelz-app-cover-empty.png",
-    // Mobile-only motion for now; desktop keeps the still until a 16:9 cut
-    // exists (then add `coverVideo` + `coverVideoPoster`).
+    coverVideo: "/videos/stelz-app-cover-v17.mp4",
+    coverVideoPoster: "/images/stelz-app-cover-poster.jpg",
     coverVideoMobile: "/videos/stelz-app-cover-mobile-v17.mp4",
     coverVideoPosterMobile: "/images/stelz-app-cover-mobile-poster.jpg",
     coverVideoPosterTime: 3,
@@ -125,21 +131,29 @@ export const projects: Project[] = [
       googlePlay: "https://play.google.com/store/apps/details?id=com.stelz.app",
     },
     overview:
-      "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing.",
-    outcomes: [],
+      "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing, where the app reached #1 in the App Store.",
+    outcomes: [
+      "Reached #1 in the App Store",
+      "Live on iOS and Android from one codebase",
+    ],
     customAlt: true,
     customSeo: true,
     ogImage: "/images/og-stelz-app.jpg",
     cleanGallery: true,
-    galleryWide: [0, 3, 6],
+    galleryWide: [0, 1, 4, 5, 6],
+    // drinkstelz.com/pages/app sends iPhones to the App Store and Android to
+    // Google Play; desktop sees the STËLZ download page.
+    galleryLinks: { 6: "https://drinkstelz.com/pages/app" },
+    // The 3D can opens the gallery: it turns by drag and by scroll; frames in /images/stelz-can.
+    galleryEmbeds: { 0: "stelz-can-360" },
     gallery: [
-      "/images/stelz-app-flavours.avif",
-      "/images/stelz-app-onboarding.avif",
-      "/images/stelz-app-vote.avif",
-      "/images/stelz-app-team.avif",
-      "/images/stelz-app-result.avif",
-      "/images/stelz-app-community.avif",
-      "/images/stelz-app-flow.avif",
+      "/images/stelz-app-v2-can.avif",
+      "/images/stelz-app-v2-flavours.avif",
+      "/images/stelz-app-v2-system.avif",
+      "/images/stelz-app-v2-vote.avif",
+      "/images/stelz-app-v2-process.avif",
+      "/images/stelz-app-v2-team.avif",
+      "/images/stelz-app-v2-store.avif",
     ],
   },
   {

@@ -9,6 +9,7 @@ import { toLangPath, useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
 import { LazyVideo } from "../components/LazyVideo";
+import { StelzCan360 } from "../components/StelzCan360";
 import { SITE_URL } from "../seo/meta";
 import { breadcrumbListSchema, creativeWorkSchema } from "../seo/schema";
 
@@ -844,7 +845,10 @@ export default function CaseDetailPage() {
                 border: "1px solid rgba(var(--page-fg-rgb), .06)",
               }}
             >
-              <div className={`${project.galleryWide?.includes(i) ? "aspect-[2/1]" : "aspect-[16/10]"} overflow-hidden`}>
+              <div className={`${project.galleryEmbeds?.[i] ? "aspect-[4/5] md:aspect-[2/1]" : project.galleryWide?.includes(i) ? "aspect-[2/1]" : "aspect-[16/10]"} overflow-hidden`}>
+                {project.galleryEmbeds?.[i] === "stelz-can-360" ? (
+                  <StelzCan360 alt={project.galleryAlt?.[i] ?? project.title} />
+                ) : (
                 <img
                   src={img}
                   alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
@@ -856,7 +860,17 @@ export default function CaseDetailPage() {
                     filter: project.cleanGallery ? "none" : "grayscale(.7) brightness(.6) contrast(1.05)",
                   }}
                   loading="lazy"
+                )}
                 />
+              {project.galleryLinks?.[i] && (
+                <a
+                  href={project.galleryLinks[i]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.galleryAlt?.[i] ?? project.title}. ${t("case.galleryLink")}`}
+                  className="absolute inset-0 z-10"
+                />
+              )}
               </div>
               <svg
                 className="absolute top-3 left-3 w-6 h-6 pointer-events-none"

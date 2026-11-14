@@ -347,6 +347,11 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "case.back": { en: "Back to work", nl: "Terug naar werk" },
   "case.overview": { en: "Overview", nl: "Overzicht" },
   "case.outcomes": { en: "Results", nl: "Resultaten" },
+  "case.can360": { en: "Drag or scroll to turn the can, or use the arrow keys", nl: "Sleep of scroll om het blik te draaien, of gebruik de pijltjestoetsen" },
+  "case.can360Flavour": { en: "Choose a flavour", nl: "Kies een smaak" },
+  "case.can360Hint": { en: "Drag or scroll", nl: "Sleep of scroll" },
+  "case.can360Label": { en: "Flavour", nl: "Smaak" },
+  "case.galleryLink": { en: "Opens the download page in a new tab", nl: "Opent de downloadpagina in een nieuw tabblad" },
   "case.previous": { en: "Previous", nl: "Vorige" },
   "case.next": { en: "Next", nl: "Volgende" },
   "case.notFound": { en: "Project not found", nl: "Project niet gevonden" },
@@ -510,44 +515,52 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "STËLZ app: iOS- en Android-app design | DYSIGNS",
   },
   "project.stelz-app.seoDescription": {
-    en: "We designed and built the STËLZ app for iOS and Android, from first sketch to the App Store and Google Play, starting with a nationwide flavour vote.",
-    nl: "Wij ontwierpen en bouwden de STËLZ app voor iOS en Android, van eerste schets tot App Store en Google Play, met als start een landelijke smaakverkiezing.",
+    en: "We designed and built the STËLZ app for iOS and Android, from first sketch to #1 in the App Store, starting with a nationwide flavour vote.",
+    nl: "Wij ontwierpen en bouwden de STËLZ app voor iOS en Android, van eerste schets tot nummer 1 in de App Store, met als start een landelijke smaakverkiezing.",
   },
   "project.stelz-app.overview": {
-    en: "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing.",
-    nl: "STËLZ vroeg ons om hun eigen app te bouwen, en wij ontwierpen en ontwikkelden die van de eerste schets tot in de App Store en Google Play. De eerste campagne in de app is Strijd voor je smaak 2026: fans kiezen hun favoriet uit zes smaken, en de maker van de winnende smaak wint \u20ac50.000. Elke stem moet precies één keer tellen, dus wordt iedere stem bevestigd met een e-mailcode en op de server gecontroleerd voordat hij wordt opgeslagen, terwijl de uitslag verborgen blijft tot de campagne sluit. Stemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Met pushmeldingen blijven fans op de hoogte van nieuwe smaken, events en acties. Eén codebase draait op zowel iOS als Android, gebouwd om met STËLZ mee te groeien van campagne-app naar volwaardige merkapp. Design, development en motion onder één dak, van het eerste scherm tot de store-vermelding.",
+    en: "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing, where the app reached #1 in the App Store.",
+    nl: "STËLZ vroeg ons om hun eigen app te bouwen, en wij ontwierpen en ontwikkelden die van de eerste schets tot in de App Store en Google Play. De eerste campagne in de app is Strijd voor je smaak 2026: fans kiezen hun favoriet uit zes smaken, en de maker van de winnende smaak wint \u20ac50.000. Elke stem moet precies één keer tellen, dus wordt iedere stem bevestigd met een e-mailcode en op de server gecontroleerd voordat hij wordt opgeslagen, terwijl de uitslag verborgen blijft tot de campagne sluit. Stemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Met pushmeldingen blijven fans op de hoogte van nieuwe smaken, events en acties. Eén codebase draait op zowel iOS als Android, gebouwd om met STËLZ mee te groeien van campagne-app naar volwaardige merkapp. Design, development en motion onder één dak, van het eerste scherm tot de store-vermelding, waar de app nummer 1 werd in de App Store.",
   },
   "project.stelz-app.alt.cover": {
     en: "STËLZ app case by DYSIGNS",
     nl: "STËLZ app case door DYSIGNS",
   },
   "project.stelz-app.alt.0": {
-    en: "STËLZ app flavour picker designs: six screens for Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower and Spicy Pineapple, each with its own colour, can and fruit",
-    nl: "Ontwerpen van de smaakkeuze in de STËLZ app: zes schermen voor Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower en Spicy Pineapple, elk met eigen kleur, blik en fruit",
+    en: "The 3D STËLZ can to turn yourself: drag or scroll to spin it and pick one of the six flavours, from Rum Cola to Spicy Pineapple, with its name and drink style",
+    nl: "Het 3D-blik van STËLZ om zelf rond te draaien: sleep of scroll om het te draaien en kies een van de zes smaken, van Rum Cola tot Spicy Pineapple, met naam en soort drank",
   },
   "project.stelz-app.alt.1": {
-    en: "STËLZ app onboarding designs: the welcome screen with age check and two Strijd voor je smaak campaign screens, one announcing the €50,000 prize",
-    nl: "Ontwerpen van de onboarding in de STËLZ app: het welkomstscherm met leeftijdscheck en twee campagneschermen van Strijd voor je smaak, één met de prijs van €50.000",
+    en: "The six flavour screens of the STËLZ app as they look today: Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower and Spicy Pineapple, each with its own gradient, 3D can and fruit",
+    nl: "De zes smaakschermen van de STËLZ app zoals ze nu zijn: Rum Cola, Watermelon Mint, Cherry, Yuzu, Elderflower en Spicy Pineapple, elk met eigen kleurverloop, 3D-blik en fruit",
   },
   "project.stelz-app.alt.2": {
-    en: "STËLZ app voting flow designs: choosing Rum Cola, confirming the single vote with a slider and entering your details to verify it",
-    nl: "Ontwerpen van de stemflow in de STËLZ app: Rum Cola kiezen, de ene stem bevestigen met een schuifknop en je gegevens invullen om de stem te verifiëren",
+    en: "The STËLZ app design system: a gradient per flavour with hex codes, the brand colours, Plantin and Helsinki type and the real components such as the vote button and swipe to confirm",
+    nl: "Het design system van de STËLZ app: een kleurverloop per smaak met hexcodes, de merkkleuren, de letters Plantin en Helsinki en de echte componenten zoals de stemknop en swipe om te bevestigen",
   },
   "project.stelz-app.alt.3": {
-    en: "STËLZ app designs after voting: six Jij zit in team screens with two floating cans in the colours of each flavour",
-    nl: "Ontwerpen in de STËLZ app na het stemmen: zes Jij zit in team-schermen met twee zwevende blikjes in de kleuren van elke smaak",
+    en: "The STËLZ app voting flow in three steps: choose Cherry, swipe to confirm your single vote and confirm it with your email",
+    nl: "De stemflow van de STËLZ app in drie stappen: Cherry kiezen, je ene stem bevestigen met een swipe en bevestigen met je e-mail",
   },
   "project.stelz-app.alt.4": {
-    en: "STËLZ app result designs: the winner reveal video, the screen telling you your flavour won and the full result with percentages per flavour",
-    nl: "Ontwerpen van de uitslag in de STËLZ app: de video met de winnaar, het scherm dat jouw smaak heeft gewonnen en de volledige uitslag met percentages per smaak",
+    en: "The STËLZ app process from design to code to store release: frames in Figma, the flavour code in the editor and the App Store listing at #1",
+    nl: "Het proces van de STËLZ app van design naar code naar store release: frames in Figma, de smaakcode in de editor en de App Store-vermelding op nummer 1",
   },
   "project.stelz-app.alt.5": {
-    en: "STËLZ app community designs: turning on notifications, choosing your interests and the thank-you screen for your vote",
-    nl: "Ontwerpen voor de community in de STËLZ app: notificaties aanzetten, je interesses kiezen en het bedankscherm voor je stem",
+    en: "STËLZ app screens after voting: the Jij zit in team Cherry countdown, the share card for your story and the screen to tell what you thought of the flavour",
+    nl: "Schermen in de STËLZ app na het stemmen: het aftellen in Jij zit in team Cherry, de deelkaart voor je story en het scherm om te vertellen wat je van de smaak vond",
   },
   "project.stelz-app.alt.6": {
-    en: "The STËLZ app design flow in Figma: every screen from splash to the end of the campaign, connected with arrows on a dark blue board",
-    nl: "De designflow van de STËLZ app in Figma: alle schermen van splash tot het einde van de campagne, verbonden met pijlen op een donkerblauw bord",
+    en: "The STËLZ app reached #1 in the App Store: the app icon, App Store and Google Play badges and the five store screenshots",
+    nl: "De STËLZ app werd nummer 1 in de App Store: het app-icoon, de badges van de App Store en Google Play en de vijf store-screenshots",
+  },
+  "project.stelz-app.outcome.0": {
+    en: "Reached #1 in the App Store",
+    nl: "Nummer 1 in de App Store",
+  },
+  "project.stelz-app.outcome.1": {
+    en: "Live on iOS and Android from one codebase",
+    nl: "Live op iOS en Android vanuit één codebase",
   },
 
 
