@@ -16,4 +16,4 @@ E-mail: [info@dylandysigns.com](mailto:info@dylandysigns.com)
 
 Telefoon en WhatsApp: [+31 6 26814488](tel:+31626814488)
 
-Almere en Amsterdam, Nederland. KVK- en btw-nummers staan in de footer.
+Gevestigd in Almere en regelmatig aan het werk in Amsterdam, voor klanten in Almere en omgeving, Amsterdam, Eindhoven en daarbuiten. KVK- en btw-nummers staan in de footer.

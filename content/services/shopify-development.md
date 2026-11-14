@@ -67,6 +67,10 @@ Your store does not run on a standard theme with a few tweaks, but on a theme, s
 
 A good standard theme is fine to start with. An agency pays off once your store has to stand out, needs specific functionality or has to talk to other systems. At DYSIGNS design and development sit in one team, so what gets designed is built exactly that way. Not sure Shopify fits? Read [Shopify vs. a custom-built site](/insights/shopify-vs-custom-website).
 
+### What do I need to have a store built?
+
+Mostly clarity about what you sell and to whom. Product data (names, prices, variants), good product photos, your brand identity and a view on shipping and returns make the project faster. Payments, hosting and security are handled by Shopify. Whatever is still missing, such as copy or photography, we include in the planning.
+
 ### How long does it take to build a Shopify store?
 
 As a guideline a project takes 8 to 12 weeks, depending on scope, integrations and how quickly copy, product data and photography are ready. Improving an existing store is often faster.

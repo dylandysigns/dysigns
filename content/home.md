@@ -58,7 +58,11 @@ We do not work with a minimum or a maximum. Every project differs in scope, tech
 
 ### Do you work with clients outside the Netherlands?
 
-Yes. DYSIGNS works with founders, scale-ups and agencies worldwide. Most collaborations run largely remote, with short lines and clear communication in English or Dutch. Almere and Amsterdam are the home base from which every project is run.
+Yes. DYSIGNS works with founders, scale-ups and agencies worldwide. Most collaborations run largely remote, with short lines and clear communication in English or Dutch. Every project is run from Almere.
+
+### Do you also work outside Almere?
+
+Yes. DYSIGNS is based in Almere and works for businesses in [Almere and the surrounding area](/web-design-almere), from Lelystad and Zeewolde to het Gooi, and a lot for brands in [Amsterdam](/web-design-amsterdam), where we regularly work and are happy to meet on location. We are also often in Eindhoven and the rest of Brabant, and happy to meet on location there. Beyond that, projects run largely remote.
 
 ### Do I work directly with the team, or does it change per phase?
 
@@ -108,4 +112,4 @@ Email: [info@dylandysigns.com](mailto:info@dylandysigns.com)
 Phone and WhatsApp: [+31 6 26814488](tel:+31626814488)
 Book an intro call: [go to the contact form](/contact)
 
-Almere and Amsterdam, Netherlands. Chamber of Commerce and VAT numbers are listed in the footer.
+Based in Almere and regularly working in Amsterdam, for clients in Almere and the surrounding area, Amsterdam, Eindhoven and beyond. Chamber of Commerce and VAT numbers are listed in the footer.

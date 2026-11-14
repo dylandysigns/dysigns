@@ -30,6 +30,7 @@ export const serviceHeroImages: Partial<Record<string, string>> = {
   "web-design": "/images/stelz-laptop.avif",
   "shopify-development": "/images/stelz-laptop.avif",
   "web-design-almere": "/images/stelz-laptop.avif",
+  "web-design-amsterdam": "/images/biyu-cover.avif",
   "ux-ui-design": "/images/powermobile-overview.avif",
   branding: "/images/beckers-brand-board.png",
   "social-media-meta-ads": "/images/beckers-phone-mockup.avif",
