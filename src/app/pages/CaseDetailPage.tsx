@@ -702,7 +702,8 @@ export default function CaseDetailPage() {
             <p
               ref={overviewRef}
               style={{
-                fontFamily: "var(--font-brand)",
+                fontFamily: '"Effra Text", var(--font-brand)',
+                fontWeight: 400,
                 fontSize: "clamp(1.05rem,2vw,1.4rem)",
                 lineHeight: 1.75,
                 color: "rgba(var(--page-fg-rgb), .72)",
