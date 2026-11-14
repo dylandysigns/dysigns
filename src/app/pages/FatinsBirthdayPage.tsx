@@ -15,7 +15,7 @@ const RESTAURANTS = {
     full: "Ichi Sushi Roermond",
     time: "17:30",
     description:
-      "Japans eten in een stijlvolle setting — luxe, maar zonder dat het zwaar aanvoelt. Elk gerecht is een statement op zich.",
+      "Japans eten in een stijlvolle setting: luxe, maar zonder dat het zwaar aanvoelt. Elk gerecht is een statement op zich.",
     sub: "Je hebt zin in iets verfijnds en Japans. Ichi Sushi past precies bij die mood.",
   },
   seafood: {
@@ -23,7 +23,7 @@ const RESTAURANTS = {
     full: "Seafood Club Roermond",
     time: "19:00",
     description:
-      "Verse vis en zeevruchten recht uit de pan. Geen poespas — gewoon goed en eerlijk eten, alsof er niets speciaals hoeft.",
+      "Verse vis en zeevruchten recht uit de pan. Geen poespas, gewoon goed en eerlijk eten, alsof er niets speciaals hoeft.",
     sub: "Jij wil gewoon lekker eten, zonder gedoe. Seafood Club is exact dat.",
   },
   terra: {
@@ -56,20 +56,20 @@ const QUESTIONS: Question[] = [
     id: "keuken",
     question: "Waar heb je vanavond zin in?",
     options: [
-      { emoji: "🍣", label: "Japans — sushi, sashimi, noedels", scores: { ichi: 3 } },
-      { emoji: "🍝", label: "Italiaans — pasta, risotto", scores: { terra: 3 } },
+      { emoji: "🍣", label: "Japans: sushi, sashimi, noedels", scores: { ichi: 3 } },
+      { emoji: "🍝", label: "Italiaans: pasta, risotto", scores: { terra: 3 } },
       { emoji: "🦐", label: "Vis en zeevruchten uit de pan", scores: { seafood: 3 } },
-      { emoji: "🍽️", label: "Alles — ik wil gewoon veel eten", scores: { zusje: 3 } },
+      { emoji: "🍽️", label: "Alles, ik wil gewoon veel eten", scores: { zusje: 3 } },
     ],
   },
   {
     id: "trek",
     question: "Hoeveel trek heb je?",
     options: [
-      { emoji: "🐦", label: "Niet zo veel — één goed gerecht", scores: { terra: 2, ichi: 1 } },
-      { emoji: "😋", label: "Gewone honger — normaal uiteten", scores: { seafood: 2, ichi: 1 } },
-      { emoji: "🍴", label: "Behoorlijk trek — meerdere gangen", scores: { zusje: 2, seafood: 1 } },
-      { emoji: "🐷", label: "Superhonger — ik wil blijven bestellen", scores: { zusje: 3 } },
+      { emoji: "🐦", label: "Niet zo veel, één goed gerecht", scores: { terra: 2, ichi: 1 } },
+      { emoji: "😋", label: "Gewone honger, normaal uiteten", scores: { seafood: 2, ichi: 1 } },
+      { emoji: "🍴", label: "Behoorlijk trek, meerdere gangen", scores: { zusje: 2, seafood: 1 } },
+      { emoji: "🐷", label: "Superhonger, ik wil blijven bestellen", scores: { zusje: 3 } },
     ],
   },
   {
@@ -79,7 +79,7 @@ const QUESTIONS: Question[] = [
       { emoji: "✨", label: "Luxe en stijlvol", scores: { ichi: 3 } },
       { emoji: "🌿", label: "Rustig en sprookjesachtig", scores: { terra: 3 } },
       { emoji: "🛋️", label: "Cozy en huiselijk", scores: { zusje: 3 } },
-      { emoji: "😎", label: "Casual — gewoon lekker eten", scores: { seafood: 3 } },
+      { emoji: "😎", label: "Casual, gewoon lekker eten", scores: { seafood: 3 } },
     ],
   },
   {
@@ -87,8 +87,8 @@ const QUESTIONS: Question[] = [
     question: "Vanavond is het...",
     options: [
       { emoji: "🎉", label: "Een echt speciaal moment", scores: { terra: 2, ichi: 2 } },
-      { emoji: "🫶", label: "Gezellig en intiem — voor ons", scores: { zusje: 2, terra: 1 } },
-      { emoji: "😌", label: "Gewoon uiteten — relaxed", scores: { seafood: 2, zusje: 1 } },
+      { emoji: "🫶", label: "Gezellig en intiem, voor ons", scores: { zusje: 2, terra: 1 } },
+      { emoji: "😌", label: "Gewoon uiteten, relaxed", scores: { seafood: 2, zusje: 1 } },
       { emoji: "🌟", label: "Stijlvol maar niet overdreven", scores: { ichi: 2, seafood: 1 } },
     ],
   },
@@ -96,7 +96,7 @@ const QUESTIONS: Question[] = [
     id: "timing",
     question: "Hoe laat wil je eten?",
     options: [
-      { emoji: "🕔", label: "Vroeg — nu meteen eigenlijk (17:30)", scores: { ichi: 3 } },
+      { emoji: "🕔", label: "Vroeg, nu meteen eigenlijk (17:30)", scores: { ichi: 3 } },
       { emoji: "🕖", label: "Rond 19:00", scores: { seafood: 2, zusje: 2 } },
       { emoji: "🕗", label: "Later op de avond (20:00+)", scores: { terra: 3 } },
       { emoji: "🤷", label: "Maakt me niet uit", scores: { ichi: 1, seafood: 1, zusje: 1, terra: 1 } },
@@ -108,8 +108,8 @@ const QUESTIONS: Question[] = [
     options: [
       { emoji: "🍣", label: "Dat elk hapje perfect bereid is", scores: { ichi: 3 } },
       { emoji: "🫕", label: "Samen veel eten en lachen", scores: { zusje: 3 } },
-      { emoji: "🌊", label: "Vers en puur — recht uit zee", scores: { seafood: 3 } },
-      { emoji: "🕯️", label: "De sfeer — het totaalplaatje", scores: { terra: 3 } },
+      { emoji: "🌊", label: "Vers en puur, recht uit zee", scores: { seafood: 3 } },
+      { emoji: "🕯️", label: "De sfeer, het totaalplaatje", scores: { terra: 3 } },
     ],
   },
 ];

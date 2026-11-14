@@ -1,5 +1,5 @@
 ---
-title: "Contact DYSIGNS — Web Design Agency, Netherlands"
+title: "Contact DYSIGNS: Web Design Agency, Netherlands"
 description: "Tell us what you want to achieve. Reply within one business day. First conversation is free, no obligation."
 heading: "Contact"
 slug: "contact"

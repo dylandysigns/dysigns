@@ -1,5 +1,5 @@
 ---
-title: "Contact DYSIGNS — Webdesign Bureau in Nederland"
+title: "Contact DYSIGNS: Webdesign Bureau in Nederland"
 description: "Vertel ons wat je wilt bereiken. Reactie binnen één werkdag. Eerste gesprek is gratis en vrijblijvend."
 heading: "Contact"
 slug: "contact"

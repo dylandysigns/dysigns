@@ -6,7 +6,7 @@ slug: "studio75"
 client: "Studio75"
 services: "branding"
 image: "placeholder"
-imageAlt: "TODO_DYLAN: Studio75 brand identity — replace with real work once available"
+imageAlt: "TODO_DYLAN: Studio75 brand identity. Replace with real work once available"
 imageWidth: "960"
 imageHeight: "1200"
 answerBlock: |
