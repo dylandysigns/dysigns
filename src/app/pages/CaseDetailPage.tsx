@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowRight, ChevronDown, ExternalLink } from "lucide-react";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
-import { useLanguage } from "../hooks/useLanguage";
+import { toLangPath, useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
 import { LazyVideo } from "../components/LazyVideo";
@@ -146,7 +146,7 @@ export default function CaseDetailPage() {
   const nextProject = projects[(visibleIdx + 1) % projects.length];
   const prevProject = projects[(visibleIdx - 1 + projects.length) % projects.length];
   const backTarget =
-    (location.state as { fromPath?: string } | null)?.fromPath ?? "/work";
+    (location.state as { fromPath?: string } | null)?.fromPath ?? toLangPath("/work", lang);
 
   useLayoutEffect(() => {
     const transitionFrom = readTransitionFrom();

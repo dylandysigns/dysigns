@@ -6,6 +6,7 @@ import {
   prepareForCaseNavigation,
 } from "../utils/caseZoomTransition";
 import { crawlHref } from "../seo/href";
+import { toLangPath, useLanguage } from "../hooks/useLanguage";
 
 interface ProjectZoomLinkProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
@@ -24,7 +25,10 @@ export const ProjectZoomLink = forwardRef<HTMLAnchorElement, ProjectZoomLinkProp
   ) {
     const navigate = useNavigate();
     const location = useLocation();
-    const targetPath = to ?? `/work/${projectSlug}`;
+    const { lang } = useLanguage();
+    // Case routes are mirrored under /nl; keep Dutch visitors (and the
+    // crawlable href) in the Dutch tree instead of hopping to English.
+    const targetPath = toLangPath(to ?? `/work/${projectSlug}`, lang);
 
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLAnchorElement>) => {
