@@ -859,8 +859,9 @@ export default function CaseDetailPage() {
                     filter: project.cleanGallery ? "none" : "grayscale(.7) brightness(.6) contrast(1.05)",
                   }}
                   loading="lazy"
-                )}
                 />
+                )}
+              </div>
               {project.galleryLinks?.[i] && (
                 <a
                   href={project.galleryLinks[i]}
