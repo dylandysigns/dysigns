@@ -266,8 +266,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.nap.emailLabel": { en: "Email", nl: "E-mail" },
   "contact.nap.phoneLabel": { en: "Phone / WhatsApp", nl: "Telefoon / WhatsApp" },
   "contact.nap.location": {
-    en: "Almere & Amsterdam, Netherlands",
-    nl: "Almere & Amsterdam, Nederland",
+    en: "Almere, Netherlands",
+    nl: "Almere, Nederland",
   },
 
   /* ── Thank You Page ── */

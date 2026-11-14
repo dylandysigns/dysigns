@@ -16,4 +16,4 @@ Email: [info@dylandysigns.com](mailto:info@dylandysigns.com)
 
 Phone and WhatsApp: [+31 6 26814488](tel:+31626814488)
 
-Almere and Amsterdam, Netherlands. Chamber of Commerce and VAT numbers are listed in the footer.
+Based in Almere and regularly working in Amsterdam, for clients in Almere and the surrounding area, Amsterdam, Eindhoven and beyond. Chamber of Commerce and VAT numbers are listed in the footer.

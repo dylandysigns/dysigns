@@ -115,7 +115,9 @@ export function faqPageSchema(items: FaqItem[]) {
       name: item.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        // Answers are markdown; structured data wants plain text, so
+        // "[label](/href)" links collapse to their label.
+        text: item.answer.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
       },
     })),
   };

@@ -48,6 +48,7 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
     questions: [
       "How much does a website or online store cost?",
       "Do you work with clients outside the Netherlands?",
+      "Do you also work outside Almere?",
       "Which languages can I work with you in?",
     ],
     // Most-asked question, answer contains the CTA — open by default.
