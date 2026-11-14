@@ -196,9 +196,8 @@ function ServicePage({
             className="mt-6"
             style={{
               maxWidth: "42rem",
-              fontFamily: "'Instrument Serif',serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(1.05rem,2vw,1.4rem)",
-              fontStyle: "italic",
               lineHeight: 1.75,
               color: "rgba(var(--page-fg-rgb), .72)",
             }}

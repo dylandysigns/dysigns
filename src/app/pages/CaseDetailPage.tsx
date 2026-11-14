@@ -679,7 +679,7 @@ export default function CaseDetailPage() {
               margin: 0,
             }}
           >
-            {project.category} &middot; {project.year}
+            {project.category} | {project.year}
           </p>
         </div>
       </section>
@@ -691,8 +691,8 @@ export default function CaseDetailPage() {
               style={{
                 margin: "0 0 12px",
                 fontSize: ".7rem",
-                fontWeight: 500,
-                letterSpacing: ".16em",
+                fontWeight: 600,
+                letterSpacing: ".06em",
                 textTransform: "uppercase",
                 color: "rgba(var(--page-fg-rgb), .55)",
               }}
@@ -702,9 +702,8 @@ export default function CaseDetailPage() {
             <p
               ref={overviewRef}
               style={{
-                fontFamily: "'Instrument Serif',serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(1.05rem,2vw,1.4rem)",
-                fontStyle: "italic",
                 lineHeight: 1.75,
                 color: "rgba(var(--page-fg-rgb), .72)",
                 marginBottom: 64,
@@ -871,7 +870,6 @@ export default function CaseDetailPage() {
                   className="absolute inset-0 z-10"
                 />
               )}
-              </div>
               <svg
                 className="absolute top-3 left-3 w-6 h-6 pointer-events-none"
                 viewBox="0 0 24 24"

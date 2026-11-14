@@ -213,9 +213,8 @@ export default function AboutPage() {
           ref={textRef}
           className="mt-6"
           style={{
-            fontFamily: "'Instrument Serif',serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-            fontStyle: "italic",
             lineHeight: 1.75,
             color: "rgba(var(--page-fg-rgb), .6)",
           }}

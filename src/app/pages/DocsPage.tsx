@@ -92,7 +92,7 @@ const guide: GuideSection[] = [
       },
       {
         field: "Skill chips (4 floating labels)",
-        current: "UX / UI \u2022 Brand Identity \u2022 Web Design \u2022 Social Media",
+        current: "UX / UI | Brand Identity | Web Design | Social Media",
         howToChange:
           'useLanguage.tsx keys:\n\n"hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },\n"hero.chip.brand": { en: "Brand Identity", nl: "Merkidentiteit" },\n"hero.chip.web": { en: "Web Design", nl: "Webdesign" },\n"hero.chip.product": { en: "Social Media", nl: "Social media" },\n\nChange the text values. Keep them short (1\u20133 words).',
         file: "/src/app/hooks/useLanguage.tsx",
@@ -131,7 +131,7 @@ const guide: GuideSection[] = [
       {
         field: "Project structure (each project has these fields)",
         current:
-          "slug \u2022 title \u2022 category \u2022 tags[] \u2022 year \u2022 thumbnail \u2022 overview \u2022 outcomes[] \u2022 gallery[]",
+          "slug | title | category | tags[] | year | thumbnail | overview | outcomes[] | gallery[]",
         howToChange:
           'Each project is an object in the projects[] array.\n\nExample of a complete project:\n\n{\n  slug: "nova-brand-platform",\n  title: "Nova Brand Platform",\n  category: "Branding",\n  tags: ["Brand Identity", "Web Design", "Design System"],\n  year: "2025",\n  thumbnail: "https://images.unsplash.com/photo-...",\n  overview: "We partnered with Nova Finance to reimagine...",\n  outcomes: [\n    "42% increase in brand recall",\n    "Design system adopted across 3 teams",\n    "Reduced handoff time by 60%",\n  ],\n  gallery: [\n    "https://images.unsplash.com/photo-...",\n    "https://images.unsplash.com/photo-...",\n    "https://images.unsplash.com/photo-...",\n  ],\n}',
         file: "/src/app/data/projects.ts",
@@ -313,7 +313,7 @@ const guide: GuideSection[] = [
       {
         field: "Step titles and descriptions",
         current:
-          "Discover \u2022 Define \u2022 Design \u2022 Prototype \u2022 Build \u2022 Launch (each with a description)",
+          "Discover | Define | Design | Prototype | Build | Launch (each with a description)",
         howToChange:
           'Step 1 \u2014 content.ts, siteContent.designProcess[]:\nEdit the title and description of each step:\n\n{\n  id: "discover",\n  title: "Research",\n  description: "Your new description...",\n},\n\nStep 2 \u2014 useLanguage.tsx, keys timeline.0.title through timeline.5.desc:\n\n"timeline.0.title": { en: "Research", nl: "Onderzoek" },\n"timeline.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},\n\nThe index numbers (0\u20135) correspond to the array position.',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
@@ -342,7 +342,7 @@ const guide: GuideSection[] = [
       {
         field: "Service titles and descriptions",
         current:
-          "Brand Identity \u2022 Web Design \u2022 Social Media Management \u2022 Creative Direction",
+          "Brand Identity | Web Design | Social Media Management | Creative Direction",
         howToChange:
           'Step 1 \u2014 content.ts, siteContent.services[]:\n\n{\n  title: "Motion Design",\n  description: "Your new description...",\n},\n\nStep 2 \u2014 useLanguage.tsx, keys services.0.title through services.3.desc:\n\n"services.0.title": { en: "Motion Design", nl: "Motion Design" },\n"services.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
@@ -375,7 +375,7 @@ const guide: GuideSection[] = [
     fields: [
       {
         field: "Each testimonial has these fields",
-        current: "id \u2022 quote \u2022 name \u2022 role \u2022 company \u2022 avatar",
+        current: "id | quote | name | role | company | avatar",
         howToChange:
           'content.ts, siteContent.testimonials[]:\n\n{\n  id: "t1",                                    // unique ID\n  quote: "English fallback quote text.",        // shown if i18n key is missing\n  name: "Sarah Chen",                          // person\u2019s name\n  role: "CEO",                                  // their title\n  company: "Nova Finance",                     // their company\n  avatar: "https://images.unsplash.com/...",   // headshot URL\n}',
         file: "/src/app/data/content.ts  \u2192  line 171\u2013252",
@@ -483,7 +483,7 @@ const guide: GuideSection[] = [
       {
         field: "Social links list",
         current:
-          'Dribbble (#) \u2022 Behance (#) \u2022 LinkedIn (#) \u2022 Twitter / X (#) \u2022 Instagram (#)\n\nAll URLs are currently "#" (placeholder)',
+          'Dribbble (#) | Behance (#) | LinkedIn (#) | Twitter / X (#) | Instagram (#)\n\nAll URLs are currently "#" (placeholder)',
         howToChange:
           'content.ts, siteContent.socials[]:\n\nsocials: [\n  { name: "Dribbble", url: "https://dribbble.com/dysigns" },\n  { name: "Behance", url: "https://behance.net/dysigns" },\n  { name: "LinkedIn", url: "https://linkedin.com/company/dysigns" },\n  { name: "Twitter / X", url: "https://x.com/dysigns" },\n  { name: "Instagram", url: "https://instagram.com/dysigns" },\n],\n\nTo remove a platform, delete its { ... } from the array.\nTo add one, add a new { name, url } object.',
         file: "/src/app/data/content.ts  \u2192  line 261\u2013267",
@@ -526,7 +526,7 @@ const guide: GuideSection[] = [
       {
         field: "Value cards (4 cards)",
         current:
-          "Craft over shortcuts \u2022 Strategy first \u2022 Honest collaboration \u2022 Lasting impact",
+          "Craft over shortcuts | Strategy first | Honest collaboration | Lasting impact",
         howToChange:
           'useLanguage.tsx, keys about.value0 through about.value3:\n\n"about.value0.title": { en: "New value title", nl: "Nieuwe waarde titel" },\n"about.value0.text": {\n  en: "New value description...",\n  nl: "Nieuwe waarde beschrijving...",\n},\n\nRepeat for value1, value2, value3.',
         file: "/src/app/hooks/useLanguage.tsx",
@@ -567,7 +567,7 @@ const guide: GuideSection[] = [
       },
       {
         field: "Filter tabs",
-        current: "All \u2022 Branding \u2022 Digital \u2022 Social Media Management \u2022 Web",
+        current: "All | Branding | Digital | Social Media Management | Web",
         howToChange:
           'Filter tabs are auto-generated from unique category values in projects.ts.\n\nIf you add a project with category: "Motion", a "Motion" tab appears automatically.\nIf you remove all projects in a category, that tab disappears.',
         file: "/src/app/data/projects.ts  (project.category)",
@@ -588,13 +588,13 @@ const guide: GuideSection[] = [
         field: "All project content on this page",
         current: "(pulled from projects.ts)",
         howToChange:
-          "Everything on this page comes from the project\u2019s object in projects.ts:\n\n\u2022 Hero image = thumbnail\n\u2022 Title, category, tags, year = shown in the header\n\u2022 Overview = body paragraph\n\u2022 Outcomes = bulleted results list\n\u2022 Gallery = image grid below the text\n\nEdit the project object in projects.ts (see Projects section above).",
+          "Everything on this page comes from the project\u2019s object in projects.ts:\n\n- Hero image = thumbnail\n- Title, category, tags, year = shown in the header\n- Overview = body paragraph\n- Outcomes = bulleted results list\n- Gallery = image grid below the text\n\nEdit the project object in projects.ts (see Projects section above).",
         file: "/src/app/data/projects.ts",
       },
       {
         field: "Page labels",
         current:
-          '"Back to work" \u2022 "Overview" \u2022 "Outcomes" \u2022 "Previous" \u2022 "Next"',
+          '"Back to work" | "Overview" | "Outcomes" | "Previous" | "Next"',
         howToChange:
           'useLanguage.tsx:\n\n"case.back": { en: "Back to work", nl: "Terug naar werk" },\n"case.overview": { en: "Overview", nl: "Overzicht" },\n"case.outcomes": { en: "Outcomes", nl: "Resultaten" },\n"case.previous": { en: "Previous", nl: "Vorige" },\n"case.next": { en: "Next", nl: "Volgende" },',
         file: "/src/app/hooks/useLanguage.tsx",
@@ -613,7 +613,7 @@ const guide: GuideSection[] = [
     fields: [
       {
         field: "Nav link labels",
-        current: "Work \u2022 About \u2022 Contact",
+        current: "Work | About | Contact",
         howToChange:
           'useLanguage.tsx:\n\n"nav.work": { en: "Work", nl: "Werk" },\n"nav.about": { en: "About", nl: "Over ons" },\n"nav.contact": { en: "Contact", nl: "Contact" },',
         file: "/src/app/hooks/useLanguage.tsx",
@@ -654,7 +654,7 @@ const guide: GuideSection[] = [
       {
         field: "All cursor labels",
         current:
-          "HOME \u2022 VIEW \u2022 VIEW PROJECT \u2022 VIEW WORK \u2022 OPEN \u2022 BACK \u2022 EMAIL \u2022 WHATSAPP \u2022 DRAG \u2022 PLAY \u2022 CONTACT \u2022 PREVIOUS \u2022 NEXT",
+          "HOME | VIEW | VIEW PROJECT | VIEW WORK | OPEN | BACK | EMAIL | WHATSAPP | DRAG | PLAY | CONTACT | PREVIOUS | NEXT",
         howToChange:
           'useLanguage.tsx, all keys starting with "cursor.":\n\n"cursor.view": { en: "VIEW", nl: "BEKIJK" },\n"cursor.drag": { en: "DRAG", nl: "SLEEP" },\n"cursor.email": { en: "EMAIL", nl: "E-MAIL" },\netc.\n\nKeep all labels UPPERCASE and short (1\u20132 words max).',
         file: "/src/app/hooks/useLanguage.tsx",
@@ -682,7 +682,7 @@ const guide: GuideSection[] = [
         field: "Recommended image sizes",
         current: "",
         howToChange:
-          "\u2022 Hero portrait: 1080px+ wide, portrait orientation\n\u2022 Project thumbnails: 1080px+ wide, landscape orientation\n\u2022 Project gallery: 1080px+ wide, any orientation\n\u2022 Testimonial headshots: 400px+ wide, square or portrait\n\u2022 Vision background: 1080px+ wide, landscape, dark/moody\n\u2022 About hero: 1080px+ wide, landscape\n\u2022 ZoomToGrid hero: 1920px+ wide, dramatic landscape",
+          "- Hero portrait: 1080px+ wide, portrait orientation\n- Project thumbnails: 1080px+ wide, landscape orientation\n- Project gallery: 1080px+ wide, any orientation\n- Testimonial headshots: 400px+ wide, square or portrait\n- Vision background: 1080px+ wide, landscape, dark/moody\n- About hero: 1080px+ wide, landscape\n- ZoomToGrid hero: 1920px+ wide, dramatic landscape",
         file: "(applies to all image URLs)",
       },
       {

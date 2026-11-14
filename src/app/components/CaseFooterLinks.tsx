@@ -70,13 +70,12 @@ export function CaseFooterLinks({ caseEntry }: { caseEntry: ContentEntry }) {
         style={{
           fontSize: ".85rem",
           color: "rgba(var(--page-fg-rgb), .5)",
-          fontStyle: "italic",
         }}
       >
         Case by{" "}
         <a
           href="/about"
-          style={{ ...linkStyle, fontStyle: "normal" }}
+          style={linkStyle}
           onMouseEnter={handleLinkEnter}
           onMouseLeave={handleLinkLeave}
         >

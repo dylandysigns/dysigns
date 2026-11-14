@@ -245,9 +245,8 @@ export default function ContactPage() {
           ref={subRef}
           className="mt-5 mx-auto max-w-md"
           style={{
-            fontFamily: "'Instrument Serif',serif",
+            fontFamily: "var(--font-brand)",
             fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-            fontStyle: "italic",
             color: "rgba(var(--page-fg-rgb), .6)",
             lineHeight: 1.6,
           }}
@@ -302,8 +301,7 @@ export default function ContactPage() {
             />
             <span
               style={{
-                fontFamily: "'Instrument Serif',serif",
-                fontStyle: "italic",
+                fontFamily: "var(--font-brand)",
                 fontSize: "1rem",
                 color: "rgba(var(--page-fg-rgb), .5)",
               }}
@@ -341,8 +339,7 @@ export default function ContactPage() {
                 htmlFor="contact-email"
                 className="block mb-2"
                 style={{
-                  fontFamily: "'Instrument Serif',serif",
-                  fontStyle: "italic",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1.15rem",
                   color: "var(--page-fg)",
                 }}
@@ -380,8 +377,7 @@ export default function ContactPage() {
                 htmlFor="contact-message"
                 className="block mb-2"
                 style={{
-                  fontFamily: "'Instrument Serif',serif",
-                  fontStyle: "italic",
+                  fontFamily: "var(--font-brand)",
                   fontSize: "1.15rem",
                   color: "var(--page-fg)",
                 }}

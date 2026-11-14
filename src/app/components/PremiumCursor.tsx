@@ -8,29 +8,47 @@ import React, {
 import { CursorContext, type CursorVariant } from "../hooks/useCursor";
 
 /* ═══════════════════════════════════════════════════════════
-   Premium Cursor — v6
+   Premium Cursor, v7 (gooey)
 
    Architecture:
-   1. GLOBAL: A small dot + floating label that follows the cursor.
-      When cursor.set("view","VIEW PROJECT") is called the dot grows
-      into a frosted pill with the label. The label is edge-clamped
-      so it never overflows the viewport.
+   1. GLOBAL: A gooey cursor. A fast "head" blob and a slower "tail"
+      blob sit in a small box run through an SVG goo filter, so they
+      melt into one drop at rest and stretch apart when you move fast.
+      Over links and buttons the head grows a little; when
+      cursor.set("view","VIEW PROJECT") is called it grows into a
+      solid disc with the label on top. The native arrow is hidden
+      site-wide on mouse devices (text fields keep the text caret).
    2. HERO-ONLY: A transparent glass orb (clear lens) that only
       appears over [data-hero-zone]. When hovering the DYSIGNS text
       ([data-dysigns-hero-text]) the orb creates a magnification
-      effect — a clipped, scaled-up mirror of the text is shown
+      effect, a clipped, scaled-up mirror of the text is shown
       through the orb circle.
+
+   Performance: the goo filter only runs on a GOO_BOX sized element
+   that travels with the cursor, never on a full-viewport layer, so
+   Safari keeps the per-frame filter cost small.
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── TUNING ─── */
-const DOT_SIZE = 10;
-const DOT_ACTIVE = 60;
+const HEAD_SIZE = 14;
+const HEAD_INTERACTIVE = 40; // over a link/button with no label
+const HEAD_ACTIVE = 64; // labelled state (VIEW, PLAY, ...)
+const TAIL_SIZE = 10;
+const TAIL_ACTIVE = 24;
+const TAIL_MAX_GAP = 70; // max px the tail may trail behind the head
+const HEAD_ACTIVE_MAX = 150; // widest pill for long labels
+const LABEL_PAD = 16; // horizontal room around the label inside the pill
+const GOO_BOX = 340; // must fit HEAD_ACTIVE_MAX/2 + TAIL_MAX_GAP + TAIL_ACTIVE/2 + blur on each side
 const ORB_RADIUS = 70; // orb circle radius in px
 const ORB_DIAMETER = ORB_RADIUS * 2;
 const MAG_SCALE = 1.6; // magnification factor
 const LERP_SMOOTH = 0.14;
+const LERP_HEAD = 0.3;
+const LERP_TAIL = 0.11;
 const LERP_INSTANT = 1;
 const EDGE_PAD = 12; // viewport edge padding for label clamping
+const INTERACTIVE_SELECTOR =
+  'a, button, [role="button"], label, summary, select, input[type="submit"], input[type="checkbox"], input[type="radio"]';
 
 /* ─── PROVIDER ─── */
 export function PremiumCursorProvider({
@@ -81,17 +99,25 @@ function GlassCursor({
   variant: CursorVariant;
   label: string;
 }) {
-  const dotRef = useRef<HTMLDivElement>(null);
+  const gooBoxRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
+  const tailRef = useRef<HTMLDivElement>(null);
+  const labelElRef = useRef<HTMLDivElement>(null);
   const orbRef = useRef<HTMLDivElement>(null);
   const magOverlayRef = useRef<HTMLDivElement>(null);
   const magMirrorRef = useRef<HTMLDivElement>(null);
 
   const mouse = useRef({ x: -200, y: -200 });
   const pos = useRef({ x: -200, y: -200 });
+  const head = useRef({ x: -200, y: -200 });
+  const tail = useRef({ x: -200, y: -200 });
   const raf = useRef(0);
   const [isTouch, setIsTouch] = useState(false);
   const isOverHero = useRef(false);
   const isOverText = useRef(false);
+  const isOverInteractive = useRef(false);
+  const isInWindow = useRef(false);
+  const labelWidth = useRef(0);
 
   const reduced =
     typeof window !== "undefined" &&
@@ -155,6 +181,14 @@ function GlassCursor({
   const onMove = useCallback((e: MouseEvent) => {
     mouse.current.x = e.clientX;
     mouse.current.y = e.clientY;
+    if (!isInWindow.current) {
+      // First move after entering: start the blobs at the pointer
+      // instead of flying in from the last spot.
+      head.current = { x: e.clientX, y: e.clientY };
+      tail.current = { x: e.clientX, y: e.clientY };
+      pos.current = { x: e.clientX, y: e.clientY };
+      isInWindow.current = true;
+    }
 
     // Expose globally for Hero color bloom
     (window as unknown as Record<string, unknown>).__dysignsMouse = {
@@ -177,28 +211,50 @@ function GlassCursor({
     }
     isOverHero.current = overHero;
     isOverText.current = overText;
+    const target = els[0] as HTMLElement | undefined;
+    isOverInteractive.current = !!target?.closest?.(INTERACTIVE_SELECTOR);
   }, []);
 
   useEffect(() => {
     if (isTouch) return;
+    const onLeave = () => {
+      isInWindow.current = false;
+    };
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+    };
   }, [isTouch, onMove]);
 
-  /* Hide browser cursor only inside hero zone */
+  /* Hide the browser arrow site-wide on mouse devices; the gooey cursor
+     replaces it. Text fields keep the text caret so typing still feels
+     normal, and selects keep the default arrow. */
   useEffect(() => {
     if (isTouch) return;
     const style = document.createElement("style");
     style.id = "dysigns-cursor-hide";
     style.textContent = `
-      [data-hero-zone] { cursor: none !important; }
-      [data-hero-zone] * { cursor: none !important; }
+      @media (pointer: fine) {
+        html, body, body * { cursor: none !important; }
+        body input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="button"]),
+        body textarea,
+        body [contenteditable="true"] { cursor: text !important; }
+        body select { cursor: auto !important; }
+      }
     `;
     document.head.appendChild(style);
     return () => {
       style.remove();
     };
   }, [isTouch]);
+
+  /* Measure the label once per change so the pill can fit it without
+     reading layout on every frame. */
+  useEffect(() => {
+    labelWidth.current = labelElRef.current?.offsetWidth ?? 0;
+  }, [variant, label]);
 
   /* ─── RENDER LOOP ─── */
   useEffect(() => {
@@ -223,25 +279,69 @@ function GlassCursor({
 
       const overHero = isOverHero.current;
 
-      /* 1. Dot / pill cursor — edge-clamped positioning */
-      if (dotRef.current) {
+      /* 1. Gooey cursor: head + tail blobs in a small filtered box */
+      if (gooBoxRef.current && headRef.current && tailRef.current) {
         const v = variantRef.current;
-        const isActive =
-          v !== "default" && v !== "hidden";
-        const half = isActive ? DOT_ACTIVE / 2 : DOT_SIZE / 2;
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
+        // Plain links get a bigger lens without a label: on small nav
+        // items a label would sit on top of the link text.
+        const isActive = v !== "default" && v !== "hidden" && v !== "link";
+        const isLink = v === "link";
+        const headLerp = reduced ? LERP_INSTANT : LERP_HEAD;
+        const tailLerp = reduced ? LERP_INSTANT : LERP_TAIL;
 
-        const clampedX = Math.max(
-          half + EDGE_PAD,
-          Math.min(vw - half - EDGE_PAD, cx),
+        // Head target: the pointer, edge-clamped when it carries a label
+        // so the label never leaves the viewport.
+        // A labelled head becomes a pill wide enough for its text.
+        const activeWidth = Math.min(
+          HEAD_ACTIVE_MAX,
+          Math.max(HEAD_ACTIVE, labelWidth.current + LABEL_PAD * 2),
         );
-        const clampedY = Math.max(
-          half + EDGE_PAD,
-          Math.min(vh - half - EDGE_PAD, cy),
-        );
+        let tx = mx;
+        let ty = my;
+        if (isActive) {
+          const halfW = activeWidth / 2;
+          const halfH = HEAD_ACTIVE / 2;
+          tx = Math.max(halfW + EDGE_PAD, Math.min(window.innerWidth - halfW - EDGE_PAD, mx));
+          ty = Math.max(halfH + EDGE_PAD, Math.min(window.innerHeight - halfH - EDGE_PAD, my));
+        }
+        const h = head.current;
+        const t = tail.current;
+        h.x += (tx - h.x) * headLerp;
+        h.y += (ty - h.y) * headLerp;
+        t.x += (h.x - t.x) * tailLerp;
+        t.y += (h.y - t.y) * tailLerp;
+        // Keep the tail inside the goo box so it never gets clipped.
+        const gx = t.x - h.x;
+        const gy = t.y - h.y;
+        const gap = Math.hypot(gx, gy);
+        if (gap > TAIL_MAX_GAP) {
+          t.x = h.x + (gx / gap) * TAIL_MAX_GAP;
+          t.y = h.y + (gy / gap) * TAIL_MAX_GAP;
+        }
 
-        dotRef.current.style.transform = `translate3d(${clampedX}px,${clampedY}px,0) translate(-50%,-50%)`;
+        const headSize = isActive
+          ? HEAD_ACTIVE
+          : isLink || isOverInteractive.current
+            ? HEAD_INTERACTIVE
+            : HEAD_SIZE;
+        const tailSize = isActive ? TAIL_ACTIVE : TAIL_SIZE;
+        const boxHalf = GOO_BOX / 2;
+
+        gooBoxRef.current.style.transform = `translate3d(${h.x - boxHalf}px,${h.y - boxHalf}px,0)`;
+        gooBoxRef.current.style.opacity = isInWindow.current && v !== "hidden" ? "1" : "0";
+        // Small drop and link lens invert what's under them so text stays
+        // readable; the labelled pill is solid so its label reads on any
+        // photo (difference turns mid-grey images into mid-grey).
+        gooBoxRef.current.style.mixBlendMode = isActive ? "normal" : "difference";
+        headRef.current.style.width = `${isActive ? activeWidth : headSize}px`;
+        headRef.current.style.height = `${headSize}px`;
+        tailRef.current.style.width = `${tailSize}px`;
+        tailRef.current.style.height = `${tailSize}px`;
+        tailRef.current.style.transform = `translate3d(${t.x - h.x}px,${t.y - h.y}px,0) translate(-50%,-50%)`;
+
+        if (labelElRef.current) {
+          labelElRef.current.style.transform = `translate3d(${h.x}px,${h.y}px,0) translate(-50%,-50%)`;
+        }
       }
 
       /* 2. Glass orb (hero only) */
@@ -290,7 +390,7 @@ function GlassCursor({
 
   if (isTouch) return null;
 
-  const isActive = variant !== "default" && variant !== "hidden";
+  const isActive = variant !== "default" && variant !== "hidden" && variant !== "link";
   const isHidden = variant === "hidden";
 
   const displayLabel =
@@ -346,55 +446,88 @@ function GlassCursor({
         </div>
       )}
 
-      {/* ═══ DOT / LABEL CURSOR (global, edge-clamped) ═══ */}
+      {/* ═══ GOOEY CURSOR (global) ═══
+          Blur + alpha threshold melts the two blobs into one drop. The
+          filter lives on a GOO_BOX sized element that moves with the
+          cursor, so it never filters the whole viewport. */}
+      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden>
+        <filter id="dysigns-goo" x="0" y="0" width="100%" height="100%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
+          <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" />
+        </filter>
+      </svg>
       <div
-        ref={dotRef}
+        ref={gooBoxRef}
         className="fixed top-0 left-0 pointer-events-none"
         style={{
+          width: GOO_BOX,
+          height: GOO_BOX,
           zIndex: 9998,
           willChange: "transform",
-          opacity: isHidden ? 0 : 1,
-          transition: "opacity .2s ease",
+          filter: "url(#dysigns-goo)",
+          mixBlendMode: "difference",
+          opacity: 0,
+          transition: "opacity .25s ease",
+          transform: "translate3d(-400px,-400px,0)",
         }}
         aria-hidden
       >
         <div
-          className="rounded-full flex items-center justify-center"
+          ref={tailRef}
+          className="absolute rounded-full"
           style={{
-            width: isActive ? DOT_ACTIVE : DOT_SIZE,
-            height: isActive ? DOT_ACTIVE : DOT_SIZE,
-            background: isActive
-              ? "rgba(var(--page-fg-rgb), .10)"
-              : "rgba(var(--page-fg-rgb), .85)",
-            border: isActive
-              ? "1px solid rgba(var(--page-fg-rgb), .2)"
-              : "1px solid transparent",
+            left: "50%",
+            top: "50%",
+            width: TAIL_SIZE,
+            height: TAIL_SIZE,
+            background: "#fff",
             transition:
-              "width .35s cubic-bezier(.22,1,.36,1), height .35s cubic-bezier(.22,1,.36,1), background .3s, border .3s",
+              "width .35s cubic-bezier(.22,1,.36,1), height .35s cubic-bezier(.22,1,.36,1)",
+          }}
+        />
+        <div
+          ref={headRef}
+          className="absolute rounded-full"
+          style={{
+            left: "50%",
+            top: "50%",
+            width: HEAD_SIZE,
+            height: HEAD_SIZE,
+            background: "#fff",
             transform: "translate(-50%,-50%)",
-            boxShadow: isActive
-              ? "0 4px 20px rgba(var(--page-shadow-rgb), .18), inset 0 0.5px 0 rgba(var(--page-fg-rgb), .08)"
-              : "0 0 6px rgba(var(--page-fg-rgb), .15)",
+            transition:
+              "width .4s cubic-bezier(.34,1.56,.64,1), height .4s cubic-bezier(.34,1.56,.64,1)",
+          }}
+        />
+      </div>
+
+      {/* Label sits outside the filter so the text stays sharp. */}
+      <div
+        ref={labelElRef}
+        className="fixed top-0 left-0 pointer-events-none"
+        style={{
+          zIndex: 9999,
+          willChange: "transform",
+          opacity: isActive && !isHidden && displayLabel ? 1 : 0,
+          transition: "opacity .2s ease",
+          transform: "translate3d(-400px,-400px,0)",
+        }}
+        aria-hidden
+      >
+        <span
+          style={{
+            display: "block",
+            fontFamily: "var(--font-brand)",
+            fontSize: ".55rem",
+            fontWeight: 600,
+            letterSpacing: ".08em",
+            textTransform: "uppercase",
+            color: "#0b0b0b",
+            whiteSpace: "nowrap",
           }}
         >
-          {isActive && displayLabel && (
-            <span
-              style={{
-                fontFamily: "var(--font-brand)",
-                fontSize: ".55rem",
-                fontWeight: 600,
-                letterSpacing: ".12em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .85)",
-                whiteSpace: "nowrap",
-                opacity: 1,
-                transition: "opacity .2s",
-              }}
-            >
-              {displayLabel}
-            </span>
-          )}
-        </div>
+          {displayLabel}
+        </span>
       </div>
 
       {/* ═══ GLASS ORB — transparent lens (hero only) ═══ */}

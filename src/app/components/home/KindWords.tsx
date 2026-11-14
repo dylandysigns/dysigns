@@ -301,9 +301,8 @@ export function KindWords() {
             <p
               className="mt-4 max-w-sm"
               style={{
-                fontFamily: "'Instrument Serif',serif",
+                fontFamily: "var(--font-brand)",
                 fontSize: "clamp(.9rem, 1.2vw, 1.05rem)",
-                fontStyle: "italic",
                 color: "rgba(var(--page-fg-rgb), .5)",
                 lineHeight: 1.6,
               }}
@@ -471,9 +470,8 @@ export function KindWords() {
                 <QuoteIcon />
                 <p
                   style={{
-                    fontFamily: "'Instrument Serif',serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "clamp(.88rem, 1.1vw, 1.02rem)",
-                    fontStyle: "italic",
                     lineHeight: 1.7,
                     color: "rgba(var(--page-fg-rgb), 0.82)",
                   }}

@@ -190,13 +190,12 @@ export default function GiftFatinsBirthdayPage() {
           Voor jou
         </p>
 
-        {/* Happy Birthday — Instrument Serif italic */}
+        {/* Happy Birthday */}
         <p
           data-gift-anim
           style={{
             fontSize: "clamp(16px, 4.5vw, 22px)",
-            fontFamily: "Instrument Serif, serif",
-            fontStyle: "italic",
+            fontFamily: "var(--font-brand)",
             fontWeight: 400,
             color: "rgba(255,255,255,0.42)",
             marginBottom: 6,
@@ -382,8 +381,7 @@ function GiftCard({ visible }: { visible: boolean }) {
       <p
         style={{
           fontSize: 15,
-          fontFamily: "Instrument Serif, serif",
-          fontStyle: "italic",
+          fontFamily: "var(--font-brand)",
           color: "rgba(255,255,255,0.42)",
           lineHeight: 1.65,
           marginBottom: 28,

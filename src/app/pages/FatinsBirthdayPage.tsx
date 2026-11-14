@@ -438,7 +438,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           fontFamily: "var(--font-brand)",
         }}
       >
-        4 restaurants · Roermond
+        4 restaurants | Roermond
       </p>
     </div>
   );
@@ -698,7 +698,6 @@ function ResultScreen({
             lineHeight: 1.6,
             color: "rgba(255,255,255,0.35)",
             fontFamily: "var(--font-brand)",
-            fontStyle: "italic",
           }}
         >
           {restaurant.sub}
