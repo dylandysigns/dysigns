@@ -45,7 +45,7 @@ Dit zijn algemene marktindicaties voor Nederland in 2026, geen prijslijst van DY
 - **Eenvoudige brochurewebsite** (5 tot 10 pagina's, template-based of licht aangepast): ongeveer €2.500 tot €7.000.
 - **Custom-ontworpen bedrijfswebsite** (maatwerk design, CMS, gemiddelde functionaliteit): ongeveer €7.000 tot €20.000.
 - **Shopify webshop** (professioneel ontworpen webshop tot volledig maatwerk): begint doorgaans rond €6.000 tot €8.000 en ligt bij een maatwerktraject vaak tussen €10.000 en €30.000 of hoger. Zie de uitsplitsing hieronder.
-- **Webplatform of web-app** (dashboards, portalen, ingelogde omgevingen): meestal €20.000 en hoger, gescoped als software in plaats van als website.
+- **Webplatform of web-app** (dashboards, portalen, ingelogde omgevingen): meestal €20.000 en hoger, gescoped als software in plaats van als website. Daar begint het bij [UX/UI design](/nl/ux-ui-design).
 
 ### Wat kost een webshop laten maken in 2026?
 

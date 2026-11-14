@@ -45,7 +45,7 @@ These are general market indications for the Netherlands in 2026, not a DYSIGNS 
 - **Simple brochure site** (5 to 10 pages, template-based or lightly customised): roughly €2,500 to €7,000.
 - **Custom-designed business website** (bespoke design, CMS, moderate functionality): roughly €7,000 to €20,000.
 - **Shopify webshop** (professionally designed store to fully custom build): typically starts around €6,000 to €8,000, and often runs between €10,000 and €30,000 or more for a custom project. See the breakdown below.
-- **Web platform or web app** (dashboards, portals, logged-in experiences): usually €20,000 and up, scoped like software rather than a website.
+- **Web platform or web app** (dashboards, portals, logged-in experiences): usually €20,000 and up, scoped like software rather than a website. That work starts with [UX/UI design](/ux-ui-design).
 
 ### What does a webshop cost in 2026?
 

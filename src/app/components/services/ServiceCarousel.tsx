@@ -6,7 +6,8 @@ import {
   type CSSProperties,
 } from "react";
 import { useCursor } from "../../hooks/useCursor";
-import { useLanguage } from "../../hooks/useLanguage";
+import { toLangPath, useLanguage } from "../../hooks/useLanguage";
+import { crawlHref } from "../../seo/href";
 import { usePageTransition } from "../../hooks/useTransition";
 import type { ServiceIncludeItem } from "../../content/loadContent";
 import { renderInlineMarkdown } from "../../utils/inlineMarkdown";
@@ -97,7 +98,7 @@ function getCardSurfaceStyle(position: CoverFlowPosition): CSSProperties {
   } as CSSProperties;
 }
 
-function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
+function renderCardLayout(item: ServiceIncludeItem, isActive: boolean, lang: "en" | "nl") {
   const slug = item.href?.replace(/^\//, "");
   const caseImage = slug ? serviceHeroImages[slug] : undefined;
   return (
@@ -143,7 +144,7 @@ function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
         className="relative z-10 flex flex-1 flex-col justify-center px-8 pt-[38px] pb-8 md:px-10"
         style={{ opacity: 1 }}
       >
-        <h2
+        <h3
           style={{
             margin: "0 0 12px",
             fontFamily: "var(--font-brand)",
@@ -153,8 +154,23 @@ function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
             color: "var(--page-fg)",
           }}
         >
-          {item.title}
-        </h2>
+          {item.href ? (
+            // Real <a href> so crawlers can follow service-to-service links.
+            // The card itself still owns the click (rotate or navigate), so
+            // the anchor's own navigation is cancelled and it stays out of
+            // the tab order (the card is already focusable).
+            <a
+              href={crawlHref(toLangPath(item.href, lang))}
+              tabIndex={-1}
+              onClick={(event) => event.preventDefault()}
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {item.title}
+            </a>
+          ) : (
+            item.title
+          )}
+        </h3>
         <p
           style={{
             margin: 0,
@@ -173,7 +189,7 @@ function renderCardLayout(item: ServiceIncludeItem, isActive: boolean) {
 
 export function ServiceCarousel({ items }: { items: ServiceIncludeItem[] }) {
   const cursor = useCursor();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { navigateTo } = usePageTransition();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isCompact, setIsCompact] = useState(false);
@@ -475,7 +491,7 @@ export function ServiceCarousel({ items }: { items: ServiceIncludeItem[] }) {
                 }}
                 onBlur={() => cursor.reset()}
               >
-                {renderCardLayout(item, isActive)}
+                {renderCardLayout(item, isActive, lang)}
               </div>
             </div>
           );
