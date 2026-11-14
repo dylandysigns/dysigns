@@ -243,6 +243,7 @@ export function Footer() {
             href={crawlHref(otherLangHref)}
             hrefLang={lang === "en" ? "nl" : "en"}
             lang={lang === "en" ? "nl" : "en"}
+            data-cursor-label={t("cursor.translate")}
             onClick={(e) => {
               e.preventDefault();
               toggleLang();

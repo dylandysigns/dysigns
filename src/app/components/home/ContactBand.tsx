@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
+import { Mail } from "lucide-react";
 import { siteContent } from "../../data/content";
 import { useCursor } from "../../hooks/useCursor";
 import { useLanguage } from "../../hooks/useLanguage";
@@ -143,7 +143,7 @@ export function ContactBand() {
             background: "rgba(var(--page-fg-rgb), 0)",
           }}
           onMouseEnter={(e) => {
-            cursor.set("link");
+            cursor.set("link", t("cursor.contact"));
             (e.currentTarget as HTMLElement).style.borderColor = "rgba(var(--page-fg-rgb), .45)";
             (e.currentTarget as HTMLElement).style.background = "rgba(var(--page-fg-rgb), .06)";
           }}
@@ -161,7 +161,7 @@ export function ContactBand() {
               transition: "transform .7s ease-out",
             }}
           />
-          <ArrowRight size={16} strokeWidth={1.75} />
+          <Mail size={16} strokeWidth={1.75} />
           {t("contact.contactUs")}
         </TransitionLink>
 

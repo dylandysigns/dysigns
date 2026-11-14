@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useLocation, useNavigate, useParams } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, ArrowRight, ChevronDown, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, ExternalLink } from "lucide-react";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { toLangPath, useLanguage } from "../hooks/useLanguage";
@@ -570,8 +570,10 @@ export default function CaseDetailPage() {
         </div>
       </section>
 
-      <section style={{ padding: "40px 6vw 24px", maxWidth: 900 }}>
-        <div className="mx-auto flex max-w-[900px] flex-col gap-4">
+      {/* Title and overview: stacked on phones; side by side from lg so the
+          gallery starts higher on desktop. Same width as the gallery. */}
+      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-10 pb-16 md:pb-20 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 xl:gap-24">
+        <div className="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
           <a
             href={crawlHref(backTarget)}
             className="inline-flex w-fit items-center gap-2 group"
@@ -682,10 +684,8 @@ export default function CaseDetailPage() {
             {project.category} | {project.year}
           </p>
         </div>
-      </section>
 
-      <section style={{ padding: "40px 6vw 100px", maxWidth: 860, margin: "0 auto" }}>
-        <div className="mx-auto max-w-[860px]">
+        <div className="mt-14 lg:mt-1">
           <div>
             <p
               style={{
@@ -704,10 +704,10 @@ export default function CaseDetailPage() {
               style={{
                 fontFamily: '"Effra Text", var(--font-brand)',
                 fontWeight: 400,
-                fontSize: "clamp(1.05rem,2vw,1.4rem)",
-                lineHeight: 1.75,
+                fontSize: "clamp(1.02rem,1.3vw,1.15rem)",
+                lineHeight: 1.7,
                 color: "rgba(var(--page-fg-rgb), .72)",
-                marginBottom: 64,
+                marginBottom: 40,
                 // "\n\n" in an overview becomes a paragraph break, so long
                 // stories don't read as one wall of text on a phone.
                 whiteSpace: "pre-line",
@@ -839,7 +839,7 @@ export default function CaseDetailPage() {
               ref={(el) => {
                 galleryRef.current[i] = el;
               }}
-              className={`relative overflow-hidden rounded-xl${project.galleryWide?.includes(i) ? " md:col-span-2" : ""}`}
+              className={`relative overflow-hidden rounded-xl${project.galleryWide?.includes(i) ? " md:col-span-2" : ""}${project.galleryLinks?.[i] ? " group" : ""}`}
               style={{
                 opacity: 0,
                 border: "1px solid rgba(var(--page-fg-rgb), .06)",
@@ -855,7 +855,7 @@ export default function CaseDetailPage() {
                   width={1400}
                   height={875}
                   decoding="async"
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover${project.galleryLinks?.[i] ? " transition-transform duration-700 ease-out group-hover:scale-[1.03]" : ""}`}
                   style={{
                     filter: project.cleanGallery ? "none" : "grayscale(.7) brightness(.6) contrast(1.05)",
                   }}
@@ -870,7 +870,29 @@ export default function CaseDetailPage() {
                   rel="noopener noreferrer"
                   aria-label={`${project.galleryAlt?.[i] ?? project.title}. ${t("case.galleryLink")}`}
                   className="absolute inset-0 z-10"
-                />
+                  onMouseEnter={() => cursor.set("link", t("case.download"))}
+                  onMouseLeave={() => cursor.reset()}
+                >
+                  {/* visible cue that the image is a link: same glass pill as the store buttons up top */}
+                  <span
+                    aria-hidden
+                    className="absolute bottom-2.5 right-2.5 md:bottom-6 md:right-6 inline-flex items-center gap-1.5 md:gap-2 rounded-full transition-colors duration-300 bg-black/35 group-hover:bg-white pl-3 pr-1 py-1 text-[.6rem] md:pl-5 md:pr-3.5 md:py-2.5 md:text-[.78rem]"
+                    style={{
+                      border: "1px solid rgba(255,255,255,.3)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                      fontFamily: "var(--font-brand)",
+                      fontWeight: 500,
+                      letterSpacing: ".06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <span className="text-white group-hover:text-black transition-colors duration-300">{t("case.downloadApp")}</span>
+                    <span className="grid place-items-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-white/15 text-white transition-all duration-300 group-hover:bg-black group-hover:text-white">
+                      <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-px group-hover:-translate-y-px" />
+                    </span>
+                  </span>
+                </a>
               )}
               <svg
                 className="absolute top-3 left-3 w-6 h-6 pointer-events-none"

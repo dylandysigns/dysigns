@@ -184,7 +184,7 @@ export default function WorkPage() {
                     }
                     cursor.reset();
                   }}
-                  onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
+                  onMouseEnter={() => cursor.set("view", `${t("cursor.view")} ${project.title}`)}
                 >
                   <ProjectZoomLink
                     to={`/work/${project.slug}`}

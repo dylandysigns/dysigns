@@ -66,6 +66,9 @@ export interface Project {
   /** Second of the cover video the poster was taken from; the case hero
    * starts playing there so it continues seamlessly from the transition. */
   coverVideoPosterTime?: number;
+  /** Keep the still `thumbnail` on the /work card instead of the portrait
+   * cover video. */
+  workCoverStill?: boolean;
   /** Resolved alt texts (filled in by useTranslatedProjects). */
   thumbnailAlt?: string;
   galleryAlt?: string[];
@@ -120,7 +123,9 @@ export const projects: Project[] = [
     category: "Digital",
     tags: ["Mobile App", "UX Design", "Development", "Motion Design"],
     year: "2026",
-    thumbnail: "/images/stelz-app-cover-empty.png",
+    thumbnail: "/images/stelz-app-work-cover.avif",
+    // The /work card shows this still: the portrait cover video opens on black.
+    workCoverStill: true,
     coverVideo: "/videos/stelz-app-cover-v17.mp4",
     coverVideoPoster: "/images/stelz-app-cover-poster.jpg",
     coverVideoMobile: "/videos/stelz-app-cover-mobile-v17.mp4",
@@ -131,7 +136,7 @@ export const projects: Project[] = [
       googlePlay: "https://play.google.com/store/apps/details?id=com.stelz.app",
     },
     overview:
-      "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing, where the app reached #1 in the App Store.",
+      "STËLZ asked us to design and build their own app for Strijd voor je smaak 2026, a campaign in three phases.\n\nPhase 1 started on Instagram: through a voting flow, 125,000 people cast their vote, and six flavours came out of it.\n\nPhase 2: those six flavours were sold exclusively at Albert Heijn, the Dutch supermarket, and in the STËLZ app, which we designed and built from the first sketch to the App Store and Google Play.\n\nPhase 3: in the app, fans pick their favourite, and the maker of the winning flavour takes home \u20ac50,000. Every vote counts exactly once: it is confirmed with an email code and checked on the server, and the result stays hidden until the campaign closes.\n\nVoting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. One codebase runs on both iOS and Android.\n\nThroughout the campaign we supported STËLZ with design, development and motion under one roof, with a milestone along the way: #1 in the App Store.",
     outcomes: [
       "Reached #1 in the App Store",
       "Live on iOS and Android from one codebase",

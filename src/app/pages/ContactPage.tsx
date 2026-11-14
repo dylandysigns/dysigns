@@ -8,6 +8,41 @@ import { Seo } from "../components/Seo";
 import { TurnstileWidget, TURNSTILE_ENABLED } from "../components/TurnstileWidget";
 import { getLocalizedContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
+import { Instagram, Send } from "lucide-react";
+
+/* Same pill button as the homepage contact band: hairline border, uppercase
+   tracked label, icon on the left and a light sweep on hover. */
+const PILL_CLASS =
+  "group relative overflow-hidden inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-full transition-all duration-300";
+const PILL_STYLE = {
+  fontSize: ".78rem",
+  fontWeight: 600,
+  letterSpacing: ".06em",
+  textTransform: "uppercase" as const,
+  color: "var(--page-fg)",
+  border: "1px solid rgba(var(--page-fg-rgb), .2)",
+  background: "rgba(var(--page-fg-rgb), 0)",
+};
+const pillOn = (el: HTMLElement) => {
+  el.style.borderColor = "rgba(var(--page-fg-rgb), .45)";
+  el.style.background = "rgba(var(--page-fg-rgb), .06)";
+};
+const pillOff = (el: HTMLElement) => {
+  el.style.borderColor = "rgba(var(--page-fg-rgb), .2)";
+  el.style.background = "rgba(var(--page-fg-rgb), 0)";
+};
+function PillSweep() {
+  return (
+    <span
+      aria-hidden
+      className="absolute inset-0 -translate-x-full group-hover:translate-x-full"
+      style={{
+        background: "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .1),transparent)",
+        transition: "transform .7s ease-out",
+      }}
+    />
+  );
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -263,36 +298,20 @@ export default function ContactPage() {
             href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-3 p-6 rounded-xl transition-all duration-300"
-            style={{
-              border: "1px solid rgba(var(--page-fg-rgb), .08)",
-              background: "rgba(var(--page-fg-rgb), .02)",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              opacity: 0,
-            }}
+            className={`${PILL_CLASS} !flex mx-auto w-fit`}
+            style={{ ...PILL_STYLE, opacity: 0 }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .18)";
-              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+              pillOn(e.currentTarget);
               cursor.set("link");
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor =
-                "rgba(var(--page-fg-rgb), .08)";
-              (e.currentTarget as HTMLElement).style.color =
-                "rgba(var(--page-fg-rgb), .55)";
+              pillOff(e.currentTarget);
               cursor.reset();
             }}
           >
-            <WhatsAppIcon size={18} />
-            <span
-              style={{
-                fontSize: "1rem",
-                fontWeight: 500,
-              }}
-            >
-              {t("contact.sendWhatsapp")}
-            </span>
+            <PillSweep />
+            <WhatsAppIcon size={16} />
+            {t("contact.sendWhatsapp")}
           </a>
 
           <div className="flex items-center gap-4 max-w-[420px] mx-auto">
@@ -426,9 +445,9 @@ export default function ContactPage() {
               type="submit"
               className="relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-full"
               style={{
-                border: "1.5px solid rgba(var(--page-fg-rgb), .25)",
+                border: "1px solid rgba(var(--page-fg-rgb), .2)",
                 background: "transparent",
-                padding: "15px 22px",
+                padding: "13px 28px",
                 isolation: "isolate",
               }}
               onMouseEnter={(e) => {
@@ -470,11 +489,16 @@ export default function ContactPage() {
                   color: "var(--page-fg)",
                   mixBlendMode: "difference",
                   fontFamily: "var(--font-brand)",
-                  fontSize: ".9rem",
+                  fontSize: ".78rem",
                   fontWeight: 600,
-                  letterSpacing: "-.01em",
+                  letterSpacing: ".06em",
+                  textTransform: "uppercase",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
                 }}
               >
+                <Send size={16} strokeWidth={1.75} />
                 {t("contact.form.submit")}
               </span>
             </button>
@@ -497,24 +521,21 @@ export default function ContactPage() {
                 <a
                   key={s.name}
                   href={s.url}
-                  className="transition-colors duration-300"
-                  style={{
-                    fontSize: ".78rem",
-                    fontWeight: 500,
-                    letterSpacing: ".06em",
-                    textTransform: "uppercase",
-                    color: "rgba(var(--page-fg-rgb), .55)",
-                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={PILL_CLASS}
+                  style={PILL_STYLE}
                   onMouseEnter={(e) => {
                     cursor.set("link");
-                    (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
+                    pillOn(e.currentTarget);
                   }}
                   onMouseLeave={(e) => {
                     cursor.reset();
-                    (e.currentTarget as HTMLElement).style.color =
-                      "rgba(var(--page-fg-rgb), .55)";
+                    pillOff(e.currentTarget);
                   }}
                 >
+                  <PillSweep />
+                  {/instagram/i.test(s.name) && <Instagram size={16} strokeWidth={1.75} />}
                   {s.name}
                 </a>
               ))}

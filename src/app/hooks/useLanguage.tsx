@@ -31,8 +31,10 @@ const dict: Record<string, Record<Lang, string>> = {
   "cursor.viewWork": { en: "VIEW WORK", nl: "BEKIJK WERK" },
   "cursor.open": { en: "OPEN", nl: "OPEN" },
   "cursor.back": { en: "BACK", nl: "TERUG" },
-  "cursor.email": { en: "EMAIL", nl: "EMAIL" },
-  "cursor.whatsapp": { en: "WHATSAPP", nl: "WHATSAPP" },
+  "cursor.email": { en: "SEND AN EMAIL", nl: "STUUR EEN E-MAIL" },
+  "cursor.whatsapp": { en: "SEND A WHATSAPP", nl: "STUUR EEN WHATSAPP" },
+  // Shown in the other language on purpose: it speaks to the visitor who wants to switch.
+  "cursor.translate": { en: "VERTAAL NAAR NEDERLANDS", nl: "TRANSLATE TO ENGLISH" },
   "cursor.drag": { en: "DRAG ME", nl: "SLEEP MIJ" },
   "cursor.play": { en: "PLAY", nl: "AFSPELEN" },
   "cursor.contact": { en: "CONTACT", nl: "CONTACT" },
@@ -42,7 +44,7 @@ const dict: Record<string, Record<Lang, string>> = {
   /* ── Hero ── */
   "hero.title": {
     en: "Designed to grow.",
-    nl: "Ontworpen om te groeien.",
+    nl: "Design dat meegroeit.",
   },
   "hero.headline.A": {
     en: "DYSIGNS is your creative partner for scaling brands and digital products, from startup to scale-up.",
@@ -357,6 +359,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
   "case.notFound": { en: "Project not found", nl: "Project niet gevonden" },
   "case.visit": { en: "VISIT", nl: "BEZOEK" },
   "case.download": { en: "DOWNLOAD", nl: "DOWNLOAD" },
+  "case.downloadApp": { en: "Download the app", nl: "Download de app" },
   "case.client": { en: "Client", nl: "Klant" },
   "case.services": { en: "Services", nl: "Diensten" },
   "case.year": { en: "Year", nl: "Jaar" },
@@ -519,8 +522,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Wij ontwierpen en bouwden de STËLZ app voor iOS en Android, van eerste schets tot nummer 1 in de App Store, met als start een landelijke smaakverkiezing.",
   },
   "project.stelz-app.overview": {
-    en: "STËLZ asked us to build their own app, and we designed and developed it from the first sketch to the App Store and Google Play. The first campaign in the app is Strijd voor je smaak 2026: fans pick their favourite from six flavours, and the maker of the winning flavour takes home \u20ac50,000. Every vote has to count exactly once, so each one is confirmed with an email code and checked on the server before it is stored, while the result stays hidden until the campaign closes. Voting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. Push notifications keep fans in the loop on new flavours, events and campaigns. One codebase runs on both iOS and Android, built to grow with STËLZ from a campaign app into a full brand app. Design, development and motion under one roof, from the first screen to the store listing, where the app reached #1 in the App Store.",
-    nl: "STËLZ vroeg ons om hun eigen app te bouwen, en wij ontwierpen en ontwikkelden die van de eerste schets tot in de App Store en Google Play. De eerste campagne in de app is Strijd voor je smaak 2026: fans kiezen hun favoriet uit zes smaken, en de maker van de winnende smaak wint \u20ac50.000. Elke stem moet precies één keer tellen, dus wordt iedere stem bevestigd met een e-mailcode en op de server gecontroleerd voordat hij wordt opgeslagen, terwijl de uitslag verborgen blijft tot de campagne sluit. Stemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Met pushmeldingen blijven fans op de hoogte van nieuwe smaken, events en acties. Eén codebase draait op zowel iOS als Android, gebouwd om met STËLZ mee te groeien van campagne-app naar volwaardige merkapp. Design, development en motion onder één dak, van het eerste scherm tot de store-vermelding, waar de app nummer 1 werd in de App Store.",
+    en: "STËLZ asked us to design and build their own app for Strijd voor je smaak 2026, a campaign in three phases.\n\nPhase 1 started on Instagram: through a voting flow, 125,000 people cast their vote, and six flavours came out of it.\n\nPhase 2: those six flavours were sold exclusively at Albert Heijn, the Dutch supermarket, and in the STËLZ app, which we designed and built from the first sketch to the App Store and Google Play.\n\nPhase 3: in the app, fans pick their favourite, and the maker of the winning flavour takes home \u20ac50,000. Every vote counts exactly once: it is confirmed with an email code and checked on the server, and the result stays hidden until the campaign closes.\n\nVoting should feel like a moment, so motion sits at the heart of the design: cans you swipe through, springy feedback on every tap and a thank-you screen that celebrates your choice. One codebase runs on both iOS and Android.\n\nThroughout the campaign we supported STËLZ with design, development and motion under one roof, with a milestone along the way: #1 in the App Store.",
+    nl: "STËLZ vroeg ons om hun eigen app te ontwerpen en te bouwen voor Strijd voor je smaak 2026, een campagne in drie fases.\n\nFase 1 begon op Instagram: via een stemflow brachten 125.000 mensen hun stem uit, en daaruit kwamen zes smaken.\n\nFase 2: die zes smaken waren exclusief te koop bij Albert Heijn en in de STËLZ app, die wij ontwierpen en bouwden van de eerste schets tot in de App Store en Google Play.\n\nFase 3: in de app kiezen fans hun favoriet, en de maker van de winnende smaak wint \u20ac50.000. Elke stem telt precies één keer: hij wordt bevestigd met een e-mailcode en op de server gecontroleerd, en de uitslag blijft verborgen tot de campagne sluit.\n\nStemmen moet voelen als een moment, daarom staat beweging centraal in het ontwerp: blikjes waar je doorheen swipet, verende feedback bij elke tik en een bedankscherm dat je keuze viert. Eén codebase draait op zowel iOS als Android.\n\nTijdens de hele campagne ondersteunden we STËLZ met design, development en motion onder één dak, met onderweg een mijlpaal: nummer 1 in de App Store.",
   },
   "project.stelz-app.alt.cover": {
     en: "STËLZ app case by DYSIGNS",
