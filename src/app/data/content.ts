@@ -103,7 +103,7 @@ export const siteContent = {
 
   vision: {
     title: "Create better DYSIGNS",
-    text: "We believe great design sits at the intersection of strategy and craft. 8+ years of building brands and social media systems that actually work \u2014 no fluff, no filler, just work that moves the needle.",
+    text: "We believe great design sits at the intersection of strategy and craft. 8+ years of building brands and social media systems that actually work. No fluff, no filler, just work that moves the needle.",
     image:
       "https://images.unsplash.com/photo-1485025798926-cde0f0d24cca?crop=entropy&cs=tinysrgb&fit=max&auto=format&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGRhcmslMjBtb29keSUyMG1pbmltYWx8ZW58MXx8fHwxNzcxNTAzMzc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
@@ -113,7 +113,7 @@ export const siteContent = {
       id: "discover",
       title: "Discover",
       description:
-        "We immerse ourselves in your world \u2014 stakeholder interviews, competitive analysis, user insights.",
+        "We immerse ourselves in your world: stakeholder interviews, competitive analysis, user insights.",
     },
     {
       id: "define",
@@ -151,7 +151,7 @@ export const siteContent = {
     {
       title: "Brand Identity",
       description:
-        "From strategy to visual identity \u2014 we help brands find their voice and make it impossible to ignore.",
+        "From strategy to visual identity, we help brands find their voice and make it impossible to ignore.",
     },
     {
       title: "Web Design",

@@ -65,4 +65,4 @@ No. Shopify Plus is Shopify's enterprise tier: higher checkout limits, more auto
 
 ### What's the realistic timeline difference between the two?
 
-A modified Shopify theme typically ships in 4–8 weeks. A fully custom or headless build is usually 3–6 months, because you're building storefront logic that Shopify would otherwise hand you for free.
+A modified Shopify theme typically ships in 4-8 weeks. A fully custom or headless build is usually 3-6 months, because you're building storefront logic that Shopify would otherwise hand you for free.

@@ -42,14 +42,14 @@ const guide: GuideSection[] = [
         current:
           'A: "DYSIGNS. Where ideas turn into pull."\nB: "DYSIGNS. Start with intent. End with impact."\nC: "DYSIGNS. The beginning of your next standard."\nD: "DYSIGNS. From first scroll to final detail."\nE: "DYSIGNS. Where brands find their shape."\nF: "DYSIGNS. Built to be remembered."',
         howToChange:
-          'Open content.ts. Find the line:\n\nexport const activeHeadline: HeadlineKey = "A";\n\nChange "A" to any letter B\u2013F. Save. Done.',
+          'Open content.ts. Find the line:\n\nexport const activeHeadline: HeadlineKey = "A";\n\nChange "A" to any letter B to F. Save. Done.',
         file: "/src/app/data/content.ts  \u2192  line 16",
       },
       {
         field: "Headline (write your own)",
         current: "(see above)",
         howToChange:
-          'Step 1 \u2014 content.ts:\nAdd a new option to heroOptions:\n\nheroOptions.G = "DYSIGNS. Your custom headline.";\n\nThen set:\nexport const activeHeadline: HeadlineKey = "G";\n\nStep 2 \u2014 useLanguage.tsx:\nAdd the i18n key inside the dict object:\n\n"hero.headline.G": {\n  en: "DYSIGNS. Your custom headline.",\n  nl: "DYSIGNS. Jouw aangepaste kop.",\n},',
+          'Step 1: content.ts:\nAdd a new option to heroOptions:\n\nheroOptions.G = "DYSIGNS. Your custom headline.";\n\nThen set:\nexport const activeHeadline: HeadlineKey = "G";\n\nStep 2: useLanguage.tsx:\nAdd the i18n key inside the dict object:\n\n"hero.headline.G": {\n  en: "DYSIGNS. Your custom headline.",\n  nl: "DYSIGNS. Jouw aangepaste kop.",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
         important:
           "Always update BOTH files. content.ts is the English default; useLanguage.tsx holds both EN and NL.",
@@ -59,7 +59,7 @@ const guide: GuideSection[] = [
         current:
           '"We grow brands through social media, web design, and digital experiences that pull people in."',
         howToChange:
-          'Step 1 \u2014 content.ts line 21:\nChange the sub value:\n\nsub: "Your new subtitle here.",\n\nStep 2 \u2014 useLanguage.tsx, key "hero.sub":\n\n"hero.sub": {\n  en: "Your new subtitle here.",\n  nl: "Jouw nieuwe ondertitel hier.",\n},',
+          'Step 1: content.ts line 21:\nChange the sub value:\n\nsub: "Your new subtitle here.",\n\nStep 2: useLanguage.tsx, key "hero.sub":\n\n"hero.sub": {\n  en: "Your new subtitle here.",\n  nl: "Jouw nieuwe ondertitel hier.",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
       },
       {
@@ -80,7 +80,7 @@ const guide: GuideSection[] = [
         field: "Portrait photo",
         current: "Unsplash photo (dramatic B&W portrait)",
         howToChange:
-          "content.ts line 24\u201325:\nReplace the URL string in hero.portrait with your own image URL.\n\nportrait: \"https://your-cdn.com/your-portrait.jpg\",\n\nRecommended: portrait orientation, minimum 1080px wide, dark/moody aesthetic.",
+          "content.ts line 24-25:\nReplace the URL string in hero.portrait with your own image URL.\n\nportrait: \"https://your-cdn.com/your-portrait.jpg\",\n\nRecommended: portrait orientation, minimum 1080px wide, dark/moody aesthetic.",
         file: "/src/app/data/content.ts",
       },
       {
@@ -94,7 +94,7 @@ const guide: GuideSection[] = [
         field: "Skill chips (4 floating labels)",
         current: "UX / UI \u2022 Brand Identity \u2022 Web Design \u2022 Social Media",
         howToChange:
-          'useLanguage.tsx keys:\n\n"hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },\n"hero.chip.brand": { en: "Brand Identity", nl: "Merkidentiteit" },\n"hero.chip.web": { en: "Web Design", nl: "Webdesign" },\n"hero.chip.product": { en: "Social Media", nl: "Social media" },\n\nChange the text values. Keep them short (1\u20133 words).',
+          'useLanguage.tsx keys:\n\n"hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },\n"hero.chip.brand": { en: "Brand Identity", nl: "Merkidentiteit" },\n"hero.chip.web": { en: "Web Design", nl: "Webdesign" },\n"hero.chip.product": { en: "Social Media", nl: "Social media" },\n\nChange the text values. Keep them short (1-3 words).',
         file: "/src/app/hooks/useLanguage.tsx",
       },
     ],
@@ -113,7 +113,7 @@ const guide: GuideSection[] = [
         field: "Sentence text",
         current: '"We are DYSIGNS."',
         howToChange:
-          'useLanguage.tsx key "sentence":\n\n"sentence": {\n  en: "Design with intention.",\n  nl: "Ontwerpen met intentie.",\n},\n\nKeep it short (3\u20137 words). Long sentences break the reveal effect.',
+          'useLanguage.tsx key "sentence":\n\n"sentence": {\n  en: "Design with intention.",\n  nl: "Ontwerpen met intentie.",\n},\n\nKeep it short (3-7 words). Long sentences break the reveal effect.',
         file: "/src/app/hooks/useLanguage.tsx",
       },
     ],
@@ -213,7 +213,7 @@ const guide: GuideSection[] = [
         field: "Grid tile images (8 surrounding thumbnails)",
         current: "Each project's own `thumbnail` field, picked by slug",
         howToChange:
-          'The grid no longer has its own separate image list \u2014 each tile always shows the linked project\u2019s own `thumbnail`, so a tile can never show a different project\u2019s photo than the one it links to. To change which 9 projects appear in the grid (or their order), edit the ZOOM_GRID_SLUGS array at the top of ZoomToGrid.tsx. To change a tile\u2019s image, edit that project\u2019s `thumbnail` in projects.ts instead.',
+          'The grid no longer has its own separate image list: each tile always shows the linked project\u2019s own `thumbnail`, so a tile can never show a different project\u2019s photo than the one it links to. To change which 9 projects appear in the grid (or their order), edit the ZOOM_GRID_SLUGS array at the top of ZoomToGrid.tsx. To change a tile\u2019s image, edit that project\u2019s `thumbnail` in projects.ts instead.',
         file: "/src/app/components/home/ZoomToGrid.tsx (slug list) and /src/app/data/projects.ts (thumbnails)",
       },
       {
@@ -248,7 +248,7 @@ const guide: GuideSection[] = [
           "Stripe, Notion, Linear, Vercel, Figma, Webflow, Framer, Arc",
         howToChange:
           'content.ts, siteContent.trustedBy[]:\n\ntrustedBy: [\n  "ClientA",\n  "ClientB",\n  "ClientC",\n  "ClientD",\n],\n\nThese names are only used as aria-labels for accessibility. The actual logos are SVG components.',
-        file: "/src/app/data/content.ts  \u2192  line 28\u201337",
+        file: "/src/app/data/content.ts  \u2192  line 28-37",
       },
       {
         field: "Replace logos with real client SVGs",
@@ -315,7 +315,7 @@ const guide: GuideSection[] = [
         current:
           "Discover \u2022 Define \u2022 Design \u2022 Prototype \u2022 Build \u2022 Launch (each with a description)",
         howToChange:
-          'Step 1 \u2014 content.ts, siteContent.designProcess[]:\nEdit the title and description of each step:\n\n{\n  id: "discover",\n  title: "Research",\n  description: "Your new description...",\n},\n\nStep 2 \u2014 useLanguage.tsx, keys timeline.0.title through timeline.5.desc:\n\n"timeline.0.title": { en: "Research", nl: "Onderzoek" },\n"timeline.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},\n\nThe index numbers (0\u20135) correspond to the array position.',
+          'Step 1: content.ts, siteContent.designProcess[]:\nEdit the title and description of each step:\n\n{\n  id: "discover",\n  title: "Research",\n  description: "Your new description...",\n},\n\nStep 2: useLanguage.tsx, keys timeline.0.title through timeline.5.desc:\n\n"timeline.0.title": { en: "Research", nl: "Onderzoek" },\n"timeline.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},\n\nThe index numbers (0-5) correspond to the array position.',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
         important:
           "If you add or remove steps, update both files and adjust the index numbers in useLanguage.tsx.",
@@ -344,7 +344,7 @@ const guide: GuideSection[] = [
         current:
           "Brand Identity \u2022 Web Design \u2022 Social Media Management \u2022 Creative Direction",
         howToChange:
-          'Step 1 \u2014 content.ts, siteContent.services[]:\n\n{\n  title: "Motion Design",\n  description: "Your new description...",\n},\n\nStep 2 \u2014 useLanguage.tsx, keys services.0.title through services.3.desc:\n\n"services.0.title": { en: "Motion Design", nl: "Motion Design" },\n"services.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},',
+          'Step 1: content.ts, siteContent.services[]:\n\n{\n  title: "Motion Design",\n  description: "Your new description...",\n},\n\nStep 2: useLanguage.tsx, keys services.0.title through services.3.desc:\n\n"services.0.title": { en: "Motion Design", nl: "Motion Design" },\n"services.0.desc": {\n  en: "Your new description...",\n  nl: "Jouw nieuwe beschrijving...",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
       },
       {
@@ -378,7 +378,7 @@ const guide: GuideSection[] = [
         current: "id \u2022 quote \u2022 name \u2022 role \u2022 company \u2022 avatar",
         howToChange:
           'content.ts, siteContent.testimonials[]:\n\n{\n  id: "t1",                                    // unique ID\n  quote: "English fallback quote text.",        // shown if i18n key is missing\n  name: "Sarah Chen",                          // person\u2019s name\n  role: "CEO",                                  // their title\n  company: "Nova Finance",                     // their company\n  avatar: "https://images.unsplash.com/...",   // headshot URL\n}',
-        file: "/src/app/data/content.ts  \u2192  line 171\u2013252",
+        file: "/src/app/data/content.ts  \u2192  line 171-252",
         important:
           'The DISPLAYED quote text comes from useLanguage.tsx, NOT from this quote field. This quote is only a fallback.',
       },
@@ -405,9 +405,9 @@ const guide: GuideSection[] = [
       },
       {
         field: "Add a new testimonial",
-        current: "8 testimonials (t1\u2013t8)",
+        current: "8 testimonials (t1 to t8)",
         howToChange:
-          'Step 1 \u2014 content.ts:\nAdd to siteContent.testimonials[]:\n\n{\n  id: "t9",\n  quote: "English fallback.",\n  name: "New Person",\n  role: "Director",\n  company: "New Company",\n  avatar: "https://...",\n},\n\nStep 2 \u2014 useLanguage.tsx:\nAdd the quote key:\n\n"testimonial.t9.quote": {\n  en: "The real English quote.",\n  nl: "De echte Nederlandse quote.",\n},',
+          'Step 1: content.ts:\nAdd to siteContent.testimonials[]:\n\n{\n  id: "t9",\n  quote: "English fallback.",\n  name: "New Person",\n  role: "Director",\n  company: "New Company",\n  avatar: "https://...",\n},\n\nStep 2: useLanguage.tsx:\nAdd the quote key:\n\n"testimonial.t9.quote": {\n  en: "The real English quote.",\n  nl: "De echte Nederlandse quote.",\n},',
         file: "/src/app/data/content.ts + /src/app/hooks/useLanguage.tsx",
       },
       {
@@ -446,7 +446,7 @@ const guide: GuideSection[] = [
       },
       {
         field: "WhatsApp number",
-        current: '"+31612345678"  (PLACEHOLDER \u2014 replace before launch!)',
+        current: '"+31612345678"  (PLACEHOLDER, replace before launch!)',
         howToChange:
           'content.ts, siteContent.contact.whatsapp:\n\nwhatsapp: "+31687654321",\n\nMust include country code. Used for wa.me links across the site.',
         file: "/src/app/data/content.ts  \u2192  line 258",
@@ -486,7 +486,7 @@ const guide: GuideSection[] = [
           'Dribbble (#) \u2022 Behance (#) \u2022 LinkedIn (#) \u2022 Twitter / X (#) \u2022 Instagram (#)\n\nAll URLs are currently "#" (placeholder)',
         howToChange:
           'content.ts, siteContent.socials[]:\n\nsocials: [\n  { name: "Dribbble", url: "https://dribbble.com/dysigns" },\n  { name: "Behance", url: "https://behance.net/dysigns" },\n  { name: "LinkedIn", url: "https://linkedin.com/company/dysigns" },\n  { name: "Twitter / X", url: "https://x.com/dysigns" },\n  { name: "Instagram", url: "https://instagram.com/dysigns" },\n],\n\nTo remove a platform, delete its { ... } from the array.\nTo add one, add a new { name, url } object.',
-        file: "/src/app/data/content.ts  \u2192  line 261\u2013267",
+        file: "/src/app/data/content.ts  \u2192  line 261-267",
         important:
           "Replace ALL # placeholders with real URLs before launch.",
       },
@@ -656,7 +656,7 @@ const guide: GuideSection[] = [
         current:
           "HOME \u2022 VIEW \u2022 VIEW PROJECT \u2022 VIEW WORK \u2022 OPEN \u2022 BACK \u2022 EMAIL \u2022 WHATSAPP \u2022 DRAG \u2022 PLAY \u2022 CONTACT \u2022 PREVIOUS \u2022 NEXT",
         howToChange:
-          'useLanguage.tsx, all keys starting with "cursor.":\n\n"cursor.view": { en: "VIEW", nl: "BEKIJK" },\n"cursor.drag": { en: "DRAG", nl: "SLEEP" },\n"cursor.email": { en: "EMAIL", nl: "E-MAIL" },\netc.\n\nKeep all labels UPPERCASE and short (1\u20132 words max).',
+          'useLanguage.tsx, all keys starting with "cursor.":\n\n"cursor.view": { en: "VIEW", nl: "BEKIJK" },\n"cursor.drag": { en: "DRAG", nl: "SLEEP" },\n"cursor.email": { en: "EMAIL", nl: "E-MAIL" },\netc.\n\nKeep all labels UPPERCASE and short (1-2 words max).',
         file: "/src/app/hooks/useLanguage.tsx",
       },
     ],
@@ -667,7 +667,7 @@ const guide: GuideSection[] = [
      ────────────────────────────────────────────────────────────────────── */
   {
     id: "images",
-    title: "Images \u2014 General Rules",
+    title: "Images: General Rules",
     description:
       "How to handle all images across the site. Every image is a URL string in the data files.",
     fields: [
@@ -809,7 +809,7 @@ export default function DocsPage() {
               marginBottom: 12,
             }}
           >
-            DYSIGNS \u2014 Internal Reference
+            DYSIGNS | Internal Reference
           </span>
           <h1
             style={{
@@ -1159,7 +1159,7 @@ export default function DocsPage() {
                   {
                     rule: "Formatting",
                     detail:
-                      "Use em dashes (\u2014) not hyphens. Curly quotes where possible. Short paragraphs (2\u20133 sentences).",
+                      "Never use em dashes or en dashes. Rewrite with a comma, period or colon. Curly quotes where possible. Short paragraphs (2-3 sentences).",
                   },
                 ].map((r) => (
                   <div
@@ -1198,7 +1198,7 @@ export default function DocsPage() {
                   fontFamily: "var(--font-brand)",
                 }}
               >
-                After Every Edit \u2014 Checklist
+                After Every Edit: Checklist
               </h2>
               <ol
                 className="flex flex-col gap-2"
@@ -1211,7 +1211,7 @@ export default function DocsPage() {
               >
                 <li>Save the file(s).</li>
                 <li>
-                  Check the dev server \u2014 Vite HMR shows changes instantly.
+                  Check the dev server. Vite HMR shows changes instantly.
                 </li>
                 <li>
                   If you changed text: update the matching key in useLanguage.tsx for EN + NL.
@@ -1221,7 +1221,7 @@ export default function DocsPage() {
                 </li>
                 <li>Verify any new image URLs load (no broken images).</li>
                 <li>
-                  Test on mobile \u2014 especially long quotes and project
+                  Test on mobile, especially long quotes and project
                   titles.
                 </li>
                 <li>
@@ -1248,7 +1248,7 @@ export default function DocsPage() {
                   fontFamily: "var(--font-brand)",
                 }}
               >
-                Before Going Live \u2014 Replace These Placeholders
+                Before Going Live: Replace These Placeholders
               </h2>
               <ul
                 className="flex flex-col gap-2"
@@ -1260,28 +1260,28 @@ export default function DocsPage() {
                 }}
               >
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>WhatsApp number</strong>{" "}
-                  \u2014 content.ts line 258 \u2014 currently "+31612345678" (placeholder).
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>WhatsApp number</strong>:{" "}
+                  content.ts line 258, currently "+31612345678" (placeholder).
                 </li>
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Social links</strong>{" "}
-                  \u2014 content.ts line 261\u2013267 \u2014 all URLs are "#" (placeholder).
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Social links</strong>:{" "}
+                  content.ts line 261-267, all URLs are "#" (placeholder).
                 </li>
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>All Unsplash images</strong>{" "}
-                  \u2014 replace with real project photos, real team headshots, and real client testimonial portraits.
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>All Unsplash images</strong>:{" "}
+                  replace with real project photos, real team headshots, and real client testimonial portraits.
                 </li>
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Partner logos</strong>{" "}
-                  \u2014 Partners.tsx \u2014 replace placeholder SVGs with real client logos.
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Partner logos</strong>:{" "}
+                  Partners.tsx, replace placeholder SVGs with real client logos.
                 </li>
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Testimonial people</strong>{" "}
-                  \u2014 content.ts \u2014 replace placeholder names/roles/companies with real clients (with permission).
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Testimonial people</strong>:{" "}
+                  content.ts, replace placeholder names/roles/companies with real clients (with permission).
                 </li>
                 <li>
-                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Project case studies</strong>{" "}
-                  \u2014 projects.ts \u2014 replace placeholder projects with real work.
+                  <strong style={{ color: "rgba(255,255,255,.8)" }}>Project case studies</strong>:{" "}
+                  projects.ts, replace placeholder projects with real work.
                 </li>
               </ul>
             </div>

@@ -389,20 +389,20 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "DYSIGNS en Fijne Gasten werken al langere tijd sterk samen met korte lijnen, snelle opleveringen en consistente kwaliteit.",
   },
   "testimonial.t4.quote": {
-    en: "The website they designed didn\u2019t just look incredible — it transformed how our customers experience our brand.",
-    nl: "De website die zij ontwierpen zag er niet alleen ongelooflijk uit — het transformeerde hoe onze klanten ons merk ervaren.",
+    en: "The website they designed didn\u2019t just look incredible. It transformed how our customers experience our brand.",
+    nl: "De website die zij ontwierpen zag er niet alleen ongelooflijk uit. Het transformeerde hoe onze klanten ons merk ervaren.",
   },
   "testimonial.t5.quote": {
-    en: "A refreshing and imaginative team that consistently delivers exceptional results — highly recommended for any project.",
-    nl: "Een verfrissend en creatief team dat consequent uitzonderlijke resultaten levert — sterk aanbevolen voor elk project.",
+    en: "A refreshing and imaginative team that consistently delivers exceptional results. Highly recommended for any project.",
+    nl: "Een verfrissend en creatief team dat consequent uitzonderlijke resultaten levert. Sterk aanbevolen voor elk project.",
   },
   "testimonial.t6.quote": {
-    en: "Their artistic flair and strategic approach resulted in remarkable outcomes — a reliable creative partner we trust completely.",
-    nl: "Hun artistieke flair en strategische aanpak resulteerden in opmerkelijke resultaten — een betrouwbare creatieve partner die we volledig vertrouwen.",
+    en: "Their artistic flair and strategic approach resulted in remarkable outcomes: a reliable creative partner we trust completely.",
+    nl: "Hun artistieke flair en strategische aanpak resulteerden in opmerkelijke resultaten: een betrouwbare creatieve partner die we volledig vertrouwen.",
   },
   "testimonial.t7.quote": {
-    en: "From concept to execution, their creativity knows no bounds — a game-changer for our brand\u2019s digital presence.",
-    nl: "Van concept tot uitvoering kent hun creativiteit geen grenzen — een gamechanger voor de digitale aanwezigheid van ons merk.",
+    en: "From concept to execution, their creativity knows no bounds. A game-changer for our brand\u2019s digital presence.",
+    nl: "Van concept tot uitvoering kent hun creativiteit geen grenzen. Een gamechanger voor de digitale aanwezigheid van ons merk.",
   },
   "testimonial.t8.quote": {
     en: "Best collaboration experience. Clear communication, exceptional craft, and always delivered ahead of schedule.",
@@ -611,7 +611,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "PowerMobile",
   },
   "project.powermobile.overview": {
-    en: "The Challenge\n\nFor enforcement officers and other field workers in the VTH sector (Vergunning, Toezicht en Handhaving), the real work happens on the street. Yet these government professionals were using an outdated app that made case management in the field unnecessarily slow and cumbersome. There was an urgent need for a fast, reliable system that supported their work rather than slowing it down.\n\nThe Solution\n\nTo tackle this, I designed and developed PowerMobile entirely from scratch. As lead for both design and technical development, I built a modern, case-oriented system that makes permit and case management directly accessible in the field. The app features an intuitive interface for managing cases, consulting interactive maps, and tracking workflows—fully responsive across all devices.\n\nThe Result\n\nEvery part of PowerMobile was shaped around the day-to-day realities of government professionals. The impact was immediate: user satisfaction rose from 15% with the old system to over 40% with the new app.",
+    en: "The Challenge\n\nFor enforcement officers and other field workers in the VTH sector (Vergunning, Toezicht en Handhaving), the real work happens on the street. Yet these government professionals were using an outdated app that made case management in the field unnecessarily slow and cumbersome. There was an urgent need for a fast, reliable system that supported their work rather than slowing it down.\n\nThe Solution\n\nTo tackle this, I designed and developed PowerMobile entirely from scratch. As lead for both design and technical development, I built a modern, case-oriented system that makes permit and case management directly accessible in the field. The app features an intuitive interface for managing cases, consulting interactive maps, and tracking workflows, fully responsive across all devices.\n\nThe Result\n\nEvery part of PowerMobile was shaped around the day-to-day realities of government professionals. The impact was immediate: user satisfaction rose from 15% with the old system to over 40% with the new app.",
     nl: "De Uitdaging\n\nVoor handhavers en andere buitendienstmedewerkers in de VTH-sector (Vergunning, Toezicht en Handhaving) gebeurt het echte werk op straat. Toch werkten deze overheidsprofessionals met een verouderde app, waardoor het beheren van zaken in de praktijk onnodig traag en omslachtig was. Er was dringend behoefte aan een snel en betrouwbaar systeem dat het werk in het veld ondersteunde in plaats van vertraagde.\n\nDe Oplossing\n\nOm dit probleem aan te pakken, heb ik PowerMobile volledig van scratch af aan ontworpen en ontwikkeld. Als lead voor zowel het design als de technische realisatie, heb ik een modern, zaakgericht systeem neergezet dat vergunningen en zaakbeheer direct toegankelijk maakt in het veld. De app heeft een intuïtieve interface voor het beheren van zaken, het raadplegen van interactieve kaarten en het volgen van workflows. Bovendien is de applicatie volledig responsive gebouwd, zodat deze soepel werkt op ieder apparaat.\n\nHet Resultaat\n\nElk onderdeel van PowerMobile is ontworpen vanuit de dagelijkse praktijk en de specifieke behoeften van medewerkers bij overheidsinstanties. Dit heeft geleid tot een efficiënter werkproces en een veel prettigere gebruikerservaring op straat. Uit de enquête na de lancering bleek de impact direct: de gebruikerstevredenheid steeg van 15% bij het oude systeem naar ruim 40% voor de nieuwe app.",
   },
   "project.powermobile.outcome.0": {
@@ -619,8 +619,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Gebruikerstevredenheid steeg van 15% naar 40% na lancering",
   },
   "project.powermobile.outcome.1": {
-    en: "Full app built from scratch — design through development",
-    nl: "Volledige app from scratch gebouwd — van ontwerp tot ontwikkeling",
+    en: "Full app built from scratch, from design through development",
+    nl: "Volledige app from scratch gebouwd, van ontwerp tot ontwikkeling",
   },
   "project.powermobile.outcome.2": {
     en: "Interactive map integration for real-time field case management",
