@@ -26,3 +26,15 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Lighter Effra for long reading text (the case overview). Kept as its
+   own family so the site-wide 100-500 -> SemiBold mapping above stays
+   as it is; only text that asks for "Effra Text" gets the Regular cut,
+   and the file is only downloaded on pages that use it. */
+@font-face {
+  font-family: "Effra Text";
+  src: url("/fonts/effra-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

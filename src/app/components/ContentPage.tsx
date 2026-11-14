@@ -8,7 +8,7 @@ import type { ContentEntry } from "../content/loadContent";
 /**
  * ContentPage — shared shell for markdown-driven pages (fase 2/3/4).
  * Reuses the site's existing typography tokens (--page-fg, --page-fg-rgb,
- * Inter / Instrument Serif) — no new visual language introduced.
+ * Inter) — no new visual language introduced.
  * Renders <Seo> from the entry's own frontmatter (title/description),
  * so every page using this shell automatically gets fase 3 head values,
  * plus a BreadcrumbList schema built from the same breadcrumb items
@@ -103,9 +103,8 @@ export function ContentPage({
           <p
             className="mt-6"
             style={{
-              fontFamily: "'Instrument Serif',serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-              fontStyle: "italic",
               lineHeight: 1.75,
               color: "rgba(var(--page-fg-rgb), .7)",
             }}

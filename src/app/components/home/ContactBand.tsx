@@ -117,9 +117,8 @@ export function ContactBand() {
       <p
         className="mt-5 mx-auto max-w-md"
         style={{
-          fontFamily: "'Instrument Serif',serif",
+          fontFamily: "var(--font-brand)",
           fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-          fontStyle: "italic",
           color: "rgba(var(--page-fg-rgb), .6)",
           lineHeight: 1.6,
         }}

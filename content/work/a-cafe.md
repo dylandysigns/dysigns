@@ -6,7 +6,7 @@ slug: "a-cafe"
 client: "A/Café"
 services: ""
 image: "placeholder"
-imageAlt: "TODO_DYLAN: A/Café self-ordering kiosk app — replace with a real screen once photography exists"
+imageAlt: "TODO_DYLAN: A/Café self-ordering kiosk app. Replace with a real screen once photography exists"
 imageWidth: "960"
 imageHeight: "1200"
 answerBlock: |

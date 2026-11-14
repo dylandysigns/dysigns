@@ -46,7 +46,7 @@ function emailShell({ preheader, heading, bodyHtml }) {
           <tr>
             <td style="padding:28px 44px 40px 44px;">
               <p style="margin:0 0 8px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:12px;color:#8a8a8a;">DYSIGNS, Almere, Netherlands</p>
-              <p style="margin:0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:12px;color:#8a8a8a;">KVK: 83710418 &middot; BTW: NL003861601B85 &middot; <a href="${SITE_URL}/privacy" style="color:#8a8a8a;">Privacy policy</a></p>
+              <p style="margin:0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:12px;color:#8a8a8a;">KVK: 83710418 | BTW: NL003861601B85 | <a href="${SITE_URL}/privacy" style="color:#8a8a8a;">Privacy policy</a></p>
             </td>
           </tr>
         </table>
@@ -79,7 +79,7 @@ function confirmEmail(message) {
       <p style="margin:0 0 24px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.6;color:#cccccc;">Hi,</p>
       <p style="margin:0 0 24px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.6;color:#cccccc;">Thanks for reaching out. We've received your message and will get back to you shortly.</p>
       <div style="background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:24px;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.7;color:#ffffff;margin-bottom:28px;">${safeMessage}</div>
-      <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:17px;color:#ffffff;">Dylan, DYSIGNS</p>
+      <p style="margin:0;font-family:Effra,Arial,Helvetica,sans-serif;font-size:17px;color:#ffffff;">Dylan, DYSIGNS</p>
     `,
   });
 }

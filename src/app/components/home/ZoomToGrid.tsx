@@ -369,9 +369,8 @@ export function ZoomToGrid() {
                 <span
                   ref={headline2Ref}
                   style={{
-                    fontFamily: "'Instrument Serif',serif",
+                    fontFamily: "var(--font-brand)",
                     fontSize: "clamp(.8rem,1.5vw,1.1rem)",
-                    fontStyle: "italic",
                     color: "rgba(var(--page-fg-rgb), .5)",
                     marginTop: 8,
                     opacity: 0,

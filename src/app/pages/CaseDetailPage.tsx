@@ -9,6 +9,7 @@ import { toLangPath, useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProject } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
 import { LazyVideo } from "../components/LazyVideo";
+import { StelzCan360 } from "../components/StelzCan360";
 import { SITE_URL } from "../seo/meta";
 import { breadcrumbListSchema, creativeWorkSchema } from "../seo/schema";
 
@@ -678,7 +679,7 @@ export default function CaseDetailPage() {
               margin: 0,
             }}
           >
-            {project.category} &middot; {project.year}
+            {project.category} | {project.year}
           </p>
         </div>
       </section>
@@ -690,8 +691,8 @@ export default function CaseDetailPage() {
               style={{
                 margin: "0 0 12px",
                 fontSize: ".7rem",
-                fontWeight: 500,
-                letterSpacing: ".16em",
+                fontWeight: 600,
+                letterSpacing: ".06em",
                 textTransform: "uppercase",
                 color: "rgba(var(--page-fg-rgb), .55)",
               }}
@@ -701,9 +702,9 @@ export default function CaseDetailPage() {
             <p
               ref={overviewRef}
               style={{
-                fontFamily: "'Instrument Serif',serif",
+                fontFamily: '"Effra Text", var(--font-brand)',
+                fontWeight: 400,
                 fontSize: "clamp(1.05rem,2vw,1.4rem)",
-                fontStyle: "italic",
                 lineHeight: 1.75,
                 color: "rgba(var(--page-fg-rgb), .72)",
                 marginBottom: 64,
@@ -844,7 +845,10 @@ export default function CaseDetailPage() {
                 border: "1px solid rgba(var(--page-fg-rgb), .06)",
               }}
             >
-              <div className={`${project.galleryWide?.includes(i) ? "aspect-[2/1]" : "aspect-[16/10]"} overflow-hidden`}>
+              <div className={`${project.galleryEmbeds?.[i] ? "aspect-[4/5] md:aspect-[2/1]" : project.galleryWide?.includes(i) ? "aspect-[2/1]" : "aspect-[16/10]"} overflow-hidden`}>
+                {project.galleryEmbeds?.[i] === "stelz-can-360" ? (
+                  <StelzCan360 alt={project.galleryAlt?.[i] ?? project.title} />
+                ) : (
                 <img
                   src={img}
                   alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
@@ -857,7 +861,17 @@ export default function CaseDetailPage() {
                   }}
                   loading="lazy"
                 />
+                )}
               </div>
+              {project.galleryLinks?.[i] && (
+                <a
+                  href={project.galleryLinks[i]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.galleryAlt?.[i] ?? project.title}. ${t("case.galleryLink")}`}
+                  className="absolute inset-0 z-10"
+                />
+              )}
               <svg
                 className="absolute top-3 left-3 w-6 h-6 pointer-events-none"
                 viewBox="0 0 24 24"

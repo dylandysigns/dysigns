@@ -223,7 +223,7 @@ export function Footer() {
               fontVariantNumeric: "tabular-nums",
             }}
           >
-            KVK: 83710418 · BTW: NL003861601B85
+            KVK: 83710418 | BTW: NL003861601B85
           </p>
           <TransitionLink
             to="/privacy"

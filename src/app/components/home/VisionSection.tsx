@@ -152,9 +152,8 @@ export function VisionSection() {
             ref={textRef}
             className="mt-5"
             style={{
-              fontFamily: "'Instrument Serif',serif",
+              fontFamily: "var(--font-brand)",
               fontSize: "clamp(.95rem,1.3vw,1.1rem)",
-              fontStyle: "italic",
               lineHeight: 1.7,
               color: "rgba(255,255,255,.6)",
               opacity: 0,
