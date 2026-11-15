@@ -5,3 +5,13 @@
 .env
 .env.*
 .wrangler/
+
+# dependencies and build output
+node_modules/
+dist/
+
+# OS and tool clutter
+.DS_Store
+.playwright-mcp/
+.claude/settings.local.json
+.claude/worktrees/
