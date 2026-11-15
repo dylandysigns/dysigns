@@ -1,7 +1,11 @@
 import { defineConfig, type Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
+import crypto from 'crypto'
 import { parseEntry } from './src/app/content/parse'
+import { buildFaqIndex, plainAnswer } from './src/app/content/faqIndex'
+import { buildKnowledgeChunks } from './src/app/content/knowledgeChunks'
+import { projects } from './src/app/data/projects'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
@@ -19,6 +23,15 @@ function contentPlugin(): Plugin {
       return d.isDirectory() ? listFiles(p) : d.name.endsWith('.md') ? [p] : []
     })
 
+  const readEntries = () => {
+    const entries: Record<string, ReturnType<typeof parseEntry>> = {}
+    for (const file of listFiles(contentDir).sort()) {
+      const key = '/' + path.relative(__dirname, file).split(path.sep).join('/')
+      entries[key] = parseEntry(key, fs.readFileSync(file, 'utf8'))
+    }
+    return entries
+  }
+
   return {
     name: 'dysigns-content',
     resolveId(id) {
@@ -26,13 +39,50 @@ function contentPlugin(): Plugin {
     },
     load(id) {
       if (id !== RESOLVED) return
-      const entries: Record<string, unknown> = {}
-      for (const file of listFiles(contentDir).sort()) {
-        this.addWatchFile(file)
-        const key = '/' + path.relative(__dirname, file).split(path.sep).join('/')
-        entries[key] = parseEntry(key, fs.readFileSync(file, 'utf8'))
-      }
-      return `export default ${JSON.stringify(entries)};`
+      for (const file of listFiles(contentDir)) this.addWatchFile(file)
+      return `export default ${JSON.stringify(readEntries())};`
+    },
+    // dist/faq-index.json: the knowledge functions/api/faq-chat.js answers
+    // from. `text` is embedded with Workers AI to find relevant questions,
+    // `context` (answer with its markdown links) is what the chat model
+    // reads. `version` changes whenever any question or answer does, so
+    // the function knows its cached vectors are stale.
+    // Page sections and case studies (knowledgeChunks.ts) go in the same
+    // file, so the chat can also answer about cases, the studio and the
+    // services beyond what the FAQ covers.
+    generateBundle() {
+      const entries = readEntries()
+      const faqItems = buildFaqIndex(entries).map((i) => ({
+        id: i.id,
+        lang: i.lang,
+        text: `${i.question}\n${plainAnswer(i.answer)}`,
+        context: `${i.question}\n${i.answer}`,
+        question: i.question,
+        href: i.href,
+        label: i.pageLabel,
+        isHome: i.isHome,
+      }))
+      const pageItems = buildKnowledgeChunks(entries, projects).map((c) => ({
+        id: c.id,
+        lang: c.lang,
+        text: c.text,
+        context: c.text,
+        question: c.title,
+        href: c.href,
+        label: c.label,
+        isHome: c.isHome,
+      }))
+      const items = [...faqItems, ...pageItems]
+      const version = crypto
+        .createHash('sha256')
+        .update(JSON.stringify(items))
+        .digest('hex')
+        .slice(0, 12)
+      this.emitFile({
+        type: 'asset',
+        fileName: 'faq-index.json',
+        source: JSON.stringify({ version, items }),
+      })
     },
     configureServer(server) {
       // Re-run the module (full reload) when a content file is added,

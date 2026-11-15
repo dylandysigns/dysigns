@@ -8,7 +8,7 @@ answerBlock: |
   (your email address and message) and uses no analytics or
   advertising cookies. This page explains exactly what is collected,
   why, and how you can access, correct or delete it.
-lastUpdated: "2026-09-06"
+lastUpdated: "2026-11-15"
 ---
 
 ## Who is responsible for your data
@@ -42,9 +42,11 @@ Hosting and forms: this site is hosted by a third-party provider, which also pro
 
 Fonts: we load web fonts from a third-party provider to display this site's typefaces. Loading a font this way sends your device's IP address to that provider as part of the request, the same as loading any resource from an external server.
 
+AI chat: when you ask a question in the chat on this site, your question is processed together with relevant text from our website by Cloudflare Workers AI to write an answer. Cloudflare does not use this data to train models. We keep your latest question anonymously to improve our answers and FAQ: without your IP address and without the conversation, and we automatically remove e-mail addresses and phone numbers from your question. So please do not put personal details in the chat.
+
 ## How long we keep data
 
-Contact-form submissions are kept only as long as needed to handle your enquiry, and are deleted on request. We do not keep data longer than necessary for the purpose it was collected for.
+Contact-form submissions are kept only as long as needed to handle your enquiry, and are deleted on request. We do not keep data longer than necessary for the purpose it was collected for. Questions from the AI chat are deleted automatically after 12 months.
 
 ## Your rights
 

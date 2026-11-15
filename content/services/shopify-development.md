@@ -98,3 +98,23 @@ Yes, Shopify Markets is part of what we implement when a store needs to sell int
 ### Do you stay involved after launch?
 
 TODO_DYLAN: confirm whether maintenance and further development after launch is a standard part of this service.
+
+### Do you also add my products to the store?
+
+We import your existing products, for example from your current store or a spreadsheet. You then add new products yourself, and we show you exactly how that works.
+
+### Do I get training to manage the store myself?
+
+Yes. At delivery you get a training session, so you can manage your products, orders and content yourself.
+
+### Can you connect the store to Bol.com or other marketplaces?
+
+Yes. We connect your Shopify store to Bol.com and other marketplaces, so you do not have to keep track of products and orders on every channel separately.
+
+### Do you also build B2B stores or subscriptions?
+
+Yes, both. Think of a store with business pricing and a login for business customers, or products on subscription, such as a monthly delivery.
+
+### Which payment methods can I offer?
+
+All the common payment methods, such as iDEAL, Klarna and credit card. We switch them on for you and test that everything works before you go live.

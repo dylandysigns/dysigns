@@ -104,6 +104,114 @@ Engels en Nederlands, allebei even vloeiend, in gesprekken, documentatie en ople
 
 Tijdens de onboarding stellen we samen een heldere roadmap voor je project op. Vanaf het begin communiceren we open over elke stap: van discovery en planning tot design, development, testen en livegang. Zo weet je altijd wat je kunt verwachten en wanneer.
 
+### Hoe werkt de betaling?
+
+Dat hangt af van het project. Het kennismakingsgesprek is altijd gratis: we bespreken je kansen en kijken samen of wij de beste partner voor je zijn, zodat je precies weet waar je aan toe bent. Voor een project zoals een website of webshop vragen we meestal een aanbetaling van 25% om te starten, de rest betaal je bij oplevering. Onderhoud en marketing rekenen we per maand af, bij marketing exclusief je advertentiebudget.
+
+### Hoe snel kunnen jullie starten?
+
+Dat wisselt. Zodra je de offerte hebt getekend, plannen we samen de kickoff. Wanneer die is, hangt af van onze planning en van jouw deadline: heb je een vaste lanceerdatum, dan plannen we daarvanaf terug.
+
+### Bieden jullie onderhoud na de lancering?
+
+Ja. Na de lancering kun je kiezen voor onderhoud tegen een vast maandbedrag. Daarin zitten kleine aanpassingen, zoals nieuwe teksten of afbeeldingen, en support als je ergens een vraag over hebt. Zo weet je precies wat je per maand kwijt bent.
+
+### Hoe snel reageren jullie op een bericht?
+
+Meestal nog dezelfde dag, en je hebt altijd binnen 24 uur een reactie. [Stuur ons je vraag](/nl/contact)
+
+### Hoe vraag ik een offerte aan?
+
+Een offerte vraag je aan door ons een appje te sturen op WhatsApp via [+31 6 26814488](https://wa.me/31626814488) of door via de [contactpagina](/nl/contact) een verzoek in te dienen. We plannen dan eerst een gratis kennismaking, zodat de offerte past bij wat je echt nodig hebt.
+
+### Werken jullie met een vaste prijs of op uurbasis?
+
+Allebei. Projecten zoals een website of webshop doen we voor een vaste prijs, op basis van wat in de offerte staat. Kleine aanpassingen en doorlopend werk rekenen we op uurbasis af. Komt er tijdens een project werk bij, dan bespreken we dat eerst met je, zodat je nooit voor verrassingen staat.
+
+### Hoeveel feedbackrondes zitten er in een project?
+
+We werken niet met een vast aantal rondes. We schaven bij tot het klopt, zolang het binnen wat we samen hebben afgesproken blijft. Tijdens het project houden we contact via WhatsApp, mail en calls, zodat je altijd weet waar we staan.
+
+### Doen jullie ook kleine projecten?
+
+Ja. Ook een enkele landingspagina of een kleinere aanpassing is welkom. [Vertel ons wat je nodig hebt](/nl/contact), dan kijken we samen wat past.
+
+### Kunnen jullie met een deadline of spoed werken?
+
+Ja. Heb je een harde deadline, geef die dan bij de kennismaking door, dan plannen we daarvanaf terug. Spoed kan ook, als de planning het toelaat.
+
+### Wie zitten er achter DYSIGNS?
+
+Een team van specialisten in design, development, marketing en AI. Je hebt één vast aanspreekpunt en werkt rechtstreeks met de mensen die aan je project werken. Meer over hoe we werken lees je op [over ons](/nl/about).
+
+### Is de kennismaking online of op locatie?
+
+Allebei, jij kiest. Online kan altijd, en op locatie spreken we graag af in Almere, in Amsterdam of bij jou op kantoor. [Plan een kennismaking](/nl/contact)
+
+### Hebben jullie reviews of referenties?
+
+Het beste bewijs is ons werk. Op [onze werkpagina](/nl/work) zie je cases van merken als STËLZ, Merely Made en Sfumato, met wat we deden en wat het opleverde. Wil je weten of we ervaring hebben in jouw branche? [Vraag het ons](/nl/contact).
+
+### Is er garantie na de oplevering?
+
+Ja. Fouten die door ons komen, lossen we kosteloos op. Ligt je site eruit, dan pakken we dat met voorrang op.
+
+### Is onderhoud of social media-beheer maandelijks opzegbaar?
+
+Dat verschilt per dienst. De looptijd en opzegtermijn spreken we vooraf met je af en staan in de offerte, zodat je precies weet waar je aan toe bent.
+
+### Werken jullie met algemene voorwaarden?
+
+Ja. Onze algemene voorwaarden horen bij elke offerte. Wil je dat we een geheimhoudingsverklaring (NDA) tekenen voordat je ons de details vertelt? Dat doen we graag.
+
+### Regelen jullie ook hosting, domein en zakelijke e-mail?
+
+Ja. We regelen de hosting, je domeinnaam en zakelijke e-mail, en zetten alles op jouw naam. Zo blijft het van jou, ook als je later iets anders wilt.
+
+### Kunnen jullie een eerste plek in Google garanderen?
+
+Nee, en wees voorzichtig met bureaus die dat wel beloven. Alleen Google bepaalt de volgorde in de zoekresultaten. Wat we wel doen: je site technisch sterk neerzetten, de juiste zoekwoorden kiezen en content maken waar je doelgroep naar zoekt. Hoe snel je stijgt, hangt af van je markt en je concurrentie.
+
+### Schrijven jullie ook blogs en content voor SEO?
+
+Ja. We schrijven blogs en artikelen rond de vragen die jouw klanten in Google stellen, zodat je beter gevonden wordt en bezoekers meteen zien dat je weet waar je het over hebt.
+
+### Hebben jullie iets voor starters of kleine ondernemers?
+
+We werken niet met standaardpakketten, maar denken graag mee over een kleinere eerste stap die bij je budget past. Van daaruit bouwen we verder als je groeit. [Vertel ons wat je wilt bereiken](/nl/contact)
+
+### Wat als ik niet tevreden ben met het ontwerp?
+
+Dat komt zelden voor, omdat we de richting vooraf samen afstemmen. Gebeurt het toch, dan gaan we in gesprek, horen we wat er niet klopt en sturen we bij tot het past.
+
+### Kan ik tijdens het project meekijken?
+
+Ja. Je krijgt een link naar een testversie waarop je de voortgang live volgt, en we laten op vaste momenten zien hoe het ervoor staat.
+
+### Kan ik in termijnen betalen?
+
+Bij grotere projecten kan dat, in overleg. De termijnen spreken we vooraf met je af en zetten we in de offerte.
+
+### Maken jullie back-ups van mijn site?
+
+Ja, als we dat met je afspreken, bijvoorbeeld als onderdeel van het onderhoud.
+
+### Wat moet ik voorbereiden voor het eerste gesprek?
+
+Niets, je hoeft niets voor te bereiden. Handig is als je weet wat je wilt bereiken, een paar voorbeelden hebt die je mooi vindt en een idee hebt van je budget en planning. De rest bespreken we samen.
+
+### Voor wat voor bedrijven werken jullie?
+
+Voor ondernemers, scale-ups en merken die willen groeien. We werkten onder meer voor merken in mode, food en retail, voor de overheid en voor creatieve bureaus. Op [onze werkpagina](/nl/work) zie je voorbeelden.
+
+### Kan ik meer werk zien dan op de site staat?
+
+Ja. In de kennismaking laten we graag meer werk zien dat past bij jouw vraag.
+
+### Werken jullie ook voor concurrenten van mij?
+
+Dat bespreken we open met je. Werk je met ons samen, dan blijft jouw informatie altijd vertrouwelijk.
+
 ## Contact
 
 Heb je een project in gedachten? Vertel kort wat je wilt bereiken en hoe je deadline eruitziet. Je krijgt binnen één werkdag een reactie. Het eerste gesprek is gratis en vrijblijvend.

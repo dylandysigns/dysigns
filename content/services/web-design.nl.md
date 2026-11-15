@@ -69,3 +69,31 @@ Beide, en dat is precies het punt. Design en development zitten bij dezelfde par
 ### Is de site ook snel en mobielvriendelijk?
 
 Ja. Performance en mobiel gedrag zijn ontwerpkeuzes die vanaf het eerste concept worden gemaakt, niet iets dat pas getest wordt nadat de desktopversie al af is.
+
+### Werken jullie met WordPress?
+
+Ja, als het bij je project past. WordPress kan een goede keuze zijn, bijvoorbeeld als je het al gebruikt. We kijken per project wat het beste werkt: WordPress, Shopify of een custom website. Zo kies je het platform dat bij je schaal en je team past.
+
+### Wie is eigenaar van de website, het design en de code?
+
+Jij. Zodra alles betaald is, zijn het design, de code, de content en de accounts van jou. Je zit nergens aan vast en kunt alles meenemen als je later iets anders wilt.
+
+### Kan ik na de lancering zelf teksten en afbeeldingen aanpassen?
+
+Ja. Je kunt zelf teksten, afbeeldingen en pagina's aanpassen, en we leggen je uit hoe dat werkt. Veel klanten laten het ons ook doen via het onderhoud, dan hoef je er zelf niet naar om te kijken.
+
+### Schrijven jullie ook de teksten en verzorgen jullie fotografie of video?
+
+Ja, allebei. We schrijven teksten, ook met het oog op SEO, en verzorgen fotografie en video. Wat je nodig hebt, nemen we mee in de offerte.
+
+### Kunnen jullie koppelen met mijn CRM, boekhouding of reserveringssysteem?
+
+Ja. We koppelen je website of webshop aan de systemen die je al gebruikt, zoals een CRM, boekhoudpakket of reserveringssysteem, zodat gegevens niet met de hand overgezet hoeven te worden.
+
+### Regelen jullie de cookiebanner en de AVG-kant van de site?
+
+Ja. We zetten een cookiebanner en privacyvriendelijke tracking goed op, volgens de AVG.
+
+### Werken jullie met Webflow of Framer?
+
+Ja, als het bij je project past. Net als bij WordPress kijken we per project welk platform het beste werkt voor je schaal en je team.

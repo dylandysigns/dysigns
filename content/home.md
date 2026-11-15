@@ -104,6 +104,114 @@ English and Dutch, both equally fluent, across calls, documentation and delivery
 
 During onboarding, we create a clear roadmap for your project together. From the very beginning, we communicate openly about every step: from discovery and planning to design, development, testing, and going live. This way, you always know what to expect and when.
 
+### How does payment work?
+
+It depends on the project. The intro call is always free: we talk through your opportunities and see together whether we are the right partner for you, so you know exactly where you stand. For a project such as a website or online store we usually ask a 25% deposit to get started, and you pay the rest on delivery. Maintenance and marketing are billed monthly, and for marketing that is excluding your ad spend.
+
+### How soon can you start?
+
+That varies. Once you have signed the quote, we plan the kickoff together. When that is depends on our schedule and on your deadline: if you have a fixed launch date, we plan back from there.
+
+### Do you offer maintenance after launch?
+
+Yes. After launch you can choose maintenance for a fixed monthly fee. It covers small changes, such as new text or images, and support whenever you have a question. That way you know exactly what you pay each month.
+
+### How quickly do you respond to a message?
+
+Usually the same day, and you always hear back within 24 hours. [Send us your question](/contact)
+
+### How do I request a quote?
+
+You request a quote by sending us a message on WhatsApp at [+31 6 26814488](https://wa.me/31626814488) or by submitting a request through the [contact page](/contact). We then plan a free intro call first, so the quote fits what you actually need.
+
+### Do you work with a fixed price or by the hour?
+
+Both. Projects such as a website or online store are done for a fixed price, based on what is in the quote. Small changes and ongoing work are billed by the hour. If work is added during a project, we discuss it with you first, so you never face surprises.
+
+### How many feedback rounds are there in a project?
+
+We do not work with a fixed number of rounds. We refine until it is right, as long as it stays within what we agreed together. During the project we keep in touch via WhatsApp, email and calls, so you always know where things stand.
+
+### Do you also take on small projects?
+
+Yes. A single landing page or a smaller change is welcome too. [Tell us what you need](/contact) and we will look at what fits together.
+
+### Can you work with a deadline or a rush job?
+
+Yes. If you have a hard deadline, share it in the intro call and we plan back from there. A rush job is possible too, if the schedule allows it.
+
+### Who is behind DYSIGNS?
+
+A team of specialists in design, development, marketing and AI. You have one fixed point of contact and work directly with the people who work on your project. Read more about how we work on [about us](/about).
+
+### Is the intro call online or in person?
+
+Both, you choose. Online is always possible, and in person we are happy to meet in Almere, in Amsterdam or at your office. [Plan an intro call](/contact)
+
+### Do you have reviews or references?
+
+The best proof is our work. On [our work page](/work) you will find cases for brands such as STËLZ, Merely Made and Sfumato, with what we did and what it delivered. Want to know whether we have experience in your industry? [Ask us](/contact).
+
+### Is there a guarantee after delivery?
+
+Yes. Bugs caused by us are fixed free of charge. If your site goes down, we pick it up with priority.
+
+### Can maintenance or social media management be cancelled monthly?
+
+That depends on the service. We agree the term and notice period with you upfront and put them in the quote, so you know exactly where you stand.
+
+### Do you work with terms and conditions?
+
+Yes. Our terms and conditions come with every quote. Would you like us to sign a non-disclosure agreement (NDA) before you share the details? We are happy to.
+
+### Do you also arrange hosting, the domain and business email?
+
+Yes. We arrange the hosting, your domain name and business email, and put everything in your name. That way it stays yours, also if you want something else later.
+
+### Can you guarantee a first place in Google?
+
+No, and be careful with agencies that promise it. Only Google decides the order of the search results. What we do: build your site on a strong technical base, choose the right keywords and create content your audience is searching for. How fast you climb depends on your market and your competition.
+
+### Do you also write blogs and content for SEO?
+
+Yes. We write blogs and articles around the questions your customers ask in Google, so you are found more easily and visitors see straight away that you know what you are talking about.
+
+### Do you have something for starters or small businesses?
+
+We do not work with standard packages, but we are happy to think along about a smaller first step that fits your budget. From there we build further as you grow. [Tell us what you want to achieve](/contact)
+
+### What if I am not happy with the design?
+
+That rarely happens, because we agree the direction together upfront. If it does happen, we talk it through, hear what does not feel right and adjust until it fits.
+
+### Can I follow the progress during the project?
+
+Yes. You get a link to a test version where you follow the progress live, and we show you where things stand at fixed moments.
+
+### Can I pay in instalments?
+
+For larger projects that is possible, in consultation. We agree the instalments with you upfront and put them in the quote.
+
+### Do you make backups of my site?
+
+Yes, if we agree that with you, for example as part of maintenance.
+
+### What should I prepare for the first conversation?
+
+Nothing, you do not need to prepare anything. It helps if you know what you want to achieve, have a few examples you like and have an idea of your budget and timeline. We discuss the rest together.
+
+### What kind of businesses do you work for?
+
+For entrepreneurs, scale-ups and brands that want to grow. We have worked for brands in fashion, food and retail, for government and for creative agencies, among others. You will find examples on [our work page](/work).
+
+### Can I see more work than what is on the site?
+
+Yes. In the intro call we are happy to show more work that fits your question.
+
+### Do you also work for my competitors?
+
+We discuss that openly with you. If you work with us, your information always stays confidential.
+
 ## Contact
 
 Have a project in mind? Tell us briefly what you want to achieve and what your deadline looks like. You get a reply within one business day. The first conversation is free and carries no obligation.

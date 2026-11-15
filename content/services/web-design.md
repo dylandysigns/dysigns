@@ -56,3 +56,31 @@ Both, and that is the point. Design and development sit with the same partner, s
 ### Is the site also fast and mobile friendly?
 
 Yes. Performance and mobile behaviour are design decisions made from the first concept, not something tested only after the desktop version is already finished.
+
+### Do you work with WordPress?
+
+Yes, when it fits your project. WordPress can be a good choice, for example if you already use it. We look per project at what works best: WordPress, Shopify or a custom website. That way you choose the platform that fits your scale and your team.
+
+### Who owns the website, the design and the code?
+
+You do. Once everything is paid, the design, the code, the content and the accounts are yours. You are not tied to anything and can take it all with you if you want something else later.
+
+### Can I edit text and images myself after launch?
+
+Yes. You can edit text, images and pages yourself, and we show you how it works. Many clients also leave it to us through maintenance, so they do not have to think about it.
+
+### Do you also write the copy and handle photography or video?
+
+Yes, both. We write copy, also with SEO in mind, and handle photography and video. Whatever you need goes into the quote.
+
+### Can you connect to my CRM, accounting or booking system?
+
+Yes. We connect your website or store to the systems you already use, such as a CRM, accounting software or booking system, so data does not have to be copied over by hand.
+
+### Do you handle the cookie banner and the GDPR side of the site?
+
+Yes. We set up a cookie banner and privacy friendly tracking properly, in line with the GDPR.
+
+### Do you work with Webflow or Framer?
+
+Yes, when it fits your project. Just like with WordPress, we look per project at which platform works best for your scale and your team.

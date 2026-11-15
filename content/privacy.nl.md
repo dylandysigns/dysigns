@@ -9,7 +9,7 @@ answerBlock: |
   advertentiecookies. Deze pagina legt precies uit wat wordt
   verzameld, waarom, en hoe je het kunt inzien, corrigeren of laten
   verwijderen.
-lastUpdated: "2026-09-06"
+lastUpdated: "2026-11-15"
 ---
 
 ## Wie verantwoordelijk is voor je gegevens
@@ -43,9 +43,11 @@ Hosting en formulieren: deze site wordt gehost door een externe partij, die ook 
 
 Lettertypen: we laden weblettertypen van een externe partij om de lettertypen van deze site te tonen. Het op deze manier laden van een lettertype stuurt het IP-adres van je apparaat naar die partij als onderdeel van dat verzoek, net als bij het laden van elke bron van een externe server.
 
+AI-chat: als je een vraag stelt in de chat op deze site, wordt je vraag samen met relevante teksten van onze website verwerkt door Cloudflare Workers AI om een antwoord te schrijven. Cloudflare gebruikt deze gegevens niet om modellen te trainen. We bewaren je laatste vraag anoniem om onze antwoorden en veelgestelde vragen te verbeteren: zonder IP-adres en zonder gesprek, en e-mailadressen en telefoonnummers in je vraag halen we er automatisch uit. Zet daarom geen persoonlijke gegevens in de chat.
+
 ## Hoe lang we gegevens bewaren
 
-Contactformulier-inzendingen worden alleen bewaard zolang nodig is om je aanvraag af te handelen, en worden op verzoek verwijderd. We bewaren geen gegevens langer dan nodig is voor het doel waarvoor ze zijn verzameld.
+Contactformulier-inzendingen worden alleen bewaard zolang nodig is om je aanvraag af te handelen, en worden op verzoek verwijderd. We bewaren geen gegevens langer dan nodig is voor het doel waarvoor ze zijn verzameld. Vragen uit de AI-chat worden na 12 maanden automatisch verwijderd.
 
 ## Jouw rechten
 

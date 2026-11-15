@@ -56,3 +56,19 @@ Yes. We look at what is already there and what is holding it back before we prop
 ### Can you run ads without also building the landing page?
 
 Yes, though we recommend at least reviewing it, since a campaign only performs as well as the page it sends people to. If you already have a page that converts, we work with what exists.
+
+### Do you also run Google Ads?
+
+Yes. Alongside Meta Ads we also manage Google Ads, such as search ads and Shopping campaigns. That way you are visible at the moment someone is actively looking for your product or service.
+
+### Which channels do you work on?
+
+Instagram and Facebook, but also TikTok and LinkedIn. We choose together the channels where your audience really is, instead of being a little bit present everywhere.
+
+### Do you also do email marketing?
+
+Yes, for example with Klaviyo: newsletters and automated flows, such as an email after an abandoned cart or a thank you after the first order.
+
+### Do you also create the content, such as photo and video?
+
+Yes. We create the photos and videos for your socials ourselves, so everything fits your brand and your campaigns.

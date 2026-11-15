@@ -57,3 +57,19 @@ Ja. We kijken eerst naar wat er al staat en wat tegenhoudt, voordat we veranderi
 ### Kunnen jullie advertenties draaien zonder ook de landingspagina te bouwen?
 
 Ja, al raden we op zijn minst een review aan, omdat een campagne nooit beter presteert dan de pagina waar hij mensen naartoe stuurt. Heb je al een pagina die converteert, dan werken we met wat er is.
+
+### Doen jullie ook Google Ads?
+
+Ja. Naast Meta Ads beheren we ook Google Ads, zoals zoekadvertenties en Shopping-campagnes. Zo ben je zichtbaar op het moment dat iemand actief naar jouw product of dienst zoekt.
+
+### Op welke kanalen zijn jullie actief?
+
+Op Instagram en Facebook, maar ook op TikTok en LinkedIn. We kiezen samen de kanalen waar jouw doelgroep echt zit, in plaats van overal een beetje aanwezig te zijn.
+
+### Doen jullie ook e-mailmarketing?
+
+Ja, bijvoorbeeld met Klaviyo: nieuwsbrieven en automatische flows, zoals een mail bij een verlaten winkelmand of een bedankje na de eerste bestelling.
+
+### Maken jullie ook de content, zoals foto en video?
+
+Ja. We maken de foto's en video's voor je socials zelf, zodat alles past bij je merk en je campagnes.

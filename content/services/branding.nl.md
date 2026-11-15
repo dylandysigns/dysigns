@@ -56,3 +56,15 @@ Ja, een designsysteem dat doorloopt in je social kanalen is onderdeel van een br
 ### Bouwen jullie ook de site of winkel waar de identiteit op komt?
 
 Ja, zie [webdesign en development](/nl/web-design) als de identiteit ook moet doorlopen naar een nieuwe site of winkel.
+
+### Hoeveel logovoorstellen krijg ik?
+
+We werken naar één sterke, doordachte richting toe in plaats van een stapel losse opties. Zo gaat alle tijd naar het uitwerken van het idee dat echt bij je merk past.
+
+### Welke bestanden krijg ik bij de oplevering?
+
+Alle bestanden die je nodig hebt, zoals SVG, PNG en PDF, voor online en print. Daarbij krijg je richtlijnen voor hoe je je logo, kleuren en lettertypes gebruikt.
+
+### Helpen jullie ook met het bedenken van een bedrijfsnaam?
+
+Ja, naamgeving kan onderdeel zijn van een brandingtraject. We checken daarbij ook of de bijbehorende domeinnaam nog beschikbaar is.
