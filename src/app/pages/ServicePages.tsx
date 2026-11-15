@@ -522,6 +522,19 @@ export function WebDesignAlmerePage() {
   );
 }
 
+export function WebDesignAmsterdamPage() {
+  return (
+    <ServicePage
+      slug="web-design-amsterdam"
+      breadcrumbParentSlug="web-design"
+      customWhyHeading={{
+        en: "Why a team close to Amsterdam",
+        nl: "Waarom een team vlak bij Amsterdam",
+      }}
+    />
+  );
+}
+
 export function ShopifyDevelopmentPage() {
   return (
     <ServicePage

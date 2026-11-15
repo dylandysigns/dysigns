@@ -33,7 +33,7 @@ A site designed by one vendor and built by another loses something in the handov
 
 ## Who it is for
 
-For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer. Based in Almere? See [web design in Almere](/web-design-almere).
+For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer. In the region? See [web design in Almere and surroundings](/web-design-almere) or [web design in Amsterdam](/web-design-amsterdam).
 
 ## Frequently asked questions
 

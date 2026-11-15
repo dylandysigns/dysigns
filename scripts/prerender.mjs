@@ -69,6 +69,7 @@ const enRoutes = [
   "/ai-implementation",
   "/shopify-development", // subpage under web design, not in navigation
   "/web-design-almere", // local landing page under web design
+  "/web-design-amsterdam", // local landing page under web design
   "/work",
   ...CASE_SLUGS.map((slug) => `/work/${slug}`),
   "/insights",

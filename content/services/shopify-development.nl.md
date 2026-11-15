@@ -47,7 +47,7 @@ Shopify is sterk voor de meeste e-commerce toepassingen, maar niet altijd de bes
 
 ## Who it is for
 
-Voor ondernemers en bureaus met een Shopify webshop die verder moet dan een standaardthema, of die een bestaande webshop willen verbeteren in plaats van opnieuw laten bouwen. Voor [STËLZ](/nl/work/stelz-web-design) bouwden we bijvoorbeeld een modulaire Shopify-webshop met snellere collectienavigatie, een soepelere add-to-cart en een contentstructuur die het team dagelijks zelf bijwerkt.
+Voor ondernemers en bureaus die een professionele webshop willen laten bouwen die verder gaat dan een standaardthema, of die hun bestaande webwinkel willen verbeteren in plaats van opnieuw laten maken. Voor [STËLZ](/nl/work/stelz-web-design) bouwden we bijvoorbeeld een modulaire Shopify-webshop met snellere collectienavigatie, een soepelere add-to-cart en een contentstructuur die het team dagelijks zelf bijwerkt.
 
 ## Frequently asked questions
 
@@ -66,6 +66,10 @@ Bij Shopify maatwerk draait je webshop niet op een standaardthema met wat kleine
 ### Waarom een Shopify bureau in plaats van een standaardthema?
 
 Een goed standaardthema is prima om mee te starten. Een Shopify bureau loont zodra je webshop zich moet onderscheiden, specifieke functionaliteit nodig heeft of moet praten met andere systemen. Bij DYSIGNS zitten design en development in één team, dus wat ontworpen wordt, wordt ook precies zo gebouwd. Twijfel je of Shopify past? Lees [Shopify vs. een maatwerk webshop](/nl/insights/shopify-vs-custom-website).
+
+### Wat heb ik nodig om een webshop te laten bouwen?
+
+Vooral helderheid over wat je verkoopt en aan wie. Productdata (namen, prijzen, varianten), goede productfoto's, je merkidentiteit en een idee van je verzend- en retourbeleid maken het traject sneller. Betalingen, hosting en beveiliging regelt Shopify. Wat nog ontbreekt, zoals teksten of fotografie, nemen we mee in de planning.
 
 ### Hoe lang duurt het om een Shopify webshop te laten bouwen?
 
