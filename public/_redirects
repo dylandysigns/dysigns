@@ -1,8 +1,7 @@
 # Fase 7 — SPA-fallback. Canonieke host (https://dylandysigns.com, geen www)
 # wordt NIET hier afgedwongen: Cloudflare Pages ondersteunt geen host-based
 # redirects in dit bestand. Zie de Redirect Rule in het Cloudflare-dashboard
-# (www -> apex, 301, pad + query behouden). Voor Netlify staan dezelfde
-# regels in netlify.toml.
+# (www -> apex, 301, pad + query behouden).
 
 / /index.html 200
 
