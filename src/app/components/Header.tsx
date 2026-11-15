@@ -8,6 +8,7 @@ import { siteContent } from "../data/content";
 import { useLanguage, toLangPath } from "../hooks/useLanguage";
 import logoImg from "../../assets/dysigns_white.png";
 import { crawlHref } from "../seo/href";
+import { useVisitorCity } from "../hooks/useVisitorCity";
 
 /* ─── SCROLL-AWARE HIDE/SHOW HOOK ─── */
 function useHeaderVisibility() {
@@ -210,7 +211,7 @@ function LangToggle() {
           const dy = (e.clientY - r.top - r.height / 2) * 0.45;
           gsap.to(btnRef.current, { x: dx, y: dy, duration: 0.3, ease: "power3.out" });
         }
-        cursor.set("link", t("lang.switchTo"));
+        cursor.set("link", t("cursor.translate"));
       }}
       onMouseLeave={() => {
         if (btnRef.current) {
@@ -297,7 +298,7 @@ function LangToggle() {
 
 /* ─── MOBILE LANGUAGE TOGGLE ─── */
 function MobileLangToggle() {
-  const { lang, toggleLang } = useLanguage();
+  const { lang, toggleLang, t } = useLanguage();
 
   return (
     <button
@@ -305,6 +306,7 @@ function MobileLangToggle() {
       onClick={toggleLang}
       className="grid place-items-center w-10 h-10 rounded-full transition-colors"
       aria-label={lang === "en" ? "Switch to Dutch" : "Schakel naar Engels"}
+      data-cursor-label={t("cursor.translate")}
       style={{
         border: "1px solid rgba(var(--page-fg-rgb), .1)",
         background: "rgba(var(--page-fg-rgb), .03)",
@@ -350,6 +352,7 @@ function MobileMenu({
   t: (key: string) => string;
 }) {
   const { lang } = useLanguage();
+  const visitorCity = useVisitorCity();
   const menuRef = useRef<HTMLDivElement>(null);
   const headerRowRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -528,7 +531,11 @@ function MobileMenu({
               fontFamily: "var(--font-brand)",
             }}
           >
-            {t("hero.available")}
+            {/* Same message as the hero: where the visitor is, we work too. */}
+            {t("hero.availableIn")}{" "}
+            <span style={{ color: "rgba(var(--page-fg-rgb), .85)", fontWeight: 600 }}>
+              {visitorCity ?? t("hero.fallbackLocation")}
+            </span>
           </span>
         </div>
       </div>

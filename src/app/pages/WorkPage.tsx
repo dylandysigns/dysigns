@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ProjectZoomLink } from "../components/ProjectZoomLink";
-import { projects as rawProjects } from "../data/projects";
+import { projects as rawProjects, type Project } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
@@ -29,6 +29,40 @@ const FEATURED_ORDER = [
   "studio75-branding",
   "merely-made-webshop",
 ];
+
+const BELOW_LG = "(max-width: 1023px)";
+
+/** Bento tiles for the lg grid, by position. Every block of tiles closes
+ * into a full rectangle (big + tall, tall + two small + tall, tall + big),
+ * so the sizes vary but no tile leaves empty space next to it. */
+const LG_TILES: { className: string; shape: "big" | "tall" | "small" }[] = [
+  { className: "lg:col-span-2 lg:row-span-2", shape: "big" },
+  { className: "lg:row-span-2", shape: "tall" },
+  { className: "lg:row-span-2", shape: "tall" },
+  { className: "", shape: "small" },
+  { className: "lg:row-span-2", shape: "tall" },
+  { className: "", shape: "small" },
+  { className: "lg:row-span-2", shape: "tall" },
+  { className: "lg:col-span-2 lg:row-span-2", shape: "big" },
+];
+
+/** The cover a card shows: the portrait or landscape cut of the cover video
+ * (the same cover the home grid and case hero use), else the matching still.
+ * `workCoverStill` projects always keep their `thumbnail`. */
+function coverShot(project: Project, portrait: boolean): { video?: string; poster: string } {
+  if (project.workCoverStill) return { video: project.video, poster: project.thumbnail };
+  if (portrait) {
+    return project.coverVideoMobile
+      ? {
+          video: project.coverVideoMobile,
+          poster: project.coverVideoPosterMobile ?? project.thumbnailMobile ?? project.thumbnail,
+        }
+      : { video: project.video, poster: project.thumbnailMobile ?? project.thumbnail };
+  }
+  return project.coverVideo
+    ? { video: project.coverVideo, poster: project.coverVideoPoster ?? project.thumbnail }
+    : { video: project.video, poster: project.thumbnail };
+}
 
 export default function WorkPage() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -154,24 +188,45 @@ export default function WorkPage() {
           </h1>
         </div>
 
-        {/* All cases on one page, no year sectioning — the first card
-            (always STELZ, per FEATURED_ORDER) runs wider and taller to
-            lead the grid editorially instead of every card competing at
-            equal visual weight. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {/* All cases on one page, no year sectioning. On lg the cards form
+            a bento grid (see LG_TILES): every block of tiles closes into a
+            clean rectangle, so sizes vary but nothing leaves a gap. Below
+            lg the first card runs wide and the rest sit in even pairs. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:auto-rows-[calc((min(100vw_-_128px,1320px)_-_40px)/3*0.72)]">
           {projectEntries.map(({ project, rawTags }, flatIndex) => {
             const isFeatured = flatIndex === 0;
+            const tile = LG_TILES[flatIndex % LG_TILES.length];
+            // What the card shows below lg (first card landscape, the rest
+            // portrait) and on lg (portrait only in the tall tiles).
+            const small = coverShot(project, !isFeatured);
+            const large = coverShot(project, tile.shape === "tall");
+            const playVideo = !prefersReducedMotion && small.video && large.video;
+            // The zoom transition grows into the case hero, so it starts from
+            // the still that hero opens on at this screen size.
+            const narrow = typeof window !== "undefined" && window.innerWidth < 768;
+            const zoomImage = project.workCoverStill
+              ? project.thumbnail
+              : narrow && project.coverVideoPosterMobile
+                ? project.coverVideoPosterMobile
+                : project.coverVideo
+                  ? (project.coverVideoPoster ?? project.thumbnail)
+                  : narrow && project.thumbnailMobile
+                    ? project.thumbnailMobile
+                    : project.thumbnail;
+            const mediaClass =
+              "w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700";
+            const mediaStyle = { filter: "grayscale(.8) brightness(.65) contrast(1.05)" };
 
             return (
               <div
                 key={project.slug}
-                className={isFeatured ? "sm:col-span-2" : undefined}
+                className={`${isFeatured ? "sm:col-span-2 " : ""}${tile.className}`}
               >
                 <div
                   ref={(el) => {
                     cardsRef.current[flatIndex] = el;
                   }}
-                  className="group relative rounded-lg overflow-hidden"
+                  className="group relative rounded-lg overflow-hidden lg:h-full"
                   style={{ perspective: "900px", opacity: 0 }}
                   onMouseMove={(e) => {
                     if (cardsRef.current[flatIndex]) {
@@ -184,12 +239,12 @@ export default function WorkPage() {
                     }
                     cursor.reset();
                   }}
-                  onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
+                  onMouseEnter={() => cursor.set("view", `${t("cursor.view")} ${project.title}`)}
                 >
                   <ProjectZoomLink
                     to={`/work/${project.slug}`}
                     projectSlug={project.slug}
-                    imageSrc={project.thumbnail}
+                    imageSrc={zoomImage}
                     transitionId={`work-grid-${project.slug}`}
                     aria-label={`${t("cursor.viewProject")} ${project.title}`}
                     className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
@@ -198,7 +253,7 @@ export default function WorkPage() {
                   </ProjectZoomLink>
 
                   <div
-                    className="relative overflow-hidden rounded-lg"
+                    className="relative overflow-hidden rounded-lg lg:h-full"
                     style={{
                       border: "1px solid rgba(var(--page-fg-rgb), .06)",
                       transition: "border-color .4s",
@@ -238,26 +293,35 @@ export default function WorkPage() {
                       />
                     </svg>
 
-                    <div className={isFeatured ? "aspect-[16/10] overflow-hidden" : "aspect-[4/4.7] overflow-hidden"}>
-                      {project.video && !prefersReducedMotion ? (
+                    {/* Below lg the ratio sets the height; on lg the tile's
+                        grid area does, and the media is absolute so it never
+                        pushes a row taller. */}
+                    <div
+                      className={`relative ${isFeatured ? "aspect-[16/10]" : "aspect-[4/4.7]"} lg:aspect-auto lg:h-full overflow-hidden lg:[&>*]:absolute lg:[&>*]:inset-0`}
+                    >
+                      {playVideo ? (
                         <LazyVideo
-                          src={project.video}
-                          poster={project.thumbnail}
-                          className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
-                          style={{
-                            filter: "grayscale(.8) brightness(.65) contrast(1.05)",
-                          }}
+                          src={large.video!}
+                          poster={large.poster}
+                          mobileSrc={small.video}
+                          mobilePoster={small.poster}
+                          mobileQuery={BELOW_LG}
+                          className={mediaClass}
+                          style={mediaStyle}
                         />
                       ) : (
-                        <img
-                          src={project.thumbnail}
-                          alt={`${project.title}, ${project.category} by DYSIGNS`}
-                          loading={flatIndex < 4 ? "eager" : "lazy"}
-                          className="w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700"
-                          style={{
-                            filter: "grayscale(.8) brightness(.65) contrast(1.05)",
-                          }}
-                        />
+                        <picture>
+                          {small.poster !== large.poster && (
+                            <source media={BELOW_LG} srcSet={small.poster} />
+                          )}
+                          <img
+                            src={large.poster}
+                            alt={`${project.title}, ${project.category} by DYSIGNS`}
+                            loading={flatIndex < 4 ? "eager" : "lazy"}
+                            className={mediaClass}
+                            style={mediaStyle}
+                          />
+                        </picture>
                       )}
                     </div>
 

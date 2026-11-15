@@ -231,7 +231,7 @@ export function ZoomToGrid() {
         }
         transitionId={`${isHero ? "zoom-hero" : "zoom-grid"}-${project.slug}`}
         className="block"
-        onMouseEnter={() => cursor.set("view", tRef.current("cursor.viewProject"))}
+        onMouseEnter={() => cursor.set("view", `${tRef.current("cursor.view")} ${project.title}`)}
         onMouseLeave={() => cursor.reset()}
       >
         <div
@@ -456,7 +456,7 @@ export function ZoomToGrid() {
                 }
                 transitionId={`zoom-grid-${proj.slug}`}
                 className="block"
-                onMouseEnter={() => cursor.set("view", t("cursor.viewProject"))}
+                onMouseEnter={() => cursor.set("view", `${t("cursor.view")} ${proj.title}`)}
                 onMouseLeave={() => cursor.reset()}
               >
                 <div className="overflow-hidden rounded-xl group">
