@@ -257,6 +257,7 @@ export function ZoomToGrid() {
             {!isHero && project.coverVideo ? (
               // Portrait cut below sm, matching the aspect-[3/4] tile
               <LazyVideo
+                resumeOnGesture
                 src={project.coverVideo}
                 mobileSrc={project.coverVideoMobile}
                 poster={project.coverVideoPoster ?? project.thumbnail}
@@ -266,6 +267,7 @@ export function ZoomToGrid() {
               />
             ) : !isHero && project.video ? (
               <LazyVideo
+                resumeOnGesture
                 src={project.video}
                 poster={project.thumbnail}
                 className="w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700"
@@ -292,6 +294,7 @@ export function ZoomToGrid() {
               // Mobile-only cover video over the still, on the portrait
               // tile below sm; display:none above keeps it from loading.
               <LazyVideo
+                resumeOnGesture
                 src={project.coverVideoMobile}
                 poster={project.coverVideoPosterMobile ?? project.thumbnail}
                 className="absolute inset-0 w-full h-full object-cover project-thumb sm:hidden"
