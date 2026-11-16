@@ -43,11 +43,11 @@ Hosting en formulieren: deze site wordt gehost door een externe partij, die ook 
 
 Lettertypen: we laden weblettertypen van een externe partij om de lettertypen van deze site te tonen. Het op deze manier laden van een lettertype stuurt het IP-adres van je apparaat naar die partij als onderdeel van dat verzoek, net als bij het laden van elke bron van een externe server.
 
-AI-chat: als je een vraag stelt in de chat op deze site, wordt je vraag samen met relevante teksten van onze website verwerkt door Cloudflare Workers AI om een antwoord te schrijven. Cloudflare gebruikt deze gegevens niet om modellen te trainen. We bewaren je laatste vraag anoniem om onze antwoorden en veelgestelde vragen te verbeteren: zonder IP-adres en zonder gesprek, en e-mailadressen en telefoonnummers in je vraag halen we er automatisch uit. Zet daarom geen persoonlijke gegevens in de chat.
+AI-chat: als je een vraag stelt in de chat op deze site, wordt je vraag samen met relevante teksten van onze website verwerkt om een antwoord te schrijven. Deze gegevens worden niet gebruikt om AI-modellen te trainen. We bewaren je laatste vraag en het antwoord dat je kreeg anoniem, samen met je duim omhoog of omlaag als je die geeft, om onze assistent en veelgestelde vragen te verbeteren: zonder IP-adres en zonder de rest van het gesprek, en e-mailadressen en telefoonnummers halen we er uit beide automatisch uit. Zet daarom geen persoonlijke gegevens in de chat.
 
 ## Hoe lang we gegevens bewaren
 
-Contactformulier-inzendingen worden alleen bewaard zolang nodig is om je aanvraag af te handelen, en worden op verzoek verwijderd. We bewaren geen gegevens langer dan nodig is voor het doel waarvoor ze zijn verzameld. Vragen uit de AI-chat worden na 12 maanden automatisch verwijderd.
+Contactformulier-inzendingen worden alleen bewaard zolang nodig is om je aanvraag af te handelen, en worden op verzoek verwijderd. We bewaren geen gegevens langer dan nodig is voor het doel waarvoor ze zijn verzameld. Vragen en antwoorden uit de AI-chat worden na 12 maanden automatisch verwijderd.
 
 ## Jouw rechten
 
@@ -59,8 +59,4 @@ Onder de AVG heb je het recht om:
 - Bezwaar te maken tegen hoe je gegevens worden gebruikt
 - Een kopie van je gegevens op te vragen in een overdraagbaar formaat
 
-Om een van deze rechten uit te oefenen, mail je naar [info@dylandysigns.com](mailto:info@dylandysigns.com). Je hebt ook het recht om een klacht in te dienen bij de Autoriteit Persoonsgegevens als je vindt dat er niet zorgvuldig met je gegevens is omgegaan.
-
-## Wijzigingen in dit beleid
-
-Dit beleid kan worden bijgewerkt naarmate de site of de gebruikte tools veranderen. De datum bovenaan deze pagina geeft de laatste update weer.
+Om een van deze rechten uit te oefenen, mail je naar [info@dylandysigns.com](mailto:info@dylandysigns.com). Je hebt ook het recht om een klacht in te dienen bij de toezichthouder als je vindt dat er niet zorgvuldig met je gegevens is omgegaan.

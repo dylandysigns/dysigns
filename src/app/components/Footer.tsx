@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Mail, Instagram } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { TransitionLink } from "./TransitionLink";
 import { useCursor } from "../hooks/useCursor";
@@ -9,8 +7,6 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useLocation } from "react-router";
 import logoImg from "../../assets/dysigns_white.png";
 import { crawlHref } from "../seo/href";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /* WhatsApp inline SVG icon — same as Header */
 function WhatsAppIcon({ size = 14, className = "" }: { size?: number; className?: string }) {
@@ -121,33 +117,51 @@ export function Footer() {
     (s) => s.name.toLowerCase() === "instagram",
   );
 
-  /* ─── SCROLL-REVEAL ENTRANCE ─── */
+  /* ─── SCROLL-REVEAL ENTRANCE ───
+     Done with an IntersectionObserver and plain CSS transitions, not ScrollTrigger and GSAP:
+     a page change kills every ScrollTrigger and running tween (see Layout.tsx), and a footer
+     whose reveal was killed before it played stayed invisible on every page after that. */
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || !footerRef.current || !innerRef.current) return;
+    const footer = footerRef.current;
+    const inner = innerRef.current;
+    if (reduced || !footer || !inner || typeof IntersectionObserver === "undefined") return;
 
-    const children = innerRef.current.children;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        children,
-        { y: 24, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 92%",
-            once: true,
-          },
-        },
-      );
-    }, footerRef);
-
-    return () => ctx.revert();
-  }, []);
+    const kids = Array.from(inner.children) as HTMLElement[];
+    kids.forEach((el) => {
+      el.style.transition = "none";
+      el.style.opacity = "0";
+      el.style.transform = "translateY(24px)";
+    });
+    const show = () => {
+      kids.forEach((el, i) => {
+        el.style.transition = `opacity .6s ease ${i * 0.1}s, transform .6s cubic-bezier(.22,1,.36,1) ${i * 0.1}s`;
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          show();
+          io.disconnect();
+        }
+      },
+      { threshold: 0.01 },
+    );
+    io.observe(footer);
+    // a page too short to scroll, or a layout that never reports: never leave the footer hidden
+    const safety = window.setTimeout(show, 4000);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(safety);
+      kids.forEach((el) => {
+        el.style.transition = "";
+        el.style.opacity = "";
+        el.style.transform = "";
+      });
+    };
+  }, [pathname]);
 
   return (
     <footer
@@ -218,39 +232,43 @@ export function Footer() {
           >
             KVK: 83710418 | BTW: NL003861601B85
           </p>
-          <TransitionLink
-            to="/privacy"
-            style={{
-              fontSize: ".62rem",
-              letterSpacing: ".04em",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              textDecoration: "underline",
-              textUnderlineOffset: 2,
-            }}
-            onMouseEnter={() => cursor.set("link")}
-            onMouseLeave={() => cursor.reset()}
-          >
-            {t("footer.privacyLink")}
-          </TransitionLink>
-          <a
-            href={crawlHref(otherLangHref)}
-            hrefLang={lang === "en" ? "nl" : "en"}
-            lang={lang === "en" ? "nl" : "en"}
-            data-cursor-label={t("cursor.translate")}
-            onClick={(e) => {
-              e.preventDefault();
-              toggleLang();
-            }}
-            style={{
-              fontSize: ".62rem",
-              letterSpacing: ".04em",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              textDecoration: "underline",
-              textUnderlineOffset: 2,
-            }}
-          >
-            {lang === "en" ? "Nederlands" : "English"}
-          </a>
+          {/* the privacy link and the language switch on one line */}
+          <div className="flex items-center gap-2.5" style={{ fontSize: ".62rem", color: "rgba(var(--page-fg-rgb), .3)" }}>
+            <TransitionLink
+              to="/privacy"
+              style={{
+                fontSize: ".62rem",
+                letterSpacing: ".04em",
+                color: "rgba(var(--page-fg-rgb), .55)",
+                textDecoration: "underline",
+                textUnderlineOffset: 2,
+              }}
+              onMouseEnter={() => cursor.set("link")}
+              onMouseLeave={() => cursor.reset()}
+            >
+              {t("footer.privacyLink")}
+            </TransitionLink>
+            <span aria-hidden="true">|</span>
+            <a
+              href={crawlHref(otherLangHref)}
+              hrefLang={lang === "en" ? "nl" : "en"}
+              lang={lang === "en" ? "nl" : "en"}
+              data-cursor-label={t("cursor.translate")}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleLang();
+              }}
+              style={{
+                fontSize: ".62rem",
+                letterSpacing: ".04em",
+                color: "rgba(var(--page-fg-rgb), .55)",
+                textDecoration: "underline",
+                textUnderlineOffset: 2,
+              }}
+            >
+              {lang === "en" ? "Nederlands" : "English"}
+            </a>
+          </div>
         </div>
 
         {/* Contact icons — Email first, WhatsApp second (matches Header order) */}

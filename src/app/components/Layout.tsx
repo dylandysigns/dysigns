@@ -1,10 +1,11 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo, startTransition } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronUp } from "lucide-react";
 import { PremiumCursorProvider } from "./PremiumCursor";
 import { SplashIntro } from "./SplashIntro";
+import { createWarp, type Warp } from "./SpaceWarp";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { TransitionContext } from "../hooks/useTransition";
@@ -125,9 +126,21 @@ function debugNav(label: string) {
   console.groupEnd();
 }
 
+/* The order of the main pages in the menu: going to a later one flies you to the right, to an earlier
+   one to the left. Every other page counts as sitting between Work and About. */
+const PAGE_ORDER: Record<string, number> = { "/": 0, "/work": 1, "/about": 2, "/contact": 3 };
+function pageIndex(path: string): number {
+  const bare = path.replace(/^\/nl(?=\/|$)/, "") || "/";
+  const top = "/" + (bare.split("/")[1] ?? "");
+  return PAGE_ORDER[top] ?? 1.5;
+}
+
 export default function Layout() {
   const [splashDone, setSplashDone] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const warpCanvasRef = useRef<HTMLCanvasElement>(null);
+  const warpRef = useRef<Warp | null>(null);
+  const flightCancel = useRef<(() => void) | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const resizeTimer = useRef<ReturnType<typeof setTimeout>>();
@@ -264,14 +277,33 @@ export default function Layout() {
     if (overlay) {
       gsap.set(overlay, { opacity: 0, visibility: "hidden", pointerEvents: "none" });
     }
+    flightCancel.current?.();
+    flightCancel.current = null;
+    warpRef.current?.stop();
+    if (overlay) {
+      overlay.style.backdropFilter = "none";
+      overlay.style.background = "#000";
+    }
+    const m = document.querySelector<HTMLElement>("main");
+    if (m) gsap.set(m, { clearProps: "transform,opacity,willChange,transformOrigin" });
+    document.documentElement.style.overflowX = "";
     busy.current = false;
     activeTl.current = null;
     if (safetyTimer.current) clearTimeout(safetyTimer.current);
   }, []);
 
+  useEffect(() => {
+    if (!warpCanvasRef.current) return;
+    warpRef.current = createWarp(warpCanvasRef.current);
+    return () => {
+      warpRef.current?.destroy();
+      warpRef.current = null;
+    };
+  }, []);
+
   /* ─── ROUTE TRANSITION HANDLER ─── */
   const navigateTo = useCallback(
-    (rawPath: string) => {
+    (rawPath: string, opts?: { instant?: boolean }) => {
       // Preserve the current language segment on internal navigation —
       // a plain "/work" target from a page/component that doesn't know
       // about /nl still lands on "/nl/work" while browsing Dutch.
@@ -293,11 +325,19 @@ export default function Layout() {
       }
 
       if (path === location.pathname) return;
+      if (opts?.instant) {
+        // the caller flies on its own: just change the page, in slices so the caller's frames go on
+        window.dispatchEvent(new Event("dysigns:cursor-reset"));
+        killPageAnimations(null);
+        startTransition(() => navigate(path));
+        window.scrollTo(0, 0);
+        return;
+      }
       busy.current = true;
 
       // Safety timeout
       if (safetyTimer.current) clearTimeout(safetyTimer.current);
-      safetyTimer.current = setTimeout(forceReset, 3500);
+      safetyTimer.current = setTimeout(forceReset, 6000);
 
       const reduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -313,7 +353,8 @@ export default function Layout() {
       }
 
       const overlay = overlayRef.current;
-      if (!overlay) {
+      const main = document.querySelector<HTMLElement>("main");
+      if (!overlay || !main) {
         killPageAnimations(null);
         navigate(path);
         window.scrollTo(0, 0);
@@ -322,45 +363,60 @@ export default function Layout() {
         return;
       }
 
+      // The same sideways move as when the contact form is sent: the page lets go and slides away to one
+      // side while soft streaks of stars flow past, and the new page comes in from the other side. To the
+      // right in the menu: the old page goes out to the left and the new one comes in from the right;
+      // to the left in the menu: the other way round.
+      const dir: 1 | -1 = pageIndex(path) >= pageIndex(location.pathname) ? 1 : -1;
       const tl = gsap.timeline();
       activeTl.current = tl;
+      const warp = warpRef.current;
+      const xOut = `${-dir * 8}vw`;
+      const xIn = `${dir * 8}vw`;
+      const root = document.documentElement;
+      const prevOverflow = root.style.overflowX;
+      root.style.overflowX = "hidden"; // the sliding page must not make a horizontal scrollbar
 
-      // Phase 1: fade IN the black overlay (old page fades to black)
-      tl.set(overlay, { opacity: 0, visibility: "visible", pointerEvents: "auto" });
-      tl.to(overlay, {
-        opacity: 1,
-        duration: 0.35,
-        ease: "power2.inOut",
-      });
+      // the overlay is only the layer of the streaks now: see-through, no black cover
+      overlay.style.background = "transparent";
+      gsap.set(overlay, { opacity: 0, visibility: "visible", pointerEvents: "auto" });
+      gsap.set(main, { willChange: "transform, opacity", transformOrigin: "50% 40vh" });
+      if (warp) {
+        warp.state.dir = dir;
+        warp.state.speed = 0;
+        warp.start();
+        tl.to(warp.state, { speed: 0.5, duration: 0.9, ease: "sine.inOut" }, 0);
+      }
+      tl.to(overlay, { opacity: 1, duration: 0.5, ease: "sine.inOut" }, 0);
+      tl.to(main, { x: xOut, scale: 0.96, opacity: 0, duration: 0.6, ease: "sine.inOut" }, 0);
 
-      // Phase 2: swap route while fully covered
+      // swap the route while the old page is out of sight, and put the new one on the other side at once
       tl.call(() => {
         window.dispatchEvent(new Event("dysigns:cursor-reset"));
         killPageAnimations(tl);
         navigate(path);
         window.scrollTo(0, 0);
-      });
+        gsap.set(main, { x: xIn, scale: 0.96, opacity: 0 });
+      }, [], 0.65);
 
-      // Brief hold for new DOM to mount
-      tl.to({}, { duration: 0.1 });
+      // the new page glides in; the stars calm down and let go
+      tl.to(main, { x: 0, scale: 1, opacity: 1, duration: 0.85, ease: "sine.inOut" }, 0.78);
+      if (warp) tl.to(warp.state, { speed: 0.02, duration: 1.0, ease: "sine.inOut" }, 0.8);
+      tl.to(overlay, { opacity: 0, duration: 0.7, ease: "sine.inOut" }, 1.0);
 
-      // Phase 3: fade OUT the overlay (new page fades in from black)
-      tl.to(overlay, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power2.inOut",
-      });
-
-      // Phase 4: cleanup
       tl.call(() => {
+        warp?.stop();
         gsap.set(overlay, { visibility: "hidden", pointerEvents: "none" });
+        overlay.style.background = "#000";
+        gsap.set(main, { clearProps: "transform,opacity,willChange,transformOrigin" });
+        root.style.overflowX = prevOverflow;
         busy.current = false;
         activeTl.current = null;
         if (safetyTimer.current) clearTimeout(safetyTimer.current);
         requestAnimationFrame(() =>
           requestAnimationFrame(() => ScrollTrigger.refresh()),
         );
-      });
+      }, [], 1.75);
     },
     [navigate, location.pathname, killPageAnimations, forceReset],
   );
@@ -412,7 +468,7 @@ export default function Layout() {
         {/* ─── BACK TO TOP ─── */}
         {splashDone && <BackToTop />}
 
-        {/* ─── CROSSFADE TRANSITION OVERLAY ─── */}
+        {/* ─── SPACE TRANSITION OVERLAY ─── */}
         <div
           ref={overlayRef}
           className="fixed inset-0"
@@ -424,7 +480,14 @@ export default function Layout() {
             pointerEvents: "none",
             willChange: "opacity",
           }}
-        />
+        >
+          {/* the stars of the sideways flight, see SpaceWarp.ts */}
+          <canvas
+            ref={warpCanvasRef}
+            aria-hidden="true"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }}
+          />
+        </div>
       </TransitionContext.Provider>
     </PremiumCursorProvider>
     </LanguageProvider>

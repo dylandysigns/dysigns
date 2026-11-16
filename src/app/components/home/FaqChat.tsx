@@ -64,7 +64,15 @@ function useTypewriter(text: string, enabled: boolean): string {
   return text.slice(0, Math.min(shown, text.length));
 }
 
-function Bubble({ msg, onAsk }: { msg: ChatMessage; onAsk: (q: string) => void }) {
+function Thumb({ down }: { down?: boolean }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={down ? { transform: "rotate(180deg)" } : undefined}>
+      <path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zM7 11l4-8a2.5 2.5 0 0 1 2.5 2.5V9H19a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7" />
+    </svg>
+  );
+}
+
+function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
   const { t } = useLanguage();
   const isUser = msg.role === "user";
   const typed = useTypewriter(msg.content, !isUser);
@@ -96,6 +104,22 @@ function Bubble({ msg, onAsk }: { msg: ChatMessage; onAsk: (q: string) => void }
             ))}
           </div>
         )}
+        {!isUser && !typing && msg.status === "done" && msg.rid && (
+          <div className="faq-chat-rate">
+            {msg.rating ? (
+              <span>{t("faq.chat.thanks")}</span>
+            ) : (
+              <>
+                <button type="button" aria-label={t("faq.chat.helpful")} onClick={() => onRate(msg.id, msg.rid!, 1)}>
+                  <Thumb />
+                </button>
+                <button type="button" aria-label={t("faq.chat.notHelpful")} onClick={() => onRate(msg.id, msg.rid!, -1)}>
+                  <Thumb down />
+                </button>
+              </>
+            )}
+          </div>
+        )}
         {!isUser && !typing && sources.length > 0 && (
           <div className="faq-chat-sources">
             <span>{t("faq.chat.readMore")}</span>
@@ -125,7 +149,7 @@ function Bubble({ msg, onAsk }: { msg: ChatMessage; onAsk: (q: string) => void }
  */
 export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" }) {
   const { lang, t } = useLanguage();
-  const { messages, send, busy, limitReached } = useFaqChat(lang);
+  const { messages, send, rate, busy, limitReached } = useFaqChat(lang);
   const [draft, setDraft] = useState("");
   const [focused, setFocused] = useState(false);
   // Short-lived flag for the send micro-interaction (button launch and a
@@ -211,7 +235,7 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
         {started && (
           <div ref={listRef} className="faq-chat-list" aria-live="polite" aria-busy={busy}>
             {messages.map((m) => (
-              <Bubble key={m.id} msg={m} onAsk={submit} />
+              <Bubble key={m.id} msg={m} onAsk={submit} onRate={rate} />
             ))}
             {limitReached && !busy && (
               <p className="faq-chat-note">
@@ -416,6 +440,9 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
           background: rgba(var(--page-fg-rgb), .6); animation: faq-chat-blink 1s steps(2) infinite;
         }
         @keyframes faq-chat-blink { to { opacity: 0; } }
+        .faq-chat-rate { display: flex; align-items: center; gap: .15rem; padding-left: .1rem; font-size: .72rem; color: rgba(var(--page-fg-rgb), .4); }
+        .faq-chat-rate button { padding: .3rem; border-radius: 999px; color: rgba(var(--page-fg-rgb), .35); transition: color .2s ease, background .2s ease; }
+        .faq-chat-rate button:hover { color: var(--page-fg); background: rgba(var(--page-fg-rgb), .08); }
         .faq-chat-sources { display: flex; flex-wrap: wrap; gap: .35rem .8rem; padding-left: .2rem; font-size: .75rem; }
         .faq-chat-sources span { color: rgba(var(--page-fg-rgb), .4); }
         .faq-chat-sources a, .faq-chat-note a { color: rgba(var(--page-fg-rgb), .65); text-decoration: underline; text-underline-offset: 3px; }

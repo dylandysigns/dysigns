@@ -1,9 +1,12 @@
+import { AvailGlobe } from "./AvailGlobe";
 import { useEffect, useRef, useState } from "react";
+import { openGlobeScene } from "./openGlobeScene";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../src/styles/effra.css";
 import "./portal-hero.css";
 import { createSpace, type Space } from "./portalSpace";
+import { arriveAt, type Travel } from "./portalTravel";
 import { EMBLEM_SPIN_REST, PLANET_SHARE, emblemWidthPx, type Emblem } from "./portalEmblem";
 import { PARTNERS } from "./copy";
 import { TransitionLink } from "../src/app/components/TransitionLink";
@@ -12,6 +15,7 @@ import { usePageTransition } from "../src/app/hooks/useTransition";
 import { useNavigate } from "react-router";
 import { pathIsDutch } from "../src/app/hooks/useLanguage";
 import { getLocalizedContent } from "../src/app/content/loadContent";
+
 
 /* Preview only. Portal hero for DYSIGNS, made to stand in for the live hero on the
    homepage (dev only, see src/app/pages/HomePage.tsx): a black universe with fine
@@ -61,8 +65,6 @@ function comeForward(el: Element | null, delayMs = 0) {
    stretching. The new page is in it from the first moment, tiny and far ahead in the middle of
    the screen, and it is what you are flying towards: it grows until it fills the screen, the
    stars slow down, and the canvas lets go. */
-type Travel = { space: Space; canvas: HTMLCanvasElement; main: HTMLElement };
-
 function openTravel(from: Space): Travel | null {
   const main = document.querySelector<HTMLElement>("main");
   const host = main?.parentElement;
@@ -83,51 +85,6 @@ function openTravel(from: Space): Travel | null {
   return { space, canvas, main };
 }
 
-function arriveAt(travel: Travel, go: () => void, speed = 1) {
-  const { space, canvas, main } = travel;
-  const from = window.location.pathname;
-  const done = () => {
-    space.stop();
-    canvas.remove();
-    gsap.set(main, { clearProps: "all" });
-  };
-  // As the site's own page transition does before it swaps a page: let ScrollTrigger put pinned
-  // sections back where React expects them, or React cannot take the old page out.
-  ScrollTrigger.getAll().forEach((st) => st.kill());
-  go();
-  const t0 = performance.now();
-  const wait = () => {
-    if (window.location.pathname === from) {
-      if (performance.now() - t0 < 4000) requestAnimationFrame(wait);
-      else done();
-      return;
-    }
-    const s = space.state;
-    // The page fades in out of the stars while it comes closer. Its edges are feathered away,
-    // so it is never a hard rectangle in space: it is light that gathers into a page.
-    const feather = "radial-gradient(ellipse at 50% 50vh, #000 calc(var(--ph-m) * 0.45), transparent var(--ph-m))";
-    gsap.set(main, {
-      transformOrigin: "50% 50vh",
-      scale: 0.42,
-      opacity: 0,
-      "--ph-m": "34vmax",
-      maskImage: feather,
-      webkitMaskImage: feather,
-    });
-    gsap
-      .timeline({ onComplete: done })
-      .timeScale(speed)
-      .to(main, { opacity: 1, duration: 1.7, ease: "sine.inOut" }, 0.1)
-      .to(main, { scale: 1, duration: 2.3, ease: "power2.out" }, 0)
-      .to(main, { "--ph-m": "170vmax", duration: 2.0, ease: "power1.in" }, 0.3)
-      .to(s, { warp: 1, duration: 0.7, ease: "power1.in" }, 0)
-      .to(s, { travel: s.travel + 2.2, duration: 2.4, ease: "power1.out" }, 0)
-      .to(s, { warp: 0, duration: 1.3, ease: "sine.inOut" }, 0.9)
-      .to(canvas, { opacity: 0, duration: 0.9, ease: "sine.inOut" }, 1.4);
-  };
-  requestAnimationFrame(wait);
-}
-
 export default function PortalHero() {
   const [noGl, setNoGl] = useState(false);
   const { t, lang } = useLanguage();
@@ -136,6 +93,8 @@ export default function PortalHero() {
   navRef.current = navigateTo;
   // the router's own navigate: a flight swaps the page itself, without the site's fade to black
   const routerNavigate = useNavigate();
+  const openGlobe = (origin: { cx: number; cy: number; diameter: number }) =>
+    openGlobeScene({ mode: "projects", origin, t, lang, navigateTo: (p, o) => navRef.current(p, o) });
   const goRef = useRef((path: string) => {});
   goRef.current = (path: string) => routerNavigate(pathIsDutch(window.location.pathname) && !pathIsDutch(path) ? `/nl${path}` : path);
   const services = SERVICES.map((sv) => {
@@ -892,9 +851,13 @@ export default function PortalHero() {
           </text>
         </svg>
         <div className="ph-a__main">
+          {/* Not a badge: a small wireframe Earth in the corner of the sky, a dot where the Netherlands
+              is, and a thin line from it to the words. The words stay real text for readers and crawlers. */}
           <p className="ph-avail" data-fade data-rise>
-            <i aria-hidden="true" />
-            {t("hero.availableIn")} <b>{t("hero.fallbackLocation")}</b>
+            <AvailGlobe label={t("hero.globeLabel")} onOpen={openGlobe} />
+            <span className="ph-avail__text">
+              {t("menu.workIn")}
+            </span>
           </p>
           <h1 className="ph-h1" data-fade>
             <span className="ph-mask">

@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import gsap from "gsap";
 import { TurnstileWidget, TURNSTILE_ENABLED } from "../TurnstileWidget";
+import { TransitionLink } from "../TransitionLink";
+import { SEND } from "./sendAnimation";
+import { prepareSignal, type PreparedSignal } from "./sendSignal";
+import { createSignalOrb, type SignalOrb } from "./signalOrb";
 import { useLanguage } from "../../hooks/useLanguage";
 import "./lead-form.css";
 
@@ -27,7 +32,6 @@ const PROMPTS: Record<"en" | "nl", Record<Field, string[]>> = {
   },
 };
 
-const MIN_IDEA = 20;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /* An empty field just shows its label, quietly: no typing, no blinking. */
@@ -69,11 +73,34 @@ function Icon({ kind }: { kind: Field }) {
 
 export function LeadForm() {
   const { t, lang } = useLanguage();
+  // the ball lives in the body, outside the page, so no transform of the page can move them
+  const orbRef = useRef<SignalOrb | null>(null);
+  const orbTimers = useRef<number[]>([]);
+  const prepared = useRef<PreparedSignal | null>(null); // the Earth and its stars, built before they are needed
+  const earth = useRef<(() => void) | null>(null); // takes the small Earth of the thank-you away again
+  const clearOrb = () => {
+    orbTimers.current.forEach((id) => window.clearTimeout(id));
+    orbTimers.current = [];
+    orbRef.current?.destroy();
+    orbRef.current = null;
+  };
+  useEffect(
+    () => () => {
+      earth.current?.();
+      prepared.current?.dispose();
+      clearOrb();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [idea, setIdea] = useState("");
-  const [sending, setSending] = useState(false);
+  // idle: the form. sending: the fields fly into a ball of light while the message goes out.
+  // sent: the ball dissolves into the thank-you. error: the fields come back, nothing is lost.
+  const [phase, setPhase] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const sending = phase === "sending" || phase === "sent";
   const [verifyFailed, setVerifyFailed] = useState(false);
   const [tried, setTried] = useState(false);
 
@@ -86,6 +113,7 @@ export function LeadForm() {
   const tsRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLInputElement>(null);
+  const rowEls = useRef<HTMLElement[]>([]);
 
   const prompts = PROMPTS[lang === "nl" ? "nl" : "en"];
   const nameGhost = useGhost(prompts.name, name === "");
@@ -93,12 +121,12 @@ export function LeadForm() {
   const phoneGhost = useGhost(prompts.phone, phone === "");
   const ideaGhost = useGhost(prompts.idea, idea === "");
 
-  const nameOk = name.trim().length > 1;
+  const nameOk = name.trim().length >= 1;
   const emailOk = EMAIL_RE.test(email);
   // optional: empty is fine, but if it is filled in it has to look like a number
   const phoneOk = phone.trim() === "" || phone.replace(/\D/g, "").length >= 8;
   const ideaLen = idea.trim().length;
-  const ideaOk = ideaLen >= MIN_IDEA;
+  const ideaOk = ideaLen >= 1; // no minimum length: anything is a start
   const valid = nameOk && emailOk && phoneOk && ideaOk;
 
   useEffect(() => {
@@ -114,26 +142,122 @@ export function LeadForm() {
     area.style.height = `${area.scrollHeight}px`;
   }, [idea]);
 
-  /* Turnstile fills its hidden input a moment after the page loads. Hold the post until the
-     token is there (at most about 5 s, then send anyway and let the server decide). */
-  function send() {
+  const notify = (state: "sending" | "sent" | "failed") =>
+    window.dispatchEvent(new CustomEvent("dysigns:contact", { detail: state }));
+  const sleep = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms));
+
+  /* The fields fly into the middle of the page, where the ball of light appears behind them
+     (ContactSpace.tsx). Each row gets the way to the middle as two CSS variables. */
+  function collapse(): { mx: number; my: number; h: number } | null {
+    const form = formRef.current;
+    if (!form) return null;
+    const canvas = document.querySelector("canvas[data-contact-space]");
+    const box = canvas?.getBoundingClientRect();
+    const mx = box ? box.left + box.width / 2 : window.innerWidth / 2;
+    const my = box ? box.top + box.height / 2 : window.innerHeight / 2;
+    // where the ball is, as seen from the form: the words under it and the thank-you go there
+    const f = form.getBoundingClientRect();
+    form.style.setProperty("--lf-ball-x", `${Math.round(mx - f.left)}px`);
+    form.style.setProperty("--lf-ball-y", `${Math.round(my - f.top)}px`);
+    form.style.setProperty("--lf-ball-r", `${Math.round(SEND.ballSize * (box ? box.height : window.innerHeight))}px`);
+    form.style.setProperty("--lf-collapse", `${SEND.collapseSec}s`);
+    form.style.setProperty("--lf-stagger", `${SEND.collapseStagger}s`);
+    form.style.setProperty("--lf-blur", `${SEND.collapseBlur}px`);
+    form.querySelectorAll<HTMLElement>(".lf-row").forEach((row) => {
+      const r = row.getBoundingClientRect();
+      row.style.setProperty("--lf-dx", `${Math.round(mx - (r.left + r.width / 2))}px`);
+      row.style.setProperty("--lf-dy", `${Math.round(my - (r.top + r.height / 2))}px`);
+    });
+    return { mx, my, h: box ? box.height : window.innerHeight };
+  }
+
+  /* The signal: it is the fields. Each one that flies in makes it bigger, quickly, one after the other,
+     with a spring; and from the first moment it is alive: it floats, wanders and sends out rings
+     (signalOrb.ts). */
+  function growBall(mx: number, my: number, h: number) {
+    clearOrb();
+    const orb = createSignalOrb(mx, my);
+    orbRef.current = orb;
+    const R = SEND.ballSize * h;
+    const rows = formRef.current?.querySelectorAll(".lf-row").length ?? 4;
+    for (let i = 0; i < rows; i++) {
+      // a field arrives: the signal takes a step bigger
+      const id = window.setTimeout(() => orb.setRadius(R * (0.3 + (0.7 * (i + 1)) / rows)), (SEND.collapseSec * 0.8 + i * SEND.collapseStagger) * 1000);
+      orbTimers.current.push(id);
+    }
+    // when it is full of the fields: the envelope shuts (with a little bounce) and then gets small again,
+    // smoothly: a small signal that floats about and waits
+    const small = Math.max(SEND.envelope > 0.5 ? 11 : 7, Math.min(window.innerWidth, window.innerHeight) * 0.016);
+    const lastIn = (SEND.collapseSec * 0.8 + (rows - 1) * SEND.collapseStagger) * 1000;
+    orbTimers.current.push(window.setTimeout(() => orb.setOpen(false), lastIn + 120));
+    orbTimers.current.push(window.setTimeout(() => orb.setRadius(small, true), lastIn + (SEND.envelope > 0.5 ? 620 : 150)));
+  }
+
+  /* Sent with fetch, not a page load, so you see it go: the fields become a ball of light and the
+     ball is the message on its way. Turnstile fills its hidden input a moment after the page
+     loads, so the post waits for the token (at most about 5 s, then it goes anyway and the server
+     decides). Without JS the form still posts the old way, to /api/contact and then /thank-you. */
+  async function send() {
     const form = formRef.current;
     if (!form || sending) return;
-    setSending(true);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pos = collapse();
+    setPhase("sending");
+    setVerifyFailed(false);
+    notify("sending");
+    document.body.style.overflow = "hidden"; // the ball is fixed: the page stays where it is
+    if (pos && !reduced) {
+      growBall(pos.mx, pos.my, pos.h);
+      // the Earth, its stars and the land are built now, while the fields are still flying in
+      prepared.current?.dispose();
+      prepared.current = prepareSignal({ x: pos.mx, y: pos.my });
+    }
+    const started = performance.now();
     if (emailRef.current) emailRef.current.value = email;
     if (messageRef.current) {
       messageRef.current.value = `Name: ${name.trim()}${phone.trim() ? `\nPhone: ${phone.trim()}` : ""}\n\n${idea.trim()}`;
     }
     const hasToken = () =>
       Boolean((form.elements.namedItem("cf-turnstile-response") as HTMLInputElement | null)?.value);
-    if (!TURNSTILE_ENABLED || hasToken()) return form.submit();
-    const started = Date.now();
-    const timer = window.setInterval(() => {
-      if (hasToken() || Date.now() - started > 5000) {
-        window.clearInterval(timer);
-        form.submit();
+    const waitStart = Date.now();
+    while (TURNSTILE_ENABLED && !hasToken() && Date.now() - waitStart < 5000) await sleep(150);
+
+    let ok = false;
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: new FormData(form) });
+      // the server answers with a redirect: to /thank-you when it went well, back to the form when the check failed
+      ok = res.ok && /\/thank-you\/?$/.test(new URL(res.url).pathname);
+      if (!ok && res.url.includes("error=verify")) setVerifyFailed(true);
+    } catch {
+      ok = false;
+    }
+    // however fast the answer is, the fields and the ball are there long enough to be seen
+    await sleep(Math.max(0, SEND.minDurationMs - (performance.now() - started)));
+    if (ok) {
+      // the message is out: the ball shrinks, the scene zooms out and the ball flies into the Earth as a signal
+      const showThanks = () => {
+        notify("sent");
+        setPhase("sent");
+        document.body.style.overflow = "";
+      };
+      if (pos && !reduced && orbRef.current) {
+        earth.current?.();
+        // the thank-you is shown when the camera pans on to the right, in the middle of the flight
+        earth.current = prepared.current ? await prepared.current.fly(orbRef.current, showThanks) : null;
+        prepared.current = null;
+        clearOrb();
+      } else {
+        showThanks();
       }
-    }, 150);
+    } else {
+      notify("failed");
+      orbRef.current?.fadeOut();
+      prepared.current?.dispose();
+      prepared.current = null;
+      document.body.style.overflow = "";
+      setPhase("error");
+      (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset?.();
+    }
   }
 
   function onSubmit(e: FormEvent) {
@@ -156,7 +280,7 @@ export function LeadForm() {
   return (
     <form
       ref={formRef}
-      className={`lf ${sending ? "is-sending" : ""}`}
+      className={`lf ${sending ? "is-collapsing" : ""} ${phase === "sent" ? "is-sent" : ""}`}
       name="contact"
       method="POST"
       action="/api/contact"
@@ -331,14 +455,6 @@ export function LeadForm() {
         </span>
       </div>
 
-      {ideaLen > 0 && !ideaOk && (
-        <p className={`lf-hint ${tried ? "is-error" : ""}`} aria-live="polite">
-          {lang === "nl"
-            ? `Nog ${MIN_IDEA - ideaLen} tekens, zodat we je goed kunnen helpen`
-            : `${MIN_IDEA - ideaLen} more characters, so we can help you properly`}
-        </p>
-      )}
-
       <div className="lf-below" style={{ ["--lf-i" as string]: 4 }}>
         <button className={`lf-send ${valid ? "is-ready" : ""}`} type="submit" disabled={sending}>
           {t("contact.form.submit")}
@@ -352,6 +468,28 @@ export function LeadForm() {
         <TurnstileWidget />
       </div>
 
+      {phase === "sending" && (
+        <div className="lf-stage" aria-live="polite">
+          <p className="lf-status">{t("lead.sending")}</p>
+        </div>
+      )}
+      {phase === "sent" && (
+        <div className="lf-stage" aria-live="polite">
+          <div className="lf-done">
+            <p className="lf-done__label">{t("thankyou.label")}</p>
+            <h2>{t("thankyou.headline")}</h2>
+            <p className="lf-done__sub">{t("thankyou.sub")}</p>
+            <TransitionLink to="/work" className="lf-send is-ready">
+              {t("thankyou.seeWork")}
+            </TransitionLink>
+          </div>
+        </div>
+      )}
+      {phase === "error" && !verifyFailed && (
+        <p role="alert" className="lf-error">
+          {t("lead.sendError")}
+        </p>
+      )}
       {verifyFailed && (
         <p role="alert" className="lf-error">
           {t("contact.form.verifyError")}

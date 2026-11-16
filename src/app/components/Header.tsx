@@ -8,7 +8,6 @@ import { siteContent } from "../data/content";
 import { useLanguage, toLangPath } from "../hooks/useLanguage";
 import logoImg from "../../assets/dysigns_white.png";
 import { crawlHref } from "../seo/href";
-import { useVisitorCity } from "../hooks/useVisitorCity";
 
 /* ─── SCROLL-AWARE HIDE/SHOW HOOK ─── */
 function useHeaderVisibility() {
@@ -167,7 +166,7 @@ function HeaderContactPill({
           style={{
             fontSize: ".6rem",
             fontWeight: 500,
-            letterSpacing: ".08em",
+            letterSpacing: 0,
             textTransform: "uppercase",
             color: "rgba(var(--header-fg-rgb, var(--page-fg-rgb)), .7)",
             paddingLeft: 8,
@@ -261,7 +260,7 @@ function LangToggle() {
               fontFamily: "var(--font-brand)",
               fontSize: ".6rem",
               fontWeight: 700,
-              letterSpacing: ".06em",
+              letterSpacing: 0,
               color: "rgba(var(--header-fg-rgb, var(--page-fg-rgb)), .55)",
               lineHeight: "14px",
               height: 14,
@@ -278,7 +277,7 @@ function LangToggle() {
               fontFamily: "var(--font-brand)",
               fontSize: ".6rem",
               fontWeight: 700,
-              letterSpacing: ".06em",
+              letterSpacing: 0,
               color: "rgba(var(--header-fg-rgb, var(--page-fg-rgb)), .55)",
               lineHeight: "14px",
               height: 14,
@@ -325,7 +324,7 @@ function MobileLangToggle() {
           fontFamily: "var(--font-brand)",
           fontSize: ".6rem",
           fontWeight: 700,
-          letterSpacing: ".06em",
+          letterSpacing: 0,
           color: "rgba(var(--page-fg-rgb), .55)",
         }}
       >
@@ -352,7 +351,6 @@ function MobileMenu({
   t: (key: string) => string;
 }) {
   const { lang } = useLanguage();
-  const visitorCity = useVisitorCity();
   const menuRef = useRef<HTMLDivElement>(null);
   const headerRowRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -525,17 +523,14 @@ function MobileMenu({
             style={{
               fontSize: ".6rem",
               fontWeight: 500,
-              letterSpacing: ".1em",
+              letterSpacing: 0,
               textTransform: "uppercase",
               color: "rgba(var(--page-fg-rgb), .55)",
               fontFamily: "var(--font-brand)",
             }}
           >
-            {/* Same message as the hero: where the visitor is, we work too. */}
-            {t("hero.availableIn")}{" "}
-            <span style={{ color: "rgba(var(--page-fg-rgb), .85)", fontWeight: 600 }}>
-              {visitorCity ?? t("hero.fallbackLocation")}
-            </span>
+            {/* One message for everyone, no guessing where the visitor is */}
+            {t("menu.workIn")}
           </span>
         </div>
       </div>
@@ -830,7 +825,7 @@ export function Header() {
                 padding: "7px 18px",
                 fontSize: ".68rem",
                 fontWeight: 500,
-                letterSpacing: ".1em",
+                letterSpacing: 0,
                 textTransform: "uppercase",
                 color: isActive(l.path)
                   ? "rgba(var(--header-fg-rgb, var(--page-fg-rgb)), .9)"

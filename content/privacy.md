@@ -42,11 +42,11 @@ Hosting and forms: this site is hosted by a third-party provider, which also pro
 
 Fonts: we load web fonts from a third-party provider to display this site's typefaces. Loading a font this way sends your device's IP address to that provider as part of the request, the same as loading any resource from an external server.
 
-AI chat: when you ask a question in the chat on this site, your question is processed together with relevant text from our website by Cloudflare Workers AI to write an answer. Cloudflare does not use this data to train models. We keep your latest question anonymously to improve our answers and FAQ: without your IP address and without the conversation, and we automatically remove e-mail addresses and phone numbers from your question. So please do not put personal details in the chat.
+AI chat: when you ask a question in the chat on this site, your question is processed together with relevant text from our website to write an answer. This data is not used to train AI models. We keep your latest question and the answer you got anonymously, together with your thumbs up or down if you give one, to improve our assistant and FAQ: without your IP address and without the rest of the conversation, and we automatically remove e-mail addresses and phone numbers from both. So please do not put personal details in the chat.
 
 ## How long we keep data
 
-Contact-form submissions are kept only as long as needed to handle your enquiry, and are deleted on request. We do not keep data longer than necessary for the purpose it was collected for. Questions from the AI chat are deleted automatically after 12 months.
+Contact-form submissions are kept only as long as needed to handle your enquiry, and are deleted on request. We do not keep data longer than necessary for the purpose it was collected for. Questions and answers from the AI chat are deleted automatically after 12 months.
 
 ## Your rights
 
@@ -58,8 +58,4 @@ Under the AVG/GDPR, you have the right to:
 - Object to how your data is used
 - Request a copy of your data in a portable format
 
-To exercise any of these rights, email [info@dylandysigns.com](mailto:info@dylandysigns.com). You also have the right to file a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens) if you believe your data has been mishandled.
-
-## Changes to this policy
-
-This policy may be updated as the site or its tools change. The date at the top of this page reflects the last update.
+To exercise any of these rights, email [info@dylandysigns.com](mailto:info@dylandysigns.com). You also have the right to file a complaint with the supervisory authority if you believe your data has been mishandled.

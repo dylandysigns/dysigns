@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../hooks/useLanguage";
@@ -16,6 +16,31 @@ export default function ContactPage() {
   const headRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const { t, lang } = useLanguage();
+
+  // while the message is on its way, and after it, the intro lines make room for the ball of light
+  // and the thank-you. A wrapper takes the fade, so it cannot clash with the entrance animation.
+  const zoomRef = useRef<HTMLDivElement>(null);
+  const [away, setAway] = useState(false);
+  useEffect(() => {
+    const onContact = (e: Event) => {
+      const phase = (e as CustomEvent<string>).detail;
+      setAway(phase === "sending" || phase === "zoomout" || phase === "sent");
+      // get the page onto a layer of its own before it has to move: building the layer in the first frame of the flight was a hitch
+      if (phase === "sending") gsap.set(zoomRef.current, { willChange: "transform, opacity" });
+      // the camera moves to the right: the page recedes to the left, and the thank-you comes in from the right
+      if (phase === "zoomout") {
+        // the camera moves to the right: the page slips away to the left
+        gsap.to(zoomRef.current, { x: "-8vw", scale: 0.96, opacity: 0, duration: 1.0, ease: "sine.inOut" });
+      } else if (phase === "sent") {
+        // and on the right the thank-you comes in
+        gsap.fromTo(zoomRef.current, { x: "8vw", scale: 1, opacity: 0 }, { x: 0, opacity: 1, duration: 1.2, ease: "power3.out", clearProps: "transform,willChange" });
+      } else if (phase === "failed") {
+        gsap.to(zoomRef.current, { x: 0, scale: 1, opacity: 1, duration: 0.8, ease: "power2.out", clearProps: "transform,willChange" });
+      }
+    };
+    window.addEventListener("dysigns:contact", onContact);
+    return () => window.removeEventListener("dysigns:contact", onContact);
+  }, []);
   const contactContent = getLocalizedContent("contact.md", lang);
 
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -123,8 +148,9 @@ export default function ContactPage() {
         />
       </svg>
 
-      <div className="relative max-w-[760px] w-full mx-auto text-center">
+      <div ref={zoomRef} className="relative max-w-[760px] w-full mx-auto text-center">
         <ContactEmblem />
+        <div style={{ opacity: away ? 0 : 1, transition: "opacity .5s ease", pointerEvents: away ? "none" : "auto" }}>
         <h1
           ref={headRef}
           className="mt-2"
@@ -152,6 +178,7 @@ export default function ContactPage() {
         >
           {t("contact.sub")}
         </p>
+        </div>
 
         <div
           ref={contentRef}

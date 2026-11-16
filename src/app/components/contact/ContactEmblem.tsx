@@ -20,7 +20,22 @@ export function ContactEmblem() {
       if (e.pointerType !== "mouse") emblem?.clearPointer();
     };
 
-    import("../../../../preview/portalEmblem")
+    // the emblem is not part of the send and the thank-you: it leaves when the message goes, and comes back if it fails
+    const onContact = (ev: Event) => {
+      const phase = (ev as CustomEvent<string>).detail;
+      if (phase === "sending") gsap.to(canvas, { opacity: 0, duration: 0.5, ease: "power1.out", overwrite: "auto", onComplete: () => emblem?.stop() }); // it rests once it is gone
+      else if (phase === "failed") {
+        emblem?.start();
+        gsap.to(canvas, { opacity: 1, duration: 0.6, overwrite: "auto" });
+      }
+    };
+
+    // not in the frame of the page change: loading and compiling the 3D emblem would freeze the flight in
+    let wait = 0;
+    new Promise<void>((resolve) => {
+      wait = window.setTimeout(resolve, 1700);
+    })
+      .then(() => import("../../../../preview/portalEmblem"))
       .then((m) => m.createEmblem(canvas))
       .then((e) => {
         if (!alive) return e.destroy();
@@ -33,6 +48,7 @@ export function ContactEmblem() {
         e.start();
         gsap.to(canvas, { opacity: 1, duration: 0.6, ease: "power1.out" });
         if (!reduced) gsap.to(e.state, { spin: EMBLEM_SPIN_REST, duration: 1.8, ease: "power2.inOut" });
+        window.addEventListener("dysigns:contact", onContact);
         window.addEventListener("pointermove", onMove, { passive: true });
         window.addEventListener("pointerup", onUp, { passive: true });
       })
@@ -42,7 +58,9 @@ export function ContactEmblem() {
 
     return () => {
       alive = false;
+      window.clearTimeout(wait);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("dysigns:contact", onContact);
       window.removeEventListener("pointerup", onUp);
       gsap.killTweensOf(canvas);
       if (emblem) {

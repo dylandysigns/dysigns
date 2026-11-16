@@ -21,6 +21,9 @@ export interface ChatMessage {
   /** streaming: tokens still arriving; fallback: answered from the local
    * FAQ match because the AI endpoint was not reachable. */
   status?: "streaming" | "done" | "fallback";
+  /** Id of the logged answer, for the thumbs up or down; only on answers the AI wrote. */
+  rid?: string;
+  rating?: 1 | -1;
 }
 
 /** Visitor questions per page visit; after that the chat points to contact. */
@@ -65,6 +68,15 @@ const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string> }[] = [
     answer: {
       nl: "Je praat met de AI-assistent van DYSIGNS. Ik geef antwoord op basis van wat er op onze website staat, over onze diensten, prijzen en werkwijze. Wil je liever een mens spreken? Stuur ons een [appje](" + WHATSAPP + ") of ga naar [de contactpagina](/nl/contact).",
       en: "You are talking to the DYSIGNS AI assistant. I answer from what is on our website, about our services, pricing and way of working. Would you rather talk to a person? Send us a [WhatsApp](" + WHATSAPP + ") or go to [the contact page](/contact).",
+    },
+  },
+  {
+    // short "how do I reach you" questions, also badly typed ("contact how"): a direct answer
+    // beats a lucky FAQ match, and it must work without the AI too
+    pattern: /^(?!.*\b(kost|kosten|prijs|price|cost|duurt|long|lang)\b)(?:\W*\w+){0,6}?\W*(contact|contacteren|bereik|bereiken|bereikbaar|reach|get in touch|in touch|bellen|call|mailen|e-?mail|whatsapp|appen|spreken|talk to)\b(?:\W*\w+){0,5}\W*$/i,
+    answer: {
+      nl: "Je bereikt ons het snelst via [WhatsApp](" + WHATSAPP + "), of stuur een bericht via [de contactpagina](/nl/contact). Mailen kan ook: [info@dylandysigns.com](mailto:info@dylandysigns.com).",
+      en: "The quickest way to reach us is [WhatsApp](" + WHATSAPP + "), or send a message via [the contact page](/contact). Email works too: [info@dylandysigns.com](mailto:info@dylandysigns.com).",
     },
   },
   {
@@ -225,6 +237,7 @@ export function useFaqChat(lang: FaqLang) {
           sources = [];
         }
 
+        const rid = res.headers.get("X-Faq-Id") ?? undefined;
         await minThink();
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
@@ -245,7 +258,7 @@ export function useFaqChat(lang: FaqLang) {
         }
 
         if (!received.trim()) await answerLocally(assistantId, question, minThink);
-        else update(assistantId, { status: "done", sources: sources.filter((s) => !s.isHome) });
+        else update(assistantId, { status: "done", sources: sources.filter((s) => !s.isHome), rid });
       } catch (err) {
         if ((err as Error)?.name === "AbortError") return;
         await answerLocally(assistantId, question, minThink);
@@ -258,7 +271,17 @@ export function useFaqChat(lang: FaqLang) {
     [busy, messages, lang],
   );
 
+  /** Thumbs up (1) or down (-1) on an answer. Fire and forget: a failed rating never bothers the visitor. */
+  const rate = useCallback((id: number, rid: string, rating: 1 | -1) => {
+    setMessages((list) => list.map((m) => (m.id === id ? { ...m, rating } : m)));
+    fetch("/api/faq-feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rid, rating }),
+    }).catch(() => {});
+  }, []);
+
   const questionsAsked = messages.filter((m) => m.role === "user").length;
 
-  return { messages, send, busy, limitReached: questionsAsked >= MAX_QUESTIONS };
+  return { messages, send, rate, busy, limitReached: questionsAsked >= MAX_QUESTIONS };
 }
