@@ -123,10 +123,19 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
       0.2,
     );
 
-    // Hold on the finished emblem, then fly on past it while the splash dissolves into the page.
-    const outAt = 0.2 + 1.5 + 0.25;
-    tl.to(contentRef.current, { opacity: 0, scale: 1.35, duration: 0.6, ease: "power2.in" }, outAt);
-    tl.to(el, { opacity: 0, duration: 0.7, ease: "power2.inOut" }, outAt + 0.25);
+    // No hold: the moment the emblem has finished its turn, we fly on into space, the same
+    // flight the hero makes on the first scroll. The stars stretch, the emblem rushes past
+    // and the splash dissolves into the hero, whose stars are already there.
+    const outAt = 0.2 + 1.5;
+    if (space) {
+      const s = space.state;
+      tl.to(s, { warp: 1, duration: 1.0, ease: "power2.in" }, outAt);
+      tl.to(s, { travel: s.travel + 1.6, duration: 1.5, ease: "power2.inOut" }, outAt);
+      tl.to(s, { warp: 0, duration: 0.6, ease: "power2.out" }, outAt + 1.0);
+    }
+    tl.to(contentRef.current, { scale: 4, duration: 1.0, ease: "power3.in" }, outAt);
+    tl.to(contentRef.current, { opacity: 0, duration: 0.45, ease: "power1.in" }, outAt + 0.45);
+    tl.to(el, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, outAt + 1.0);
 
     return () => {
       alive = false;

@@ -13,7 +13,12 @@ import {
 } from "../content/loadContent";
 import { serviceSchema, faqPageSchema, breadcrumbListSchema } from "../seo/schema";
 import { renderInlineMarkdown } from "../utils/inlineMarkdown";
-import { serviceDefinitions, serviceHeroImages, type ServiceSlug } from "../data/serviceTaxonomy";
+import {
+  serviceDefinitions,
+  serviceHeroImages,
+  serviceIncludeImages,
+  type ServiceSlug,
+} from "../data/serviceTaxonomy";
 import { useLanguage } from "../hooks/useLanguage";
 
 /**
@@ -66,7 +71,12 @@ function ServicePage({
   const path = `/${slug}`;
   const includes = getServiceIncludes(entry.rawBody);
   const useCases = getServiceUseCases(entry.rawBody);
-  const heroImage = serviceHeroImages[slug];
+  const fallbackImage = serviceHeroImages[slug];
+  const rowImageSet = serviceIncludeImages[slug];
+  const rowImageList = (lang === "nl" && rowImageSet?.nl) || rowImageSet?.en || [];
+  // One case image per include row, falling back to the service image.
+  const includeImages = includes.map((_, i) => rowImageList[i] ?? fallbackImage);
+  const heroImage = includeImages[0] ?? fallbackImage;
   const [activeInclude, setActiveInclude] = useState(0);
   const [isHoveringIncludes, setIsHoveringIncludes] = useState(false);
   const floatingImageRef = useRef<HTMLDivElement>(null);
@@ -341,11 +351,20 @@ function ServicePage({
                 transition: "opacity .3s ease",
               }}
             >
-              <img
-                src={heroImage}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              {includeImages.map((src, i) =>
+                src ? (
+                  <img
+                    key={`${src}-${i}`}
+                    src={src}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{
+                      opacity: i === activeInclude ? 1 : 0,
+                      transition: "opacity .35s ease",
+                    }}
+                  />
+                ) : null,
+              )}
             </div>
           )}
         </div>

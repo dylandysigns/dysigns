@@ -1,13 +1,14 @@
-/* The conversational contact form (LeadForm.tsx). Everything is scoped under .lf and set in
-   the site's own typeface, Effra. */
+/* The contact form (LeadForm.tsx): three big inline fields in one view, written in space. Everything
+   is scoped under .lf and set in the site's own typeface, Effra. */
 
 .lf {
   --lf-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --lf-fs: clamp(34px, min(5.2vw, 9svh), 72px);
+  --lf-fs: clamp(22px, min(3vw, 5svh), 34px);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(12px, 2.2svh, 20px);
   padding: clamp(8px, 2svh, 24px) 0 4px;
   font-family: var(--font-brand, "Effra", system-ui, sans-serif);
   color: #fff;
@@ -29,187 +30,171 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
-/* the back button and the step count, on one line with the count in the middle */
-.lf-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin: 0 0 clamp(14px, 3svh, 26px);
-}
-.lf-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 12px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.7);
-  font: 500 0.65rem/1 var(--font-brand, "Effra", system-ui, sans-serif);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(6px);
-  transition: opacity 0.35s var(--lf-ease), transform 0.35s var(--lf-ease), background 0.2s ease, color 0.2s ease;
-}
-.lf-back.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-}
-.lf-back:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-}
-.lf-back--ghost {
-  visibility: hidden;
-  padding-left: 31px; /* the width of the arrow and its gap */
-}
-.lf-step {
-  margin: 0;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.4);
-}
 
-/* ─── The field ─── */
+/* ─── A field: icon and huge text on a hairline. The three come in one after the other out of the
+   dark, the one in use lights up and the others step back. ─── */
 .lf-row {
   cursor: text;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2em;
-  max-width: 100%;
-  font-size: calc(var(--lf-fs) * var(--lf-scale, 1));
-  color: #3a3a3a;
-  transition: color 0.2s ease, opacity 0.175s ease, filter 0.175s ease;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(100%, 520px);
+  font-size: var(--lf-fs);
+  color: #6b6b6b;
+  padding: 0 0.1em 0.18em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  animation: lfIn 1.2s ease both;
+  animation-delay: calc(0.2s + var(--lf-i, 0) * 0.1s);
+  transition: color 0.2s ease, opacity 0.4s ease, border-color 0.25s ease;
+}
+@keyframes lfIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lf-row:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+.lf-row:focus-within {
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 .lf-row.is-filled {
   color: #fff;
 }
-.lf-row.is-swapping {
-  opacity: 0;
-  filter: blur(8px);
+.lf-row.is-missing {
+  border-bottom-color: #ff8a80;
 }
 .lf-icon {
   flex: none;
   display: block;
-  width: 0.8em;
-  height: 0.8em;
+  width: 22px;
+  height: 22px;
+  /* centred on the first line of text: half the line minus half the icon */
+  margin-top: calc((1.3em - 22px) / 2);
+  color: inherit;
 }
 .lf-icon svg {
   display: block;
   width: 100%;
   height: 100%;
 }
-.lf-input,
-.lf-measure {
-  font-family: var(--font-brand, "Effra", system-ui, sans-serif);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-.lf-input {
-  min-width: 1ch;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  outline: 0;
-  background: transparent;
-  color: inherit;
-  font-size: 1em;
-  caret-color: #fff;
-}
-.lf-input:focus-visible {
-  outline: 0;
-}
-.lf-input::placeholder {
-  color: #3a3a3a;
-  opacity: 1;
-}
-/* the description: a calmer size that wraps and grows, centred like the rest */
-.lf--idea .lf-row {
-  align-items: flex-start;
-  width: min(100%, 620px);
-  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
-}
-.lf--idea .lf-icon {
-  margin-top: 0.22em;
-}
-.lf-area {
+.lf-field {
+  position: relative;
+  display: block;
   flex: 1;
+  min-width: 0;
+}
+.lf-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.3;
+  color: #6b6b6b;
+  pointer-events: none;
+}
+.lf-caret {
+  display: inline-block;
+  width: 0.045em;
+  min-width: 2px;
+  height: 0.82em;
+  margin-left: 0.06em;
+  vertical-align: -0.08em;
+  background: #fff;
+  display: none;
+}
+/* with the focus in the field its own caret takes over */
+.lf-row:focus-within .lf-caret {
+  display: none;
+}
+@keyframes lfBlink {
+  50% {
+    opacity: 0;
+  }
+}
+.lf-input,
+.lf-area {
+  display: block;
+  width: 100%;
   min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: 0;
   outline: 0;
-  resize: none;
-  overflow: hidden;
   background: transparent;
   color: inherit;
   font-family: var(--font-brand, "Effra", system-ui, sans-serif);
   font-size: 1em;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1.3;
   text-align: left;
   caret-color: #fff;
 }
-.lf-area::placeholder {
-  color: #3a3a3a;
-  opacity: 1;
+.lf-input:focus-visible,
+.lf-area:focus-visible {
+  outline: 0;
 }
-.lf-measure {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  visibility: hidden;
-  white-space: pre;
-  font-size: var(--lf-fs);
+.lf-row--idea .lf-ghost,
+.lf-area {
+  line-height: 1.3;
+}
+.lf-area {
+  resize: none;
+  overflow: hidden;
 }
 
-/* The slot under the field: the next button. */
+/* The send button, under the fields: quiet until all three are filled in, then it lights up. */
 .lf-below {
-  position: relative;
-  width: 100%;
-  height: 48px;
-  margin-top: clamp(18px, 4svh, 36px);
+  margin-top: clamp(6px, 1.5svh, 14px);
+  animation: lfIn 1.2s ease both;
+  animation-delay: calc(0.2s + var(--lf-i, 0) * 0.1s);
 }
-.lf-below > * {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  opacity: 0;
-  filter: blur(6px);
-  transform: translate(-50%, 8px);
-  pointer-events: none;
-  transition: opacity 0.5s var(--lf-ease), filter 0.5s var(--lf-ease), transform 0.5s var(--lf-ease), background 0.2s ease, color 0.2s ease;
-}
-.lf-below > .is-visible {
-  opacity: 1;
-  filter: blur(0);
-  transform: translate(-50%, 0);
-  pointer-events: auto;
-}
-.lf-next {
-  padding: 14px 28px;
-  border: 0;
+.lf-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
-  background: #fff;
-  color: #000;
-  font: 600 15px/1 var(--font-brand, "Effra", system-ui, sans-serif);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font: 600 14px/1 var(--font-brand, "Effra", system-ui, sans-serif);
   white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.35s var(--lf-ease), color 0.35s var(--lf-ease), border-color 0.35s var(--lf-ease),
+    box-shadow 0.5s var(--lf-ease);
 }
-.lf-next:hover {
+.lf-send svg {
+  transition: transform 0.3s var(--lf-ease);
+}
+.lf-send:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.lf-send:hover svg {
+  transform: translateX(3px);
+}
+.lf-send.is-ready {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+  }
+.lf-send.is-ready:hover {
   background: #e6e6e6;
+  border-color: #e6e6e6;
+  color: #000;
 }
 .lf button:focus-visible {
   outline: 2px solid #fff;
@@ -220,30 +205,35 @@
   opacity: 0.4;
   pointer-events: none;
 }
-/* The human check loads from the start, so its token is ready, but it only takes up room at
-   the last step, where you send. */
 .lf-turnstile {
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.lf--idea .lf-turnstile {
-  height: auto;
-  margin-top: clamp(10px, 2svh, 20px);
-  overflow: visible;
-  opacity: 1;
+  display: flex;
+  justify-content: center;
 }
 .lf-error {
-  margin: 14px 0 0;
+  margin: 4px 0 0;
   font-size: 0.85rem;
   color: #ff8a80;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lf-row,
-  .lf-below > * {
-    transition: opacity 0.2s ease;
-    filter: none !important;
+  .lf-caret {
+    animation: none;
   }
+  .lf-row,
+  .lf-below {
+    animation: none;
+  }
+}
+
+/* the quiet note under the description while it is still too short */
+.lf-hint {
+  width: min(100%, 520px);
+  margin: -6px 0 0;
+  padding-left: 36px;
+  text-align: left;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.lf-hint.is-error {
+  color: #ff8a80;
 }

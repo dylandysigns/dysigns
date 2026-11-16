@@ -262,6 +262,6 @@ export const siteContent = {
     // { name: "Behance", url: "#" },
     // { name: "LinkedIn", url: "#" },
     // { name: "Twitter / X", url: "#" },
-    { name: "Instagram", url: "https://www.instagram.com/dylan.kho" },
+    { name: "Instagram", url: "https://www.instagram.com/dylandysigns" },
   ],
 };

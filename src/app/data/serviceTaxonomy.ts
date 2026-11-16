@@ -35,3 +35,84 @@ export const serviceHeroImages: Partial<Record<string, string>> = {
   branding: "/images/beckers-brand-board.png",
   "social-media-meta-ads": "/images/beckers-phone-mockup.avif",
 };
+
+// One case image per "What this includes" row, in the same order as the
+// ### headings in content/services/<slug>.md, each from a different case
+// where the portfolio allows it. `nl` is only needed when the Dutch file has
+// a different list of rows than the English one.
+const img = (name: string) => `/images/${name}`;
+export const serviceIncludeImages: Partial<Record<string, { en: string[]; nl?: string[] }>> = {
+  "web-design": {
+    // Design, Development, Custom website, Shopify stores, Redesign and migration,
+    // Performance and technical SEO
+    en: [
+      img("sfumato-website.avif"),
+      img("stelz-laptop.avif"),
+      img("biyu-cover.avif"),
+      img("merelymade-shop.avif"),
+      img("old-new.avif"),
+      img("beckers-cover-laptop-v3.avif"),
+    ],
+    // Design, Development, Website op maat, Shopify stores
+    nl: [img("sfumato-website.avif"), img("stelz-laptop.avif"), img("biyu-cover.avif"), img("merelymade-shop.avif")],
+  },
+  "shopify-development": {
+    // Custom theme, Custom functionality, Optimisation and maintenance,
+    // Integrations and apps, Migration to Shopify, Selling internationally
+    en: [
+      img("merelymade-web-hero.avif"),
+      img("stelz-app-v2-store.avif"),
+      img("old-new.avif"),
+      img("biyu-partner-portal.avif"),
+      img("old_product_page1.png"),
+      img("merelymade-new-arrivals.avif"),
+    ],
+  },
+  "web-design-almere": {
+    // Website, Shopify store, Improving what you have
+    en: [img("beckers-cover-laptop-v3.avif"), img("stelz-laptop.avif"), img("old-new.avif")],
+  },
+  "web-design-amsterdam": {
+    // Website, Shopify store, Apps and platforms
+    en: [img("biyu-cover.avif"), img("merelymade-web-hero.avif"), img("powermobile-overview.avif")],
+  },
+  "ux-ui-design": {
+    // Research, Wireframes and prototypes, Design system, UI design, Accessibility review
+    en: [
+      img("a-cafe/kiosk-before.avif"),
+      img("stelz-app-flow.avif"),
+      img("studio75-typography.avif"),
+      img("powermobile-overview.avif"),
+      img("biyu-app.avif"),
+    ],
+  },
+  branding: {
+    // Brand strategy, Logo and visual identity, Design system
+    en: [img("studio75-moodboard.avif"), img("studio75-logo-variants.avif"), img("beckers-brand-board.png")],
+    // Merkstrategie, Logo en huisstijl, Designsysteem, Brandguidelines
+    nl: [
+      img("studio75-moodboard.avif"),
+      img("studio75-logo-variants.avif"),
+      img("beckers-brand-board.png"),
+      img("sfumato-principles.avif"),
+    ],
+  },
+  "social-media-meta-ads": {
+    // Content, Paid campaigns, Conversion tracking
+    en: [img("beckers-phone-mockup.avif"), img("biyu-campaign.avif"), img("powermobile-maps.avif")],
+  },
+  "ai-implementation": {
+    // Workflow assessment, AI creatives, Improving processes with AI, Automation across
+    // the business, Dashboards and business insight, AI chat and assistants,
+    // Implementation and handoff
+    en: [
+      img("stelz-app-v2-process.avif"),
+      img("merelymade-lookbook.avif"),
+      img("stelz-app-flow.avif"),
+      img("biyu-partner-portal.avif"),
+      img("powermobile-overview.avif"),
+      img("stelz-app-community.avif"),
+      img("a-cafe/kiosk-before.avif"),
+    ],
+  },
+};

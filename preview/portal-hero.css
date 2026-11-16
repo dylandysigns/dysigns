@@ -103,8 +103,8 @@ html.ph-lock body {
   font-family: "Effra", system-ui, sans-serif;
   font-size: 11.5px;
   font-weight: 500;
-  letter-spacing: 3.4px;
-  word-spacing: 2px;
+  letter-spacing: 0;
+  word-spacing: 0;
   font-kerning: normal;
   text-rendering: geometricPrecision;
   text-transform: uppercase;

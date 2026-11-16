@@ -32,7 +32,7 @@ function WhatsAppIcon({ size = 14, className = "" }: { size?: number; className?
   );
 }
 
-/** Pill-style icon button that expands to show a label on hover */
+/** Pill with the icon and its label always visible */
 function ContactPill({
   href,
   label,
@@ -59,8 +59,8 @@ function ContactPill({
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="relative flex items-center h-9 rounded-full border transition-all duration-300 overflow-hidden group"
       style={{
-        paddingLeft: 11,
-        paddingRight: hovered ? 14 : 11,
+        paddingLeft: 13,
+        paddingRight: 15,
         borderColor: hovered ? "rgba(var(--page-fg-rgb), .25)" : "rgba(var(--page-fg-rgb), .1)",
       }}
       onMouseEnter={() => {
@@ -86,27 +86,20 @@ function ContactPill({
       <span className="relative z-10 flex-shrink-0" style={{ color: hovered ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .45)", transition: "color .3s" }}>
         {icon}
       </span>
-      {/* expanding label */}
+      {/* label */}
       <span
-        className="relative z-10 overflow-hidden whitespace-nowrap"
+        className="relative z-10 whitespace-nowrap"
         style={{
-          maxWidth: hovered ? 90 : 0,
-          opacity: hovered ? 1 : 0,
-          transition: "max-width .35s ease-out, opacity .3s ease-out",
+          fontSize: ".62rem",
+          fontWeight: 500,
+          letterSpacing: ".08em",
+          textTransform: "uppercase",
+          color: hovered ? "var(--page-fg)" : "rgba(var(--page-fg-rgb), .6)",
+          paddingLeft: 8,
+          transition: "color .3s",
         }}
       >
-        <span
-          style={{
-            fontSize: ".6rem",
-            fontWeight: 500,
-            letterSpacing: ".08em",
-            textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .7)",
-            paddingLeft: 8,
-          }}
-        >
-          {label}
-        </span>
+        {label}
       </span>
     </a>
   );
@@ -260,36 +253,19 @@ export function Footer() {
           </a>
         </div>
 
-        {instagram && (
-          <a
-            href={instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 transition-colors duration-300"
-            style={{
-              fontSize: ".68rem",
-              fontWeight: 500,
-              letterSpacing: ".06em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .4)",
-            }}
-            onMouseEnter={(e) => {
-              cursor.set("link");
-              (e.currentTarget as HTMLElement).style.color = "var(--page-fg)";
-            }}
-            onMouseLeave={(e) => {
-              cursor.reset();
-              (e.currentTarget as HTMLElement).style.color =
-                "rgba(var(--page-fg-rgb), .4)";
-            }}
-          >
-            <Instagram size={14} strokeWidth={1.5} />
-            <span>Instagram</span>
-          </a>
-        )}
-
         {/* Contact icons — Email first, WhatsApp second (matches Header order) */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {instagram && (
+            <ContactPill
+              href={instagram.url}
+              label="Instagram"
+              ariaLabel="Instagram"
+              cursorLabel="Instagram"
+              cursorApi={cursor}
+              external
+              icon={<Instagram size={14} strokeWidth={1.5} />}
+            />
+          )}
           <ContactPill
             href={`mailto:${c.email}`}
             label="Email"
