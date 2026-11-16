@@ -86,6 +86,39 @@ html.ph-lock body {
   pointer-events: none;
 }
 
+/* the scroll hint, written on one of the orbits: barely there, breathing slowly */
+.ph-hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* the viewBox is in viewport heights, like the space canvas: 3 wide, 1 high */
+  width: 300svh;
+  height: 100svh;
+  margin: -50svh 0 0 -150svh;
+  overflow: visible;
+  pointer-events: none;
+}
+.ph-hint text {
+  fill: #fff;
+  font-family: "Effra", system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 3.4px;
+  word-spacing: 2px;
+  font-kerning: normal;
+  text-rendering: geometricPrecision;
+  text-transform: uppercase;
+  animation: phHint 5.5s ease-in-out infinite;
+}
+@keyframes phHint {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 /* ─── Type and buttons, in the voice of the live site: heavy Effra, small tracked capitals, hairline pills ─── */
 .ph-mask {
   display: block;
@@ -399,6 +432,8 @@ html.ph-lock body {
 .ph-chips li:nth-child(3) { left: 21%; top: 47%; }
 .ph-chips li:nth-child(4) { left: 73%; top: 59%; }
 .ph-chips li:nth-child(5) { left: 26%; top: 68%; }
+/* AI implementation: up left, next to UX / UI */
+.ph-chips li:nth-child(6) { left: 31%; top: 29%; }
 .ph--nocard .ph-card {
   display: none;
 }
@@ -409,6 +444,7 @@ html.ph-lock body {
   .ph-chips li:nth-child(4) { left: auto; right: 5%; }
   .ph-chips li:nth-child(3) { left: 6%; }
   .ph-chips li:nth-child(5) { left: 9%; }
+  .ph-chips li:nth-child(6) { left: 7%; }
 }
 @media (max-width: 767px) {
   .ph-frame {
@@ -425,11 +461,16 @@ html.ph-lock body {
   .ph-chips li:nth-child(3) { top: 40%; }
   .ph-chips li:nth-child(4) { top: 59%; }
   .ph-chips li:nth-child(5) { top: 64%; }
+  .ph-chips li:nth-child(6) { top: 21%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ph-btn:hover {
     transform: none;
+  }
+  .ph-hint text {
+    animation: none;
+    opacity: 0.4;
   }
   .ph-trust__track {
     animation: none;

@@ -28,10 +28,12 @@ type Scene = "a" | "toB" | "b" | "toA";
    page of its own, so it goes to the services section further down the homepage. */
 const SERVICES = [
   { label: "hero.chip.ux", slug: "ux-ui-design", img: "/images/stelz-app-work-cover.avif" },
-  { label: "hero.chip.web", slug: "web-design", img: "/images/sfumato-website.avif" },
+  { label: "hero.chip.web", slug: "web-design", img: "/images/stelz-laptop.avif" }, // the STËLZ store
   { label: "hero.chip.brand", slug: "branding", img: "/images/studio75-cover-v2.avif" },
-  { label: "hero.chip.strategy", slug: null, img: "/images/powermobile-hero.avif" },
+  { label: "hero.chip.strategy", slug: null, img: "/images/sfumato-principles.avif" }, // brand principles
   { label: "hero.chip.product", slug: "social-media-meta-ads", img: "/images/merelymade-cover.avif" },
+  // no case image for this one yet: its card shows the title and text only
+  { label: "hero.chip.ai", slug: "ai-implementation", img: null },
 ] as const;
 
 // set when a pill takes you to a service page, so coming back lands you at the emblem again
@@ -81,7 +83,7 @@ function openTravel(from: Space): Travel | null {
   return { space, canvas, main };
 }
 
-function arriveAt(travel: Travel, go: () => void) {
+function arriveAt(travel: Travel, go: () => void, speed = 1) {
   const { space, canvas, main } = travel;
   const from = window.location.pathname;
   const done = () => {
@@ -114,6 +116,7 @@ function arriveAt(travel: Travel, go: () => void) {
     });
     gsap
       .timeline({ onComplete: done })
+      .timeScale(speed)
       .to(main, { opacity: 1, duration: 1.7, ease: "sine.inOut" }, 0.1)
       .to(main, { scale: 1, duration: 2.3, ease: "power2.out" }, 0)
       .to(main, { "--ph-m": "170vmax", duration: 2.0, ease: "power1.in" }, 0.3)
@@ -513,7 +516,8 @@ export default function PortalHero() {
       lock(false);
       onScroll();
     }
-    function warpTo(path: string | null) {
+    /** `quick`: the short version, for a trip that has already shown the emblem on the way. */
+    function warpTo(path: string | null, quick = false) {
       if (scene === "b" && simple && path) {
         // no flight, the link works as a link; coming back still lands at the emblem
         try {
@@ -560,8 +564,9 @@ export default function PortalHero() {
         .to(s, { warp: 0.75, duration: 1.1, ease: "power2.in" }, 0)
         .to(s, { travel: s.travel + 0.9, duration: 1.1, ease: "power2.in" }, 0)
         .to(cardEl, { opacity: 0, duration: 0.35, ease: "power1.in" }, 0.75)
-        .call(() => (travel ? arriveAt(travel, () => goRef.current(path)) : navRef.current(path)), [], 1.1);
+        .call(() => (travel ? arriveAt(travel, () => goRef.current(path), quick ? 2 : 1) : navRef.current(path)), [], 1.1);
       if (card) tl.to(card.state, { scale: 5, duration: 1.1, ease: "power2.in" }, 0);
+      if (quick) tl.timeScale(2);
       return true;
     }
     /* ─── See work: from the opening screen straight through space to selected projects,
@@ -645,12 +650,12 @@ export default function PortalHero() {
       tl?.kill();
       const s = land!.state;
       const travel = openTravel(land!);
+      // about three seconds: 1.1 into space, then the page comes out of the stars
       tl = gsap.timeline({ onUpdate: () => travel && Object.assign(travel.space.state, s) });
       tl.to(q(".ph-a [data-fade]"), { autoAlpha: 0, y: 20, filter: "blur(8px)", duration: 0.4, ease: "power2.in", stagger: 0.03 }, 0)
-        .to(s, { warp: 0.75, duration: 1.1, ease: "power2.in" }, 0.1)
-        .to(s, { travel: s.travel + 0.9, duration: 1.1, ease: "power2.in" }, 0.1)
-        // from here the page itself is ahead of you, and the travel canvas carries the flight on
-        .call(() => (travel ? arriveAt(travel, () => goRef.current(path)) : navRef.current(path)), [], 1.2);
+        .to(s, { warp: 0.75, duration: 1.0, ease: "power2.in" }, 0.1)
+        .to(s, { travel: s.travel + 0.9, duration: 1.0, ease: "power2.in" }, 0.1)
+        .call(() => (travel ? arriveAt(travel, () => goRef.current(path), 1.25) : navRef.current(path)), [], 1.1);
       return true;
     }
     api.current = { forward, hover, warpTo, toWork, flyTo };
@@ -871,6 +876,21 @@ export default function PortalHero() {
             </svg>
           ))}
         </div>
+        {/* The scroll hint is written on the inner of the two orbits the space canvas draws
+            (portalSpace.ts: 0.78 by 0.20 viewport heights, turned -0.32 rad, centred just below
+            the middle), where it passes under the buttons in the middle of the screen. It lies
+            on that line like an engraving and drifts a little along it. */}
+        <svg className="ph-hint" data-fade viewBox="-1500 -500 3000 1000" aria-hidden="true">
+          {/* units are thousandths of the viewport height, so the type is set at a real size
+              and the letters are spaced evenly along the curve */}
+          <path id="ph-hint-orbit" d="M -780 0 A 780 200 0 0 0 780 0" transform="translate(0 20) rotate(18.33)" fill="none" />
+          <text>
+            <textPath href="#ph-hint-orbit" startOffset="53%" textAnchor="middle">
+              {t("hero.scrollHint")}
+              <animate attributeName="startOffset" values="51%;55%;51%" dur="18s" repeatCount="indefinite" />
+            </textPath>
+          </text>
+        </svg>
         <div className="ph-a__main">
           <p className="ph-avail" data-fade data-rise>
             <i aria-hidden="true" />
@@ -946,7 +966,7 @@ export default function PortalHero() {
               <>
                 {sv.name}
                 <span className="ph-chip__card" aria-hidden="true">
-                  <img src={sv.img} alt="" loading="lazy" draggable={false} />
+                  {sv.img && <img src={sv.img} alt="" loading="lazy" draggable={false} />}
                   <b>{sv.title}</b>
                   <span>{sv.text}</span>
                 </span>
