@@ -1,16 +1,17 @@
 ---
-title: "Web Design & Development Agency in the Netherlands | DYSIGNS"
-description: "Custom websites and Shopify stores from DYSIGNS, an official Shopify Partner in the Netherlands: fast, findable, and built to keep performing."
+title: "Web Design Agency Netherlands | Website Design | DYSIGNS"
+description: "DYSIGNS is a web design agency in the Netherlands. We design and build custom websites and Shopify stores: fast, findable and built to keep performing."
 heading: "Web design and development"
 slug: "web-design"
 includes: "Shopify Partner development, custom themes, migrations, performance, technical SEO"
 answerBlock: |
-  DYSIGNS designs and builds custom websites and Shopify stores for
-  founders, scale-ups and agencies worldwide, based in the
-  Netherlands. Every site is designed and built by the same team, fast
-  and technically findable from the first release, not treated as a
-  handover between separate design and development vendors.
-lastUpdated: "2026-08-02"
+  DYSIGNS is a web design agency in the Netherlands. We design and
+  build custom websites and Shopify stores for founders, scale-ups and
+  agencies, in the Netherlands and worldwide. Every site is designed
+  and built by the same team, fast and technically findable from the
+  first release, not treated as a handover between separate design and
+  development vendors.
+lastUpdated: "2026-11-16"
 ---
 
 ## What this includes
@@ -23,9 +24,39 @@ A visual design fitted to your brand and audience, from first concept to a finis
 
 A fast, working site built from that design, not an approximation of it.
 
+### Custom website
+
+Not an adjusted standard theme, but a website design made for you: structure, design and functionality fitted to your brand and your customers.
+
 ### Shopify stores
 
 For online stores specifically, we build on [Shopify](/shopify-development) as an official Shopify Partner, the platform we use most for commerce.
+
+### Redesign and migration
+
+An existing website or store taken over and improved step by step, or moved to a platform that fits better, without losing what already works.
+
+### Performance and technical SEO
+
+Fast on mobile and technically findable from the first release: clean structure, proper metadata and pages search engines can read.
+
+## Use cases
+
+### Company website
+
+A website that explains what you do and turns visitors into conversations, for example for an agency, a studio or a service business.
+
+### Online store
+
+A Shopify store that goes beyond a standard theme, like the modular store we built for [STËLZ](/work/stelz-web-design) or the [Merely Made webshop](/work/merely-made-webshop).
+
+### Brand website
+
+A site where the design carries the brand, like the web design for [Sfumato Agency](/work/sfumato-agency), shaped around their own Italian style and a shared vision for their photography and video.
+
+### Redesign of an existing site
+
+A site that no longer fits the business, redesigned and rebuilt in steps instead of starting from zero.
 
 ## Why this sits with design and development
 
@@ -33,9 +64,25 @@ A site designed by one vendor and built by another loses something in the handov
 
 ## Who it is for
 
-For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer. In the region? See [web design in Almere and surroundings](/web-design-almere) or [web design in Amsterdam](/web-design-amsterdam).
+For founders, scale-ups and agencies who want a website or online store that goes beyond a template, and who would rather work with one website design company than coordinate between a designer and a separate developer. We are based in the Netherlands and work with clients in the rest of Europe and beyond, largely remote. In the region? See [web design in Almere and surroundings](/web-design-almere) or [web design in Amsterdam](/web-design-amsterdam).
 
 ## Frequently asked questions
+
+### What does a web design agency do?
+
+A web design agency designs and builds websites. At DYSIGNS that covers the full route: the structure and content of the site, the visual design, the development, and the technical side that makes it fast and findable. Because design and development sit with the same team, what goes live is what was designed.
+
+### How long does it take to design and build a website?
+
+A normal website project takes about 8 to 12 weeks from first conversation to launch, depending on scope. A smaller site or landing page goes faster, a large store or a complex integration takes longer. You get a roadmap at the start, so you know what happens when.
+
+### Do you work with companies outside the Netherlands?
+
+Yes. We are a Dutch web design agency based in Almere, and we work with clients in the Netherlands and abroad. Projects run largely remote, in English or Dutch, and for clients nearby we are happy to meet on location.
+
+### Which websites have you designed?
+
+Recent work includes the web design for [Sfumato Agency](/work/sfumato-agency), the Shopify store for [STËLZ](/work/stelz-web-design) and the [Merely Made webshop](/work/merely-made-webshop). You can see all of it on the [work page](/work).
 
 ### How much does a website or online store cost?
 

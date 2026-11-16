@@ -11,7 +11,7 @@ answerBlock: |
   site wordt door hetzelfde team ontworpen én gebouwd, snel en
   technisch vindbaar vanaf de eerste release, niet als een overdracht
   tussen aparte design- en developmentpartijen.
-lastUpdated: "2026-11-14"
+lastUpdated: "2026-11-16"
 ---
 
 ## What this includes
@@ -32,6 +32,24 @@ Geen aangepast standaardthema, maar een website op maat: structuur, ontwerp en f
 
 Voor webshops specifiek bouwen we op [Shopify](/nl/shopify-development) als officiële Shopify Partner, het platform dat we het meest gebruiken voor commerce.
 
+## Use cases
+
+### Bedrijfswebsite
+
+Een website die uitlegt wat je doet en bezoekers omzet in gesprekken, bijvoorbeeld voor een bureau, een studio of een dienstverlener.
+
+### Webshop
+
+Een Shopify webshop die verder gaat dan een standaardthema, zoals de modulaire shop die we bouwden voor [STËLZ](/nl/work/stelz-web-design) of de [Merely Made webshop](/nl/work/merely-made-webshop).
+
+### Merkwebsite
+
+Een site waar het ontwerp het merk draagt, zoals het webdesign voor [Sfumato Agency](/nl/work/sfumato-agency), gevormd rond hun eigen Italiaanse stijl en een gedeelde visie op hun fotografie en video.
+
+### Redesign van een bestaande site
+
+Een site die niet meer bij het bedrijf past, stap voor stap opnieuw ontworpen en gebouwd in plaats van helemaal opnieuw beginnen.
+
 ## Waarom dit bij design en development hoort
 
 Een site die door de ene partij wordt ontworpen en door de andere gebouwd, verliest elke keer iets in de overdracht. Hier ontwerpt en bouwt hetzelfde team het, zodat wat live gaat ook echt is wat er ontworpen is, niet een compromis onder een developmentdeadline.
@@ -41,6 +59,22 @@ Een site die door de ene partij wordt ontworpen en door de andere gebouwd, verli
 Voor ondernemers, scale-ups en bureaus die een website of webshop willen die verder gaat dan een template, en die liever met één team werken dan schakelen tussen een designer en een aparte developer. Zit je in de regio? Bekijk [webdesign in Almere en omgeving](/nl/web-design-almere) of [webdesign in Amsterdam](/nl/web-design-amsterdam).
 
 ## Frequently asked questions
+
+### Wat doet een webdesign bureau?
+
+Een webdesign bureau ontwerpt en bouwt websites. Bij DYSIGNS is dat de hele route: de structuur en inhoud van de site, het visuele ontwerp, de development en de technische kant die de site snel en vindbaar maakt. Omdat design en development bij hetzelfde team zitten, gaat live wat er ontworpen is.
+
+### Hoe lang duurt het om een website te laten maken?
+
+Een normaal websiteproject duurt ongeveer 8 tot 12 weken, van eerste gesprek tot livegang, afhankelijk van de omvang. Een kleinere site of landingspagina gaat sneller, een grote webshop of een complexe koppeling duurt langer. Je krijgt bij de start een roadmap, zodat je weet wat wanneer gebeurt.
+
+### Werken jullie ook voor bedrijven buiten de regio?
+
+Ja. We zijn een webdesign bureau in Almere en werken voor klanten in heel Nederland en daarbuiten. Projecten lopen grotendeels op afstand, in het Nederlands of Engels, en voor klanten in de buurt komen we graag langs.
+
+### Welke websites hebben jullie gemaakt?
+
+Recent werk is onder meer het webdesign voor [Sfumato Agency](/nl/work/sfumato-agency), de Shopify webshop voor [STËLZ](/nl/work/stelz-web-design) en de [Merely Made webshop](/nl/work/merely-made-webshop). Alles staat op de [werkpagina](/nl/work).
 
 ### Wat kost een website of webshop?
 

@@ -1,16 +1,17 @@
 ---
-title: "Branding & Huisstijl Ontwerpbureau | DYSIGNS"
-description: "Branding en huisstijl van DYSIGNS. Een visueel systeem dat overeind blijft op elk kanaal, van strategie tot logo en verder."
-heading: "Branding"
+title: "Branding & Huisstijl Laten Maken | Logo Ontwerp | DYSIGNS"
+description: "Huisstijl laten maken of logo laten ontwerpen? DYSIGNS bouwt je visuele identiteit: van merkstrategie en logo tot een systeem dat op elk kanaal klopt."
+heading: "Branding en huisstijl"
 slug: "branding"
 includes: "Merkstrategie, logo en huisstijl, designsystemen, brandguidelines"
 answerBlock: |
-  DYSIGNS ontwikkelt huisstijlen voor merken wereldwijd, vanuit
-  Nederland. We werken van strategie tot logo en een volledig visueel
-  systeem, één dat consistent doorloopt in je site, winkel en social
+  DYSIGNS is een designbureau voor merken. Wie een huisstijl wil laten
+  maken, krijgt bij ons meer dan een logo: we werken van merkstrategie
+  tot logo ontwerp en een volledige visuele identiteit, voor merken in
+  Nederland en daarbuiten, één dat consistent doorloopt in je site, winkel en social
   kanalen in plaats van een set bestanden te blijven die niemand
   consistent toepast.
-lastUpdated: "2026-08-05"
+lastUpdated: "2026-11-16"
 ---
 
 ## What this includes
@@ -27,6 +28,24 @@ Een visuele identiteit inclusief logo, kleuren, typografie en toepassingen.
 
 Richtlijnen zodat het merk consistent blijft, ook wanneer nieuw materiaal later door iemand anders wordt gemaakt.
 
+### Brandguidelines
+
+Een document met de regels van het merk: logogebruik, kleuren, typografie en voorbeelden, zodat iedereen die er later mee werkt dezelfde keuzes maakt.
+
+## Use cases
+
+### Nieuwe huisstijl vanaf nul
+
+Van het eerste moodboard tot logo, kleuren, typografie en drukwerk, zoals de huisstijl voor [Studio75](/nl/work/studio75-branding).
+
+### Een bestaand merk vernieuwen
+
+Een nieuw logo en een visueel systeem dat op elk contactpunt hetzelfde is, zoals de rebranding van [Verkeersschool Beckers](/nl/work/verkeersschool-beckers-branding).
+
+### Branding en webdesign samen
+
+De huisstijl en de website in één traject, door hetzelfde team, zodat de identiteit ook online klopt. Lees meer over [een website laten maken](/nl/web-design).
+
 ## Waarom dit bij design en development hoort
 
 Een huisstijl die nooit doorloopt naar de daadwerkelijke site of winkel eindigt als een set bestanden die niemand consistent toepast. Omdat hetzelfde team ook kan ontwerpen en bouwen waar de identiteit op leeft, houdt het systeem stand voorbij de eerste overdracht.
@@ -40,6 +59,14 @@ Voor merken die willen groeien en een huisstijl nodig hebben die doorloopt in hu
 ### Wat kost branding?
 
 We werken niet met een minimum of maximum. Elk project verschilt in omvang en ambitie, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend.
+
+### Wat is het verschil tussen een logo, een huisstijl en branding?
+
+Een logo is het beeldmerk van je bedrijf. Een huisstijl, ook wel visuele identiteit, is alles eromheen: kleuren, typografie, beeldstijl en hoe je die toepast. Branding is breder: waar je merk voor staat en hoe dat overkomt, in beeld en in woord. Bij DYSIGNS beginnen we bij de strategie en werken we die uit tot logo en huisstijl.
+
+### Voor welke merken hebben jullie een huisstijl gemaakt?
+
+Onder meer voor [Studio75](/nl/work/studio75-branding), van moodboard tot logo, kleuren, typografie en visitekaartjes, en voor [Verkeersschool Beckers](/nl/work/verkeersschool-beckers-branding), met een nieuw logo en een visuele identiteit voor alle uitingen.
 
 ### Begint branding altijd met een nieuw logo?
 

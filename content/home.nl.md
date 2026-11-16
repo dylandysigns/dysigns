@@ -78,7 +78,7 @@ Beide, en dat is precies het punt. Design en development liggen bij dezelfde par
 
 ### Welke platforms gebruiken jullie?
 
-We bepalen dit per project, omdat de juiste keuze afhangt van je schaal, je markten en wie het daarna onderhoudt. Shopify, waar we bouwen als officiële Shopify Partner, is het meest gebruikt voor webshops. Voor grote of complexe e-commerce kijken we naar headless opties zoals Medusa. Voor websites bouwen we custom front-end.
+We bepalen dit per project, omdat de juiste keuze afhangt van je schaal, je markten en wie het daarna onderhoudt. Shopify, waar we bouwen als officiële Shopify Partner, is het meest gebruikt voor webshops. Voor grote of complexe e-commerce kijken we naar headless opties zoals Medusa. Voor [websites](/nl/web-design) bouwen we custom front-end.
 
 ### Beheren jullie ook doorlopend social media en advertenties?
 

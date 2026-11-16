@@ -1,7 +1,7 @@
 ---
-title: "Shopify vs Maatwerk Webshop: Wat Past Bij Jou? | DYSIGNS"
-description: "Shopify of een maatwerk webshop: een praktische vergelijking van kosten, flexibiliteit en onderhoud om het juiste platform te kiezen."
-heading: "Shopify vs. een maatwerk webshop: wat past bij jouw winkel?"
+title: "Shopify Maatwerk of Maatwerk Webshop: Wat Past? | DYSIGNS"
+description: "Shopify maatwerk of een volledig maatwerk webshop? Een praktische vergelijking van kosten, flexibiliteit, migratie en onderhoud om goed te kiezen."
+heading: "Shopify maatwerk of een volledig maatwerk webshop: wat past bij jouw winkel?"
 slug: "shopify-vs-custom-website"
 answerBlock: |
   Voor de meeste webshops is Shopify de snellere, veiligere keuze: het
@@ -11,14 +11,18 @@ answerBlock: |
   build verdient zijn prijs alleen terug als jouw product, prijsmodel
   of schaal daadwerkelijk botst met wat Shopify biedt. Zo bepaal je in
   welke situatie jij zit.
-lastUpdated: "2026-09-05"
+lastUpdated: "2026-11-16"
 ---
 
 ## Begin bij wat Shopify al oplost
 
-Shopify regelt de onderdelen van een webshop die duur zijn om zelf goed te doen: PCI-compliant betalingen, checkout, hosting en uptime, beveiligingsupdates, en een ecosysteem aan apps voor de meeste functies die winkels nodig hebben (reviews, abonnementen, loyaliteitsprogramma's, lokale betaalmethodes zoals iDEAL). Dat allemaal zelf bouwen is een echt softwareproject, geen website, daarom betekent "maatwerk" bijna nooit ook maatwerk betalingen en checkout. Het betekent een custom front-end en custom logica bovenop Shopify's commerce-engine, of in zeldzamere gevallen een volledig headless build.
+Shopify regelt de onderdelen van een webshop die duur zijn om zelf goed te doen: PCI-compliant betalingen, checkout, hosting en uptime, beveiligingsupdates, en een ecosysteem aan apps voor de meeste functies die winkels nodig hebben (reviews, abonnementen, loyaliteitsprogramma's, lokale betaalmethodes zoals iDEAL). Dat allemaal zelf bouwen is een echt softwareproject, geen [website laten maken](/nl/web-design), daarom betekent "maatwerk" bijna nooit ook maatwerk betalingen en checkout. Het betekent een custom front-end en custom logica bovenop Shopify's commerce-engine, of in zeldzamere gevallen een volledig headless build.
 
 Dat verandert de eigenlijke vraag. Het is niet "Shopify of maatwerk", het is "hoeveel maatwerk heeft deze specifieke winkel echt nodig, en op welke fundering."
+
+## Wat Shopify maatwerk inhoudt
+
+Tussen een standaardthema en een volledig eigen platform zit een derde optie die voor de meeste groeiende winkels de beste is: Shopify maatwerk. Je webshop draait dan op Shopify, maar op een thema, secties en functionaliteit die voor jouw merk en producten zijn ontworpen en gebouwd. Denk aan een eigen opbouw van product- en collectiepagina's, secties die je team zelf kan vullen en koppelingen met je voorraad- of boekhoudsysteem. Je houdt hosting, beveiliging en betalingen van Shopify, en de winkel voelt en werkt als die van jou. Meer hierover lees je bij [Shopify maatwerk webshops](/nl/shopify-development).
 
 ## Wanneer Shopify de juiste keuze is
 
@@ -51,6 +55,14 @@ Een aangepast of custom Shopify-thema is goedkoper om te bouwen en goedkoper om 
 Bij DYSIGNS, officieel Shopify Partner, kiezen we niet standaard voor Shopify omdat dat makkelijker is voor ons, en niet standaard voor maatwerk omdat dat indrukwekkender klinkt in een pitch. We kijken naar jouw product, prijsmodel, team en groeiplan, en bouwen op de fundering die daar echt bij past: Shopify voor de meeste winkels, headless opties zoals Medusa wanneer de eisen dat daadwerkelijk vragen. Wil je die inschatting voor jouw eigen winkel? [Neem contact op](/nl/contact) of lees meer over ons werk in [Shopify development](/nl/shopify-development).
 
 ## Veelgestelde vragen
+
+### Wat is Shopify maatwerk?
+
+Shopify maatwerk is een webshop op Shopify met een eigen ontworpen en gebouwd thema en eigen functionaliteit, in plaats van een standaardthema met kleine aanpassingen. Je houdt de basis van Shopify, zoals hosting, checkout en betalingen, en bouwt daarbovenop wat jouw winkel nodig heeft.
+
+### Kan ik mijn bestaande webshop migreren naar maatwerk?
+
+Ja. Zit je al op Shopify, dan hoeft dat geen verhuizing te zijn: een maatwerk thema vervangt je huidige thema terwijl producten, klanten en bestellingen blijven staan. Kom je van een ander platform, dan migreren we producten, klanten en orders mee en zorgen we dat oude adressen netjes doorverwijzen. Een overstap naar een volledig eigen of headless platform is een groter project en loont alleen als je eisen echt niet binnen Shopify passen.
 
 ### Kan ik later van een maatwerk platform naar Shopify migreren?
 

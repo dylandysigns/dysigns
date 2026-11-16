@@ -78,7 +78,7 @@ Both, and that is the point. Design and development sit with the same partner, s
 
 ### Which platforms do you build on?
 
-We decide per project, because the right choice depends on your scale, your markets and who maintains it afterwards. Shopify, where we build as an official Shopify Partner, is the most common for online stores. For large or complex commerce we look at headless options like Medusa. For websites we build custom front end.
+We decide per project, because the right choice depends on your scale, your markets and who maintains it afterwards. Shopify, where we build as an official Shopify Partner, is the most common for online stores. For large or complex commerce we look at headless options like Medusa. For [websites](/web-design) we build custom front end.
 
 ### Do you also manage social media and ads on an ongoing basis?
 

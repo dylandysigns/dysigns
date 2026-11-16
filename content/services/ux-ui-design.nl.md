@@ -1,18 +1,19 @@
 ---
-title: "UX/UI Design Bureau voor Apps & Webplatforms | DYSIGNS"
-description: "UX/UI design bureau voor apps, portalen en dashboards. Van gebruikersonderzoek en prototypes tot een compleet designsysteem, vanuit Nederland."
+title: "UX Design Bureau & UI Design voor Apps | DYSIGNS"
+description: "UX design bureau en UI design bureau in één, voor apps, portalen en dashboards. Van gebruikersonderzoek en prototypes tot een compleet designsysteem."
 heading: "UX/UI design bureau"
 slug: "ux-ui-design"
 includes: "Gebruikersonderzoek, wireframes en prototypes, designsystemen, toegankelijkheidsreview"
 answerBlock: |
-  DYSIGNS is een UX/UI design bureau uit Nederland en ontwerpt apps,
-  portalen en dashboards voor klanten wereldwijd. We beginnen bij
+  DYSIGNS is een UX design bureau en UI design bureau in één, uit
+  Nederland, en ontwerpt apps, portalen en dashboards voor klanten
+  wereldwijd. We beginnen bij
   gebruikersonderzoek en eindigen bij een compleet designsysteem, ook
   bij complexe portalen en dashboards, zodat interfaces standhouden
   voor de mensen die ze dagelijks daadwerkelijk moeten gebruiken. Van
   een veldwerk-app voor handhavers tot een kiosk-, kassa- en
   keukensysteem voor horeca.
-lastUpdated: "2026-11-13"
+lastUpdated: "2026-11-16"
 ---
 
 ## What this includes
@@ -37,6 +38,24 @@ Het visuele ontwerp van elk scherm: typografie, kleur, iconen en interactie, afg
 
 Een check op contrast, leesbaarheid, toetsenbordbediening en schermlezers, zodat je product voor zoveel mogelijk mensen bruikbaar is.
 
+## Use cases
+
+### App voor het werkveld
+
+Een app die mensen onderweg en onder tijdsdruk gebruiken, zoals de veldwerk-app voor handhavers van [PowerMobile](/nl/work/powermobile).
+
+### Kiosk, kassa en keuken
+
+Meerdere schermen die samen één systeem vormen, zoals het gekoppelde kiosk-, kassa- en keukensysteem voor [A/Café](/nl/work/a-cafe-app-design).
+
+### Consumentenapp
+
+Een app waar het merk en het gebruiksgemak samenkomen, zoals de [STËLZ-app](/nl/work/stelz-app).
+
+### Platform met dashboard
+
+Een app, website en dashboard die op elkaar aansluiten, zoals bij [BIYU](/nl/work/biyu).
+
 ## Waarom dit bij design en development hoort
 
 Een designsysteem dat nooit in een bruikbare vorm bij development terechtkomt, wordt uiteindelijk opnieuw getekend door wie het bouwt. Omdat hetzelfde team hier ontwerpt én bouwt, zijn de componenten uit een UX/UI-traject ook precies de componenten die daadwerkelijk live gaan.
@@ -54,6 +73,10 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang en co
 ### Wat doet een UX/UI design bureau?
 
 Een UX/UI design bureau zorgt dat een digitaal product makkelijk en prettig te gebruiken is. UX (user experience) gaat over de logica: welke stappen iemand zet, wat er op welk scherm staat en waar mensen vastlopen. UI (user interface) gaat over hoe het eruitziet: typografie, kleur, knoppen en interactie. Bij DYSIGNS doen we allebei, en omdat hetzelfde team ook bouwt, komt het ontwerp ook zo live.
+
+### Waar zit jullie UX design bureau?
+
+DYSIGNS zit in Almere. We werken veel voor merken in Amsterdam en zijn ook vaak in Eindhoven en de rest van Brabant, waar we graag op locatie afspreken. Voor klanten verder weg loopt een project grotendeels op afstand.
 
 ### Wat is het verschil tussen UX en UI design?
 
