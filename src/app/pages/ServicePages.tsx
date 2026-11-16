@@ -4,9 +4,11 @@ import { Breadcrumb } from "../components/Breadcrumb";
 import { Seo } from "../components/Seo";
 import { ServiceCarousel } from "../components/services/ServiceCarousel";
 import { FaqAccordionItem } from "../components/FaqAccordionItem";
+import { FaqChat } from "../components/home/FaqChat";
 import {
   getLocalizedContent,
   getServiceIncludes,
+  getServiceUseCases,
   getSectionParagraph,
 } from "../content/loadContent";
 import { serviceSchema, faqPageSchema, breadcrumbListSchema } from "../seo/schema";
@@ -63,6 +65,7 @@ function ServicePage({
   const entry = getLocalizedContent(`services/${slug}.md`, lang);
   const path = `/${slug}`;
   const includes = getServiceIncludes(entry.rawBody);
+  const useCases = getServiceUseCases(entry.rawBody);
   const heroImage = serviceHeroImages[slug];
   const [activeInclude, setActiveInclude] = useState(0);
   const [isHoveringIncludes, setIsHoveringIncludes] = useState(false);
@@ -421,6 +424,74 @@ function ServicePage({
         </div>
       )}
 
+      {/* ── USE CASES — example applications as a card grid (only pages
+           with a "## Use cases" section, currently AI implementation) ── */}
+      {useCases.length > 0 && (
+        <div className="border-t" style={{ borderColor: "rgba(var(--page-fg-rgb), .06)" }}>
+          <div className="max-w-[1100px] mx-auto px-6 md:px-12 py-14 md:py-16">
+            <h2
+              style={{
+                fontFamily: "var(--font-brand)",
+                fontSize: "clamp(1.15rem,2vw,1.5rem)",
+                fontWeight: 700,
+                letterSpacing: "-.02em",
+                color: "var(--page-fg)",
+              }}
+            >
+              {t("services.useCasesHeading")}
+            </h2>
+            <p className="mt-2 mb-8" style={{ fontSize: ".92rem", color: "rgba(var(--page-fg-rgb), .55)" }}>
+              {t("services.useCasesIntro")}
+            </p>
+            <div className="use-case-grid">
+              {useCases.map((item, i) => (
+                <div
+                  key={item.title}
+                  className="p-6 md:p-7 rounded-xl"
+                  style={{
+                    border: "1px solid rgba(var(--page-fg-rgb), .06)",
+                    background: "rgba(var(--page-fg-rgb), .02)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-brand)",
+                      fontSize: ".72rem",
+                      fontWeight: 600,
+                      letterSpacing: ".08em",
+                      color: "rgba(var(--page-fg-rgb), .45)",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3
+                    className="mt-3"
+                    style={{
+                      fontFamily: "var(--font-brand)",
+                      fontSize: "1.02rem",
+                      fontWeight: 700,
+                      letterSpacing: "-.02em",
+                      color: "var(--page-fg)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="mt-2" style={{ fontSize: ".88rem", lineHeight: 1.65, color: "rgba(var(--page-fg-rgb), .62)" }}>
+                    {renderInlineMarkdown(item.description)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <style>{`
+            .use-case-grid { display: grid; grid-template-columns: 1fr; gap: .9rem; }
+            @media (min-width: 768px) { .use-case-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (min-width: 1024px) { .use-case-grid { grid-template-columns: repeat(3, 1fr); } }
+          `}</style>
+        </div>
+      )}
+
       {/* ── FAQ ── */}
       {entry.faqItems.length > 0 && (
         <div
@@ -441,6 +512,10 @@ function ServicePage({
             >
               {t("services.faqHeading")}
             </h2>
+            {/* On the AI page the chat doubles as a live example of what
+                we build for clients. Additive only: the FAQ grid below
+                stays in the prerendered HTML. */}
+            {slug === "ai-implementation" && <FaqChat variant="ai" />}
             <div className="faq-grid">
               {entry.faqItems.map((item, i) => (
                 <FaqAccordionItem key={item.question} item={item} defaultOpen={i === 0} />

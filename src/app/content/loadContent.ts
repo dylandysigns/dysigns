@@ -106,7 +106,19 @@ export interface ServiceIncludeItem {
  * hand-maintained slide list, so title and description can never drift
  * out of sync with what the page itself says. */
 export function getServiceIncludes(markdownBody: string): ServiceIncludeItem[] {
-  const section = extractSection(markdownBody, "What this includes");
+  return getHeadedItems(markdownBody, "What this includes");
+}
+
+/** "### Title" + paragraph items under "## Use cases": example
+ * applications a service can deliver (shown as a card grid on the
+ * service page). Examples, not client case studies, so the copy must not
+ * name or imply real clients. Empty when a page has no such section. */
+export function getServiceUseCases(markdownBody: string): ServiceIncludeItem[] {
+  return getHeadedItems(markdownBody, "Use cases");
+}
+
+function getHeadedItems(markdownBody: string, heading: string): ServiceIncludeItem[] {
+  const section = extractSection(markdownBody, heading);
   if (!section) return [];
   const blocks = section.split(/(?=^### )/m).filter((b) => b.trim());
   const items: ServiceIncludeItem[] = [];

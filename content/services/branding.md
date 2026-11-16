@@ -56,3 +56,15 @@ Yes, a design system that carries into your social channels is part of a brandin
 ### Do you also build the site or store the identity goes on?
 
 Yes, see [web design and development](/web-design) if the identity also needs to be carried into a new site or store.
+
+### How many logo concepts do I get?
+
+We work towards one strong, well thought out direction instead of a pile of loose options. That way all the time goes into developing the idea that really fits your brand.
+
+### Which files do I get at delivery?
+
+All the files you need, such as SVG, PNG and PDF, for online and print. You also get guidelines for how to use your logo, colours and typefaces.
+
+### Do you also help come up with a company name?
+
+Yes, naming can be part of a branding project. We also check whether the matching domain name is still available.

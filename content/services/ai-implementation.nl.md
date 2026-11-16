@@ -1,33 +1,50 @@
 ---
 title: "AI-implementatie Bureau voor Groeiende Bedrijven | DYSIGNS"
-description: "AI-implementatie voor echte workflows, geen demo's: orderverwerking, supporttriage, documentverwerking en ook de rommelige uitzonderingen."
+description: "AI-implementatie voor echte workflows: AI-creatives, procesautomatisering, bedrijfsdashboards, een AI-chat op je website en interne AI-assistenten."
 heading: "AI-implementatie"
 slug: "ai-implementation"
-includes: "Workflowanalyse, implementatie op maat, documentatie en overdracht"
+includes: "AI-creatives, processen verbeteren, automatisering, dashboards en AI-assistenten"
 answerBlock: |
-  DYSIGNS implementeert AI waar het écht tijd bespaart: facturen
-  matchen met inkooporders, een supportinbox trieert, een eerste
-  opzet van productteksten schrijven, precies die ene uitzondering
-  markeren die een mens moet zien. Vanuit Nederland, werkend met
-  ondernemers, scale-ups en bureaus wereldwijd. We zijn niet beter dan
-  AI, niemand is dat. Het verschil zit in weten wat je aan een model
-  overlaat en wat je bewust niet automatiseert.
-lastUpdated: "2026-08-05"
+  DYSIGNS implementeert AI waar het écht tijd bespaart of iets beter
+  maakt: AI-creatives voor campagnes, slimmere processen,
+  automatisering binnen je bedrijf, dashboards die je hele bedrijf in
+  één oogopslag laten zien, en assistenten voor je klanten en je team.
+  Vanuit Nederland, werkend met ondernemers, scale-ups en bureaus
+  wereldwijd. We zijn niet beter dan AI, niemand is dat. Het verschil
+  zit in weten wat je aan een model overlaat en wat je bewust niet
+  automatiseert.
+lastUpdated: "2026-11-15"
 ---
 
 ## What this includes
 
 ### Workflowanalyse
 
-Een heldere blik op waar AI realistisch tijd kan besparen in je product, site of interne proces, en waar het juist complexiteit toevoegt.
+Een heldere blik op waar AI realistisch tijd kan besparen in je bedrijf, site of product, en waar het juist complexiteit toevoegt.
 
-### Implementatie
+### AI-creatives
 
-AI ingebouwd in de daadwerkelijke workflow, niet los toegevoegd als een tool die na week één niemand meer opent.
+Campagnebeelden, productfoto's in nieuwe settings, advertentievarianten en korte video, gemaakt met AI binnen je huisstijl, en altijd gecontroleerd door een designer voordat iets live gaat.
 
-### Overdracht
+### Processen verbeteren met AI
 
-Documentatie en training zodat de implementatie blijft werken nadat wij terugtreden, niet iets dat alleen wij kunnen onderhouden.
+Processen die nu afhangen van de kennis van één persoon, zoals retouren, offertes of onboarding, omgezet in duidelijke stappen die AI helpt uitvoeren, zodat het hele team ermee overweg kan.
+
+### Automatisering binnen je bedrijf
+
+Terugkerend werk tussen systemen overgenomen door workflows, bijvoorbeeld met n8n: facturen, voorraad, leads en rapportages, waarbij AI de stappen doet waar beoordeling bij nodig is.
+
+### Dashboards en bedrijfsinzicht
+
+Een bedrijfsdashboard in je eigen huisstijl, met de cijfers uit je webshop, advertenties, Google Analytics, e-mail, boekhouding en voorraad. Elke week vertelt een korte AI-samenvatting wat er veranderde en wat aandacht nodig heeft.
+
+### AI-chat en assistenten
+
+Een assistent op je website die bezoekers antwoord geeft vanuit je eigen content, of een interne assistent die je team antwoord geeft uit je documenten en procesafspraken.
+
+### Implementatie en overdracht
+
+Ingebouwd in de echte workflow en getest met je team, daarna gedocumenteerd en getraind, zodat het blijft werken als wij een stap terug doen.
 
 ## Waarom dit bij design en development hoort
 
@@ -37,11 +54,49 @@ Een AI-functie die geen rekening houdt met hoe de rest van je product eruitziet 
 
 Voor ondernemers, scale-ups en bureaus die vermoeden dat AI ergens in hun product of workflow echt tijd kan besparen, maar eerst een eerlijke beoordeling willen voordat er budget aan wordt besteed.
 
+## Use cases
+
+### Een dashboard voor je hele bedrijf
+
+Omzet, bestellingen, advertentie-uitgaven, e-mailomzet, marge en voorraad in één overzicht, automatisch bijgewerkt en in je eigen huisstijl. Elke week vertelt een AI-samenvatting wat er veranderd is en wat aandacht nodig heeft, zodat het weekoverleg begint met de juiste vragen.
+
+### Een retourassistent voor het team
+
+Een nieuwe collega weet niet hoe het retourproces loopt over magazijnen en uitzonderingen heen. Die vraagt het aan de interne assistent en krijgt direct de juiste stappen, op basis van jullie eigen procesafspraken.
+
+### Klantenservice die zichzelf sorteert
+
+Binnenkomende mails worden automatisch gelezen en gesorteerd. Vragen als "waar is mijn bestelling?" krijgen direct antwoord, en alleen de gevallen waar beoordeling bij nodig is komen bij een mens terecht.
+
+### AI-creatives voor een campagne
+
+Uit één productshoot een set campagnebeelden in verschillende settings, formaten en varianten voor advertenties, gemaakt binnen je huisstijl en gecontroleerd door een designer.
+
+### Productteksten op schaal
+
+Omschrijvingen, tags en metadata voor honderden producten, geschreven in jouw tone of voice en consistent gehouden, zodat de catalogus nooit meer achterloopt.
+
+### Facturen en offertes zonder handwerk
+
+Leveranciersfacturen automatisch gematcht met bestellingen, waarbij alleen de echte verschillen worden gemarkeerd, en eerste versies van offertes klaargezet vanuit een intake, klaar voor een laatste check.
+
 ## Frequently asked questions
 
 ### Wat kost een AI-implementatie?
 
 We werken niet met een minimum of maximum. Elk project verschilt in omvang en complexiteit, dus een standaardprijs zou je alleen een verkeerd beeld geven. We gaan liever eerst om tafel om te horen wat je wilt bereiken. Dat eerste gesprek is gratis en vrijblijvend.
+
+### Hoe pakken jullie een AI-implementatie aan?
+
+In vijf stappen. Het begint met een gratis kennismaking, waarin we horen welk werk te veel tijd kost. Daarna brengen we de workflow in kaart, inclusief de uitzonderingen die nergens zijn vastgelegd, en bepalen we waar AI echt helpt en waar niet. Vervolgens bouwen we een eerste versie op één workflow en testen we die met je team, meestal binnen 4 tot 8 weken, met een mens in de loop voor de gevallen waar beoordeling bij nodig is. Werkt het, dan documenteren we alles en trainen we je team, zodat het niet van ons afhangt. Daarna onderhouden we het voor een vast maandbedrag en breiden we stap voor stap uit.
+
+### Gebruiken jullie Claude, ChatGPT of Gemini?
+
+We werken met verschillende AI-modellen en kiezen per project wat het beste past bij je doel, je budget en je data. Welke oplossing dat voor jou wordt, bespreken we graag persoonlijk. [Neem contact met ons op](/nl/contact) voor een vrijblijvend gesprek.
+
+### Wat gebeurt er met onze data?
+
+Dat is bij AI een belangrijke vraag, en de regels en mogelijkheden veranderen snel. Daarom kijken we per project naar de regelgeving die op dat moment geldt, zoals de AVG en de Europese AI-verordening, en naar de voorwaarden van de aanbieder. We blijven op de hoogte van wat er speelt en passen onze aanpak daarop aan. En we sturen alleen mee wat een taak echt nodig heeft.
 
 ### Wat is een typische AI-automatisering die jullie bouwen?
 
@@ -69,4 +124,56 @@ Nee. We beoordelen wat je hebt en adviseren een aanpak die daarbij past, of dat 
 
 ### Onderhouden jullie de implementatie ook na livegang?
 
-TODO_DYLAN: bevestig of doorlopend onderhoud standaard onderdeel is van deze dienst of een apart traject.
+Ja. Na livegang onderhouden we de implementatie voor een vast maandbedrag: we houden in de gaten of alles goed blijft werken, sturen bij als je processen veranderen en voeren updates door.
+
+### Hoe snel zie ik een eerste werkend resultaat?
+
+Meestal binnen 4 tot 8 weken. In die tijd brengen we de workflow in kaart, bouwen we de eerste versie en testen we die met je team. Daarna breiden we stap voor stap uit.
+
+### Kunnen jullie een AI-chat voor mijn website bouwen?
+
+Ja. Een assistent die bezoekers direct antwoord geeft vanuit je eigen content, zoals je veelgestelde vragen, diensten en producten. De chat op deze site is daar een voorbeeld van. Hij verzint niets, en weet hij iets niet, dan verwijst hij de bezoeker naar jou.
+
+### Kan AI mijn klantenservice ontlasten?
+
+Ja. Binnenkomende vragen worden gelezen, gesorteerd en, als het antwoord duidelijk is, direct beantwoord. Je team ziet alleen nog de vragen waar echt een mens voor nodig is, en elk antwoord blijft in jouw tone of voice.
+
+### Kunnen jullie een AI-assistent voor ons eigen team bouwen?
+
+Ja. Een interne assistent die antwoord geeft uit je eigen documenten, handleidingen en procesafspraken. Denk aan een medewerker die niet precies weet hoe het retourproces loopt: die vraagt het aan de assistent en krijgt direct de juiste stappen, in plaats van een collega te storen.
+
+### Hoe koppelen jullie AI aan onze bestaande systemen?
+
+Vaak met een workflow-tool als n8n, die je webshop, inbox, CRM en andere systemen aan elkaar koppelt. AI doet de stappen waar beoordeling bij komt kijken, zoals een mail lezen of een uitzondering herkennen, en de workflow regelt de rest automatisch.
+
+### Maken jullie ook AI-creatives?
+
+Ja. Denk aan campagnebeelden, productfoto's in nieuwe settings, advertentievarianten en korte video. We werken binnen je huisstijl, en een designer controleert alles voordat het live gaat, zodat het eruitziet als jouw merk en niet als standaard AI.
+
+### Kunnen jullie een dashboard voor ons hele bedrijf bouwen?
+
+Ja. We bouwen een bedrijfsdashboard in je eigen huisstijl, gekoppeld aan de systemen die je al gebruikt, zoals Shopify, Meta en Google Ads, Google Analytics, Klaviyo, je boekhouding en je voorraad. Elke week krijg je daarbij een korte AI-samenvatting van wat er veranderde en wat aandacht nodig heeft. Zo zie je in één oogopslag hoe je bedrijf ervoor staat, zonder vijf tools te openen.
+
+### Wat kost een bedrijfsdashboard?
+
+Je betaalt eenmalig voor de bouw, en daarna een vast maandbedrag voor de koppelingen, de hosting en de wekelijkse AI-samenvatting. Wat het precies kost, hangt af van het aantal systemen dat we koppelen. In een gratis kennismaking kijken we samen wat je nodig hebt.
+
+### Hoe snel staat mijn dashboard live?
+
+Meestal staat een eerste versie binnen 4 tot 8 weken live. Daarna breiden we het stap voor stap uit met de cijfers die je nog mist.
+
+### Is een bedrijfsdashboard ook iets voor dienstverleners?
+
+Ja. Naast de basis, zoals je boekhouding, advertenties en Google Analytics, koppelen we ook je CRM, je agenda of planning en je urenregistratie. Zo zie je ook je leads, je bezetting en je rendement per klant in één overzicht.
+
+### Wat is het verschil tussen automatisering en AI?
+
+Automatisering volgt vaste regels: als dit gebeurt, doe dat. AI kan omgaan met wat niet in een vaste regel past, zoals een mail lezen, een uitzondering herkennen of een eerste versie schrijven. De meeste oplossingen die we bouwen combineren de twee: automatisering voor de stappen die altijd hetzelfde zijn, AI voor de stappen waar beoordeling bij nodig is.
+
+### Is AI ook interessant voor een klein bedrijf?
+
+Ja, juist kleine teams winnen er vaak veel tijd mee. We beginnen dan met één workflow die zich snel terugverdient, en breiden pas uit als dat werkt.
+
+### Kunnen jullie ons team trainen in het werken met AI?
+
+Ja. We geven trainingen en workshops waarin je team leert werken met AI-tools, toegespitst op jullie eigen werk en processen.

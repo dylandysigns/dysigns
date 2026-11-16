@@ -73,6 +73,50 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   "How much does a website or online store cost?": Wallet,
   "Do you work with clients outside the Netherlands?": GlobalRefresh,
   "Which languages can I work with you in?": Translate,
+  "How does payment work?": DollarCircle,
+  "How do I request a quote?": Send2,
+  "Can I pay in instalments?": Wallet,
+  "Do you make backups of my site?": Refresh2,
+  "What should I prepare for the first conversation?": Signpost,
+  "What kind of businesses do you work for?": Global,
+  "Can I see more work than what is on the site?": Layer,
+  "Do you also work for my competitors?": InfoCircle,
+  "Do you work with Webflow or Framer?": Layer,
+  "Do you also create the content, such as photo and video?": Brush,
+  "How many logo concepts do I get?": Brush,
+  "Which files do I get at delivery?": Layer,
+  "Do you also help come up with a company name?": MagicStar,
+  "Is AI also worth it for a small business?": Rocket,
+  "Can you train our team to work with AI?": Profile2User,
+  "Can you connect to my CRM, accounting or booking system?": Convert,
+  "Do you handle the cookie banner and the GDPR side of the site?": InfoCircle,
+  "Which payment methods can I offer?": Wallet,
+  "What if I am not happy with the design?": Brush,
+  "Can I follow the progress during the project?": TrendUp,
+  "Do you also add my products to the store?": Layer,
+  "Do I get training to manage the store myself?": Profile2User,
+  "Can you connect the store to Bol.com or other marketplaces?": Convert,
+  "Do you also build B2B stores or subscriptions?": Refresh2,
+  "Do you also arrange hosting, the domain and business email?": Global,
+  "Can you guarantee a first place in Google?": TrendUp,
+  "Do you also write blogs and content for SEO?": Brush,
+  "Do you have something for starters or small businesses?": Rocket,
+  "Do you also run Google Ads?": SearchNormal1,
+  "Which channels do you work on?": Mobile,
+  "Do you also do email marketing?": Send2,
+  "Who is behind DYSIGNS?": Profile2User,
+  "Is the intro call online or in person?": Global,
+  "Do you have reviews or references?": MagicStar,
+  "Do you work with a fixed price or by the hour?": Wallet,
+  "How many feedback rounds are there in a project?": Refresh2,
+  "Do you also take on small projects?": Layer,
+  "Can you work with a deadline or a rush job?": Flash,
+  "How soon can you start?": Rocket,
+  "Do you offer maintenance after launch?": Setting2,
+  "Is there a guarantee after delivery?": InfoCircle,
+  "Can maintenance or social media management be cancelled monthly?": Refresh2,
+  "Do you work with terms and conditions?": Signpost,
+  "How quickly do you respond to a message?": Send2,
 
   // AI implementation
   "How much does an AI implementation cost?": DollarCircle,
@@ -80,6 +124,20 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   "Will you tell me if AI is not the right fit?": InfoCircle,
   "Do I need existing AI infrastructure before we start?": Setting2,
   "Do you maintain the implementation after launch?": Rocket,
+  "How soon do I see a first working result?": TrendUp,
+  "How do you approach an AI implementation?": Signpost,
+  "Do you use Claude, ChatGPT or Gemini?": MagicStar,
+  "What happens to our data?": InfoCircle,
+  "Do you also make AI creatives?": Brush,
+  "Can you build a dashboard for our whole business?": TrendUp,
+  "What does a business dashboard cost?": DollarCircle,
+  "How soon is my dashboard live?": Rocket,
+  "Is a business dashboard also useful for service businesses?": Profile2User,
+  "What is the difference between automation and AI?": Convert,
+  "Can you build an AI chat for my website?": MessageQuestion,
+  "Can AI take work off my customer service team?": Speaker,
+  "Can you build an AI assistant for our own team?": Profile2User,
+  "How do you connect AI to our existing systems?": Layer,
 
   // Branding
   "How much does branding cost?": DollarCircle,
@@ -111,6 +169,10 @@ const FAQ_ICON_OVERRIDES: Record<string, IconsaxIcon> = {
   // Web design
   "Do you build on an existing platform, or fully custom?": Layer,
   "Is the site also fast and mobile friendly?": Mobile,
+  "Do you work with WordPress?": Layer,
+  "Who owns the website, the design and the code?": InfoCircle,
+  "Can I edit text and images myself after launch?": Setting2,
+  "Do you also write the copy and handle photography or video?": Brush,
 };
 
 /** Best-effort icon per question — exact overrides above take priority,
@@ -143,7 +205,17 @@ function pickFaqIcon(question: string): IconsaxIcon {
  * align-items:start so an expanded card doesn't stretch the other cards
  * in its row.
  */
-export function FaqAccordionItem({ item, defaultOpen }: { item: FaqItem; defaultOpen: boolean }) {
+export function FaqAccordionItem({
+  item,
+  defaultOpen,
+  dense = false,
+}: {
+  item: FaqItem;
+  defaultOpen: boolean;
+  /** Single-column lists (homepage FAQ): shorter rows, since the
+   * equal-height rule for 3-column grids does not apply there. */
+  dense?: boolean;
+}) {
   const [open, setOpen] = useState(defaultOpen);
   const [hovered, setHovered] = useState(false);
   const id = item.question.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
@@ -172,8 +244,8 @@ export function FaqAccordionItem({ item, defaultOpen }: { item: FaqItem; default
           onMouseLeave={() => setHovered(false)}
           className="flex w-full items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40 rounded-2xl"
           style={{
-            padding: "1rem 1.1rem",
-            minHeight: 76,
+            padding: dense ? ".8rem 1rem" : "1rem 1.1rem",
+            minHeight: dense ? 58 : 76,
           }}
         >
           <Icon

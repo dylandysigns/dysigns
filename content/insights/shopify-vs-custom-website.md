@@ -15,7 +15,7 @@ lastUpdated: "2026-09-05"
 
 ## Start with what Shopify already solves
 
-Shopify handles the parts of running a webshop that are expensive to get wrong: PCI-compliant payments, checkout, hosting and uptime, security patching, and a plugin ecosystem for the features most stores need (reviews, subscriptions, loyalty, local payment methods like iDEAL). Building all of that yourself is a real software project, not a website, which is why "custom" almost never means custom payments and checkout too. It means a custom front end and custom logic layered on top of Shopify's commerce engine, or in rarer cases, a fully headless build.
+Shopify handles the parts of running a webshop that are expensive to get wrong: PCI-compliant payments, checkout, hosting and uptime, security patching, and a plugin ecosystem for the features most stores need (reviews, subscriptions, loyalty, local payment methods like iDEAL). Building all of that yourself is a real software project, not a [website design](/web-design) job, which is why "custom" almost never means custom payments and checkout too. It means a custom front end and custom logic layered on top of Shopify's commerce engine, or in rarer cases, a fully headless build.
 
 That framing matters, because it changes the real question. It's not "Shopify or custom," it's "how much custom work does this specific store actually need, and on top of which foundation."
 

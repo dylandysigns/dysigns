@@ -94,3 +94,23 @@ Ja, we bouwen voort op wat al werkt en voegen toe waar nodig, in plaats van stan
 ### Ondersteunen jullie meerdere talen of landen via Shopify Markets?
 
 Ja, Shopify Markets maken we onderdeel van de implementatie zodra een webshop internationaal moet verkopen.
+
+### Zetten jullie ook mijn producten in de webshop?
+
+We importeren je bestaande producten, bijvoorbeeld uit je huidige webshop of een spreadsheet. Nieuwe producten zet je daarna zelf in, en we leggen je precies uit hoe dat werkt.
+
+### Krijg ik uitleg om de webshop zelf te beheren?
+
+Ja. Bij de oplevering krijg je een training, zodat je zelf je producten, bestellingen en content beheert.
+
+### Kunnen jullie de webshop koppelen aan Bol.com of andere marktplaatsen?
+
+Ja. We koppelen je Shopify webshop aan Bol.com en andere marktplaatsen, zodat je producten en bestellingen niet op elk kanaal los hoeft bij te houden.
+
+### Bouwen jullie ook B2B-webshops of abonnementen?
+
+Ja, allebei. Denk aan een webshop met zakelijke prijzen en een login voor zakelijke klanten, of producten op abonnement, zoals een maandelijkse levering.
+
+### Welke betaalmethodes kan ik aanbieden?
+
+Alle gangbare betaalmethodes, zoals iDEAL, Klarna en creditcard. We zetten ze voor je aan en testen of alles goed werkt voordat je live gaat.
