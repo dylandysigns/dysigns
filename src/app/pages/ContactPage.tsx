@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "../data/content";
 import { useCursor } from "../hooks/useCursor";
 import { useLanguage } from "../hooks/useLanguage";
 import { Seo } from "../components/Seo";
-import { TurnstileWidget, TURNSTILE_ENABLED } from "../components/TurnstileWidget";
+import { LeadForm } from "../components/contact/LeadForm";
+import { ContactEmblem } from "../components/contact/ContactEmblem";
 import { getLocalizedContent } from "../content/loadContent";
 import { breadcrumbListSchema } from "../seo/schema";
-import { Instagram, Send } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 /* Same pill button as the homepage contact band: hairline border, uppercase
    tracked label, icon on the left and a light sweep on hover. */
@@ -78,40 +79,6 @@ export default function ContactPage() {
   const subRef = useRef<HTMLParagraphElement>(null);
   const cardsRef = useRef<(HTMLElement | null)[]>([]);
   const socialsRef = useRef<HTMLDivElement>(null);
-  const submitFillRef = useRef<HTMLSpanElement>(null);
-  const submitRectRef = useRef<DOMRect | null>(null);
-  // Stamped on mount so the server can tell a human (who takes a few seconds
-  // to type) from a bot posting straight to /api/contact.
-  const tsRef = useRef<HTMLInputElement>(null);
-  const [verifyFailed, setVerifyFailed] = useState(false);
-
-  useEffect(() => {
-    if (tsRef.current) tsRef.current.value = String(Date.now());
-    setVerifyFailed(new URLSearchParams(window.location.search).get("error") === "verify");
-  }, []);
-
-  // Turnstile fills a hidden cf-turnstile-response input a moment after the
-  // page loads. A quick submit could go out with it still empty and bounce
-  // with ?error=verify, so hold the submit until the token is there (max
-  // ~5 s, then send anyway and let the server decide).
-  const waitingForToken = useRef(false);
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    if (!TURNSTILE_ENABLED || waitingForToken.current) return;
-    const form = e.currentTarget;
-    const hasToken = () =>
-      Boolean((form.elements.namedItem("cf-turnstile-response") as HTMLInputElement | null)?.value);
-    if (hasToken()) return;
-    e.preventDefault();
-    waitingForToken.current = true;
-    const started = Date.now();
-    const timer = window.setInterval(() => {
-      if (hasToken() || Date.now() - started > 5000) {
-        window.clearInterval(timer);
-        form.submit();
-      }
-    }, 150);
-  };
-
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = gsap.context(() => {
@@ -248,6 +215,7 @@ export default function ContactPage() {
       </svg>
 
       <div className="max-w-[700px] mx-auto text-center">
+        <ContactEmblem />
         <span
           ref={labelRef}
           style={{
@@ -263,10 +231,10 @@ export default function ContactPage() {
         </span>
         <h1
           ref={headRef}
-          className="mt-4"
+          className="mt-3"
           style={{
             fontFamily: "var(--font-brand)",
-            fontSize: "clamp(2rem,5vw,3.5rem)",
+            fontSize: "clamp(1.5rem,3.2vw,2.3rem)",
             fontWeight: 700,
             letterSpacing: "-.04em",
             color: "var(--page-fg)",
@@ -278,12 +246,12 @@ export default function ContactPage() {
         </h1>
         <p
           ref={subRef}
-          className="mt-5 mx-auto max-w-md"
+          className="mt-3 mx-auto max-w-md"
           style={{
             fontFamily: "var(--font-brand)",
-            fontSize: "clamp(.95rem,1.3vw,1.15rem)",
-            color: "rgba(var(--page-fg-rgb), .6)",
-            lineHeight: 1.6,
+            fontSize: "clamp(.9rem,1.1vw,1rem)",
+            color: "rgba(var(--page-fg-rgb), .55)",
+            lineHeight: 1.5,
           }}
         >
           {t("contact.sub")}
@@ -291,28 +259,18 @@ export default function ContactPage() {
 
         <div
           ref={contentRef}
-          className="mt-10 space-y-6"
+          className="mt-6 space-y-6"
         >
-          <a
-            ref={(el) => { cardsRef.current[0] = el; }}
-            href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${PILL_CLASS} !flex mx-auto w-fit`}
-            style={{ ...PILL_STYLE, opacity: 0 }}
-            onMouseEnter={(e) => {
-              pillOn(e.currentTarget);
-              cursor.set("link");
+          {/* The form comes first: one large field that asks one thing at a time (see LeadForm.tsx).
+              WhatsApp, the quick alternative, sits under it. */}
+          <div
+            ref={(el) => {
+              cardsRef.current[0] = el;
             }}
-            onMouseLeave={(e) => {
-              pillOff(e.currentTarget);
-              cursor.reset();
-            }}
+            style={{ opacity: 0 }}
           >
-            <PillSweep />
-            <WhatsAppIcon size={16} />
-            {t("contact.sendWhatsapp")}
-          </a>
+            <LeadForm />
+          </div>
 
           <div className="flex items-center gap-4 max-w-[420px] mx-auto">
             <span
@@ -332,177 +290,26 @@ export default function ContactPage() {
             />
           </div>
 
-          <form
+          <a
             ref={(el) => { cardsRef.current[1] = el; }}
-            name="contact"
-            method="POST"
-            action="/api/contact"
-            onSubmit={handleSubmit}
-            className="text-left p-6 sm:p-8 rounded-2xl"
-            style={{
-              border: "1px solid rgba(var(--page-fg-rgb), .08)",
-              background: "rgba(var(--page-fg-rgb), .02)",
-              opacity: 0,
-              transform: "rotate(-0.4deg)",
+            href={`https://wa.me/${c.whatsapp.replace(/\+/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${PILL_CLASS} !flex mx-auto w-fit`}
+            style={{ ...PILL_STYLE, opacity: 0 }}
+            onMouseEnter={(e) => {
+              pillOn(e.currentTarget);
+              cursor.set("link");
+            }}
+            onMouseLeave={(e) => {
+              pillOff(e.currentTarget);
+              cursor.reset();
             }}
           >
-            <p className="hidden">
-              <label>
-                Don't fill this out: <input name="bot-field" />
-              </label>
-            </p>
-            <input type="hidden" name="ts" ref={tsRef} />
-
-            <div>
-              <label
-                htmlFor="contact-email"
-                className="block mb-2"
-                style={{
-                  fontFamily: "var(--font-brand)",
-                  fontSize: "1.15rem",
-                  color: "var(--page-fg)",
-                }}
-              >
-                {t("contact.form.emailLabel")}
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                required
-                aria-required="true"
-                placeholder={t("contact.form.emailPlaceholder")}
-                className="w-full bg-transparent outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
-                style={{
-                  fontFamily: "var(--font-brand)",
-                  fontSize: "1rem",
-                  color: "var(--page-fg)",
-                  padding: "12px 4px",
-                  borderBottom: "1.5px dashed rgba(var(--page-fg-rgb), .2)",
-                }}
-                onFocus={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderBottomColor =
-                    "rgba(var(--page-fg-rgb), .5)";
-                }}
-                onBlur={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderBottomColor =
-                    "rgba(var(--page-fg-rgb), .2)";
-                }}
-              />
-            </div>
-
-            <div className="mt-6">
-              <label
-                htmlFor="contact-message"
-                className="block mb-2"
-                style={{
-                  fontFamily: "var(--font-brand)",
-                  fontSize: "1.15rem",
-                  color: "var(--page-fg)",
-                }}
-              >
-                {t("contact.form.messageLabel")}
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-                aria-required="true"
-                rows={4}
-                placeholder={t("contact.form.messagePlaceholder")}
-                className="w-full bg-transparent outline-none resize-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
-                style={{
-                  fontFamily: "var(--font-brand)",
-                  fontSize: "1rem",
-                  color: "var(--page-fg)",
-                  padding: "12px 4px",
-                  borderBottom: "1.5px dashed rgba(var(--page-fg-rgb), .2)",
-                }}
-                onFocus={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderBottomColor =
-                    "rgba(var(--page-fg-rgb), .5)";
-                }}
-                onBlur={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderBottomColor =
-                    "rgba(var(--page-fg-rgb), .2)";
-                }}
-              />
-            </div>
-
-            <TurnstileWidget />
-
-            {verifyFailed && (
-              <p
-                role="alert"
-                className="mt-4"
-                style={{ fontFamily: "var(--font-brand)", fontSize: ".85rem", color: "#ff8a80" }}
-              >
-                {t("contact.form.verifyError")}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              className="relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-full"
-              style={{
-                border: "1px solid rgba(var(--page-fg-rgb), .2)",
-                background: "transparent",
-                padding: "13px 28px",
-                isolation: "isolate",
-              }}
-              onMouseEnter={(e) => {
-                cursor.set("link");
-                const rect = e.currentTarget.getBoundingClientRect();
-                submitRectRef.current = rect;
-                const fill = submitFillRef.current;
-                if (fill) {
-                  const px = ((e.clientX - rect.left) / rect.width) * 100;
-                  const py = ((e.clientY - rect.top) / rect.height) * 100;
-                  fill.style.transition = "none";
-                  fill.style.clipPath = `circle(0% at ${px}% ${py}%)`;
-                  void fill.offsetHeight;
-                  fill.style.transition = "clip-path .55s cubic-bezier(.16,1,.3,1)";
-                  fill.style.clipPath = `circle(140% at ${px}% ${py}%)`;
-                }
-              }}
-              onMouseLeave={(e) => {
-                cursor.reset();
-                const rect = submitRectRef.current;
-                const fill = submitFillRef.current;
-                if (rect && fill) {
-                  const px = ((e.clientX - rect.left) / rect.width) * 100;
-                  const py = ((e.clientY - rect.top) / rect.height) * 100;
-                  fill.style.clipPath = `circle(0% at ${px}% ${py}%)`;
-                }
-                submitRectRef.current = null;
-              }}
-            >
-              <span
-                ref={submitFillRef}
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{ background: "var(--page-fg)", clipPath: "circle(0% at 50% 50%)" }}
-              />
-              <span
-                style={{
-                  position: "relative",
-                  color: "var(--page-fg)",
-                  mixBlendMode: "difference",
-                  fontFamily: "var(--font-brand)",
-                  fontSize: ".78rem",
-                  fontWeight: 600,
-                  letterSpacing: ".06em",
-                  textTransform: "uppercase",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <Send size={16} strokeWidth={1.75} />
-                {t("contact.form.submit")}
-              </span>
-            </button>
-          </form>
+            <PillSweep />
+            <WhatsAppIcon size={16} />
+            {t("contact.sendWhatsapp")}
+          </a>
 
           <div className="pt-8">
             <span

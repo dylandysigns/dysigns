@@ -1,0 +1,249 @@
+/* The conversational contact form (LeadForm.tsx). Everything is scoped under .lf and set in
+   the site's own typeface, Effra. */
+
+.lf {
+  --lf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --lf-fs: clamp(34px, min(5.2vw, 9svh), 72px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(8px, 2svh, 24px) 0 4px;
+  font-family: var(--font-brand, "Effra", system-ui, sans-serif);
+  color: #fff;
+}
+.lf *,
+.lf *::before,
+.lf *::after {
+  box-sizing: border-box;
+}
+.lf-hidden {
+  display: none;
+}
+.lf-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* the back button and the step count, on one line with the count in the middle */
+.lf-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 0 0 clamp(14px, 3svh, 26px);
+}
+.lf-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font: 500 0.65rem/1 var(--font-brand, "Effra", system-ui, sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(6px);
+  transition: opacity 0.35s var(--lf-ease), transform 0.35s var(--lf-ease), background 0.2s ease, color 0.2s ease;
+}
+.lf-back.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+.lf-back:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+.lf-back--ghost {
+  visibility: hidden;
+  padding-left: 31px; /* the width of the arrow and its gap */
+}
+.lf-step {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ─── The field ─── */
+.lf-row {
+  cursor: text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  max-width: 100%;
+  font-size: calc(var(--lf-fs) * var(--lf-scale, 1));
+  color: #3a3a3a;
+  transition: color 0.2s ease, opacity 0.175s ease, filter 0.175s ease;
+}
+.lf-row.is-filled {
+  color: #fff;
+}
+.lf-row.is-swapping {
+  opacity: 0;
+  filter: blur(8px);
+}
+.lf-icon {
+  flex: none;
+  display: block;
+  width: 0.8em;
+  height: 0.8em;
+}
+.lf-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.lf-input,
+.lf-measure {
+  font-family: var(--font-brand, "Effra", system-ui, sans-serif);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+.lf-input {
+  min-width: 1ch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1em;
+  caret-color: #fff;
+}
+.lf-input:focus-visible {
+  outline: 0;
+}
+.lf-input::placeholder {
+  color: #3a3a3a;
+  opacity: 1;
+}
+/* the description: a calmer size that wraps and grows, centred like the rest */
+.lf--idea .lf-row {
+  align-items: flex-start;
+  width: min(100%, 620px);
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+}
+.lf--idea .lf-icon {
+  margin-top: 0.22em;
+}
+.lf-area {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  resize: none;
+  overflow: hidden;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-brand, "Effra", system-ui, sans-serif);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-align: left;
+  caret-color: #fff;
+}
+.lf-area::placeholder {
+  color: #3a3a3a;
+  opacity: 1;
+}
+.lf-measure {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  white-space: pre;
+  font-size: var(--lf-fs);
+}
+
+/* The slot under the field: the next button. */
+.lf-below {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  margin-top: clamp(18px, 4svh, 36px);
+}
+.lf-below > * {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  filter: blur(6px);
+  transform: translate(-50%, 8px);
+  pointer-events: none;
+  transition: opacity 0.5s var(--lf-ease), filter 0.5s var(--lf-ease), transform 0.5s var(--lf-ease), background 0.2s ease, color 0.2s ease;
+}
+.lf-below > .is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+.lf-next {
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font: 600 15px/1 var(--font-brand, "Effra", system-ui, sans-serif);
+  white-space: nowrap;
+}
+.lf-next:hover {
+  background: #e6e6e6;
+}
+.lf button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.lf.is-sending .lf-row,
+.lf.is-sending .lf-below {
+  opacity: 0.4;
+  pointer-events: none;
+}
+/* The human check loads from the start, so its token is ready, but it only takes up room at
+   the last step, where you send. */
+.lf-turnstile {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.lf--idea .lf-turnstile {
+  height: auto;
+  margin-top: clamp(10px, 2svh, 20px);
+  overflow: visible;
+  opacity: 1;
+}
+.lf-error {
+  margin: 14px 0 0;
+  font-size: 0.85rem;
+  color: #ff8a80;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-row,
+  .lf-below > * {
+    transition: opacity 0.2s ease;
+    filter: none !important;
+  }
+}
