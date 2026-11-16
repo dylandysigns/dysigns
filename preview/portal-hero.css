@@ -1,0 +1,460 @@
+/* Portal hero preview. Everything is scoped under .ph. */
+
+/* While the hero is up it owns the scroll; PortalHero.tsx takes this class off when it slides away. */
+html.ph-lock,
+html.ph-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.ph {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fg: #fff;
+  --line: rgba(255, 255, 255, 0.16);
+  --chip: rgba(255, 255, 255, 0.05);
+  /* the first screen of the page: it fills the 100svh wrapper HomePage.tsx gives it */
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  color: var(--fg);
+  font-family: "Effra", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.ph *,
+.ph *::before,
+.ph *::after {
+  box-sizing: border-box;
+}
+:where(.ph) a {
+  color: inherit;
+  text-decoration: none;
+}
+:where(.ph) button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+.ph :focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+/* ─── Space ─── */
+.ph-land {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* No WebGL: still light in two corners, and a pool of light behind the emblem */
+.ph--nogl .ph-land {
+  background:
+    radial-gradient(70% 70% at 0% 100%, rgba(184, 222, 230, 0.55), transparent 70%),
+    radial-gradient(70% 70% at 100% 0%, rgba(184, 222, 230, 0.45), transparent 70%),
+    #000;
+}
+.ph--nogl:not([data-scene="a"]) .ph-land {
+  background: radial-gradient(34vh 34vh at 50% 48%, rgba(184, 222, 230, 0.08), transparent), #000;
+}
+
+/* thin chamfered frame lines in the four corners */
+.ph-frame svg {
+  position: absolute;
+  width: clamp(120px, 15vw, 210px);
+  height: auto;
+  overflow: visible;
+}
+.ph-frame__tl { left: 0; top: 13vh; }
+.ph-frame__tr { right: 0; top: 13vh; transform: scaleX(-1); }
+.ph-frame__bl { left: 0; bottom: 21vh; transform: scaleY(-1); }
+.ph-frame__br { right: 0; bottom: 21vh; transform: scale(-1); }
+
+/* the canvas a flight to another page continues on, behind the page content (PortalHero.tsx) */
+.ph-travel {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ─── Type and buttons, in the voice of the live site: heavy Effra, small tracked capitals, hairline pills ─── */
+.ph-mask {
+  display: block;
+  overflow: hidden;
+  /* room for descenders, so the mask does not clip them */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.ph-line {
+  display: block;
+  will-change: transform;
+}
+.ph-h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 6.25rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.01;
+  text-wrap: balance;
+}
+.ph .ph-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.35s var(--ease);
+}
+.ph-btn:hover {
+  transform: scale(1.04);
+}
+.ph .ph-btn--solid {
+  background: #fff;
+  color: #000;
+}
+.ph .ph-btn--line {
+  background: var(--chip);
+  color: var(--fg);
+  box-shadow: inset 0 0 0 1px var(--line);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* ─── Scene A ─── */
+.ph-a {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.ph-a a,
+.ph-a button {
+  pointer-events: auto;
+}
+.ph:not([data-scene="a"]) .ph-a * {
+  pointer-events: none;
+}
+.ph-a__main {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 24px 120px;
+  text-align: center;
+}
+.ph-avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.ph-avail b {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+.ph-avail i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.55;
+}
+.ph-a__sub {
+  display: block;
+  max-width: 34em;
+  margin: 22px auto 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  text-wrap: balance;
+}
+.ph-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+/* Trusted by: the partner logos along the bottom of the hero */
+.ph-trust {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ph-trust__label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+/* the logos run as a carousel, fading out at both ends */
+.ph-trust__mask {
+  width: min(100%, 980px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.ph-trust__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: phMarquee 32s linear infinite;
+}
+.ph-trust:hover .ph-trust__track {
+  animation-play-state: paused;
+}
+.ph-trust__track a {
+  flex: none;
+  padding: 0 16px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+.ph-trust__track a:hover {
+  opacity: 1;
+}
+.ph-trust__track img {
+  display: block;
+  width: 80px;
+  height: 42px;
+  object-fit: contain;
+}
+@keyframes phMarquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─── Scene B: the emblem, in the room the space canvas paints behind the portal ─── */
+.ph-b {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+/* the big wordmark of the live hero, here as a watermark behind the emblem */
+.ph-b__word {
+  /* centred with grid, not transform: GSAP owns the transform for the reveal */
+  position: absolute;
+  inset: 0 0 6% 0;
+  display: grid;
+  place-items: center;
+  font-size: 25vw;
+  font-weight: 900;
+  letter-spacing: -0.057em;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.035);
+  user-select: none;
+}
+.ph-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+}
+.ph-chips {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ph-chips li {
+  position: absolute;
+}
+.ph .ph-chip {
+  position: relative;
+  display: block;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: var(--chip);
+  box-shadow: inset 0 0 0 1px var(--line);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ph[data-scene="b"] .ph-chip {
+  pointer-events: auto;
+}
+.ph .ph-chip:hover,
+.ph .ph-chip:focus-visible {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+/* what is behind the pill: a small card that opens above it (below, for the top one) */
+.ph-chip__card {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  z-index: 2;
+  display: grid;
+  gap: 6px;
+  width: 250px;
+  padding: 8px 8px 14px;
+  border-radius: 16px;
+  background: rgba(14, 15, 17, 0.86);
+  box-shadow: inset 0 0 0 1px var(--line), 0 18px 50px rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  text-transform: none;
+  letter-spacing: 0;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px) scale(0.97);
+  transform-origin: 50% 100%;
+  transition: opacity 0.25s ease, transform 0.35s var(--ease), visibility 0s 0.25s;
+  pointer-events: none;
+}
+.ph-chips li:nth-child(1) .ph-chip__card {
+  bottom: auto;
+  top: calc(100% + 12px);
+  transform: translate(-50%, -8px) scale(0.97);
+  transform-origin: 50% 0;
+}
+.ph-chip:hover .ph-chip__card,
+.ph-chip:focus-visible .ph-chip__card {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+  transition: opacity 0.25s ease, transform 0.35s var(--ease), visibility 0s;
+}
+.ph-chip__card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #101113;
+}
+.ph-chip__card b {
+  margin: 6px 6px 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+.ph-chip__card span {
+  display: -webkit-box;
+  margin: 0 6px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 0.74rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.62);
+}
+@media (hover: none) {
+  .ph-chip__card {
+    display: none;
+  }
+}
+.ph-chips li:nth-child(1) { left: calc(50% - 34px); top: 21%; }
+.ph-chips li:nth-child(2) { left: 71%; top: 33%; }
+.ph-chips li:nth-child(3) { left: 21%; top: 47%; }
+.ph-chips li:nth-child(4) { left: 73%; top: 59%; }
+.ph-chips li:nth-child(5) { left: 26%; top: 68%; }
+.ph--nocard .ph-card {
+  display: none;
+}
+
+/* ─── Small screens ─── */
+@media (max-width: 900px) {
+  .ph-chips li:nth-child(2) { left: auto; right: 6%; }
+  .ph-chips li:nth-child(4) { left: auto; right: 5%; }
+  .ph-chips li:nth-child(3) { left: 6%; }
+  .ph-chips li:nth-child(5) { left: 9%; }
+}
+@media (max-width: 767px) {
+  .ph-frame {
+    display: none;
+  }
+  .ph-a__sub {
+    font-size: 0.95rem;
+  }
+  .ph-actions {
+    margin-top: 24px;
+  }
+  .ph-chips li:nth-child(1) { top: 27%; }
+  .ph-chips li:nth-child(2) { top: 34%; }
+  .ph-chips li:nth-child(3) { top: 40%; }
+  .ph-chips li:nth-child(4) { top: 59%; }
+  .ph-chips li:nth-child(5) { top: 64%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-btn:hover {
+    transform: none;
+  }
+  .ph-trust__track {
+    animation: none;
+  }
+  .ph-trust__mask {
+    overflow-x: auto;
+  }
+  .ph-trust__track a.is-copy {
+    display: none;
+  }
+}
+
+/* Once the emblem is there, the bottom of the hero runs out into the black of the page,
+   so scrolling on to the next section has no edge. */
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 5;
+  height: 38%;
+  background: linear-gradient(to bottom, transparent, #000 90%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+.ph[data-scene="b"]::after {
+  opacity: 1;
+}
