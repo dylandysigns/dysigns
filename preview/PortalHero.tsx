@@ -430,7 +430,7 @@ export default function PortalHero() {
     function scrubTo(v: 0 | 1) {
       if (!enterScrub()) return;
       glide?.kill();
-      glide = gsap.to(scrub, { prog: v, duration: 0.6 + Math.abs(v - scrub.prog) * 4.2, ease: "power1.inOut" });
+      glide = gsap.to(scrub, { prog: v, duration: 0.4 + Math.abs(v - scrub.prog) * 1.6, ease: "power1.inOut" });
     }
     function tickScrub() {
       if (!scrubbing || !flight) return;
@@ -439,7 +439,7 @@ export default function PortalHero() {
         if (scrub.prog > 0.9) scrub.prog = 1;
         else if (scrub.prog < 0.06) scrub.prog = 0;
       }
-      scrub.cur += (scrub.prog - scrub.cur) * 0.14;
+      scrub.cur += (scrub.prog - scrub.cur) * 0.3;
       if (Math.abs(scrub.prog - scrub.cur) < 0.0006) scrub.cur = scrub.prog;
       flight.progress(scrub.cur);
       if (scrub.cur >= 1) {
@@ -571,8 +571,8 @@ export default function PortalHero() {
       stopAutoScroll();
       autoScroll = gsap.to(pos, {
         y: to,
-        duration: 3.4,
-        delay: 1.4, // once the section has come forward
+        duration: 2.0,
+        delay: 0.9, // once the section has come forward
         ease: "power1.inOut",
         onUpdate: () => window.scrollTo(0, pos.y),
         onComplete: () => void (autoScroll = null),
@@ -592,12 +592,12 @@ export default function PortalHero() {
         return;
       }
       const s = land!.state;
-      tl.to(aBlocks, { autoAlpha: 0, y: 20, filter: "blur(8px)", duration: 0.4, ease: "power2.in", stagger: 0.03 }, 0)
-        .to(s, { warp: 1, duration: 1.6, ease: "power2.in" }, 0.2)
-        .to(s, { travel: s.travel + 2.8, duration: 2.8, ease: "power2.in" }, 0.2)
+      tl.to(aBlocks, { autoAlpha: 0, y: 20, filter: "blur(8px)", duration: 0.3, ease: "power2.in", stagger: 0.02 }, 0)
+        .to(s, { warp: 1, duration: 0.9, ease: "power2.in" }, 0.1)
+        .to(s, { travel: s.travel + 1.6, duration: 1.5, ease: "power2.in" }, 0.1)
         // at full speed the stars run out into black, and the work comes out of it
-        .to(root, { opacity: 0, duration: 0.5, ease: "power1.in" }, 2.2)
-        .call(landOnWork, [], 2.75);
+        .to(root, { opacity: 0, duration: 0.35, ease: "power1.in" }, 1.2)
+        .call(landOnWork, [], 1.55);
     }
     /* ─── Let's connect: from the opening screen through space to another page. Returns false when
        there is no flight (reduced motion, no WebGL), so the link just works as a link. ─── */
@@ -657,8 +657,8 @@ export default function PortalHero() {
         else if (scene === "b" && e.deltaY < -6 && restingAtTop()) back();
         return;
       }
-      // the whole flight is a little under two screens of scrolling
-      const d = e.deltaY / ((window.innerHeight || 1) * 1.8);
+      // the whole flight is half a screen of scrolling
+      const d = e.deltaY / ((window.innerHeight || 1) * 0.45);
       if (scrubbing || scene === "a" || (scene === "b" && e.deltaY < 0 && restingAtTop())) scrubBy(d);
     };
     let touchY = 0;
@@ -672,7 +672,7 @@ export default function PortalHero() {
     const onTouchMove = (e: TouchEvent) => {
       if (simple) return;
       const y = e.touches[0].clientY;
-      const d = (lastTouchY - y) / ((window.innerHeight || 1) * 1.2);
+      const d = (lastTouchY - y) / ((window.innerHeight || 1) * 0.4);
       lastTouchY = y;
       if (scrubbing || scene === "a" || (scene === "b" && d < 0 && touchAtTop && window.scrollY <= 0)) scrubBy(d);
     };
@@ -923,6 +923,26 @@ export default function PortalHero() {
           DYSIGNS
         </div>
         <canvas ref={cardCanvasRef} className="ph-card" aria-hidden="true" />
+        {/* the way on: a small glass button with a thin arrow; a plain click scrolls on to the page */}
+        <button
+          type="button"
+          className="ph-down"
+          data-rise
+          aria-label={t("hero.scrollDown")}
+          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
+        >
+          <svg viewBox="0 0 24 72" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <defs>
+              <linearGradient id="ph-down-fade" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="66">
+                <stop offset="0" stopColor="#fff" stopOpacity="0" />
+                <stop offset="1" stopColor="#fff" stopOpacity="0.85" />
+              </linearGradient>
+            </defs>
+            <path className="ph-down__line" d="M12 2v64" stroke="url(#ph-down-fade)" />
+            <path className="ph-down__spark" d="M12 2v64" pathLength="64" />
+            <path className="ph-down__head" d="M6.5 60.5L12 66l5.5-5.5" />
+          </svg>
+        </button>
         <ul className="ph-chips" aria-label="Services">
           {services.map((sv) => {
             const inner = (

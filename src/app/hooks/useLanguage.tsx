@@ -69,6 +69,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.globeLabel": { en: "Show where we work", nl: "Bekijk waar we werken" },
   "hero.fallbackLocation": { en: "the Netherlands", nl: "Nederland" },
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
+  "hero.scrollDown": { en: "Scroll down", nl: "Scroll naar beneden" },
   "hero.scrollHint": { en: "Scroll to enter the experience", nl: "Scroll en stap de ervaring in" },
   "hero.watchVideo": { en: "See us in 19 sec", nl: "Zie ons in 19 sec" },
   "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
