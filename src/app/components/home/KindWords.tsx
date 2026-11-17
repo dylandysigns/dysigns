@@ -318,12 +318,12 @@ export function KindWords() {
               <ArrowBtn
                 direction="prev"
                 onClick={goPrev}
-                label="Previous testimonial"
+                label={t("a11y.prevTestimonial")}
               />
               <ArrowBtn
                 direction="next"
                 onClick={goNext}
-                label="Next testimonial"
+                label={t("a11y.nextTestimonial")}
               />
               <span
                 className="ml-3"
@@ -376,7 +376,7 @@ export function KindWords() {
                   <SwiperSlide key={item.id}>
                     <img
                       src={item.avatar}
-                      alt={`${item.name}, DYSIGNS client review`}
+                      alt={`${item.name}, ${t("alt.clientReview")}`}
                       className="w-full h-full object-cover select-none"
                       style={{
                         pointerEvents: "none",
@@ -493,7 +493,7 @@ export function KindWords() {
                   >
                     <img
                       src={current.avatar}
-                      alt={`${current.name}, DYSIGNS client review`}
+                      alt={`${current.name}, ${t("alt.clientReview")}`}
                       className="w-full h-full object-cover"
                       style={{
                         filter: "grayscale(.7) brightness(.75) contrast(1.15)",
@@ -529,7 +529,7 @@ export function KindWords() {
                 {SOURCE.map((item, i) => (
                   <button
                     key={item.id}
-                    aria-label={`Go to testimonial ${i + 1}`}
+                    aria-label={`${t("a11y.goToTestimonial")} ${i + 1}`}
                     onClick={() => goTo(i)}
                     style={{
                       width: i === sourceIndex ? 24 : 8,
@@ -591,7 +591,7 @@ export function KindWords() {
           <ArrowBtn
             direction="prev"
             onClick={goPrev}
-            label="Previous testimonial"
+            label={t("a11y.prevTestimonial")}
           />
           <span
             style={{
@@ -608,7 +608,7 @@ export function KindWords() {
           <ArrowBtn
             direction="next"
             onClick={goNext}
-            label="Next testimonial"
+            label={t("a11y.nextTestimonial")}
           />
         </div>
       </div>

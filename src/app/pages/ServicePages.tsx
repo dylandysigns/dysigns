@@ -11,7 +11,7 @@ import {
   getServiceUseCases,
   getSectionParagraph,
 } from "../content/loadContent";
-import { serviceSchema, faqPageSchema, breadcrumbListSchema } from "../seo/schema";
+import { serviceSchema, faqPageSchema, breadcrumbListSchema, LOCAL_AREAS } from "../seo/schema";
 import { renderInlineMarkdown } from "../utils/inlineMarkdown";
 import {
   serviceDefinitions,
@@ -140,7 +140,8 @@ function ServicePage({
             name: heading,
             description: entry.frontmatter.description,
             path,
-            areaServed: ["Worldwide"],
+            areaServed: LOCAL_AREAS[slug] ?? ["Worldwide"],
+            providerId: LOCAL_AREAS[slug] ? "localbusiness" : "organization",
           }),
           ...(entry.faqItems.length > 0 ? [faqPageSchema(entry.faqItems)] : []),
         ]}
@@ -184,7 +185,7 @@ function ServicePage({
           style={{
             fontSize: ".7rem",
             fontWeight: 500,
-            letterSpacing: ".16em",
+            letterSpacing: 0,
             textTransform: "uppercase",
             color: "rgba(var(--page-fg-rgb), .55)",
           }}

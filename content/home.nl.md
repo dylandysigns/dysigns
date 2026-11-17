@@ -18,15 +18,15 @@ lastUpdated: "2026-11-17"
 
 Zes fases, van het eerste gesprek tot doorlopende optimalisatie. Niet elk project doorloopt ze allemaal, maar de volgorde blijft hetzelfde.
 
-### 1. Discover
+### 1. Ontdekken
 
 We duiken in je markt, je klant en je cijfers. Gesprekken met stakeholders, concurrentieanalyse en een helder beeld van wie je eindgebruiker daadwerkelijk is.
 
-### 2. Define
+### 2. Definiëren
 
 Strategie wordt concreet. We brengen het probleem in kaart, spreken af wat succes betekent en leggen het vast in een creatieve briefing die we allebei onderschrijven.
 
-### 3. Design
+### 3. Ontwerpen
 
 Concepten krijgen vorm. Visuele systemen, afgeronde ontwerpen en de regels erachter, zodat het werk overeind blijft zodra je het zelf verder oppakt.
 
@@ -34,11 +34,11 @@ Concepten krijgen vorm. Visuele systemen, afgeronde ontwerpen en de regels erach
 
 Ideeën worden tastbaar in interactieve prototypes. We testen ze bij echte gebruikers en verfijnen voordat er ook maar één regel productiecode wordt geschreven.
 
-### 5. Build
+### 5. Bouwen
 
 Precieze uitvoering in development. Snel, toegankelijk en technisch vindbaar, gebouwd zoals het ontworpen is in plaats van zoals het toevallig paste.
 
-### 6. Launch and grow
+### 6. Lanceren en groeien
 
 Je site, webshop of merk gaat live. Vanaf dat moment monitoren en optimaliseren we, en zetten we advertenties en content in om er verkeer en omzet van te maken.
 

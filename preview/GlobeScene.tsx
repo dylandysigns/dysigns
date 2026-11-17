@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { createSpace } from "./portalSpace";
 import { flyRight, enterFromRight } from "./sideFlight";
+import { createHeroCamera } from "./heroCamera";
 import { NL_GRID } from "./globeNL";
 import { PLACES } from "./projectPlaces";
 import type { useLanguage } from "../src/app/hooks/useLanguage";
@@ -115,9 +116,29 @@ export default function GlobeScene({
     };
     // the camera starts where the hero's globe looks (tilted 27 degrees) and settles on the Netherlands
     const START_LAT = 27 * RAD;
+    /* Opened from the hero's globe: the same camera move as the DYSIGNS agent (heroCamera.ts). The
+       camera zooms in on the little globe, you see it come closer and grow, and it settles in its
+       place. Opened after the contact form (no little globe) it simply grows in, as before. */
+    const heroGlobe = document.querySelector<HTMLElement>(".ph-globe-btn");
+    const camera = (() => {
+      if (reduced || !origin || !heroGlobe || !document.querySelector(".ph")) return null;
+      const r = gCv.getBoundingClientRect();
+      const full = gCv.offsetWidth * 0.84; // the disc of the big globe, in px
+      if (!r.width || !full) return null;
+      return createHeroCamera({
+        from: { x: origin.cx, y: origin.cy },
+        to: { x: r.left + r.width / 2, y: r.top + r.height / 2 },
+        scale: origin.diameter / full,
+        big: gCv,
+        sky,
+        little: heroGlobe,
+      });
+    })();
     if (!reduced) {
-      gsap.set(sky, { opacity: 0 });
-      gsap.set(gCv, fromSmall());
+      if (!camera) {
+        gsap.set(sky, { opacity: 0 });
+        gsap.set(gCv, fromSmall());
+      }
       gsap.set(panel, { opacity: 0 });
       gsap.set(root.querySelector(".gs-cta"), { opacity: 0, y: 12 });
       gsap.set(root.querySelectorAll(".gs-head > *"), { opacity: 0 });
@@ -134,6 +155,12 @@ export default function GlobeScene({
       gsap.to(panel, { opacity: 0, duration: 0.35, ease: "power1.in" });
       gsap.to(root.querySelector(".gs-cta"), { opacity: 0, duration: 0.3 });
       gsap.to(root.querySelectorAll(".gs-head > *"), { opacity: 0, duration: 0.3 });
+      if (camera) {
+        // the same camera move, backwards
+        gsap.to(view, { lon: shortest(view.lon, AMS_LON), lat: START_LAT, duration: 1.6, ease: "power2.inOut" });
+        camera.flyOut(done, 1.6);
+        return;
+      }
       gsap.to(gCv, { ...fromSmall(), duration: 1.0, ease: "power3.inOut" });
       gsap.to(view, { lon: shortest(view.lon, AMS_LON), lat: START_LAT, duration: 1.0, ease: "power3.inOut" });
       gsap.to(sky, { opacity: 0, duration: 0.7, delay: 0.45, ease: "power1.inOut", onComplete: done });
@@ -165,7 +192,19 @@ export default function GlobeScene({
     };
 
     // the way in: the sky comes up, the stars rush while the globe grows, then everything settles
-    if (!reduced) {
+    if (camera) {
+      gsap
+        .timeline()
+        .add(camera.flyIn(2.1), 0)
+        .to(space?.state ?? {}, { warp: 0.45, duration: 0.9, ease: "power2.in" }, 0.2)
+        .to(space?.state ?? {}, { travel: 1.0, duration: 2.4, ease: "power2.out" }, 0.2)
+        .to(space?.state ?? {}, { warp: 0, duration: 1.2, ease: "sine.out" }, 1.1)
+        .to(view, { lon: NL_VIEW.lon, lat: NL_VIEW.lat, duration: 2.1, ease: "power2.inOut" }, 0)
+        .to(root.querySelectorAll(".gs-head > *"), { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 }, 1.7)
+        .to(panel, { opacity: 1, duration: 0.6 }, 1.7)
+        .to(root.querySelector(".gs-cta"), { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 2.2)
+        .to(appear, { v: 1, duration: 1.8, ease: "power3.out" }, 1.7);
+    } else if (!reduced) {
       gsap
         .timeline()
         .to(sky, { opacity: 1, duration: 0.7, ease: "power1.out" }, 0)
@@ -633,6 +672,8 @@ export default function GlobeScene({
       alive = false;
       cancelAnimationFrame(raf);
       document.body.style.overflow = prevOverflow;
+      camera?.reset(); // the hero is never left zoomed in
+      if (camera) gsap.killTweensOf(camera.cam);
       window.removeEventListener("keydown", onKey, true);
       window.removeEventListener("pointermove", onPointer);
       window.removeEventListener("resize", onResize);

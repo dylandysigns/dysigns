@@ -63,7 +63,16 @@ const FALLBACK_TEXT = {
 
 /** Small talk the chat answers itself, without a model call (also when
  * the AI is live: it is instant, consistent and costs nothing). */
-const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string> }[] = [
+const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string>; suggest?: Record<FaqLang, string[]> }[] = [
+  {
+    // "Spreek je Nederlands?", "Praat nu Nederlands met me", "Can you speak English?": answered in
+    // the language asked for (see detectLang), and the rest of the chat stays in it
+    pattern: /^(?=.*\b(nederlands|dutch|engels|english|vlaams)\b)(?!.*\b(kost|kosten|prijs|price|cost|website|webshop|shopify|logo|offerte|quote)\b).{0,80}$/i,
+    answer: {
+      nl: "Zeker, ik praat verder in het Nederlands. Waar kan ik je mee helpen? Vraag gerust iets over onze diensten, prijzen of hoe we werken.",
+      en: "Sure, I will continue in English. What can I help you with? Feel free to ask about our services, pricing or how we work.",
+    },
+  },
   {
     // "Spreek je Nederlands?", "Praat nu Nederlands met me", "Can you speak English?": answered in
     // the language asked for (see detectLang), and the rest of the chat stays in it
@@ -103,12 +112,37 @@ const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string> }[] = [
       en: "You are welcome! Is there anything else I can help you with?",
     },
   },
+  // Two of the DYSIGNS agent's starting questions (FaqChat.tsx) are open questions no single FAQ answers.
+  // They get a fixed answer, made only of what the site itself says, with links to the right pages, so
+  // they are answered well also when the AI is not available.
+  {
+    pattern: /^\W*(hoe|how)\b.{0,30}\b(meer klanten|more customers|more clients)\b.{0,25}$/i,
+    answer: {
+      nl: "Meer klanten online begint bij een site die snel is, goed vindbaar en bezoekers duidelijk naar een aanvraag of aankoop leidt; technische SEO zit standaard in elke [website](/nl/web-design/) die we bouwen. Daarna brengen [social media en Meta Ads](/nl/social-media-meta-ads/) nieuwe mensen binnen, en sturen we bij op de cijfers. Omdat we zelf de site bouwen en de campagnes draaien, zien we waar het blijft hangen als de cijfers bewegen. [Vertel ons waar je nu staat](/nl/contact/), dan denken we mee.",
+      en: "More customers online starts with a site that is fast, easy to find and leads visitors clearly to an enquiry or a purchase; technical SEO comes as standard in every [website](/web-design/) we build. Then [social media and Meta Ads](/social-media-meta-ads/) bring in new people, and we adjust on the numbers. Because we build the site and run the campaigns ourselves, we see where things get stuck when the numbers move. [Tell us where you are now](/contact/) and we will think along.",
+    },
+    suggest: {
+      nl: ["Wat kost social media en Meta Ads-beheer?", "Hoe lang duurt het voordat een campagne echt resultaat laat zien?", "Hoeveel kost een website of webshop?"],
+      en: ["How much does social media and Meta Ads management cost?", "How long before a campaign shows real results?", "How much does a website or online store cost?"],
+    },
+  },
+  {
+    pattern: /^\W*(wat kunnen jullie|wat doen jullie|what can you|what do you do)\b.{0,40}$/i,
+    answer: {
+      nl: "We zijn één vast team van ontwerp tot livegang en daarna. We ontwerpen en bouwen [websites](/nl/web-design/), [Shopify webshops](/nl/shopify-development/) en apps, maken [branding](/nl/branding/) en [UX/UI-design](/nl/ux-ui-design/), en na de lancering doen we [social media en Meta Ads](/nl/social-media-meta-ads/) en [AI-oplossingen](/nl/ai-implementation/) zoals automatisering en een AI-chat zoals deze. Waar wil je mee beginnen?",
+      en: "We are one steady team from design to launch and beyond. We design and build [websites](/web-design/), [Shopify stores](/shopify-development/) and apps, create [branding](/branding/) and [UX/UI design](/ux-ui-design/), and after launch we run [social media and Meta Ads](/social-media-meta-ads/) and [AI solutions](/ai-implementation/) such as automation and an AI chat like this one. Where would you like to start?",
+    },
+    suggest: {
+      nl: ["Doen jullie ook kleine projecten?", "Hoeveel kost een website of webshop?", "Wat moet ik voorbereiden voor het eerste gesprek?"],
+      en: ["Do you also take on small projects?", "How much does a website or online store cost?", "What should I prepare for the first conversation?"],
+    },
+  },
 ];
 
 /** Asked when nothing matches: the most common questions. */
 const POPULAR: Record<FaqLang, string[]> = {
-  nl: ["Hoeveel kost een website of webshop?", "Welke platforms gebruiken jullie?", "Hoe vraag ik een offerte aan?"],
-  en: ["How much does a website or online store cost?", "Which platforms do you build on?", "How do I request a quote?"],
+  nl: ["Hoeveel kost een website of webshop?", "Doen jullie ook kleine projecten?", "Hoe vraag ik een offerte aan?"],
+  en: ["How much does a website or online store cost?", "Do you also take on small projects?", "How do I request a quote?"],
 };
 
 function toSource(item: FaqIndexItem): ChatSource {
@@ -142,20 +176,52 @@ function parseSse(buffer: string): { tokens: string; rest: string; done: boolean
   return { tokens, rest, done };
 }
 
-export function useFaqChat(lang: FaqLang) {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+/** What a persisted conversation looks like in sessionStorage. */
+type SavedChat = { lang: FaqLang; messages: ChatMessage[] };
+
+function loadChat(key: string | undefined, lang: FaqLang): ChatMessage[] {
+  if (!key) return [];
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(key) ?? "null") as SavedChat | null;
+    if (!saved || saved.lang !== lang || !Array.isArray(saved.messages)) return [];
+    // an answer that was still being written when the page changed is left out
+    return saved.messages.filter((m) => m.role === "user" || (m.status !== "streaming" && m.content));
+  } catch {
+    return [];
+  }
+}
+
+/** `persistKey`: keep the conversation in sessionStorage under this key, so it is still there after
+ * a link in an answer took the visitor to another page and they come back (the DYSIGNS agent). */
+export function useFaqChat(lang: FaqLang, persistKey?: string) {
+  const [messages, setMessages] = useState<ChatMessage[]>(() => loadChat(persistKey, lang));
   const [busy, setBusy] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
-  const nextId = useRef(1);
+  const nextId = useRef(messages.reduce((n, m) => Math.max(n, m.id + 1), 1));
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
-  // A language switch is a fresh page: start a fresh conversation.
+  // A language switch is a fresh page: start a fresh conversation (not on the first render, which
+  // may just have brought a saved one back).
+  const langRef = useRef(lang);
   useEffect(() => {
+    if (langRef.current === lang) return;
+    langRef.current = lang;
     abortRef.current?.abort();
     setMessages([]);
     setBusy(false);
   }, [lang]);
+
+  // keep it, once an answer is complete
+  useEffect(() => {
+    if (!persistKey || busy) return;
+    try {
+      const data: SavedChat = { lang, messages: messages.slice(-24) };
+      sessionStorage.setItem(persistKey, JSON.stringify(data));
+    } catch {
+      /* private mode: the conversation simply is not kept */
+    }
+  }, [messages, busy, lang, persistKey]);
 
   const update = (id: number, patch: Partial<ChatMessage> | ((m: ChatMessage) => Partial<ChatMessage>)) =>
     setMessages((list) =>
@@ -184,7 +250,8 @@ export function useFaqChat(lang: FaqLang) {
       content: bare ? `${best.item.question}\n\n${best.item.answer}` : best.item.answer,
       status: "fallback",
       sources: [best, ...others].filter((r) => !r.item.isHome).slice(0, 2).map((r) => toSource(r.item)),
-      suggestions: [...new Set([...others.map((m) => m.item.question), ...POPULAR[lang]])]
+      // related questions only from the same page as the answer (not from an unrelated service page)
+      suggestions: [...new Set([...others.filter((m) => m.item.href === best.item.href).map((m) => m.item.question), ...POPULAR[lang]])]
         .filter((q) => q !== best.item.question && q.toLowerCase() !== question.toLowerCase())
         .slice(0, 3),
     });
@@ -211,8 +278,9 @@ export function useFaqChat(lang: FaqLang) {
       const minThink = () => (reduced ? Promise.resolve() : wait(thinkFor - (performance.now() - startedAt)));
 
       if (smallTalk) {
+        // (a fixed answer may come with follow-up questions, see the agent's starting questions below)
         await minThink();
-        update(assistantId, { content: smallTalk.answer[replyLang], status: "done", sources: [] });
+        update(assistantId, { content: smallTalk.answer[replyLang], status: "done", sources: [], suggestions: smallTalk.suggest?.[replyLang] });
         setBusy(false);
         return;
       }

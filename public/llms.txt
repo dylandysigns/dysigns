@@ -1,31 +1,43 @@
 # DYSIGNS
 
-> DYSIGNS is een creative partner en full-service digital agency uit Almere, Netherlands: een klein team en officiële Shopify Partner in Nederland. We ontwerpen en bouwen websites, Shopify webshops en digitale interfaces voor ondernemers, scale-ups en bureaus in Nederland en België.
+> DYSIGNS is een creative partner en full-service digital agency uit Almere: een klein team en officieel Shopify Partner. We ontwerpen en bouwen websites, Shopify webshops, apps en digitale interfaces voor ondernemers, scale-ups en merken in Nederland en België. Na de lancering blijven we: social media, Meta Ads en optimalisatie op basis van data.
 
-DYSIGNS begon als UX/UI-design en breidde uit naar webdesign, Shopify
-development, branding en social media marketing. Klanten werken met
-één vast aanspreekpunt in plaats van een wisselend team, met korte
-feedbackloops en heldere communicatie als uitgangspunt.
+Kernpropositie: één vast team van ontwerp tot livegang en daarna, in plaats van losse specialisten. Omdat we zelf ontwerpen, bouwen en de campagnes draaien, weten we waar we moeten bijsturen als de cijfers bewegen. Korte lijnen, één aanspreekpunt, reactie binnen één werkdag.
+
+English version of the site: https://dylandysigns.com/ (Dutch: https://dylandysigns.com/nl/).
 
 ## Diensten
 
-- [Webdesign](https://dylandysigns.com/web-design/): Maatwerk websites, van ontwerp tot een werkende, snelle site, geen sjabloon-aanpak. Technische SEO en data-gedreven optimalisatie zitten er standaard in.
-- [UX/UI Design](https://dylandysigns.com/ux-ui-design/): Gebruikersonderzoek, wireframes en een compleet designsysteem voor apps, portals en webshops.
-- [Shopify development](https://dylandysigns.com/shopify-development/): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets voor webshops die moeten blijven converteren.
-- [Branding](https://dylandysigns.com/branding/): Merkstrategie, logo, huisstijl en een designsysteem dat doorwerkt in site, webshop en social kanalen.
+- [Webdesign](https://dylandysigns.com/nl/web-design/): Maatwerk websites, van ontwerp tot een snelle, werkende site. Technische SEO zit er standaard in.
+- [Shopify development](https://dylandysigns.com/nl/shopify-development/): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets, als officieel Shopify Partner.
+- [UX/UI-design](https://dylandysigns.com/nl/ux-ui-design/): Gebruikersonderzoek, wireframes, prototypes en een compleet designsysteem voor apps, portals en webshops.
+- [Branding](https://dylandysigns.com/nl/branding/): Merkstrategie, logo en huisstijl die doorwerken in site, webshop en social kanalen.
+- [Social media en Meta Ads](https://dylandysigns.com/nl/social-media-meta-ads/): Social media beheer en Meta Ads, inclusief de landingspagina, zodat de hele funnel wordt geoptimaliseerd.
+- [AI-implementatie](https://dylandysigns.com/nl/ai-implementation/): AI-creatives, procesautomatisering, bedrijfsdashboards, een AI-chat op je website en interne AI-assistenten.
 
-## Belangrijkste pagina's
+## Regio's
 
-- [Home](https://dylandysigns.com/): Overzicht van wie DYSIGNS is en wat we doen.
-- [Werk](https://dylandysigns.com/work/): Projecten van DYSIGNS voor klanten in Nederland en België.
-- [Over ons](https://dylandysigns.com/about/): Achtergrond en werkwijze van het team.
-- [Contact](https://dylandysigns.com/contact/): Project bespreken, reactie binnen één werkdag.
+- [Website laten maken in Almere](https://dylandysigns.com/nl/web-design-almere/): Ons thuisgebied: Almere, Flevoland, Lelystad en Zeewolde. Afspreken op locatie kan.
+- [Website laten maken in Amsterdam](https://dylandysigns.com/nl/web-design-amsterdam/): Maatwerk websites, webshops en apps voor Amsterdamse merken.
+- Verder werken we door heel Nederland en België, grotendeels op afstand, en voor internationale merken.
 
-## Locatie
+## Beste cases
 
-Almere, Flevoland, Netherlands. DYSIGNS werkt met klanten door heel
-Nederland en België, grotendeels op afstand.
+- [STËLZ App](https://dylandysigns.com/nl/work/stelz-app/): App voor iOS en Android ontworpen en gebouwd, van eerste schets tot nummer 1 in de App Store, met een landelijke smaakverkiezing als start.
+- [STËLZ webdesign](https://dylandysigns.com/nl/work/stelz-web-design/): De website en Shopify webshop van hetzelfde drankenmerk.
+- [Merely Made webshop](https://dylandysigns.com/nl/work/merely-made-webshop/): Webshop ontworpen en gebouwd voor het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.
+- [A/Café POS en kiosk](https://dylandysigns.com/nl/work/a-cafe-app-design/): Productdesign voor een kassasysteem en bestelkiosk.
+- [BIYU](https://dylandysigns.com/nl/work/biyu/): App, website en dashboard voor een Amsterdams verhuurplatform.
+- [Al het werk](https://dylandysigns.com/nl/work/): Overzicht van alle projecten.
 
-## Contact
+## Kennis
 
+- [Inzichten](https://dylandysigns.com/nl/insights/): Artikelen over wat een website kost, Shopify versus maatwerk, fulfilment opschalen en social media content.
+
+## Over en contact
+
+- [Over ons](https://dylandysigns.com/nl/about/): Achtergrond en werkwijze van het team.
+- [Contact](https://dylandysigns.com/nl/contact/): Project bespreken, reactie binnen één werkdag.
+
+Locatie: Almere, Flevoland, Nederland. KvK 83710418.
 E-mail: info@dylandysigns.com

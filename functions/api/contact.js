@@ -8,82 +8,141 @@ const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const NOTIFY_TO = "info@dylandysigns.com";
 const FROM_ADDRESS = "DYSIGNS <hello@dylandysigns.com>";
 const SITE_URL = "https://dylandysigns.com";
-const LOGO_URL = `${SITE_URL}/email/dysigns-logo.png`;
+const HEADER_URL = `${SITE_URL}/email/contact-header.jpg`;
+const WA_ICON_URL = `${SITE_URL}/email/whatsapp.png`;
+const WHATSAPP_URL = "https://wa.me/31626814488";
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+// The mails: personal in tone and dark like the site. Only system fonts (Helvetica/Arial), since
+// mail clients do not load Effra; the letter-spacing is tight like the site. The space header with
+// the 3D emblem and the WhatsApp icon are PNG/JPG files in public/email, because SVG, WebGL and
+// background images do not show in Gmail or Outlook.
+const FONT = `'Helvetica Neue',Helvetica,Arial,sans-serif`;
+const escapeHtml = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const p = (html, extra = "") =>
+  `<p style="margin:0 0 18px 0;font-family:${FONT};font-size:15px;line-height:1.6;letter-spacing:-0.02em;color:#bdbdbd;${extra}">${html}</p>`;
 
-// Black background, white text, matching the site's dark theme. The
-// container gets a visible border and generous padding so it reads as
-// a distinct card against the page background in mail clients.
-function emailShell({ preheader, heading, bodyHtml }) {
+const COPY = {
+  en: {
+    heading: (n) => (n ? `Thanks, ${n}.` : "Thanks."),
+    body: "Your message came in well. We'll get back to you within one business day, usually sooner.",
+    yours: "Your message",
+    cta: "See our work",
+    bye: "Speak soon,",
+    privacy: "Privacy policy",
+  },
+  nl: {
+    heading: (n) => (n ? `Bedankt, ${n}.` : "Bedankt."),
+    body: "Je bericht is goed aangekomen. We komen binnen één werkdag bij je terug, meestal sneller.",
+    yours: "Jouw bericht",
+    cta: "Bekijk ons werk",
+    bye: "Tot snel,",
+    privacy: "Privacybeleid",
+  },
+};
+
+function shell({ lang, preheader, inner, footer = "" }) {
   return `<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#000000;font-family:Inter,-apple-system,BlinkMacSystemFont,Arial,sans-serif;">
-  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${escapeHtml(preheader)}</div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#000000;padding:48px 20px;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#0a0a0a;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);">
-          <tr>
-            <td style="padding:40px 44px 28px 44px;">
-              <img src="${LOGO_URL}" alt="DYSIGNS" width="112" style="display:block;width:112px;max-width:100%;height:auto;" />
-            </td>
-          </tr>
-          <tr><td style="padding:0 44px;"><div style="height:1px;background:rgba(255,255,255,0.12);"></div></td></tr>
-          <tr>
-            <td style="padding:40px 44px;">
-              <h1 style="margin:0 0 20px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.01em;color:#ffffff;">${escapeHtml(heading)}</h1>
-              ${bodyHtml}
-            </td>
-          </tr>
-          <tr><td style="padding:0 44px;"><div style="height:1px;background:rgba(255,255,255,0.12);"></div></td></tr>
-          <tr>
-            <td style="padding:28px 44px 40px 44px;">
-              <p style="margin:0 0 8px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:12px;color:#8a8a8a;">DYSIGNS, Almere, Netherlands</p>
-              <p style="margin:0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:12px;color:#8a8a8a;">KVK: 83710418 | BTW: NL003861601B85 | <a href="${SITE_URL}/privacy" style="color:#8a8a8a;">Privacy policy</a></p>
-            </td>
-          </tr>
+<html lang="${lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<style>:root{color-scheme:dark;}</style>
+<style>@media (max-width:600px){.px{padding-left:24px!important;padding-right:24px!important;}.h1{font-size:30px!important;}.btns,.btns tbody,.btns tr{display:block!important;width:100%!important;}.stack{display:block!important;width:100%!important;padding:0 0 10px 0!important;}.btn{width:100%!important;}.btn td{display:block!important;}.btn a{display:block!important;text-align:center!important;}}</style>
+</head>
+<body bgcolor="#000000" style="margin:0;padding:0;background-color:#000000;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">${escapeHtml(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#000000" style="background-color:#000000;">
+  <tr><td align="center" style="padding:48px 12px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;">
+      <tr><td bgcolor="#0a0a0a" style="background-color:#0a0a0a;border:1px solid #1f1f1f;border-radius:20px;overflow:hidden;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr><td style="padding:0;line-height:0;font-size:0;">
+            <a href="${SITE_URL}"><img src="${HEADER_URL}" alt="DYSIGNS" width="580" style="display:block;width:100%;max-width:580px;height:auto;border:0;border-radius:20px 20px 0 0;"></a>
+          </td></tr>
+          <tr><td class="px" bgcolor="#0a0a0a" style="padding:8px 44px 44px 44px;background-color:#0a0a0a;">${inner}</td></tr>
         </table>
-      </td>
-    </tr>
-  </table>
+      </td></tr>
+      ${footer}
+    </table>
+  </td></tr>
+</table>
 </body>
 </html>`;
 }
 
-function notifyEmail(email, message) {
-  const safeEmail = escapeHtml(email);
-  const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
-  return emailShell({
-    preheader: `New message from ${email}`,
-    heading: "New contact form submission",
-    bodyHtml: `
-      <p style="margin:0 0 24px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.6;color:#cccccc;">From <a href="mailto:${safeEmail}" style="color:#ffffff;font-weight:600;">${safeEmail}</a></p>
-      <div style="background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:24px;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.7;color:#ffffff;">${safeMessage}</div>
-    `,
-  });
+const h1 = (text) =>
+  `<h1 class="h1" style="margin:0 0 14px 0;font-family:${FONT};font-size:36px;line-height:1.05;font-weight:700;letter-spacing:-0.05em;color:#ffffff;">${text}</h1>`;
+
+const small = (text) =>
+  `<p style="margin:0 0 10px 0;font-family:${FONT};font-size:13px;letter-spacing:-0.01em;color:#6b6b6b;">${text}</p>`;
+
+const messageBox = (message) =>
+  `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 32px 0;">
+    <tr><td style="padding:0;font-family:${FONT};font-size:15px;line-height:1.65;letter-spacing:-0.02em;color:#e6e6e6;">${escapeHtml(message).replace(/\n/g, "<br>")}</td></tr>
+  </table>`;
+
+const button = (href, text) => `
+  <table role="presentation" class="btn" cellpadding="0" cellspacing="0" style="margin:0;"><tr>
+    <td bgcolor="#ffffff" style="background-color:#ffffff;border-radius:999px;">
+      <a href="${href}" style="display:inline-block;padding:13px 26px;font-family:${FONT};font-size:14px;font-weight:700;letter-spacing:-0.02em;color:#000000;text-decoration:none;border-radius:999px;white-space:nowrap;">${text}</a>
+    </td>
+  </tr></table>`;
+
+// WhatsApp as an outlined pill with the site's icon as a PNG (SVG does not load in Gmail/Outlook)
+const waButton = (href, text = "WhatsApp") => `
+  <table role="presentation" class="btn" cellpadding="0" cellspacing="0" style="margin:0;"><tr>
+    <td style="border:1px solid #333333;border-radius:999px;">
+      <a href="${href}" style="display:inline-block;padding:12px 22px 12px 18px;font-family:${FONT};font-size:14px;font-weight:700;letter-spacing:-0.02em;color:#ffffff;text-decoration:none;border-radius:999px;white-space:nowrap;"><img src="${WA_ICON_URL}" alt="" width="16" height="16" style="display:inline-block;width:16px;height:16px;border:0;vertical-align:-3px;margin-right:8px;">${text}</a>
+    </td>
+  </tr></table>`;
+
+const hr =`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:36px 0 28px 0;"><tr><td bgcolor="#1f1f1f" height="1" style="height:1px;line-height:1px;font-size:1px;background-color:#1f1f1f;">&nbsp;</td></tr></table>`;
+
+function confirmEmail({ lang = "en", name, message }) {
+  const c = COPY[lang] ?? COPY.en;
+  const first = name ? name.trim().split(/\s+/)[0] : "";
+  const workUrl = `${SITE_URL}${lang === "nl" ? "/nl" : ""}/work`;
+  const inner = `
+    ${h1(escapeHtml(c.heading(first)))}
+    ${p(c.body, "margin-bottom:32px;font-size:16px;")}
+    ${small(c.yours)}
+    ${messageBox(message)}
+    <table role="presentation" class="btns" cellpadding="0" cellspacing="0"><tr>
+      <td class="stack" style="padding:0 10px 0 0;vertical-align:top;">${button(workUrl, c.cta)}</td>
+      <td class="stack" style="vertical-align:top;">${waButton(WHATSAPP_URL)}</td>
+    </tr></table>
+    ${hr}
+    <p style="margin:0;font-family:${FONT};font-size:15px;line-height:1.5;letter-spacing:-0.02em;color:#8a8a8a;">${c.bye}</p>
+    <p style="margin:2px 0 0 0;font-family:${FONT};font-size:18px;font-weight:700;letter-spacing:-0.04em;color:#ffffff;">Dylan Kho</p>
+    <p style="margin:0;font-family:${FONT};font-size:13px;letter-spacing:-0.01em;color:#6b6b6b;">DYSIGNS</p>`;
+  const footer = `
+      <tr><td align="center" style="padding:28px 24px 0 24px;font-family:${FONT};font-size:12px;line-height:1.8;letter-spacing:-0.01em;color:#555555;">
+        <a href="${SITE_URL}" style="color:#555555;text-decoration:none;">dylandysigns.com</a> | <a href="${WHATSAPP_URL}" style="color:#555555;text-decoration:none;">WhatsApp</a> | <a href="${SITE_URL}/privacy" style="color:#555555;text-decoration:none;">${c.privacy}</a><br>
+        KVK 8371&#8203;0418 | BTW NL0038&#8203;61601B85
+      </td></tr>`;
+  return shell({ lang, preheader: c.body, inner, footer });
 }
 
-function confirmEmail(message) {
-  const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
-  return emailShell({
-    preheader: "Thanks for reaching out. We've received your message.",
-    heading: "We've received your message",
-    bodyHtml: `
-      <p style="margin:0 0 24px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.6;color:#cccccc;">Hi,</p>
-      <p style="margin:0 0 24px 0;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.6;color:#cccccc;">Thanks for reaching out. We've received your message and will get back to you shortly.</p>
-      <div style="background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:24px;font-family:Inter,-apple-system,Arial,sans-serif;font-size:15px;line-height:1.7;color:#ffffff;margin-bottom:28px;">${safeMessage}</div>
-      <p style="margin:0;font-family:Effra,Arial,Helvetica,sans-serif;font-size:17px;color:#ffffff;">Dylan, DYSIGNS</p>
-    `,
-  });
+function notifyEmail({ lang = "en", name, email, phone, message }) {
+  const row = (k, v) =>
+    `<tr><td style="padding:4px 18px 4px 0;font-family:${FONT};font-size:14px;letter-spacing:-0.02em;color:#6b6b6b;vertical-align:top;">${k}</td><td style="padding:4px 0;font-family:${FONT};font-size:14px;letter-spacing:-0.02em;color:#ffffff;">${v}</td></tr>`;
+  const waNumber = phone ? phone.replace(/\D/g, "").replace(/^0/, "31") : "";
+  const inner = `
+    ${small(`Nieuw bericht via de site (${lang.toUpperCase()})`)}
+    ${h1(escapeHtml(name || email))}
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px 0 28px 0;">
+      ${row("E-mail", `<a href="mailto:${escapeHtml(email)}" style="color:#ffffff;">${escapeHtml(email)}</a>`)}
+      ${phone ? row("Telefoon", `<a href="tel:${escapeHtml(phone.replace(/[^\d+]/g, ""))}" style="color:#ffffff;">${escapeHtml(phone)}</a>`) : ""}
+    </table>
+    ${messageBox(message)}
+    <table role="presentation" class="btns" cellpadding="0" cellspacing="0"><tr>
+      <td class="stack" style="padding:0 10px 0 0;vertical-align:top;">${button(`mailto:${escapeHtml(email)}`, "Beantwoorden")}</td>
+      ${waNumber ? `<td class="stack" style="vertical-align:top;">${waButton(`https://wa.me/${waNumber}`)}</td>` : ""}
+    </tr></table>`;
+  return shell({ lang: "nl", preheader: `${name || email}: ${message.slice(0, 90)}`, inner });
 }
 
 async function sendEmail(apiKey, message) {
@@ -104,6 +163,7 @@ async function sendEmail(apiKey, message) {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_EMAIL = 254;
 const MAX_MESSAGE = 5000;
+const MAX_FIELD = 120;
 
 function redirect(path) {
   // 303 turns the POST into a GET on the target, like Netlify's form action.
@@ -163,7 +223,20 @@ export async function onRequestPost({ request, env }) {
   }
 
   const email = String(form.get("email") ?? "").trim();
-  const message = String(form.get("message") ?? "").trim();
+  let message = String(form.get("message") ?? "").trim();
+  let name = String(form.get("name") ?? "").trim().slice(0, MAX_FIELD);
+  let phone = String(form.get("phone") ?? "").trim().slice(0, MAX_FIELD);
+  const lang = form.get("lang") === "nl" ? "nl" : "en";
+
+  // Older cached pages still put "Name:" and "Phone:" at the top of the message: lift them out.
+  if (!name) {
+    const head = message.match(/^Name: (.*)\n(?:Phone: (.*)\n)?\n?/);
+    if (head) {
+      name = head[1].trim().slice(0, MAX_FIELD);
+      phone = (head[2] ?? "").trim().slice(0, MAX_FIELD);
+      message = message.slice(head[0].length).trim();
+    }
+  }
 
   if (looksAutomated(form, message)) {
     return redirect("/thank-you");
@@ -191,21 +264,27 @@ export async function onRequestPost({ request, env }) {
     return new Response("Invalid form fields", { status: 400 });
   }
 
+  const mail = { lang, name, email, phone, message };
+  const plain = {
+    nl: `Hoi${name ? ` ${name.split(/\s+/)[0]}` : ""},\n\nJe bericht is goed aangekomen. We komen binnen één werkdag bij je terug, meestal sneller.\n\nJouw bericht:\n${message}\n\nTot snel,\nDylan Kho\nDYSIGNS`,
+    en: `Hi${name ? ` ${name.split(/\s+/)[0]}` : ""},\n\nYour message came in well. We'll get back to you within one business day, usually sooner.\n\nYour message:\n${message}\n\nSpeak soon,\nDylan Kho\nDYSIGNS`,
+  };
+
   await Promise.all([
     sendEmail(apiKey, {
       from: FROM_ADDRESS,
       to: NOTIFY_TO,
       reply_to: email,
-      subject: "New contact form submission",
-      text: `From: ${email}\n\n${message}`,
-      html: notifyEmail(email, message),
+      subject: `Nieuw bericht van ${name || email}`,
+      text: `${name ? `Naam: ${name}\n` : ""}E-mail: ${email}\n${phone ? `Telefoon: ${phone}\n` : ""}Taal: ${lang}\n\n${message}`,
+      html: notifyEmail(mail),
     }),
     sendEmail(apiKey, {
       from: FROM_ADDRESS,
       to: email,
-      subject: "We've received your message",
-      text: `Hi,\n\nThanks for reaching out. We've received your message and will get back to you shortly.\n\nYour message:\n${message}\n\nDylan, DYSIGNS`,
-      html: confirmEmail(message),
+      subject: lang === "nl" ? "We hebben je bericht ontvangen" : "We've received your message",
+      text: plain[lang],
+      html: confirmEmail(mail),
     }),
   ]);
 

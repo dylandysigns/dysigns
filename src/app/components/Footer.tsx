@@ -182,7 +182,7 @@ export function Footer() {
           >
             <img
               src={logoImg}
-              alt="DYSIGNS, digital design agency Almere"
+              alt={t("alt.logo")}
               className="theme-logo"
               style={{ height: 18, width: "auto" }}
               loading="lazy"
@@ -220,7 +220,7 @@ export function Footer() {
               border: 0,
             }}
           >
-            DYSIGNS is a full-service digital agency based in Almere, Netherlands. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.
+            {t("footer.about")}
           </p>
           <p
             style={{

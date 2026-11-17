@@ -96,6 +96,23 @@ const routesToPrerender = [
 // property=/rel=) and replace only the value, so the rest of the base
 // template (JSON-LD, preloads, favicon, og:image, twitter:card, ...)
 // stays untouched and identical across routes.
+const NL_SITE_SCHEMA_DESCRIPTIONS = {
+  "https://dylandysigns.com/#organization":
+    "DYSIGNS is een creative partner en full-service digital agency (een klein team) uit Almere, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
+  "https://dylandysigns.com/#localbusiness":
+    "Creative partner en full-service digital agency (klein team) uit Almere, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
+  "https://dylandysigns.com/#website":
+    "Creative partner en full-service digital agency (klein team) uit Almere: webdesign, Shopify development, UX/UI-design, branding, social media en AI-implementatie.",
+};
+const NL_SERVICE_NAMES = {
+  "Web Design and Development": "Webdesign en development",
+  "Social Media and Meta Ads": "Social media en Meta Ads",
+  "UX/UI Design": "UX/UI-design",
+  "Branding": "Branding",
+  "AI Implementation": "AI-implementatie",
+  "Shopify Partner Development": "Shopify Partner development",
+};
+
 function escapeAttr(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -166,14 +183,30 @@ function injectHead(html, meta, canonicalUrl, i18n) {
   // unambiguously within one JSON-LD graph — two separate script blocks
   // on the same page is a widely-tolerated pattern in practice, but
   // merging into one graph removes any doubt entirely.
-  if (meta.schema && meta.schema.length > 0) {
-    const siteSchemaRegex = /(<script type="application\/ld\+json" id="site-schema">)([\s\S]*?)(<\/script>)/;
+  const siteSchemaRegex = /(<script type="application\/ld\+json" id="site-schema">)([\s\S]*?)(<\/script>)/;
+  const isNlPage = i18n.lang === "nl";
+  if ((meta.schema && meta.schema.length > 0) || isNlPage) {
     const match = out.match(siteSchemaRegex);
     if (!match) {
       throw new Error('Kon <script type="application/ld+json" id="site-schema"> niet vinden om fase 4-schema in samen te voegen.');
     }
     const siteSchema = JSON.parse(match[2]);
-    siteSchema["@graph"].push(...meta.schema);
+    // The site-wide nodes in index.html are written in English; the Dutch
+    // tree gets Dutch descriptions so /nl pages carry no English schema text.
+    if (isNlPage) {
+      for (const node of siteSchema["@graph"]) {
+        const nl = NL_SITE_SCHEMA_DESCRIPTIONS[node["@id"]];
+        if (nl) node.description = nl;
+        if (node["@type"] === "LocalBusiness" && node.hasOfferCatalog) {
+          node.hasOfferCatalog.name = "Diensten van DYSIGNS";
+          for (const offer of node.hasOfferCatalog.itemListElement ?? []) {
+            const name = offer?.itemOffered?.name;
+            if (name && NL_SERVICE_NAMES[name]) offer.itemOffered.name = NL_SERVICE_NAMES[name];
+          }
+        }
+      }
+    }
+    if (meta.schema && meta.schema.length > 0) siteSchema["@graph"].push(...meta.schema);
     out = out.replace(siteSchemaRegex, `$1\n      ${JSON.stringify(siteSchema)}\n      $3`);
   }
 

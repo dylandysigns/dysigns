@@ -44,7 +44,7 @@ const dict: Record<string, Record<Lang, string>> = {
   /* ── Hero ── */
   "hero.title": {
     en: "Designed to grow.",
-    nl: "Ontworpen om te groeien.",
+    nl: "Design om te groeien.",
   },
   "hero.headline.A": {
     en: "DYSIGNS is your creative partner for scaling brands and digital products, from startup to scale-up.",
@@ -71,6 +71,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
   "hero.scrollDown": { en: "Scroll down", nl: "Scroll naar beneden" },
   "hero.scrollHint": { en: "Scroll to enter the experience", nl: "Scroll en stap de ervaring in" },
+  "hero.keepScrolling": { en: "Keep scrolling", nl: "Blijf scrollen" },
   "hero.watchVideo": { en: "See us in 19 sec", nl: "Zie ons in 19 sec" },
   "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
   "hero.chip.strategy": { en: "Strategy", nl: "Strategie" },
@@ -121,6 +122,16 @@ const dict: Record<string, Record<Lang, string>> = {
   "faq.group.practical": { en: "Practical", nl: "Praktisch" },
   "faq.chat.aiTitle": { en: "Try it: ask our AI assistant", nl: "Probeer het: vraag het onze AI-assistent" },
   "faq.chat.aiSubtitle": { en: "A live example of what we build for clients, answering from this site's own content.", nl: "Een live voorbeeld van wat we voor klanten bouwen, met antwoorden uit de eigen content van deze site." },
+  "agent.name": { en: "DYSIGNS agent", nl: "DYSIGNS agent" },
+  "agent.ask": { en: "Ask us anything", nl: "Stel gerust je vraag" },
+  "agent.morning": { en: "Good morning", nl: "Goedemorgen" },
+  "agent.afternoon": { en: "Good afternoon", nl: "Goedemiddag" },
+  "agent.evening": { en: "Good evening", nl: "Goedenavond" },
+  "agent.askAnything": { en: "ASK ME ANYTHING", nl: "VRAAG ME ALLES" },
+  "agent.sceneHint": { en: "Ask about our services, pricing, way of working or a project of your own.", nl: "Vraag naar onze diensten, prijzen, werkwijze of je eigen project." },
+  "agent.open": { en: "Open the DYSIGNS agent and ask a question", nl: "Open de DYSIGNS agent en stel een vraag" },
+  "faq.chat.spaceTitle": { en: "Space agent", nl: "Space agent" },
+  "faq.chat.spaceSubtitle": { en: "Ask me anything about DYSIGNS, our work and pricing.", nl: "Vraag me alles over DYSIGNS, ons werk en onze prijzen." },
   "faq.chat.label": { en: "Your question", nl: "Je vraag" },
   "faq.chat.placeholderShort": { en: "Ask our AI", nl: "Vraag het aan onze AI" },
   "faq.chat.placeholderCompact": { en: "Rather not read it all? Ask our AI", nl: "Geen zin om te lezen? Vraag het aan onze AI" },
@@ -840,6 +851,27 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "BIYU campaign poster in an Amsterdam bus shelter, Jouw balkon borrelklaar, with a woman holding a pressure washer that rents for 9 euros",
     nl: "BIYU-campagneposter in een Amsterdamse abri, Jouw balkon borrelklaar, met een vrouw die een hogedrukreiniger vasthoudt die je voor 9 euro huurt",
   },
+  /* ── Shared alt text, aria-labels and small UI strings ── */
+  "alt.logo": { en: "DYSIGNS, digital design agency Almere", nl: "DYSIGNS, digitaal designbureau Almere" },
+  "alt.logoNl": { en: "DYSIGNS, digital design agency Almere Netherlands", nl: "DYSIGNS, digitaal designbureau in Almere" },
+  "alt.logoHeader": { en: "DYSIGNS, UX/UI and web design agency, Almere Netherlands", nl: "DYSIGNS, UX/UI- en webdesignbureau in Almere" },
+  "alt.clientReview": { en: "DYSIGNS client review", nl: "klantreview DYSIGNS" },
+  "alt.caseImage": { en: "case study, image", nl: "case, afbeelding" },
+  "a11y.skipIntro": { en: "Skip intro", nl: "Intro overslaan" },
+  "a11y.openMenu": { en: "Open menu", nl: "Menu openen" },
+  "a11y.breadcrumb": { en: "Breadcrumb", nl: "Kruimelpad" },
+  "a11y.prevTestimonial": { en: "Previous testimonial", nl: "Vorige review" },
+  "a11y.nextTestimonial": { en: "Next testimonial", nl: "Volgende review" },
+  "a11y.goToTestimonial": { en: "Go to testimonial", nl: "Ga naar review" },
+  "a11y.next": { en: "Next", nl: "Volgende" },
+  "footer.about": {
+    en: "DYSIGNS is a full-service digital agency based in Almere, Netherlands. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.",
+    nl: "DYSIGNS is een full-service digital agency uit Almere. We doen UX/UI-design, webdesign, Shopify development, branding en social media marketing.",
+  },
+  "about.teamSignature": { en: "The DYSIGNS Team", nl: "Het DYSIGNS-team" },
+  "form.honeypot": { en: "Don't fill this out:", nl: "Vul dit niet in:" },
+  "afterLaunch.cta": { en: "See how we grow it", nl: "Zo laten we het groeien" },
+  "case.service": { en: "Service", nl: "Dienst" },
 };
 
 // A page's language is a property of its URL, not a remembered client

@@ -10,6 +10,22 @@ import { SITE_URL, alternateUrl, canonicalUrl } from "./meta";
 // and profile nodes attribute to the Organization, not an individual.
 
 const ORG_ID = `${SITE_URL}/#organization`;
+const LOCAL_BUSINESS_ID = `${SITE_URL}/#localbusiness`;
+
+// Areas named in the Service schema of the local landing pages. Kept in
+// line with the LocalBusiness areaServed list in index.html.
+export const LOCAL_AREAS: Record<string, { "@type": string; name: string }[]> = {
+  "web-design-almere": [
+    { "@type": "City", name: "Almere" },
+    { "@type": "AdministrativeArea", name: "Flevoland" },
+    { "@type": "City", name: "Lelystad" },
+    { "@type": "City", name: "Zeewolde" },
+  ],
+  "web-design-amsterdam": [
+    { "@type": "City", name: "Amsterdam" },
+    { "@type": "AdministrativeArea", name: "Noord-Holland" },
+  ],
+};
 
 export interface BreadcrumbItem {
   name: string;
@@ -34,14 +50,17 @@ export function serviceSchema(opts: {
   name: string;
   description: string;
   path: string;
-  areaServed?: string[];
+  /** Plain names or schema.org Place nodes (City, AdministrativeArea). */
+  areaServed?: (string | { "@type": string; name: string })[];
+  /** Local landing pages point at the LocalBusiness node instead. */
+  providerId?: "organization" | "localbusiness";
 }) {
   return {
     "@type": "Service",
     name: opts.name,
     description: opts.description,
     url: canonicalUrl(opts.path),
-    provider: { "@id": ORG_ID },
+    provider: { "@id": opts.providerId === "localbusiness" ? LOCAL_BUSINESS_ID : ORG_ID },
     areaServed: opts.areaServed ?? ["Worldwide"],
   };
 }

@@ -308,6 +308,30 @@ const NEXT_STEPS = [
     en: ["How much does branding cost?", "How many logo concepts do I get?", "Which files do I get at delivery?"],
   },
   {
+    // more customers, being found, growth: the marketing side
+    re: /\b(klanten|vindbaar|marketing|groeien|groei|omzet|bezoekers|customers|clients|sales|grow|growth|traffic|visitors)\b/i,
+    nl: ["Wat kost social media en Meta Ads-beheer?", "Hoe lang duurt het voordat een campagne echt resultaat laat zien?", "Hoe vraag ik een offerte aan?"],
+    en: ["How much does social media and Meta Ads management cost?", "How long before a campaign shows real results?", "How do I request a quote?"],
+  },
+  {
+    // starters, small businesses, one-person companies
+    re: /\b(starter|starters|kleine|klein|ondernemer|ondernemers|zzp|zzp'er|eenmanszaak|startup|start-up|small|freelancer|solo)\b/i,
+    nl: ["Wat kost een website per maand?", "Wat moet ik voorbereiden voor het eerste gesprek?", "Hoe snel kunnen jullie starten?"],
+    en: ["What does a website cost per month?", "What should I prepare for the first conversation?", "How soon can you start?"],
+  },
+  {
+    // what DYSIGNS does
+    re: /\b(wat kunnen jullie|wat doen jullie|diensten|what can you|what do you do|services)\b/i,
+    nl: ["Hoeveel kost een website of webshop?", "Doen jullie ook kleine projecten?", "Wat moet ik voorbereiden voor het eerste gesprek?"],
+    en: ["How much does a website or online store cost?", "Do you also take on small projects?", "What should I prepare for the first conversation?"],
+  },
+  {
+    // editing it yourself afterwards
+    re: /\b(zelf|aanpassen|beheren|beheer|cms|edit|myself|manage)\b/i,
+    nl: ["Krijg ik uitleg om de webshop zelf te beheren?", "Wat kost een website per maand?", "Hoe vraag ik een offerte aan?"],
+    en: ["Do I get training to manage the store myself?", "What does a website cost per month?", "How do I request a quote?"],
+  },
+  {
     re: /\b(kost|kosten|prijs|prijzen|tarief|tarieven|budget|price|prices|pricing|cost|costs|how much|hoeveel)\b/i,
     nl: ["Werken jullie met een vaste prijs of op uurbasis?", "Kan ik in termijnen betalen?", "Hoe vraag ik een offerte aan?"],
     en: ["Do you work with a fixed price or by the hour?", "Can I pay in instalments?", "How do I request a quote?"],
@@ -346,9 +370,13 @@ function followUps(lang, userTurns, top, docs) {
   const step = NEXT_STEPS.find((s) => s.re.test(last));
   // only questions that are really in the FAQ (wording changed? then it is skipped, not broken)
   for (const q of step?.[lang] ?? []) if (known.has(norm(q))) add(q);
+  const page = top[0]?.item.href;
   for (const r of top.slice(1)) {
-    // FAQ questions only (no page sections), on topic, and not just the same question again
+    // FAQ questions only (no page sections), on topic, and not just the same question again; and only
+    // from the page the answer came from, so a question about starting out never gets a button
+    // from, say, the AI service page
     if (r.item.id.includes(":page:") || r.score < MIN_SCORE + 0.05 || r.score > 0.85) continue;
+    if (page && r.item.href !== page) continue;
     add(r.item.question);
   }
   return out;

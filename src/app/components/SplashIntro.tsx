@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import logoImg from "../../assets/dysigns_white.png";
+import { useLanguage } from "../hooks/useLanguage";
 import { createSpace, type Space } from "../../../preview/portalSpace";
 import { EMBLEM_SPIN_REST, type Emblem } from "../../../preview/portalEmblem";
 
@@ -17,6 +18,7 @@ const SESSION_KEY = "dysigns_splash_done";
 const EDGE = 8;
 
 export function SplashIntro({ onDone }: { onDone: () => void }) {
+  const { t } = useLanguage();
   const wrapRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
@@ -190,7 +192,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           <div ref={flatRef}>
           <img
             src={logoImg}
-            alt="DYSIGNS, digital design agency Almere Netherlands"
+            alt={t("alt.logoNl")}
             className="theme-logo block"
             style={{ width: "100%", height: "auto", opacity: 0.16 }}
             onError={(e) => {
@@ -249,7 +251,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           textTransform: "uppercase",
           color: "rgba(var(--page-fg-rgb), .55)",
         }}
-        aria-label="Skip intro"
+        aria-label={t("a11y.skipIntro")}
       >
         Skip
       </button>
