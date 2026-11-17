@@ -12,7 +12,7 @@ import "./lead-form.css";
    have in mind) one under the other, written in space (see ContactSpace). The field in use
    lights up, the others dim, and a single send button waits at the bottom. It posts to the same
    /api/contact endpoint as before, with the same spam checks (honeypot, timestamp and
-   Turnstile); the name travels at the top of the message. */
+   Turnstile); name, phone and language travel as their own hidden fields. */
 
 type Field = "name" | "email" | "phone" | "idea";
 /* What an empty field writes to itself, one phrase after the other: the hint that this is a
@@ -214,9 +214,12 @@ export function LeadForm() {
     }
     const started = performance.now();
     if (emailRef.current) emailRef.current.value = email;
-    if (messageRef.current) {
-      messageRef.current.value = `Name: ${name.trim()}${phone.trim() ? `\nPhone: ${phone.trim()}` : ""}\n\n${idea.trim()}`;
-    }
+    // name, phone and language travel as their own fields, so the mails can greet by name and answer in the page's language
+    const fields = form.elements;
+    (fields.namedItem("name") as HTMLInputElement).value = name.trim();
+    (fields.namedItem("phone") as HTMLInputElement).value = phone.trim();
+    (fields.namedItem("lang") as HTMLInputElement).value = lang === "nl" ? "nl" : "en";
+    if (messageRef.current) messageRef.current.value = idea.trim();
     const hasToken = () =>
       Boolean((form.elements.namedItem("cf-turnstile-response") as HTMLInputElement | null)?.value);
     const waitStart = Date.now();
@@ -295,6 +298,9 @@ export function LeadForm() {
       <input type="hidden" name="ts" ref={tsRef} />
       <input type="hidden" name="email" ref={emailRef} />
       <input type="hidden" name="message" ref={messageRef} />
+      <input type="hidden" name="name" />
+      <input type="hidden" name="phone" />
+      <input type="hidden" name="lang" />
 
       <div
         className={`lf-row ${name ? "is-filled" : ""} ${tried && !nameOk ? "is-missing" : ""}`}
