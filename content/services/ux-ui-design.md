@@ -61,7 +61,7 @@ UX design decides how something works: the structure, the flows and the order of
 
 ### Which products have you designed UX/UI for?
 
-Among others a field app for enforcement officers ([PowerMobile](/work/powermobile)), a connected kiosk, POS and kitchen system for [A/Café](/work/a-cafe-app-design), the [STËLZ app](/work/stelz-app) and the app, website and dashboard for [BIYU](/work/biyu).
+Among others a field app for enforcement officers ([PowerMobile](/work/powermobile)), a connected kiosk, POS and kitchen system for [A/Café](/work/a-cafe-app-design), the [STËLZ app](/work/stelz-app) and the app, website and dashboard for [BIYU](/work/biyu). Read how BIYU and A/Café came about in our [Amsterdam story](/web-design-amsterdam).
 
 ### Do you always start with research?
 

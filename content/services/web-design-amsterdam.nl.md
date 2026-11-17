@@ -1,6 +1,6 @@
 ---
 title: "Website of Webshop Laten Maken in Amsterdam | DYSIGNS"
-description: "Website, webshop of app laten maken in Amsterdam? DYSIGNS uit Almere ontwerpt en bouwt maatwerk voor Amsterdamse merken, als officiële Shopify Partner."
+description: "Website, webshop of app laten maken in Amsterdam? Van BIYU aan de Overtoom tot A/Café: DYSIGNS ontwerpt en bouwt maatwerk als Shopify Partner."
 heading: "Webdesign in Amsterdam"
 slug: "web-design-amsterdam"
 answerBlock: |
@@ -9,7 +9,7 @@ answerBlock: |
   vlak bij de stad, en werkten in Amsterdam onder meer voor BIYU aan
   de Overtoom en aan het bestelsysteem van A/Café. Hetzelfde team
   ontwerpt en bouwt, zodat wat live gaat ook is wat ontworpen werd.
-lastUpdated: "2026-11-14"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -26,9 +26,21 @@ Een Shopify webshop met een custom thema, koppelingen en Shopify Markets als je 
 
 UX/UI design en development voor apps, dashboards en portalen, van het eerste ontwerp tot de live versie.
 
+## Ons Amsterdamse verhaal
+
+In 2022 kon je ons de meeste dagen vinden op een kantoor aan de Overtoom in Amsterdam, bij BIYU. Hun idee was heerlijk nuchter: waarom een boormachine kopen die je twee keer per jaar gebruikt? Bij BIYU huurde je er gewoon een, samen met een tapijtreiniger, een dj-set of een poffertjesmachine, vaak dezelfde dag nog bij je voordeur bezorgd. Meer doen, minder bezitten.
+
+Ons deel was de digitale kant. De app, waar je een product vindt, je huurperiode kiest en ziet wanneer het komt. De website, met alle categorieën van klussen tot keuken. Het dashboard achter de schermen, waar het team orders, voorraad en bezorgingen bijhield. En het partnerportaal, waar andere bedrijven via BIYU hun eigen spullen konden verhuren, in hetzelfde paars en dezelfde zeshoeken als de rest van het merk. Een verhuurbedrijf in de stad laat weinig ruimte voor gedoe: als iemand voor zaterdag een hogedrukspuit boekt, dan moet die er ook zijn. Daar waren die schermen voor.
+
+Het verhaal stopte niet bij de Overtoom. Na vijf jaar eigen verhuur, met eigen magazijnen en bezorging, bouwt BIYU nu de software waarmee andere merken verhuur, abonnementen en wederverkoop draaien. Homie en Reflower werken er onder meer mee. Van een kantoor in Amsterdam naar de motor achter andere merken: een reis waar we graag al vroeg bij betrokken waren. Het hele verhaal lees je in de [BIYU case](/nl/work/biyu).
+
+Amsterdam kwam daarna in een andere vorm terug bij A/Café. Dat begon als een MVP voor één zelfbedieningskiosk. Samen groeide het uit tot een volledig bestelsysteem: de kiosk, de kassa en het keukenscherm ontworpen als één product, allemaal in dezelfde beeldtaal. Gasten bestellen, medewerkers verwerken en het merk komt bij elke stap terug. Het draait nu in testfase in hun vestigingen, van Amsterdam en Parijs tot Dubai en Miami. Bekijk de [A/Café case](/nl/work/a-cafe-app-design) om te zien hoe de onderdelen samenwerken.
+
+Twee heel verschillende bedrijven met één ding gemeen: de schermen moesten werken midden op een drukke dag, voor mensen die geen tijd hebben om uit te zoeken hoe het werkt. Zo ontwerpen en bouwen we voor Amsterdamse merken.
+
 ## Waarom een team vlak bij Amsterdam
 
-Zoek je een webdesign bureau voor je website of webshop in Amsterdam? We zitten in Almere en zijn regelmatig in Amsterdam aan het werk, dus afspreken bij jou op locatie is zo geregeld. De stad kennen we van dichtbij: voor BIYU werkten we vanuit hun kantoor aan de Overtoom aan de app, de website en het dashboard achter hun verhuurservice. Het werk zelf loopt grotendeels op afstand, met korte lijnen en één vast aanspreekpunt, in het Nederlands of Engels.
+We zitten in Almere, dichtbij genoeg om bij jou aan tafel te zitten wanneer dat helpt, voor een eerste kennismaking of een belangrijk moment onderweg. Het werk zelf loopt grotendeels op afstand, met korte lijnen, duidelijke updates en één vast aanspreekpunt, in het Nederlands of Engels.
 
 ## Who it is for
 

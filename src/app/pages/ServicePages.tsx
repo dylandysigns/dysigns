@@ -10,6 +10,7 @@ import {
   getServiceIncludes,
   getServiceUseCases,
   getSectionParagraph,
+  getSectionParagraphs,
 } from "../content/loadContent";
 import { serviceSchema, faqPageSchema, breadcrumbListSchema, LOCAL_AREAS } from "../seo/schema";
 import { renderInlineMarkdown } from "../utils/inlineMarkdown";
@@ -56,8 +57,12 @@ function ServicePage({
   slug,
   breadcrumbParentSlug,
   customWhyHeading,
+  storyHeading,
 }: {
   slug: string;
+  /** Optional long-form story section. Same rule as customWhyHeading: the
+   * heading is also the markdown lookup key, so both languages are required. */
+  storyHeading?: { en: string; nl: string };
   /** Only set for the Shopify subpage — adds "Web design and development"
    * as a breadcrumb link between Home and this page. */
   breadcrumbParentSlug?: ServiceSlug;
@@ -100,6 +105,8 @@ function ServicePage({
   const whyHeading = customWhyHeading ? customWhyHeading[lang] : t("services.whyHeadingDefault");
   const whyText = getSectionParagraph(entry.rawBody, whyHeading);
   const whoText = getSectionParagraph(entry.rawBody, "Who it is for");
+  const storyTitle = storyHeading ? storyHeading[lang] : null;
+  const storyParagraphs = storyTitle ? getSectionParagraphs(entry.rawBody, storyTitle) : [];
   const heading = entry.frontmatter.heading || entry.frontmatter.title;
   const serviceIndex = serviceDefinitions.findIndex((s) => s.slug === (slug as ServiceSlug));
 
@@ -371,6 +378,43 @@ function ServicePage({
         </div>
       )}
 
+      {/* ── STORY — optional long-form section (e.g. the Amsterdam page) ── */}
+      {storyTitle && storyParagraphs.length > 0 && (
+        <div
+          className="border-t"
+          style={{ borderColor: "rgba(var(--page-fg-rgb), .06)" }}
+        >
+          <div className="max-w-[1100px] mx-auto px-6 md:px-12 py-14 md:py-20">
+            <div className="max-w-[720px]">
+              <h2
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  fontSize: "clamp(1.4rem,2.6vw,2rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-.02em",
+                  color: "var(--page-fg)",
+                }}
+              >
+                {storyTitle}
+              </h2>
+              {storyParagraphs.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="mt-5"
+                  style={{
+                    fontSize: "1rem",
+                    lineHeight: 1.8,
+                    color: "rgba(var(--page-fg-rgb), .72)",
+                  }}
+                >
+                  {renderInlineMarkdown(paragraph)}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── WHY / WHO — two static panels, no fake affordance ── */}
       {(whyText || whoText) && (
         <div
@@ -622,6 +666,10 @@ export function WebDesignAmsterdamPage() {
     <ServicePage
       slug="web-design-amsterdam"
       breadcrumbParentSlug="web-design"
+      storyHeading={{
+        en: "Our Amsterdam story",
+        nl: "Ons Amsterdamse verhaal",
+      }}
       customWhyHeading={{
         en: "Why a team close to Amsterdam",
         nl: "Waarom een team vlak bij Amsterdam",
