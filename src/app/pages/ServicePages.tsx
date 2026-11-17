@@ -185,7 +185,7 @@ function ServicePage({
           style={{
             fontSize: ".7rem",
             fontWeight: 500,
-            letterSpacing: ".16em",
+            letterSpacing: 0,
             textTransform: "uppercase",
             color: "rgba(var(--page-fg-rgb), .55)",
           }}

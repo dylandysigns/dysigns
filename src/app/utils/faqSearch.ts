@@ -29,7 +29,8 @@ const SYNONYM_GROUPS: string[][] = [
   ["platform", "platforms", "wordpress", "woocommerce", "webflow", "framer", "wix", "squarespace", "lightspeed", "magento", "drupal", "joomla", "cms", "medusa", "headless"],
   ["website", "site", "websites", "webdesign", "webpagina", "landingspagina", "page", "landing"],
   ["taal", "talen", "engels", "nederlands", "spreek", "spreken", "language", "languages", "english", "dutch", "speak"],
-  ["buitenland", "internationaal", "buiten", "nederland", "abroad", "international", "outside", "netherlands", "country", "countries"],
+  // Countries and regions: "do you work in the US?" is about working abroad, not about "work".
+  ["buitenland", "internationaal", "buiten", "nederland", "abroad", "international", "outside", "netherlands", "country", "countries", "land", "landen", "wereldwijd", "worldwide", "global", "remote", "usa", "america", "amerika", "american", "states", "verenigde", "staten", "uk", "britain", "england", "engeland", "belgie", "belgium", "duitsland", "germany", "frankrijk", "france", "spanje", "spain", "europa", "europe", "europees", "european", "canada", "australia", "australie", "dubai"],
   ["almere", "amsterdam", "regio", "locatie", "langskomen", "location", "area", "nearby"],
   ["ai", "chatgpt", "kunstmatige", "automatisering", "automatiseren", "automation", "artificial"],
   ["social", "socials", "instagram", "facebook", "meta", "tiktok", "ads", "advertenties", "adverteren", "campagne", "campagnes", "advertising", "campaign", "campaigns"],
@@ -49,6 +50,8 @@ SYNONYM_GROUPS.forEach((group, i) => group.forEach((w) => conceptOf.set(w, i)));
 function tokenize(text: string): string[] {
   return text
     .toLowerCase()
+    // "the US" / "the U.S." / "the UK" is a country, not the word "us"
+    .replace(/\b(the|in|naar|de) (u\.?s\.?a?|u\.?k\.?)(?=\W|$)/g, (_, w, c) => ` ${w} ${c.replace(/\./g, "").startsWith("us") ? "usa" : "uk"} `)
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "") // ë -> e
     .replace(/[^a-z0-9\s-]/g, " ")

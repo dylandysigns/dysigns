@@ -75,6 +75,10 @@ Yes, a design system with reusable components is a standard part of a UX/UI proj
 
 Yes. We build on existing teams and tools, so the UX/UI output is meant to be directly usable by whoever builds it, not created separately from the technical reality.
 
+### Do you also build apps, or only design them?
+
+Both. We design apps from user research to a complete design system, and we build them too, including as a native app. If you have your own development team, we hand over the design with a design system and specifications. [Get in touch](/contact) to talk through your idea.
+
 ### Is this also suitable for an existing product, not just new builds?
 
 Both. Improving an existing product usually starts with research into where users currently get stuck; a new build starts with the first question about who is going to use it and why. The approach differs, but the user stays the starting point either way.

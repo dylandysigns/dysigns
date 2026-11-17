@@ -10,6 +10,12 @@ const AI_STARTERS = {
   nl: ["Hoe pakken jullie AI-implementatie aan?", "Kunnen jullie een dashboard voor ons bouwen?", "Kunnen jullie zo'n chat voor mijn site bouwen?"],
   en: ["How do you approach AI implementation?", "Can you build a dashboard for us?", "Can you build a chat like this for my site?"],
 };
+/** The DYSIGNS agent in the homepage hero: what owners of a business, a one-person company or a
+ * start-up come for, the result for their business first (each one answered from the site's content). */
+const SPACE_STARTERS = {
+  nl: ["Hoe krijg ik meer klanten online?", "Wat kunnen jullie voor mijn bedrijf doen?", "Doen jullie ook kleine projecten?", "Wat kost een website of webshop?"],
+  en: ["How do I get more customers online?", "What can you do for my business?", "Do you also take on small projects?", "How much does a website or online store cost?"],
+};
 
 /** The model is told not to use dashes; this catches the odd one anyway
  * (house style: no em or en dashes in site copy). */
@@ -72,7 +78,7 @@ function Thumb({ down }: { down?: boolean }) {
   );
 }
 
-function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
+function Bubble({ msg, isLast, onAsk, onRate }: { msg: ChatMessage; isLast: boolean; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
   const { t } = useLanguage();
   const isUser = msg.role === "user";
   const typed = useTypewriter(msg.content, !isUser);
@@ -95,7 +101,7 @@ function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) =
             {typing && <span className="faq-chat-caret" aria-hidden="true" />}
           </div>
         )}
-        {!isUser && !typing && msg.suggestions && msg.suggestions.length > 0 && (
+        {!isUser && !typing && isLast && msg.suggestions && msg.suggestions.length > 0 && (
           <div className="faq-chat-suggest">
             {msg.suggestions.map((q) => (
               <button key={q} type="button" onClick={() => onAsk(q)}>
@@ -147,9 +153,38 @@ function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) =
  * the first question. "ai" (AI service page): the same, plus a title and
  * starter questions, since there it is the live example.
  */
-export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" }) {
+export function FaqChat({
+  variant = "default",
+  autoFocus = false,
+  onPhase,
+  persistKey,
+}: {
+  variant?: "default" | "ai" | "space";
+  autoFocus?: boolean;
+  /** idle, thinking (no words yet) or speaking (the answer is being written out) */
+  onPhase?: (phase: "idle" | "thinking" | "speaking") => void;
+  /** keep the conversation for this visit under this sessionStorage key (see useFaqChat) */
+  persistKey?: string;
+}) {
   const { lang, t } = useLanguage();
-  const { messages, send, rate, busy, limitReached } = useFaqChat(lang);
+  const { messages, send, rate, busy, limitReached } = useFaqChat(lang, persistKey);
+
+  // what the assistant is doing, for whoever shows it (the agent's orb)
+  const onPhaseRef = useRef(onPhase);
+  onPhaseRef.current = onPhase;
+  const lastMsg = messages[messages.length - 1];
+  const answerLen = lastMsg?.role === "assistant" ? lastMsg.content.length : 0;
+  useEffect(() => {
+    const report = onPhaseRef.current;
+    if (!report) return;
+    if (busy && answerLen === 0) return report("thinking");
+    if (busy) return report("speaking");
+    if (!answerLen) return report("idle");
+    // the answer is typed out a little after it has arrived (useTypewriter): keep speaking until then
+    report("speaking");
+    const id = window.setTimeout(() => report("idle"), Math.min(9000, 600 + answerLen * 14));
+    return () => window.clearTimeout(id);
+  }, [busy, answerLen]);
   const [draft, setDraft] = useState("");
   const [focused, setFocused] = useState(false);
   // Short-lived flag for the send micro-interaction (button launch and a
@@ -157,7 +192,8 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
   const [sending, setSending] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const started = messages.length > 0;
-  const isAi = variant === "ai";
+  const isSpace = variant === "space";
+  const isAi = variant === "ai" || isSpace;
   const state = busy ? "thinking" : focused ? "active" : "idle";
   // Phones: the full prompt does not fit the field, so a short one.
   const [narrow, setNarrow] = useState(false);
@@ -223,19 +259,19 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
   };
 
   return (
-    <div className={`faq-ask ${isAi ? "is-ai mb-12" : ""} ${sending ? "is-sending" : ""}`} data-state={state}>
+    <div className={`faq-ask ${isSpace ? "is-ai is-space" : isAi ? "is-ai mb-12" : ""} ${sending ? "is-sending" : ""}`} data-state={state}>
       <div className="faq-ask-inner">
-        {isAi && (
+        {isAi && !isSpace && (
           <div className="faq-chat-head">
-            <p className="faq-chat-title">{t("faq.chat.aiTitle")}</p>
-            <p className="faq-chat-sub">{t("faq.chat.aiSubtitle")}</p>
+            <p className="faq-chat-title">{t(isSpace ? "faq.chat.spaceTitle" : "faq.chat.aiTitle")}</p>
+            <p className="faq-chat-sub">{t(isSpace ? "faq.chat.spaceSubtitle" : "faq.chat.aiSubtitle")}</p>
           </div>
         )}
 
         {started && (
           <div ref={listRef} className="faq-chat-list" aria-live="polite" aria-busy={busy}>
-            {messages.map((m) => (
-              <Bubble key={m.id} msg={m} onAsk={submit} onRate={rate} />
+            {messages.map((m, i) => (
+              <Bubble key={m.id} msg={m} isLast={i === messages.length - 1 && !limitReached} onAsk={submit} onRate={rate} />
             ))}
             {limitReached && !busy && (
               <p className="faq-chat-note">
@@ -248,7 +284,7 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
 
         {isAi && !started && (
           <div className="faq-chat-starters">
-            {AI_STARTERS[lang].map((q) => (
+            {(isSpace ? SPACE_STARTERS : AI_STARTERS)[lang].map((q) => (
               <button key={q} type="button" onClick={() => submit(q)}>
                 {q}
               </button>
@@ -272,6 +308,7 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
             type="text"
             autoComplete="off"
             enterKeyHint="send"
+            autoFocus={autoFocus}
             maxLength={500}
             value={draft}
             disabled={limitReached}
@@ -414,6 +451,19 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
           scrollbar-width: thin; scrollbar-color: rgba(var(--page-fg-rgb), .2) transparent;
           padding: 1rem; overscroll-behavior: contain; scroll-behavior: auto;
         }
+        /* the space agent floats over the stars: see-through glass, and a shorter conversation */
+        .faq-ask.is-space .faq-ask-inner {
+          background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)), rgba(0, 0, 0, .55);
+          -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+        }
+        .faq-ask.is-space .faq-ask-inner { padding: .75rem; }
+        .faq-ask.is-space .faq-chat-list { height: min(240px, 30svh); padding: .4rem .2rem .8rem; }
+        .faq-ask.is-space .faq-chat-starters { padding: .1rem .1rem .7rem; gap: .4rem; }
+        .faq-ask.is-space .faq-chat-starters button { font-size: .74rem; padding: .4rem .7rem; }
+        .faq-ask.is-space .faq-ask-form { min-height: 56px; }
+        /* the moving stroke already shows the field is active */
+        .faq-ask.is-space .faq-ask-form input:focus,
+        .faq-ask.is-space .faq-ask-form input:focus-visible { outline: none; box-shadow: none; }
         .faq-chat-row { display: flex; align-items: flex-start; gap: .6rem; animation: faq-chat-in .35s ease both; }
         .faq-chat-row .ai-orb { margin-top: .6rem; }
         .faq-chat-row.is-user { justify-content: flex-end; }

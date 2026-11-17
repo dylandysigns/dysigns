@@ -11,7 +11,7 @@ answerBlock: |
   Markets and Flow automation, part of our wider web design and
   development offering, built to keep converting, not only to launch
   well.
-lastUpdated: "2026-11-13"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -90,6 +90,10 @@ It depends on scope and integrations. As a general market indication, a professi
 ### Do you work with existing Shopify apps and integrations?
 
 Yes, we build on what already works and add where needed, instead of replacing everything by default.
+
+### Are the theme, the customisations and the accounts of my store mine?
+
+Yes. Once everything is paid, the design, the code, the content and the accounts are yours, and everything is in your name. Apps from other parties remain subscriptions that run through your own Shopify account.
 
 ### Do you support multiple languages or countries through Shopify Markets?
 

@@ -44,7 +44,7 @@ const dict: Record<string, Record<Lang, string>> = {
   /* ── Hero ── */
   "hero.title": {
     en: "Designed to grow.",
-    nl: "Ontworpen om te groeien.",
+    nl: "Design om te groeien.",
   },
   "hero.headline.A": {
     en: "DYSIGNS is your creative partner for scaling brands and digital products, from startup to scale-up.",
@@ -71,6 +71,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.scroll": { en: "Scroll", nl: "Scroll" },
   "hero.scrollDown": { en: "Scroll down", nl: "Scroll naar beneden" },
   "hero.scrollHint": { en: "Scroll to enter the experience", nl: "Scroll en stap de ervaring in" },
+  "hero.keepScrolling": { en: "Keep scrolling", nl: "Blijf scrollen" },
   "hero.watchVideo": { en: "See us in 19 sec", nl: "Zie ons in 19 sec" },
   "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
   "hero.chip.strategy": { en: "Strategy", nl: "Strategie" },
@@ -121,6 +122,16 @@ const dict: Record<string, Record<Lang, string>> = {
   "faq.group.practical": { en: "Practical", nl: "Praktisch" },
   "faq.chat.aiTitle": { en: "Try it: ask our AI assistant", nl: "Probeer het: vraag het onze AI-assistent" },
   "faq.chat.aiSubtitle": { en: "A live example of what we build for clients, answering from this site's own content.", nl: "Een live voorbeeld van wat we voor klanten bouwen, met antwoorden uit de eigen content van deze site." },
+  "agent.name": { en: "DYSIGNS agent", nl: "DYSIGNS agent" },
+  "agent.ask": { en: "Ask us anything", nl: "Stel gerust je vraag" },
+  "agent.morning": { en: "Good morning", nl: "Goedemorgen" },
+  "agent.afternoon": { en: "Good afternoon", nl: "Goedemiddag" },
+  "agent.evening": { en: "Good evening", nl: "Goedenavond" },
+  "agent.askAnything": { en: "ASK ME ANYTHING", nl: "VRAAG ME ALLES" },
+  "agent.sceneHint": { en: "Ask about our services, pricing, way of working or a project of your own.", nl: "Vraag naar onze diensten, prijzen, werkwijze of je eigen project." },
+  "agent.open": { en: "Open the DYSIGNS agent and ask a question", nl: "Open de DYSIGNS agent en stel een vraag" },
+  "faq.chat.spaceTitle": { en: "Space agent", nl: "Space agent" },
+  "faq.chat.spaceSubtitle": { en: "Ask me anything about DYSIGNS, our work and pricing.", nl: "Vraag me alles over DYSIGNS, ons werk en onze prijzen." },
   "faq.chat.label": { en: "Your question", nl: "Je vraag" },
   "faq.chat.placeholderShort": { en: "Ask our AI", nl: "Vraag het aan onze AI" },
   "faq.chat.placeholderCompact": { en: "Rather not read it all? Ask our AI", nl: "Geen zin om te lezen? Vraag het aan onze AI" },

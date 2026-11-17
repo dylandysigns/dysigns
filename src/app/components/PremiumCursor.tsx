@@ -188,6 +188,13 @@ function GlassCursor({
     lastCheck.current = performance.now();
     if (!isInWindow.current) return;
     const target = document.elementFromPoint(mouse.current.x, mouse.current.y) as HTMLElement | null;
+    // [data-cursor-plain]: the cursor stays the small dot here, whatever it is over (the AI agent's
+    // orb shows a speech bubble of its own next to it)
+    if (target?.closest?.("[data-cursor-plain]")) {
+      isOverInteractive.current = false;
+      hoverLabel.current = "";
+      return;
+    }
     const hit = target?.closest?.(INTERACTIVE_SELECTOR) as HTMLElement | null;
     const clickable = !!target && (!!hit || hasReactClick(target));
     isOverInteractive.current = clickable;

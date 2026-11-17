@@ -11,7 +11,7 @@ answerBlock: |
   and built by the same team, fast and technically findable from the
   first release, not treated as a handover between separate design and
   development vendors.
-lastUpdated: "2026-11-16"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -96,6 +96,10 @@ That depends on the project. Shopify, where we build as an official Shopify Part
 
 Absolutely. You do not need to start over to move forward. We iterate on what you already have: first a look at what is there and what is holding it back, then improvements step by step. That often delivers results faster than a full rebuild.
 
+### Do I need a redesign or a completely new website?
+
+That depends on what is there now. If your site no longer fits your business, we often redesign and rebuild it step by step, instead of starting from scratch. In the free intro call we look together at what makes most sense for you.
+
 ### Do you only design, or do you build as well?
 
 Both, and that is the point. Design and development sit with the same partner, so nothing gets lost in the handover. If you only need design because you have your own development team, we deliver a full handoff with design system and specifications.
@@ -111,6 +115,10 @@ Yes, when it fits your project. WordPress can be a good choice, for example if y
 ### Who owns the website, the design and the code?
 
 You do. Once everything is paid, the design, the code, the content and the accounts are yours. You are not tied to anything and can take it all with you if you want something else later.
+
+### Am I tied to you, or can someone else take over later?
+
+You are not tied to anything. Once everything is paid, the design, the code, the content and the accounts are yours. You can take everything with you, or let another agency or your own team continue building.
 
 ### Can I edit text and images myself after launch?
 

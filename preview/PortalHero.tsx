@@ -1,4 +1,5 @@
 import { AvailGlobe } from "./AvailGlobe";
+import { SpaceAgent } from "./SpaceAgent";
 import { useEffect, useRef, useState } from "react";
 import { openGlobeScene } from "./openGlobeScene";
 import gsap from "gsap";
@@ -432,8 +433,20 @@ export default function PortalHero() {
       glide?.kill();
       glide = gsap.to(scrub, { prog: v, duration: 0.4 + Math.abs(v - scrub.prog) * 1.6, ease: "power1.inOut" });
     }
+    /* Stopped halfway through the flight: a quiet "keep scrolling" shows up under the middle,
+       and goes again as soon as the visitor scrolls on or the flight reaches an end. */
+    let midHint = false;
+    const showMidHint = (on: boolean) => {
+      if (on === midHint) return;
+      midHint = on;
+      root.classList.toggle("ph--paused", on);
+    };
     function tickScrub() {
-      if (!scrubbing || !flight) return;
+      if (!scrubbing || !flight) {
+        showMidHint(false);
+        return;
+      }
+      showMidHint(!glide?.isActive() && scrub.prog > 0.04 && scrub.prog < 0.97 && performance.now() - scrub.idleAt > 700);
       // released close to an end: it settles there by itself
       if (!glide?.isActive() && performance.now() - scrub.idleAt > 260) {
         if (scrub.prog > 0.9) scrub.prog = 1;
@@ -443,7 +456,7 @@ export default function PortalHero() {
       if (Math.abs(scrub.prog - scrub.cur) < 0.0006) scrub.cur = scrub.prog;
       flight.progress(scrub.cur);
       if (scrub.cur >= 1) {
-        settle("b", 600);
+        settle("b");
         inkEmblem();
       } else if (scrub.cur <= 0 && scrub.prog <= 0) {
         settle("a");
@@ -548,8 +561,12 @@ export default function PortalHero() {
       gsap.set(root, { opacity: 1 });
       window.scrollTo(0, root.offsetHeight);
       onScroll();
+      // Selected projects is pinned. The zoom goes on the content inside the pinned element, not
+      // on the pin spacer around it: a pinned (fixed) element inside a scaled parent jumps the
+      // moment the pin engages, and this way the page can scroll on while it comes forward.
       const nx = nextSection();
-      if (!reduced) comeForward(nx);
+      const zoomEl = nx?.classList.contains("pin-spacer") ? nx.firstElementChild?.firstElementChild ?? nx : nx;
+      if (!reduced) comeForward(zoomEl);
       playGrid();
     }
     /* Selected projects opens as one card that zooms out into the grid while you scroll through
@@ -571,9 +588,10 @@ export default function PortalHero() {
       stopAutoScroll();
       autoScroll = gsap.to(pos, {
         y: to,
-        duration: 2.0,
-        delay: 0.9, // once the section has come forward
-        ease: "power1.inOut",
+        duration: 3.8,
+        // while the work is still coming forward the scroll starts, slowly: one movement
+        delay: 0.45,
+        ease: "power2.inOut",
         onUpdate: () => window.scrollTo(0, pos.y),
         onComplete: () => void (autoScroll = null),
       });
@@ -650,6 +668,8 @@ export default function PortalHero() {
        rest at the top, takes you back out to the universe. */
     const restingAtTop = () => window.scrollY <= 0 && performance.now() - topSince > 350;
     const onWheel = (e: WheelEvent) => {
+      // scrolling through the space agent's conversation is not a flight
+      if ((e.target as Element | null)?.closest?.(".ph-agent, .as")) return;
       stopAutoScroll();
       if (performance.now() < quietUntil) return;
       if (simple) {
@@ -657,8 +677,8 @@ export default function PortalHero() {
         else if (scene === "b" && e.deltaY < -6 && restingAtTop()) back();
         return;
       }
-      // the whole flight is half a screen of scrolling
-      const d = e.deltaY / ((window.innerHeight || 1) * 0.45);
+      // the whole flight is about a screen and a quarter of wheel scrolling, so it plays calmly
+      const d = e.deltaY / ((window.innerHeight || 1) * 1.25);
       if (scrubbing || scene === "a" || (scene === "b" && e.deltaY < 0 && restingAtTop())) scrubBy(d);
     };
     let touchY = 0;
@@ -683,6 +703,7 @@ export default function PortalHero() {
       else if (scene === "b" && dy > 70 && touchAtTop && window.scrollY <= 0) back();
     };
     const onKey = (e: KeyboardEvent) => {
+      if ((e.target as Element | null)?.closest?.(".ph-agent, .as")) return; // typing a question
       stopAutoScroll();
       if (scene === "b" && window.scrollY > 0) return; // further down, the page has the keys
       const goBack = () => (simple ? back() : scrubTo(0));
@@ -818,6 +839,14 @@ export default function PortalHero() {
   return (
     <div ref={rootRef} className={`ph${noGl ? " ph--nogl" : ""}`} data-scene="a">
       <canvas ref={landRef} className="ph-land" aria-hidden="true" />
+      {/* shown only while the flight is stopped halfway (the ph--paused class) */}
+      <div className="ph-midhint" aria-hidden="true">
+        <span>{t("hero.keepScrolling")}</span>
+        <svg viewBox="0 0 24 40" fill="none">
+          <path className="ph-midhint__line" d="M12 2v34" />
+          <path className="ph-midhint__head" d="M7 31l5 5 5-5" />
+        </svg>
+      </div>
 
       {/* ─── Scene A: the universe ─── */}
       <section className="ph-a" aria-label={lang === "nl" ? "Introductie" : "Introduction"}>
@@ -853,6 +882,13 @@ export default function PortalHero() {
         <div className="ph-a__main">
           {/* Not a badge: a small wireframe Earth in the corner of the sky, a dot where the Netherlands
               is, and a thin line from it to the words. The words stay real text for readers and crawlers. */}
+          {/* desktop only: an AI assistant on the right of the sky, answering from the site's own content */}
+          <aside className="ph-agent" aria-label={t("agent.name")}>
+            {/* GSAP owns the transform of the fading part, so the placing sits on the aside */}
+            <div data-fade data-rise>
+              <SpaceAgent />
+            </div>
+          </aside>
           <p className="ph-avail" data-fade data-rise>
             <AvailGlobe label={t("hero.globeLabel")} onOpen={openGlobe} />
             <span className="ph-avail__text">

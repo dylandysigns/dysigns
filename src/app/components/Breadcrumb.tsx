@@ -22,7 +22,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
         style={{
           fontSize: ".6rem",
           fontWeight: 500,
-          letterSpacing: ".1em",
+          letterSpacing: 0,
           textTransform: "uppercase",
           color: "rgba(var(--page-fg-rgb), .4)",
         }}

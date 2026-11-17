@@ -10,7 +10,7 @@ answerBlock: |
   visual system, one that carries through consistently into your
   site, store and social channels rather than staying a set of files
   nobody applies consistently.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -40,6 +40,10 @@ For brands that want to grow and need a visual identity that carries into their 
 ### How much does branding cost?
 
 We do not work with a minimum or a maximum. Every project differs in scope and ambition, so a standard price would only give you the wrong picture. We would rather sit down first and hear what you are trying to achieve. That first conversation is free and comes with no obligation.
+
+### Do you also design logos?
+
+We design a logo as part of branding. A logo only really works when it fits what your brand stands for and your colours, typography and imagery, so we develop those together: from brand strategy to logo and visual identity. Curious what that means for your business? [Get in touch](/contact).
 
 ### Does branding always start with a new logo?
 
