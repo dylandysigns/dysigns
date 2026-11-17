@@ -64,6 +64,10 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang en am
 
 Een logo is het beeldmerk van je bedrijf. Een huisstijl, ook wel visuele identiteit, is alles eromheen: kleuren, typografie, beeldstijl en hoe je die toepast. Branding is breder: waar je merk voor staat en hoe dat overkomt, in beeld en in woord. Bij DYSIGNS beginnen we bij de strategie en werken we die uit tot logo en huisstijl.
 
+### Maken jullie ook logo's?
+
+Een logo ontwerpen we als onderdeel van branding. Een logo werkt pas echt als het past bij waar je merk voor staat en bij je kleuren, typografie en beeldstijl, dus die werken we samen uit: van merkstrategie tot logo en huisstijl. Benieuwd wat dat voor jouw bedrijf betekent? [Neem contact op](/nl/contact).
+
 ### Voor welke merken hebben jullie een huisstijl gemaakt?
 
 Onder meer voor [Studio75](/nl/work/studio75-branding), van moodboard tot logo, kleuren, typografie en visitekaartjes, en voor [Verkeersschool Beckers](/nl/work/verkeersschool-beckers-branding), met een nieuw logo en een visuele identiteit voor alle uitingen.
