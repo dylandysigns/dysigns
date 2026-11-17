@@ -74,6 +74,15 @@ const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string>; suggest?: 
     },
   },
   {
+    // "Spreek je Nederlands?", "Praat nu Nederlands met me", "Can you speak English?": answered in
+    // the language asked for (see detectLang), and the rest of the chat stays in it
+    pattern: /^(?=.*\b(nederlands|dutch|engels|english|vlaams)\b)(?!.*\b(kost|kosten|prijs|price|cost|website|webshop|shopify|logo|offerte|quote)\b).{0,80}$/i,
+    answer: {
+      nl: "Zeker, ik praat verder in het Nederlands. Waar kan ik je mee helpen? Vraag gerust iets over onze diensten, prijzen of hoe we werken.",
+      en: "Sure, I will continue in English. What can I help you with? Feel free to ask about our services, pricing or how we work.",
+    },
+  },
+  {
     pattern: /(met wie (praat|spreek|chat)|wie ben (je|jij)|ben (je|jij) (een )?(bot|robot|mens|ai|echt)|praat ik met een (mens|bot|robot)|who am i (talking|speaking|chatting)|who are you|are you (a )?(bot|robot|human|real|ai))/i,
     answer: {
       nl: "Je praat met de AI-assistent van DYSIGNS. Ik geef antwoord op basis van wat er op onze website staat, over onze diensten, prijzen en werkwijze. Wil je liever een mens spreken? Stuur ons een [appje](" + WHATSAPP + ") of ga naar [de contactpagina](/nl/contact).",
