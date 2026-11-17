@@ -72,7 +72,7 @@ function Thumb({ down }: { down?: boolean }) {
   );
 }
 
-function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
+function Bubble({ msg, isLast, onAsk, onRate }: { msg: ChatMessage; isLast: boolean; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
   const { t } = useLanguage();
   const isUser = msg.role === "user";
   const typed = useTypewriter(msg.content, !isUser);
@@ -95,7 +95,7 @@ function Bubble({ msg, onAsk, onRate }: { msg: ChatMessage; onAsk: (q: string) =
             {typing && <span className="faq-chat-caret" aria-hidden="true" />}
           </div>
         )}
-        {!isUser && !typing && msg.suggestions && msg.suggestions.length > 0 && (
+        {!isUser && !typing && isLast && msg.suggestions && msg.suggestions.length > 0 && (
           <div className="faq-chat-suggest">
             {msg.suggestions.map((q) => (
               <button key={q} type="button" onClick={() => onAsk(q)}>
@@ -234,8 +234,8 @@ export function FaqChat({ variant = "default" }: { variant?: "default" | "ai" })
 
         {started && (
           <div ref={listRef} className="faq-chat-list" aria-live="polite" aria-busy={busy}>
-            {messages.map((m) => (
-              <Bubble key={m.id} msg={m} onAsk={submit} onRate={rate} />
+            {messages.map((m, i) => (
+              <Bubble key={m.id} msg={m} isLast={i === messages.length - 1 && !limitReached} onAsk={submit} onRate={rate} />
             ))}
             {limitReached && !busy && (
               <p className="faq-chat-note">

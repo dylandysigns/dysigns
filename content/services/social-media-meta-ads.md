@@ -10,7 +10,7 @@ answerBlock: |
   we also design and build the landing pages your ads point to, we
   optimise the full funnel, not just the click. Content, campaigns and
   ad management sit with the same team that built your site.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -48,6 +48,10 @@ Ad spend sits separately from our fee and stays under your control at all times.
 ### How long before a campaign shows real results?
 
 We start with a three month period, because campaigns below that simply do not gather enough data to steer on. Early weeks are for testing; the following months are where we act on what the data actually shows.
+
+### Is there a minimum term?
+
+We start with a period of three months, because campaigns simply do not collect enough data to steer on below that. The term and notice period after that are agreed with you up front and put in the quote.
 
 ### Do you take over an existing social media presence?
 

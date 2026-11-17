@@ -12,7 +12,7 @@ answerBlock: |
   Flow-automatisering. Onderdeel van ons bredere webdesign- en
   developmentaanbod, gebouwd om te blijven converteren, niet alleen om
   goed te lanceren.
-lastUpdated: "2026-11-13"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -90,6 +90,10 @@ Dat hangt af van scope en koppelingen. Als algemene marktindicatie begint een pr
 ### Werken jullie met bestaande Shopify-apps en koppelingen?
 
 Ja, we bouwen voort op wat al werkt en voegen toe waar nodig, in plaats van standaard alles te vervangen.
+
+### Zijn het thema, de aanpassingen en de accounts van mijn webshop van mij?
+
+Ja. Zodra alles betaald is, zijn het design, de code, de content en de accounts van jou, en staat alles op jouw naam. Apps van andere partijen blijven abonnementen die via je eigen Shopify-account lopen.
 
 ### Ondersteunen jullie meerdere talen of landen via Shopify Markets?
 

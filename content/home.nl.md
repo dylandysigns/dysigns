@@ -11,7 +11,7 @@ answerBlock: |
   advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
   plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in
   Nederland, met klanten over de hele wereld.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## How we work
@@ -58,7 +58,7 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang, tech
 
 ### Werken jullie met klanten buiten Nederland?
 
-Ja. DYSIGNS werkt met founders, scale-ups en bureaus wereldwijd. De meeste samenwerkingen verlopen grotendeels op afstand, met korte lijnen en heldere communicatie in het Engels of Nederlands. Elk project wordt geleid vanuit Almere.
+Ja. DYSIGNS werkt met founders, scale-ups en bureaus wereldwijd. De meeste samenwerkingen verlopen grotendeels op afstand, met korte lijnen en heldere communicatie in het Engels of Nederlands. Elk project wordt geleid vanuit Almere of Amsterdam, en we spreken graag op locatie af, overal waar we met de auto kunnen komen.
 
 ### Werken jullie ook buiten Almere?
 
@@ -116,6 +116,10 @@ Dat wisselt. Zodra je de offerte hebt getekend, plannen we samen de kickoff. Wan
 
 Ja. Na de lancering kun je kiezen voor onderhoud tegen een vast maandbedrag. Daarin zitten kleine aanpassingen, zoals nieuwe teksten of afbeeldingen, en support als je ergens een vraag over hebt. Zo weet je precies wat je per maand kwijt bent.
 
+### Kan mijn website later nog uitbreiden?
+
+Ja. Je hoeft niet opnieuw te beginnen om verder te komen: we bouwen voort op wat er staat en voegen nieuwe onderdelen toe wanneer je ze nodig hebt. Kleine aanpassingen rekenen we op uurbasis af, een grotere uitbreiding doen we als project voor een vaste prijs.
+
 ### Hoe snel reageren jullie op een bericht?
 
 Meestal nog dezelfde dag, en je hebt altijd binnen 24 uur een reactie. [Stuur ons je vraag](/nl/contact)
@@ -127,6 +131,10 @@ Een offerte vraag je aan door ons een appje te sturen op WhatsApp via [+31 6 268
 ### Werken jullie met een vaste prijs of op uurbasis?
 
 Allebei. Projecten zoals een website of webshop doen we voor een vaste prijs, op basis van wat in de offerte staat. Kleine aanpassingen en doorlopend werk rekenen we op uurbasis af. Komt er tijdens een project werk bij, dan bespreken we dat eerst met je, zodat je nooit voor verrassingen staat.
+
+### Wat als ik tijdens het project extra wensen heb?
+
+Dat kan altijd. Een website of webshop doen we voor een vaste prijs, op basis van wat in de offerte staat. Komt er tijdens het project iets bij, dan bespreken we eerst met je wat het inhoudt en wat het kost, voordat we eraan beginnen. Zo sta je nooit voor verrassingen.
 
 ### Hoeveel feedbackrondes zitten er in een project?
 
@@ -187,6 +195,10 @@ Dat komt zelden voor, omdat we de richting vooraf samen afstemmen. Gebeurt het t
 ### Kan ik tijdens het project meekijken?
 
 Ja. Je krijgt een link naar een testversie waarop je de voortgang live volgt, en we laten op vaste momenten zien hoe het ervoor staat.
+
+### Wordt alles getest voordat het live gaat?
+
+Ja. We bouwen eerst op een testversie, waar je de voortgang volgt en alles kunt nakijken. Testen is een vaste stap in de roadmap, vlak voor de livegang, zodat je live site of webshop pas verandert als alles klopt.
 
 ### Kan ik in termijnen betalen?
 

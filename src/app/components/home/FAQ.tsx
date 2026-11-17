@@ -49,7 +49,9 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
     questions: [
       "How does payment work?",
       "Do you work with a fixed price or by the hour?",
+      "What if I have extra wishes during the project?",
       "Do you offer maintenance after launch?",
+      "Can my website be extended later?",
       "Is there a guarantee after delivery?",
       "Can maintenance or social media management be cancelled monthly?",
       "Do you work with terms and conditions?",
@@ -77,6 +79,7 @@ const GROUPS: { category: string; questions: string[]; defaultOpen?: string[] }[
       "How many feedback rounds are there in a project?",
       "What if I am not happy with the design?",
       "Can I follow the progress during the project?",
+      "Is everything tested before it goes live?",
       "Do you also take on small projects?",
       "Can you work with a deadline or a rush job?",
     ],

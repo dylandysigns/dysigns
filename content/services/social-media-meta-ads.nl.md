@@ -11,7 +11,7 @@ answerBlock: |
   leiden, optimaliseren we de hele funnel, niet alleen de klik.
   Content, campagnes en advertentiebeheer zitten bij hetzelfde team
   dat je site heeft gebouwd.
-lastUpdated: "2026-08-05"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -49,6 +49,10 @@ Advertentiebudget staat los van onze fee en blijft altijd onder jouw controle. W
 ### Hoe lang duurt het voordat een campagne echt resultaat laat zien?
 
 We starten met een periode van drie maanden, omdat campagnes daaronder simpelweg niet genoeg data verzamelen om op te sturen. De eerste weken zijn voor testen; de maanden daarna zijn waar we handelen naar wat de data echt laat zien.
+
+### Is er een minimale looptijd?
+
+We starten met een periode van drie maanden, omdat campagnes daaronder simpelweg niet genoeg data verzamelen om op te sturen. De looptijd en opzegtermijn daarna spreken we vooraf met je af en zetten we in de offerte.
 
 ### Nemen jullie een bestaande social media-aanwezigheid over?
 

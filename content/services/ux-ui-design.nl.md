@@ -98,6 +98,10 @@ Ja, een designsysteem met herbruikbare componenten is standaard onderdeel van ee
 
 Ja. We bouwen voort op bestaande teams en tools, zodat de UX/UI-output direct bruikbaar is voor wie het bouwt, niet los van de technische realiteit ontwikkeld wordt.
 
+### Bouwen jullie ook apps, of alleen het ontwerp?
+
+Allebei. We ontwerpen apps vanaf gebruikersonderzoek tot een compleet designsysteem, en we bouwen ze ook, ook als native app. Heb je een eigen developmentteam, dan dragen we het ontwerp over met een designsysteem en specificaties. [Neem contact op](/nl/contact) om je idee te bespreken.
+
 ### Is dit ook geschikt voor een bestaand product, niet alleen nieuwbouw?
 
 Beide. Het verbeteren van een bestaand product begint meestal met onderzoek naar waar gebruikers nu vastlopen; een nieuwbouwtraject begint bij de vraag wie het gaat gebruiken en waarom. De aanpak verschilt, maar de gebruiker blijft in beide gevallen het startpunt.
