@@ -58,7 +58,7 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang, tech
 
 ### Werken jullie met klanten buiten Nederland?
 
-Ja. DYSIGNS werkt met founders, scale-ups en bureaus wereldwijd. De meeste samenwerkingen verlopen grotendeels op afstand, met korte lijnen en heldere communicatie in het Engels of Nederlands. Elk project wordt geleid vanuit Almere.
+Ja. DYSIGNS werkt met founders, scale-ups en bureaus wereldwijd. De meeste samenwerkingen verlopen grotendeels op afstand, met korte lijnen en heldere communicatie in het Engels of Nederlands. Elk project wordt geleid vanuit Almere of Amsterdam, en we spreken graag op locatie af, overal waar we met de auto kunnen komen.
 
 ### Werken jullie ook buiten Almere?
 

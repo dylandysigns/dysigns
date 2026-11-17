@@ -58,7 +58,7 @@ We do not work with a minimum or a maximum. Every project differs in scope, tech
 
 ### Do you work with clients outside the Netherlands?
 
-Yes. DYSIGNS works with founders, scale-ups and agencies worldwide. Most collaborations run largely remote, with short lines and clear communication in English or Dutch. Every project is run from Almere.
+Yes. DYSIGNS works with founders, scale-ups and agencies worldwide. Most collaborations run largely remote, with short lines and clear communication in English or Dutch. Every project is run from Almere or Amsterdam, and we are happy to meet in person anywhere we can reach by car.
 
 ### Do you also work outside Almere?
 
