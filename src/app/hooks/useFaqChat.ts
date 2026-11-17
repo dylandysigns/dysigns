@@ -25,6 +25,8 @@ export interface ChatMessage {
   /** Id of the logged answer, for the thumbs up or down; only on answers the AI wrote. */
   rid?: string;
   rating?: 1 | -1;
+  /** Brought back from earlier in the visit (see loadChat): shown as it is, not typed out again. */
+  restored?: boolean;
 }
 
 /** Visitor questions per page visit; after that the chat points to contact. */
@@ -34,9 +36,9 @@ export const MAX_QUESTIONS = 10;
  * when the answer is ready instantly (local FAQ fallback), so sending a
  * question visibly does something; the answer is then typed out (see
  * useTypewriter in FaqChat.tsx). Skipped for reduced motion. */
-const MIN_THINK_MS = 1800;
+const MIN_THINK_MS = 650;
 // A little variation, so it does not feel like a fixed timer.
-const THINK_JITTER_MS = 700;
+const THINK_JITTER_MS = 350;
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, Math.max(0, ms)));
 
@@ -185,7 +187,9 @@ function loadChat(key: string | undefined, lang: FaqLang): ChatMessage[] {
     const saved = JSON.parse(sessionStorage.getItem(key) ?? "null") as SavedChat | null;
     if (!saved || saved.lang !== lang || !Array.isArray(saved.messages)) return [];
     // an answer that was still being written when the page changed is left out
-    return saved.messages.filter((m) => m.role === "user" || (m.status !== "streaming" && m.content));
+    return saved.messages
+      .filter((m) => m.role === "user" || (m.status !== "streaming" && m.content))
+      .map((m) => ({ ...m, restored: true }));
   } catch {
     return [];
   }

@@ -7,7 +7,7 @@ import { GreetingBubble } from "./GreetingBubble";
 
 /**
  * The DYSIGNS agent: a small orb of fine dots (AgentOrb.tsx, a voice made visible, monochrome like
- * the globe) on the right of the hero (desktop only), with a quiet invitation under it. A click
+ * the globe) in the bottom right corner of the hero, with a quiet invitation with it. A click
  * opens its scene the way the globe opens its own (AgentScene.tsx): this orb grows into a big one
  * on the left, and the conversation sits on the right. The chat is the site's own
  * FaqChat, so it answers from the site's content (functions/api/faq-chat.js).
@@ -32,8 +32,8 @@ export function SpaceAgent() {
     } catch {
       /* private mode */
     }
-    // only with the back (or forward) button, and only where the agent is shown (desktop)
-    if (!wasAway || navType !== "POP" || !window.matchMedia("(min-width: 1240px)").matches) return;
+    // only with the back (or forward) button
+    if (!wasAway || navType !== "POP") return;
     const c = shipRef.current?.querySelector("canvas")?.getBoundingClientRect();
     setOrigin(c ? { left: c.left, top: c.top, width: c.width, height: c.height } : null);
     setInstant(true);

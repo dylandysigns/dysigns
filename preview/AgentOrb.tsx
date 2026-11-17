@@ -214,7 +214,8 @@ export function AgentOrb({
       ctx.fillRect(0, 0, S, S);
 
       // dots in proportion to the orb, so every orb is the same picture at a different size
-      const unit = S / 240;
+      // (with a floor, so the little orb on a phone still has dots you can see)
+      const unit = Math.max(S / 240, 0.5);
       for (let i = 0; i < N; i++) {
         let x = px[i];
         const y = py[i];

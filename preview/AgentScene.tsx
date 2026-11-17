@@ -180,10 +180,19 @@ export function AgentScene({
 
     // the hero listens on the window for scroll and keys: what happens in here stays in here
     const stop = (e: Event) => e.stopPropagation();
-    const onKey = (e: KeyboardEvent) => {
-      e.stopPropagation();
-      if (e.key === "Escape") closeRef.current();
+    const onKey = (e: KeyboardEvent) => e.stopPropagation();
+    // Keys while it is open belong to it, wherever the focus is: a starting question that was
+    // clicked is gone, and the focus falls back to the page. Escape always closes it, and no key
+    // reaches the hero behind it (which would start its own flight).
+    const onWindowKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopImmediatePropagation();
+        closeRef.current();
+      } else if (!root.contains(e.target as Node)) {
+        e.stopImmediatePropagation();
+      }
     };
+    window.addEventListener("keydown", onWindowKey, true);
     root.addEventListener("wheel", stop);
     root.addEventListener("touchmove", stop);
     root.addEventListener("keydown", onKey);
@@ -201,6 +210,7 @@ export function AgentScene({
       root.removeEventListener("wheel", stop);
       root.removeEventListener("touchmove", stop);
       root.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onWindowKey, true);
       gsap.killTweensOf([sky, ship, panel, orb.current, ...(camera ? [camera.cam] : []), ...head]);
       if (space) {
         gsap.killTweensOf(space.state);
