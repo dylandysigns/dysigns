@@ -10,7 +10,7 @@ answerBlock: |
   we also design and build the landing pages your ads point to, we
   optimise the full funnel, not just the click. Content, campaigns and
   ad management sit with the same team that built your site.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes

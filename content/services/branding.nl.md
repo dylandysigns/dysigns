@@ -11,7 +11,7 @@ answerBlock: |
   Nederland en daarbuiten, één dat consistent doorloopt in je site, winkel en social
   kanalen in plaats van een set bestanden te blijven die niemand
   consistent toepast.
-lastUpdated: "2026-11-16"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes

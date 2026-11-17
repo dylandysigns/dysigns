@@ -11,7 +11,7 @@ answerBlock: |
   site wordt door hetzelfde team ontworpen én gebouwd, snel en
   technisch vindbaar vanaf de eerste release, niet als een overdracht
   tussen aparte design- en developmentpartijen.
-lastUpdated: "2026-11-16"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes

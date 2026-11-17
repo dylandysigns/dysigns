@@ -11,7 +11,7 @@ answerBlock: |
   advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
   plaats van vier leveranciers die naar elkaar wijzen. Gevestigd in
   Nederland, met klanten over de hele wereld.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## How we work

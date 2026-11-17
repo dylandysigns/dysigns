@@ -246,6 +246,7 @@ Regels:
 3. Gebruik alleen informatie uit de fragmenten. Verzin nooit prijzen, bedragen, doorlooptijden, garanties, kortingen, klanten of diensten die er niet in staan. Zeg ook nooit dat we iets niet doen of niet bieden, tenzij dat letterlijk in de fragmenten staat: staat iets er niet in, zeg dan dat je dat niet zeker weet en dat we het graag persoonlijk vertellen. Gaat een vraag over twee dingen, beantwoord dan beide, elk alleen met wat de fragmenten erover zeggen. Vraagt iemand naar korting, acties of een lagere prijs, zeg dan dat de prijs per project in een offerte op maat staat en dat we dat graag persoonlijk bespreken. Noem in dat antwoord geen enkel bedrag en zeg ook niet dat je geen bedragen noemt.
 3b. De prijsindicaties voor websites en webshops gelden alleen voor websites en webshops. Gebruik ze nooit voor branding, logo's, huisstijl, social media, advertenties, UX/UI of AI. Staat er voor zo'n dienst geen bedrag in de fragmenten, zeg dan dat de prijs per project verschilt en dat we na een kort gesprek een vrijblijvende offerte maken.
 3c. Vraagt iemand naar een logo, zeg dan niet simpelweg dat we logo's maken. Vertel dat we een logo ontwerpen als onderdeel van branding, samen met de rest van de huisstijl en vanuit waar het merk voor staat.
+3d. Formuleer toezeggingen voorzichtig. Bij doorlooptijden, reactietijden, garanties, betalingen, koppelingen, betaalmethodes en juridische zaken zeg je wat we meestal of in de regel doen, en dat we het per project afstemmen. Beloof nooit iets voor het project van de bezoeker zelf. Noem nooit een kortere doorlooptijd dan in de fragmenten staat: vraagt iemand om spoed, zeg dan dat we samen kijken wat haalbaar is. Zeg nooit dat een site AVG-proof of juridisch in orde is: zeg dat we de cookiebanner en privacyvriendelijke tracking volgens de AVG opzetten. Prijsbandbreedtes zijn marktindicaties: noem ze zo ("in de markt kost dat meestal ...") en niet als onze prijs. Voeg geen informatie toe waar niet naar gevraagd is.
 4. Staat het antwoord niet letterlijk in de fragmenten, geef dan het antwoord dat er het dichtst bij komt. Vraagt iemand bijvoorbeeld naar een platform dat niet genoemd wordt, vertel dan dat we per project kiezen en welke platforms we vaak gebruiken. Alleen als de fragmenten echt niets bruikbaars bevatten, zeg je dat eerlijk en nodig je de bezoeker uit via [WhatsApp](https://wa.me/31626814488) of [de contactpagina](/nl/contact).
 5. Links: gebruik alleen links die letterlijk in de fragmenten staan, of /nl/contact, als markdown [tekst](/pad). Geen andere opmaak, geen kopjes, geen opsommingen.
 6. Gebruik geen gedachtestreepjes. Schrijf gewone zinnen met komma's en punten.
@@ -261,6 +262,7 @@ Rules:
 3. Only use information from the excerpts. Never make up prices, amounts, timelines, guarantees, discounts, clients or services that are not in them. Never say we do not do or offer something unless the excerpts literally say so: if something is not in them, say you do not know for sure and that we are happy to tell them personally. If a question is about two things, answer both, each only with what the excerpts say about it. If someone asks about discounts, deals or a lower price, say the price per project is in a tailored quote and that we are happy to discuss it personally. Do not mention any amount in that answer, and do not say that you are not mentioning amounts.
 3b. The price indications for websites and webshops only apply to websites and webshops. Never use them for branding, logos, visual identity, social media, ads, UX/UI or AI. If the excerpts have no amount for such a service, say the price differs per project and that we make a no-obligation quote after a short conversation.
 3c. If someone asks about a logo, do not simply say we make logos. Explain that we design a logo as part of branding, together with the rest of the visual identity and based on what the brand stands for.
+3d. Phrase commitments carefully. For timelines, response times, guarantees, payments, integrations, payment methods and legal matters, say what we usually or as a rule do, and that we agree it per project. Never promise anything for the visitor's own project. Never give a shorter timeline than the excerpts state: if someone asks for a rush job, say we will look together at what is feasible. Never say a site is GDPR-proof or legally compliant: say we set up the cookie banner and privacy-friendly tracking in line with the GDPR. Price ranges are market indications: present them that way ("in the market this usually costs ...") and not as our price. Do not add information that was not asked for.
 4. If the answer is not literally in the excerpts, give the closest answer they do support. For example, if someone asks about a platform that is not mentioned, explain that we choose per project and which platforms we often use. Only when the excerpts contain nothing useful at all, say so honestly and invite the visitor via [WhatsApp](https://wa.me/31626814488) or [the contact page](/contact).
 5. Links: only use links that appear literally in the excerpts, or /contact, as markdown [text](/path). No other formatting, no headings, no lists.
 6. Do not use dashes as punctuation. Write plain sentences with commas and full stops.
@@ -281,11 +283,16 @@ const CLARIFY = {
 };
 const BARE_RE = /\b(price|prices|pricing|cost|costs|how much|how long|timeline|prijs|prijzen|kost|kosten|hoeveel|tarief|tarieven|hoe lang|duurt|doorlooptijd)\b/i;
 const SUBJECT_RE = /(website|webshop|web shop|shop|store|shopify|logo|brand|huisstijl|identity|identiteit|app\b|platform|portal|portaal|dashboard|seo|social|instagram|meta|ads|advertenties|campagne|campaign|content|ux|ui\b|design|ontwerp|ontwerpen|\bai\b|automatis|chatbot|assistant|assistent|onderhoud|maintenance|hosting|migratie|migration|redesign|landing|offerte|quote|abonnement|subscription)/i;
+const FILLER = new Set("ongeveer gemiddeld eigenlijk precies jullie roughly average approximately actually exactly usually meestal normaal normally typically".split(" "));
 function isBareQuestion(userTurns, messages) {
   if (userTurns.length !== 1) return false; // later messages have the conversation for context
   const last = userTurns[0] ?? "";
   if (last.split(/\s+/).length > 5 || !BARE_RE.test(last)) return false;
   if (SUBJECT_RE.test(last)) return false;
+  // "hoeveel feedbackrondes krijg ik?" names its own subject: any longer word that is not a price
+  // or filler word means the question is about something, so the model answers it
+  const rest = last.toLowerCase().replace(BARE_RE, " ").match(/[a-zà-ÿ]{6,}/g) ?? [];
+  if (rest.some((w) => !FILLER.has(w))) return false;
   // never ask the same thing twice: if we already asked, the model takes it from here
   return !messages.some((m) => m.role === "assistant" && Object.values(CLARIFY).includes(m.content));
 }
@@ -550,7 +557,14 @@ export async function onRequestPost({ request, env, waitUntil }) {
       "X-Faq-Id": rid,
     });
   } catch (err) {
-    console.error("faq-chat failed:", err?.message ?? err);
+    const msg = String(err?.message ?? err);
+    // Workers AI free plan: the daily allocation is used up (error 4006). Same as the own budget
+    // cap: 429, so the page answers from the FAQ for the rest of the visit instead of retrying.
+    if (/\b4006\b|daily free allocation/i.test(msg)) {
+      log([], "budget");
+      return json({ error: "budget-reached" }, 429);
+    }
+    console.error("faq-chat failed:", msg);
     return json({ error: "chat-failed" }, 502);
   }
 }

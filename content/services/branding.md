@@ -10,7 +10,7 @@ answerBlock: |
   visual system, one that carries through consistently into your
   site, store and social channels rather than staying a set of files
   nobody applies consistently.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes

@@ -11,7 +11,7 @@ answerBlock: |
   leiden, optimaliseren we de hele funnel, niet alleen de klik.
   Content, campagnes en advertentiebeheer zitten bij hetzelfde team
   dat je site heeft gebouwd.
-lastUpdated: "2026-08-05"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes

@@ -11,7 +11,7 @@ answerBlock: |
   and built by the same team, fast and technically findable from the
   first release, not treated as a handover between separate design and
   development vendors.
-lastUpdated: "2026-11-16"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
