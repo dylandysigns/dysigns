@@ -13,8 +13,8 @@ const AI_STARTERS = {
 /** The DYSIGNS agent in the homepage hero: what owners of a business, a one-person company or a
  * start-up come for, the result for their business first (each one answered from the site's content). */
 const SPACE_STARTERS = {
-  nl: ["Hoe krijg ik meer klanten online?", "Wat kunnen jullie voor mijn bedrijf doen?", "Doen jullie ook kleine projecten?", "Wat kost een website of webshop?"],
-  en: ["How do I get more customers online?", "What can you do for my business?", "Do you also take on small projects?", "How much does a website or online store cost?"],
+  nl: ["Wat kunnen jullie voor mijn bedrijf doen?", "Doen jullie ook kleine projecten?", "Wat kost een website of webshop?"],
+  en: ["What can you do for my business?", "Do you also take on small projects?", "How much does a website or online store cost?"],
 };
 
 /** The model is told not to use dashes; this catches the odd one anyway
@@ -81,7 +81,8 @@ function Thumb({ down }: { down?: boolean }) {
 function Bubble({ msg, isLast, onAsk, onRate }: { msg: ChatMessage; isLast: boolean; onAsk: (q: string) => void; onRate: (id: number, rid: string, rating: 1 | -1) => void }) {
   const { t } = useLanguage();
   const isUser = msg.role === "user";
-  const typed = useTypewriter(msg.content, !isUser);
+  // an answer from earlier in the visit is already read: it is simply there, not typed out again
+  const typed = useTypewriter(msg.content, !isUser && !msg.restored);
   const typing = !isUser && (msg.status === "streaming" || typed.length < msg.content.length);
   const thinking = msg.status === "streaming" && !msg.content;
   // One link per page, even when several matched questions live there.
@@ -179,7 +180,8 @@ export function FaqChat({
     if (!report) return;
     if (busy && answerLen === 0) return report("thinking");
     if (busy) return report("speaking");
-    if (!answerLen) return report("idle");
+    // nothing being written (also when the last answer was only brought back): the orb is at rest
+    if (!answerLen || lastMsg?.restored) return report("idle");
     // the answer is typed out a little after it has arrived (useTypewriter): keep speaking until then
     report("speaking");
     const id = window.setTimeout(() => report("idle"), Math.min(9000, 600 + answerLen * 14));

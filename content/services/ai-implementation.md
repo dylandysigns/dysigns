@@ -1,19 +1,18 @@
 ---
-title: "AI Implementation Agency for Growing Businesses | DYSIGNS"
-description: "AI implementation for real workflows: AI creatives, process automation, business dashboards, an AI chat for your website and internal AI assistants."
+title: "AI Implementation Agency | AI Automation | DYSIGNS"
+description: "AI implementation agency from Almere, the Netherlands: AI automation, an AI chatbot, AI assistants and dashboards. A first result in 4 to 8 weeks."
 heading: "AI implementation"
 slug: "ai-implementation"
-includes: "AI creatives, process improvement, business automation, dashboards and AI assistants"
+includes: "AI automation, AI chatbots, AI assistants, dashboards and AI creatives"
 answerBlock: |
-  DYSIGNS implements AI where it genuinely saves time or makes
-  something better: AI creatives for campaigns, smarter processes,
-  automation across the business, dashboards that show the whole
-  company at a glance, and assistants for your customers and your
-  team. Based in the Netherlands, working with founders, scale-ups
-  and agencies worldwide. We are not better than AI. Nobody is. The
-  difference is knowing what to hand to a model and what to
-  deliberately leave alone.
-lastUpdated: "2026-11-15"
+  DYSIGNS is an AI implementation agency based in Almere, the
+  Netherlands. We put AI where it genuinely saves your business time:
+  AI automation of repetitive work between systems, an AI chatbot on
+  your website, AI assistants for your team, business dashboards and
+  AI creatives. For founders, small and mid-sized businesses and
+  scale-ups in the Netherlands and beyond. We start with one workflow,
+  and a first working result is usually live within 4 to 8 weeks.
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -30,17 +29,17 @@ Campaign visuals, product images in new settings, ad variations and short video,
 
 Processes that now depend on one person's knowledge, such as returns, quotes or onboarding, turned into clear steps that AI helps carry out, so the whole team can handle them.
 
-### Automation across the business
+### AI automation across the business
 
-Repetitive work between systems taken over by workflows, for example with n8n: invoices, stock, leads and reports, with AI handling the steps that need judgement.
+Repetitive work between systems taken over by automated workflows: invoices, stock, leads and reports, with AI handling the steps that need judgement.
 
 ### Dashboards and business insight
 
 A business dashboard in your own brand style, with the numbers from your store, ads, Google Analytics, email, accounting and stock. Every week a short AI summary tells you what changed and what needs attention.
 
-### AI chat and assistants
+### AI chatbot and AI assistants
 
-An assistant on your website that answers visitors from your own content, or an internal assistant that answers your team from your documents and process agreements.
+An AI chatbot on your website that answers visitors from your own content, or an internal AI assistant that answers your team from your documents and process agreements.
 
 ### Implementation and handoff
 
@@ -94,17 +93,15 @@ In five steps. It starts with a free intro call, where we hear which work takes 
 
 We work with a range of AI models and choose per project what fits your goal, your budget and your data best. Which solution that becomes for you is something we are happy to discuss in person. [Get in touch](/contact) for a no-obligation conversation.
 
-### What happens to our data?
+### What about GDPR and our data?
 
-That is an important question with AI, and the rules and options change quickly. So for every project we look at the regulations that apply at that moment, such as the GDPR and the EU AI Act, and at the provider's terms. We stay up to date with what is happening and adapt our approach to it. And we only send along what a task really needs.
+Privacy is an important question with AI, and the rules and options change quickly. So for every project we look at the regulations that apply at that moment, such as the GDPR and the EU AI Act, and at the provider's terms. We stay up to date with what is happening and adapt our approach to it. And we only send along what a task really needs.
 
-### What's a typical AI automation you build?
+### What AI automations do you build?
 
 Think of a webshop where someone spends an hour every morning matching incoming supplier invoices to purchase orders by hand, or a support inbox where the same five questions get answered over and over in slightly different words. Those are the projects that pay for themselves fastest: the invoice gets matched automatically and only flagged when the numbers genuinely disagree, the recurring questions get answered instantly and only the truly new ones reach a person. Nothing exotic, just time nobody should still be spending.
 
-### What AI automations do you build for e-commerce?
-
-Four patterns come up again and again. Customer service triage: incoming questions get read, categorised and routed automatically, so a person only sees the ones that genuinely need judgment, not the ten "where is my order" messages in between. Dynamic product enrichment: descriptions, tags and metadata get generated and kept consistent across hundreds of SKUs, instead of a spreadsheet nobody has time to update. Automated lead nurturing: a lead's behaviour triggers the right follow-up in a tool like Klaviyo, instead of someone manually building every segment by hand. Stock notifications: low-inventory and back-in-stock alerts fire automatically through a workflow tool like n8n, connected straight to the store and the team's channels. The return is the same across all four: hours back every week, fewer manual errors, and systems that actually talk to each other instead of three separate logins.
+For online stores, four patterns come up again and again. Customer service triage: incoming questions get read, categorised and routed automatically, so a person only sees the ones that genuinely need judgement. Product data at scale: descriptions, tags and metadata stay consistent across hundreds of products. Lead follow-up: a lead's behaviour triggers the right follow-up in a tool like Klaviyo. Stock notifications: low-inventory and back-in-stock alerts go to the store and the team automatically. More examples in [how AI automation reduces dependency on one manager](/insights/ai-automation-manager-dependency/), and for online stores see [Shopify development](/shopify-development/).
 
 ### Can AI just replace what a creative partner like you does?
 
@@ -128,11 +125,11 @@ Yes. After launch we maintain the implementation for a fixed monthly fee: we kee
 
 ### How soon do I see a first working result?
 
-Usually within 4 to 8 weeks. In that time we map the workflow, build the first version and test it with your team. After that we expand step by step.
+Usually within 4 to 8 weeks, whether it is an AI automation, an AI chatbot or a dashboard. In that time we map the workflow, build the first version and test it with your team. After that we expand step by step.
 
-### Can you build an AI chat for my website?
+### Can you build an AI chatbot for my website?
 
-Yes. An assistant that gives visitors an answer straight away from your own content, such as your FAQ, services and products. The chat on this site is an example of that. It does not make things up, and when it does not know something, it refers the visitor to you.
+Yes. An AI chatbot that gives visitors an answer straight away from your own content, such as your FAQ, services and products. The [DYSIGNS agent on our homepage](/) is an example of that. It does not make things up, and when it does not know something, it refers the visitor to you.
 
 ### Can AI take work off my customer service team?
 
@@ -144,7 +141,7 @@ Yes. An internal assistant that answers from your own documents, manuals and pro
 
 ### How do you connect AI to our existing systems?
 
-Often with a workflow tool such as n8n, which links your store, inbox, CRM and other systems together. AI handles the steps that need judgement, such as reading an email or recognising an exception, and the workflow takes care of the rest automatically.
+That is AI integration, and it often works with automated workflows that link your store, inbox, CRM and other systems together. AI handles the steps that need judgement, such as reading an email or recognising an exception, and the workflow takes care of the rest automatically.
 
 ### Do you also make AI creatives?
 
@@ -158,10 +155,6 @@ Yes. We build a business dashboard in your own brand style, connected to the sys
 
 You pay once for the build, and then a fixed monthly fee for the connections, the hosting and the weekly AI summary. The exact cost depends on how many systems we connect. In a free intro call we look together at what you need.
 
-### How soon is my dashboard live?
-
-A first version is usually live within 4 to 8 weeks. After that we expand it step by step with the numbers you are still missing.
-
 ### Is a business dashboard also useful for service businesses?
 
 Yes. Besides the basics, such as your accounting, ads and Google Analytics, we also connect your CRM, your calendar or planning and your time tracking. That way you also see your leads, your occupancy and your profitability per client in one view.
@@ -170,7 +163,11 @@ Yes. Besides the basics, such as your accounting, ads and Google Analytics, we a
 
 Automation follows fixed rules: if this happens, do that. AI can handle what does not fit a fixed rule, such as reading an email, recognising an exception or writing a first draft. Most of our solutions combine the two: automation for the steps that are always the same, AI for the steps that need judgement.
 
-### Is AI also worth it for a small business?
+### What is an AI agent, and does my business need one?
+
+An AI agent carries out steps in your systems itself, instead of only answering like a chatbot: it reads an email, for example, looks up the order and prepares a return. That is powerful, but not always needed. Often an AI automation with a few fixed steps solves the same thing with less risk. We look at what fits per workflow, and keep a person in the loop where a mistake would be costly.
+
+### Is AI also worth it for a small business or SME?
 
 Yes, small teams in particular often save a lot of time with it. We then start with one workflow that pays for itself quickly, and only expand once that works.
 
