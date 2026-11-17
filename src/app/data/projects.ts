@@ -166,7 +166,7 @@ export const projects: Project[] = [
     title: "STELZ web design",
     category: "Web",
     tags: ["Web Design", "UX Design", "Development"],
-    year: "2026 January",
+    year: "2026",
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.avif",
     overview:

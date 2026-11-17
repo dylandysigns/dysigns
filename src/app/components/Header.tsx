@@ -452,7 +452,7 @@ function MobileMenu({
         <div className="flex items-center gap-2">
           <img
             src={logoImg}
-            alt="DYSIGNS, digital design agency Almere"
+            alt={t("alt.logo")}
             className="theme-logo"
             style={{ height: 18, width: "auto" }}
             onError={(e) => {
@@ -763,7 +763,7 @@ export function Header() {
       >
         <img
           src={logoImg}
-          alt="DYSIGNS, UX/UI and web design agency, Almere Netherlands"
+          alt={t("alt.logoHeader")}
           className="theme-logo"
           style={{
             height: 18,
@@ -919,7 +919,7 @@ export function Header() {
           willChange: "transform, opacity",
         }}
         onClick={() => setMenuOpen(true)}
-        aria-label="Open menu"
+        aria-label={t("a11y.openMenu")}
       >
         <Menu
           size={16}

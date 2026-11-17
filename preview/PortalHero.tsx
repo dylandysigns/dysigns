@@ -820,7 +820,7 @@ export default function PortalHero() {
       <canvas ref={landRef} className="ph-land" aria-hidden="true" />
 
       {/* ─── Scene A: the universe ─── */}
-      <section className="ph-a" aria-label="Introduction">
+      <section className="ph-a" aria-label={lang === "nl" ? "Introductie" : "Introduction"}>
         <div className="ph-frame" data-fade aria-hidden="true">
           {["tl", "tr", "bl", "br"].map((c) => (
             <svg key={c} className={`ph-frame__${c}`} viewBox="0 0 190 86" fill="none">
@@ -943,7 +943,7 @@ export default function PortalHero() {
             <path className="ph-down__head" d="M6.5 60.5L12 66l5.5-5.5" />
           </svg>
         </button>
-        <ul className="ph-chips" aria-label="Services">
+        <ul className="ph-chips" aria-label={lang === "nl" ? "Diensten" : "Services"}>
           {services.map((sv) => {
             const inner = (
               <>

@@ -840,6 +840,27 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "BIYU campaign poster in an Amsterdam bus shelter, Jouw balkon borrelklaar, with a woman holding a pressure washer that rents for 9 euros",
     nl: "BIYU-campagneposter in een Amsterdamse abri, Jouw balkon borrelklaar, met een vrouw die een hogedrukreiniger vasthoudt die je voor 9 euro huurt",
   },
+  /* ── Shared alt text, aria-labels and small UI strings ── */
+  "alt.logo": { en: "DYSIGNS, digital design agency Almere", nl: "DYSIGNS, digitaal designbureau Almere" },
+  "alt.logoNl": { en: "DYSIGNS, digital design agency Almere Netherlands", nl: "DYSIGNS, digitaal designbureau in Almere" },
+  "alt.logoHeader": { en: "DYSIGNS, UX/UI and web design agency, Almere Netherlands", nl: "DYSIGNS, UX/UI- en webdesignbureau in Almere" },
+  "alt.clientReview": { en: "DYSIGNS client review", nl: "klantreview DYSIGNS" },
+  "alt.caseImage": { en: "case study, image", nl: "case, afbeelding" },
+  "a11y.skipIntro": { en: "Skip intro", nl: "Intro overslaan" },
+  "a11y.openMenu": { en: "Open menu", nl: "Menu openen" },
+  "a11y.breadcrumb": { en: "Breadcrumb", nl: "Kruimelpad" },
+  "a11y.prevTestimonial": { en: "Previous testimonial", nl: "Vorige review" },
+  "a11y.nextTestimonial": { en: "Next testimonial", nl: "Volgende review" },
+  "a11y.goToTestimonial": { en: "Go to testimonial", nl: "Ga naar review" },
+  "a11y.next": { en: "Next", nl: "Volgende" },
+  "footer.about": {
+    en: "DYSIGNS is a full-service digital agency based in Almere, Netherlands. Services include UX/UI design, web design, Shopify development, branding, and social media marketing.",
+    nl: "DYSIGNS is een full-service digital agency uit Almere. We doen UX/UI-design, webdesign, Shopify development, branding en social media marketing.",
+  },
+  "about.teamSignature": { en: "The DYSIGNS Team", nl: "Het DYSIGNS-team" },
+  "form.honeypot": { en: "Don't fill this out:", nl: "Vul dit niet in:" },
+  "afterLaunch.cta": { en: "See how we grow it", nl: "Zo laten we het groeien" },
+  "case.service": { en: "Service", nl: "Dienst" },
 };
 
 // A page's language is a property of its URL, not a remembered client

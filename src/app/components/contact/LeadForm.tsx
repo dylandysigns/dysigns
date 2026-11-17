@@ -289,7 +289,7 @@ export function LeadForm() {
     >
       <p className="lf-hidden">
         <label>
-          Don't fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+          {t("form.honeypot")} <input name="bot-field" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
       <input type="hidden" name="ts" ref={tsRef} />

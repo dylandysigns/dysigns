@@ -131,7 +131,7 @@ export default function AboutPage() {
         <div ref={imgRef} className="absolute inset-[-10%]">
           <img
             src={aboutImage}
-            alt="DYSIGNS, digital design agency Almere Netherlands"
+            alt={t("alt.logoNl")}
             className="w-full h-full object-cover"
             style={{
               filter: "grayscale(.9) brightness(.45) contrast(1.1)",
@@ -232,7 +232,7 @@ export default function AboutPage() {
               color: "rgba(var(--page-fg-rgb), .55)",
             }}
           >
-            The DYSIGNS Team
+            {t("about.teamSignature")}
           </span>
           {t("vision.text")} {t("about.storyText")}
         </p>

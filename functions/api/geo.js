@@ -4,8 +4,19 @@
 // third-party geolocation service and nothing is stored. Returns
 // { city: null } when Cloudflare can't determine it.
 
+// Only cities in the countries we actually serve. Search engine crawlers
+// come from US datacenters (Googlebot from Council Bluffs, which the geo
+// database names "Omaha"), and their render of the hero would otherwise
+// get indexed as "Wij zijn beschikbaar in Omaha". Outside NL and BE the
+// hero falls back to "Nederland" / "the Netherlands".
+const SERVED_COUNTRIES = new Set(["NL", "BE"]);
+
 export function onRequestGet({ request }) {
-  const raw = typeof request.cf?.city === "string" ? request.cf.city : null;
+  const country = typeof request.cf?.country === "string" ? request.cf.country : null;
+  const ua = request.headers.get("user-agent") || "";
+  const isBot = /bot|crawl|spider|slurp|preview|lighthouse|headless/i.test(ua);
+  const inServedArea = !isBot && country !== null && SERVED_COUNTRIES.has(country);
+  const raw = inServedArea && typeof request.cf?.city === "string" ? request.cf.city : null;
   // The geo database names some Dutch cities after their centre ("Almere
   // Stad"); visitors expect the plain city name.
   const city = raw ? raw.replace(/ Stad$/, "") : null;

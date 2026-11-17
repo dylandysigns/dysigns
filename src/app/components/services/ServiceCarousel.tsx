@@ -436,7 +436,7 @@ export function ServiceCarousel({ items }: { items: ServiceIncludeItem[] }) {
                   isLeft
                     ? `Previous: ${item.title}`
                     : isRight
-                      ? `Next: ${item.title}`
+                      ? `${t("a11y.next")}: ${item.title}`
                       : isActive && item.href
                         ? item.title
                         : undefined

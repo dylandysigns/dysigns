@@ -851,7 +851,7 @@ export default function CaseDetailPage() {
                 ) : (
                 <img
                   src={img}
-                  alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} case study, image ${i + 1}, DYSIGNS`}
+                  alt={project.galleryAlt?.[i] ?? `${project.title}, ${project.category} ${t("alt.caseImage")} ${i + 1}, DYSIGNS`}
                   width={1400}
                   height={875}
                   decoding="async"

@@ -14,9 +14,9 @@ export interface BreadcrumbItem {
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   // Items carry the canonical English path; on /nl pages the links must
   // point at the Dutch mirror, not hop back to the English tree.
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   return (
-    <nav aria-label="Breadcrumb" className="w-full">
+    <nav aria-label={t("a11y.breadcrumb")} className="w-full">
       <ol
         className="flex flex-wrap items-center gap-2"
         style={{

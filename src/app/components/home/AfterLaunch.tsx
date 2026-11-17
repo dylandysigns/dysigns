@@ -227,7 +227,7 @@ export function AfterLaunch() {
 
         <div ref={ctaRef} className="mt-8">
           <MagneticFillButton to="/social-media-meta-ads">
-            See how we grow it
+            {t("afterLaunch.cta")}
           </MagneticFillButton>
         </div>
       </div>
