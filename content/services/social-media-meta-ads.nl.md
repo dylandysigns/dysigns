@@ -50,6 +50,10 @@ Advertentiebudget staat los van onze fee en blijft altijd onder jouw controle. W
 
 We starten met een periode van drie maanden, omdat campagnes daaronder simpelweg niet genoeg data verzamelen om op te sturen. De eerste weken zijn voor testen; de maanden daarna zijn waar we handelen naar wat de data echt laat zien.
 
+### Is er een minimale looptijd?
+
+We starten met een periode van drie maanden, omdat campagnes daaronder simpelweg niet genoeg data verzamelen om op te sturen. De looptijd en opzegtermijn daarna spreken we vooraf met je af en zetten we in de offerte.
+
 ### Nemen jullie een bestaande social media-aanwezigheid over?
 
 Ja. We kijken eerst naar wat er al staat en wat tegenhoudt, voordat we veranderingen voorstellen, in plaats van standaard bij een leeg blad te beginnen.

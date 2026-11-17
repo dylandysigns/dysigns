@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import contentEntries from "virtual:content";
 import { buildFaqIndex, type FaqIndexItem, type FaqLang } from "../content/faqIndex";
 import { searchFaqLocal } from "../utils/faqSearch";
+import { detectLang, requestedLang } from "../../shared/detectLang.js";
 
 export interface ChatSource {
   id: string;
@@ -16,7 +17,7 @@ export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
   sources?: ChatSource[];
-  /** Follow-up questions offered as buttons (local answers only). */
+  /** Follow-up questions offered as buttons, under the latest answer only. */
   suggestions?: string[];
   /** streaming: tokens still arriving; fallback: answered from the local
    * FAQ match because the AI endpoint was not reachable. */
@@ -63,6 +64,15 @@ const FALLBACK_TEXT = {
 /** Small talk the chat answers itself, without a model call (also when
  * the AI is live: it is instant, consistent and costs nothing). */
 const SMALL_TALK: { pattern: RegExp; answer: Record<FaqLang, string> }[] = [
+  {
+    // "Spreek je Nederlands?", "Praat nu Nederlands met me", "Can you speak English?": answered in
+    // the language asked for (see detectLang), and the rest of the chat stays in it
+    pattern: /^(?=.*\b(nederlands|dutch|engels|english|vlaams)\b)(?!.*\b(kost|kosten|prijs|price|cost|website|webshop|shopify|logo|offerte|quote)\b).{0,80}$/i,
+    answer: {
+      nl: "Zeker, ik praat verder in het Nederlands. Waar kan ik je mee helpen? Vraag gerust iets over onze diensten, prijzen of hoe we werken.",
+      en: "Sure, I will continue in English. What can I help you with? Feel free to ask about our services, pricing or how we work.",
+    },
+  },
   {
     pattern: /(met wie (praat|spreek|chat)|wie ben (je|jij)|ben (je|jij) (een )?(bot|robot|mens|ai|echt)|praat ik met een (mens|bot|robot)|who am i (talking|speaking|chatting)|who are you|are you (a )?(bot|robot|human|real|ai))/i,
     answer: {
@@ -152,7 +162,7 @@ export function useFaqChat(lang: FaqLang) {
       list.map((m) => (m.id === id ? { ...m, ...(typeof patch === "function" ? patch(m) : patch) } : m)),
     );
 
-  const answerLocally = async (assistantId: number, question: string, minThink: () => Promise<void>) => {
+  const answerLocally = async (assistantId: number, question: string, minThink: () => Promise<void>, lang: FaqLang) => {
     await minThink();
     const items = getIndex().filter((i) => i.lang === lang);
     const matches = searchFaqLocal(items, question, 3);
@@ -174,6 +184,9 @@ export function useFaqChat(lang: FaqLang) {
       content: bare ? `${best.item.question}\n\n${best.item.answer}` : best.item.answer,
       status: "fallback",
       sources: [best, ...others].filter((r) => !r.item.isHome).slice(0, 2).map((r) => toSource(r.item)),
+      suggestions: [...new Set([...others.map((m) => m.item.question), ...POPULAR[lang]])]
+        .filter((q) => q !== best.item.question && q.toLowerCase() !== question.toLowerCase())
+        .slice(0, 3),
     });
   };
 
@@ -187,7 +200,11 @@ export function useFaqChat(lang: FaqLang) {
       const history = [...messages, userMsg];
       setMessages([...history, { id: assistantId, role: "assistant", content: "", status: "streaming" }]);
       setBusy(true);
-      const smallTalk = SMALL_TALK.find((s) => s.pattern.test(question));
+      // The visitor's own words (or an explicit "praat Nederlands") decide the answer language;
+      // the site language is only the default. Same rule as the AI endpoint.
+      const userTurns = history.filter((m) => m.role === "user").map((m) => m.content);
+      const replyLang: FaqLang = detectLang(userTurns, lang);
+      const smallTalk = SMALL_TALK.find((s) => s.pattern.test(question) && (s !== SMALL_TALK[0] || requestedLang(question)));
       const startedAt = performance.now();
       const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
       const thinkFor = MIN_THINK_MS + Math.random() * THINK_JITTER_MS;
@@ -195,13 +212,13 @@ export function useFaqChat(lang: FaqLang) {
 
       if (smallTalk) {
         await minThink();
-        update(assistantId, { content: smallTalk.answer[lang], status: "done", sources: [] });
+        update(assistantId, { content: smallTalk.answer[replyLang], status: "done", sources: [] });
         setBusy(false);
         return;
       }
 
       if (aiUnavailable) {
-        await answerLocally(assistantId, question, minThink);
+        await answerLocally(assistantId, question, minThink, replyLang);
         setBusy(false);
         return;
       }
@@ -226,7 +243,7 @@ export function useFaqChat(lang: FaqLang) {
           // 429: the daily or monthly AI budget is used up; answer from
           // the FAQ for the rest of this visit.
           if ([404, 405, 429, 503].includes(res.status)) aiUnavailable = true;
-          await answerLocally(assistantId, question, minThink);
+          await answerLocally(assistantId, question, minThink, replyLang);
           return;
         }
 
@@ -235,6 +252,14 @@ export function useFaqChat(lang: FaqLang) {
           sources = JSON.parse(decodeURIComponent(res.headers.get("X-Faq-Sources") ?? "[]"));
         } catch {
           sources = [];
+        }
+
+        let followUps: string[] = [];
+        try {
+          const parsed = JSON.parse(decodeURIComponent(res.headers.get("X-Faq-Followups") ?? "[]"));
+          if (Array.isArray(parsed)) followUps = parsed.filter((q): q is string => typeof q === "string").slice(0, 3);
+        } catch {
+          followUps = [];
         }
 
         const rid = res.headers.get("X-Faq-Id") ?? undefined;
@@ -257,11 +282,11 @@ export function useFaqChat(lang: FaqLang) {
           if (parsed.done) break;
         }
 
-        if (!received.trim()) await answerLocally(assistantId, question, minThink);
-        else update(assistantId, { status: "done", sources: sources.filter((s) => !s.isHome), rid });
+        if (!received.trim()) await answerLocally(assistantId, question, minThink, replyLang);
+        else update(assistantId, { status: "done", sources: sources.filter((s) => !s.isHome), rid, suggestions: followUps });
       } catch (err) {
         if ((err as Error)?.name === "AbortError") return;
-        await answerLocally(assistantId, question, minThink);
+        await answerLocally(assistantId, question, minThink, replyLang);
       } finally {
         if (abortRef.current === controller) abortRef.current = null;
         setBusy(false);

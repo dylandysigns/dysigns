@@ -91,6 +91,10 @@ It depends on scope and integrations. As a general market indication, a professi
 
 Yes, we build on what already works and add where needed, instead of replacing everything by default.
 
+### Are the theme, the customisations and the accounts of my store mine?
+
+Yes. Once everything is paid, the design, the code, the content and the accounts are yours, and everything is in your name. Apps from other parties remain subscriptions that run through your own Shopify account.
+
 ### Do you support multiple languages or countries through Shopify Markets?
 
 Yes, Shopify Markets is part of what we implement when a store needs to sell internationally.

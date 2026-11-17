@@ -116,6 +116,10 @@ That varies. Once you have signed the quote, we plan the kickoff together. When 
 
 Yes. After launch you can choose maintenance for a fixed monthly fee. It covers small changes, such as new text or images, and support whenever you have a question. That way you know exactly what you pay each month.
 
+### Can my website be extended later?
+
+Yes. You do not have to start over to move forward: we build on what is there and add new parts when you need them. Small changes are billed by the hour, a larger extension is done as a project for a fixed price.
+
 ### How quickly do you respond to a message?
 
 Usually the same day, and you always hear back within 24 hours. [Send us your question](/contact)
@@ -127,6 +131,10 @@ You request a quote by sending us a message on WhatsApp at [+31 6 26814488](http
 ### Do you work with a fixed price or by the hour?
 
 Both. Projects such as a website or online store are done for a fixed price, based on what is in the quote. Small changes and ongoing work are billed by the hour. If work is added during a project, we discuss it with you first, so you never face surprises.
+
+### What if I have extra wishes during the project?
+
+That is always possible. We do a website or online store for a fixed price, based on what is in the quote. If something is added during the project, we first discuss with you what it involves and what it costs, before we start on it. That way you never face surprises.
 
 ### How many feedback rounds are there in a project?
 
@@ -187,6 +195,10 @@ That rarely happens, because we agree the direction together upfront. If it does
 ### Can I follow the progress during the project?
 
 Yes. You get a link to a test version where you follow the progress live, and we show you where things stand at fixed moments.
+
+### Is everything tested before it goes live?
+
+Yes. We build on a test version first, where you follow the progress and can check everything. Testing is a fixed step in the roadmap, right before launch, so your live site or store only changes once everything is right.
 
 ### Can I pay in instalments?
 
