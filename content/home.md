@@ -1,6 +1,6 @@
 ---
 title: "Web Design Agency & Shopify Partner Netherlands | DYSIGNS"
-description: "Creative partner and small team for web design, branding and Shopify development. Official Shopify Partner in the Netherlands, working worldwide."
+description: "We help the digital side of your brand grow and scale: web design, branding, Shopify and AI implementation. Official Shopify Partner, Netherlands."
 slug: "/"
 heading: "We design, build and grow digital products"
 answerBlock: |
