@@ -1,6 +1,6 @@
 ---
-title: "About DYSIGNS: Full-Service Digital Agency"
-description: "DYSIGNS is a team of specialists based in the Netherlands. Meet the team, how we work, and our approach to SEO and technical optimization."
+title: "About DYSIGNS: Digital Agency in Almere and Amsterdam"
+description: "DYSIGNS is a digital agency in Almere and Amsterdam: one small team for UX/UI design, branding, web design, Shopify, SEO and AI. See how we work."
 heading: "About DYSIGNS"
 slug: "about"
 answerBlock: |
@@ -10,7 +10,7 @@ answerBlock: |
   Shopify development, branding, data-driven SEO and technical
   optimization, AI implementation, and social media and paid campaigns
   for clients worldwide.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-18"
 ---
 
 ## How we work

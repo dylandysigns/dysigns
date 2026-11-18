@@ -170,7 +170,7 @@ function ServicePage({
                 color: "var(--page-fg)",
               }}
             >
-              {String(serviceIndex + 1).padStart(2, "0")}
+              {String(serviceIndex + 1)}
             </span>
             <span
               style={{
@@ -181,7 +181,7 @@ function ServicePage({
                 color: "rgba(var(--page-fg-rgb), .55)",
               }}
             >
-              /{String(serviceDefinitions.length).padStart(2, "0")}
+              /{String(serviceDefinitions.length)}
             </span>
           </div>
         )}
@@ -293,7 +293,7 @@ function ServicePage({
                             transition: "color .3s",
                           }}
                         >
-                          {String(i + 1).padStart(2, "0")}
+                          {String(i + 1)}
                         </span>
                         <h3
                           style={{
@@ -526,7 +526,7 @@ function ServicePage({
                       color: "rgba(var(--page-fg-rgb), .45)",
                     }}
                   >
-                    {String(i + 1).padStart(2, "0")}
+                    {String(i + 1)}
                   </span>
                   <h3
                     className="mt-3"

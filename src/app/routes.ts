@@ -58,11 +58,6 @@ const localizedChildren: RouteObject[] = [
   { path: "insights", Component: InsightsOverviewPage },
   { path: "insights/:slug", Component: InsightsDetailPage },
   { path: "about", Component: AboutPage },
-  // Preview only (`npm run dev`): the "Bulletproof" variant of the About page, kept next to the
-  // live one for comparison. Production builds drop the route and its chunk.
-  ...(import.meta.env.DEV
-    ? [{ path: "about-bulletproof", lazy: lazyPage(() => import("./pages/about/AboutBulletproof")) }]
-    : []),
   { path: "contact", Component: ContactPage },
   { path: "privacy", Component: PrivacyPage },
 ];

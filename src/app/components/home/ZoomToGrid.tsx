@@ -7,7 +7,10 @@ import { TransitionLink } from "../TransitionLink";
 import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
-import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * ZoomToGrid — Selected projects as a static 3×3 grid (no pinned zoom any more)
@@ -72,7 +75,57 @@ export function ZoomToGrid() {
     });
   }, [tileProjects]);
 
-  /* No scroll motion: the section is the finished 3×3 grid straight away (it used to be pinned
+  /* Phone: two columns, the right one set lower like a contact sheet; both drift while you scroll */
+  useEffect(() => {
+    if (reduced || !wrapRef.current || window.innerWidth >= 768) return;
+    const ctx = gsap.context(() => {
+      const kids = Array.from(wrapRef.current!.querySelectorAll<HTMLElement>(".zg-grid > *")).slice(0, 8);
+      const left = kids.filter((_, i) => i % 2 === 0);
+      const right = kids.filter((_, i) => i % 2 === 1);
+      // they start level and then run at two different speeds: the left column barely drifts,
+      // the right one climbs a lot faster
+      const st = { trigger: wrapRef.current, start: "top 85%", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true };
+      gsap.fromTo(left, { y: 0 }, { y: () => -window.innerWidth * 0.04, ease: "none", scrollTrigger: st });
+      gsap.fromTo(right, { y: 0 }, { y: () => -window.innerWidth * 0.34, ease: "none", scrollTrigger: st });
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
+
+  /* The middle column starts set lower and slides up into line while you scroll through the grid */
+  useEffect(() => {
+    if (reduced || !wrapRef.current || window.innerWidth < 768) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".zg-mid",
+        { y: () => window.innerWidth * 0.1 },
+        {
+          y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapRef.current,
+            start: "top 85%",
+            end: "center 40%",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
+
+  /* The outer columns drift along with the scroll too, each at its own pace, so the grid moves as one */
+  useEffect(() => {
+    if (reduced || !wrapRef.current || window.innerWidth < 768) return;
+    const ctx = gsap.context(() => {
+      const st = { trigger: wrapRef.current, start: "top bottom", end: "bottom top", scrub: 0.8, invalidateOnRefresh: true };
+      gsap.fromTo(".zg-left", { y: () => window.innerWidth * 0.05 }, { y: () => -window.innerWidth * 0.05, ease: "none", scrollTrigger: st });
+      gsap.fromTo(".zg-right", { y: () => window.innerWidth * 0.08 }, { y: () => -window.innerWidth * 0.08, ease: "none", scrollTrigger: st });
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
+
+  /* (Old note: the section used to be pinned and zoom out from the centre tile.) The section is the finished 3×3 grid straight away (it used to be pinned
      and zoom out from the centre tile into the grid while scrolling). The project tiles, links and
      cursor labels are unchanged. */
 
@@ -86,7 +139,7 @@ export function ZoomToGrid() {
       onMouseLeave={() => cursor.reset()}
     >
       <div
-        className="aspect-[3/4] flex items-center justify-center p-3 text-center"
+        className="aspect-[5/2] md:aspect-[3/4] flex items-center justify-center p-3 text-center"
         style={{
           border: "1px solid rgba(var(--page-fg-rgb), .14)",
           fontFamily: "var(--font-brand)",
@@ -218,9 +271,9 @@ export function ZoomToGrid() {
                 className="block truncate"
                 style={{
                   fontFamily: "var(--font-brand)",
-                  fontSize: "clamp(.62rem,1vw,.9rem)",
+                  fontSize: "clamp(.7rem,1vw,.9rem)",
                   fontWeight: 600,
-                  letterSpacing: ".06em",
+                  letterSpacing: "0",
                   textTransform: "uppercase",
                   color: "var(--page-fg)",
                 }}
@@ -228,26 +281,15 @@ export function ZoomToGrid() {
                 {project.title}
               </span>
               <span
-                className="hidden md:block mt-1"
+                className="block mt-0.5 md:mt-1 truncate"
                 style={{
                   fontFamily: "var(--font-brand)",
-                  fontSize: ".85rem",
+                  fontSize: "clamp(.66rem,2.6vw,.85rem)",
                   color: "rgba(var(--page-fg-rgb), .7)",
                 }}
               >
                 {project.category}
               </span>
-            </span>
-            <span
-              className="hidden md:grid place-items-center shrink-0 rounded-full transition-colors duration-500 md:group-hover:bg-white md:group-hover:text-black"
-              style={{
-                width: 44,
-                height: 44,
-                border: "1px solid rgba(var(--page-fg-rgb), .35)",
-                color: "var(--page-fg)",
-              }}
-            >
-              <ArrowRight size={16} strokeWidth={1.5} />
             </span>
           </div>
           {/* corner frames — desktop hover only */}
@@ -401,7 +443,7 @@ export function ZoomToGrid() {
 
         <div
           className="relative flex items-baseline justify-between gap-4 px-3 md:px-6 mb-5 md:mb-8"
-          style={{ zIndex: 1 }}
+          style={{ zIndex: 3 }}
         >
           <h2
             ref={headlineRef}
@@ -434,10 +476,12 @@ export function ZoomToGrid() {
         </div>
 
         {/* Grid container — pointer-events auto on tiles */}
-        <div className="relative w-full" style={{ zIndex: 1 }}>
-          <div className="zg-grid grid grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
+        {/* the tiles slide up under the heading row, never over it: cut off at the top edge of the grid */}
+        <div className="relative w-full" style={{ zIndex: 1, clipPath: "inset(0 -10vw -30vw -10vw)" }}>
+          <div className="zg-grid grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
             {/* Row 1 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[0] = el;
               }}
@@ -445,6 +489,7 @@ export function ZoomToGrid() {
               <Tile project={tileProjects[0]} />
             </div>
             <div
+              className="zg-mid"
               ref={(el) => {
                 gridCardsRef.current[1] = el;
               }}
@@ -452,6 +497,7 @@ export function ZoomToGrid() {
               <Tile project={tileProjects[1]} />
             </div>
             <div
+              className="zg-side zg-right"
               ref={(el) => {
                 gridCardsRef.current[2] = el;
               }}
@@ -461,6 +507,7 @@ export function ZoomToGrid() {
 
             {/* Row 2 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[3] = el;
               }}
@@ -473,7 +520,7 @@ export function ZoomToGrid() {
             </div>
 
             {/* Centre tile */}
-            <div>
+            <div className="zg-mid">
             <Tile
               project={tileProjects[HERO_INDEX]}
               refCb={(el) => {
@@ -484,6 +531,7 @@ export function ZoomToGrid() {
             </div>
 
             <div
+              className="zg-side zg-right"
               ref={(el) => {
                 gridCardsRef.current[4] = el;
               }}
@@ -493,6 +541,7 @@ export function ZoomToGrid() {
 
             {/* Row 3 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[5] = el;
               }}
@@ -500,18 +549,12 @@ export function ZoomToGrid() {
               <Tile project={tileProjects[6]} />
             </div>
             <div
+              className="zg-mid"
               ref={(el) => {
                 gridCardsRef.current[6] = el;
               }}
             >
               <Tile project={tileProjects[7]} />
-            </div>
-            <div
-              ref={(el) => {
-                gridCardsRef.current[7] = el;
-              }}
-            >
-              <LinkTile to="/contact" label={t("hero.cta2")} />
             </div>
           </div>
         </div>

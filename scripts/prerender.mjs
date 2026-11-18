@@ -98,9 +98,9 @@ const routesToPrerender = [
 // stays untouched and identical across routes.
 const NL_SITE_SCHEMA_DESCRIPTIONS = {
   "https://dylandysigns.com/#organization":
-    "DYSIGNS is een creative partner en full-service digital agency (een klein team) uit Almere, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
+    "DYSIGNS is een creative partner en full-service digital agency (een klein team) die vanuit Almere en Amsterdam werkt, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
   "https://dylandysigns.com/#localbusiness":
-    "Creative partner en full-service digital agency (klein team) uit Almere, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
+    "Creative partner en full-service digital agency (klein team) uit Almere die ook in Amsterdam werkt, officieel Shopify Partner, voor webdesign, Shopify development, UX/UI-design, branding, SEO en technische optimalisatie, social media en Meta Ads, en AI-implementatie.",
   "https://dylandysigns.com/#website":
     "Creative partner en full-service digital agency (klein team) uit Almere: webdesign, Shopify development, UX/UI-design, branding, social media en AI-implementatie.",
 };

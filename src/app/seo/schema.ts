@@ -89,10 +89,12 @@ export function creativeWorkSchema(opts: {
   };
 }
 
-export function profilePageSchema(opts: { path: string }) {
+export function profilePageSchema(opts: { path: string; name?: string; dateModified?: string }) {
   return {
     "@type": "ProfilePage",
     url: canonicalUrl(opts.path),
+    ...(opts.name ? { name: opts.name } : {}),
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
     mainEntity: { "@id": ORG_ID },
   };
 }

@@ -325,8 +325,8 @@ export function KindWords() {
                   letterSpacing: ".04em",
                 }}
               >
-                {String(sourceIndex + 1).padStart(2, "0")} /{" "}
-                {String(total).padStart(2, "0")}
+                {String(sourceIndex + 1)} /{" "}
+                {String(total)}
               </span>
             </div>
           </div>
@@ -592,8 +592,8 @@ export function KindWords() {
               letterSpacing: ".04em",
             }}
           >
-            {String(sourceIndex + 1).padStart(2, "0")} /{" "}
-            {String(total).padStart(2, "0")}
+            {String(sourceIndex + 1)} /{" "}
+            {String(total)}
           </span>
           <ArrowBtn
             direction="next"

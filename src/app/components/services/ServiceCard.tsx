@@ -91,20 +91,7 @@ export function ServiceCard({
       </svg>
 
       <div className="relative z-10 flex h-full flex-col p-6 md:p-7">
-        <span
-          style={{
-            fontFamily: "var(--font-brand)",
-            fontSize: "1.4rem",
-            fontWeight: 700,
-            letterSpacing: "-.02em",
-            color: "rgba(var(--page-fg-rgb), .55)",
-          }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-
         <h3
-          className="mt-5"
           style={{
             fontFamily: "var(--font-brand)",
             fontSize: "1rem",

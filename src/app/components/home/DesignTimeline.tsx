@@ -162,7 +162,7 @@ export function DesignTimeline() {
                   color: "rgba(var(--page-fg-rgb), .18)",
                 }}
               >
-                {String(i + 1).padStart(2, "0")}
+                {String(i + 1)}
               </span>
               <h3
                 className="mt-3"
@@ -339,7 +339,7 @@ export function DesignTimeline() {
                   color: "rgba(var(--page-fg-rgb), .45)",
                 }}
               >
-                {String(i + 1).padStart(2, "0")}
+                {String(i + 1)}
               </span>
               <h3
                 className="mt-3"

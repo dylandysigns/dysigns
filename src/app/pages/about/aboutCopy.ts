@@ -1,12 +1,13 @@
 import type { Lang } from "../../hooks/useLanguage";
 
-/* Copy for the "Bulletproof" variant of the About page (AboutBulletproof.tsx),
-   kept apart from aboutCopy.ts so the two versions can be compared side by side
-   and changed without touching each other. Preview only, see routes.ts. */
+/* ─── About page copy (AboutPage.tsx) ───────────────────────────────────────
+ *  Voice: "we / our". Never "agency", "studio" or "my" (see data/content.ts).
+ *  No invented numbers, and never a zero as a figure or in list numbering.
+ * ───────────────────────────────────────────────────────────────────────── */
 
 export type PillarItem = { label: string; to?: string };
 
-export type BulletproofCopy = {
+export type AboutCopy = {
   label: string;
   /** The h1, one array per line. Lines are justified edge to edge on desktop. */
   headline: string[][];
@@ -30,11 +31,15 @@ export type BulletproofCopy = {
   values: { title: string; text: string }[];
   casesLabel: string;
   links: { work: string; insights: string; social: string };
+  topLine: string;
+  locationsLabel: string;
+  locationsText: string;
+  locations: { label: string; to: string }[];
   clientsLabel: string;
   clientsText: string;
 };
 
-export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
+export const aboutCopy: Record<Lang, AboutCopy> = {
   nl: {
     label: "Over ons",
     headline: [
@@ -49,7 +54,7 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
       "zonder ruis.",
     ],
     intro:
-      "DYSIGNS is een creative partner uit Nederland: een klein team van specialisten in plaats van één generalist. Wij verzorgen het hele traject, van UX en merkidentiteit tot websites en Shopify-webshops, data-gedreven SEO, AI-implementatie en de social- en advertentiecampagnes die daarna klanten binnenhalen. Eén partner in plaats van vier leveranciers die naar elkaar wijzen, met klanten over de hele wereld.",
+      "DYSIGNS is jouw creative partner uit Almere en Amsterdam: een digitaal bureau met een klein team van specialisten voor UX/UI design, branding, webdesign, Shopify-webshops, SEO, AI-implementatie en social- en advertentiecampagnes. Eén team in plaats van vier bureaus die naar elkaar wijzen, voor klanten in Nederland en daarbuiten.",
     statementKicker: "Eén partner voor het hele traject, van eerste schets tot de campagne erna.",
     statementLead: "Alles wat we maken is ontworpen om te",
     statementWord: ["Gro", "eien"],
@@ -58,29 +63,29 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     services: "Diensten",
     pillars: [
       {
-        title: "Merk",
+        title: "Growth",
         text: "Een merk dat je in één oogopslag herkent en dat op elk scherm klopt, van logo tot laatste knop.",
         items: [
           { label: "Merkstrategie en positionering", to: "/branding" },
           { label: "Visuele identiteit", to: "/branding" },
           { label: "UX/UI design", to: "/ux-ui-design" },
-          { label: "Design systems" },
+          { label: "Design systems", to: "/ux-ui-design" },
         ],
-        image: "/images/sfumato-moodboard.avif",
+        image: "/images/merelymade-cover.avif",
       },
       {
-        title: "Bouw",
-        text: "Websites, webshops en slimme tools die snel laden, makkelijk te beheren zijn en blijven werken als je groeit.",
+        title: "Scale",
+        text: "Websites en webshops die snel laden, met AI die het saaie werk uit je handen neemt: slimme chatbots, automatiseringen en tools die met je meegroeien.",
         items: [
+          { label: "AI-implementatie", to: "/ai-implementation" },
           { label: "Webdesign en development", to: "/web-design" },
           { label: "Shopify-webshops", to: "/shopify-development" },
-          { label: "AI-implementatie", to: "/ai-implementation" },
-          { label: "Technische SEO" },
+          { label: "Technische SEO", to: "/web-design" },
         ],
-        image: "/images/merelymade-web-hero.avif",
+        image: "/images/stelz-app-work-cover.avif",
       },
       {
-        title: "Groei",
+        title: "Run it",
         text: "Live gaan is het begin. Daarna zorgen we dat de juiste mensen je vinden, blijven hangen en terugkomen.",
         items: [
           { label: "Social media", to: "/social-media-meta-ads" },
@@ -94,10 +99,10 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     storyLabel: "Ons verhaal",
     storyTitle: "Begonnen als designers. Gebleven als partner.",
     story: [
-      "DYSIGNS begon bij UX en UI. We ontwierpen schermen, flows en producten, en wilden steeds een stap verder: het merk erachter, de site eromheen, de campagne die mensen ernaartoe brengt. Die nieuwsgierigheid is nooit weggegaan.",
-      "Onderweg zagen we bij klanten telkens hetzelfde misgaan. Een kleine wijziging duurde weken. Niemand wist precies waar het project stond. De ontwerper wees naar de developer, de developer naar de marketeer. Zo lekt momentum weg, en met momentum ook kansen.",
-      "Dus bouwden we DYSIGNS precies andersom. Eén vast aanspreekpunt in plaats van een wisselend team. Korte feedbackloops, zodat je binnen dagen iets ziet en niet pas na maanden. Heldere afspraken over wat er gebeurt, wanneer en waarom.",
-      "Vandaag zijn we een klein team van specialisten. Sterk design blijft de kern. Daaromheen zit alles wat nodig is om het te laten werken: development, vindbaarheid, AI en campagnes. Zo groeit je zichtbaarheid mee met het werk, in plaats van erachteraan te lopen.",
+      "We begonnen als UX- en UI-designers. Schermen, flows, producten: dat was ons ding. Maar we wilden steeds een stapje verder. Wie bedenkt het merk erachter? Wie bouwt de site eromheen? Wie zorgt dat mensen er ook echt naartoe komen? Die nieuwsgierigheid is nooit meer weggegaan.",
+      "Onderweg zagen we bij klanten steeds hetzelfde gebeuren. Een kleine aanpassing kostte weken. Niemand wist waar het project stond. De designer wees naar de developer, de developer naar de marketeer. Zo lekt momentum weg, en kansen gaan er gezellig achteraan.",
+      "Dus draaiden we het om. Eén vast aanspreekpunt in plaats van een wisselend team. Korte lijntjes, zodat je binnen een paar dagen iets ziet en niet pas na maanden. En heldere afspraken over wat er gebeurt, wanneer en waarom. Geen bureaugezwam.",
+      "Geboren uit design, en nog altijd door en door creatief. Vandaag zijn we een klein, scherp team van specialisten, en ze zijn stuk voor stuk even goed in hun vak. Design, development, SEO, AI, social en campagnes: voor elk vlak hebben we iemand die er echt in thuis is. Geen bijzaken, geen halve dingen. Zo krijg je alles op hetzelfde hoge niveau, bij één team.",
     ],
     facts: [
       { figure: "1", text: "vast aanspreekpunt, van de eerste call tot ver na de lancering" },
@@ -131,6 +136,14 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     ],
     casesLabel: "Uit ons werk",
     links: { work: "Bekijk al het werk", insights: "Lees onze inzichten", social: "Volg ons op Instagram" },
+    topLine: "Digitaal bureau in Almere en Amsterdam",
+    locationsLabel: "Almere en Amsterdam",
+    locationsText:
+      "We werken vanuit Almere en Amsterdam, voor klanten in de regio en ver daarbuiten. Zoek je een partner voor webdesign dichtbij? Kijk dan hoe we het in jouw stad aanpakken.",
+    locations: [
+      { label: "Webdesign Almere", to: "/web-design-almere" },
+      { label: "Webdesign Amsterdam", to: "/web-design-amsterdam" },
+    ],
     clientsLabel: "Vertrouwd door",
     clientsText: "Van startup tot scale-up, in Nederland en daarbuiten.",
   },
@@ -148,7 +161,7 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
       "no noise.",
     ],
     intro:
-      "DYSIGNS is a creative partner based in the Netherlands: a small team of specialists rather than one generalist. We handle the whole journey, from UX and brand identity to websites and Shopify stores, data-driven SEO, AI implementation, and the social and paid campaigns that bring in customers afterwards. One partner instead of four vendors pointing at each other, working with clients worldwide.",
+      "DYSIGNS is your creative partner from Almere and Amsterdam: a digital agency with a small team of specialists in UX/UI design, branding, web design, Shopify stores, SEO, AI implementation and social and paid campaigns. One team instead of four agencies pointing at each other, for clients in the Netherlands and beyond.",
     statementKicker: "One partner for the whole journey, from first sketch to the campaign after launch.",
     statementLead: "Everything we make is designed to",
     statementWord: ["Gr", "ow"],
@@ -157,29 +170,29 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     services: "Services",
     pillars: [
       {
-        title: "Brand",
+        title: "Growth",
         text: "A brand people recognise at a glance and that holds up on every screen, from the logo to the last button.",
         items: [
           { label: "Brand strategy and positioning", to: "/branding" },
           { label: "Visual identity", to: "/branding" },
           { label: "UX/UI design", to: "/ux-ui-design" },
-          { label: "Design systems" },
+          { label: "Design systems", to: "/ux-ui-design" },
         ],
-        image: "/images/sfumato-moodboard.avif",
+        image: "/images/merelymade-cover.avif",
       },
       {
-        title: "Build",
-        text: "Websites, stores and smart tools that load fast, are easy to manage and keep working as you grow.",
+        title: "Scale",
+        text: "Websites and stores that load fast, with AI that takes the boring work off your hands: smart chatbots, automations and tools that grow with you.",
         items: [
+          { label: "AI implementation", to: "/ai-implementation" },
           { label: "Web design and development", to: "/web-design" },
           { label: "Shopify stores", to: "/shopify-development" },
-          { label: "AI implementation", to: "/ai-implementation" },
-          { label: "Technical SEO" },
+          { label: "Technical SEO", to: "/web-design" },
         ],
-        image: "/images/merelymade-web-hero.avif",
+        image: "/images/stelz-app-work-cover.avif",
       },
       {
-        title: "Grow",
+        title: "Run it",
         text: "Going live is the start. After that we make sure the right people find you, stick around and come back.",
         items: [
           { label: "Social media", to: "/social-media-meta-ads" },
@@ -193,10 +206,10 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     storyLabel: "Our story",
     storyTitle: "Started as designers. Stayed as partners.",
     story: [
-      "DYSIGNS started with UX and UI. We designed screens, flows and products, and kept wanting to go one step further: the brand behind it, the site around it, the campaign that brings people to it. That curiosity never left.",
-      "Along the way we saw the same thing go wrong for clients again and again. A small change took weeks. Nobody knew exactly where the project stood. The designer pointed at the developer, the developer at the marketer. That is how momentum leaks away, and opportunities with it.",
-      "So we built DYSIGNS the other way around. One fixed point of contact instead of a rotating team. Short feedback loops, so you see something within days and not after months. Clear agreements on what happens, when and why.",
-      "Today we are a small team of specialists. Strong design stays at the core. Around it sits everything needed to make it work: development, search visibility, AI and campaigns. That way your visibility scales with the work instead of trailing behind it.",
+      "We started out as UX and UI designers. Screens, flows, products: that was our thing. But we always wanted to go one step further. Who dreams up the brand behind it? Who builds the website around it? Who makes sure people actually show up? That curiosity never went away.",
+      "Along the way we saw the same thing happen to clients again and again. A tiny tweak took weeks. Nobody knew where the project stood. The designer pointed at the developer, the developer at the marketer. That is how momentum leaks away, and opportunities happily follow it out the door.",
+      "So we flipped it. One fixed point of contact instead of a rotating team. Short lines, so you see something within days and not after months. And clear agreements on what happens, when and why. No agency waffle.",
+      "Born from design, and still creative to the core. Today we are a small, sharp team of specialists, and every one of them is great at their craft. Design, development, SEO, AI, social and campaigns: for every field we have someone who is truly at home in it. No side dishes, nothing half-done. That way you get everything at the same high level, from one team.",
     ],
     facts: [
       { figure: "1", text: "fixed point of contact, from the first call to long after launch" },
@@ -230,13 +243,21 @@ export const bulletproofCopy: Record<Lang, BulletproofCopy> = {
     ],
     casesLabel: "From our work",
     links: { work: "View all work", insights: "Read our insights", social: "Follow us on Instagram" },
+    topLine: "Digital agency in Almere and Amsterdam",
+    locationsLabel: "Almere and Amsterdam",
+    locationsText:
+      "We work from Almere and Amsterdam, for clients in the region and far beyond. Looking for a web design partner nearby? See how we approach it in your city.",
+    locations: [
+      { label: "Web design Almere", to: "/web-design-almere" },
+      { label: "Web design Amsterdam", to: "/web-design-amsterdam" },
+    ],
     clientsLabel: "Trusted by",
     clientsText: "From startup to scale-up, in the Netherlands and beyond.",
   },
 };
 
 /** Cases shown large on the page; title, category and cover come from data/projects.ts. */
-export const bulletproofCaseSlugs = [
+export const aboutCaseSlugs = [
   "stelz-app",
   "merely-made-webshop",
   "sfumato-agency",

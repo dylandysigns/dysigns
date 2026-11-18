@@ -622,7 +622,7 @@ html.ph-lock body {
 .ph-trust__label {
   font-size: 10.5px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: #d4d4d4;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
@@ -708,6 +708,11 @@ html.ph-lock body {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+.ph--paused .ph-down {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+}
 .ph-midhint span {
   font-size: 12px;
   font-weight: 600;
@@ -755,7 +760,7 @@ html.ph-lock body {
   color: #fff;
   cursor: pointer;
   /* there from the opening screen on, in once the splash and the headline are done */
-  animation: phDownIn 0.9s ease 3.4s both;
+  animation: phDownIn 0.7s ease 1.6s both;
 }
 @keyframes phDownIn {
   from {
@@ -798,12 +803,12 @@ html.ph-lock body {
   stroke-dashoffset: 12;
   opacity: 1;
   filter: drop-shadow(0 0 3px rgba(200, 225, 255, 0.9));
-  animation: phDownSpark 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: phDownSpark 2.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 .ph-down__head {
   opacity: 0.8;
   transition: opacity 0.4s ease;
-  animation: phDownHead 4.2s ease-in-out infinite;
+  animation: phDownHead 2.6s ease-in-out infinite;
 }
 .ph-down:hover .ph-down__head,
 .ph-down:focus-visible .ph-down__head {
