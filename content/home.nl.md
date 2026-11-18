@@ -1,6 +1,6 @@
 ---
 title: "Webdesign Bureau & Shopify Partner Nederland | DYSIGNS"
-description: "Creative partner en klein team voor webdesign, branding en Shopify. Officiële Shopify Partner in Nederland, met klanten wereldwijd."
+description: "Wij laten de digitale kant van je merk groeien en schalen: webdesign, branding, Shopify en AI-implementatie. Officiële Shopify Partner in Nederland."
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
