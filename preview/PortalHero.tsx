@@ -1003,6 +1003,9 @@ export default function PortalHero() {
             );
           })}
         </ul>
+        <p className="ph-quote" data-rise>
+          {t("hero.quote")}
+        </p>
       </section>
       {/* the way on: a hairline that points down with a light sliding along it and a fine arrowhead,
           no text; a plain click scrolls on to the page. It sits outside scene B,

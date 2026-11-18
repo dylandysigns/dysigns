@@ -74,6 +74,10 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.keepScrolling": { en: "Keep scrolling", nl: "Blijf scrollen" },
   "hero.watchVideo": { en: "See us in 19 sec", nl: "Zie ons in 19 sec" },
   "hero.closeVideo": { en: "Close video", nl: "Sluit video" },
+  "hero.quote": {
+    en: "We help the digital side of your brand grow and scale, with smart design and AI implementation.",
+    nl: "Wij laten de digitale kant van je merk groeien en schalen, met slim design en AI-implementatie.",
+  },
   "hero.chip.strategy": { en: "Strategy", nl: "Strategie" },
   "hero.chip.ux": { en: "UX / UI", nl: "UX / UI" },
   "hero.chip.brand": { en: "Brand Identity", nl: "Brand identity" },

@@ -24,14 +24,14 @@ gsap.registerPlugin(ScrollTrigger);
  * and the last corner is always a contact link tile (see LinkTile).
  */
 const ZOOM_GRID_SLUGS: (string | null)[] = [
-  "sfumato-agency",
-  "merely-made-webshop",
-  "a-cafe-app-design",
-  "biyu",
-  "stelz-web-design", // hero / center tile
-  "powermobile",
-  "studio75-branding",
   "stelz-app",
+  "a-cafe-app-design",
+  "merely-made-webshop",
+  "studio75-branding",
+  "stelz-web-design", // hero / center tile
+  "biyu",
+  "powermobile",
+  "sfumato-agency",
 ];
 const HERO_INDEX = 4;
 
