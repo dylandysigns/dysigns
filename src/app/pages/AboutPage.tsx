@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { siteContent } from "../data/content";
-import { projects } from "../data/projects";
 import { useCursor } from "../hooks/useCursor";
 import { TransitionLink } from "../components/TransitionLink";
 import { LazyVideo } from "../components/LazyVideo";
@@ -13,7 +12,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { Seo } from "../components/Seo";
 import { breadcrumbListSchema, profilePageSchema } from "../seo/schema";
 import { getLocalizedContent } from "../content/loadContent";
-import { aboutCaseSlugs, aboutCopy } from "./about/aboutCopy";
+import { aboutCopy } from "./about/aboutCopy";
 import "./about/about.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,10 +63,6 @@ export default function AboutPage() {
   const entry = getLocalizedContent("about.md", lang);
   const c = aboutCopy[lang];
   const [openPillar, setOpenPillar] = useState(0);
-
-  const cases = aboutCaseSlugs
-    .map((slug) => projects.find((project) => project.slug === slug))
-    .filter((project) => project !== undefined);
 
   // The big word and the film in it together fill the width: a letter of
   // Effra heavy is about 0.74em wide, the film 1.15em plus its gaps.
@@ -282,17 +277,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="ab-wrap">
-        <div className="ab-facts" data-stagger>
-          {c.facts.map((fact) => (
-            <div key={fact.text} className="ab-fact">
-              <span className="ab-fact-figure">{fact.figure}</span>
-              <p className="ab-fact-text">{fact.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ── 3. What we deliver: three panels, the open one takes the room ── */}
       <section className="ab-deliver ab-wrap">
         <div className="ab-deliver-head" data-reveal>
@@ -330,34 +314,6 @@ export default function AboutPage() {
               <h3 className="ab-pillar-title">{pillar.title}</h3>
             </article>
           ))}
-        </div>
-      </section>
-
-      {/* ── Cases: crawlable internal links to the work behind the claims ── */}
-      <section className="ab-cases">
-        <div className="ab-cases-head ab-wrap" data-reveal>
-          <h2 className="ab-h2">{c.casesLabel}</h2>
-        </div>
-        <div className="ab-strip" data-stagger>
-          {cases.map((project) => (
-            <TransitionLink key={project.slug} to={`/work/${project.slug}`} className="ab-case" {...linkCursor}>
-              <span className="ab-case-img">
-                <img src={project.thumbnail} alt={`${project.title}, ${project.category}`} loading="lazy" draggable={false} />
-              </span>
-              <span className="ab-case-name">{project.title}</span>
-              <span className="ab-case-cat">{project.category}</span>
-            </TransitionLink>
-          ))}
-        </div>
-        <div className="ab-links ab-wrap">
-          <TransitionLink to="/work" className="ab-link" {...linkCursor}>
-            {c.links.work}
-            <ArrowUpRight aria-hidden="true" />
-          </TransitionLink>
-          <TransitionLink to="/insights" className="ab-link" {...linkCursor}>
-            {c.links.insights}
-            <ArrowUpRight aria-hidden="true" />
-          </TransitionLink>
         </div>
       </section>
 
