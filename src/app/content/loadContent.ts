@@ -143,6 +143,18 @@ export function getSectionParagraph(markdownBody: string, heading: string): stri
   return section.trim().replace(/\s+/g, " ");
 }
 
+/** Like getSectionParagraph, but keeps the paragraph breaks: returns the
+ * section as an array of paragraphs (split on blank lines). Used for
+ * longer story-style sections on service pages. */
+export function getSectionParagraphs(markdownBody: string, heading: string): string[] {
+  const section = extractSection(markdownBody, heading);
+  if (!section) return [];
+  return section
+    .split(/\r?\n\s*\r?\n/)
+    .map((p) => p.trim().replace(/\s+/g, " "))
+    .filter(Boolean);
+}
+
 const entriesByPath = new Map<string, ContentEntry>(
   Object.entries(contentEntries as Record<string, ContentEntry>),
 );

@@ -84,7 +84,7 @@ UX design bepaalt hoe iets werkt: de structuur, de flows en de volgorde van stap
 
 ### Voor welke producten hebben jullie UX/UI ontworpen?
 
-Onder meer een veldwerk-app voor handhavers ([PowerMobile](/nl/work/powermobile)), een gekoppeld kiosk-, kassa- en keukensysteem voor [A/Café](/nl/work/a-cafe-app-design), de [STËLZ-app](/nl/work/stelz-app) en de app, website en het dashboard van [BIYU](/nl/work/biyu).
+Onder meer een veldwerk-app voor handhavers ([PowerMobile](/nl/work/powermobile)), een gekoppeld kiosk-, kassa- en keukensysteem voor [A/Café](/nl/work/a-cafe-app-design), de [STËLZ-app](/nl/work/stelz-app) en de app, website en het dashboard van [BIYU](/nl/work/biyu). Lees hoe BIYU en A/Café tot stand kwamen in ons [Amsterdamse verhaal](/nl/web-design-amsterdam).
 
 ### Beginnen jullie altijd met onderzoek?
 

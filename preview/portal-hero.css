@@ -218,6 +218,7 @@ html.ph-lock body {
   align-items: center;
 }
 .sa-ship {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -227,7 +228,7 @@ html.ph-lock body {
   background: none;
   color: #fff;
   cursor: pointer;
-  opacity: 0.82;
+  opacity: 0.94;
   transition: opacity 0.4s ease;
 }
 .sa-ship:hover {
@@ -251,36 +252,192 @@ html.ph-lock body {
   color: rgba(255, 255, 255, 0.92);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
-/* the invitation: a quiet line in light italic over a hairline that draws out on hover */
+/* the invitation reads as a button: a glass pill with a white arrow, like the hero's own buttons,
+   and a soft ring that pulses out of it now and then so the eye finds it */
 .sa-ask {
-  position: relative;
-  padding-bottom: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 5px 5px 5px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   font-size: 0.86rem;
-  font-weight: 300;
-  font-style: italic;
+  font-weight: 500;
   letter-spacing: 0;
-  color: rgba(255, 255, 255, 0.62);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
-  transition: color 0.4s ease;
+  white-space: nowrap;
+  color: #fff;
+  animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
-.sa-ask::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 46%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7), transparent);
-  transform: translateX(-50%);
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+.sa-go {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sa-go svg {
+  display: block;
 }
 .sa-ship:hover .sa-ask,
 .sa-ship:focus-visible .sa-ask {
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.14);
 }
-.sa-ship:hover .sa-ask::after,
-.sa-ship:focus-visible .sa-ask::after {
-  width: 110%;
+.sa-ship:hover .sa-go,
+.sa-ship:focus-visible .sa-go {
+  transform: translateX(3px);
+}
+@keyframes sa-beckon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.32);
+  }
+  60%,
+  100% {
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-ask {
+    animation: none;
+  }
+}
+
+/* Desktop and tablet: a speech bubble up to the left of the orb. It pops up once the hero is in,
+   types for a moment (three dots), then greets and asks. It steps aside on hover, where the bubble
+   by the cursor (GreetingBubble.tsx) takes over, and while the agent's scene is open. */
+.sa-hint {
+  position: absolute;
+  top: 4px;
+  right: calc(50% + 36px);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sa-ship:hover .sa-hint,
+.sa.is-open .sa-hint {
+  opacity: 0;
+}
+.sa-hint__bubble {
+  display: grid;
+  padding: 9px 14px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px 16px 4px 16px;
+  background: rgba(10, 12, 16, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  text-align: left;
+  white-space: nowrap;
+  transform-origin: 100% 100%;
+  opacity: 0;
+}
+/* the sequence starts once the hero has faded in (is-awake, SpaceAgent.tsx) */
+.sa.is-awake .sa-hint__bubble {
+  animation: sa-hint-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;
+}
+.sa-hint__dots,
+.sa-hint__text {
+  grid-area: 1 / 1;
+}
+.sa-hint__dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sa.is-awake .sa-hint__dots {
+  animation: sa-hint-out 0.2s ease 2.5s both;
+}
+.sa-hint__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  animation: sa-hint-dot 0.9s ease-in-out infinite;
+}
+.sa-hint__dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.sa-hint__dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.sa-hint__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0;
+}
+.sa.is-awake .sa-hint__text {
+  animation: sa-hint-in 0.35s ease 2.6s both;
+}
+.sa-hint__hi {
+  font-size: 0.78rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.68);
+}
+.sa-hint__ask {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+@keyframes sa-hint-pop {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes sa-hint-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes sa-hint-in {
+  from {
+    opacity: 0;
+    translate: 0 3px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes sa-hint-dot {
+  0%,
+  60%,
+  100% {
+    translate: 0 0;
+    opacity: 0.45;
+  }
+  30% {
+    translate: 0 -3px;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* no typing: the question is simply there */
+  .sa .sa-hint__bubble,
+  .sa .sa-hint__text {
+    opacity: 1;
+    animation: none;
+  }
+  .sa-hint__dots {
+    display: none;
+  }
 }
 
 /* The DYSIGNS agent in the bottom right corner, across from the globe, above the partner logos:
@@ -304,8 +461,12 @@ html.ph-lock body {
     width: 120px;
     height: 120px;
   }
+  .ph-agent .sa-hint {
+    right: calc(50% + 28px);
+  }
 }
 @media (max-width: 767px) {
+  /* on a phone the whole agent is one pill: the orb, its name and invitation, a white arrow */
   .ph-agent {
     right: 12px;
     bottom: 86px;
@@ -313,33 +474,62 @@ html.ph-lock body {
   }
   .ph-agent .sa-ship {
     display: grid;
-    grid-template-columns: 58px auto;
-    grid-template-rows: auto auto;
-    column-gap: 8px;
+    grid-template-columns: 44px auto 34px;
+    grid-template-areas:
+      "orb name go"
+      "orb ask go";
+    column-gap: 10px;
+    row-gap: 1px;
     align-items: center;
+    padding: 5px 5px 5px 4px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(12, 12, 14, 0.55);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     opacity: 1;
+    animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  }
+  .ph-agent .sa-hint {
+    display: none;
   }
   .ph-agent .sa-craft {
-    grid-row: 1 / 3;
-    width: 58px;
-    height: 58px;
+    grid-area: orb;
+    width: 44px;
+    height: 44px;
   }
   .ph-agent .sa-name {
+    grid-area: name;
     margin: 0;
     align-self: end;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     text-align: left;
   }
+  /* the pill's parts sit straight in the row; the row itself is the button */
   .ph-agent .sa-ask {
-    align-self: start;
-    padding-bottom: 3px;
-    font-size: 0.74rem;
-    text-align: left;
+    display: contents;
+    animation: none;
   }
-  .ph-agent .sa-ask::after {
-    left: 0;
-    width: 70%;
-    transform: none;
+  .ph-agent .sa-ask__text {
+    grid-area: ask;
+    align-self: start;
+    font-size: 0.76rem;
+    font-weight: 400;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .ph-agent .sa-go {
+    grid-area: go;
+    width: 34px;
+    height: 34px;
+  }
+  .ph-agent .sa-ship:focus-visible {
+    border-radius: 999px;
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .ph-agent .sa-ship {
+    animation: none;
   }
 }
 .ph-globe-btn {

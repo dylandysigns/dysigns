@@ -1,6 +1,6 @@
 ---
 title: "Web Design & Shopify Agency Amsterdam | DYSIGNS"
-description: "Website, Shopify store or app in Amsterdam? DYSIGNS, based in nearby Almere, designs and builds custom work for Amsterdam brands as a Shopify Partner."
+description: "Website, Shopify store or app in Amsterdam? From BIYU on the Overtoom to A/Café: DYSIGNS designs and builds custom work as a Shopify Partner."
 heading: "Web design in Amsterdam"
 slug: "web-design-amsterdam"
 answerBlock: |
@@ -9,7 +9,7 @@ answerBlock: |
   close to the city, and our Amsterdam work includes BIYU on the
   Overtoom and the ordering system for A/Café. The same team designs
   and builds, so what launches is what was designed.
-lastUpdated: "2026-11-14"
+lastUpdated: "2026-11-17"
 ---
 
 ## What this includes
@@ -26,9 +26,21 @@ A Shopify store with a custom theme, integrations and Shopify Markets if you als
 
 UX/UI design and development for apps, dashboards and portals, from the first design to the live version.
 
+## Our Amsterdam story
+
+In 2022 you would find us most days at an office on the Overtoom in Amsterdam, at BIYU. Their idea was refreshingly down to earth: why buy a drill you use twice a year? At BIYU you simply rented one, along with carpet cleaners, DJ sets or a poffertjes maker, often delivered to your door the same day. Do more, own less.
+
+Our part was the digital side. The app, where you find a product, pick your rental period and see when it arrives. The website, with every category from DIY to kitchen. The dashboard behind the scenes, where the team kept track of orders, stock and deliveries. And the partner portal, where other businesses could rent out their own gear through BIYU, in the same purple and hexagons as the rest of the brand. A rental company in the city leaves little room for hassle: if someone booked a pressure washer for Saturday, it had better be there. That is what those screens were for.
+
+The story did not stop at the Overtoom. After five years of running their own rentals, with their own warehouses and delivery, BIYU now builds the software other brands use to run rental, subscriptions and resale. Homie and Reflower are among those running on it. From an office in Amsterdam to the engine behind other brands: it is a journey we were happy to be part of early on. You can read the full story in the [BIYU case](/work/biyu).
+
+Amsterdam came back to us in a different form with A/Café. That started as an MVP for a single self-ordering kiosk. Together we grew it into a full ordering system: the kiosk, the POS and the kitchen display designed as one product, all speaking the same visual language. Guests order, staff fulfil and the brand shows through at every step. It now runs in a test phase across their stores, from Amsterdam and Paris to Dubai and Miami. Have a look at the [A/Café case](/work/a-cafe-app-design) for how the pieces fit together.
+
+Two very different companies, one thing in common: the screens had to work in the middle of a busy day, for people who had no time to figure them out. That is how we design and build for Amsterdam brands.
+
 ## Why a team close to Amsterdam
 
-Looking for a web design agency for your website or store in Amsterdam? We are based in Almere and regularly work in Amsterdam, so meeting at your place is easy to arrange. We know the city up close: for BIYU we worked from their office on the Overtoom on the app, the website and the dashboard behind their rental service. Most of the work itself runs remotely, with short lines and one fixed point of contact, in Dutch or English.
+We are based in Almere, close enough to sit down at your place whenever that helps, for a first conversation or a key moment along the way. The work itself mostly runs remotely, with short lines, clear updates and one fixed point of contact, in Dutch or English.
 
 ## Who it is for
 
