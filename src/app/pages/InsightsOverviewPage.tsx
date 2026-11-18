@@ -40,7 +40,7 @@ export default function InsightsOverviewPage() {
                       transition: "color .3s",
                     }}
                   >
-                    {String(i + 1).padStart(2, "0")}
+                    {String(i + 1)}
                   </span>
                   <span
                     style={{

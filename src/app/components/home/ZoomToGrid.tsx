@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { zoomToGridData } from "../../data/projects";
 import type { Project } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
@@ -9,21 +7,16 @@ import { TransitionLink } from "../TransitionLink";
 import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * ZoomToGrid — Pinned zoom-out-to-grid section (3×3)
+ * ZoomToGrid — Selected projects as a static 3×3 grid (no pinned zoom any more)
  *
- * All 9 tiles (8 surrounding + 1 hero center) are clickable and route
- * to case detail pages. Pointer-events stay active during and after
- * the pinned scroll animation.
- *
- * Pin is created synchronously in useEffect (no rAF delay) so the
- * pin-spacer is in flow immediately. refreshPriority: -1 ensures
- * this section refreshes after Hero (2) and SentenceReveal (1).
- *
- * NOTE: resize + font-load ScrollTrigger.refresh is handled globally in Layout.tsx
+ * All 9 tiles (8 surrounding + 1 center) are clickable and route to
+ * case detail pages.
  *
  * Explicit slug list (not the raw array order) so this grid can be
  * curated independently of projects.ts's own order. STELZ stays the
@@ -46,7 +39,6 @@ export function ZoomToGrid() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const headline2Ref = useRef<HTMLSpanElement>(null);
   const gridCardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
   const { t, lang } = useLanguage();
@@ -83,93 +75,59 @@ export function ZoomToGrid() {
     });
   }, [tileProjects]);
 
-  // GSAP animation — re-runs on language change to retarget refs
+  /* Phone: two columns, the right one set lower like a contact sheet; both drift while you scroll */
   useEffect(() => {
-    if (reduced) {
-      // Grid tiles and the subtitle start at opacity 0 in their inline
-      // styles, so jump them to visible instead of skipping the effect
-      // (which would otherwise leave them permanently hidden). The
-      // scroll-pinned zoom/scrub itself is correctly skipped.
-      const targets = [...gridCardsRef.current, headline2Ref.current].filter(Boolean);
-      gsap.set(targets, { opacity: 1, scale: 1, y: 0 });
-      return;
-    }
-
-    const wrap = wrapRef.current;
-    const hero = heroRef.current;
-    const headline = headlineRef.current;
-    const headline2 = headline2Ref.current;
-    if (!wrap || !hero || !headline || !headline2) return;
-
+    if (reduced || !wrapRef.current || window.innerWidth >= 768) return;
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrap,
-          start: "top top",
-          end: () => `+=${window.innerHeight * 3}`,
-          pin: true,
-          scrub: isMobile ? 0.3 : 0.5,
-          // anticipatePin must stay 1 on mobile too — this section pins
-          // immediately after Hero's own sticky zone (see Hero.tsx's
-          // `sticky top-0 h-[100dvh]` wrapper), and GSAP's docs are
-          // explicit that anticipatePin:0 right after another
-          // pinned/sticky element causes a visible jump at the handoff.
-          // That handoff is exactly the "hero to next section" boundary
-          // reported as broken on mobile.
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: -1,
-        },
-      });
+      const kids = Array.from(wrapRef.current!.querySelectorAll<HTMLElement>(".zg-grid > *")).slice(0, 8);
+      const left = kids.filter((_, i) => i % 2 === 0);
+      const right = kids.filter((_, i) => i % 2 === 1);
+      // they start level and then run at two different speeds: the left column barely drifts,
+      // the right one climbs a lot faster
+      const st = { trigger: wrapRef.current, start: "top 85%", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true };
+      gsap.fromTo(left, { y: 0 }, { y: () => -window.innerWidth * 0.04, ease: "none", scrollTrigger: st });
+      gsap.fromTo(right, { y: 0 }, { y: () => -window.innerWidth * 0.34, ease: "none", scrollTrigger: st });
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
 
-      // Hero zoom out — smooth power2.inOut over first 55% of timeline
-      tl.fromTo(
-        hero,
-        { scale: 1.6 },
-        { scale: 1, duration: 0.55, ease: "power2.inOut" },
-        0,
-      );
-
-      // Headline eases up smoothly
-      tl.to(
-        headline,
-        { y: "-40%", opacity: 0.3, duration: 0.5, ease: "power2.inOut" },
-        0.2,
-      );
-
-      // Headline line 2 fades in smoothly
-      tl.fromTo(
-        headline2,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" },
-        0.4,
-      );
-
-      // Grid cards stagger in with smooth easing
-      gridCardsRef.current.forEach((card, i) => {
-        if (!card) return;
-        tl.fromTo(
-          card,
-          { scale: 0.8, opacity: 0, y: 30 },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
+  /* The middle column starts set lower and slides up into line while you scroll through the grid */
+  useEffect(() => {
+    if (reduced || !wrapRef.current || window.innerWidth < 768) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".zg-mid",
+        { y: () => window.innerWidth * 0.1 },
+        {
+          y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapRef.current,
+            start: "top 85%",
+            end: "center 40%",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
           },
-          0.45 + i * 0.04,
-        );
-      });
+        },
+      );
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
 
-      // Hold phase — grid stays fully visible while user continues scrolling
-      tl.to({}, { duration: 0.3 });
-    }, wrap);
+  /* The outer columns drift along with the scroll too, each at its own pace, so the grid moves as one */
+  useEffect(() => {
+    if (reduced || !wrapRef.current || window.innerWidth < 768) return;
+    const ctx = gsap.context(() => {
+      const st = { trigger: wrapRef.current, start: "top bottom", end: "bottom top", scrub: 0.8, invalidateOnRefresh: true };
+      gsap.fromTo(".zg-left", { y: () => window.innerWidth * 0.05 }, { y: () => -window.innerWidth * 0.05, ease: "none", scrollTrigger: st });
+      gsap.fromTo(".zg-right", { y: () => window.innerWidth * 0.08 }, { y: () => -window.innerWidth * 0.08, ease: "none", scrollTrigger: st });
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
 
-    return () => {
-      ctx.revert();
-    };
-  }, [reduced, lang]);
+  /* (Old note: the section used to be pinned and zoom out from the centre tile.) The section is the finished 3×3 grid straight away (it used to be pinned
+     and zoom out from the centre tile into the grid while scrolling). The project tiles, links and
+     cursor labels are unchanged. */
 
   /** Text tile for a grid cell without a project, same shape as Tile. */
   const LinkTile = useCallback(
@@ -181,7 +139,7 @@ export function ZoomToGrid() {
       onMouseLeave={() => cursor.reset()}
     >
       <div
-        className="aspect-[3/4] sm:aspect-[4/3] rounded-xl flex items-center justify-center p-3 text-center"
+        className="aspect-[5/2] md:aspect-[3/4] flex items-center justify-center p-3 text-center"
         style={{
           border: "1px solid rgba(var(--page-fg-rgb), .14)",
           fontFamily: "var(--font-brand)",
@@ -236,7 +194,7 @@ export function ZoomToGrid() {
       >
         <div
           ref={refCb}
-          className="relative overflow-hidden rounded-xl group"
+          className="relative overflow-hidden group"
           style={{
             transformOrigin: isHero ? "center center" : undefined,
             ...style,
@@ -247,11 +205,9 @@ export function ZoomToGrid() {
               Safari from rasterising a filtered texture on every hover-scale
               frame (filter + transform on the same element = software path). */}
           <div
-            className="aspect-[3/4] sm:aspect-[4/3] overflow-hidden"
+            className="aspect-[3/4] overflow-hidden"
             style={{
-              filter: isHero
-                ? "grayscale(.85) brightness(.55) contrast(1.1)"
-                : "grayscale(.8) brightness(.55) contrast(1.05)",
+              filter: "grayscale(.8) brightness(.55) contrast(1.05)",
             }}
           >
             {!isHero && project.coverVideo ? (
@@ -301,25 +257,39 @@ export function ZoomToGrid() {
               />
             )}
           </div>
-          {/* Title overlay — always visible on mobile, hover-reveal on desktop */}
+          {/* Caption: name and discipline bottom left, the arrow bottom right, always there */}
           <div
-            className="absolute inset-0 flex items-end p-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400"
+            className="absolute inset-0 flex items-end justify-between gap-3 p-3 md:p-6"
             style={{
               background:
-                "linear-gradient(to top, rgba(var(--page-bg-rgb), .7) 0%, transparent 60%)",
+                "linear-gradient(to top, rgba(var(--page-bg-rgb), .78) 0%, transparent 55%)",
               zIndex: 5,
             }}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-brand)",
-                fontSize: ".65rem",
-                fontWeight: 600,
-                color: "rgba(var(--page-fg-rgb), .7)",
-                letterSpacing: "-.01em",
-              }}
-            >
-              {project.title}
+            <span className="min-w-0">
+              <span
+                className="block truncate"
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  fontSize: "clamp(.7rem,1vw,.9rem)",
+                  fontWeight: 600,
+                  letterSpacing: "0",
+                  textTransform: "uppercase",
+                  color: "var(--page-fg)",
+                }}
+              >
+                {project.title}
+              </span>
+              <span
+                className="block mt-0.5 md:mt-1 truncate"
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  fontSize: "clamp(.66rem,2.6vw,.85rem)",
+                  color: "rgba(var(--page-fg-rgb), .7)",
+                }}
+              >
+                {project.category}
+              </span>
             </span>
           </div>
           {/* corner frames — desktop hover only */}
@@ -347,52 +317,6 @@ export function ZoomToGrid() {
               fill="none"
             />
           </svg>
-          {isHero && (
-            <>
-              {/* headline overlay */}
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center"
-                style={{ zIndex: 4, pointerEvents: "none" }}
-              >
-                <h2
-                  ref={headlineRef}
-                  style={{
-                    fontFamily: "var(--font-brand)",
-                    fontSize: "clamp(1rem,2.5vw,1.6rem)",
-                    fontWeight: 700,
-                    letterSpacing: "-.03em",
-                    color: "var(--page-fg)",
-                    lineHeight: 1.1,
-                    textAlign: "center",
-                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-                  }}
-                >
-                  {tRef.current("zoom.start")}
-                </h2>
-                <span
-                  ref={headline2Ref}
-                  style={{
-                    fontFamily: "var(--font-brand)",
-                    fontSize: "clamp(.8rem,1.5vw,1.1rem)",
-                    color: "rgba(var(--page-fg-rgb), .5)",
-                    marginTop: 8,
-                    opacity: 0,
-                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-                  }}
-                >
-                  {tRef.current("zoom.end")}
-                </span>
-              </div>
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(var(--page-bg-rgb), .4), rgba(var(--page-bg-rgb), .6))",
-                  pointerEvents: "none",
-                }}
-              />
-            </>
-          )}
         </div>
       </ProjectZoomLink>
     ),
@@ -489,7 +413,7 @@ export function ZoomToGrid() {
             style={{
               fontSize: ".75rem",
               fontWeight: 500,
-              letterSpacing: ".1em",
+              letterSpacing: "0",
               textTransform: "uppercase",
               color: "rgba(var(--page-fg-rgb), .55)",
             }}
@@ -508,52 +432,85 @@ export function ZoomToGrid() {
     <div
       ref={wrapRef}
       className="relative"
-      style={{ background: "var(--page-bg)", height: "100vh", overflow: "hidden" }}
+      style={{ background: "var(--page-bg)" }}
     >
-      <div className="h-screen flex items-center justify-center overflow-hidden relative">
+      {/* Edge to edge, three tall columns with the middle one set lower, like a contact sheet */}
+      <div className="relative pt-20 md:pt-28 pb-24 md:pb-[14vw]">
         <div
           className="absolute inset-0"
           style={{ background: "var(--page-bg)", zIndex: 0, pointerEvents: "none" }}
         />
 
-        {/* Grid container — pointer-events auto on tiles */}
         <div
-          className="relative w-full max-w-[1100px] mx-auto px-2 sm:px-6"
-          style={{ zIndex: 1 }}
+          className="relative flex items-baseline justify-between gap-4 px-3 md:px-6 mb-5 md:mb-8"
+          style={{ zIndex: 3 }}
         >
-          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 md:gap-4">
+          <h2
+            ref={headlineRef}
+            style={{
+              fontFamily: "var(--font-brand)",
+              fontSize: "clamp(1.4rem,3vw,2.4rem)",
+              fontWeight: 700,
+              letterSpacing: "-.03em",
+              color: "var(--page-fg)",
+              lineHeight: 1.1,
+            }}
+          >
+            {t("zoom.start")}
+          </h2>
+          <TransitionLink
+            to="/work"
+            className="inline-flex items-center gap-2"
+            style={{
+              fontSize: ".72rem",
+              fontWeight: 500,
+              letterSpacing: "0",
+              textTransform: "uppercase",
+              color: "rgba(var(--page-fg-rgb), .55)",
+            }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
+          >
+            {t("work.viewAll")}
+          </TransitionLink>
+        </div>
+
+        {/* Grid container — pointer-events auto on tiles */}
+        {/* the tiles slide up under the heading row, never over it: cut off at the top edge of the grid */}
+        <div className="relative w-full" style={{ zIndex: 1, clipPath: "inset(0 -10vw -30vw -10vw)" }}>
+          <div className="zg-grid grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
             {/* Row 1 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[0] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[0]} />
             </div>
             <div
+              className="zg-mid"
               ref={(el) => {
                 gridCardsRef.current[1] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[1]} />
             </div>
             <div
+              className="zg-side zg-right"
               ref={(el) => {
                 gridCardsRef.current[2] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[2]} />
             </div>
 
             {/* Row 2 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[3] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               {tileProjects[3] ? (
                 <Tile project={tileProjects[3]} />
@@ -562,7 +519,8 @@ export function ZoomToGrid() {
               )}
             </div>
 
-            {/* Hero tile (center) */}
+            {/* Centre tile */}
+            <div className="zg-mid">
             <Tile
               project={tileProjects[HERO_INDEX]}
               refCb={(el) => {
@@ -570,65 +528,37 @@ export function ZoomToGrid() {
               }}
               isHero
             />
+            </div>
 
             <div
+              className="zg-side zg-right"
               ref={(el) => {
                 gridCardsRef.current[4] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[5]} />
             </div>
 
             {/* Row 3 */}
             <div
+              className="zg-side zg-left"
               ref={(el) => {
                 gridCardsRef.current[5] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[6]} />
             </div>
             <div
+              className="zg-mid"
               ref={(el) => {
                 gridCardsRef.current[6] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[7]} />
-            </div>
-            <div
-              ref={(el) => {
-                gridCardsRef.current[7] = el;
-              }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
-            >
-              <LinkTile to="/contact" label={t("hero.cta2")} />
             </div>
           </div>
         </div>
 
-        <div
-          className="absolute bottom-6 left-0 right-0 text-center"
-          style={{ zIndex: 2 }}
-        >
-          <TransitionLink
-            to="/work"
-            className="inline-flex items-center gap-2"
-            style={{
-              fontSize: ".72rem",
-              fontWeight: 500,
-              letterSpacing: ".1em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-            }}
-            onMouseEnter={() => cursor.set("link")}
-            onMouseLeave={() => cursor.reset()}
-          >
-            {t("work.viewAll")}
-          </TransitionLink>
-        </div>
       </div>
     </div>
   );

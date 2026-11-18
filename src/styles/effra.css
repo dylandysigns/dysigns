@@ -33,7 +33,7 @@
    and the file is only downloaded on pages that use it. */
 @font-face {
   font-family: "Effra Text";
-  src: url("/fonts/effra-regular.ttf") format("truetype");
+  src: url("/fonts/effra-regular.woff2") format("woff2"), url("/fonts/effra-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

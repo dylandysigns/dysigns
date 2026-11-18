@@ -71,43 +71,89 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
     const tl = gsap.timeline({ onComplete: finish });
     const prog = { v: 0 };
 
-    // space behind it: the calm version of the hero's sky, stars only
+    // space behind it: the calm version of the hero's sky, stars only. On a phone with fewer
+    // pixels: the sky is soft, and an older phone keeps its frames for the counter and the logo.
     let alive = true;
-    const space: Space | null = spaceRef.current ? createSpace(spaceRef.current) : null;
+    const cleanups: (() => void)[] = [];
+    const phone = window.matchMedia("(pointer: coarse)").matches;
+    const space: Space | null = spaceRef.current
+      ? createSpace(spaceRef.current, phone ? { maxPixels: 700_000 } : {})
+      : null;
     if (space) {
       Object.assign(space.state, { room: 1, fill: 0, planet: 0 });
       space.start();
     }
-    // the emblem in 3D: it takes over from the flat logo as soon as it is there
+    /* The emblem in 3D. It never takes over while the splash plays: a swap halfway showed both
+       logos at once and made the 3D one jump in, often with a stutter as it was built.
+       - phone (and the in-app browsers of Instagram and the like, opened cold every time): the flat
+         logo plays the splash. The hero loads its own emblem after the splash.
+       - desktop: the splash waits a moment at 0% for the 3D emblem. Ready in time, it is the emblem
+         from the very start; not ready, the flat logo plays it all and the late one is dropped. */
     let emblem: Emblem | null = null;
     const turn = () => {
       if (emblem) emblem.state.spin = EMBLEM_SPIN_REST - 360 * (1 - prog.v);
     };
-    import("../../../preview/portalEmblem")
-      .then((m) => (emblemRef.current ? m.createEmblem(emblemRef.current) : null))
-      .then((e) => {
-        if (!e) return;
-        if (!alive) return e.destroy();
-        emblem = e;
-        e.state.morph = 1;
-        e.state.scale = 1;
-        e.state.auto = -1;
-        turn();
-        e.start();
-        gsap.to(emblemRef.current, { opacity: 1, duration: 0.5, ease: "power1.out" });
-        gsap.to(flatRef.current, { opacity: 0, duration: 0.5, ease: "power1.out" });
-      })
-      .catch(() => {
-        /* no WebGL or the chunk did not load: the flat logo stays */
-      });
+    const WAIT_MS = 700;
+    let started = false;
+    const begin = () => {
+      if (started || !alive) return;
+      started = true;
+      // The page behind the splash still builds itself in the first moments after the script has
+      // run (the hero, the sections): on a slower phone that is one long pause. The counter only
+      // starts once two frames in a row come quickly (at most ~1.2 s later), so it never jumps.
+      tl.pause();
+      let last = 0;
+      let quick = 0;
+      const t0 = performance.now();
+      const settle = (t: number) => {
+        if (!alive) return;
+        quick = last && t - last < 40 ? quick + 1 : 0;
+        last = t;
+        if (quick < 2 && t - t0 < 1200) {
+          settleRaf = requestAnimationFrame(settle);
+          return;
+        }
+        // the waiting state of the HTML (a breathing logo, no counter yet, see index.html) ends here
+        document.documentElement.classList.add("splash-run");
+        tl.play();
+      };
+      settleRaf = requestAnimationFrame(settle);
+    };
+    let settleRaf = 0;
+    cleanups.push(() => cancelAnimationFrame(settleRaf));
+    if (phone) {
+      begin();
+    } else {
+      tl.pause();
+      const waited = window.setTimeout(begin, WAIT_MS);
+      cleanups.push(() => window.clearTimeout(waited));
+      import("../../../preview/portalEmblem")
+        .then((m) => (emblemRef.current && !started ? m.createEmblem(emblemRef.current) : null))
+        .then((e) => {
+          if (!e) return;
+          // too late (the fill already runs) or gone: the flat logo stays, no swap
+          if (!alive || started) return e.destroy();
+          emblem = e;
+          e.state.morph = 1;
+          e.state.scale = 1;
+          e.state.auto = -1;
+          turn();
+          e.start();
+          // the flat logo goes at once, the 3D one fades in: never the two of them together
+          gsap.set(flatRef.current, { opacity: 0 });
+          gsap.to(emblemRef.current, { opacity: 1, duration: 0.35, ease: "power1.out" });
+          window.clearTimeout(waited);
+          begin();
+        })
+        .catch(() => {
+          /* no WebGL or the chunk did not load: the flat logo plays it */
+          begin();
+        });
+    }
 
+    // The logo and the counter are there from the very first paint (they are in the page's HTML),
+    // so a slow phone shows them while the script still loads, instead of a black screen.
     tl.fromTo(glowRef.current, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "power2.out" }, 0);
-    tl.fromTo(
-      contentRef.current,
-      { opacity: 0, scale: 0.94 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
-      0,
-    );
 
     // The logo fills with white in step with the counter.
     tl.to(
@@ -137,10 +183,13 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
     }
     tl.to(contentRef.current, { scale: 4, duration: 1.0, ease: "power3.in" }, outAt);
     tl.to(contentRef.current, { opacity: 0, duration: 0.45, ease: "power1.in" }, outAt + 0.45);
+    // the hero behind it starts to move just before it shows through (preview/PortalHero.tsx)
+    tl.call(() => void window.dispatchEvent(new Event("dysigns:splash-leaving")), [], outAt + 0.8);
     tl.to(el, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, outAt + 1.0);
 
     return () => {
       alive = false;
+      cleanups.forEach((f) => f());
       tl.kill();
       gsap.killTweensOf([emblemRef.current, flatRef.current]);
       space?.stop();
@@ -151,6 +200,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
   return (
     <div
       ref={wrapRef}
+      data-splash=""
       className="fixed inset-0 flex flex-col items-center justify-center"
       style={{ zIndex: 20000, background: "#000" }}
       onClick={finish}
@@ -179,7 +229,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      <div ref={contentRef} className="relative flex flex-col items-center" style={{ opacity: 0 }}>
+      <div ref={contentRef} className="relative flex flex-col items-center">
         {/* Dim logo underneath, the same logo in white on top, revealed by the mask. */}
         <div className="relative" style={{ width: "clamp(96px, 13vw, 150px)" }}>
           {/* the 3D emblem, centred on the flat logo; its canvas is larger than the emblem it draws */}
@@ -193,13 +243,23 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           <img
             src={logoImg}
             alt={t("alt.logoNl")}
+            data-splash-dim=""
             className="theme-logo block"
             style={{ width: "100%", height: "auto", opacity: 0.16 }}
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
             }}
           />
-          <div ref={fillRef} className="absolute inset-0" aria-hidden="true">
+          {/* the mask starts empty in the HTML already, so the white logo never flashes in first */}
+          <div
+            ref={fillRef}
+            className="absolute inset-0"
+            aria-hidden="true"
+            style={{
+              maskImage: `linear-gradient(90deg, #000 ${-EDGE}%, transparent 0%)`,
+              WebkitMaskImage: `linear-gradient(90deg, #000 ${-EDGE}%, transparent 0%)`,
+            }}
+          >
             <img
               src={logoImg}
               alt=""
@@ -211,6 +271,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
         </div>
 
         <div
+          data-splash-count=""
           className="flex items-baseline"
           style={{
             marginTop: "clamp(28px, 5vw, 48px)",
@@ -243,6 +304,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           e.stopPropagation();
           finish();
         }}
+        data-splash-skip=""
         className="absolute bottom-8 right-8 px-3 py-1 rounded"
         style={{
           fontSize: ".55rem",

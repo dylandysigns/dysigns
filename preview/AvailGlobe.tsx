@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { watchHeroScene } from "./heroScene";
 
 /* A small Earth for the hero: the real land as fine dots (see globeLand.ts), lit from the front
    and fading towards the edge, with a soft rim of atmosphere. It sways slowly around Europe, so
@@ -115,13 +116,32 @@ export function AvailGlobe({ label, onOpen }: { label: string; onOpen: (origin: 
       }
     };
 
+    // Nothing to see, nothing to draw: off screen, or faded out with the opening scene (scene "b")
+    let onScreen = true;
+    let heroAway = false;
     const frame = (t: number) => {
-      if (!alive) return;
+      raf = 0;
+      if (!alive || !onScreen || heroAway) return;
       raf = requestAnimationFrame(frame);
       if (t - last < 33) return; // 30 frames a second is plenty for something this slow
       last = t;
       draw(t);
     };
+    const wake = () => {
+      if (alive && !reduced && land && !raf && onScreen && !heroAway) raf = requestAnimationFrame(frame);
+    };
+    const io =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver(([e]) => {
+            onScreen = e.isIntersecting;
+            wake();
+          });
+    io?.observe(canvas);
+    const unwatch = watchHeroScene(canvas, (scene) => {
+      heroAway = scene === "b";
+      wake();
+    });
 
     import("./globeLand")
       .then((m) => {
@@ -132,7 +152,7 @@ export function AvailGlobe({ label, onOpen }: { label: string; onOpen: (origin: 
           land[i + 1] = (m.LAND[i + 1] / 10) * RAD;
         }
         if (reduced) draw(0);
-        else raf = requestAnimationFrame(frame);
+        else wake();
       })
       .catch(() => {
         /* the globe is decoration; without it the words and the line are enough */
@@ -141,6 +161,8 @@ export function AvailGlobe({ label, onOpen }: { label: string; onOpen: (origin: 
     return () => {
       alive = false;
       cancelAnimationFrame(raf);
+      io?.disconnect();
+      unwatch();
       ro.disconnect();
     };
   }, []);

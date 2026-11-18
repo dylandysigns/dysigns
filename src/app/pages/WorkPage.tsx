@@ -161,17 +161,7 @@ export default function WorkPage() {
       />
       <div className="max-w-[1320px] mx-auto">
         <div className="mb-12">
-          <span
-            style={{
-              fontSize: ".7rem",
-              fontWeight: 500,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-            }}
-          >
-            {t("work.label")}
-          </span>
+          <span className="sr-only">{t("work.label")}</span>
           <h1
             ref={headRef}
             className="mt-3"
@@ -179,7 +169,7 @@ export default function WorkPage() {
               fontFamily: "var(--font-brand)",
               fontSize: "clamp(2rem,5vw,3.5rem)",
               fontWeight: 700,
-              letterSpacing: "-.04em",
+              letterSpacing: "-.03em",
               color: "var(--page-fg)",
               lineHeight: 1.1,
             }}

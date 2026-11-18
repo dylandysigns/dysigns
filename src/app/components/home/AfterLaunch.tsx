@@ -188,7 +188,7 @@ export function AfterLaunch() {
             top: "34%",
             fontSize: ".68rem",
             fontWeight: 600,
-            letterSpacing: ".1em",
+            letterSpacing: "0",
             textTransform: "uppercase",
             color: "rgba(var(--page-fg-rgb), .4)",
             transform: "translate(-50%, -50%)",

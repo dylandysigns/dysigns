@@ -241,12 +241,12 @@ html.ph-lock body {
 }
 .sa-craft {
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 104px;
+  height: 104px;
 }
 .sa-name {
-  margin-top: -6px;
-  font-size: 0.82rem;
+  margin-top: -4px;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0;
   color: rgba(255, 255, 255, 0.92);
@@ -445,90 +445,101 @@ html.ph-lock body {
    with its name and invitation next to it) between the buttons and the logos. */
 .ph-agent {
   position: absolute;
-  right: clamp(24px, 3.5vw, 72px);
-  bottom: 12svh;
-  width: 240px;
+  right: clamp(8px, 1vw, 20px);
+  bottom: max(96px, 10svh);
+  width: 150px;
   text-align: left;
   z-index: 4;
 }
 @media (max-width: 1239px) {
   .ph-agent {
-    right: 24px;
-    bottom: 110px;
-    width: 200px;
+    right: 8px;
+    bottom: 96px;
+    width: 130px;
   }
   .ph-agent .sa-craft {
-    width: 120px;
-    height: 120px;
+    width: 88px;
+    height: 88px;
   }
   .ph-agent .sa-hint {
     right: calc(50% + 28px);
   }
 }
 @media (max-width: 767px) {
-  /* on a phone the whole agent is one pill: the orb, its name and invitation, a white arrow */
+  /* on a phone the agent is the fixed round button in the corner of every screen (FixedAgent.tsx) */
   .ph-agent {
-    right: 12px;
-    bottom: 86px;
-    width: auto;
-  }
-  .ph-agent .sa-ship {
-    display: grid;
-    grid-template-columns: 44px auto 34px;
-    grid-template-areas:
-      "orb name go"
-      "orb ask go";
-    column-gap: 10px;
-    row-gap: 1px;
-    align-items: center;
-    padding: 5px 5px 5px 4px;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 999px;
-    background: rgba(12, 12, 14, 0.55);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    opacity: 1;
-    animation: sa-beckon 3.2s ease-out 1.5s infinite;
-  }
-  .ph-agent .sa-hint {
     display: none;
   }
-  .ph-agent .sa-craft {
-    grid-area: orb;
-    width: 44px;
-    height: 44px;
-  }
-  .ph-agent .sa-name {
-    grid-area: name;
-    margin: 0;
-    align-self: end;
-    font-size: 0.82rem;
-    text-align: left;
-  }
-  /* the pill's parts sit straight in the row; the row itself is the button */
-  .ph-agent .sa-ask {
-    display: contents;
-    animation: none;
-  }
-  .ph-agent .sa-ask__text {
-    grid-area: ask;
-    align-self: start;
-    font-size: 0.76rem;
-    font-weight: 400;
-    text-align: left;
-    color: rgba(255, 255, 255, 0.72);
-  }
-  .ph-agent .sa-go {
-    grid-area: go;
-    width: 34px;
-    height: 34px;
-  }
-  .ph-agent .sa-ship:focus-visible {
-    border-radius: 999px;
+}
+
+/* ─── The DYSIGNS agent as a fixed round button (FixedAgent.tsx): only the orb, in a dark circle,
+   bottom right on every screen. Desktop: in, once the hero's own agent is gone. Phone: always. ─── */
+:root {
+  --fa-size: 64px;
+  --fa-edge: 24px;
+  /* the back-to-top button (Layout.tsx) sits above it, centred on it */
+  --fa-stack: calc(var(--fa-edge) + var(--fa-size) + 12px);
+  --fa-stack-right: calc(var(--fa-edge) + (var(--fa-size) - 44px) / 2);
+}
+@media (max-width: 767px) {
+  :root {
+    --fa-size: 56px;
+    --fa-edge: 16px;
   }
 }
-@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  .ph-agent .sa-ship {
+.fa {
+  position: fixed;
+  right: var(--fa-edge);
+  bottom: calc(var(--fa-edge) + env(safe-area-inset-bottom, 0px));
+  z-index: 190; /* under the menu (200) and the lightboxes, over the page */
+  border-radius: 50%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+.fa.is-hidden {
+  opacity: 0;
+  transform: translateY(14px) scale(0.85);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+.fa-ship {
+  display: grid;
+  place-items: center;
+  width: var(--fa-size);
+  height: var(--fa-size);
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #17181d 0%, #060607 72%);
+  cursor: pointer;
+  animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+.fa-ship:hover {
+  transform: scale(1.06);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.fa-ship:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+}
+.fa-craft {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fa-ship {
     animation: none;
   }
 }
@@ -611,7 +622,7 @@ html.ph-lock body {
 .ph-trust__label {
   font-size: 10.5px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: #d4d4d4;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
@@ -697,10 +708,15 @@ html.ph-lock body {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+.ph--paused .ph-down {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+}
 .ph-midhint span {
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
 }
@@ -733,7 +749,8 @@ html.ph-lock body {
 .ph-down {
   position: absolute;
   left: 50%;
-  bottom: 3svh;
+  bottom: 15svh;
+  z-index: 6; /* over the run-out into black at the bottom of the hero (.ph::after) */
   width: 36px;
   height: 108px;
   margin-left: -18px;
@@ -742,10 +759,38 @@ html.ph-lock body {
   background: none;
   color: #fff;
   cursor: pointer;
-  pointer-events: none;
+  /* there from the opening screen on, in once the splash and the headline are done */
+  animation: phDownIn 0.7s ease 1.6s both;
 }
-.ph[data-scene="b"] .ph-down {
-  pointer-events: auto;
+@keyframes phDownIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.ph-down__label {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+  transition: color 0.4s ease;
+}
+.ph-down:hover .ph-down__label,
+.ph-down:focus-visible .ph-down__label {
+  color: #fff;
+}
+.ph-down:focus-visible {
+  outline: none;
 }
 .ph-down svg {
   display: block;
@@ -758,12 +803,12 @@ html.ph-lock body {
   stroke-dashoffset: 12;
   opacity: 1;
   filter: drop-shadow(0 0 3px rgba(200, 225, 255, 0.9));
-  animation: phDownSpark 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: phDownSpark 2.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 .ph-down__head {
   opacity: 0.8;
   transition: opacity 0.4s ease;
-  animation: phDownHead 4.2s ease-in-out infinite;
+  animation: phDownHead 2.6s ease-in-out infinite;
 }
 .ph-down:hover .ph-down__head,
 .ph-down:focus-visible .ph-down__head {
@@ -773,7 +818,7 @@ html.ph-lock body {
 /* on a phone it is seen from further away and on a small, bright screen: bigger, brighter, a little higher */
 @media (max-width: 700px) {
   .ph-down {
-    bottom: calc(5svh + env(safe-area-inset-bottom, 0px));
+    bottom: calc(14svh + env(safe-area-inset-bottom, 0px));
     width: 34px;
     height: 92px;
     margin-left: -17px;
@@ -1023,6 +1068,11 @@ html.ph-lock body {
   color: #fff;
   font-family: "Effra", system-ui, sans-serif;
   overflow: hidden;
+}
+/* while a scene is open nothing of the page floats over it (the back-to-top button, Layout.tsx) */
+body:has(> .gs) button[aria-label="Back to top"] {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 .gs-sky {
   position: absolute;

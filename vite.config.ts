@@ -40,7 +40,10 @@ function contentPlugin(): Plugin {
     load(id) {
       if (id !== RESOLVED) return
       for (const file of listFiles(contentDir)) this.addWatchFile(file)
-      return `export default ${JSON.stringify(readEntries())};`
+      // As a JSON string for JSON.parse, not an object literal: the browser reads a big JSON string
+      // much faster than it parses the same data as JavaScript (this is the site's largest chunk
+      // of data, all content of both languages). The data is the same.
+      return `export default JSON.parse(${JSON.stringify(JSON.stringify(readEntries()))});`
     },
     // dist/faq-index.json: the knowledge functions/api/faq-chat.js answers
     // from. `text` is embedded with Workers AI to find relevant questions,

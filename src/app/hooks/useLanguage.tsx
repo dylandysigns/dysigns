@@ -282,7 +282,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "projects.showMore": { en: "Show more", nl: "Meer tonen" },
 
   /* ── ZoomToGrid ── */
-  "zoom.start": { en: "Selected projects", nl: "Geselecteerde projecten" },
+  "zoom.start": { en: "Selected work", nl: "Geselecteerd werk" },
   "zoom.end": { en: "we're proud of", nl: "waar we trots op zijn" },
 
   /* ── Contact Band ── */
@@ -387,7 +387,7 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
 
   /* ── Work Page ── */
   "work.label": { en: "Our work", nl: "Ons werk" },
-  "work.title": { en: "Selected projects", nl: "Geselecteerde projecten" },
+  "work.title": { en: "Selected work", nl: "Geselecteerd werk" },
   "work.viewAll": { en: "View all work", nl: "Bekijk al het werk" },
   "work.filterAll": { en: "All", nl: "Alle" },
   "work.clearFilters": { en: "Reset filters", nl: "Filters resetten" },

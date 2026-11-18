@@ -25,7 +25,7 @@ interface Logo {
   src: string;
 }
 
-const LOGOS: Logo[] = [
+export const LOGOS: Logo[] = [
   { name: "STËLZ", url: "https://drinkstelz.com/", src: "/logos/STELZ1.svg" },
   { name: "BIYU", url: "https://www.biyu.world/", src: "/logos/BIYU.svg" },
   { name: "KULT AND ACE", url: "http://kultandace.com/", src: "/logos/KultAndAce.svg" },
@@ -130,19 +130,7 @@ export function Partners({ variant = "section" }: PartnersProps) {
       }
     >
       <div className={isHero ? "mb-2 px-6 text-center md:mb-5" : "mb-10 text-center"}>
-        <span
-          style={{
-            fontSize: isHero ? ".66rem" : ".8rem",
-            fontWeight: 600,
-            letterSpacing: isHero ? ".24em" : ".18em",
-            textTransform: "uppercase",
-            color: isHero
-              ? "rgba(var(--page-fg-rgb), 1)"
-              : "rgba(var(--page-fg-rgb), .55)",
-          }}
-        >
-          {t("partners.label")}
-        </span>
+      <span className="sr-only">{t("partners.label")}</span>
       </div>
       <div className="relative">
         <div

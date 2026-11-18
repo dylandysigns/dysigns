@@ -165,8 +165,33 @@ export default function PortalHero() {
       if (land && reduced) land.renderOnce();
     }
     layout();
-    if (land && !reduced) land.start();
-    else land?.renderOnce();
+    /* Under the splash (SplashIntro.tsx, a first visit) nobody sees the hero yet: it paints one
+       still frame and only starts to move as the splash dissolves into it. Running here as well
+       would put a second full-screen sky on the device while the splash plays its own. */
+    let splashUp = false;
+    try {
+      splashUp = !reduced && sessionStorage.getItem("dysigns_splash_done") !== "1";
+    } catch {
+      /* private mode: no splash to wait for */
+    }
+    const afterSplash = (fn: () => void) => {
+      if (!splashUp) return fn();
+      let done = false;
+      const go = () => {
+        if (done || !alive) return;
+        done = true;
+        window.removeEventListener("dysigns:splash-leaving", go);
+        window.removeEventListener("dysigns:splash-done", go);
+        fn();
+      };
+      window.addEventListener("dysigns:splash-leaving", go);
+      window.addEventListener("dysigns:splash-done", go);
+    };
+    if (land && !reduced) {
+      land.renderOnce();
+      // (the splash plays with the page at the top, so the hero is on screen when it leaves)
+      afterSplash(() => land.start());
+    } else land?.renderOnce();
 
     gsap.set(q(".ph-b [data-rise]"), { autoAlpha: 0, y: 14 });
 
@@ -187,7 +212,11 @@ export default function PortalHero() {
         });
       return cardLoading;
     }
-    const idle = window.setTimeout(loadCard, 1800);
+    // not while the splash plays: building the 3D emblem halfway through it made it stutter
+    let idle = 0;
+    afterSplash(() => {
+      idle = window.setTimeout(loadCard, 1800);
+    });
 
     /* The planet and the emblem are one object. `grow` brings it closer; `morph` unrolls the
        sphere into the emblem while `spin` turns it once. As long as it is a planet, the white
@@ -850,35 +879,6 @@ export default function PortalHero() {
 
       {/* ─── Scene A: the universe ─── */}
       <section className="ph-a" aria-label={lang === "nl" ? "Introductie" : "Introduction"}>
-        <div className="ph-frame" data-fade aria-hidden="true">
-          {["tl", "tr", "bl", "br"].map((c) => (
-            <svg key={c} className={`ph-frame__${c}`} viewBox="0 0 190 86" fill="none">
-              <path d="M0 85.5H78c7 0 12-2 17-7L190 0.5" stroke={`url(#ph-frame-${c})`} />
-              <defs>
-                <linearGradient id={`ph-frame-${c}`} x1="0" y1="86" x2="190" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#fff" stopOpacity="0.3" />
-                  <stop offset="0.55" stopColor="#fff" stopOpacity="0.22" />
-                  <stop offset="1" stopColor="#fff" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          ))}
-        </div>
-        {/* The scroll hint is written on the inner of the two orbits the space canvas draws
-            (portalSpace.ts: 0.78 by 0.20 viewport heights, turned -0.32 rad, centred just below
-            the middle), where it passes under the buttons in the middle of the screen. It lies
-            on that line like an engraving and drifts a little along it. */}
-        <svg className="ph-hint" data-fade viewBox="-1500 -500 3000 1000" aria-hidden="true">
-          {/* units are thousandths of the viewport height, so the type is set at a real size
-              and the letters are spaced evenly along the curve */}
-          <path id="ph-hint-orbit" d="M -780 0 A 780 200 0 0 0 780 0" transform="translate(0 20) rotate(18.33)" fill="none" />
-          <text>
-            <textPath href="#ph-hint-orbit" startOffset="53%" textAnchor="middle">
-              {t("hero.scrollHint")}
-              <animate attributeName="startOffset" values="51%;55%;51%" dur="18s" repeatCount="indefinite" />
-            </textPath>
-          </text>
-        </svg>
         <div className="ph-a__main">
           {/* Not a badge: a small wireframe Earth in the corner of the sky, a dot where the Netherlands
               is, and a thin line from it to the words. The words stay real text for readers and crawlers. */}
@@ -959,26 +959,6 @@ export default function PortalHero() {
           DYSIGNS
         </div>
         <canvas ref={cardCanvasRef} className="ph-card" aria-hidden="true" />
-        {/* the way on: a small glass button with a thin arrow; a plain click scrolls on to the page */}
-        <button
-          type="button"
-          className="ph-down"
-          data-rise
-          aria-label={t("hero.scrollDown")}
-          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
-        >
-          <svg viewBox="0 0 24 72" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <defs>
-              <linearGradient id="ph-down-fade" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="66">
-                <stop offset="0" stopColor="#fff" stopOpacity="0" />
-                <stop offset="1" stopColor="#fff" stopOpacity="0.85" />
-              </linearGradient>
-            </defs>
-            <path className="ph-down__line" d="M12 2v64" stroke="url(#ph-down-fade)" />
-            <path className="ph-down__spark" d="M12 2v64" pathLength="64" />
-            <path className="ph-down__head" d="M6.5 60.5L12 66l5.5-5.5" />
-          </svg>
-        </button>
         <ul className="ph-chips" aria-label={lang === "nl" ? "Diensten" : "Services"}>
           {services.map((sv) => {
             const inner = (
@@ -1024,6 +1004,31 @@ export default function PortalHero() {
           })}
         </ul>
       </section>
+      {/* the way on: a hairline that points down with a light sliding along it and a fine arrowhead,
+          no text; a plain click scrolls on to the page. It sits outside scene B,
+          over the run-out into black at the bottom, but rises in with it (data-rise). */}
+      <button
+        type="button"
+        className="ph-down"
+        aria-label={t("hero.scrollDown")}
+        onClick={(e) => {
+          // on the opening screen the arrow starts the flight (as the arrow key does); on the emblem screen it scrolls on
+          if (e.currentTarget.closest<HTMLElement>(".ph")?.dataset.scene === "a") document.body.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true, cancelable: true }));
+          else window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        }}
+      >
+        <svg viewBox="0 0 24 72" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <defs>
+            <linearGradient id="ph-down-fade" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="66">
+              <stop offset="0" stopColor="#fff" stopOpacity="0" />
+              <stop offset="1" stopColor="#fff" stopOpacity="0.85" />
+            </linearGradient>
+          </defs>
+          <path className="ph-down__line" d="M12 2v64" stroke="url(#ph-down-fade)" />
+          <path className="ph-down__spark" d="M12 2v64" pathLength="64" />
+          <path className="ph-down__head" d="M6.5 60.5L12 66l5.5-5.5" />
+        </svg>
+      </button>
     </div>
   );
 }

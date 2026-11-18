@@ -107,7 +107,7 @@ export function ContactBand() {
           fontFamily: "var(--font-brand)",
           fontSize: "clamp(1.8rem,5vw,3.5rem)",
           fontWeight: 700,
-          letterSpacing: "-.04em",
+          letterSpacing: "-.03em",
           color: "var(--page-fg)",
           lineHeight: 1.1,
         }}

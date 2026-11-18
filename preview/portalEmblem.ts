@@ -7,6 +7,7 @@
    three.js is a project dependency and loads as its own chunk, on demand. */
 
 import { emblemOutlines } from "./chrome3d";
+import { createFrameBudget } from "./frameBudget";
 
 
 // logo pixels: the emblem is drawn on a 120 x 101 field
@@ -350,10 +351,15 @@ export async function createEmblem(canvas: HTMLCanvasElement): Promise<Emblem> {
   let running = false;
   const t0 = performance.now();
 
+  const budget = createFrameBudget(() => resize(), [1, 0.75]);
+
   function resize() {
     const cw = canvas.clientWidth || window.innerWidth || 1;
     const ch = canvas.clientHeight || window.innerHeight || 1;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    // the emblem is the sharp thing in the hero: on a device that does not keep up it only drops from
+    // 2x to 1.5x pixels, never below the screen's own 1x (frameBudget.ts)
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(Math.max(Math.min(dpr, 1), dpr * budget.scale));
     renderer.setSize(cw, ch, false);
     camera.aspect = cw / ch;
     // the emblem's width in px
@@ -406,6 +412,7 @@ export async function createEmblem(canvas: HTMLCanvasElement): Promise<Emblem> {
     if (mask.paint(now)) maskTex.needsUpdate = true;
 
     renderer.render(scene, camera);
+    budget.tick();
     raf = requestAnimationFrame(frame);
   }
 
@@ -422,6 +429,7 @@ export async function createEmblem(canvas: HTMLCanvasElement): Promise<Emblem> {
     start() {
       if (running) return;
       running = true;
+      budget.restart();
       raf = requestAnimationFrame(frame);
     },
     stop() {

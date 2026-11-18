@@ -122,17 +122,7 @@ export function VisionSection() {
 
         {/* text */}
         <div>
-          <span
-            style={{
-              fontSize: ".7rem",
-              fontWeight: 500,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,.45)",
-            }}
-          >
-            {t("vision.label")}
-          </span>
+          <span className="sr-only">{t("vision.label")}</span>
           <h2
             ref={headRef}
             className="mt-4"

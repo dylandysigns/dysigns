@@ -9,6 +9,11 @@
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body && (document.body.scrollTop = 0);
+        // Seen the intro already this visit: hide the splash that is in the page's HTML at once,
+        // instead of showing it black until the script has loaded (SplashIntro.tsx removes it).
+        try {
+          if (sessionStorage.getItem("dysigns_splash_done") === "1") document.documentElement.classList.add("splash-seen");
+        } catch (e) {}
       </script>
       <meta name="color-scheme" content="dark" />
       <meta name="theme-color" content="#0a0a0a" />
@@ -16,6 +21,29 @@
         html, body {
           background-color: #0a0a0a !important;
           margin: 0;
+        }
+        html.splash-seen [data-splash] {
+          display: none !important;
+        }
+        /* Until the script runs the splash (a slow phone, an app's own browser opened cold), the
+           logo breathes softly and the counter waits, so it never looks stuck at 0%. */
+        html:not(.splash-run) [data-splash] [data-splash-dim] {
+          animation: splash-breathe 1.8s ease-in-out infinite;
+        }
+        html:not(.splash-run) [data-splash] [data-splash-count],
+        html:not(.splash-run) [data-splash] [data-splash-skip] {
+          opacity: 0;
+        }
+        [data-splash] [data-splash-count],
+        [data-splash] [data-splash-skip] {
+          transition: opacity 0.4s ease;
+        }
+        @keyframes splash-breathe {
+          0%, 100% { opacity: 0.12; }
+          50% { opacity: 0.38; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          html:not(.splash-run) [data-splash] [data-splash-dim] { animation: none; }
         }
       </style>
       <meta charset="UTF-8" />
@@ -71,7 +99,7 @@
               "height": 72
             },
             "image": "https://dylandysigns.com/images/og-cover.png",
-            "description": "DYSIGNS is a creative partner and full-service digital agency (a small team) based in the Netherlands, an official Shopify Partner offering web design, Shopify Partner development, UX/UI design, branding, SEO and technical optimization, social media and Meta Ads, and AI implementation.",
+            "description": "DYSIGNS is a creative partner and full-service digital agency (a small team) working from Almere and Amsterdam, an official Shopify Partner offering web design, Shopify Partner development, UX/UI design, branding, SEO and technical optimization, social media and Meta Ads, and AI implementation.",
             "foundingDate": "2020",
             "vatID": "NL003861601B85",
             "identifier": {
@@ -117,7 +145,7 @@
             "url": "https://dylandysigns.com",
             "image": "https://dylandysigns.com/images/og-cover.png",
             "logo": "https://dylandysigns.com/favicon.png",
-            "description": "Creative partner and full-service digital agency (small team) based in Almere, Netherlands, an official Shopify Partner offering web design, Shopify Partner development, UX/UI design, branding, SEO and technical optimization, social media and Meta Ads, and AI implementation.",
+            "description": "Creative partner and full-service digital agency (small team) based in Almere and working in Amsterdam, an official Shopify Partner offering web design, Shopify Partner development, UX/UI design, branding, SEO and technical optimization, social media and Meta Ads, and AI implementation.",
             "priceRange": "€€",
             "areaServed": [
               { "@type": "City", "name": "Almere" },

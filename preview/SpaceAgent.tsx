@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigationType } from "react-router";
 import { useLanguage } from "../src/app/hooks/useLanguage";
+import { plop } from "./plop";
 import { AgentOrb, createOrbSignal } from "./AgentOrb";
 import { AgentScene, AGENT_RETURN_KEY, type ShipOrigin } from "./AgentScene";
 import { GreetingBubble } from "./GreetingBubble";
 import { greeting } from "./agentGreeting";
+import { watchHeroScene } from "./heroScene";
 
 /**
  * The DYSIGNS agent: a small orb of fine dots (AgentOrb.tsx, a voice made visible, monochrome like
@@ -43,25 +45,33 @@ export function SpaceAgent() {
   }, []);
   const navType = useNavigationType();
 
-  // Back from a page a link in an answer led to: the agent is open again, with the conversation as it was
+  // the opening scene is gone (the emblem is there): the orb is faded out, so it stops drawing
+  const [heroAway, setHeroAway] = useState(false);
+  useEffect(() => watchHeroScene(shipRef.current, (scene) => setHeroAway(scene === "b")), []);
+
+  // Back from a page a link in an answer led to: the agent is open again, with the conversation as it was.
+  // Only when this orb is on screen to fly from: on a phone the hero's orb is hidden, and the fixed
+  // button (FixedAgent.tsx) picks the return up instead.
   useEffect(() => {
+    if (!shipRef.current?.getBoundingClientRect().width) return;
     let wasAway = false;
     try {
-      wasAway = sessionStorage.getItem(AGENT_RETURN_KEY) === "1";
-      sessionStorage.removeItem(AGENT_RETURN_KEY);
+      wasAway = sessionStorage.getItem(AGENT_RETURN_KEY) === window.location.pathname;
+      if (wasAway) sessionStorage.removeItem(AGENT_RETURN_KEY);
     } catch {
       /* private mode */
     }
     // only with the back (or forward) button
     if (!wasAway || navType !== "POP") return;
     const c = shipRef.current?.querySelector("canvas")?.getBoundingClientRect();
-    setOrigin(c ? { left: c.left, top: c.top, width: c.width, height: c.height } : null);
+    setOrigin(c?.width ? { left: c.left, top: c.top, width: c.width, height: c.height } : null);
     setInstant(true);
     setOpen(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const openScene = () => {
+    plop();
     setInstant(false);
     orb.current.pulse++; // the click wave, as the camera starts to fly in
     const c = shipRef.current?.querySelector("canvas")?.getBoundingClientRect();
@@ -99,17 +109,8 @@ export function SpaceAgent() {
             </span>
           </span>
         </span>
-        <AgentOrb signal={orb} className="sa-craft" fps={30} />
+        <AgentOrb signal={orb} className="sa-craft" fps={30} paused={heroAway && !open} />
         <span className="sa-name">{t("agent.name")}</span>
-        {/* the invitation reads as a button: a pill with a white arrow, like the hero's own buttons */}
-        <span className="sa-ask">
-          <span className="sa-ask__text">{t("agent.ask")}</span>
-          <span className="sa-go" aria-hidden="true">
-            <svg viewBox="0 0 16 16" width="14" height="14">
-              <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </span>
       </button>
       <GreetingBubble target={shipRef} />
       {open && (
@@ -117,6 +118,7 @@ export function SpaceAgent() {
           signal={orb}
           instant={instant}
           origin={origin}
+          little={shipRef.current?.querySelector("canvas") ?? null}
           onClose={() => {
             setOpen(false);
             setHover(false);

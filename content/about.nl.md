@@ -1,6 +1,6 @@
 ---
-title: "Over DYSIGNS: Digitaal Bureau uit Almere"
-description: "DYSIGNS is een team van specialisten uit Nederland. Maak kennis met het team, onze werkwijze en onze aanpak voor SEO en technische optimalisatie."
+title: "Over DYSIGNS: Digitaal Bureau in Almere en Amsterdam"
+description: "DYSIGNS is een digitaal bureau in Almere en Amsterdam: één klein team voor UX/UI design, branding, webdesign, Shopify, SEO en AI. Lees hoe we werken."
 heading: "Over DYSIGNS"
 slug: "about"
 answerBlock: |
@@ -10,7 +10,7 @@ answerBlock: |
   webdesign, Shopify development, branding, data-gedreven SEO en
   technische optimalisatie, AI-implementatie en social media en
   betaalde campagnes voor klanten wereldwijd.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-18"
 ---
 
 ## Hoe we werken

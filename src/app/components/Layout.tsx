@@ -8,6 +8,7 @@ import { SplashIntro } from "./SplashIntro";
 import { createWarp, type Warp } from "./SpaceWarp";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { FixedAgent } from "../../../preview/FixedAgent";
 import { TransitionContext } from "../hooks/useTransition";
 import { LanguageProvider, pathIsDutch } from "../hooks/useLanguage";
 /* ─── BACK TO TOP BUTTON ─── */
@@ -41,8 +42,9 @@ function BackToTop() {
       aria-label="Back to top"
       className="fixed z-[9999] grid place-items-center rounded-full group"
       style={{
-        bottom: 28,
-        right: 28,
+        // above the agent's fixed button (preview/FixedAgent.tsx), centred on it
+        bottom: "var(--fa-stack, 28px)",
+        right: "var(--fa-stack-right, 28px)",
         width: 44,
         height: 44,
         background: "rgba(var(--page-fg-rgb), .06)",
@@ -469,6 +471,9 @@ export default function Layout() {
 
         {/* ─── BACK TO TOP ─── */}
         {splashDone && <BackToTop />}
+
+        {/* ─── THE DYSIGNS AGENT, fixed bottom right on every screen (preview/FixedAgent.tsx) ─── */}
+        {splashDone && <FixedAgent />}
 
         {/* ─── SPACE TRANSITION OVERLAY ─── */}
         <div
