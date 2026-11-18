@@ -297,6 +297,19 @@ function GlassCursor({
       return isOverInteractive.current ? hoverLabel.current : "";
     };
 
+    /* Write a style only when it changed. A resting cursor then writes nothing at all, so the
+       page is not restyled 60 times a second while the mouse lies still (positions are rounded
+       to 0.1px, so the easing settles on a value instead of creeping on forever). */
+    const written = new WeakMap<HTMLElement, Record<string, string>>();
+    const put = (el: HTMLElement, prop: string, value: string) => {
+      let w = written.get(el);
+      if (!w) written.set(el, (w = {}));
+      if (w[prop] === value) return;
+      w[prop] = value;
+      (el.style as unknown as Record<string, string>)[prop] = value;
+    };
+    const px = (n: number) => (Math.round(n * 10) / 10).toFixed(1);
+
     const tick = () => {
       const mx = mouse.current.x;
       const my = mouse.current.y;
@@ -358,22 +371,22 @@ function GlassCursor({
         const boxHalf = GOO_BOX / 2;
         const visible = isInWindow.current && v !== "hidden";
 
-        gooBoxRef.current.style.transform = `translate3d(${h.x - boxHalf}px,${h.y - boxHalf}px,0)`;
-        gooBoxRef.current.style.opacity = visible ? "1" : "0";
+        put(gooBoxRef.current, "transform", `translate3d(${px(h.x - boxHalf)}px,${px(h.y - boxHalf)}px,0)`);
+        put(gooBoxRef.current, "opacity", visible ? "1" : "0");
         // Small drop and lens invert what's under them so text stays
         // readable; the labelled pill is solid so its label reads on any
         // photo (difference turns mid-grey images into mid-grey).
-        gooBoxRef.current.style.mixBlendMode = isActive ? "normal" : "difference";
-        headRef.current.style.width = `${isActive ? activeWidth : headSize}px`;
-        headRef.current.style.height = `${headSize}px`;
-        headRef.current.style.transform = `translate(-50%,-50%) scale(${isPressed.current ? PRESS_SCALE : 1})`;
-        tailRef.current.style.width = `${tailSize}px`;
-        tailRef.current.style.height = `${tailSize}px`;
-        tailRef.current.style.transform = `translate3d(${t.x - h.x}px,${t.y - h.y}px,0) translate(-50%,-50%)`;
+        put(gooBoxRef.current, "mixBlendMode", isActive ? "normal" : "difference");
+        put(headRef.current, "width", `${isActive ? activeWidth : headSize}px`);
+        put(headRef.current, "height", `${headSize}px`);
+        put(headRef.current, "transform", `translate(-50%,-50%) scale(${isPressed.current ? PRESS_SCALE : 1})`);
+        put(tailRef.current, "width", `${tailSize}px`);
+        put(tailRef.current, "height", `${tailSize}px`);
+        put(tailRef.current, "transform", `translate3d(${px(t.x - h.x)}px,${px(t.y - h.y)}px,0) translate(-50%,-50%)`);
 
         if (labelElRef.current) {
-          labelElRef.current.style.transform = `translate3d(${h.x}px,${h.y}px,0) translate(-50%,-50%) scale(${isPressed.current ? PRESS_SCALE : 1})`;
-          labelElRef.current.style.opacity = isActive && visible ? "1" : "0";
+          put(labelElRef.current, "transform", `translate3d(${px(h.x)}px,${px(h.y)}px,0) translate(-50%,-50%) scale(${isPressed.current ? PRESS_SCALE : 1})`);
+          put(labelElRef.current, "opacity", isActive && visible ? "1" : "0");
         }
       }
 

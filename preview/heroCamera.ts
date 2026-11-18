@@ -24,9 +24,12 @@ export function createHeroCamera(opts: {
   big: HTMLElement;
   sky?: HTMLElement | null;
   little?: HTMLElement | null;
+  /** The world to fly through; the hero by default. `null`: nothing zooms along (the agent's
+   *  fixed button on the other pages), the big one simply grows out of the little one. */
+  hero?: HTMLElement | null;
 }) {
   const { from: O, to: F, scale: s0, big, sky, little } = opts;
-  const hero = document.querySelector<HTMLElement>(".ph");
+  const hero = opts.hero === undefined ? document.querySelector<HTMLElement>(".ph") : opts.hero;
   const hr = hero?.getBoundingClientRect();
   const zEnd = 1 / s0;
   const C = { x: F.x + (O.x - F.x) * 0.3, y: O.y };
@@ -62,7 +65,9 @@ export function createHeroCamera(opts: {
       pos = { x: L.x + (T.x - L.x) * k, y: L.y + (T.y - L.y) * k };
     }
     gsap.set(big, { x: pos.x - F.x, y: pos.y - F.y, scale: s0 * z, rotationY: 22 * turn, rotationX: -6 * turn });
-    if (sky) sky.style.opacity = String(clamp((p - 0.1) / 0.5, 0, 1));
+    // without a hero to fly through (the fixed button) there is nothing else moving at the start,
+    // so the sky answers the click at once instead of waiting for the camera to get going
+    if (sky) sky.style.opacity = String(hero ? clamp((p - 0.1) / 0.5, 0, 1) : clamp(p / 0.75, 0, 1));
     // the hand-over happens while everything moves, not at a standstill: early in the move the big one
     // fades in over the little one (which the hero's zoom keeps at exactly the same spot and size) and
     // the little one fades out; on the way back the other way round. Moving, the two never "switch".
@@ -83,7 +88,7 @@ export function createHeroCamera(opts: {
     apply,
     reset,
     /** In: the camera move as a tween, to put on a timeline. */
-    flyIn: (duration = 2.1) => gsap.to(cam, { p: 1, duration, ease: "power2.inOut", onUpdate: apply }),
+    flyIn: (duration = 2.1, ease = "power2.inOut") => gsap.to(cam, { p: 1, duration, ease, onUpdate: apply }),
     /** Out: the same move backwards; by the end the little one has taken over again. */
     flyOut: (done: () => void, duration = 1.6) =>
       gsap.to(cam, {

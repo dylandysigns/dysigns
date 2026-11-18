@@ -53,13 +53,21 @@ export function AgentOrb({
   className,
   fps = 60,
   dots = DENSE,
+  paused = false,
 }: {
   signal: MutableRefObject<OrbSignal>;
   className?: string;
   fps?: number;
   dots?: number;
+  /** Stop drawing while it cannot be seen (faded out). Off screen it stops on its own. */
+  paused?: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const pausedRef = useRef(paused);
+  pausedRef.current = paused;
+  // the loop's own "start again if it may", set by the effect below
+  const wake = useRef<() => void>(() => {});
+  useEffect(() => wake.current(), [paused]);
 
   useEffect(() => {
     const canvas = ref.current;
@@ -286,8 +294,15 @@ export function AgentOrb({
     let alive = true;
     let last = 0;
     let prev = 0;
+    // Nothing to see, nothing to draw: off screen or paused, the loop stops, and it picks up again
+    // where the shared clock is (the step after a pause is capped, so it does not jump).
+    let onScreen = true;
     const frame = (t: number) => {
-      if (!alive) return;
+      raf = 0;
+      if (!alive || !onScreen || pausedRef.current) {
+        prev = 0;
+        return;
+      }
       raf = requestAnimationFrame(frame);
       if (t - last < 1000 / fps - 2) return;
       last = t;
@@ -295,11 +310,24 @@ export function AgentOrb({
       prev = t;
       draw(t, dt);
     };
+    wake.current = () => {
+      if (alive && !reduced && !raf && onScreen && !pausedRef.current) raf = requestAnimationFrame(frame);
+    };
+    const io =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver(([e]) => {
+            onScreen = e.isIntersecting;
+            wake.current();
+          });
+    io?.observe(canvas);
     if (reduced) draw(0, 0);
-    else raf = requestAnimationFrame(frame);
+    else wake.current();
     return () => {
       alive = false;
+      wake.current = () => {};
       cancelAnimationFrame(raf);
+      io?.disconnect();
       ro.disconnect();
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerleave", onLeave);

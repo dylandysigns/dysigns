@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { zoomToGridData } from "../../data/projects";
 import type { Project } from "../../data/projects";
 import { useCursor } from "../../hooks/useCursor";
@@ -10,20 +8,11 @@ import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
- * ZoomToGrid — Pinned zoom-out-to-grid section (3×3)
+ * ZoomToGrid — Selected projects as a static 3×3 grid (no pinned zoom any more)
  *
- * All 9 tiles (8 surrounding + 1 hero center) are clickable and route
- * to case detail pages. Pointer-events stay active during and after
- * the pinned scroll animation.
- *
- * Pin is created synchronously in useEffect (no rAF delay) so the
- * pin-spacer is in flow immediately. refreshPriority: -1 ensures
- * this section refreshes after Hero (2) and SentenceReveal (1).
- *
- * NOTE: resize + font-load ScrollTrigger.refresh is handled globally in Layout.tsx
+ * All 9 tiles (8 surrounding + 1 center) are clickable and route to
+ * case detail pages.
  *
  * Explicit slug list (not the raw array order) so this grid can be
  * curated independently of projects.ts's own order. STELZ stays the
@@ -83,93 +72,9 @@ export function ZoomToGrid() {
     });
   }, [tileProjects]);
 
-  // GSAP animation — re-runs on language change to retarget refs
-  useEffect(() => {
-    if (reduced) {
-      // Grid tiles and the subtitle start at opacity 0 in their inline
-      // styles, so jump them to visible instead of skipping the effect
-      // (which would otherwise leave them permanently hidden). The
-      // scroll-pinned zoom/scrub itself is correctly skipped.
-      const targets = [...gridCardsRef.current, headline2Ref.current].filter(Boolean);
-      gsap.set(targets, { opacity: 1, scale: 1, y: 0 });
-      return;
-    }
-
-    const wrap = wrapRef.current;
-    const hero = heroRef.current;
-    const headline = headlineRef.current;
-    const headline2 = headline2Ref.current;
-    if (!wrap || !hero || !headline || !headline2) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrap,
-          start: "top top",
-          end: () => `+=${window.innerHeight * 3}`,
-          pin: true,
-          scrub: isMobile ? 0.3 : 0.5,
-          // anticipatePin must stay 1 on mobile too — this section pins
-          // immediately after Hero's own sticky zone (see Hero.tsx's
-          // `sticky top-0 h-[100dvh]` wrapper), and GSAP's docs are
-          // explicit that anticipatePin:0 right after another
-          // pinned/sticky element causes a visible jump at the handoff.
-          // That handoff is exactly the "hero to next section" boundary
-          // reported as broken on mobile.
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          refreshPriority: -1,
-        },
-      });
-
-      // Hero zoom out — smooth power2.inOut over first 55% of timeline
-      tl.fromTo(
-        hero,
-        { scale: 1.6 },
-        { scale: 1, duration: 0.55, ease: "power2.inOut" },
-        0,
-      );
-
-      // Headline eases up smoothly
-      tl.to(
-        headline,
-        { y: "-40%", opacity: 0.3, duration: 0.5, ease: "power2.inOut" },
-        0.2,
-      );
-
-      // Headline line 2 fades in smoothly
-      tl.fromTo(
-        headline2,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" },
-        0.4,
-      );
-
-      // Grid cards stagger in with smooth easing
-      gridCardsRef.current.forEach((card, i) => {
-        if (!card) return;
-        tl.fromTo(
-          card,
-          { scale: 0.8, opacity: 0, y: 30 },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          0.45 + i * 0.04,
-        );
-      });
-
-      // Hold phase — grid stays fully visible while user continues scrolling
-      tl.to({}, { duration: 0.3 });
-    }, wrap);
-
-    return () => {
-      ctx.revert();
-    };
-  }, [reduced, lang]);
+  /* No scroll motion: the section is the finished 3×3 grid straight away (it used to be pinned
+     and zoom out from the centre tile into the grid while scrolling). The project tiles, links and
+     cursor labels are unchanged. */
 
   /** Text tile for a grid cell without a project, same shape as Tile. */
   const LinkTile = useCallback(
@@ -376,7 +281,6 @@ export function ZoomToGrid() {
                     fontSize: "clamp(.8rem,1.5vw,1.1rem)",
                     color: "rgba(var(--page-fg-rgb), .5)",
                     marginTop: 8,
-                    opacity: 0,
                     textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
                   }}
                 >
@@ -508,9 +412,10 @@ export function ZoomToGrid() {
     <div
       ref={wrapRef}
       className="relative"
-      style={{ background: "var(--page-bg)", height: "100vh", overflow: "hidden" }}
+      style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
-      <div className="h-screen flex items-center justify-center overflow-hidden relative">
+      {/* at least a screen high, and taller where the grid needs it (a low laptop screen), so no tile is cut off */}
+      <div className="min-h-screen flex items-center justify-center relative pt-16 pb-20">
         <div
           className="absolute inset-0"
           style={{ background: "var(--page-bg)", zIndex: 0, pointerEvents: "none" }}
@@ -527,7 +432,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[0] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[0]} />
             </div>
@@ -535,7 +439,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[1] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[1]} />
             </div>
@@ -543,7 +446,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[2] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[2]} />
             </div>
@@ -553,7 +455,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[3] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               {tileProjects[3] ? (
                 <Tile project={tileProjects[3]} />
@@ -575,7 +476,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[4] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[5]} />
             </div>
@@ -585,7 +485,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[5] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[6]} />
             </div>
@@ -593,7 +492,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[6] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <Tile project={tileProjects[7]} />
             </div>
@@ -601,7 +499,6 @@ export function ZoomToGrid() {
               ref={(el) => {
                 gridCardsRef.current[7] = el;
               }}
-              style={{ opacity: 0, willChange: "transform, opacity" }}
             >
               <LinkTile to="/contact" label={t("hero.cta2")} />
             </div>

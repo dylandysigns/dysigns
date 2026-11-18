@@ -165,10 +165,35 @@ export default function PortalHero() {
       if (land && reduced) land.renderOnce();
     }
     layout();
-    if (land && !reduced) land.start();
-    else land?.renderOnce();
+    /* Under the splash (SplashIntro.tsx, a first visit) nobody sees the hero yet: it paints one
+       still frame and only starts to move as the splash dissolves into it. Running here as well
+       would put a second full-screen sky on the device while the splash plays its own. */
+    let splashUp = false;
+    try {
+      splashUp = !reduced && sessionStorage.getItem("dysigns_splash_done") !== "1";
+    } catch {
+      /* private mode: no splash to wait for */
+    }
+    const afterSplash = (fn: () => void) => {
+      if (!splashUp) return fn();
+      let done = false;
+      const go = () => {
+        if (done || !alive) return;
+        done = true;
+        window.removeEventListener("dysigns:splash-leaving", go);
+        window.removeEventListener("dysigns:splash-done", go);
+        fn();
+      };
+      window.addEventListener("dysigns:splash-leaving", go);
+      window.addEventListener("dysigns:splash-done", go);
+    };
+    if (land && !reduced) {
+      land.renderOnce();
+      // (the splash plays with the page at the top, so the hero is on screen when it leaves)
+      afterSplash(() => land.start());
+    } else land?.renderOnce();
 
-    gsap.set(q(".ph-b [data-rise]"), { autoAlpha: 0, y: 14 });
+    gsap.set(q(".ph-b [data-rise], .ph-down"), { autoAlpha: 0, y: 14 });
 
     /* ─── The emblem loads after idle, or on the first trip through the portal ─── */
     function loadCard() {
@@ -187,7 +212,11 @@ export default function PortalHero() {
         });
       return cardLoading;
     }
-    const idle = window.setTimeout(loadCard, 1800);
+    // not while the splash plays: building the 3D emblem halfway through it made it stutter
+    let idle = 0;
+    afterSplash(() => {
+      idle = window.setTimeout(loadCard, 1800);
+    });
 
     /* The planet and the emblem are one object. `grow` brings it closer; `morph` unrolls the
        sphere into the emblem while `spin` turns it once. As long as it is a planet, the white
@@ -249,7 +278,7 @@ export default function PortalHero() {
       tl?.kill();
 
       const aBlocks = q(".ph-a [data-fade]");
-      const bFades = q(".ph-b [data-rise]");
+      const bFades = q(".ph-b [data-rise], .ph-down");
       gsap.set(bFades, { autoAlpha: 0, y: 14 });
       gsap.set(cardEl, { opacity: 0 });
       Object.assign(fx, { grow: 0, shrink: 1, morph: 0, spin: SPIN_FROM });
@@ -313,7 +342,7 @@ export default function PortalHero() {
 
       const aBlocks = q(".ph-a [data-fade]");
       const aLines = q(".ph-a .ph-line");
-      const bFades = q(".ph-b [data-rise]");
+      const bFades = q(".ph-b [data-rise], .ph-down");
 
       tl = gsap.timeline({
         onUpdate: syncEmblem,
@@ -364,7 +393,7 @@ export default function PortalHero() {
     if (!simple) {
       const s = land!.state;
       const aBlocks = q(".ph-a [data-fade]");
-      const bFades = q(".ph-b [data-rise]");
+      const bFades = q(".ph-b [data-rise], .ph-down");
       flight = gsap
         .timeline({ paused: true, onUpdate: syncEmblem })
         // the copy lets go
@@ -483,7 +512,7 @@ export default function PortalHero() {
       s.warp = 0;
       if (card) card.state.scale = 1;
       gsap.set(cardEl, { opacity: 1 });
-      gsap.set(q(".ph-b [data-rise]"), { autoAlpha: 1 });
+      gsap.set(q(".ph-b [data-rise], .ph-down"), { autoAlpha: 1 });
       leaving = false;
       lock(false);
       onScroll();
@@ -505,7 +534,7 @@ export default function PortalHero() {
       tl?.kill();
       inkOk = false;
       const s = land!.state;
-      const bFades = q(".ph-b [data-rise]");
+      const bFades = q(".ph-b [data-rise], .ph-down");
       if (card) {
         gsap.killTweensOf(card.state);
         card.state.auto = -1;
@@ -557,7 +586,7 @@ export default function PortalHero() {
       showEmblem(); // scene is "b": it comes in as the finished emblem
       inkOk = true;
       gsap.set(q(".ph-a [data-fade]"), { autoAlpha: 0 });
-      gsap.set(q(".ph-b [data-rise]"), { autoAlpha: 1, y: 0 });
+      gsap.set(q(".ph-b [data-rise], .ph-down"), { autoAlpha: 1, y: 0 });
       gsap.set(root, { opacity: 1 });
       window.scrollTo(0, root.offsetHeight);
       onScroll();
@@ -759,7 +788,7 @@ export default function PortalHero() {
       /* no storage, no return trip */
     }
     if (returning) {
-      const bFades = q(".ph-b [data-rise]");
+      const bFades = q(".ph-b [data-rise], .ph-down");
       gsap.set(q(".ph-a [data-fade]"), { autoAlpha: 0 });
       scene = "toB";
       root.dataset.scene = "toB";
@@ -959,26 +988,6 @@ export default function PortalHero() {
           DYSIGNS
         </div>
         <canvas ref={cardCanvasRef} className="ph-card" aria-hidden="true" />
-        {/* the way on: a small glass button with a thin arrow; a plain click scrolls on to the page */}
-        <button
-          type="button"
-          className="ph-down"
-          data-rise
-          aria-label={t("hero.scrollDown")}
-          onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
-        >
-          <svg viewBox="0 0 24 72" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <defs>
-              <linearGradient id="ph-down-fade" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="66">
-                <stop offset="0" stopColor="#fff" stopOpacity="0" />
-                <stop offset="1" stopColor="#fff" stopOpacity="0.85" />
-              </linearGradient>
-            </defs>
-            <path className="ph-down__line" d="M12 2v64" stroke="url(#ph-down-fade)" />
-            <path className="ph-down__spark" d="M12 2v64" pathLength="64" />
-            <path className="ph-down__head" d="M6.5 60.5L12 66l5.5-5.5" />
-          </svg>
-        </button>
         <ul className="ph-chips" aria-label={lang === "nl" ? "Diensten" : "Services"}>
           {services.map((sv) => {
             const inner = (
@@ -1024,6 +1033,25 @@ export default function PortalHero() {
           })}
         </ul>
       </section>
+      {/* the way on: a round glass button with an arrow and the word "Scroll" over it, in the
+          dark glass of the agent's button; a plain click scrolls on to the page. It sits outside
+          scene B, over the run-out into black at the bottom, but rises in with it (data-rise). */}
+      <button
+        type="button"
+        className="ph-down"
+        data-rise
+        aria-label={t("hero.scrollDown")}
+        onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
+      >
+        <span className="ph-down__label" aria-hidden="true">
+          {t("hero.scroll")}
+        </span>
+        <span className="ph-down__ring" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 5v13M6.5 12.5 12 18l5.5-5.5" />
+          </svg>
+        </span>
+      </button>
     </div>
   );
 }

@@ -11,7 +11,8 @@ import { flyRight, enterFromRight } from "./sideFlight";
 import { usePageTransition } from "../src/app/hooks/useTransition";
 
 export type ShipOrigin = { left: number; top: number; width: number; height: number };
-/** Set when a link in an answer takes the visitor away: going back reopens the agent (SpaceAgent.tsx). */
+/** Set when a link in an answer takes the visitor away, to the path it was open on: going back to
+ *  that page reopens the agent (SpaceAgent.tsx in the hero, FixedAgent.tsx everywhere else). */
 export const AGENT_RETURN_KEY = "dysigns-agent-return";
 const CHAT_KEY = "dysigns-agent-chat";
 
@@ -29,12 +30,18 @@ export function AgentScene({
   onClose,
   signal: orb,
   instant = false,
+  little = null,
+  zoomHero = true,
 }: {
   origin: ShipOrigin | null;
   onClose: () => void;
   signal: MutableRefObject<OrbSignal>;
   /** coming back to it (browser back after a link): it is simply there, no flight in */
   instant?: boolean;
+  /** the little orb's canvas the big one takes over from */
+  little?: HTMLElement | null;
+  /** false for the fixed button (FixedAgent.tsx): no hero to fly through, the page stays put */
+  zoomHero?: boolean;
 }) {
   const { t } = useLanguage();
   const { navigateTo } = usePageTransition();
@@ -92,7 +99,8 @@ export function AgentScene({
           scale: origin && fr.width ? origin.width / fr.width : 0.3,
           big: ship,
           sky,
-          little: document.querySelector<HTMLElement>(".sa-ship .sa-craft"),
+          little,
+          ...(zoomHero ? {} : { hero: null }),
         });
 
     if (camera && instant) {
@@ -105,16 +113,20 @@ export function AgentScene({
     } else if (camera) {
       gsap.set(panel, { opacity: 0, x: 40 });
       gsap.set(head, { opacity: 0 });
+      /* From the hero the camera first gathers speed with the hero zooming along. From the fixed
+         button nothing else moves, so a slow start reads as a click that did nothing: there the orb
+         leaves at once and eases into its place, and the conversation follows sooner. */
+      const k = zoomHero ? 1 : 0.62; // how much shorter the whole thing is from the fixed button
       gsap
         .timeline()
-        .add(camera.flyIn(2.1), 0)
-        .to(space?.state ?? {}, { warp: 0.45, duration: 0.9, ease: "power2.in" }, 0.2)
-        .to(space?.state ?? {}, { travel: 1.0, duration: 2.4, ease: "power2.out" }, 0.2)
-        .to(space?.state ?? {}, { warp: 0, duration: 1.2, ease: "sine.out" }, 1.1)
-        .to(head, { opacity: 1, duration: 0.8, stagger: 0.1 }, 1.7)
-        .to(panel, { opacity: 1, x: 0, duration: 0.9, ease: "power3.out" }, 1.7)
-        .call(() => root.querySelector<HTMLInputElement>(".as-panel input")?.focus({ preventScroll: true }), [], 2.2)
-        .call(() => setArrived(true), [], 2.2);
+        .add(zoomHero ? camera.flyIn(2.1) : camera.flyIn(1.5, "power3.out"), 0)
+        .to(space?.state ?? {}, { warp: 0.45, duration: 0.9 * k, ease: "power2.in" }, zoomHero ? 0.2 : 0)
+        .to(space?.state ?? {}, { travel: 1.0, duration: 2.4 * k, ease: "power2.out" }, zoomHero ? 0.2 : 0)
+        .to(space?.state ?? {}, { warp: 0, duration: 1.2 * k, ease: "sine.out" }, 1.1 * k)
+        .to(head, { opacity: 1, duration: 0.8, stagger: 0.1 }, 1.7 * k)
+        .to(panel, { opacity: 1, x: 0, duration: 0.9, ease: "power3.out" }, 1.7 * k)
+        .call(() => root.querySelector<HTMLInputElement>(".as-panel input")?.focus({ preventScroll: true }), [], 2.2 * k)
+        .call(() => setArrived(true), [], 2.2 * k);
     } else {
       root.querySelector<HTMLInputElement>(".as-panel input")?.focus({ preventScroll: true });
       setArrived(true);
@@ -138,7 +150,8 @@ export function AgentScene({
       closing.current = true;
       setArrived(false);
       try {
-        sessionStorage.setItem(AGENT_RETURN_KEY, "1");
+        // the page it was opened on: going back to that page opens it again
+        sessionStorage.setItem(AGENT_RETURN_KEY, window.location.pathname);
       } catch {
         /* private mode: going back then shows the home page as usual */
       }

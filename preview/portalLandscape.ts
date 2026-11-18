@@ -5,6 +5,8 @@
    them; on the screen is the same meadow by day. Everything the transition needs (dolly, glow,
    frost, white-out) is a uniform, so GSAP only tweens numbers. */
 
+import { createFrameBudget } from "./frameBudget";
+
 export type LandscapeState = {
   /** Phone body in CSS px, top-left origin. */
   cx: number;
@@ -287,13 +289,16 @@ export function createLandscape(canvas: HTMLCanvasElement, opts: { transparent?:
   let running = false;
   const t0 = performance.now();
 
+  const budget = createFrameBudget(() => resize());
+
   function resize() {
     const w = canvas.clientWidth || window.innerWidth || 1;
     const h = canvas.clientHeight || window.innerHeight || 1;
     cssH = h;
     // cap the pixel count: the scene is soft, sharpness comes from the UI on top
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    scale = Math.min(dpr, Math.sqrt(1_700_000 / (w * h)));
+    // and fewer still on a device that does not keep up (frameBudget.ts)
+    scale = Math.min(dpr, Math.sqrt(1_700_000 / (w * h))) * budget.scale;
     canvas.width = Math.max(2, Math.round(w * scale));
     canvas.height = Math.max(2, Math.round(h * scale));
     gl!.viewport(0, 0, canvas.width, canvas.height);
@@ -321,6 +326,7 @@ export function createLandscape(canvas: HTMLCanvasElement, opts: { transparent?:
   function loop() {
     if (!running) return;
     draw();
+    budget.tick();
     raf = requestAnimationFrame(loop);
   }
 
@@ -331,6 +337,7 @@ export function createLandscape(canvas: HTMLCanvasElement, opts: { transparent?:
     start() {
       if (running) return;
       running = true;
+      budget.restart();
       raf = requestAnimationFrame(loop);
     },
     stop() {

@@ -466,69 +466,80 @@ html.ph-lock body {
   }
 }
 @media (max-width: 767px) {
-  /* on a phone the whole agent is one pill: the orb, its name and invitation, a white arrow */
+  /* on a phone the agent is the fixed round button in the corner of every screen (FixedAgent.tsx) */
   .ph-agent {
-    right: 12px;
-    bottom: 86px;
-    width: auto;
-  }
-  .ph-agent .sa-ship {
-    display: grid;
-    grid-template-columns: 44px auto 34px;
-    grid-template-areas:
-      "orb name go"
-      "orb ask go";
-    column-gap: 10px;
-    row-gap: 1px;
-    align-items: center;
-    padding: 5px 5px 5px 4px;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 999px;
-    background: rgba(12, 12, 14, 0.55);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    opacity: 1;
-    animation: sa-beckon 3.2s ease-out 1.5s infinite;
-  }
-  .ph-agent .sa-hint {
     display: none;
   }
-  .ph-agent .sa-craft {
-    grid-area: orb;
-    width: 44px;
-    height: 44px;
-  }
-  .ph-agent .sa-name {
-    grid-area: name;
-    margin: 0;
-    align-self: end;
-    font-size: 0.82rem;
-    text-align: left;
-  }
-  /* the pill's parts sit straight in the row; the row itself is the button */
-  .ph-agent .sa-ask {
-    display: contents;
-    animation: none;
-  }
-  .ph-agent .sa-ask__text {
-    grid-area: ask;
-    align-self: start;
-    font-size: 0.76rem;
-    font-weight: 400;
-    text-align: left;
-    color: rgba(255, 255, 255, 0.72);
-  }
-  .ph-agent .sa-go {
-    grid-area: go;
-    width: 34px;
-    height: 34px;
-  }
-  .ph-agent .sa-ship:focus-visible {
-    border-radius: 999px;
+}
+
+/* ─── The DYSIGNS agent as a fixed round button (FixedAgent.tsx): only the orb, in a dark circle,
+   bottom right on every screen. Desktop: in, once the hero's own agent is gone. Phone: always. ─── */
+:root {
+  --fa-size: 64px;
+  --fa-edge: 24px;
+  /* the back-to-top button (Layout.tsx) sits above it, centred on it */
+  --fa-stack: calc(var(--fa-edge) + var(--fa-size) + 12px);
+  --fa-stack-right: calc(var(--fa-edge) + (var(--fa-size) - 44px) / 2);
+}
+@media (max-width: 767px) {
+  :root {
+    --fa-size: 56px;
+    --fa-edge: 16px;
   }
 }
-@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  .ph-agent .sa-ship {
+.fa {
+  position: fixed;
+  right: var(--fa-edge);
+  bottom: calc(var(--fa-edge) + env(safe-area-inset-bottom, 0px));
+  z-index: 190; /* under the menu (200) and the lightboxes, over the page */
+  border-radius: 50%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+.fa.is-hidden {
+  opacity: 0;
+  transform: translateY(14px) scale(0.85);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+.fa-ship {
+  display: grid;
+  place-items: center;
+  width: var(--fa-size);
+  height: var(--fa-size);
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #17181d 0%, #060607 72%);
+  cursor: pointer;
+  animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+.fa-ship:hover {
+  transform: scale(1.06);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.fa-ship:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+}
+.fa-craft {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fa-ship {
     animation: none;
   }
 }
@@ -728,15 +739,20 @@ html.ph-lock body {
   }
 }
 
-/* the way on: no button, just a hairline that points down, a small light that slides along it, and a
-   fine arrowhead at its end. GSAP owns the transform of .ph-down (the reveal). */
+/* the way on: a round glass button with an arrow, the word "Scroll" over it. GSAP owns the
+   transform of .ph-down (the reveal), so it is centred with margins, not a transform. */
 .ph-down {
   position: absolute;
-  left: 50%;
-  bottom: 3svh;
-  width: 36px;
-  height: 108px;
-  margin-left: -18px;
+  left: 0;
+  right: 0;
+  bottom: calc(max(24px, 4svh) + env(safe-area-inset-bottom, 0px));
+  z-index: 6; /* over the run-out into black at the bottom of the hero (.ph::after) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  margin: 0 auto;
   padding: 0;
   border: 0;
   background: none;
@@ -747,83 +763,83 @@ html.ph-lock body {
 .ph[data-scene="b"] .ph-down {
   pointer-events: auto;
 }
-.ph-down svg {
+.ph-down__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  /* the letter spacing also follows the last letter: pulled back so the word sits centred */
+  margin-right: -0.22em;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+  transition: color 0.4s ease;
+}
+/* the dark glass of the agent's round button (FixedAgent.tsx), with a soft ring now and then */
+.ph-down__ring {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 55%), #08080a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 10px 28px rgba(0, 0, 0, 0.5);
+  animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+.ph-down__ring svg {
   display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+  width: 22px;
+  height: 22px;
+  animation: phDownNudge 2.4s ease-in-out infinite;
 }
-.ph-down__spark {
-  stroke-dasharray: 12 90;
-  stroke-dashoffset: 12;
-  opacity: 1;
-  filter: drop-shadow(0 0 3px rgba(200, 225, 255, 0.9));
-  animation: phDownSpark 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+.ph-down:hover .ph-down__ring,
+.ph-down:focus-visible .ph-down__ring {
+  transform: scale(1.06);
+  border-color: rgba(255, 255, 255, 0.5);
 }
-.ph-down__head {
-  opacity: 0.8;
-  transition: opacity 0.4s ease;
-  animation: phDownHead 4.2s ease-in-out infinite;
+.ph-down:hover .ph-down__label,
+.ph-down:focus-visible .ph-down__label {
+  color: #fff;
 }
-.ph-down:hover .ph-down__head,
-.ph-down:focus-visible .ph-down__head {
-  opacity: 1;
-  animation: none;
+.ph-down:focus-visible {
+  outline: none;
 }
-/* on a phone it is seen from further away and on a small, bright screen: bigger, brighter, a little higher */
+.ph-down:focus-visible .ph-down__ring {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+}
 @media (max-width: 700px) {
   .ph-down {
-    bottom: calc(5svh + env(safe-area-inset-bottom, 0px));
-    width: 34px;
-    height: 92px;
-    margin-left: -17px;
+    gap: 10px;
   }
-  .ph-down svg path {
-    stroke-width: 1.45;
-  }
-  .ph-down__head,
-  .ph-down__spark {
-    stroke: #fff;
-  }
-  .ph-down__head {
-    opacity: 1;
-    animation: none;
+  .ph-down__ring {
+    width: 52px;
+    height: 52px;
   }
 }
-@keyframes phDownSpark {
-  0% {
-    stroke-dashoffset: 10;
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.95;
-  }
-  75% {
-    stroke-dashoffset: -64;
-    opacity: 0.95;
-  }
-  100% {
-    stroke-dashoffset: -64;
-    opacity: 0;
-  }
-}
-@keyframes phDownHead {
+/* the arrow points the way: now and then it dips down a little and back */
+@keyframes phDownNudge {
   0%,
-  60%,
+  55%,
   100% {
-    opacity: 0.75;
+    transform: translateY(0);
   }
-  78% {
-    opacity: 1;
+  70% {
+    transform: translateY(4px);
+  }
+  85% {
+    transform: translateY(-1px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ph-down__spark,
-  .ph-down__head {
+  .ph-down__ring,
+  .ph-down__ring svg {
     animation: none;
-  }
-  .ph-down__spark {
-    display: none;
   }
 }
 .ph-card {
@@ -1023,6 +1039,11 @@ html.ph-lock body {
   color: #fff;
   font-family: "Effra", system-ui, sans-serif;
   overflow: hidden;
+}
+/* while a scene is open nothing of the page floats over it (the back-to-top button, Layout.tsx) */
+body:has(> .gs) button[aria-label="Back to top"] {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 .gs-sky {
   position: absolute;

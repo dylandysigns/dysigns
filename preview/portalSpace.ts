@@ -8,6 +8,8 @@
    room the emblem hangs in. Everything
    the transition needs is a uniform, so GSAP only tweens numbers. */
 
+import { createFrameBudget } from "./frameBudget";
+
 export type SpaceState = {
   warp: number; // 0..1 speed of the flight: stars stretch, lines and light let go
   travel: number; // distance flown, in star layers
@@ -180,7 +182,8 @@ void main(){
 `;
 
 /** `t0` lets a second canvas run on the clock of the first, so both show the same sky. */
-export function createSpace(canvas: HTMLCanvasElement, opts: { t0?: number } = {}): Space | null {
+/** `maxPixels`: the most canvas pixels to paint (the splash on a phone asks for fewer). */
+export function createSpace(canvas: HTMLCanvasElement, opts: { t0?: number; maxPixels?: number } = {}): Space | null {
   const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance" });
   if (!gl) return null;
 
@@ -232,13 +235,16 @@ export function createSpace(canvas: HTMLCanvasElement, opts: { t0?: number } = {
   let running = false;
   const t0 = opts.t0 ?? performance.now();
 
+  const budget = createFrameBudget(() => resize());
+
   function resize() {
     // never 0: a hidden tab reports an empty viewport, and a division by 0 would poison the shader with NaN
     const w = canvas.clientWidth || window.innerWidth || 1;
     const h = canvas.clientHeight || window.innerHeight || 1;
     // cap the pixel count: the scene is soft, sharpness comes from the UI on top
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    scale = Math.min(dpr, Math.sqrt(1_700_000 / (w * h)));
+    // and fewer still on a device that does not keep up (frameBudget.ts)
+    scale = Math.min(dpr, Math.sqrt((opts.maxPixels ?? 1_700_000) / (w * h))) * budget.scale;
     canvas.width = Math.max(2, Math.round(w * scale));
     canvas.height = Math.max(2, Math.round(h * scale));
     gl!.viewport(0, 0, canvas.width, canvas.height);
@@ -262,6 +268,7 @@ export function createSpace(canvas: HTMLCanvasElement, opts: { t0?: number } = {
   function loop() {
     if (!running) return;
     draw();
+    budget.tick();
     raf = requestAnimationFrame(loop);
   }
 
@@ -273,6 +280,7 @@ export function createSpace(canvas: HTMLCanvasElement, opts: { t0?: number } = {
     start() {
       if (running) return;
       running = true;
+      budget.restart();
       raf = requestAnimationFrame(loop);
     },
     stop() {
