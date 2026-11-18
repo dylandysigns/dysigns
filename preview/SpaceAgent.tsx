@@ -66,7 +66,15 @@ export function SpaceAgent() {
       >
         <AgentOrb signal={orb} className="sa-craft" fps={30} />
         <span className="sa-name">{t("agent.name")}</span>
-        <span className="sa-ask">{t("agent.ask")}</span>
+        {/* the invitation reads as a button: a pill with a white arrow, like the hero's own buttons */}
+        <span className="sa-ask">
+          <span className="sa-ask__text">{t("agent.ask")}</span>
+          <span className="sa-go" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="14" height="14">
+              <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </span>
       </button>
       <GreetingBubble target={shipRef} />
       {open && (
