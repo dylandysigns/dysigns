@@ -4,6 +4,7 @@ import { useLanguage } from "../src/app/hooks/useLanguage";
 import { AgentOrb, createOrbSignal } from "./AgentOrb";
 import { AgentScene, AGENT_RETURN_KEY, type ShipOrigin } from "./AgentScene";
 import { GreetingBubble } from "./GreetingBubble";
+import { plop } from "./plop";
 import "./portal-hero.css";
 
 const PHONE = "(max-width: 767px)";
@@ -104,7 +105,15 @@ export function FixedAgent() {
 
   const shown = phone || heroScene === null || heroScene === "b";
 
+  // The agent arrives in the corner (the hero moves on to the emblem): a small plop
+  const wasShown = useRef(shown);
+  useEffect(() => {
+    if (shown && !wasShown.current) plop();
+    wasShown.current = shown;
+  }, [shown]);
+
   const openScene = () => {
+    plop();
     setInstant(false);
     orb.current.pulse++; // the click wave, as the camera starts to fly in
     setOrigin(rect());

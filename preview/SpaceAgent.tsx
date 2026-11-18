@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigationType } from "react-router";
 import { useLanguage } from "../src/app/hooks/useLanguage";
+import { plop } from "./plop";
 import { AgentOrb, createOrbSignal } from "./AgentOrb";
 import { AgentScene, AGENT_RETURN_KEY, type ShipOrigin } from "./AgentScene";
 import { GreetingBubble } from "./GreetingBubble";
@@ -70,6 +71,7 @@ export function SpaceAgent() {
   }, []);
 
   const openScene = () => {
+    plop();
     setInstant(false);
     orb.current.pulse++; // the click wave, as the camera starts to fly in
     const c = shipRef.current?.querySelector("canvas")?.getBoundingClientRect();
@@ -109,15 +111,6 @@ export function SpaceAgent() {
         </span>
         <AgentOrb signal={orb} className="sa-craft" fps={30} paused={heroAway && !open} />
         <span className="sa-name">{t("agent.name")}</span>
-        {/* the invitation reads as a button: a pill with a white arrow, like the hero's own buttons */}
-        <span className="sa-ask">
-          <span className="sa-ask__text">{t("agent.ask")}</span>
-          <span className="sa-go" aria-hidden="true">
-            <svg viewBox="0 0 16 16" width="14" height="14">
-              <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </span>
       </button>
       <GreetingBubble target={shipRef} />
       {open && (

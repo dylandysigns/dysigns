@@ -241,12 +241,12 @@ html.ph-lock body {
 }
 .sa-craft {
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 104px;
+  height: 104px;
 }
 .sa-name {
-  margin-top: -6px;
-  font-size: 0.82rem;
+  margin-top: -4px;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0;
   color: rgba(255, 255, 255, 0.92);
@@ -445,21 +445,21 @@ html.ph-lock body {
    with its name and invitation next to it) between the buttons and the logos. */
 .ph-agent {
   position: absolute;
-  right: clamp(24px, 3.5vw, 72px);
-  bottom: 12svh;
-  width: 240px;
+  right: clamp(8px, 1vw, 20px);
+  bottom: max(96px, 10svh);
+  width: 150px;
   text-align: left;
   z-index: 4;
 }
 @media (max-width: 1239px) {
   .ph-agent {
-    right: 24px;
-    bottom: 110px;
-    width: 200px;
+    right: 8px;
+    bottom: 96px;
+    width: 130px;
   }
   .ph-agent .sa-craft {
-    width: 120px;
-    height: 120px;
+    width: 88px;
+    height: 88px;
   }
   .ph-agent .sa-hint {
     right: calc(50% + 28px);
@@ -711,7 +711,7 @@ html.ph-lock body {
 .ph-midhint span {
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
 }
@@ -739,68 +739,46 @@ html.ph-lock body {
   }
 }
 
-/* the way on: a round glass button with an arrow, the word "Scroll" over it. GSAP owns the
-   transform of .ph-down (the reveal), so it is centred with margins, not a transform. */
+/* the way on: no button, just a hairline that points down, a small light that slides along it, and a
+   fine arrowhead at its end. GSAP owns the transform of .ph-down (the reveal). */
 .ph-down {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(max(24px, 4svh) + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  bottom: 15svh;
   z-index: 6; /* over the run-out into black at the bottom of the hero (.ph::after) */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: max-content;
-  margin: 0 auto;
+  width: 36px;
+  height: 108px;
+  margin-left: -18px;
   padding: 0;
   border: 0;
   background: none;
   color: #fff;
   cursor: pointer;
-  pointer-events: none;
+  /* there from the opening screen on, in once the splash and the headline are done */
+  animation: phDownIn 0.9s ease 3.4s both;
 }
-.ph[data-scene="b"] .ph-down {
-  pointer-events: auto;
+@keyframes phDownIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .ph-down__label {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  /* the letter spacing also follows the last letter: pulled back so the word sits centred */
-  margin-right: -0.22em;
+  white-space: nowrap;
   color: rgba(255, 255, 255, 0.72);
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
   transition: color 0.4s ease;
-}
-/* the dark glass of the agent's round button (FixedAgent.tsx), with a soft ring now and then */
-.ph-down__ring {
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 55%), #08080a;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 10px 28px rgba(0, 0, 0, 0.5);
-  animation: sa-beckon 3.2s ease-out 1.5s infinite;
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.4s ease;
-}
-.ph-down__ring svg {
-  display: block;
-  width: 22px;
-  height: 22px;
-  animation: phDownNudge 2.4s ease-in-out infinite;
-}
-.ph-down:hover .ph-down__ring,
-.ph-down:focus-visible .ph-down__ring {
-  transform: scale(1.06);
-  border-color: rgba(255, 255, 255, 0.5);
 }
 .ph-down:hover .ph-down__label,
 .ph-down:focus-visible .ph-down__label {
@@ -809,37 +787,83 @@ html.ph-lock body {
 .ph-down:focus-visible {
   outline: none;
 }
-.ph-down:focus-visible .ph-down__ring {
-  outline: 1px solid rgba(255, 255, 255, 0.6);
-  outline-offset: 4px;
+.ph-down svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
+.ph-down__spark {
+  stroke-dasharray: 12 90;
+  stroke-dashoffset: 12;
+  opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(200, 225, 255, 0.9));
+  animation: phDownSpark 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+.ph-down__head {
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+  animation: phDownHead 4.2s ease-in-out infinite;
+}
+.ph-down:hover .ph-down__head,
+.ph-down:focus-visible .ph-down__head {
+  opacity: 1;
+  animation: none;
+}
+/* on a phone it is seen from further away and on a small, bright screen: bigger, brighter, a little higher */
 @media (max-width: 700px) {
   .ph-down {
-    gap: 10px;
+    bottom: calc(14svh + env(safe-area-inset-bottom, 0px));
+    width: 34px;
+    height: 92px;
+    margin-left: -17px;
   }
-  .ph-down__ring {
-    width: 52px;
-    height: 52px;
+  .ph-down svg path {
+    stroke-width: 1.45;
+  }
+  .ph-down__head,
+  .ph-down__spark {
+    stroke: #fff;
+  }
+  .ph-down__head {
+    opacity: 1;
+    animation: none;
   }
 }
-/* the arrow points the way: now and then it dips down a little and back */
-@keyframes phDownNudge {
-  0%,
-  55%,
+@keyframes phDownSpark {
+  0% {
+    stroke-dashoffset: 10;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  75% {
+    stroke-dashoffset: -64;
+    opacity: 0.95;
+  }
   100% {
-    transform: translateY(0);
+    stroke-dashoffset: -64;
+    opacity: 0;
   }
-  70% {
-    transform: translateY(4px);
+}
+@keyframes phDownHead {
+  0%,
+  60%,
+  100% {
+    opacity: 0.75;
   }
-  85% {
-    transform: translateY(-1px);
+  78% {
+    opacity: 1;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ph-down__ring,
-  .ph-down__ring svg {
+  .ph-down__spark,
+  .ph-down__head {
     animation: none;
+  }
+  .ph-down__spark {
+    display: none;
   }
 }
 .ph-card {

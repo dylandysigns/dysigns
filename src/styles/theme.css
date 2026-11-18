@@ -334,3 +334,11 @@
   color: var(--page-fg);
   font-weight: 600;
 }
+
+/* Selected work on the home page (ZoomToGrid.tsx): the middle column sits lower
+   than the two beside it, from tablet up */
+@media (min-width: 768px) {
+  .zg-grid > :nth-child(3n + 2) {
+    transform: translateY(clamp(48px, 7vw, 110px));
+  }
+}

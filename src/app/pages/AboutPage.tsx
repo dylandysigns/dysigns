@@ -148,17 +148,7 @@ export default function AboutPage() {
         />
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16 z-10">
           <div className="max-w-[1200px] mx-auto">
-            <span
-              style={{
-                fontSize: ".6rem",
-                fontWeight: 500,
-                letterSpacing: ".16em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .55)",
-              }}
-            >
-              {t("about.label")}
-            </span>
+            <span className="sr-only">{t("about.label")}</span>
             <h1
               className="mt-3"
               style={{
@@ -219,21 +209,7 @@ export default function AboutPage() {
             color: "rgba(var(--page-fg-rgb), .6)",
           }}
         >
-          <span
-            style={{
-              display: "block",
-              marginBottom: "1rem",
-              fontFamily: "var(--font-brand)",
-              fontSize: ".68rem",
-              fontStyle: "normal",
-              fontWeight: 600,
-              letterSpacing: ".14em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-            }}
-          >
-            {t("about.teamSignature")}
-          </span>
+          <span className="sr-only">{t("about.teamSignature")}</span>
           {t("vision.text")} {t("about.storyText")}
         </p>
         <div
@@ -243,17 +219,7 @@ export default function AboutPage() {
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 pb-16 md:pb-24">
-        <span
-          style={{
-            fontSize: ".6rem",
-            fontWeight: 500,
-            letterSpacing: ".16em",
-            textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .55)",
-          }}
-        >
-          {t("about.valuesLabel")}
-        </span>
+        <span className="sr-only">{t("about.valuesLabel")}</span>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           {/* Static content cards, no interaction signals — there's nothing
               behind them to click through to, so per option A (remove

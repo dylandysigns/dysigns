@@ -264,17 +264,7 @@ export function KindWords() {
             className="relative z-10 lg:pr-12 lg:pt-4"
             style={{ opacity: prefersReduced ? 1 : 0 }}
           >
-            <span
-              style={{
-                fontSize: ".7rem",
-                fontWeight: 500,
-                letterSpacing: ".16em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .55)",
-              }}
-            >
-              {t("testimonials.label")}
-            </span>
+            <span className="sr-only">{t("testimonials.label")}</span>
 
             <h2
               className="mt-3"
@@ -413,7 +403,7 @@ export function KindWords() {
                       padding: "8px 18px",
                       fontSize: ".7rem",
                       fontWeight: 600,
-                      letterSpacing: ".12em",
+                      letterSpacing: "0",
                       textTransform: "uppercase",
                       color: "rgba(var(--page-fg-rgb), .85)",
                       whiteSpace: "nowrap",

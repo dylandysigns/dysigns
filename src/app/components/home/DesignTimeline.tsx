@@ -133,17 +133,7 @@ export function DesignTimeline() {
         }}
       >
         <div className="px-6 md:px-14 mb-8">
-          <span
-            style={{
-              fontSize: ".7rem",
-              fontWeight: 500,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .45)",
-            }}
-          >
-            {t("timeline.label")}
-          </span>
+        <span className="sr-only">{t("timeline.label")}</span>
         </div>
         <div
           className="flex gap-5 px-6 md:px-14 pb-4 overflow-x-auto"
@@ -167,7 +157,7 @@ export function DesignTimeline() {
                   fontFamily: "var(--font-brand)",
                   fontSize: ".55rem",
                   fontWeight: 600,
-                  letterSpacing: ".16em",
+                  letterSpacing: "0",
                   textTransform: "uppercase",
                   color: "rgba(var(--page-fg-rgb), .18)",
                 }}
@@ -223,17 +213,7 @@ export function DesignTimeline() {
         className="absolute top-8 left-6 md:left-14 pointer-events-none"
         style={{ zIndex: 10 }}
       >
-        <span
-          style={{
-            fontSize: ".85rem",
-            fontWeight: 600,
-            letterSpacing: ".16em",
-            textTransform: "uppercase",
-            color: "rgba(var(--page-fg-rgb), .5)",
-          }}
-        >
-          {t("timeline.label")}
-        </span>
+      <span className="sr-only">{t("timeline.label")}</span>
       </div>
 
       {/* progress baseline — sits at lower third */}
@@ -354,7 +334,7 @@ export function DesignTimeline() {
                   fontFamily: "var(--font-brand)",
                   fontSize: ".65rem",
                   fontWeight: 600,
-                  letterSpacing: ".16em",
+                  letterSpacing: "0",
                   textTransform: "uppercase",
                   color: "rgba(var(--page-fg-rgb), .45)",
                 }}

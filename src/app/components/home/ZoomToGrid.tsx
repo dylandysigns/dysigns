@@ -7,6 +7,7 @@ import { TransitionLink } from "../TransitionLink";
 import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
+import { ArrowRight } from "lucide-react";
 
 /**
  * ZoomToGrid — Selected projects as a static 3×3 grid (no pinned zoom any more)
@@ -35,7 +36,6 @@ export function ZoomToGrid() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const headline2Ref = useRef<HTMLSpanElement>(null);
   const gridCardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
   const { t, lang } = useLanguage();
@@ -86,7 +86,7 @@ export function ZoomToGrid() {
       onMouseLeave={() => cursor.reset()}
     >
       <div
-        className="aspect-[3/4] sm:aspect-[4/3] rounded-xl flex items-center justify-center p-3 text-center"
+        className="aspect-[3/4] flex items-center justify-center p-3 text-center"
         style={{
           border: "1px solid rgba(var(--page-fg-rgb), .14)",
           fontFamily: "var(--font-brand)",
@@ -141,7 +141,7 @@ export function ZoomToGrid() {
       >
         <div
           ref={refCb}
-          className="relative overflow-hidden rounded-xl group"
+          className="relative overflow-hidden group"
           style={{
             transformOrigin: isHero ? "center center" : undefined,
             ...style,
@@ -152,11 +152,9 @@ export function ZoomToGrid() {
               Safari from rasterising a filtered texture on every hover-scale
               frame (filter + transform on the same element = software path). */}
           <div
-            className="aspect-[3/4] sm:aspect-[4/3] overflow-hidden"
+            className="aspect-[3/4] overflow-hidden"
             style={{
-              filter: isHero
-                ? "grayscale(.85) brightness(.55) contrast(1.1)"
-                : "grayscale(.8) brightness(.55) contrast(1.05)",
+              filter: "grayscale(.8) brightness(.55) contrast(1.05)",
             }}
           >
             {!isHero && project.coverVideo ? (
@@ -206,25 +204,50 @@ export function ZoomToGrid() {
               />
             )}
           </div>
-          {/* Title overlay — always visible on mobile, hover-reveal on desktop */}
+          {/* Caption: name and discipline bottom left, the arrow bottom right, always there */}
           <div
-            className="absolute inset-0 flex items-end p-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400"
+            className="absolute inset-0 flex items-end justify-between gap-3 p-3 md:p-6"
             style={{
               background:
-                "linear-gradient(to top, rgba(var(--page-bg-rgb), .7) 0%, transparent 60%)",
+                "linear-gradient(to top, rgba(var(--page-bg-rgb), .78) 0%, transparent 55%)",
               zIndex: 5,
             }}
           >
+            <span className="min-w-0">
+              <span
+                className="block truncate"
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  fontSize: "clamp(.62rem,1vw,.9rem)",
+                  fontWeight: 600,
+                  letterSpacing: ".06em",
+                  textTransform: "uppercase",
+                  color: "var(--page-fg)",
+                }}
+              >
+                {project.title}
+              </span>
+              <span
+                className="hidden md:block mt-1"
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  fontSize: ".85rem",
+                  color: "rgba(var(--page-fg-rgb), .7)",
+                }}
+              >
+                {project.category}
+              </span>
+            </span>
             <span
+              className="hidden md:grid place-items-center shrink-0 rounded-full transition-colors duration-500 md:group-hover:bg-white md:group-hover:text-black"
               style={{
-                fontFamily: "var(--font-brand)",
-                fontSize: ".65rem",
-                fontWeight: 600,
-                color: "rgba(var(--page-fg-rgb), .7)",
-                letterSpacing: "-.01em",
+                width: 44,
+                height: 44,
+                border: "1px solid rgba(var(--page-fg-rgb), .35)",
+                color: "var(--page-fg)",
               }}
             >
-              {project.title}
+              <ArrowRight size={16} strokeWidth={1.5} />
             </span>
           </div>
           {/* corner frames — desktop hover only */}
@@ -252,51 +275,6 @@ export function ZoomToGrid() {
               fill="none"
             />
           </svg>
-          {isHero && (
-            <>
-              {/* headline overlay */}
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center"
-                style={{ zIndex: 4, pointerEvents: "none" }}
-              >
-                <h2
-                  ref={headlineRef}
-                  style={{
-                    fontFamily: "var(--font-brand)",
-                    fontSize: "clamp(1rem,2.5vw,1.6rem)",
-                    fontWeight: 700,
-                    letterSpacing: "-.03em",
-                    color: "var(--page-fg)",
-                    lineHeight: 1.1,
-                    textAlign: "center",
-                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-                  }}
-                >
-                  {tRef.current("zoom.start")}
-                </h2>
-                <span
-                  ref={headline2Ref}
-                  style={{
-                    fontFamily: "var(--font-brand)",
-                    fontSize: "clamp(.8rem,1.5vw,1.1rem)",
-                    color: "rgba(var(--page-fg-rgb), .5)",
-                    marginTop: 8,
-                    textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-                  }}
-                >
-                  {tRef.current("zoom.end")}
-                </span>
-              </div>
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(var(--page-bg-rgb), .4), rgba(var(--page-bg-rgb), .6))",
-                  pointerEvents: "none",
-                }}
-              />
-            </>
-          )}
         </div>
       </ProjectZoomLink>
     ),
@@ -393,7 +371,7 @@ export function ZoomToGrid() {
             style={{
               fontSize: ".75rem",
               fontWeight: 500,
-              letterSpacing: ".1em",
+              letterSpacing: "0",
               textTransform: "uppercase",
               color: "rgba(var(--page-fg-rgb), .55)",
             }}
@@ -412,21 +390,52 @@ export function ZoomToGrid() {
     <div
       ref={wrapRef}
       className="relative"
-      style={{ background: "var(--page-bg)", minHeight: "100vh" }}
+      style={{ background: "var(--page-bg)" }}
     >
-      {/* at least a screen high, and taller where the grid needs it (a low laptop screen), so no tile is cut off */}
-      <div className="min-h-screen flex items-center justify-center relative pt-16 pb-20">
+      {/* Edge to edge, three tall columns with the middle one set lower, like a contact sheet */}
+      <div className="relative pt-20 md:pt-28 pb-24 md:pb-[14vw]">
         <div
           className="absolute inset-0"
           style={{ background: "var(--page-bg)", zIndex: 0, pointerEvents: "none" }}
         />
 
-        {/* Grid container — pointer-events auto on tiles */}
         <div
-          className="relative w-full max-w-[1100px] mx-auto px-2 sm:px-6"
+          className="relative flex items-baseline justify-between gap-4 px-3 md:px-6 mb-5 md:mb-8"
           style={{ zIndex: 1 }}
         >
-          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 md:gap-4">
+          <h2
+            ref={headlineRef}
+            style={{
+              fontFamily: "var(--font-brand)",
+              fontSize: "clamp(1.4rem,3vw,2.4rem)",
+              fontWeight: 700,
+              letterSpacing: "-.03em",
+              color: "var(--page-fg)",
+              lineHeight: 1.1,
+            }}
+          >
+            {t("zoom.start")}
+          </h2>
+          <TransitionLink
+            to="/work"
+            className="inline-flex items-center gap-2"
+            style={{
+              fontSize: ".72rem",
+              fontWeight: 500,
+              letterSpacing: "0",
+              textTransform: "uppercase",
+              color: "rgba(var(--page-fg-rgb), .55)",
+            }}
+            onMouseEnter={() => cursor.set("link")}
+            onMouseLeave={() => cursor.reset()}
+          >
+            {t("work.viewAll")}
+          </TransitionLink>
+        </div>
+
+        {/* Grid container — pointer-events auto on tiles */}
+        <div className="relative w-full" style={{ zIndex: 1 }}>
+          <div className="zg-grid grid grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
             {/* Row 1 */}
             <div
               ref={(el) => {
@@ -463,7 +472,8 @@ export function ZoomToGrid() {
               )}
             </div>
 
-            {/* Hero tile (center) */}
+            {/* Centre tile */}
+            <div>
             <Tile
               project={tileProjects[HERO_INDEX]}
               refCb={(el) => {
@@ -471,6 +481,7 @@ export function ZoomToGrid() {
               }}
               isHero
             />
+            </div>
 
             <div
               ref={(el) => {
@@ -505,27 +516,6 @@ export function ZoomToGrid() {
           </div>
         </div>
 
-        <div
-          className="absolute bottom-6 left-0 right-0 text-center"
-          style={{ zIndex: 2 }}
-        >
-          <TransitionLink
-            to="/work"
-            className="inline-flex items-center gap-2"
-            style={{
-              fontSize: ".72rem",
-              fontWeight: 500,
-              letterSpacing: ".1em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              textShadow: "0 2px 20px rgba(var(--page-bg-rgb), .6)",
-            }}
-            onMouseEnter={() => cursor.set("link")}
-            onMouseLeave={() => cursor.reset()}
-          >
-            {t("work.viewAll")}
-          </TransitionLink>
-        </div>
       </div>
     </div>
   );

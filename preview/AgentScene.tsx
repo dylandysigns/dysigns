@@ -138,7 +138,10 @@ export function AgentScene({
       // the same camera move, backwards: away from the agent, back into the hero
       gsap.to(panel, { opacity: 0, x: 40, duration: 0.35, ease: "power1.in" });
       gsap.to(head, { opacity: 0, duration: 0.3 });
-      camera.flyOut(done, 1.6);
+      // from the fixed button there is no hero to fly back through: the slow start of the long move
+      // read as "Back" doing nothing, so there the orb leaves at once and is home in under a second
+      if (zoomHero) camera.flyOut(done, 1.6);
+      else camera.flyOut(done, 0.85, "power2.inOut", 0);
     };
 
     /* A link in an answer (to the contact page, a service, an article) does not cut away: like the

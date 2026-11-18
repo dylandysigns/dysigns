@@ -76,17 +76,7 @@ export function Services() {
     >
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-10 md:mb-12">
-          <span
-            style={{
-              fontSize: ".7rem",
-              fontWeight: 500,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-            }}
-          >
-            {t("services.label")}
-          </span>
+          <span className="sr-only">{t("services.label")}</span>
           <h2
             ref={headRef}
             className="mt-3"

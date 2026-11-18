@@ -90,12 +90,12 @@ export function createHeroCamera(opts: {
     /** In: the camera move as a tween, to put on a timeline. */
     flyIn: (duration = 2.1, ease = "power2.inOut") => gsap.to(cam, { p: 1, duration, ease, onUpdate: apply }),
     /** Out: the same move backwards; by the end the little one has taken over again. */
-    flyOut: (done: () => void, duration = 1.6) =>
+    flyOut: (done: () => void, duration = 1.6, ease = "power2.inOut", delay = 0.1) =>
       gsap.to(cam, {
         p: 0,
         duration,
-        delay: 0.1,
-        ease: "power2.inOut",
+        delay,
+        ease,
         onUpdate: apply,
         onComplete: () => {
           reset();
