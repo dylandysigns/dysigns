@@ -4,6 +4,7 @@ import { useLanguage } from "../src/app/hooks/useLanguage";
 import { AgentOrb, createOrbSignal } from "./AgentOrb";
 import { AgentScene, AGENT_RETURN_KEY, type ShipOrigin } from "./AgentScene";
 import { GreetingBubble } from "./GreetingBubble";
+import { greeting } from "./agentGreeting";
 
 /**
  * The DYSIGNS agent: a small orb of fine dots (AgentOrb.tsx, a voice made visible, monochrome like
@@ -21,6 +22,25 @@ export function SpaceAgent() {
   const shipRef = useRef<HTMLButtonElement>(null);
 
   const [instant, setInstant] = useState(false);
+  // the greeting goes by the visitor's own clock, so only once mounted (the prerender has no clock)
+  const [hi, setHi] = useState("");
+  useEffect(() => setHi(greeting(t).split(", ")[0]), [t]);
+
+  // The intro (SplashIntro.tsx) lies over the hero on a first visit: the speech bubble only starts
+  // typing once it is gone (Layout.tsx sends dysigns:splash-done), so the visitor sees it happen.
+  const [awake, setAwake] = useState(false);
+  useEffect(() => {
+    let seen = true;
+    try {
+      seen = sessionStorage.getItem("dysigns_splash_done") === "1";
+    } catch {
+      /* private mode: no intro to wait for */
+    }
+    if (seen) return setAwake(true);
+    const wake = () => setAwake(true);
+    window.addEventListener("dysigns:splash-done", wake, { once: true });
+    return () => window.removeEventListener("dysigns:splash-done", wake);
+  }, []);
   const navType = useNavigationType();
 
   // Back from a page a link in an answer led to: the agent is open again, with the conversation as it was
@@ -50,7 +70,7 @@ export function SpaceAgent() {
   };
 
   return (
-    <div className={`sa${open ? " is-open" : ""}`}>
+    <div className={`sa${open ? " is-open" : ""}${awake ? " is-awake" : ""}`}>
       <button
         ref={shipRef}
         type="button"
@@ -64,6 +84,21 @@ export function SpaceAgent() {
         onFocus={() => setHover(true)}
         onBlur={() => setHover(false)}
       >
+        {/* desktop and tablet: a speech bubble by the orb that types first, then asks, so the
+            visitor sees it talks before pointing at it (the cursor bubble takes over on hover) */}
+        <span className="sa-hint" aria-hidden="true">
+          <span className="sa-hint__bubble">
+            <span className="sa-hint__dots">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="sa-hint__text">
+              {hi && <span className="sa-hint__hi">{hi}</span>}
+              <span className="sa-hint__ask">{t("agent.question")}</span>
+            </span>
+          </span>
+        </span>
         <AgentOrb signal={orb} className="sa-craft" fps={30} />
         <span className="sa-name">{t("agent.name")}</span>
         {/* the invitation reads as a button: a pill with a white arrow, like the hero's own buttons */}

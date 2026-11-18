@@ -163,6 +163,8 @@ export default function Layout() {
 
   const onSplashDone = useCallback(() => {
     setSplashDone(true);
+    // the hero's agent starts its speech bubble on this (preview/SpaceAgent.tsx)
+    window.dispatchEvent(new Event("dysigns:splash-done"));
     requestAnimationFrame(() =>
       requestAnimationFrame(() => ScrollTrigger.refresh()),
     );

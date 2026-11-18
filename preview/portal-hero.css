@@ -218,6 +218,7 @@ html.ph-lock body {
   align-items: center;
 }
 .sa-ship {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -310,6 +311,135 @@ html.ph-lock body {
   }
 }
 
+/* Desktop and tablet: a speech bubble up to the left of the orb. It pops up once the hero is in,
+   types for a moment (three dots), then greets and asks. It steps aside on hover, where the bubble
+   by the cursor (GreetingBubble.tsx) takes over, and while the agent's scene is open. */
+.sa-hint {
+  position: absolute;
+  top: 4px;
+  right: calc(50% + 36px);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sa-ship:hover .sa-hint,
+.sa.is-open .sa-hint {
+  opacity: 0;
+}
+.sa-hint__bubble {
+  display: grid;
+  padding: 9px 14px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px 16px 4px 16px;
+  background: rgba(10, 12, 16, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  text-align: left;
+  white-space: nowrap;
+  transform-origin: 100% 100%;
+  opacity: 0;
+}
+/* the sequence starts once the hero has faded in (is-awake, SpaceAgent.tsx) */
+.sa.is-awake .sa-hint__bubble {
+  animation: sa-hint-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;
+}
+.sa-hint__dots,
+.sa-hint__text {
+  grid-area: 1 / 1;
+}
+.sa-hint__dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sa.is-awake .sa-hint__dots {
+  animation: sa-hint-out 0.2s ease 2.5s both;
+}
+.sa-hint__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  animation: sa-hint-dot 0.9s ease-in-out infinite;
+}
+.sa-hint__dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.sa-hint__dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.sa-hint__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0;
+}
+.sa.is-awake .sa-hint__text {
+  animation: sa-hint-in 0.35s ease 2.6s both;
+}
+.sa-hint__hi {
+  font-size: 0.78rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.68);
+}
+.sa-hint__ask {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+@keyframes sa-hint-pop {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes sa-hint-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes sa-hint-in {
+  from {
+    opacity: 0;
+    translate: 0 3px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes sa-hint-dot {
+  0%,
+  60%,
+  100% {
+    translate: 0 0;
+    opacity: 0.45;
+  }
+  30% {
+    translate: 0 -3px;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* no typing: the question is simply there */
+  .sa .sa-hint__bubble,
+  .sa .sa-hint__text {
+    opacity: 1;
+    animation: none;
+  }
+  .sa-hint__dots {
+    display: none;
+  }
+}
+
 /* The DYSIGNS agent in the bottom right corner, across from the globe, above the partner logos:
    the full orb on desktop, a little smaller on a tablet, and on a phone a compact row (a small orb
    with its name and invitation next to it) between the buttons and the logos. */
@@ -330,6 +460,9 @@ html.ph-lock body {
   .ph-agent .sa-craft {
     width: 120px;
     height: 120px;
+  }
+  .ph-agent .sa-hint {
+    right: calc(50% + 28px);
   }
 }
 @media (max-width: 767px) {
@@ -356,6 +489,9 @@ html.ph-lock body {
     backdrop-filter: blur(12px);
     opacity: 1;
     animation: sa-beckon 3.2s ease-out 1.5s infinite;
+  }
+  .ph-agent .sa-hint {
+    display: none;
   }
   .ph-agent .sa-craft {
     grid-area: orb;

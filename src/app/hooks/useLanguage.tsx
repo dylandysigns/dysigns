@@ -128,6 +128,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "agent.afternoon": { en: "Good afternoon", nl: "Goedemiddag" },
   "agent.evening": { en: "Good evening", nl: "Goedenavond" },
   "agent.askAnything": { en: "ASK ME ANYTHING", nl: "VRAAG ME ALLES" },
+  "agent.question": { en: "Got a question?", nl: "Heb je een vraag?" },
   "agent.sceneHint": { en: "Ask about our services, pricing, way of working or a project of your own.", nl: "Vraag naar onze diensten, prijzen, werkwijze of je eigen project." },
   "agent.open": { en: "Open the DYSIGNS agent and ask a question", nl: "Open de DYSIGNS agent en stel een vraag" },
   "faq.chat.spaceTitle": { en: "Space agent", nl: "Space agent" },
