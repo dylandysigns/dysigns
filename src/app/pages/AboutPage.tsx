@@ -319,31 +319,31 @@ export default function AboutPage() {
 
       {/* ── Locations: local signals plus links to the city pages ── */}
       <section className="ab-wrap">
-        <div className="ab-story">
-          <div className="ab-story-head" data-reveal>
-            <h2 className="ab-h2">{c.locationsLabel}</h2>
-          </div>
-          <div className="ab-story-text" data-reveal>
-            <p>{c.locationsText}</p>
-          </div>
-        </div>
-        <div className="ab-links">
-          {c.locations.map((loc) => (
-            <TransitionLink key={loc.to} to={loc.to} className="ab-link" {...linkCursor}>
-              {loc.label}
-              <ArrowUpRight aria-hidden="true" />
-            </TransitionLink>
-          ))}
-        </div>
-        <ul className="ab-loc-services" data-reveal>
-          {c.locationServices.map((service) => (
-            <li key={service.to}>
-              <TransitionLink to={service.to} {...linkCursor}>
-                {service.label}
+        <div className="ab-loc">
+          <h2 className="ab-h2" data-reveal>
+            {c.locationsLabel}
+          </h2>
+          <p className="ab-loc-text" data-reveal>
+            {c.locationsText}
+          </p>
+          <div className="ab-links">
+            {c.locations.map((loc) => (
+              <TransitionLink key={loc.to} to={loc.to} className="ab-link" {...linkCursor}>
+                {loc.label}
+                <ArrowUpRight aria-hidden="true" />
               </TransitionLink>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+          <ul className="ab-loc-services" data-reveal>
+            {c.locationServices.map((service) => (
+              <li key={service.to}>
+                <TransitionLink to={service.to} {...linkCursor}>
+                  {service.label}
+                </TransitionLink>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ── 7. Trusted by ── */}
