@@ -31,25 +31,22 @@ export function plop() {
     out.gain.value = 0.9;
     out.connect(ctx.destination);
 
-    // a soft glass tap: two quiet, low tones a fifth apart that die away fast, no pitch sweep
-    for (const [freq, peak, len] of [
-      [392, 0.07, 0.16],
-      [588, 0.035, 0.11],
-    ] as const) {
-      const osc = ctx.createOscillator();
-      const g = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.value = freq;
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(peak, t + 0.006);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + len);
-      osc.connect(g).connect(out);
-      osc.start(t);
-      osc.stop(t + len + 0.02);
-    }
+    // a soft wooden "tok": one low, round note that drops a little in pitch and dies away fast.
+    // No high tone, so it never reads as a beep.
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(240, t);
+    osc.frequency.exponentialRampToValueAtTime(150, t + 0.07);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.11, t + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+    osc.connect(g).connect(out);
+    osc.start(t);
+    osc.stop(t + 0.15);
 
-    // and a very short, dull click on the front of it, so it reads as a touch, not a beep
-    const n = Math.floor(ctx.sampleRate * 0.02);
+    // plus a very short, dull knock on the front of it, like a fingertip on wood
+    const n = Math.floor(ctx.sampleRate * 0.018);
     const buf = ctx.createBuffer(1, n, ctx.sampleRate);
     const d = buf.getChannelData(0);
     for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n) ** 3;
@@ -57,9 +54,9 @@ export function plop() {
     src.buffer = buf;
     const lp = ctx.createBiquadFilter();
     lp.type = "lowpass";
-    lp.frequency.value = 1800;
+    lp.frequency.value = 900;
     const ng = ctx.createGain();
-    ng.gain.value = 0.05;
+    ng.gain.value = 0.08;
     src.connect(lp).connect(ng).connect(out);
     src.start(t);
   } catch {

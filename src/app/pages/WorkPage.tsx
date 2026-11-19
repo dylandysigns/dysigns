@@ -17,17 +17,19 @@ function getProjectYear(value: string): number {
   return match ? Number(match[1]) : 0;
 }
 
-// Fixed lead order — these always appear first, in this exact sequence,
-// regardless of year. STËLZ is the lead case, so both STËLZ projects open
-// the page. Everything else follows, most recent year first. Projects
-// marked `hidden` in projects.ts are left off entirely.
+// Fixed lead order, the same reading order as the "Selected work" grid on the
+// home page (ZoomToGrid), so both show the cases in the same sequence. Everything
+// else follows, most recent year first. Projects marked `hidden` in projects.ts
+// are left off entirely.
 const FEATURED_ORDER = [
-  "stelz-web-design",
   "stelz-app",
   "a-cafe-app-design",
-  "powermobile",
-  "studio75-branding",
   "merely-made-webshop",
+  "studio75-branding",
+  "stelz-web-design",
+  "biyu",
+  "powermobile",
+  "sfumato-agency",
 ];
 
 const BELOW_LG = "(max-width: 1023px)";
