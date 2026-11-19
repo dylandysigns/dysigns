@@ -55,6 +55,7 @@ function coverShot(project: Project, portrait: boolean): { video?: string; poste
 export default function WorkPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursor = useCursor();
   const { t, lang } = useLanguage();
@@ -123,6 +124,37 @@ export default function WorkPage() {
     return () => ctx.revert();
   }, [projectEntries.length]);
 
+  /* The same scroll motion as "Selected work" on the home page (ZoomToGrid): on a phone the two columns
+     drift at different speeds, from tablet up the middle column slides up into line and the outer
+     columns drift along, each at its own pace. */
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = gsap.context(() => {
+      if (window.innerWidth < 768) {
+        const kids = Array.from(grid.children) as HTMLElement[];
+        const st = { trigger: grid, start: "top 85%", end: "bottom bottom", scrub: 0.7, invalidateOnRefresh: true };
+        gsap.fromTo(kids.filter((_, i) => i % 2 === 0), { y: 0 }, { y: () => -window.innerWidth * 0.04, ease: "none", scrollTrigger: st });
+        gsap.fromTo(kids.filter((_, i) => i % 2 === 1), { y: 0 }, { y: () => -window.innerWidth * 0.34, ease: "none", scrollTrigger: st });
+        return;
+      }
+      gsap.fromTo(
+        ".zg-mid",
+        { y: () => window.innerWidth * 0.1 },
+        {
+          y: 0,
+          ease: "none",
+          // the grid is already in view when the page opens, so the slide runs from the top of the page
+          scrollTrigger: { trigger: grid, start: "top 30%", end: "top -35%", scrub: 0.6, invalidateOnRefresh: true },
+        },
+      );
+      const st = { trigger: grid, start: "top bottom", end: "bottom top", scrub: 0.8, invalidateOnRefresh: true };
+      gsap.fromTo(".zg-left", { y: () => window.innerWidth * 0.05 }, { y: () => -window.innerWidth * 0.05, ease: "none", scrollTrigger: st });
+      gsap.fromTo(".zg-right", { y: () => window.innerWidth * 0.08 }, { y: () => -window.innerWidth * 0.08, ease: "none", scrollTrigger: st });
+    }, grid);
+    return () => ctx.revert();
+  }, [projectEntries.length]);
+
   return (
     <section
       ref={sectionRef}
@@ -157,7 +189,7 @@ export default function WorkPage() {
         {/* All cases on one page, laid out like "Selected work" on the home page (ZoomToGrid):
             two columns on a phone, three from tablet up, 3:4 tiles, edge to edge, the middle
             column set lower (.zg-grid in theme.css). */}
-        <div className="zg-grid grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
+        <div ref={gridRef} className="zg-grid grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
           {projectEntries.map(({ project }, flatIndex) => {
             // portrait cut below sm, the wide cover above, both cropped to the 3:4 tile
             const small = coverShot(project, true);
@@ -179,7 +211,7 @@ export default function WorkPage() {
               "w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700";
 
             return (
-              <div key={project.slug}>
+              <div key={project.slug} className={["zg-side zg-left", "zg-mid", "zg-side zg-right"][flatIndex % 3]}>
                 <ProjectZoomLink
                   to={`/work/${project.slug}`}
                   projectSlug={project.slug}
