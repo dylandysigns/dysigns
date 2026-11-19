@@ -1,23 +1,23 @@
 import type { Lang } from "../hooks/useLanguage";
 
-/* The line under a project's name on the work tiles (home grid and /work): plain text naming the
-   service we delivered, for the projects whose category alone ("Digital") says too little. Anything
-   not listed keeps its category. No pills. */
-const SERVICES: Record<string, Record<Lang, string>> = {
+/* The line under a project's name on the work tiles (home grid and /work): a short piece of the
+   case itself, for the projects whose category alone ("Digital") says too little. Anything not
+   listed keeps its category. Plain text, no pills. */
+const SNIPPETS: Record<string, Record<Lang, string>> = {
   "stelz-app": {
-    en: "UX/UI design, app development and motion",
-    nl: "UX/UI-design, appontwikkeling en motion",
+    en: "Fans pick their favourite flavour in the app, built from first sketch to the App Store",
+    nl: "Fans kiezen in de app hun favoriete smaak, gebouwd van eerste schets tot App Store",
   },
   powermobile: {
-    en: "UX/UI design and app development",
-    nl: "UX/UI-design en appontwikkeling",
+    en: "A fast field app for enforcement officers, built from scratch",
+    nl: "Een snelle veldwerk-app voor handhavers, volledig nieuw gebouwd",
   },
   biyu: {
-    en: "UX/UI design and web design",
-    nl: "UX/UI-design en webdesign",
+    en: "Rent instead of buy: the app, website and dashboard behind the rentals",
+    nl: "Huren in plaats van kopen: de app, website en het dashboard erachter",
   },
 };
 
 export function tileSubtitle(slug: string, category: string, lang: Lang): string {
-  return SERVICES[slug]?.[lang] ?? category;
+  return SNIPPETS[slug]?.[lang] ?? category;
 }
