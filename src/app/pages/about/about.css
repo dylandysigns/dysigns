@@ -691,6 +691,30 @@
   color: var(--ab-dim);
 }
 
+.ab-loc-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ab-loc-services a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ab-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ab-line);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.ab-loc-services a:hover,
+.ab-loc-services a:focus-visible {
+  color: var(--page-fg);
+}
+
 .ab-links {
   margin-top: clamp(44px, 6vw, 90px);
   display: grid;

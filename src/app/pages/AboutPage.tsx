@@ -335,6 +335,15 @@ export default function AboutPage() {
             </TransitionLink>
           ))}
         </div>
+        <ul className="ab-loc-services" data-reveal>
+          {c.locationServices.map((service) => (
+            <li key={service.to}>
+              <TransitionLink to={service.to} {...linkCursor}>
+                {service.label}
+              </TransitionLink>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ── 7. Trusted by ── */}
