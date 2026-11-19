@@ -5,8 +5,8 @@ import type { Lang } from "../hooks/useLanguage";
    a formula. Plain text, no pills. A project that is not listed keeps its category. */
 const SNIPPETS: Record<string, Record<Lang, string>> = {
   "stelz-app": {
-    en: "Making a vote for your favourite flavour feel like a moment.",
-    nl: "Een stem op je favoriete smaak laten voelen als een moment.",
+    en: "Campaign and app launch in one: the app promotes itself.",
+    nl: "Campagne en app-launch in één: de app promoot zichzelf.",
   },
   "a-cafe-app-design": {
     en: "Amsterdam and Paris, one ecosystem. We made the design and the handover.",
