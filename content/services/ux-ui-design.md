@@ -1,18 +1,19 @@
 ---
-title: "UX/UI Design Agency for Apps & Web Platforms | DYSIGNS"
-description: "UX and UI design for apps, portals and dashboards. DYSIGNS goes from user research to a complete design system, based in the Netherlands."
+title: "UI/UX Design Agency for Apps & Web Platforms | DYSIGNS"
+description: "UI/UX design for apps, portals and dashboards, from user research to a complete design system. DYSIGNS, Almere and Amsterdam, working worldwide."
 heading: "UX/UI design agency"
 slug: "ux-ui-design"
 includes: "User research, wireframes and prototypes, design systems, accessibility review"
 answerBlock: |
-  DYSIGNS designs UX and UI for apps, portals and dashboards, for
-  clients worldwide from a base in the Netherlands. We start at user
+  DYSIGNS is a UI/UX design agency (also called UX/UI) that designs
+  apps, portals and dashboards for clients worldwide, from Almere and
+  Amsterdam. We start at user
   research and end at a complete design system, including complex
   portals and dashboards, so interfaces hold up for the people who
   actually have to use them every day. From a field app for
   enforcement officers to a kiosk, POS and kitchen system for
   hospitality.
-lastUpdated: "2026-11-13"
+lastUpdated: "2026-11-19"
 ---
 
 ## What this includes
@@ -53,7 +54,7 @@ We do not work with a minimum or a maximum. Every project differs in scope and c
 
 ### What does a UX/UI design agency do?
 
-A UX/UI design agency makes sure a digital product is easy and pleasant to use. UX (user experience) is about the logic: which steps someone takes, what sits on which screen and where people get stuck. UI (user interface) is about how it looks: typography, colour, buttons and interaction. At DYSIGNS we do both, and because the same team builds it, the design ships the way it was drawn.
+A UI/UX design agency (also called a UX/UI design agency) makes sure a digital product is easy and pleasant to use. UX (user experience) is about the logic: which steps someone takes, what sits on which screen and where people get stuck. UI (user interface) is about how it looks: typography, colour, buttons and interaction. At DYSIGNS we do both, and because the same team builds it, the design ships the way it was drawn.
 
 ### What is the difference between UX and UI design?
 
