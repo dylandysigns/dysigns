@@ -26,8 +26,6 @@ This website is operated by DYSIGNS, a sole proprietorship registered in the Net
 
 **Email and WhatsApp.** If you contact us directly by email or WhatsApp, the data you share is handled under the same principle: used only to respond to you, not shared with third parties.
 
-**WhatsApp assistant.** If you work for a cleaning company and use our WhatsApp assistant, read [here](/privacy/whatsapp-service) what data it processes and how to have it deleted.
-
 **We do not collect** payment information, account details, or any data through analytics, advertising, or social media tracking pixels. This site currently runs none of those.
 
 ## Cookies and local storage

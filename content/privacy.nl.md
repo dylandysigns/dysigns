@@ -27,8 +27,6 @@ Deze website wordt beheerd door DYSIGNS, een eenmanszaak geregistreerd in Nederl
 
 **E-mail en WhatsApp.** Als je ons rechtstreeks benadert via e-mail of WhatsApp, geldt hetzelfde principe: de gegevens die je deelt worden alleen gebruikt om te reageren, niet gedeeld met derden.
 
-**WhatsApp assistent.** Gebruik je als medewerker van een schoonmaakbedrijf onze WhatsApp assistent, lees dan [hier](/nl/privacy/whatsapp-service) welke gegevens die verwerkt en hoe je ze laat verwijderen.
-
 **Wat we niet verzamelen:** betaalgegevens, accountgegevens, of enige data via analytics, advertenties of social-mediatrackingpixels. Deze site gebruikt daar op dit moment geen van.
 
 ## Cookies en lokale opslag
