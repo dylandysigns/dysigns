@@ -35,6 +35,7 @@ export type AboutCopy = {
   locationsLabel: string;
   locationsText: string;
   locations: { label: string; to: string }[];
+  locationServices: { label: string; to: string }[];
   clientsLabel: string;
   clientsText: string;
 };
@@ -139,10 +140,18 @@ export const aboutCopy: Record<Lang, AboutCopy> = {
     topLine: "Digitaal bureau in Almere en Amsterdam",
     locationsLabel: "Almere en Amsterdam",
     locationsText:
-      "We werken vanuit Almere en Amsterdam, voor klanten in de regio en ver daarbuiten. Zoek je een partner voor webdesign dichtbij? Kijk dan hoe we het in jouw stad aanpakken.",
+      "We werken vanuit Almere en Amsterdam, voor klanten in de regio en ver daarbuiten. Zoek je een digitale partner dichtbij? Kijk dan hoe we het in jouw stad aanpakken.",
     locations: [
-      { label: "Webdesign Almere", to: "/web-design-almere" },
-      { label: "Webdesign Amsterdam", to: "/web-design-amsterdam" },
+      { label: "Digitaal bureau Almere", to: "/web-design-almere" },
+      { label: "Digitaal bureau Amsterdam", to: "/web-design-amsterdam" },
+    ],
+    locationServices: [
+      { label: "Webdesign", to: "/web-design" },
+      { label: "Shopify-webshops", to: "/shopify-development" },
+      { label: "Branding", to: "/branding" },
+      { label: "UX/UI design", to: "/ux-ui-design" },
+      { label: "AI-implementatie", to: "/ai-implementation" },
+      { label: "Social media en Meta ads", to: "/social-media-meta-ads" },
     ],
     clientsLabel: "Vertrouwd door",
     clientsText: "Van startup tot scale-up, in Nederland en daarbuiten.",
@@ -246,10 +255,18 @@ export const aboutCopy: Record<Lang, AboutCopy> = {
     topLine: "Digital agency in Almere and Amsterdam",
     locationsLabel: "Almere and Amsterdam",
     locationsText:
-      "We work from Almere and Amsterdam, for clients in the region and far beyond. Looking for a web design partner nearby? See how we approach it in your city.",
+      "We work from Almere and Amsterdam, for clients in the region and far beyond. Looking for a digital partner nearby? See how we approach it in your city.",
     locations: [
-      { label: "Web design Almere", to: "/web-design-almere" },
-      { label: "Web design Amsterdam", to: "/web-design-amsterdam" },
+      { label: "Digital agency Almere", to: "/web-design-almere" },
+      { label: "Digital agency Amsterdam", to: "/web-design-amsterdam" },
+    ],
+    locationServices: [
+      { label: "Web design", to: "/web-design" },
+      { label: "Shopify stores", to: "/shopify-development" },
+      { label: "Branding", to: "/branding" },
+      { label: "UX/UI design", to: "/ux-ui-design" },
+      { label: "AI implementation", to: "/ai-implementation" },
+      { label: "Social media and Meta ads", to: "/social-media-meta-ads" },
     ],
     clientsLabel: "Trusted by",
     clientsText: "From startup to scale-up, in the Netherlands and beyond.",

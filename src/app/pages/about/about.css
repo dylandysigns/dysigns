@@ -691,6 +691,68 @@
   color: var(--ab-dim);
 }
 
+/* Locations: one centred block, the same width as the story above it */
+.ab-loc {
+  padding-top: clamp(56px, 7vw, 100px);
+  padding-bottom: clamp(48px, 6vw, 90px);
+  border-top: 1px solid var(--ab-line);
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.ab-loc .ab-h2 {
+  margin-top: 0;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+}
+
+.ab-loc-text {
+  max-width: 56ch;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--page-fg);
+}
+
+.ab-loc .ab-links {
+  width: 100%;
+  max-width: 1040px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.ab-loc .ab-link {
+  font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+}
+
+.ab-loc-services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ab-loc-services a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ab-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ab-line);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.ab-loc-services a:hover,
+.ab-loc-services a:focus-visible {
+  color: var(--page-fg);
+}
+
 .ab-links {
   margin-top: clamp(44px, 6vw, 90px);
   display: grid;
