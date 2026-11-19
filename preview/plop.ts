@@ -31,37 +31,24 @@ export function plop() {
     out.gain.value = 0.9;
     out.connect(ctx.destination);
 
-    // a soft glass tap: two quiet, low tones a fifth apart that die away fast, no pitch sweep
-    for (const [freq, peak, len] of [
-      [392, 0.07, 0.16],
-      [588, 0.035, 0.11],
+    // a small sparkle: three tiny high notes, each a little higher than the last, very quiet.
+    // No low tone and no click, so it never reads as a beep.
+    for (const [freq, delay, len] of [
+      [1568, 0, 0.18],
+      [2093, 0.06, 0.18],
+      [2637, 0.12, 0.25],
     ] as const) {
       const osc = ctx.createOscillator();
       const g = ctx.createGain();
       osc.type = "sine";
       osc.frequency.value = freq;
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(peak, t + 0.006);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+      g.gain.setValueAtTime(0.0001, t + delay);
+      g.gain.exponentialRampToValueAtTime(0.03, t + delay + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + delay + len);
       osc.connect(g).connect(out);
-      osc.start(t);
-      osc.stop(t + len + 0.02);
+      osc.start(t + delay);
+      osc.stop(t + delay + len + 0.03);
     }
-
-    // and a very short, dull click on the front of it, so it reads as a touch, not a beep
-    const n = Math.floor(ctx.sampleRate * 0.02);
-    const buf = ctx.createBuffer(1, n, ctx.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n) ** 3;
-    const src = ctx.createBufferSource();
-    src.buffer = buf;
-    const lp = ctx.createBiquadFilter();
-    lp.type = "lowpass";
-    lp.frequency.value = 1800;
-    const ng = ctx.createGain();
-    ng.gain.value = 0.05;
-    src.connect(lp).connect(ng).connect(out);
-    src.start(t);
   } catch {
     /* no audio */
   }
