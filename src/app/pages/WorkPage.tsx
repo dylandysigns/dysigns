@@ -282,7 +282,7 @@ export default function WorkPage() {
                           {project.title}
                         </h2>
                         <span
-                          className="block mt-0.5 md:mt-1 line-clamp-2"
+                          className="block mt-0.5 md:mt-1 line-clamp-3"
                           style={{
                             fontFamily: "var(--font-brand)",
                             fontSize: "clamp(.66rem,2.6vw,.85rem)",
