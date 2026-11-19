@@ -7,6 +7,7 @@ import { TransitionLink } from "../TransitionLink";
 import { LazyVideo } from "../LazyVideo";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslatedProjects } from "../../hooks/useTranslatedProjects";
+import { tileSubtitle } from "../../data/workBlurbs";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -48,6 +49,8 @@ export function ZoomToGrid() {
      on language switch — prevents DOM remount which would break GSAP refs */
   const tRef = useRef(t);
   tRef.current = t;
+  const langRef = useRef(lang);
+  langRef.current = lang;
 
   /* Map each grid position (row-major, including hero center) to a translated project,
      by explicit slug rather than raw array order. Positions stay fixed:
@@ -281,14 +284,14 @@ export function ZoomToGrid() {
                 {project.title}
               </span>
               <span
-                className="block mt-0.5 md:mt-1 truncate"
+                className="block mt-0.5 md:mt-1 line-clamp-2"
                 style={{
                   fontFamily: "var(--font-brand)",
                   fontSize: "clamp(.66rem,2.6vw,.85rem)",
                   color: "rgba(var(--page-fg-rgb), .7)",
                 }}
               >
-                {project.category}
+                {tileSubtitle(project.slug, project.category, langRef.current)}
               </span>
             </span>
           </div>

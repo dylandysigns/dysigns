@@ -9,6 +9,7 @@ import { useTranslatedProjects } from "../hooks/useTranslatedProjects";
 import { Seo } from "../components/Seo";
 import { LazyVideo } from "../components/LazyVideo";
 import { getLocalizedContent } from "../content/loadContent";
+import { tileSubtitle } from "../data/workBlurbs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -281,14 +282,14 @@ export default function WorkPage() {
                           {project.title}
                         </h2>
                         <span
-                          className="block mt-0.5 md:mt-1 truncate"
+                          className="block mt-0.5 md:mt-1 line-clamp-2"
                           style={{
                             fontFamily: "var(--font-brand)",
                             fontSize: "clamp(.66rem,2.6vw,.85rem)",
                             color: "rgba(var(--page-fg-rgb), .7)",
                           }}
                         >
-                          {project.category}
+                          {tileSubtitle(project.slug, project.category, lang)}
                         </span>
                       </span>
                     </div>
