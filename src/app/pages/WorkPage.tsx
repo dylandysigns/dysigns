@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ProjectZoomLink } from "../components/ProjectZoomLink";
@@ -32,21 +32,7 @@ const FEATURED_ORDER = [
   "sfumato-agency",
 ];
 
-const BELOW_LG = "(max-width: 1023px)";
-
-/** Bento tiles for the lg grid, by position. Every block of tiles closes
- * into a full rectangle (big + tall, tall + two small + tall, tall + big),
- * so the sizes vary but no tile leaves empty space next to it. */
-const LG_TILES: { className: string; shape: "big" | "tall" | "small" }[] = [
-  { className: "lg:col-span-2 lg:row-span-2", shape: "big" },
-  { className: "lg:row-span-2", shape: "tall" },
-  { className: "lg:row-span-2", shape: "tall" },
-  { className: "", shape: "small" },
-  { className: "lg:row-span-2", shape: "tall" },
-  { className: "", shape: "small" },
-  { className: "lg:row-span-2", shape: "tall" },
-  { className: "lg:col-span-2 lg:row-span-2", shape: "big" },
-];
+const BELOW_SM = "(max-width: 639px)";
 
 /** The cover a card shows: the portrait or landscape cut of the cover video
  * (the same cover the home grid and case hero use), else the matching still.
@@ -83,7 +69,6 @@ export default function WorkPage() {
       translatedProjects
         .map((project, index) => ({
           project,
-          rawTags: rawProjects[index].tags,
           year: getProjectYear(rawProjects[index].year),
         }))
         .filter(({ project }) => !project.hidden)
@@ -138,21 +123,10 @@ export default function WorkPage() {
     return () => ctx.revert();
   }, [projectEntries.length]);
 
-  const handleTilt = useCallback((e: React.MouseEvent, card: HTMLDivElement) => {
-    const rect = card.getBoundingClientRect();
-    const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
-    const rotateX = ((e.clientY - rect.top) / rect.height - 0.5) * -6;
-    gsap.to(card, { rotateY, rotateX, duration: 0.4, ease: "power2.out" });
-  }, []);
-
-  const resetTilt = useCallback((card: HTMLDivElement) => {
-    gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: "elastic.out(1,.5)" });
-  }, []);
-
   return (
     <section
       ref={sectionRef}
-      className="relative pt-32 pb-24 md:pb-36 px-6 md:px-12 lg:px-16"
+      className="relative pt-32 pb-24 md:pb-[14vw] px-3 md:px-6"
       style={{ background: "var(--page-bg)", minHeight: "100vh" }}
     >
       <Seo
@@ -161,8 +135,8 @@ export default function WorkPage() {
         path="/work"
         lastmod={entry.frontmatter.lastUpdated}
       />
-      <div className="max-w-[1320px] mx-auto">
-        <div className="mb-12">
+      <div className="w-full">
+        <div className="mb-8 md:mb-12">
           <span className="sr-only">{t("work.label")}</span>
           <h1
             ref={headRef}
@@ -180,18 +154,14 @@ export default function WorkPage() {
           </h1>
         </div>
 
-        {/* All cases on one page, no year sectioning. On lg the cards form
-            a bento grid (see LG_TILES): every block of tiles closes into a
-            clean rectangle, so sizes vary but nothing leaves a gap. Below
-            lg the first card runs wide and the rest sit in even pairs. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:auto-rows-[calc((min(100vw_-_128px,1320px)_-_40px)/3*0.72)]">
-          {projectEntries.map(({ project, rawTags }, flatIndex) => {
-            const isFeatured = flatIndex === 0;
-            const tile = LG_TILES[flatIndex % LG_TILES.length];
-            // What the card shows below lg (first card landscape, the rest
-            // portrait) and on lg (portrait only in the tall tiles).
-            const small = coverShot(project, !isFeatured);
-            const large = coverShot(project, tile.shape === "tall");
+        {/* All cases on one page, laid out like "Selected work" on the home page (ZoomToGrid):
+            two columns on a phone, three from tablet up, 3:4 tiles, edge to edge, the middle
+            column set lower (.zg-grid in theme.css). */}
+        <div className="zg-grid grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2 md:gap-[1.3vw]">
+          {projectEntries.map(({ project }, flatIndex) => {
+            // portrait cut below sm, the wide cover above, both cropped to the 3:4 tile
+            const small = coverShot(project, true);
+            const large = coverShot(project, false);
             const playVideo = !prefersReducedMotion && small.video && large.video;
             // The zoom transition grows into the case hero, so it starts from
             // the still that hero opens on at this screen size.
@@ -206,176 +176,92 @@ export default function WorkPage() {
                     ? project.thumbnailMobile
                     : project.thumbnail;
             const mediaClass =
-              "w-full h-full object-cover project-thumb group-hover:scale-105 transition-all duration-700";
-            const mediaStyle = { filter: "grayscale(.8) brightness(.65) contrast(1.05)" };
+              "w-full h-full object-cover project-thumb md:group-hover:scale-105 transition-transform duration-700";
 
             return (
-              <div
-                key={project.slug}
-                className={`${isFeatured ? "sm:col-span-2 " : ""}${tile.className}`}
-              >
-                <div
-                  ref={(el) => {
-                    cardsRef.current[flatIndex] = el;
-                  }}
-                  className="group relative rounded-lg overflow-hidden lg:h-full"
-                  style={{ perspective: "900px", opacity: 0 }}
-                  onMouseMove={(e) => {
-                    if (cardsRef.current[flatIndex]) {
-                      handleTilt(e, cardsRef.current[flatIndex]!);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (cardsRef.current[flatIndex]) {
-                      resetTilt(cardsRef.current[flatIndex]!);
-                    }
-                    cursor.reset();
-                  }}
+              <div key={project.slug}>
+                <ProjectZoomLink
+                  to={`/work/${project.slug}`}
+                  projectSlug={project.slug}
+                  imageSrc={zoomImage}
+                  transitionId={`work-grid-${project.slug}`}
+                  aria-label={`${t("cursor.viewProject")} ${project.title}`}
+                  className="block"
                   onMouseEnter={() => cursor.set("view", `${t("cursor.view")} ${project.title}`)}
+                  onMouseLeave={() => cursor.reset()}
                 >
-                  <ProjectZoomLink
-                    to={`/work/${project.slug}`}
-                    projectSlug={project.slug}
-                    imageSrc={zoomImage}
-                    transitionId={`work-grid-${project.slug}`}
-                    aria-label={`${t("cursor.viewProject")} ${project.title}`}
-                    className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
-                  >
-                    <span className="sr-only">{project.title}</span>
-                  </ProjectZoomLink>
-
                   <div
-                    className="relative overflow-hidden rounded-lg lg:h-full"
-                    style={{
-                      border: "1px solid rgba(var(--page-fg-rgb), .06)",
-                      transition: "border-color .4s",
+                    ref={(el) => {
+                      cardsRef.current[flatIndex] = el;
                     }}
+                    className="relative overflow-hidden group"
+                    style={prefersReducedMotion ? undefined : { opacity: 0 }}
                   >
+                    {/* the filter sits on the wrapper, not on the media, like the home tiles */}
                     <div
-                      className="absolute inset-0 pointer-events-none -translate-x-full group-hover:translate-x-full"
-                      style={{
-                        zIndex: 20,
-                        background:
-                          "linear-gradient(90deg,transparent,rgba(var(--page-fg-rgb), .08),transparent)",
-                        transition: "transform .7s ease-out",
-                      }}
-                    />
-                    <svg
-                      className="absolute top-2 left-2 w-5 h-5 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ zIndex: 16 }}
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M0 8 L0 0 L8 0"
-                        stroke="rgba(var(--page-fg-rgb), .25)"
-                        strokeWidth="1"
-                        fill="none"
-                      />
-                    </svg>
-                    <svg
-                      className="absolute bottom-2 right-2 w-5 h-5 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ zIndex: 16 }}
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M20 12 L20 20 L12 20"
-                        stroke="rgba(var(--page-fg-rgb), .25)"
-                        strokeWidth="1"
-                        fill="none"
-                      />
-                    </svg>
-
-                    {/* Below lg the ratio sets the height; on lg the tile's
-                        grid area does, and the media is absolute so it never
-                        pushes a row taller. */}
-                    <div
-                      className={`relative ${isFeatured ? "aspect-[16/10]" : "aspect-[4/4.7]"} lg:aspect-auto lg:h-full overflow-hidden lg:[&>*]:absolute lg:[&>*]:inset-0`}
+                      className="aspect-[3/4] overflow-hidden"
+                      style={{ filter: "grayscale(.8) brightness(.55) contrast(1.05)" }}
                     >
                       {playVideo ? (
                         <LazyVideo
+                          resumeOnGesture
                           src={large.video!}
                           poster={large.poster}
                           mobileSrc={small.video}
                           mobilePoster={small.poster}
-                          mobileQuery={BELOW_LG}
+                          mobileQuery={BELOW_SM}
                           className={mediaClass}
-                          style={mediaStyle}
+                          style={{ willChange: "transform" }}
                         />
                       ) : (
                         <picture>
-                          {small.poster !== large.poster && (
-                            <source media={BELOW_LG} srcSet={small.poster} />
-                          )}
+                          {small.poster !== large.poster && <source media={BELOW_SM} srcSet={small.poster} />}
                           <img
                             src={large.poster}
                             alt={`${project.title}, ${project.category} by DYSIGNS`}
                             loading={flatIndex < 4 ? "eager" : "lazy"}
                             className={mediaClass}
-                            style={mediaStyle}
+                            style={{ willChange: "transform" }}
                           />
                         </picture>
                       )}
                     </div>
-
+                    {/* Caption: name and discipline bottom left, same as the home tiles */}
                     <div
-                      className="absolute bottom-0 left-0 right-0"
+                      className="absolute inset-0 flex items-end justify-between gap-3 p-3 md:p-6"
                       style={{
-                        zIndex: 12,
-                        padding: isFeatured ? "1.5rem" : "0.875rem",
-                        background:
-                          "linear-gradient(to top,rgba(var(--page-bg-rgb), .88) 0%,transparent 100%)",
+                        background: "linear-gradient(to top, rgba(var(--page-bg-rgb), .78) 0%, transparent 55%)",
+                        zIndex: 5,
                       }}
                     >
-                      <div className="relative z-20 flex flex-wrap gap-1.5 mb-1.5">
-                        {rawTags.slice(0, 2).map((rawTag) => (
-                          <span
-                            key={`${project.slug}-${rawTag}`}
-                            className="rounded-full px-2 py-1"
-                            style={{
-                              fontSize: ".5rem",
-                              fontWeight: 600,
-                              letterSpacing: ".08em",
-                              textTransform: "uppercase",
-                              color: "rgba(var(--page-fg-rgb), .62)",
-                              background: "rgba(var(--page-fg-rgb), .06)",
-                              border: "1px solid rgba(var(--page-fg-rgb), .06)",
-                            }}
-                          >
-                            {t(`tag.${rawTag}`)}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="relative z-20">
+                      <span className="min-w-0">
                         <h2
-                          className="relative inline-block"
+                          className="block truncate"
                           style={{
                             fontFamily: "var(--font-brand)",
-                            fontSize: isFeatured ? "clamp(1.1rem,2.2vw,1.6rem)" : "clamp(.76rem,1.05vw,.9rem)",
-                            fontWeight: 700,
+                            fontSize: "clamp(.7rem,1vw,.9rem)",
+                            fontWeight: 600,
+                            letterSpacing: "0",
+                            textTransform: "uppercase",
                             color: "var(--page-fg)",
-                            letterSpacing: "-.02em",
                           }}
                         >
                           {project.title}
-                          <span
-                            className="absolute bottom-0 left-0 w-full h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-                            style={{ background: "rgba(var(--page-fg-rgb), .3)" }}
-                          />
                         </h2>
-                        <p
+                        <span
+                          className="block mt-0.5 md:mt-1 truncate"
                           style={{
-                            fontSize: isFeatured ? ".78rem" : ".64rem",
-                            color: "rgba(var(--page-fg-rgb), .55)",
-                            marginTop: 2,
+                            fontFamily: "var(--font-brand)",
+                            fontSize: "clamp(.66rem,2.6vw,.85rem)",
+                            color: "rgba(var(--page-fg-rgb), .7)",
                           }}
                         >
                           {project.category}
-                        </p>
-                      </div>
+                        </span>
+                      </span>
                     </div>
                   </div>
-                </div>
+                </ProjectZoomLink>
               </div>
             );
           })}
