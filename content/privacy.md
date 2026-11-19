@@ -8,7 +8,7 @@ answerBlock: |
   (your email address and message) and uses no analytics or
   advertising cookies. This page explains exactly what is collected,
   why, and how you can access, correct or delete it.
-lastUpdated: "2026-11-15"
+lastUpdated: "2026-11-19"
 ---
 
 ## Who is responsible for your data
@@ -25,6 +25,8 @@ This website is operated by DYSIGNS, a sole proprietorship registered in the Net
 **Contact form.** When you submit the form on the [contact page](/contact), we collect the email address and message you provide. This is processed by a third-party form-processing provider on our behalf and used only to reply to your enquiry. We do not add you to a mailing list or share this with third parties for marketing.
 
 **Email and WhatsApp.** If you contact us directly by email or WhatsApp, the data you share is handled under the same principle: used only to respond to you, not shared with third parties.
+
+**WhatsApp assistant.** If you work for a cleaning company and use our WhatsApp assistant, read [here](/privacy/whatsapp-service) what data it processes and how to have it deleted.
 
 **We do not collect** payment information, account details, or any data through analytics, advertising, or social media tracking pixels. This site currently runs none of those.
 

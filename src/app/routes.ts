@@ -19,6 +19,7 @@ import InsightsDetailPage from "./pages/InsightsDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import PrivacyWhatsappServicePage from "./pages/PrivacyWhatsappServicePage";
 import ThankYouPage from "./pages/ThankYouPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -60,6 +61,7 @@ const localizedChildren: RouteObject[] = [
   { path: "about", Component: AboutPage },
   { path: "contact", Component: ContactPage },
   { path: "privacy", Component: PrivacyPage },
+  { path: "privacy/whatsapp-service", Component: PrivacyWhatsappServicePage },
 ];
 
 export const routes: RouteObject[] = [

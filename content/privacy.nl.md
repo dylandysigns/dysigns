@@ -9,7 +9,7 @@ answerBlock: |
   advertentiecookies. Deze pagina legt precies uit wat wordt
   verzameld, waarom, en hoe je het kunt inzien, corrigeren of laten
   verwijderen.
-lastUpdated: "2026-11-15"
+lastUpdated: "2026-11-19"
 ---
 
 ## Wie verantwoordelijk is voor je gegevens
@@ -26,6 +26,8 @@ Deze website wordt beheerd door DYSIGNS, een eenmanszaak geregistreerd in Nederl
 **Contactformulier.** Wanneer je het formulier op de [contactpagina](/nl/contact) invult, verzamelen we het e-mailadres en bericht dat je opgeeft. Dit wordt namens ons verwerkt door een externe formulierverwerker en alleen gebruikt om te reageren op je aanvraag. We voegen je niet toe aan een mailinglijst en delen dit niet met derden voor marketingdoeleinden.
 
 **E-mail en WhatsApp.** Als je ons rechtstreeks benadert via e-mail of WhatsApp, geldt hetzelfde principe: de gegevens die je deelt worden alleen gebruikt om te reageren, niet gedeeld met derden.
+
+**WhatsApp assistent.** Gebruik je als medewerker van een schoonmaakbedrijf onze WhatsApp assistent, lees dan [hier](/nl/privacy/whatsapp-service) welke gegevens die verwerkt en hoe je ze laat verwijderen.
 
 **Wat we niet verzamelen:** betaalgegevens, accountgegevens, of enige data via analytics, advertenties of social-mediatrackingpixels. Deze site gebruikt daar op dit moment geen van.
 
