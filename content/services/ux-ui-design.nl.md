@@ -1,19 +1,19 @@
 ---
-title: "UX Design Bureau & UI Design voor Apps | DYSIGNS"
-description: "UX design bureau en UI design bureau in één, voor apps, portalen en dashboards. Van gebruikersonderzoek en prototypes tot een compleet designsysteem."
+title: "UI/UX Design Bureau voor Apps & Portalen | DYSIGNS"
+description: "UI/UX design bureau voor apps, portalen en dashboards. Van gebruikersonderzoek en prototypes tot een compleet designsysteem, uit Almere en Amsterdam."
 heading: "UX/UI design bureau"
 slug: "ux-ui-design"
 includes: "Gebruikersonderzoek, wireframes en prototypes, designsystemen, toegankelijkheidsreview"
 answerBlock: |
-  DYSIGNS is een UX design bureau en UI design bureau in één, uit
-  Nederland, en ontwerpt apps, portalen en dashboards voor klanten
+  DYSIGNS is een UI/UX design bureau (ook wel UX/UI design bureau), uit
+  Almere en Amsterdam, en ontwerpt apps, portalen en dashboards voor klanten
   wereldwijd. We beginnen bij
   gebruikersonderzoek en eindigen bij een compleet designsysteem, ook
   bij complexe portalen en dashboards, zodat interfaces standhouden
   voor de mensen die ze dagelijks daadwerkelijk moeten gebruiken. Van
   een veldwerk-app voor handhavers tot een kiosk-, kassa- en
   keukensysteem voor horeca.
-lastUpdated: "2026-11-16"
+lastUpdated: "2026-11-19"
 ---
 
 ## What this includes
@@ -72,7 +72,7 @@ We werken niet met een minimum of maximum. Elk project verschilt in omvang en co
 
 ### Wat doet een UX/UI design bureau?
 
-Een UX/UI design bureau zorgt dat een digitaal product makkelijk en prettig te gebruiken is. UX (user experience) gaat over de logica: welke stappen iemand zet, wat er op welk scherm staat en waar mensen vastlopen. UI (user interface) gaat over hoe het eruitziet: typografie, kleur, knoppen en interactie. Bij DYSIGNS doen we allebei, en omdat hetzelfde team ook bouwt, komt het ontwerp ook zo live.
+Een UI/UX design bureau (ook wel UX/UI design bureau) zorgt dat een digitaal product makkelijk en prettig te gebruiken is. UX (user experience) gaat over de logica: welke stappen iemand zet, wat er op welk scherm staat en waar mensen vastlopen. UI (user interface) gaat over hoe het eruitziet: typografie, kleur, knoppen en interactie. Bij DYSIGNS doen we allebei, en omdat hetzelfde team ook bouwt, komt het ontwerp ook zo live.
 
 ### Waar zit jullie UX design bureau?
 
