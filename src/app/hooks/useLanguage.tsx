@@ -636,8 +636,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "STËLZ Web Design",
   },
   "project.stelz-web-design.seoTitle": {
-    en: "STËLZ Web Design | DYSIGNS",
-    nl: "STËLZ Web Design | DYSIGNS",
+    en: "STËLZ Webshop & Website Design on Shopify | DYSIGNS",
+    nl: "STËLZ webshop en website design op Shopify | DYSIGNS",
   },
   "project.stelz-web-design.seoDescription": {
     en: "How we rebuilt the STËLZ Shopify store so the team runs its own campaigns, with in-house apps, a better mobile flow and revenue almost five times higher.",
