@@ -688,8 +688,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Twee telefoons met de STËLZ Shopify-webshop op mobiel",
   },
   "project.stelz-web-design.alt.0": {
-    en: "Before and after: the old STËLZ site from 2025 next to the new drinkstelz.com webshop",
-    nl: "Voor en na: de oude STËLZ-site uit 2025 naast de nieuwe webshop op drinkstelz.com",
+    en: "Before and after: the old STËLZ product page next to the new one, with flavour picker, pack choice and add-to-cart",
+    nl: "Voor en na: de oude productpagina van STËLZ naast de nieuwe, met smaakkeuze, packkeuze en toevoegknop",
   },
   "project.stelz-web-design.alt.1": {
     en: "The campaign-led home page of drinkstelz.com on desktop and mobile, with heroes edited in Instant",
