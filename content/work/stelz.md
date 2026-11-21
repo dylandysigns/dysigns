@@ -24,19 +24,25 @@ STËLZ needed a website redesign that would lift conversion while keeping day to
 
 ## Approach
 
-TODO_DYLAN: the specific design and technical approach beyond what is already summarised in the answer block above.
+We rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and heroes are built in Instant, the visual page builder they asked for, so a new promotion goes live in minutes. Shopify covers a lot out of the box, but every growing store runs into its limits sooner or later. Rather than stacking paid third-party apps to work around them, we build that functionality ourselves, so the store does exactly what STËLZ needs, without extra subscriptions.
 
 ## What we built
 
-A modular Shopify experience with faster collection discovery, a smoother add to cart flow, and a clear content structure for quick day to day edits. The store was later expanded into the Belgian market through Shopify Markets, with EU compliance and accessibility handled as part of that expansion.
+- A category page built from scratch, with filters and a quick add-to-cart button
+- A mobile experience with a sticky add-to-cart button and upsells, for the 80% of visitors who shop on mobile
+- In-house apps for free gifts with a purchase, upsells and bundles, and the deposit on every can
+- Minimum and maximum order quantities, checked on the server at checkout
+- The Belgian market, launched through Shopify Markets, with EU compliance and accessibility handled as part of that expansion
+
+We still maintain and develop the store together with the STËLZ team, and act on every campaign they run.
 
 ## Result
 
-- Lead generation up 65%
-- Average time on site doubled
-- Mobile conversion rate improved 3×
-- Won CSS Design Awards site of the month
+- Revenue almost five times higher than last year
+- €300,000 in revenue during the campaign the redesign launched in
+- Higher mobile conversion, where 80% of visitors shop
+- Campaigns and heroes live in minutes, edited by the STËLZ team itself
 
 ## Tech stack
 
-TODO_DYLAN: confirm the full stack beyond Shopify (theme framework, apps, any custom tooling) for public listing.
+Shopify with a custom theme, Instant for campaign pages, Shopify Markets, and in-house apps for gifts, upsells, bundles, deposits and order limits.

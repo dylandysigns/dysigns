@@ -170,13 +170,18 @@ export const projects: Project[] = [
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.avif",
     overview:
-      "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster collection discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
+      "The challenge\n\nSTËLZ already sold on Shopify, but every change to the store needed a developer. For a brand that runs campaigns all the time, that was the bottleneck: new heroes, promotions and products could not go live as fast as the team needed. And on mobile, where 80% of visitors shop, the store was not built to convert.\n\nOur approach\n\nWe rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and heroes are built in Instant, the visual page builder they asked for, so a new promotion goes live in minutes. Shopify covers a lot out of the box, but every growing store runs into its limits sooner or later. Rather than stacking paid third-party apps to work around them, we build that functionality ourselves, so the store does exactly what STËLZ needs, and STËLZ owns it without extra subscriptions.\n\nWhat we built\n\nA category page built from scratch, with filters and a quick add-to-cart button. A mobile experience with a sticky add-to-cart button and upsells. In-house apps for free gifts with a purchase, upsells and bundles, and the deposit on every can. Minimum and maximum order quantities, checked on the server at checkout, so they always hold. And the Belgian market, launched through Shopify Markets.\n\nThe redesign went live in the middle of a campaign and took €300,000 in revenue right away. We still maintain and develop the store together with the STËLZ team, and act on every campaign they run.",
     outcomes: [
-      "Lead generation up 65%",
-      "Average time on site doubled",
-      "Mobile conversion rate improved 3\u00d7",
-      "Won CSS Design Awards site of the month",
+      "Revenue almost five times higher than last year",
+      "€300,000 in revenue during the launch campaign",
+      "Higher mobile conversion, where 80% of visitors shop",
+      "Campaigns and heroes live in minutes, edited by the STËLZ team itself",
+      "In-house apps instead of paid app subscriptions",
+      "Belgian market launched through Shopify Markets",
     ],
+    // Same title tag as before; hand-written description instead of the
+    // first sentence of the overview.
+    customSeo: true,
     gallery: [
       "/images/old-new.avif",
       "/images/stelz-laptop.avif"
