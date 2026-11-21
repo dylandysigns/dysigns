@@ -15,7 +15,7 @@ answerBlock: |
   faster collection discovery, a smoother add to cart flow, and clear
   content structure for quick day to day edits, then expanded the
   store into the Belgian market.
-lastUpdated: "2026-08-02"
+lastUpdated: "2026-11-21"
 ---
 
 ## The question
