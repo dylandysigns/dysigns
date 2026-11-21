@@ -10,11 +10,12 @@ imageAlt: "STËLZ Shopify store, redesigned by DYSIGNS"
 imageWidth: "960"
 imageHeight: "1200"
 answerBlock: |
-  STËLZ asked DYSIGNS to redesign their website to lift conversion and
-  keep updates easy. We delivered a modular Shopify experience with
-  faster collection discovery, a smoother add to cart flow, and clear
-  content structure for quick day to day edits, then expanded the
-  store into the Belgian market.
+  DYSIGNS rebuilt the STËLZ Shopify store at drinkstelz.com so the
+  team runs its own campaigns in Instant, built in-house apps for
+  gifts, upsells, bundles, deposits and order limits instead of paid
+  third-party apps, and launched drinkstelz.be through Shopify Markets.
+  The redesign went live during a campaign with €300,000 in revenue,
+  and revenue is now almost five times higher than last year.
 lastUpdated: "2026-11-21"
 ---
 
@@ -41,6 +42,7 @@ We still maintain and develop the store together with the STËLZ team, and act o
 - Revenue almost five times higher than last year
 - €300,000 in revenue during the campaign the redesign launched in
 - Higher mobile conversion, where 80% of visitors shop
+- 4,000+ orders in three days
 - Campaigns and heroes live in minutes, edited by the STËLZ team itself
 
 ## Tech stack

@@ -656,20 +656,60 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "€300.000 omzet tijdens de campagne waarin we live gingen",
   },
   "project.stelz-web-design.outcome.2": {
+    en: "4,000+ orders in three days",
+    nl: "4.000+ bestellingen in drie dagen",
+  },
+  "project.stelz-web-design.outcome.3": {
+    en: "19,000+ visitors and 27,000+ sessions",
+    nl: "19.000+ bezoekers en 27.000+ sessies",
+  },
+  "project.stelz-web-design.outcome.4": {
+    en: "4,200+ unique customers and 19%+ returning",
+    nl: "4.200+ unieke klanten en 19%+ terugkerend",
+  },
+  "project.stelz-web-design.outcome.5": {
     en: "Higher mobile conversion, where 80% of visitors shop",
     nl: "Hogere mobiele conversie, waar 80% van de bezoekers winkelt",
   },
-  "project.stelz-web-design.outcome.3": {
+  "project.stelz-web-design.outcome.6": {
     en: "Campaigns and heroes live in minutes, edited by the STËLZ team itself",
     nl: "Campagnes en heroes binnen minuten live, door het STËLZ-team zelf",
   },
-  "project.stelz-web-design.outcome.4": {
+  "project.stelz-web-design.outcome.7": {
     en: "In-house apps instead of paid app subscriptions",
     nl: "Eigen apps in plaats van betaalde app-abonnementen",
   },
-  "project.stelz-web-design.outcome.5": {
+  "project.stelz-web-design.outcome.8": {
     en: "Belgian market live on drinkstelz.be through Shopify Markets",
     nl: "Belgische markt live op drinkstelz.be via Shopify Markets",
+  },
+  "project.stelz-web-design.alt.cover": {
+    en: "Two phones showing the STËLZ Shopify webshop on mobile",
+    nl: "Twee telefoons met de STËLZ Shopify-webshop op mobiel",
+  },
+  "project.stelz-web-design.alt.0": {
+    en: "The old and the new STËLZ webshop side by side",
+    nl: "De oude en de nieuwe STËLZ-webshop naast elkaar",
+  },
+  "project.stelz-web-design.alt.1": {
+    en: "The STËLZ webshop on a laptop",
+    nl: "De STËLZ-webshop op een laptop",
+  },
+  "project.stelz-web-design.alt.3": {
+    en: "STËLZ category page on drinkstelz.com with category tiles, filters and quick add-to-cart buttons",
+    nl: "Categoriepagina van STËLZ op drinkstelz.com met categorietegels, filters en snelle toevoegknoppen",
+  },
+  "project.stelz-web-design.alt.2": {
+    en: "Three STËLZ mobile screens: the campaign home page, the category page and a product page with a sticky add-to-cart bar",
+    nl: "Drie mobiele schermen van STËLZ: de campagnehomepage, de categoriepagina en een productpagina met een sticky toevoegbalk",
+  },
+  "project.stelz-web-design.alt.4": {
+    en: "STËLZ Hard Seltzer product page with flavour picker, 12- and 24-pack choice and the deposit shown next to the price",
+    nl: "Productpagina van STËLZ Hard Seltzer met smaakkeuze, 12- of 24-pack en het statiegeld naast de prijs",
+  },
+  "project.stelz-web-design.alt.5": {
+    en: "The Belgian STËLZ webshop on drinkstelz.be, launched through Shopify Markets",
+    nl: "De Belgische STËLZ-webshop op drinkstelz.be, gelanceerd via Shopify Markets",
   },
 
   /* ── Project: Verkeersschool Beckers Branding ── */

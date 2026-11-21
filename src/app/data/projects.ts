@@ -165,7 +165,7 @@ export const projects: Project[] = [
     slug: "stelz-web-design",
     title: "STELZ web design",
     category: "Web",
-    tags: ["Web Design", "UX Design", "Development"],
+    tags: ["Web Design", "UX Design", "Development", "E-Commerce"],
     year: "2026",
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.avif",
@@ -174,6 +174,9 @@ export const projects: Project[] = [
     outcomes: [
       "Revenue almost five times higher than last year",
       "€300,000 in revenue during the launch campaign",
+      "4,000+ orders in three days",
+      "19,000+ visitors and 27,000+ sessions",
+      "4,200+ unique customers and 19%+ returning",
       "Higher mobile conversion, where 80% of visitors shop",
       "Campaigns and heroes live in minutes, edited by the STËLZ team itself",
       "In-house apps instead of paid app subscriptions",
@@ -182,10 +185,16 @@ export const projects: Project[] = [
     // Same title tag as before; hand-written description instead of the
     // first sentence of the overview.
     customSeo: true,
+    customAlt: true,
+    cleanGallery: true,
+    galleryWide: [2, 5],
     gallery: [
       "/images/old-new.avif",
-      "/images/stelz-laptop.avif"
-
+      "/images/stelz-laptop.avif",
+      "/images/stelz-web-mobile.avif",
+      "/images/stelz-web-collection.avif",
+      "/images/stelz-web-product.avif",
+      "/images/stelz-web-belgium.avif",
     ],
   },
   {
