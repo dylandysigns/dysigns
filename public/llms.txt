@@ -25,7 +25,7 @@ English version of the site: https://dylandysigns.com/ (Dutch: https://dylandysi
 
 - [STËLZ App](https://dylandysigns.com/nl/work/stelz-app/): App voor iOS en Android ontworpen en gebouwd, van eerste schets tot nummer 1 in de App Store, met een landelijke smaakverkiezing als start.
 - [STËLZ webdesign](https://dylandysigns.com/nl/work/stelz-web-design/): De website en Shopify webshop van hetzelfde drankenmerk.
-- [Merely Made webshop](https://dylandysigns.com/nl/work/merely-made-webshop/): Webshop ontworpen en gebouwd voor het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.
+- [Merely Made webshop](https://dylandysigns.com/nl/work/merely-made-webshop/): Shopify-webshop ontworpen en gebouwd, inclusief migratie van SixShop, voor het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.
 - [A/Café POS en kiosk](https://dylandysigns.com/nl/work/a-cafe-app-design/): Productdesign voor een kassasysteem en bestelkiosk.
 - [BIYU](https://dylandysigns.com/nl/work/biyu/): App, website en dashboard voor een Amsterdams verhuurplatform.
 - [Al het werk](https://dylandysigns.com/nl/work/): Overzicht van alle projecten.

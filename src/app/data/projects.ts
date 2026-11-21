@@ -295,8 +295,15 @@ export const projects: Project[] = [
     coverVideoPosterTime: 1.25,
     workCoverStill: true,
     overview:
-      "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
-    outcomes: [],
+      "The challenge\n\nMerely Made is a fashion brand from Seoul, sold in 32 stores worldwide, from Printemps in Paris and End Clothing in London to Tokyo and California. Its webshop ran on SixShop, a Korean platform that left little room to grow: changes were hard to make, and the store was hard to edit without technical help. Merely Made needed a store with the same calm feeling as the clothes, one its own team could run.\n\nOur approach\n\nWe migrated the complete store, back office included, from SixShop to Shopify, and designed and developed the new storefront together with Merely Made's own teams in France and in Seoul. We started from the identity that was already there and made negative space the main design tool, so the clothes and photography lead and the interface stays out of the way.\n\nWhat we built\n\nA custom Shopify store with a home page, lookbook, shop, product pages and a stockist page that lists all 32 stores by region. Every part is built as sections with settings, so people without a technical background can change images, text and collections themselves. Prices show in US dollars or Korean won, and the store ships worldwide from Seoul. The old site stayed online until the switch, and old URLs still lead to the right pages.",
+    outcomes: [
+      "Complete store and back office migrated from SixShop to Shopify",
+      "Designed, built and live in one month",
+      "No downtime: the old store stayed online until the switch",
+      "Old URLs still work, so existing links keep leading to the right page",
+      "The team edits the store itself, without a developer, through sections and settings",
+      "One store selling worldwide, in US dollars and Korean won",
+    ],
     customAlt: true,
     customSeo: true,
     ogImage: "/images/og-merely-made.jpg",

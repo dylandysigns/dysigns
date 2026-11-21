@@ -792,8 +792,32 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.",
   },
   "project.merely-made-webshop.overview": {
-    en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
-    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio. Het merk had al een sterke identiteit, dus begonnen we met begrijpen wat er al stond: de rustige toon, het zelfverzekerde understatement en de ruimte rondom elk kledingstuk. Die identiteit vertaalden we naar webdesign, met negatieve ruimte als belangrijkste ontwerpmiddel, zodat de kleding en fotografie kunnen ademen en de interface op de achtergrond blijft. Met een snel en gefocust team bouwden we de webshop helemaal vanaf nul, van homepage en lookbook tot shop, productpagina’s en verkooppunten, ontworpen en gebouwd voor desktop en mobiel tegelijk. Design en development onder één dak betekent geen overdrachtsvertraging, maar een webshop die snel live staat en past bij een merk dat wereldwijd verkoopt.",
+    en: "The challenge\n\nMerely Made is a fashion brand from Seoul, sold in 32 stores worldwide, from Printemps in Paris and End Clothing in London to Tokyo and California. Its webshop ran on SixShop, a Korean platform that left little room to grow: changes were hard to make, and the store was hard to edit without technical help. Merely Made needed a store with the same calm feeling as the clothes, one its own team could run.\n\nOur approach\n\nWe migrated the complete store, back office included, from SixShop to Shopify, and designed and developed the new storefront together with Merely Made's own teams in France and in Seoul. We started from the identity that was already there and made negative space the main design tool, so the clothes and photography lead and the interface stays out of the way.\n\nWhat we built\n\nA custom Shopify store with a home page, lookbook, shop, product pages and a stockist page that lists all 32 stores by region. Every part is built as sections with settings, so people without a technical background can change images, text and collections themselves. Prices show in US dollars or Korean won, and the store ships worldwide from Seoul. The old site stayed online until the switch, and old URLs still lead to the right pages.",
+    nl: "De uitdaging\n\nMerely Made is een modemerk uit Seoul dat in 32 winkels wereldwijd ligt, van Printemps in Parijs en End Clothing in Londen tot Tokio en Californië. De webshop draaide op SixShop, een Koreaans platform met weinig ruimte om te groeien: aanpassingen waren lastig, en zonder technische hulp kon het team de shop nauwelijks bewerken. Merely Made zocht een webshop met hetzelfde rustige gevoel als de kleding, die het eigen team zelf kan beheren.\n\nOnze aanpak\n\nWe migreerden de complete webshop, inclusief de back-office, van SixShop naar Shopify, en ontwierpen en ontwikkelden de nieuwe webshop samen met de eigen teams van Merely Made in Frankrijk en Seoul. We begonnen bij de identiteit die er al stond en maakten negatieve ruimte het belangrijkste ontwerpmiddel, zodat de kleding en fotografie voorop staan en de interface op de achtergrond blijft.\n\nWat we bouwden\n\nEen maatwerk Shopify-webshop met homepage, lookbook, shop, productpagina’s en een stockist-pagina met alle 32 winkels per regio. Alles is opgebouwd uit secties met instellingen, zodat mensen zonder technische achtergrond zelf afbeeldingen, teksten en collecties kunnen aanpassen. Prijzen staan in Amerikaanse dollars of Koreaanse won, en de shop verzendt wereldwijd vanuit Seoul. De oude site bleef online tot de overstap, en oude URL’s leiden nog steeds naar de juiste pagina’s.",
+  },
+  "project.merely-made-webshop.outcome.0": {
+    en: "Complete store and back office migrated from SixShop to Shopify",
+    nl: "Complete webshop en back-office gemigreerd van SixShop naar Shopify",
+  },
+  "project.merely-made-webshop.outcome.1": {
+    en: "Designed, built and live in one month",
+    nl: "Ontworpen, gebouwd en live in één maand",
+  },
+  "project.merely-made-webshop.outcome.2": {
+    en: "No downtime: the old store stayed online until the switch",
+    nl: "Geen downtime: de oude shop bleef online tot de overstap",
+  },
+  "project.merely-made-webshop.outcome.3": {
+    en: "Old URLs still work, so existing links keep leading to the right page",
+    nl: "Oude URL’s werken nog, dus bestaande links leiden naar de juiste pagina",
+  },
+  "project.merely-made-webshop.outcome.4": {
+    en: "The team edits the store itself, without a developer, through sections and settings",
+    nl: "Het team past de shop zelf aan, zonder developer, via secties en instellingen",
+  },
+  "project.merely-made-webshop.outcome.5": {
+    en: "One store selling worldwide, in US dollars and Korean won",
+    nl: "Eén webshop die wereldwijd verkoopt, in dollars en won",
   },
   "project.merely-made-webshop.alt.cover": {
     en: "Merely Made fashion webshop, lookbook photograph: a model in relaxed, layered clothing sits in soft, natural daylight",
