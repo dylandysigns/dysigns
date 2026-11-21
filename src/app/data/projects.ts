@@ -189,8 +189,8 @@ export const projects: Project[] = [
     cleanGallery: true,
     galleryWide: [2, 5],
     gallery: [
-      "/images/old-new.avif",
-      "/images/stelz-laptop.avif",
+      "/images/stelz-web-before-after.avif",
+      "/images/stelz-web-home.avif",
       "/images/stelz-web-mobile.avif",
       "/images/stelz-web-collection.avif",
       "/images/stelz-web-product.avif",
