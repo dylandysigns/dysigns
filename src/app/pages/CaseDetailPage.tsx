@@ -123,7 +123,7 @@ export default function CaseDetailPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const overviewRef = useRef<HTMLParagraphElement>(null);
+  const overviewRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<(HTMLDivElement | null)[]>([]);
   const outcomesRef = useRef<HTMLDivElement>(null);
   const cursor = useCursor();
@@ -687,19 +687,7 @@ export default function CaseDetailPage() {
 
         <div className="mt-14 lg:mt-1">
           <div>
-            <p
-              style={{
-                margin: "0 0 12px",
-                fontSize: ".7rem",
-                fontWeight: 600,
-                letterSpacing: ".06em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .55)",
-              }}
-            >
-              {t("case.overview")}
-            </p>
-            <p
+            <div
               ref={overviewRef}
               style={{
                 fontFamily: '"Effra Text", var(--font-brand)',
@@ -708,13 +696,37 @@ export default function CaseDetailPage() {
                 lineHeight: 1.7,
                 color: "rgba(var(--page-fg-rgb), .72)",
                 marginBottom: 40,
-                // "\n\n" in an overview becomes a paragraph break, so long
-                // stories don't read as one wall of text on a phone.
-                whiteSpace: "pre-line",
               }}
             >
-              {project.overview}
-            </p>
+              {/* "\n\n" splits the overview into paragraphs; a short line
+                  without closing punctuation ("The challenge", "Onze aanpak")
+                  is a section heading and renders bold in Effra. */}
+              {project.overview.split(/\n\s*\n/).map((block, i) => {
+                const text = block.trim();
+                if (!text) return null;
+                const isHeading = text.length <= 40 && !/[.!?:]$/.test(text) && !text.includes("\n");
+                return isHeading ? (
+                  <h2
+                    key={i}
+                    style={{
+                      fontFamily: "var(--font-brand)",
+                      fontWeight: 600,
+                      fontSize: "clamp(1.1rem,1.4vw,1.25rem)",
+                      lineHeight: 1.3,
+                      letterSpacing: "-.01em",
+                      color: "var(--page-fg)",
+                      margin: i === 0 ? "0 0 10px" : "32px 0 10px",
+                    }}
+                  >
+                    {text}
+                  </h2>
+                ) : (
+                  <p key={i} style={{ margin: "0 0 16px", whiteSpace: "pre-line" }}>
+                    {text}
+                  </p>
+                );
+              })}
+            </div>
           </div>
 
           <div
