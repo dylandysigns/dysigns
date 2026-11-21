@@ -35,7 +35,7 @@ We rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and h
 - Minimum and maximum order quantities, checked on the server at checkout
 - The Belgian market, launched through Shopify Markets on its own domain, drinkstelz.be, with EU compliance and accessibility handled as part of that expansion
 
-We still maintain and develop the store together with the STËLZ team, and act on every campaign they run.
+We still maintain and develop the store together with the STËLZ team, and support every campaign they run, from Strijd voor jouw smaak 2026 and a carnival collab to Amsterdam Dance Event and new and exclusive flavour launches.
 
 ## Result
 
