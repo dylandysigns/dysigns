@@ -20,7 +20,7 @@ lastUpdated: "2026-08-02"
 
 ## The question
 
-STËLZ needed a website redesign that would lift conversion while keeping day to day content updates easy for their own team, without relying on a developer for every small change.
+STËLZ sells online at drinkstelz.com and, in Belgium, at drinkstelz.be. STËLZ needed a website redesign that would lift conversion while keeping day to day content updates easy for their own team, without relying on a developer for every small change.
 
 ## Approach
 
@@ -32,7 +32,7 @@ We rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and h
 - A mobile experience with a sticky add-to-cart button and upsells, for the 80% of visitors who shop on mobile
 - In-house apps for free gifts with a purchase, upsells and bundles, and the deposit on every can
 - Minimum and maximum order quantities, checked on the server at checkout
-- The Belgian market, launched through Shopify Markets, with EU compliance and accessibility handled as part of that expansion
+- The Belgian market, launched through Shopify Markets on its own domain, drinkstelz.be, with EU compliance and accessibility handled as part of that expansion
 
 We still maintain and develop the store together with the STËLZ team, and act on every campaign they run.
 
