@@ -788,8 +788,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Merely Made webshop: mode e-commerce design | DYSIGNS",
   },
   "project.merely-made-webshop.seoDescription": {
-    en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo.",
-    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.",
+    en: "We migrated Merely Made, the Seoul fashion brand sold in 32 stores worldwide, from SixShop to Shopify, and designed and built the new webshop.",
+    nl: "Wij migreerden Merely Made, het modemerk uit Seoul in 32 winkels wereldwijd, van SixShop naar Shopify en ontwierpen en bouwden de nieuwe webshop.",
   },
   "project.merely-made-webshop.overview": {
     en: "The challenge\n\nMerely Made is a fashion brand from Seoul, sold in 32 stores worldwide, from Printemps in Paris and End Clothing in London to Tokyo and California. Its webshop ran on SixShop, a Korean platform that left little room to grow: changes were hard to make, and the store was hard to edit without technical help. Merely Made needed a store with the same calm feeling as the clothes, one its own team could run.\n\nOur approach\n\nWe migrated the complete store, back office included, from SixShop to Shopify, and designed and developed the new storefront together with Merely Made's own teams in France and in Seoul. We started from the identity that was already there and made negative space the main design tool, so the clothes and photography lead and the interface stays out of the way.\n\nWhat we built\n\nA custom Shopify store with a home page, lookbook, shop, product pages and a stockist page that lists all 32 stores by region. Every part is built as sections with settings, so people without a technical background can change images, text and collections themselves. Prices show in US dollars or Korean won, and the store ships worldwide from Seoul. The old site stayed online until the switch, and old URLs still lead to the right pages.",
