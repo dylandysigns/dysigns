@@ -165,22 +165,36 @@ export const projects: Project[] = [
     slug: "stelz-web-design",
     title: "STELZ web design",
     category: "Web",
-    tags: ["Web Design", "UX Design", "Development"],
+    tags: ["Web Design", "UX Design", "Development", "E-Commerce"],
     year: "2026",
     url: "https://drinkstelz.com/",
     thumbnail:"/images/mobilestelz.avif",
     overview:
-      "STËLZ asked us to redesign their website to lift conversion and keep updates easy. We delivered a modular Shopify experience with faster collection discovery, a smoother add to cart flow, and clear content structure for quick day to day edits.",
+      "The challenge\n\nSTËLZ already sold on Shopify at drinkstelz.com, but every change to the store needed a developer. For a brand that runs campaigns all the time, that was the bottleneck: new heroes, promotions and products could not go live as fast as the team needed. And on mobile, where 80% of visitors shop, the store was not built to convert.\n\nOur approach\n\nWe rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and heroes are built in Instant, the visual page builder they asked for, so a new promotion goes live in minutes. Shopify covers a lot out of the box, but every growing store runs into its limits sooner or later. Rather than stacking paid third-party apps to work around them, we build that functionality ourselves, so the store does exactly what STËLZ needs, and STËLZ owns it without extra subscriptions.\n\nWhat we built\n\nA category page built from scratch, with filters and a quick add-to-cart button. A mobile experience with a sticky add-to-cart button and upsells. In-house apps for free gifts with a purchase, upsells and bundles, and the deposit on every can. Minimum and maximum order quantities, checked on the server at checkout, so they always hold. And the Belgian market, launched through Shopify Markets on its own domain, drinkstelz.be, in line with EU rules and accessibility requirements.\n\nThe redesign went live in the middle of a campaign and took €300,000 in revenue right away. We still maintain and develop the store together with the STËLZ team, and support every campaign they run, from Strijd voor jouw smaak 2026 and a carnival collab to Amsterdam Dance Event and new and exclusive flavour launches.",
     outcomes: [
-      "Lead generation up 65%",
-      "Average time on site doubled",
-      "Mobile conversion rate improved 3\u00d7",
-      "Won CSS Design Awards site of the month",
+      "Revenue almost five times higher than last year",
+      "€300,000 in revenue during the launch campaign",
+      "4,000+ orders in three days",
+      "19,000+ visitors and 27,000+ sessions",
+      "4,200+ unique customers and 19%+ returning",
+      "Higher mobile conversion, where 80% of visitors shop",
+      "Campaigns and heroes live in minutes, edited by the STËLZ team itself",
+      "In-house apps instead of paid app subscriptions",
+      "Belgian market live on drinkstelz.be through Shopify Markets",
     ],
+    // Same title tag as before; hand-written description instead of the
+    // first sentence of the overview.
+    customSeo: true,
+    customAlt: true,
+    cleanGallery: true,
+    galleryWide: [2, 5],
     gallery: [
       "/images/old-new.avif",
-      "/images/stelz-laptop.avif"
-
+      "/images/stelz-web-home.avif",
+      "/images/stelz-web-mobile.avif",
+      "/images/stelz-web-collection.avif",
+      "/images/stelz-web-product.avif",
+      "/images/stelz-web-belgium.avif",
     ],
   },
   {
@@ -295,8 +309,15 @@ export const projects: Project[] = [
     coverVideoPosterTime: 1.25,
     workCoverStill: true,
     overview:
-      "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
-    outcomes: [],
+      "The challenge\n\nMerely Made is a fashion brand from Seoul, sold in 32 stores worldwide, from Printemps in Paris and End Clothing in London to Tokyo and California. Its webshop ran on SixShop, a Korean platform that left little room to grow: changes were hard to make, and the store was hard to edit without technical help. Merely Made needed a store with the same calm feeling as the clothes, one its own team could run.\n\nOur approach\n\nWe migrated the complete store, back office included, from SixShop to Shopify, and designed and developed the new storefront together with Merely Made's own teams in France and in Seoul. We started from the identity that was already there and made negative space the main design tool, so the clothes and photography lead and the interface stays out of the way.\n\nWhat we built\n\nA custom Shopify store with a home page, lookbook, shop, product pages and a stockist page that lists all 32 stores by region. Every part is built as sections with settings, so people without a technical background can change images, text and collections themselves. Prices show in US dollars or Korean won, and the store ships worldwide from Seoul. The old site stayed online until the switch, and old URLs still lead to the right pages.",
+    outcomes: [
+      "Complete store and back office migrated from SixShop to Shopify",
+      "Designed, built and live in one month",
+      "No downtime: the old store stayed online until the switch",
+      "Old URLs still work, so existing links keep leading to the right page",
+      "The team edits the store itself, without a developer, through sections and settings",
+      "One store selling worldwide, in US dollars and Korean won",
+    ],
     customAlt: true,
     customSeo: true,
     ogImage: "/images/og-merely-made.jpg",

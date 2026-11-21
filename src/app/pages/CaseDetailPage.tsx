@@ -441,7 +441,7 @@ export default function CaseDetailPage() {
             about: project.title,
             path: `/work/${slug ?? ""}`,
             datePublished: project.year,
-            description: project.overview,
+            description: project.seoDescription ?? project.overview,
             keywords: project.tags,
             images: [project.thumbnail, ...project.gallery].map((src) => `${SITE_URL}${src}`),
           }),

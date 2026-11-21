@@ -635,27 +635,82 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     en: "STËLZ Web Design",
     nl: "STËLZ Web Design",
   },
+  "project.stelz-web-design.seoTitle": {
+    en: "STËLZ Webshop & Website Design on Shopify | DYSIGNS",
+    nl: "STËLZ webshop en website design op Shopify | DYSIGNS",
+  },
+  "project.stelz-web-design.seoDescription": {
+    en: "How we rebuilt the STËLZ Shopify store so the team runs its own campaigns, with in-house apps, a better mobile flow and revenue almost five times higher.",
+    nl: "Hoe we de Shopify-webshop van STËLZ herbouwden: het team beheert zelf campagnes, met eigen apps, een betere mobiele flow en bijna vijf keer zoveel omzet.",
+  },
   "project.stelz-web-design.overview": {
- en: "STËLZ asked us to redesign their website to improve conversion and simplify daily updates across teams. We created a modular Shopify setup that supports faster collection discovery, a smoother add to cart flow and a clear content structure that allows quick edits without development dependency. Our collaboration evolved into a long term partnership where we continuously refine the experience through design iterations, UX optimisation and campaign driven updates. This ongoing workflow ensures the platform stays aligned with brand growth, supports new campaign launches and maintains strong performance across devices while enabling the STËLZ team to manage content efficiently.",
-  nl: "STËLZ vroeg ons om hun website te herontwerpen voor meer conversie en eenvoudiger beheer. We bouwden een modulaire Shopify ervaring met snellere productkeuze, een soepelere add to cart flow en een heldere content structuur voor snelle aanpassingen.",
-},
-
-"project.stelz-web-design.outcome.0": {
-  en: "€200K+ revenue during the campaign launch weekend",
-  nl: "€200K+ omzet tijdens het livegang weekend van de campagne",
-},
-"project.stelz-web-design.outcome.1": {
-  en: "4,000+ orders in three days",
-  nl: "4.000+ bestellingen in drie dagen",
-},
-"project.stelz-web-design.outcome.2": {
-  en: "19,000+ visitors and 27,000+ sessions",
-  nl: "19.000+ bezoekers en 27.000+ sessies",
-},
-"project.stelz-web-design.outcome.3": {
-  en: "4,200+ unique customers and 19%+ returning",
-  nl: "4.200+ unieke klanten en 19%+ terugkerend",
-},
+    en: "The challenge\n\nSTËLZ already sold on Shopify at drinkstelz.com, but every change to the store needed a developer. For a brand that runs campaigns all the time, that was the bottleneck: new heroes, promotions and products could not go live as fast as the team needed. And on mobile, where 80% of visitors shop, the store was not built to convert.\n\nOur approach\n\nWe rebuilt the theme so the STËLZ team runs it themselves. Campaign pages and heroes are built in Instant, the visual page builder they asked for, so a new promotion goes live in minutes. Shopify covers a lot out of the box, but every growing store runs into its limits sooner or later. Rather than stacking paid third-party apps to work around them, we build that functionality ourselves, so the store does exactly what STËLZ needs, and STËLZ owns it without extra subscriptions.\n\nWhat we built\n\nA category page built from scratch, with filters and a quick add-to-cart button. A mobile experience with a sticky add-to-cart button and upsells. In-house apps for free gifts with a purchase, upsells and bundles, and the deposit on every can. Minimum and maximum order quantities, checked on the server at checkout, so they always hold. And the Belgian market, launched through Shopify Markets on its own domain, drinkstelz.be, in line with EU rules and accessibility requirements.\n\nThe redesign went live in the middle of a campaign and took €300,000 in revenue right away. We still maintain and develop the store together with the STËLZ team, and support every campaign they run, from Strijd voor jouw smaak 2026 and a carnival collab to Amsterdam Dance Event and new and exclusive flavour launches.",
+    nl: "De uitdaging\n\nSTËLZ verkocht al via Shopify op drinkstelz.com, maar voor elke aanpassing aan de webshop was een developer nodig. Voor een merk dat continu campagnes draait was dat de rem: nieuwe heroes, acties en producten konden niet zo snel live als het team wilde. En op mobiel, waar 80% van de bezoekers winkelt, was de shop niet gebouwd om te converteren.\n\nOnze aanpak\n\nWe bouwden het thema zo om dat het STËLZ-team de webshop zelf beheert. Campagnepagina’s en heroes maken ze in Instant, de visuele pagebuilder waar ze om vroegen, zodat een nieuwe actie binnen een paar minuten live staat. Shopify kan veel standaard, maar elke groeiende webshop loopt vroeg of laat tegen grenzen aan. In plaats van betaalde apps van derden op elkaar te stapelen om daaromheen te werken, bouwen wij die functies zelf. Zo doet de webshop precies wat STËLZ nodig heeft, en is het van STËLZ zelf, zonder extra abonnementen.\n\nWat we bouwden\n\nEen categoriepagina vanaf nul gebouwd, met filters en een snelle add-to-cart-knop. Een mobiele ervaring met een sticky add-to-cart-knop en upsells. Eigen apps voor een gratis cadeau bij aankoop, upsells en bundels, en het statiegeld op elk blikje. Een minimaal en maximaal bestelaantal, gecontroleerd op de server bij het afrekenen, zodat het altijd klopt. En de Belgische markt, gelanceerd via Shopify Markets op een eigen domein, drinkstelz.be, volgens de Europese regels en eisen voor toegankelijkheid.\n\nDe redesign ging live midden in een campagne en haalde direct €300.000 omzet. We onderhouden en ontwikkelen de webshop nog steeds samen met het STËLZ-team, en ondersteunen elke campagne die ze draaien, van Strijd voor jouw smaak 2026 en een carnavalscollab tot Amsterdam Dance Event en nieuwe en exclusieve smaaklanceringen.",
+  },
+  "project.stelz-web-design.outcome.0": {
+    en: "Revenue almost five times higher than last year",
+    nl: "Bijna vijf keer zoveel omzet als vorig jaar",
+  },
+  "project.stelz-web-design.outcome.1": {
+    en: "€300,000 in revenue during the launch campaign",
+    nl: "€300.000 omzet tijdens de campagne waarin we live gingen",
+  },
+  "project.stelz-web-design.outcome.2": {
+    en: "4,000+ orders in three days",
+    nl: "4.000+ bestellingen in drie dagen",
+  },
+  "project.stelz-web-design.outcome.3": {
+    en: "19,000+ visitors and 27,000+ sessions",
+    nl: "19.000+ bezoekers en 27.000+ sessies",
+  },
+  "project.stelz-web-design.outcome.4": {
+    en: "4,200+ unique customers and 19%+ returning",
+    nl: "4.200+ unieke klanten en 19%+ terugkerend",
+  },
+  "project.stelz-web-design.outcome.5": {
+    en: "Higher mobile conversion, where 80% of visitors shop",
+    nl: "Hogere mobiele conversie, waar 80% van de bezoekers winkelt",
+  },
+  "project.stelz-web-design.outcome.6": {
+    en: "Campaigns and heroes live in minutes, edited by the STËLZ team itself",
+    nl: "Campagnes en heroes binnen minuten live, door het STËLZ-team zelf",
+  },
+  "project.stelz-web-design.outcome.7": {
+    en: "In-house apps instead of paid app subscriptions",
+    nl: "Eigen apps in plaats van betaalde app-abonnementen",
+  },
+  "project.stelz-web-design.outcome.8": {
+    en: "Belgian market live on drinkstelz.be through Shopify Markets",
+    nl: "Belgische markt live op drinkstelz.be via Shopify Markets",
+  },
+  "project.stelz-web-design.alt.cover": {
+    en: "Two phones showing the STËLZ Shopify webshop on mobile",
+    nl: "Twee telefoons met de STËLZ Shopify-webshop op mobiel",
+  },
+  "project.stelz-web-design.alt.0": {
+    en: "Before and after: the old STËLZ product page next to the new one, with flavour picker, pack choice and add-to-cart",
+    nl: "Voor en na: de oude productpagina van STËLZ naast de nieuwe, met smaakkeuze, packkeuze en toevoegknop",
+  },
+  "project.stelz-web-design.alt.1": {
+    en: "The campaign-led home page of drinkstelz.com on desktop and mobile, with heroes edited in Instant",
+    nl: "De campagnegerichte homepage van drinkstelz.com op desktop en mobiel, met heroes die in Instant worden aangepast",
+  },
+  "project.stelz-web-design.alt.3": {
+    en: "STËLZ category page on drinkstelz.com with category tiles, filters and quick add-to-cart buttons",
+    nl: "Categoriepagina van STËLZ op drinkstelz.com met categorietegels, filters en snelle toevoegknoppen",
+  },
+  "project.stelz-web-design.alt.2": {
+    en: "Three STËLZ mobile screens with a sticky add-to-cart bar, quick add and a campaign hero, next to the line: 80% of STËLZ shoppers are on mobile",
+    nl: "Drie mobiele schermen van STËLZ: de campagnehomepage, de categoriepagina en een productpagina met een sticky toevoegbalk",
+  },
+  "project.stelz-web-design.alt.4": {
+    en: "STËLZ product page with close-ups of the in-house deposit app, the flavour switcher and the minimum and maximum order quantity",
+    nl: "Productpagina van STËLZ met uitsneden van de eigen statiegeld-app, de smaakkiezer en het minimale en maximale bestelaantal",
+  },
+  "project.stelz-web-design.alt.5": {
+    en: "drinkstelz.com and drinkstelz.be side by side: one Shopify store for the Netherlands and Belgium through Shopify Markets",
+    nl: "drinkstelz.com en drinkstelz.be naast elkaar: één Shopify-store voor Nederland en België via Shopify Markets",
+  },
 
   /* ── Project: Verkeersschool Beckers Branding ── */
   "project.verkeersschool-beckers-branding.title": {
@@ -788,12 +843,36 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Merely Made webshop: mode e-commerce design | DYSIGNS",
   },
   "project.merely-made-webshop.seoDescription": {
-    en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo.",
-    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio.",
+    en: "We migrated Merely Made, the Seoul fashion brand sold in 32 stores worldwide, from SixShop to Shopify, and designed and built the new webshop.",
+    nl: "Wij migreerden Merely Made, het modemerk uit Seoul in 32 winkels wereldwijd, van SixShop naar Shopify en ontwierpen en bouwden de nieuwe webshop.",
   },
   "project.merely-made-webshop.overview": {
-    en: "We designed, developed and built the webshop for Merely Made, the Korean fashion brand from Seoul, sold in 32 stores from Paris to Tokyo. The brand already had a strong identity, so we started by understanding it: the calm tone, the quiet confidence and the room around every garment. We then translated that identity into web design, with negative space as the main design tool, so the clothes and photography can breathe and the interface stays out of the way. With a fast, focused team we built the store from scratch, from home page and lookbook to shop, product pages and stockists, designed and built for desktop and mobile together. Design and development under one roof means no handoff delays, just a webshop that goes live fast and fits a brand that sells worldwide.",
-    nl: "Wij ontwierpen, ontwikkelden en bouwden de webshop van Merely Made, het Koreaanse modemerk uit Seoul dat in 32 winkels ligt, van Parijs tot Tokio. Het merk had al een sterke identiteit, dus begonnen we met begrijpen wat er al stond: de rustige toon, het zelfverzekerde understatement en de ruimte rondom elk kledingstuk. Die identiteit vertaalden we naar webdesign, met negatieve ruimte als belangrijkste ontwerpmiddel, zodat de kleding en fotografie kunnen ademen en de interface op de achtergrond blijft. Met een snel en gefocust team bouwden we de webshop helemaal vanaf nul, van homepage en lookbook tot shop, productpagina’s en verkooppunten, ontworpen en gebouwd voor desktop en mobiel tegelijk. Design en development onder één dak betekent geen overdrachtsvertraging, maar een webshop die snel live staat en past bij een merk dat wereldwijd verkoopt.",
+    en: "The challenge\n\nMerely Made is a fashion brand from Seoul, sold in 32 stores worldwide, from Printemps in Paris and End Clothing in London to Tokyo and California. Its webshop ran on SixShop, a Korean platform that left little room to grow: changes were hard to make, and the store was hard to edit without technical help. Merely Made needed a store with the same calm feeling as the clothes, one its own team could run.\n\nOur approach\n\nWe migrated the complete store, back office included, from SixShop to Shopify, and designed and developed the new storefront together with Merely Made's own teams in France and in Seoul. We started from the identity that was already there and made negative space the main design tool, so the clothes and photography lead and the interface stays out of the way.\n\nWhat we built\n\nA custom Shopify store with a home page, lookbook, shop, product pages and a stockist page that lists all 32 stores by region. Every part is built as sections with settings, so people without a technical background can change images, text and collections themselves. Prices show in US dollars or Korean won, and the store ships worldwide from Seoul. The old site stayed online until the switch, and old URLs still lead to the right pages.",
+    nl: "De uitdaging\n\nMerely Made is een modemerk uit Seoul dat in 32 winkels wereldwijd ligt, van Printemps in Parijs en End Clothing in Londen tot Tokio en Californië. De webshop draaide op SixShop, een Koreaans platform met weinig ruimte om te groeien: aanpassingen waren lastig, en zonder technische hulp kon het team de shop nauwelijks bewerken. Merely Made zocht een webshop met hetzelfde rustige gevoel als de kleding, die het eigen team zelf kan beheren.\n\nOnze aanpak\n\nWe migreerden de complete webshop, inclusief de back-office, van SixShop naar Shopify, en ontwierpen en ontwikkelden de nieuwe webshop samen met de eigen teams van Merely Made in Frankrijk en Seoul. We begonnen bij de identiteit die er al stond en maakten negatieve ruimte het belangrijkste ontwerpmiddel, zodat de kleding en fotografie voorop staan en de interface op de achtergrond blijft.\n\nWat we bouwden\n\nEen maatwerk Shopify-webshop met homepage, lookbook, shop, productpagina’s en een stockist-pagina met alle 32 winkels per regio. Alles is opgebouwd uit secties met instellingen, zodat mensen zonder technische achtergrond zelf afbeeldingen, teksten en collecties kunnen aanpassen. Prijzen staan in Amerikaanse dollars of Koreaanse won, en de shop verzendt wereldwijd vanuit Seoul. De oude site bleef online tot de overstap, en oude URL’s leiden nog steeds naar de juiste pagina’s.",
+  },
+  "project.merely-made-webshop.outcome.0": {
+    en: "Complete store and back office migrated from SixShop to Shopify",
+    nl: "Complete webshop en back-office gemigreerd van SixShop naar Shopify",
+  },
+  "project.merely-made-webshop.outcome.1": {
+    en: "Designed, built and live in one month",
+    nl: "Ontworpen, gebouwd en live in één maand",
+  },
+  "project.merely-made-webshop.outcome.2": {
+    en: "No downtime: the old store stayed online until the switch",
+    nl: "Geen downtime: de oude shop bleef online tot de overstap",
+  },
+  "project.merely-made-webshop.outcome.3": {
+    en: "Old URLs still work, so existing links keep leading to the right page",
+    nl: "Oude URL’s werken nog, dus bestaande links leiden naar de juiste pagina",
+  },
+  "project.merely-made-webshop.outcome.4": {
+    en: "The team edits the store itself, without a developer, through sections and settings",
+    nl: "Het team past de shop zelf aan, zonder developer, via secties en instellingen",
+  },
+  "project.merely-made-webshop.outcome.5": {
+    en: "One store selling worldwide, in US dollars and Korean won",
+    nl: "Eén webshop die wereldwijd verkoopt, in dollars en won",
   },
   "project.merely-made-webshop.alt.cover": {
     en: "Merely Made fashion webshop, lookbook photograph: a model in relaxed, layered clothing sits in soft, natural daylight",
