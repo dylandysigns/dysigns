@@ -654,8 +654,8 @@ export function WebDesignAlmerePage() {
       slug="web-design-almere"
       breadcrumbParentSlug="web-design"
       customWhyHeading={{
-        en: "Why a team from Almere",
-        nl: "Waarom een team uit Almere",
+        en: "Why a web agency from Almere",
+        nl: "Waarom een webbureau uit Almere",
       }}
     />
   );

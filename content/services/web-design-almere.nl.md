@@ -1,16 +1,18 @@
 ---
-title: "Website Laten Maken in Almere en Omgeving | DYSIGNS"
-description: "Website of Shopify webshop laten maken in Almere en omgeving? DYSIGNS ontwerpt en bouwt maatwerk vanuit Almere, als officiële Shopify Partner."
-heading: "Webdesign in Almere en omgeving"
+title: "Webbureau Almere | Website Laten Maken | DYSIGNS"
+description: "Creatief webbureau in Almere. DYSIGNS ontwerpt en bouwt maatwerk websites, Shopify webshops en apps als officiële Shopify Partner."
+heading: "Webbureau in Almere voor creatieve websites en webshops"
 slug: "web-design-almere"
 answerBlock: |
-  DYSIGNS is een webdesign- en developmentteam uit Almere. We
-  ontwerpen en bouwen maatwerk websites en Shopify webshops voor
+  DYSIGNS is een creatief webbureau in Almere. We ontwerpen en
+  bouwen maatwerk websites, Shopify webshops en apps voor
   ondernemers, founders en scale-ups in Almere en omgeving, van
   Lelystad en Zeewolde tot het Gooi en Amsterdam, als officiële
-  Shopify Partner. Hetzelfde team ontwerpt
-  en bouwt, zodat wat live gaat ook is wat ontworpen werd.
-lastUpdated: "2026-11-13"
+  Shopify Partner. Hetzelfde team ontwerpt en bouwt, zodat wat live
+  gaat ook is wat ontworpen werd. Recent werk: de app van STËLZ, die
+  nummer 1 werd in de Nederlandse App Store, en de webshop van modemerk Merely
+  Made, dat in 32 winkels wereldwijd ligt.
+lastUpdated: "2026-11-22"
 ---
 
 ## What this includes
@@ -27,15 +29,23 @@ Een Shopify webshop met een custom thema en de functionaliteit die jouw producte
 
 Heb je al een website of webshop in Almere die onderpresteert? We kijken eerst wat tegenhoudt en verbeteren stap voor stap, in plaats van standaard alles opnieuw te bouwen.
 
-## Waarom een team uit Almere
+## Waarom een webbureau uit Almere
 
-Op zoek naar een webdesigner in Almere? Almere is onze thuisbasis, dus een eerste kennismaking onder het genot van een kop koffie is zo geregeld. Het werk zelf verloopt grotendeels op afstand, met korte lijnen en één vast aanspreekpunt, in het Nederlands of Engels. Je krijgt een team dat de lokale markt kent, zonder de overhead van een groot bureau.
+Op zoek naar een webbureau of webdesigner in Almere? Almere is onze thuisbasis, dus een eerste kennismaking onder het genot van een kop koffie is zo geregeld. Het werk zelf verloopt grotendeels op afstand, met korte lijnen en één vast aanspreekpunt, in het Nederlands of Engels. Je krijgt een team dat de lokale markt kent, zonder de overhead van een groot bureau.
 
 ## Who it is for
 
 Voor ondernemers, founders en groeiende bedrijven in Almere en omgeving, van Lelystad en Zeewolde tot het Gooi, die een website of webshop willen die verder gaat dan een template, en die liever met één team werken dan schakelen tussen een designer en een aparte developer.
 
 ## Frequently asked questions
+
+### Hoe kies je een goed webbureau in Almere?
+
+Kijk naar drie dingen. Ten eerste werk dat je zelf kunt bekijken: live websites, webshops en apps, niet alleen mockups. Ten tweede wie het bouwt: ontwerpt en bouwt hetzelfde team, of wordt het werk doorgezet naar een externe developer? Ten derde wat er na de lancering gebeurt: onderhoud, SEO en campagnes, of alleen een oplevering. Vraag ook of je de mensen kunt ontmoeten die aan je project werken. We spreken graag af in Almere, Amsterdam of bij jou op kantoor, en ons werk staat op [de werkpagina](/nl/work).
+
+### Wat voor websites maken jullie?
+
+Creatieve websites die op maat ontworpen zijn, geen aangepaste templates. Denk aan bedrijfswebsites, Shopify webshops met een eigen thema en apps voor iOS en Android. Voorbeelden zijn de [website en webshop van STËLZ](/nl/work/stelz-web-design), de [STËLZ app](/nl/work/stelz-app) en de [webshop van Merely Made](/nl/work/merely-made-webshop).
 
 ### Kunnen we elkaar in Almere ontmoeten?
 

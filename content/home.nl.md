@@ -1,11 +1,11 @@
 ---
 title: "Webdesign Bureau & Shopify Partner Nederland | DYSIGNS"
-description: "Wij laten de digitale kant van je merk groeien en schalen: webdesign, branding, Shopify en AI-implementatie. Officiële Shopify Partner in Nederland."
+description: "Creatief webbureau uit Almere: webdesign, branding, Shopify en AI-implementatie voor merken die willen groeien. Officiële Shopify Partner in Nederland."
 slug: "/"
 heading: "Wij ontwerpen, bouwen en laten digitale producten groeien"
 answerBlock: |
-  DYSIGNS is jouw creative partner: een klein team dat met je ontwerpt
-  en bouwt, dichtbij en snel. Wij verzorgen het hele traject: UX en
+  DYSIGNS is een creatief webbureau uit Almere: een klein team dat
+  met je ontwerpt en bouwt, dichtbij en snel. Wij verzorgen het hele traject: UX en
   merkidentiteit, websites en Shopify-webshops als officiële Shopify
   Partner in Nederland, AI-implementatie, en de social-media- en
   advertentiecampagnes die daarna klanten binnenhalen. Eén partner in
