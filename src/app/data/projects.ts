@@ -194,7 +194,7 @@ export const projects: Project[] = [
       "/images/stelz-web-mobile.avif",
       "/images/stelz-web-collection.avif",
       "/images/stelz-web-cart.avif",
-      "/images/stelz-web-brand.avif",
+      "/images/stelz-web-shop.avif",
     ],
   },
   {
