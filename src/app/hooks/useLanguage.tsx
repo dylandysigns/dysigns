@@ -708,8 +708,8 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "De cart drawer van STËLZ met drie trays, een voortgangsbalk naar gratis verzending, een nieuw product om te proberen en een afrekenknop",
   },
   "project.stelz-web-design.alt.5": {
-    en: "A MacBook and an iPhone showing the STËLZ shop on desktop and mobile, on a blurred photo of cans in coloured smoke; next to it four friends holding STËLZ cans against a blue sky, with the STËLZ logo and floating cans",
-    nl: "Een MacBook en een iPhone met de STËLZ-shop op desktop en mobiel, op een onscherpe foto van blikjes in gekleurde rook; ernaast vier vrienden met STËLZ-blikjes tegen een blauwe lucht, met het STËLZ-logo en zwevende blikjes",
+    en: "A MacBook and an iPhone showing the STËLZ shop on desktop and mobile in a dark blue studio, with Raspberry, Apple and Lemon cans on a glossy floor and the STËLZ logo",
+    nl: "Een MacBook en een iPhone met de STËLZ-shop op desktop en mobiel in een donkerblauwe studio, met blikjes Raspberry, Apple en Lemon op een glanzende vloer en het STËLZ-logo",
   },
 
   /* ── Project: Verkeersschool Beckers Branding ── */
