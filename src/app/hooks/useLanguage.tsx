@@ -692,24 +692,24 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Voor en na: de oude Mix Pack-productpagina van STËLZ naast de nieuwe pagina van Hard Seltzer Apple, met smaakiconen, keuze tussen 12-pack en 24-pack en één toevoegknop",
   },
   "project.stelz-web-design.alt.1": {
-    en: "The STËLZ home page in two browser windows: the STËLZ x Schrobbeler campaign hero, and below it the Find your STËLZ range and the community section",
-    nl: "De homepage van STËLZ in twee browservensters: de campagnehero van STËLZ x Schrobbeler, en daaronder Vind jouw STËLZ met het assortiment en de community",
+    en: "A MacBook and an iPhone showing the drinkstelz.com home page with the ADE campaign hero for Hard Iced Tea Peach Mate, on a blurred photo; next to it two hands toasting with STËLZ iced tea cans against a blue sky, with the STËLZ logo and floating cans",
+    nl: "Een MacBook en een iPhone met de homepage van drinkstelz.com en de ADE-campagnehero voor Hard Iced Tea Peach Mate, op een onscherpe foto; ernaast twee handen die proosten met STËLZ iced tea-blikjes tegen een blauwe lucht, met het STËLZ-logo en zwevende blikjes",
   },
   "project.stelz-web-design.alt.3": {
-    en: "STËLZ shop pages: category tiles for hard seltzers, hard iced tea and mixed classics, a best sellers row with quick add-to-cart buttons, and the filter drawer",
-    nl: "Shoppagina's van STËLZ: categorietegels voor hard seltzers, hard iced tea en mixed classics, een rij bestsellers met snelle toevoegknoppen en het filtermenu",
+    en: "The STËLZ shop page in a browser: category tiles, filter buttons and the first row of products with reviews, prices and add-to-cart buttons",
+    nl: "De shoppagina van STËLZ in een browser: categorietegels, filterknoppen en de eerste rij producten met reviews, prijzen en toevoegknoppen",
   },
   "project.stelz-web-design.alt.2": {
     en: "Three STËLZ mobile screens next to the line Built for the thumb: the carnival campaign home page, the Hard Seltzer Apple product page and the collection with filters",
     nl: "Drie mobiele schermen van STËLZ naast de zin Built for the thumb: de homepage met de carnavalscampagne, de productpagina van Hard Seltzer Apple en de collectie met filters",
   },
   "project.stelz-web-design.alt.4": {
-    en: "The STËLZ cart with three products, quantity controls, an order summary with free shipping and a checkout button",
-    nl: "De winkelwagen van STËLZ met drie producten, aantalknoppen, een besteloverzicht met gratis verzending en een afrekenknop",
+    en: "The STËLZ cart drawer with three trays, a progress bar towards free shipping, a new product to try and a checkout button",
+    nl: "De cart drawer van STËLZ met drie trays, een voortgangsbalk naar gratis verzending, een nieuw product om te proberen en een afrekenknop",
   },
   "project.stelz-web-design.alt.5": {
-    en: "STËLZ brand visuals: four friends holding STËLZ cans against a blue sky, the hard iced tea value 6-pack, and the ADE landing page for Peach Mate",
-    nl: "Merkbeelden van STËLZ: vier vrienden met STËLZ-blikjes tegen een blauwe lucht, het value 6-pack hard iced tea en de ADE-landingspagina voor Peach Mate",
+    en: "A MacBook and an iPhone showing the STËLZ shop on desktop and mobile, on a blurred photo of cans in coloured smoke; next to it four friends holding STËLZ cans against a blue sky, with the STËLZ logo and floating cans",
+    nl: "Een MacBook en een iPhone met de STËLZ-shop op desktop en mobiel, op een onscherpe foto van blikjes in gekleurde rook; ernaast vier vrienden met STËLZ-blikjes tegen een blauwe lucht, met het STËLZ-logo en zwevende blikjes",
   },
 
   /* ── Project: Verkeersschool Beckers Branding ── */
