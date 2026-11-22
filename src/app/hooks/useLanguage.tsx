@@ -688,28 +688,28 @@ nl: "We zijn gestart als UX en UI designers met een sterke drang om te groeien e
     nl: "Twee telefoons met de STËLZ Shopify-webshop op mobiel",
   },
   "project.stelz-web-design.alt.0": {
-    en: "Before and after: the old STËLZ product page next to the new one, with flavour picker, pack choice and add-to-cart",
-    nl: "Voor en na: de oude productpagina van STËLZ naast de nieuwe, met smaakkeuze, packkeuze en toevoegknop",
+    en: "Before and after: the old STËLZ Mix Pack product page next to the new Hard Seltzer Apple page, with flavour icons, a 12 or 24 pack choice and one add-to-cart button",
+    nl: "Voor en na: de oude Mix Pack-productpagina van STËLZ naast de nieuwe pagina van Hard Seltzer Apple, met smaakiconen, keuze tussen 12-pack en 24-pack en één toevoegknop",
   },
   "project.stelz-web-design.alt.1": {
-    en: "The campaign-led home page of drinkstelz.com on desktop and mobile, with heroes edited in Instant",
-    nl: "De campagnegerichte homepage van drinkstelz.com op desktop en mobiel, met heroes die in Instant worden aangepast",
+    en: "A MacBook and an iPhone showing the drinkstelz.com home page with the ADE campaign hero for Hard Iced Tea Peach Mate, on a blurred photo; next to it two hands toasting with STËLZ iced tea cans against a blue sky, with the STËLZ logo and floating cans",
+    nl: "Een MacBook en een iPhone met de homepage van drinkstelz.com en de ADE-campagnehero voor Hard Iced Tea Peach Mate, op een onscherpe foto; ernaast twee handen die proosten met STËLZ iced tea-blikjes tegen een blauwe lucht, met het STËLZ-logo en zwevende blikjes",
   },
   "project.stelz-web-design.alt.3": {
-    en: "STËLZ category page on drinkstelz.com with category tiles, filters and quick add-to-cart buttons",
-    nl: "Categoriepagina van STËLZ op drinkstelz.com met categorietegels, filters en snelle toevoegknoppen",
+    en: "The STËLZ shop page in a browser: category tiles, filter buttons and the first row of products with reviews, prices and add-to-cart buttons",
+    nl: "De shoppagina van STËLZ in een browser: categorietegels, filterknoppen en de eerste rij producten met reviews, prijzen en toevoegknoppen",
   },
   "project.stelz-web-design.alt.2": {
-    en: "Three STËLZ mobile screens with a sticky add-to-cart bar, quick add and a campaign hero, next to the line: 80% of STËLZ shoppers are on mobile",
-    nl: "Drie mobiele schermen van STËLZ: de campagnehomepage, de categoriepagina en een productpagina met een sticky toevoegbalk",
+    en: "Three STËLZ mobile screens next to the line Built for the thumb: the carnival campaign home page, the Hard Seltzer Apple product page and the collection with filters",
+    nl: "Drie mobiele schermen van STËLZ naast de zin Built for the thumb: de homepage met de carnavalscampagne, de productpagina van Hard Seltzer Apple en de collectie met filters",
   },
   "project.stelz-web-design.alt.4": {
-    en: "STËLZ product page with close-ups of the in-house deposit app, the flavour switcher and the minimum and maximum order quantity",
-    nl: "Productpagina van STËLZ met uitsneden van de eigen statiegeld-app, de smaakkiezer en het minimale en maximale bestelaantal",
+    en: "The STËLZ cart drawer with three trays, a progress bar towards free shipping, a new product to try and a checkout button",
+    nl: "De cart drawer van STËLZ met drie trays, een voortgangsbalk naar gratis verzending, een nieuw product om te proberen en een afrekenknop",
   },
   "project.stelz-web-design.alt.5": {
-    en: "drinkstelz.com and drinkstelz.be side by side: one Shopify store for the Netherlands and Belgium through Shopify Markets",
-    nl: "drinkstelz.com en drinkstelz.be naast elkaar: één Shopify-store voor Nederland en België via Shopify Markets",
+    en: "A MacBook and an iPhone showing the STËLZ shop on desktop and mobile, on a blurred photo of cans in coloured smoke; next to it four friends holding STËLZ cans against a blue sky, with the STËLZ logo and floating cans",
+    nl: "Een MacBook en een iPhone met de STËLZ-shop op desktop en mobiel, op een onscherpe foto van blikjes in gekleurde rook; ernaast vier vrienden met STËLZ-blikjes tegen een blauwe lucht, met het STËLZ-logo en zwevende blikjes",
   },
 
   /* ── Project: Verkeersschool Beckers Branding ── */

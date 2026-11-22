@@ -193,8 +193,8 @@ export const projects: Project[] = [
       "/images/stelz-web-home.avif",
       "/images/stelz-web-mobile.avif",
       "/images/stelz-web-collection.avif",
-      "/images/stelz-web-product.avif",
-      "/images/stelz-web-belgium.avif",
+      "/images/stelz-web-cart.avif",
+      "/images/stelz-web-brand.avif",
     ],
   },
   {
