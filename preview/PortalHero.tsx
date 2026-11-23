@@ -891,7 +891,12 @@ export default function PortalHero() {
           </aside>
           <p className="ph-avail" data-fade data-rise>
             <AvailGlobe label={t("hero.globeLabel")} onOpen={openGlobe} />
-            <button type="button" className="ph-avail__text" onClick={openGlobe}>
+            <button
+              type="button"
+              className="ph-avail__text"
+              // same click as the globe itself, so the scene zooms out of the globe
+              onClick={(e) => e.currentTarget.parentElement?.querySelector<HTMLButtonElement>(".ph-globe-btn")?.click()}
+            >
               <svg
                 aria-hidden="true"
                 className="ph-avail__swoosh"
