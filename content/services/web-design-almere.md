@@ -1,16 +1,18 @@
 ---
-title: "Web Design in Almere and Surroundings | DYSIGNS"
-description: "Website or Shopify store in Almere and the surrounding area? DYSIGNS designs and builds custom sites from Almere, as an official Shopify Partner."
-heading: "Web design in Almere and surroundings"
+title: "Web Agency in Almere | Web Design & Shopify | DYSIGNS"
+description: "Creative web agency in Almere. DYSIGNS designs and builds custom websites, Shopify stores and apps as an official Shopify Partner."
+heading: "Web agency in Almere for creative websites and webshops"
 slug: "web-design-almere"
 answerBlock: |
-  DYSIGNS is a web design and development team based in Almere. We
-  design and build custom websites and Shopify stores for local
+  DYSIGNS is a creative web agency based in Almere. We design and
+  build custom websites, Shopify stores and apps for local
   businesses, founders and scale-ups in Almere and the surrounding
   area, from Lelystad and Zeewolde to het Gooi and Amsterdam, as an
   official Shopify Partner. The same team designs and builds, so
-  what launches is what was designed.
-lastUpdated: "2026-11-13"
+  what launches is what was designed. Recent work: the STËLZ app,
+  which reached number 1 in the Dutch App Store, and the webshop for
+  fashion brand Merely Made, stocked in 32 stores worldwide.
+lastUpdated: "2026-11-22"
 ---
 
 ## What this includes
@@ -27,15 +29,23 @@ A Shopify webshop on a custom theme, with the functionality your products and cu
 
 Already have a site or store in Almere that underperforms? We start by looking at what is holding it back and improve step by step, instead of rebuilding by default.
 
-## Why a team from Almere
+## Why a web agency from Almere
 
-Looking for a web designer in Almere? Almere is our home base, so a first conversation over coffee is easy to arrange. Most of the work itself runs remotely, with short lines and one fixed point of contact, in Dutch or English. You get a team that knows the local market without the overhead of a large agency.
+Looking for a web agency or web designer in Almere? Almere is our home base, so a first conversation over coffee is easy to arrange. Most of the work itself runs remotely, with short lines and one fixed point of contact, in Dutch or English. You get a team that knows the local market without the overhead of a large agency.
 
 ## Who it is for
 
 For entrepreneurs, founders and growing companies in Almere and the surrounding area, from Lelystad and Zeewolde to het Gooi, who want a website or webshop that goes beyond a template, and who would rather work with one team than coordinate between a designer and a separate developer.
 
 ## Frequently asked questions
+
+### How do you choose a good web agency in Almere?
+
+Look at three things. First, work you can check yourself: live websites, stores and apps, not just mockups. Second, who builds it: does the same team design and build, or is the work passed on to an outside developer? Third, what happens after launch: maintenance, SEO and campaigns, or just a handover. Also ask whether you can meet the people who work on your project. We are happy to meet in Almere, Amsterdam or at your office, and our work is on [the work page](/work).
+
+### What kind of websites do you make?
+
+Creative websites designed from scratch, not adjusted templates. Think business websites, Shopify stores on a custom theme and apps for iOS and Android. Examples are the [STËLZ website and store](/work/stelz-web-design), the [STËLZ app](/work/stelz-app) and the [Merely Made webshop](/work/merely-made-webshop).
 
 ### Can I meet in person in Almere?
 

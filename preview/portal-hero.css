@@ -568,12 +568,39 @@ html.ph-lock body {
   border-radius: 12px;
 }
 .ph-avail__text {
-  margin-top: 22px; /* the words sit under the line, like a caption */
+  margin-top: 18px; /* the words sit under the line, like a caption */
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
   white-space: nowrap;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-brand);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s;
+}
+.ph-avail__words,
+.ph-avail__swoosh {
+  display: inline-block;
+  overflow: visible;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ph-avail__text:hover,
+.ph-avail__text:focus-visible {
+  color: rgba(255, 255, 255, 0.9);
+}
+.ph-avail__text:hover .ph-avail__words { transform: translateX(-2px); }
+.ph-avail__text:hover .ph-avail__swoosh { transform: translate(-3px, -2px) rotate(8deg); }
+.ph-avail__text:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 @media (max-width: 767px) {
   /* on a phone it sits above the headline again, smaller, centred */

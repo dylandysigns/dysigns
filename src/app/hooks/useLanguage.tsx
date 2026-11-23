@@ -53,7 +53,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.cta1": { en: "See work", nl: "Bekijk ons werk" },
   "hero.cta2": { en: "Let’s connect", nl: "Laten we kennismaken" },
   "hero.available": { en: "Available for projects, Almere", nl: "Beschikbaar voor projecten, Almere" },
-  "menu.workIn": { en: "We work in Amsterdam", nl: "Wij werken in Amsterdam" },
+  "menu.workIn": { en: "Check where we work", nl: "Check waar we werken" },
   "hero.availableIn": { en: "We are available in", nl: "Wij zijn beschikbaar in" },
   "hero.availableCity": { en: "Amsterdam", nl: "Amsterdam" },
   "hero.workingFrom": { en: "We work from the Netherlands", nl: "We werken vanuit Nederland" },

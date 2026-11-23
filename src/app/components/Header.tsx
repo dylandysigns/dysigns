@@ -497,42 +497,45 @@ function MobileMenu({
 
       {/* Available badge in mobile menu */}
       <div ref={badgeRef} className="mt-2 mb-4 flex justify-center px-6" style={{ opacity: 0 }}>
-        <div
-          className="flex items-center gap-2 rounded-full"
+        <a
+          href={crawlHref(toLangPath("/web-design-amsterdam", lang))}
+          onClick={(e) => handleNav(e, "/web-design-amsterdam")}
+          className="workin-link flex items-center gap-2"
           style={{
-            padding: "5px 12px 5px 9px",
-            background: "rgba(var(--page-fg-rgb), .04)",
-            border: "1px solid rgba(var(--page-fg-rgb), .07)",
+            color: "rgba(var(--page-fg-rgb), .55)",
+            fontFamily: "var(--font-brand)",
+            transition: "color .3s",
           }}
         >
           <span
-            className="relative flex-shrink-0"
-            style={{ width: 6, height: 6 }}
-          >
-            <span
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: "#4ade80",
-                boxShadow:
-                  "0 0 4px rgba(74,222,128,.6), 0 0 10px rgba(74,222,128,.3)",
-                animation: "headerDotPulse 3.2s ease-in-out infinite",
-              }}
-            />
-          </span>
-          <span
+            className="workin-text"
             style={{
-              fontSize: ".6rem",
-              fontWeight: 500,
+              fontSize: ".9rem",
+              fontWeight: 400,
               letterSpacing: 0,
-              textTransform: "uppercase",
-              color: "rgba(var(--page-fg-rgb), .55)",
-              fontFamily: "var(--font-brand)",
+              textTransform: "lowercase",
             }}
           >
             {/* One message for everyone, no guessing where the visitor is */}
             {t("menu.workIn")}
           </span>
-        </div>
+          <svg
+            aria-hidden="true"
+            className="workin-swoosh flex-shrink-0"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ overflow: "visible" }}
+          >
+            <path d="M2 13 C3 7, 7 4, 13 3.5" />
+            <path d="M9.5 1.8 L13 3.5 L10.6 6.6" />
+          </svg>
+        </a>
       </div>
 
       <nav
@@ -939,6 +942,13 @@ export function Header() {
 
       {/* Keyframe for header availability dot */}
       <style>{`
+        .workin-text, .workin-swoosh {
+          display: inline-block;
+          transition: transform .4s cubic-bezier(.2,.8,.2,1);
+        }
+        .workin-link:hover { color: rgba(var(--page-fg-rgb), .85) !important; }
+        .workin-link:hover .workin-text { transform: translateX(3px); }
+        .workin-link:hover .workin-swoosh { transform: translate(2px, -2px) rotate(-8deg); }
         @keyframes headerDotPulse {
           0%, 100% {
             box-shadow: 0 0 4px rgba(74,222,128,.6), 0 0 10px rgba(74,222,128,.3);

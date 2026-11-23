@@ -1,6 +1,6 @@
 # DYSIGNS
 
-> DYSIGNS is een creative partner en full-service digital agency uit Almere: een klein team en officieel Shopify Partner. We ontwerpen en bouwen websites, Shopify webshops, apps en digitale interfaces voor ondernemers, scale-ups en merken in Nederland en België. Na de lancering blijven we: social media, Meta Ads en optimalisatie op basis van data.
+> DYSIGNS is een creatief webbureau en full-service digital agency uit Almere: een klein team en officieel Shopify Partner. We ontwerpen en bouwen creatieve websites, Shopify webshops, apps en digitale interfaces voor ondernemers, scale-ups en merken in Nederland en België. Na de lancering blijven we: social media, Meta Ads en optimalisatie op basis van data.
 
 Kernpropositie: één vast team van ontwerp tot livegang en daarna, in plaats van losse specialisten. Omdat we zelf ontwerpen, bouwen en de campagnes draaien, weten we waar we moeten bijsturen als de cijfers bewegen. Korte lijnen, één aanspreekpunt, reactie binnen één werkdag.
 
@@ -10,6 +10,11 @@ English version of the site: https://dylandysigns.com/ (Dutch: https://dylandysi
 
 - [Webdesign](https://dylandysigns.com/nl/web-design/): Maatwerk websites, van ontwerp tot een snelle, werkende site. Technische SEO zit er standaard in.
 - [Shopify development](https://dylandysigns.com/nl/shopify-development/): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets, als officieel Shopify Partner.
+- [Headless Shopify](https://dylandysigns.com/nl/headless-shopify/): Eigen storefronts op de Storefront API, met een eerlijk advies of een thema beter past.
+- [Shopify migratie](https://dylandysigns.com/nl/shopify-migration/): Overstappen naar Shopify met producten, klanten, orders en SEO intact.
+- [Shopify koppelingen](https://dylandysigns.com/nl/shopify-integrations/): Boekhouding, voorraad, CRM, e-mail en marktplaatsen als Bol.com.
+- [Shopify store design](https://dylandysigns.com/nl/shopify-store-design/): Webshop design waarin merk, productpagina's en checkout samenwerken.
+- [Shopify B2B](https://dylandysigns.com/nl/shopify-b2b/): Zakelijke prijzen, bedrijfsaccounts en herhaalbestellingen.
 - [UX/UI-design](https://dylandysigns.com/nl/ux-ui-design/): Gebruikersonderzoek, wireframes, prototypes en een compleet designsysteem voor apps, portals en webshops.
 - [Branding](https://dylandysigns.com/nl/branding/): Merkstrategie, logo en huisstijl die doorwerken in site, webshop en social kanalen.
 - [Social media en Meta Ads](https://dylandysigns.com/nl/social-media-meta-ads/): Social media beheer en Meta Ads, inclusief de landingspagina, zodat de hele funnel wordt geoptimaliseerd.
@@ -17,7 +22,7 @@ English version of the site: https://dylandysigns.com/ (Dutch: https://dylandysi
 
 ## Regio's
 
-- [Website laten maken in Almere](https://dylandysigns.com/nl/web-design-almere/): Ons thuisgebied: Almere, Flevoland, Lelystad en Zeewolde. Afspreken op locatie kan.
+- [Webbureau in Almere](https://dylandysigns.com/nl/web-design-almere/): Website laten maken in Almere. Ons thuisgebied: Almere, Flevoland, Lelystad en Zeewolde. Afspreken op locatie kan.
 - [Website laten maken in Amsterdam](https://dylandysigns.com/nl/web-design-amsterdam/): Maatwerk websites, webshops en apps voor Amsterdamse merken.
 - Verder werken we door heel Nederland en België, grotendeels op afstand, en voor internationale merken.
 

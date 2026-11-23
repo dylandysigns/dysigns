@@ -70,7 +70,7 @@ Shopify is strong for most e-commerce use cases, but it is not always the best f
 
 ## Who it is for
 
-For founders and agencies with a Shopify store that needs to go beyond a standard theme, or who want an existing store improved rather than rebuilt. For [STËLZ](/work/stelz-web-design), for example, we built a modular Shopify store with faster collection discovery, a smoother add-to-cart flow and a content structure the team updates day to day. For [Merely Made](/work/merely-made-webshop) we migrated the complete store, back office included, from SixShop to Shopify, live in one month and without downtime.
+For founders and agencies with a Shopify store that needs to go beyond a standard theme, or who want an existing store improved rather than rebuilt. For [STËLZ](/work/stelz-web-design), for example, we built a modular Shopify store with faster collection discovery, a smoother add-to-cart flow and a content structure the team updates day to day. For [Merely Made](/work/merely-made-webshop) we migrated the complete store, back office included, from SixShop to Shopify, live in one month and without downtime. More per topic: [headless Shopify](/headless-shopify), [Shopify migration](/shopify-migration), [integrations](/shopify-integrations), [store design](/shopify-store-design) and [Shopify B2B](/shopify-b2b).
 
 ## Frequently asked questions
 

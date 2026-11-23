@@ -891,9 +891,27 @@ export default function PortalHero() {
           </aside>
           <p className="ph-avail" data-fade data-rise>
             <AvailGlobe label={t("hero.globeLabel")} onOpen={openGlobe} />
-            <span className="ph-avail__text">
-              {t("menu.workIn")}
-            </span>
+            <button type="button" className="ph-avail__text" onClick={openGlobe}>
+              <svg
+                aria-hidden="true"
+                className="ph-avail__swoosh"
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {/* mirrored so the swoosh points back at the globe on its left */}
+                <g transform="rotate(-45 8 8) translate(16 0) scale(-1 1)">
+                  <path d="M2 13 C3 7, 7 4, 13 3.5" />
+                  <path d="M9.5 1.8 L13 3.5 L10.6 6.6" />
+                </g>
+              </svg>
+              <span className="ph-avail__words">{t("menu.workIn")}</span>
+            </button>
           </p>
           <h1 className="ph-h1" data-fade>
             <span className="ph-mask">
