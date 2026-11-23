@@ -9,7 +9,7 @@ answerBlock: |
   advertentiecookies. Deze pagina legt precies uit wat wordt
   verzameld, waarom, en hoe je het kunt inzien, corrigeren of laten
   verwijderen.
-lastUpdated: "2026-11-15"
+lastUpdated: "2026-11-19"
 ---
 
 ## Wie verantwoordelijk is voor je gegevens

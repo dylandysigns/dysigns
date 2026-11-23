@@ -8,7 +8,7 @@ answerBlock: |
   (your email address and message) and uses no analytics or
   advertising cookies. This page explains exactly what is collected,
   why, and how you can access, correct or delete it.
-lastUpdated: "2026-11-15"
+lastUpdated: "2026-11-19"
 ---
 
 ## Who is responsible for your data

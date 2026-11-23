@@ -71,6 +71,12 @@ export const serviceIncludeImages: Partial<Record<string, { en: string[]; nl?: s
       img("biyu-partner-portal.avif"),
       img("old_product_page1.png"),
       img("merelymade-new-arrivals.avif"),
+      // A store your team runs itself, In-house apps, Conversion and mobile
+      // (all STËLZ). Shopify Plus, Headless and B2B have no case yet, so they
+      // fall back to the service image instead of borrowing an unrelated one.
+      img("stelz-web-home.avif"),
+      img("stelz-web-product.avif"),
+      img("stelz-web-mobile.avif"),
     ],
   },
   "headless-shopify": {

@@ -82,6 +82,7 @@ const enRoutes = [
   "/about",
   "/contact",
   "/privacy",
+  "/privacy/whatsapp-service",
 ];
 
 const routesToPrerender = [
