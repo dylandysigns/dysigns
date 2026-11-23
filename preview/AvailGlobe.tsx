@@ -94,16 +94,9 @@ export function AvailGlobe({ label, onOpen }: { label: string; onOpen: (origin: 
         }
       }
 
-      // Amsterdam: a line out to the words next to the globe, a dot and a slow ping
+      // Amsterdam: a dot and a slow ping (the arrow next to the words points at it)
       const ams = project(AMS.lon, AMS.lat);
       if (ams.z > 0.1) {
-        ctx.strokeStyle = "rgba(255,255,255,0.34)";
-        ctx.lineWidth = 0.8;
-        ctx.beginPath();
-        ctx.moveTo(ams.x, ams.y);
-        ctx.lineTo(100, 22);
-        ctx.lineTo(W - 4, 22);
-        ctx.stroke();
         const phase = reduced ? 0.4 : (t % 3200) / 3200;
         ctx.strokeStyle = `rgba(255,255,255,${(0.7 * (1 - phase)).toFixed(3)})`;
         ctx.beginPath();
