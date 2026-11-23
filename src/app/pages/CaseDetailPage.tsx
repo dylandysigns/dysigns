@@ -16,6 +16,12 @@ import { breadcrumbListSchema, creativeWorkSchema } from "../seo/schema";
 // Meta description max is 155 chars (fase 3 validation) — project.overview
 // is longer prose, so truncate at a word boundary rather than fabricate
 // a separate summary.
+// A subheading inside a case overview: one short line with no sentence ending.
+function isOverviewHeading(block: string): boolean {
+  const text = block.trim();
+  return text.length > 0 && text.length <= 40 && !text.includes("\n") && !/[.!?:,]$/.test(text);
+}
+
 function truncateForDescription(text: string, max = 155): string {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
@@ -123,7 +129,7 @@ export default function CaseDetailPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const overviewRef = useRef<HTMLParagraphElement>(null);
+  const overviewRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<(HTMLDivElement | null)[]>([]);
   const outcomesRef = useRef<HTMLDivElement>(null);
   const cursor = useCursor();
@@ -687,19 +693,7 @@ export default function CaseDetailPage() {
 
         <div className="mt-14 lg:mt-1">
           <div>
-            <p
-              style={{
-                margin: "0 0 12px",
-                fontSize: ".7rem",
-                fontWeight: 600,
-                letterSpacing: ".06em",
-                textTransform: "uppercase",
-                color: "rgba(var(--page-fg-rgb), .55)",
-              }}
-            >
-              {t("case.overview")}
-            </p>
-            <p
+            <div
               ref={overviewRef}
               style={{
                 fontFamily: '"Effra Text", var(--font-brand)',
@@ -708,13 +702,35 @@ export default function CaseDetailPage() {
                 lineHeight: 1.7,
                 color: "rgba(var(--page-fg-rgb), .72)",
                 marginBottom: 40,
-                // "\n\n" in an overview becomes a paragraph break, so long
-                // stories don't read as one wall of text on a phone.
-                whiteSpace: "pre-line",
               }}
             >
-              {project.overview}
-            </p>
+              {/* "\n\n" in an overview starts a new block, so long stories don't
+                  read as one wall of text on a phone. A short block without a
+                  full stop ("De uitdaging", "Wat we bouwden") is a subheading:
+                  bold, and an h2 so search engines read the story's structure. */}
+              {project.overview.split(/\n{2,}/).map((block, i) =>
+                isOverviewHeading(block) ? (
+                  <h2
+                    key={i}
+                    style={{
+                      margin: i === 0 ? "0 0 .35em" : "1.5em 0 .35em",
+                      fontFamily: "var(--font-brand)",
+                      fontSize: "inherit",
+                      fontWeight: 700,
+                      lineHeight: 1.4,
+                      letterSpacing: 0,
+                      color: "var(--page-fg)",
+                    }}
+                  >
+                    {block.trim()}
+                  </h2>
+                ) : (
+                  <p key={i} style={{ margin: "0 0 1em", whiteSpace: "pre-line" }}>
+                    {block}
+                  </p>
+                ),
+              )}
+            </div>
           </div>
 
           <div
