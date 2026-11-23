@@ -10,6 +10,11 @@ English version of the site: https://dylandysigns.com/ (Dutch: https://dylandysi
 
 - [Webdesign](https://dylandysigns.com/nl/web-design/): Maatwerk websites, van ontwerp tot een snelle, werkende site. Technische SEO zit er standaard in.
 - [Shopify development](https://dylandysigns.com/nl/shopify-development/): Maatwerk Shopify-thema's, custom Liquid-secties en Shopify Markets, als officieel Shopify Partner.
+- [Headless Shopify](https://dylandysigns.com/nl/headless-shopify/): Eigen storefronts op de Storefront API, met een eerlijk advies of een thema beter past.
+- [Shopify migratie](https://dylandysigns.com/nl/shopify-migration/): Overstappen naar Shopify met producten, klanten, orders en SEO intact.
+- [Shopify koppelingen](https://dylandysigns.com/nl/shopify-integrations/): Boekhouding, voorraad, CRM, e-mail en marktplaatsen als Bol.com.
+- [Shopify store design](https://dylandysigns.com/nl/shopify-store-design/): Webshop design waarin merk, productpagina's en checkout samenwerken.
+- [Shopify B2B](https://dylandysigns.com/nl/shopify-b2b/): Zakelijke prijzen, bedrijfsaccounts en herhaalbestellingen.
 - [UX/UI-design](https://dylandysigns.com/nl/ux-ui-design/): Gebruikersonderzoek, wireframes, prototypes en een compleet designsysteem voor apps, portals en webshops.
 - [Branding](https://dylandysigns.com/nl/branding/): Merkstrategie, logo en huisstijl die doorwerken in site, webshop en social kanalen.
 - [Social media en Meta Ads](https://dylandysigns.com/nl/social-media-meta-ads/): Social media beheer en Meta Ads, inclusief de landingspagina, zodat de hele funnel wordt geoptimaliseerd.

@@ -47,7 +47,7 @@ Shopify is sterk voor de meeste e-commerce toepassingen, maar niet altijd de bes
 
 ## Who it is for
 
-Voor ondernemers en bureaus die een professionele webshop willen laten bouwen die verder gaat dan een standaardthema, of die hun bestaande webwinkel willen verbeteren in plaats van opnieuw laten maken. Voor [STËLZ](/nl/work/stelz-web-design) bouwden we bijvoorbeeld een modulaire Shopify-webshop met snellere collectienavigatie, een soepelere add-to-cart en een contentstructuur die het team dagelijks zelf bijwerkt.
+Voor ondernemers en bureaus die een professionele webshop willen laten bouwen die verder gaat dan een standaardthema, of die hun bestaande webwinkel willen verbeteren in plaats van opnieuw laten maken. Voor [STËLZ](/nl/work/stelz-web-design) bouwden we bijvoorbeeld een modulaire Shopify-webshop met snellere collectienavigatie, een soepelere add-to-cart en een contentstructuur die het team dagelijks zelf bijwerkt. Meer per onderwerp: [headless Shopify](/nl/headless-shopify), [Shopify migratie](/nl/shopify-migration), [koppelingen](/nl/shopify-integrations), [store design](/nl/shopify-store-design) en [Shopify B2B](/nl/shopify-b2b).
 
 ## Frequently asked questions
 

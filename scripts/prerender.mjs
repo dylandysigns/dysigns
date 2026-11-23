@@ -68,6 +68,11 @@ const enRoutes = [
   "/branding",
   "/ai-implementation",
   "/shopify-development", // subpage under web design, not in navigation
+  "/headless-shopify", // subpages under Shopify, not in navigation
+  "/shopify-migration",
+  "/shopify-integrations",
+  "/shopify-store-design",
+  "/shopify-b2b",
   "/web-design-almere", // local landing page under web design
   "/web-design-amsterdam", // local landing page under web design
   "/work",

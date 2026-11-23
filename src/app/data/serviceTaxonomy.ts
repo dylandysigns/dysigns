@@ -29,6 +29,11 @@ export const serviceDefinitions: ServiceDefinition[] = [
 export const serviceHeroImages: Partial<Record<string, string>> = {
   "web-design": "/images/stelz-laptop.avif",
   "shopify-development": "/images/stelz-laptop.avif",
+  "headless-shopify": "/images/stelz-app-v2-store.avif",
+  "shopify-migration": "/images/old-new.avif",
+  "shopify-integrations": "/images/stelz-laptop.avif",
+  "shopify-store-design": "/images/merelymade-web-hero.avif",
+  "shopify-b2b": "/images/biyu-partner-portal.avif",
   "web-design-almere": "/images/stelz-laptop.avif",
   "web-design-amsterdam": "/images/biyu-cover.avif",
   "ux-ui-design": "/images/powermobile-overview.avif",
@@ -67,6 +72,26 @@ export const serviceIncludeImages: Partial<Record<string, { en: string[]; nl?: s
       img("old_product_page1.png"),
       img("merelymade-new-arrivals.avif"),
     ],
+  },
+  "headless-shopify": {
+    // Architecture advice, Custom storefront, Content model, Apps check
+    en: [img("stelz-app-v2-store.avif"), img("stelz-laptop.avif"), img("merelymade-new-arrivals.avif"), img("old_product_page1.png")],
+  },
+  "shopify-migration": {
+    // Audit, Data, SEO and URLs, Go-live
+    en: [img("old_product_page1.png"), img("old-new.avif"), img("beckers-cover-laptop-v3.avif"), img("merelymade-web-hero.avif")],
+  },
+  "shopify-integrations": {
+    // Payments, Inventory, Marketplaces, CRM, Custom API
+    en: [img("merelymade-shop.avif"), img("biyu-partner-portal.avif"), img("stelz-app-v2-store.avif"), img("stelz-laptop.avif"), img("powermobile-overview.avif")],
+  },
+  "shopify-store-design": {
+    // Brand, Product pages, Cart and checkout, Sections
+    en: [img("merelymade-web-hero.avif"), img("merelymade-shop.avif"), img("stelz-app-v2-store.avif"), img("merelymade-new-arrivals.avif")],
+  },
+  "shopify-b2b": {
+    // Pricing, Company accounts, Ordering, Invoices
+    en: [img("biyu-partner-portal.avif"), img("biyu-cover.avif"), img("powermobile-overview.avif"), img("stelz-laptop.avif")],
   },
   "web-design-almere": {
     // Website, Shopify store, Improving what you have

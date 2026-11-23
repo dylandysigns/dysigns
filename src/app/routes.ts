@@ -9,6 +9,11 @@ import {
   BrandingPage,
   AiImplementationPage,
   ShopifyDevelopmentPage,
+  HeadlessShopifyPage,
+  ShopifyMigrationPage,
+  ShopifyIntegrationsPage,
+  ShopifyStoreDesignPage,
+  ShopifyB2bPage,
   WebDesignAlmerePage,
   WebDesignAmsterdamPage,
 } from "./pages/ServicePages";
@@ -51,6 +56,11 @@ const localizedChildren: RouteObject[] = [
   { path: "ai-implementation", Component: AiImplementationPage },
   // Underneath web design, not in navigation — see ServicePages.tsx.
   { path: "shopify-development", Component: ShopifyDevelopmentPage },
+  { path: "headless-shopify", Component: HeadlessShopifyPage },
+  { path: "shopify-migration", Component: ShopifyMigrationPage },
+  { path: "shopify-integrations", Component: ShopifyIntegrationsPage },
+  { path: "shopify-store-design", Component: ShopifyStoreDesignPage },
+  { path: "shopify-b2b", Component: ShopifyB2bPage },
   { path: "web-design-almere", Component: WebDesignAlmerePage },
   { path: "web-design-amsterdam", Component: WebDesignAmsterdamPage },
   { path: "work", Component: WorkPage },

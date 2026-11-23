@@ -65,7 +65,7 @@ function ServicePage({
   storyHeading?: { en: string; nl: string };
   /** Only set for the Shopify subpage — adds "Web design and development"
    * as a breadcrumb link between Home and this page. */
-  breadcrumbParentSlug?: ServiceSlug;
+  breadcrumbParentSlug?: string;
   /** Only set when a service overrides the default "why this sits"
    * heading (Shopify). Both languages required since this string is
    * also the markdown section-lookup key. */
@@ -690,3 +690,45 @@ export function ShopifyDevelopmentPage() {
     />
   );
 }
+
+// Subpages under the Shopify page, not in navigation. Each is its own
+// markdown file in content/services/ and links back to Shopify in the
+// breadcrumb.
+const shopifySubWhy = {
+  "headless-shopify": {
+    en: "When a theme is the better answer",
+    nl: "Wanneer een thema beter is",
+  },
+  "shopify-migration": {
+    en: "When migrating is not worth it",
+    nl: "Wanneer migreren niet loont",
+  },
+  "shopify-integrations": {
+    en: "An app first, custom work second",
+    nl: "Eerst een app, dan pas maatwerk",
+  },
+  "shopify-store-design": {
+    en: "Why design and development in one team",
+    nl: "Waarom design en development in één team",
+  },
+  "shopify-b2b": {
+    en: "When B2B on Shopify fits",
+    nl: "Wanneer B2B op Shopify past",
+  },
+} as const;
+
+function ShopifySubPage({ slug }: { slug: keyof typeof shopifySubWhy }) {
+  return (
+    <ServicePage
+      slug={slug}
+      breadcrumbParentSlug="shopify-development"
+      customWhyHeading={shopifySubWhy[slug]}
+    />
+  );
+}
+
+export const HeadlessShopifyPage = () => <ShopifySubPage slug="headless-shopify" />;
+export const ShopifyMigrationPage = () => <ShopifySubPage slug="shopify-migration" />;
+export const ShopifyIntegrationsPage = () => <ShopifySubPage slug="shopify-integrations" />;
+export const ShopifyStoreDesignPage = () => <ShopifySubPage slug="shopify-store-design" />;
+export const ShopifyB2bPage = () => <ShopifySubPage slug="shopify-b2b" />;
